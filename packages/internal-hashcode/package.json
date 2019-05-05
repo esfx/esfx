@@ -15,5 +15,9 @@
     },
     "dependencies": {
         "@esfx/internal-murmur3": "^1.0.0-pre.0"
-    }
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b"
 }

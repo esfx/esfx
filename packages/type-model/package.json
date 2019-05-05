@@ -12,5 +12,9 @@
     },
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
-    }
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b"
 }

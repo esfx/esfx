@@ -19,5 +19,9 @@
         "@esfx/internal-binarysearch": "^1.0.0-pre.0",
         "@esfx/internal-guards": "^1.0.0-pre.0",
         "@esfx/internal-integers": "^1.0.0-pre.0"
-    }
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b"
 }
