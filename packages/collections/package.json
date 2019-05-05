@@ -1,0 +1,23 @@
+{
+    "name": "@esfx/collections",
+    "version": "1.0.0-pre.0",
+    "description": "Common collections API.",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "dependencies": {
+        "@esfx/collection-core": "^1.0.0-pre.0",
+        "@esfx/equatable": "^1.0.0-pre.0",
+        "@esfx/internal-binarysearch": "^1.0.0-pre.0",
+        "@esfx/internal-guards": "^1.0.0-pre.0",
+        "@esfx/internal-integers": "^1.0.0-pre.0"
+    }
+}

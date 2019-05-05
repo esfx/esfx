@@ -1,0 +1,25 @@
+{
+  "name": "esfx",
+  "private": true,
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/esfx/esfx.git"
+  },
+  "bugs": {
+      "url": "https://github.com/esfx/esfx/issues"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.11",
+    "@types/node": "^10.12.12",
+    "chalk": "^2.4.2",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-typescript": "^5.0.0",
+    "jest": "^23.6.0",
+    "lerna": "^3.13.4",
+    "prex": "^0.4.5",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.4.5"
+  }
+}

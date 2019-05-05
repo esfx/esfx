@@ -1,0 +1,16 @@
+{
+    "name": "@esfx/events",
+    "version": "1.0.0-pre.0",
+    "description": "A low-level API for defining events.",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    }
+}

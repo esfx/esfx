@@ -1,0 +1,12 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "experimentalDecorators": true
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../decorators-stage1-core" },
+    ]
+}
