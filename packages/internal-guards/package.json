@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-guards",
-    "version": "1.0.0-pre.0",
+    "version": "1.0.0-pre.1",
     "description": "This package provides internal utilities for @esfx and is not intended for use in user-code.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
