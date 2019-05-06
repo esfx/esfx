@@ -62,7 +62,7 @@ describe("Symbol", () => {
         });
         it("Equatable.hash", () => {
             const a = Symbol("a");
-            expect(a[Equatable.hash]()).toBe(1087209661);
+            expect(a[Equatable.hash]()).toBe(767180218);
         });
     });
 });

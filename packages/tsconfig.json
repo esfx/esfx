@@ -23,6 +23,7 @@
         { "path": "./indexed-object" },
         { "path": "./metadata" },
         { "path": "./metadata-shim" },
+        { "path": "./ref" },
         { "path": "./reflect-metadata-compat" },
         { "path": "./type-model" },
     ]

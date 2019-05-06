@@ -32,5 +32,5 @@ it("different {}", () => expect(hashUnknown({})).not.toBe(hashUnknown({})));
 it("symbol", () => expect(hashUnknown(Symbol())).toBe(1087209661));
 it("same symbol", () => (sym => expect(hashUnknown(sym)).toBe(hashUnknown(sym)))(Symbol()));
 it("different symbols", () => expect(hashUnknown(Symbol())).not.toBe(hashUnknown(Symbol())));
-it("built-in symbol", () => expect(hashUnknown(Symbol.iterator)).toBe(1087209661));
+it("built-in symbol", () => expect(hashUnknown(Symbol.iterator)).toBe(-925861680));
 it("symbol.for", () => expect(hashUnknown(Symbol.for("foo"))).toBe(-1197376351));

@@ -133,12 +133,21 @@ function hashGlobalSymbol(symbol: symbol, key: string) {
     return hash;
 }
 
+const getDescription = "description" in Symbol.prototype ? (symbol: symbol) => symbol.description :
+    (symbol: symbol) => {
+        const s = symbol.toString();
+        if (s.startsWith("Symbol(") && s.endsWith(")")) {
+            return s.slice(7, -1);
+        }
+        return s;
+    };
+
 function hashLocalSymbol(symbol: symbol) {
     let hash = localSymbolHashes && localSymbolHashes.get(symbol);
     if (hash === undefined) {
         if (!localSymbolCounter) localSymbolCounter = { next: 1 };
         hash = combineHashes(localSymbolSeed, localSymbolCounter.next++);
-        if (symbol.description) hash = hashStringWithSeed(symbol.description, "utf8", hash);
+        if (symbol.description) hash = hashStringWithSeed(getDescription(symbol), "utf8", hash);
         if (!localSymbolHashes) localSymbolHashes = new Map();
         localSymbolHashes.set(symbol, hash);
     }

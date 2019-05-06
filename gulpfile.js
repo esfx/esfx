@@ -23,6 +23,7 @@ const internal_murmur3 = () => buildProject("packages/internal-murmur3");
 const indexed_object = () => buildProject("packages/indexed-object");
 const metadata = () => buildProject("packages/metadata");
 const metadata_shim = () => buildProject("packages/metadata-shim");
+const ref = () => buildProject("packages/ref");
 const reflect_metadata_compat = () => buildProject("packages/reflect-metadata-compat");
 const type_model = () => buildProject("packages/type-model");
 const build = gulp.parallel(
@@ -46,6 +47,7 @@ const build = gulp.parallel(
     indexed_object,
     metadata,
     metadata_shim,
+    ref,
     reflect_metadata_compat,
     type_model,
 );
@@ -70,6 +72,7 @@ const clean_internal_murmur3 = () => cleanProject("packages/internal-murmur3");
 const clean_indexed_object = () => cleanProject("packages/indexed-object");
 const clean_metadata = () => cleanProject("packages/metadata");
 const clean_metadata_shim = () => cleanProject("packages/metadata-shim");
+const clean_ref = () => cleanProject("packages/ref");
 const clean_reflect_metadata_compat = () => cleanProject("packages/reflect-metadata-compat");
 const clean_type_model = () => cleanProject("packages/type-model");
 const clean_dist = () => del(["packages/*/dist", "packages/*/*.tsbuildinfo"]);
@@ -95,6 +98,7 @@ const clean = gulp.series(
         clean_indexed_object,
         clean_metadata,
         clean_metadata_shim,
+        clean_ref,
         clean_reflect_metadata_compat,
         clean_type_model,
     ),
@@ -126,6 +130,7 @@ gulp.task("packages/internal-murmur3", internal_murmur3);
 gulp.task("packages/indexed-object", indexed_object);
 gulp.task("packages/metadata", metadata);
 gulp.task("packages/metadata-shim", metadata_shim);
+gulp.task("packages/ref", ref);
 gulp.task("packages/reflect-metadata-compat", reflect_metadata_compat);
 gulp.task("packages/type-model", type_model);
 gulp.task("packages", build);

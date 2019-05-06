@@ -2,6 +2,14 @@
 
 The `@esfx/cancelable` package provides a low-level Symbol-based API for defining a common cancellation protocol.
 
+> NOTE: This package does not contain an *implementation* of cancellation signals, but rather provides only a
+> protocol for interoperable libraries that depend on cancellation.
+>
+> For an implementation of this protocol, please consider the following packages:
+> - [`@esfx/cancelable-dom`](../packages/cancelable-dom)
+> - [`@esfx/cancelable-dom-shim`](../packages/cancelable-dom-shim)
+> - [`prex`](https://github.com/rbuckton/prex) (version 0.4.6 or later)
+
 # Overview
 
 * [Installation](#installation)
@@ -21,20 +29,20 @@ import { Cancelable } from "@esfx/cancelable";
 
 function doSomeWork(cancelable: Cancelable) {
     return new Promise((resolve, reject) => {
-      const cancelSignal = cancelable[Cancelable.cancelSignal]();
-      if (cancelSignal.signaled) throw new Error("Operation canceled.");
+        const cancelSignal = cancelable[Cancelable.cancelSignal]();
+        if (cancelSignal.signaled) throw new Error("Operation canceled.");
 
-      const child = fork("worker.js");
-      const subscription = cancelSignal.subscribe(() => {
-          // cancellation requested, abort worker
-          worker.kill();
-          reject(new Error("Operation canceled."));
-      });
+        const child = fork("worker.js");
+        const subscription = cancelSignal.subscribe(() => {
+            // cancellation requested, abort worker
+            worker.kill();
+            reject(new Error("Operation canceled."));
+        });
 
-      worker.on("exit", () => {
-          subscription.unsubscribe();
-          resolve();
-      });
+        worker.on("exit", () => {
+            subscription.unsubscribe();
+            resolve();
+        });
     });
 }
 ```
@@ -55,6 +63,7 @@ export interface CancelSignal {
      */
     subscribe(onCancellationRequested: () => void): CancelSubscription;
 }
+
 /**
  * An object used to unsubscribe from a cancellation signal.
  */
@@ -64,6 +73,7 @@ export interface CancelSubscription {
      */
     unsubscribe(): void;
 }
+
 /**
  * An object that can be canceled from an external source.
  */
@@ -73,10 +83,12 @@ export interface Cancelable {
      */
     [Cancelable.cancelSignal](): CancelSignal;
 }
+
 export declare namespace Cancelable {
     const cancelSignal: unique symbol;
     function isCancelable(value: unknown): value is Cancelable;
 }
+
 /**
  * Represents an object that is a source for cancelation.
  */
@@ -86,6 +98,7 @@ export interface CancelableSource extends Cancelable {
      */
     [CancelableSource.cancel](): void;
 }
+
 export declare namespace CancelableSource {
     export import cancelSignal = Cancelable.cancelSignal;
     export import isCancelable = Cancelable.isCancelable;

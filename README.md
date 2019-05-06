@@ -14,6 +14,7 @@ The main packages in the `@esfx` suite include:
 - [`@esfx/events`](packages/events/README.md) - A low-level API for defining events.
 - [`@esfx/indexed-object`](packages/indexed-object/README.md) - A base class for custom integer-indexed objects.
 - [`@esfx/metadata`](packages/metadata/README.md) - An API for defining metadata about an object.
+- [`@esfx/ref`](packages/ref/README.md) - A low-level API for defining forward references.
 - [`@esfx/type-model`](packages/type-model/README.md) - A number of useful types for TypeScript.
 
 # Shims
