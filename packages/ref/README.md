@@ -178,6 +178,9 @@ export declare namespace ref {
      * Creates a `ref` that must be set before it can be read.
      */
     function out<T>(): Reference<T>;
+    /**
+     * Creates a `ref` that must be set before it can be read.
+     */
     function out<T>(get: () => T, set: (value: T) => void): Reference<T>;
     const prototype: Reference<unknown>;
 }

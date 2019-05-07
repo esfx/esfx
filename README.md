@@ -23,6 +23,7 @@ Shim packages augment built-in objects with functionality from the main packages
 
 - [`@esfx/equatable-shim`](packages/equatable-shim/README.md)
 - [`@esfx/collection-core-shim`](packages/collection-core-shim/README.md)
+- [`@esfx/collection-core-dom-shim`](packages/collection-core-dom-shim/README.md)
 - [`@esfx/cancelable-dom-shim`](packages/cancelable-dom-shim/README.md)
 - [`@esfx/metadata-shim`](packages/metadata-shim/README.md)
 - [`@esfx/reflect-metadata-compat`](packages/reflect-metadata-compat/README.md)

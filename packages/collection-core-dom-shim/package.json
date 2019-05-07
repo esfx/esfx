@@ -1,0 +1,24 @@
+{
+    "name": "@esfx/collection-core-dom-shim",
+    "version": "1.0.0-pre.1",
+    "description": "A global shim to add default @esfx/collection-core behaviors to global DOM objects.",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "dependencies": {
+        "@esfx/collection-core": "^1.0.0-pre.1",
+        "@esfx/type-model": "^1.0.0-pre.1"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b"
+}

@@ -9,6 +9,7 @@
         { "path": "./cancelable-dom-shim" },
         { "path": "./collection-core" },
         { "path": "./collection-core-shim" },
+        { "path": "./collection-core-dom-shim" },
         { "path": "./collections" },
         { "path": "./decorators-stage1-core" },
         { "path": "./decorators" },

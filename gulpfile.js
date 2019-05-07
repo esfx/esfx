@@ -1,12 +1,14 @@
 // @ts-check
 const gulp = require("gulp");
 const del = require("del");
-const { buildProject, cleanProject, exec } = require("./scripts/build");
+const { buildProject, cleanProject } = require("./scripts/build");
+const { exec } = require("./scripts/exec");
 
 const cancelable = () => buildProject("packages/cancelable");
 const cancelable_dom = () => buildProject("packages/cancelable-dom");
 const cancelable_dom_shim = () => buildProject("packages/cancelable-dom-shim");
 const collection_core = () => buildProject("packages/collection-core");
+const collection_core_dom_shim = () => buildProject("packages/collection-core-dom-shim");
 const collection_core_shim = () => buildProject("packages/collection-core-shim");
 const collections = () => buildProject("packages/collections");
 const decorators = () => buildProject("packages/decorators");
@@ -31,6 +33,7 @@ const build = gulp.parallel(
     cancelable_dom,
     cancelable_dom_shim,
     collection_core,
+    collection_core_dom_shim,
     collection_core_shim,
     collections,
     decorators,
@@ -56,6 +59,7 @@ const clean_cancelable = () => cleanProject("packages/cancelable");
 const clean_cancelable_dom = () => cleanProject("packages/cancelable-dom");
 const clean_cancelable_dom_shim = () => cleanProject("packages/cancelable-dom-shim");
 const clean_collection_core = () => cleanProject("packages/collection-core");
+const clean_collection_core_dom_shim = () => cleanProject("packages/collection-core-dom-shim");
 const clean_collection_core_shim = () => cleanProject("packages/collection-core-shim");
 const clean_collections = () => cleanProject("packages/collections");
 const clean_decorators = () => cleanProject("packages/decorators");
@@ -82,6 +86,7 @@ const clean = gulp.series(
         clean_cancelable_dom,
         clean_cancelable_dom_shim,
         clean_collection_core,
+        clean_collection_core_dom_shim,
         clean_collection_core_shim,
         clean_collections,
         clean_decorators,
@@ -114,6 +119,7 @@ gulp.task("packages/cancelable", cancelable);
 gulp.task("packages/cancelable-dom", cancelable_dom);
 gulp.task("packages/cancelable-dom-shim", cancelable_dom_shim);
 gulp.task("packages/collection-core", collection_core);
+gulp.task("packages/collection-core-dom-shim", collection_core_dom_shim);
 gulp.task("packages/collection-core-shim", collection_core_shim);
 gulp.task("packages/collections", collections);
 gulp.task("packages/decorators", decorators);
