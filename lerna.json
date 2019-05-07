@@ -1,6 +1,11 @@
 {
+  "version": "1.0.0-pre.2",
+  "command": {
+    "publish": {
+      "forcePublish": true
+    }
+  },
   "packages": [
     "packages/*"
-  ],
-  "version": "1.0.0-pre.2"
+  ]
 }
