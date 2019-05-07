@@ -1,6 +1,6 @@
 {
     "name": "@esfx/reflect-metadata-compat",
-    "version": "1.0.0-pre.1",
+    "version": "1.0.0-pre.2",
     "description": "A global shim that provides API compatibility with 'reflect-metadata'.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,9 +14,9 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.1",
-        "@esfx/metadata": "^1.0.0-pre.1",
-        "@esfx/metadata-shim": "^1.0.0-pre.1"
+        "@esfx/internal-guards": "^1.0.0-pre.2",
+        "@esfx/metadata": "^1.0.0-pre.2",
+        "@esfx/metadata-shim": "^1.0.0-pre.2"
     },
     "publishConfig": {
         "access": "public"

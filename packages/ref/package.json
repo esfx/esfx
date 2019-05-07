@@ -1,6 +1,6 @@
 {
     "name": "@esfx/ref",
-    "version": "1.0.0-pre.1",
+    "version": "1.0.0-pre.2",
     "description": "A low-level API for defining forward references.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -18,6 +18,6 @@
     },
     "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b",
     "dependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.1"
+        "@esfx/internal-guards": "^1.0.0-pre.2"
     }
 }
