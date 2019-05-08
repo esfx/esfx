@@ -1,4 +1,5 @@
 {
+  "name": "esfx-monorepo",
   "private": true,
   "repository": {
     "type": "git",
