@@ -6,7 +6,7 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../internal-guards" },
+        { "path": "../../internal/guards" },
         { "path": "../metadata" },
         { "path": "../metadata-shim" },
     ]

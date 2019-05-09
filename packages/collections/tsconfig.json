@@ -8,7 +8,7 @@
     "references": [
         { "path": "../collection-core" },
         { "path": "../equatable" },
-        { "path": "../internal-binarysearch" },
-        { "path": "../internal-integers" },
+        { "path": "../../internal/binarysearch" },
+        { "path": "../../internal/integers" },
     ]
 }

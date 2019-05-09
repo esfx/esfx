@@ -6,6 +6,6 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../equatable" },
+        { "path": "../../packages/equatable" },
     ]
 }

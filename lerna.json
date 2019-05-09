@@ -6,6 +6,8 @@
     }
   },
   "packages": [
-    "packages/*"
+    "packages/*",
+    "internal/*",
+    "shims/*"
   ]
 }

@@ -1,0 +1,13 @@
+{
+    "compilerOptions": { "noEmit": true },
+    "files": [],
+    "include": [],
+    "exclude": [],
+    "references": [
+        { "path": "./binarysearch" },
+        { "path": "./guards" },
+        { "path": "./hashcode" },
+        { "path": "./integers" },
+        { "path": "./murmur3" },
+    ]
+}

@@ -6,6 +6,6 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../internal-hashcode" },
+        { "path": "../../internal/hashcode" },
     ]
 }
