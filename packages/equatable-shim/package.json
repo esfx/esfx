@@ -1,6 +1,6 @@
 {
     "name": "@esfx/equatable-shim",
-    "version": "1.0.0-pre.2",
+    "version": "1.0.0-pre.3",
     "description": "A global shim that adds @esfx/equatable functionality to various ECMAScript built-ins.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,8 +14,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.0.0-pre.2",
-        "@esfx/internal-hashcode": "^1.0.0-pre.2"
+        "@esfx/equatable": "^1.0.0-pre.3",
+        "@esfx/internal-hashcode": "^1.0.0-pre.3"
     },
     "publishConfig": {
         "access": "public"

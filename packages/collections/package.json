@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections",
-    "version": "1.0.0-pre.2",
+    "version": "1.0.0-pre.3",
     "description": "Common collections API.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,11 +14,11 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.0.0-pre.2",
-        "@esfx/equatable": "^1.0.0-pre.2",
-        "@esfx/internal-binarysearch": "^1.0.0-pre.2",
-        "@esfx/internal-guards": "^1.0.0-pre.2",
-        "@esfx/internal-integers": "^1.0.0-pre.2"
+        "@esfx/collection-core": "^1.0.0-pre.3",
+        "@esfx/equatable": "^1.0.0-pre.3",
+        "@esfx/internal-binarysearch": "^1.0.0-pre.3",
+        "@esfx/internal-guards": "^1.0.0-pre.3",
+        "@esfx/internal-integers": "^1.0.0-pre.3"
     },
     "publishConfig": {
         "access": "public"

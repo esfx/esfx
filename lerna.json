@@ -1,13 +1,13 @@
 {
-  "version": "1.0.0-pre.2",
+  "version": "1.0.0-pre.3",
   "command": {
     "publish": {
       "forcePublish": true
     }
   },
   "packages": [
-    "packages/*",
     "internal/*",
+    "packages/*",
     "shims/*"
   ]
 }
