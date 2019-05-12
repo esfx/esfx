@@ -27,6 +27,17 @@ function isObject(value) {
 }
 exports.isObject = isObject;
 /*@internal*/
+function isInstance(value, ctor) {
+    return !isMissing(value) && value instanceof ctor;
+}
+exports.isInstance = isInstance;
+/*@internal*/
+function isMissing(value) {
+    return value === null
+        || value === undefined;
+}
+exports.isMissing = isMissing;
+/*@internal*/
 function isDefined(value) {
     return value !== null && value !== undefined;
 }

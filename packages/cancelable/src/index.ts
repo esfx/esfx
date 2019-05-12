@@ -83,3 +83,16 @@ export namespace CancelableSource {
             && cancel in value;
     }
 }
+
+export class CancelError extends Error {
+    constructor(message?: string) {
+        super(message || "Operation was canceled");
+    }
+}
+
+Object.defineProperty(CancelError.prototype, "name", {
+    enumerable: false,
+    configurable: true,
+    writable: true,
+    value: "CancelError",
+});

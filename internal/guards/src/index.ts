@@ -14,6 +14,8 @@
    limitations under the License.
 */
 
+import { Constructor, AbstractConstructor } from "@esfx/type-model";
+
 /*@internal*/
 export function isFunction(value: unknown): value is Function {
     return typeof value === "function";
@@ -23,6 +25,21 @@ export function isFunction(value: unknown): value is Function {
 export function isObject(value: unknown): value is object {
     return typeof value === "object" && value !== null
         || typeof value === "function";
+}
+
+/*@internal*/
+export function isInstance<C extends Constructor>(value: unknown, ctor: C): value is InstanceType<C>;
+/*@internal*/
+export function isInstance<C extends AbstractConstructor>(value: unknown, ctor: C): value is C["prototype"];
+/*@internal*/
+export function isInstance(value: unknown, ctor: Function) {
+    return !isMissing(value) && value instanceof ctor;
+}
+
+/*@internal*/
+export function isMissing(value: unknown): value is null | undefined {
+    return value === null
+        || value === undefined;
 }
 
 /*@internal*/

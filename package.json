@@ -8,9 +8,6 @@
   "bugs": {
     "url": "https://github.com/esfx/esfx/issues"
   },
-  "scripts": {
-    "prepublishOnly": "node scripts/prepublish.js"
-  },
   "devDependencies": {
     "@types/jest": "^23.3.11",
     "@types/node": "^10.12.12",

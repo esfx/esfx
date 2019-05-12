@@ -22,6 +22,7 @@ gulp.task("internal/integers", internal_integers);
 gulp.task("internal/murmur3", internal_murmur3);
 gulp.task("internal", internal);
 
+const async_semaphore = () => buildProject("packages/async-semaphore");
 const cancelable = () => buildProject("packages/cancelable");
 const cancelable_dom = () => buildProject("packages/cancelable-dom");
 const cancelable_dom_shim = () => buildProject("packages/cancelable-dom-shim");
@@ -29,6 +30,7 @@ const collection_core = () => buildProject("packages/collection-core");
 const collection_core_dom_shim = () => buildProject("packages/collection-core-dom-shim");
 const collection_core_shim = () => buildProject("packages/collection-core-shim");
 const collections = () => buildProject("packages/collections");
+const collections_linkedlist = () => buildProject("packages/collections-linkedlist");
 const decorators = () => buildProject("packages/decorators");
 const decorators_stage1_core = () => buildProject("packages/decorators-stage1-core");
 const disposable = () => buildProject("packages/disposable");
@@ -42,6 +44,7 @@ const ref = () => buildProject("packages/ref");
 const reflect_metadata_compat = () => buildProject("packages/reflect-metadata-compat");
 const type_model = () => buildProject("packages/type-model");
 const packages = gulp.parallel(
+    async_semaphore,
     cancelable,
     cancelable_dom,
     cancelable_dom_shim,
@@ -49,6 +52,7 @@ const packages = gulp.parallel(
     collection_core_dom_shim,
     collection_core_shim,
     collections,
+    collections_linkedlist,
     decorators,
     decorators_stage1_core,
     disposable,
@@ -62,6 +66,7 @@ const packages = gulp.parallel(
     reflect_metadata_compat,
     type_model,
 );
+gulp.task("packages/async-semaphore", async_semaphore);
 gulp.task("packages/cancelable", cancelable);
 gulp.task("packages/cancelable-dom", cancelable_dom);
 gulp.task("packages/cancelable-dom-shim", cancelable_dom_shim);
@@ -69,6 +74,7 @@ gulp.task("packages/collection-core", collection_core);
 gulp.task("packages/collection-core-dom-shim", collection_core_dom_shim);
 gulp.task("packages/collection-core-shim", collection_core_shim);
 gulp.task("packages/collections", collections);
+gulp.task("packages/collections-linkedlist", collections_linkedlist);
 gulp.task("packages/decorators", decorators);
 gulp.task("packages/decorators-stage1-core", decorators_stage1_core);
 gulp.task("packages/disposable", disposable);
@@ -96,6 +102,7 @@ const clean_internal = gulp.parallel(
     clean_internal_murmur3,
 );
 
+const clean_async_semaphore = () => cleanProject("packages/async-semaphore");
 const clean_cancelable = () => cleanProject("packages/cancelable");
 const clean_cancelable_dom = () => cleanProject("packages/cancelable-dom");
 const clean_cancelable_dom_shim = () => cleanProject("packages/cancelable-dom-shim");
@@ -103,6 +110,7 @@ const clean_collection_core = () => cleanProject("packages/collection-core");
 const clean_collection_core_dom_shim = () => cleanProject("packages/collection-core-dom-shim");
 const clean_collection_core_shim = () => cleanProject("packages/collection-core-shim");
 const clean_collections = () => cleanProject("packages/collections");
+const clean_collections_linkedlist = () => cleanProject("packages/collections-linkedlist");
 const clean_decorators = () => cleanProject("packages/decorators");
 const clean_decorators_stage1_core = () => cleanProject("packages/decorators-stage1-core");
 const clean_disposable = () => cleanProject("packages/disposable");
@@ -116,6 +124,7 @@ const clean_ref = () => cleanProject("packages/ref");
 const clean_reflect_metadata_compat = () => cleanProject("packages/reflect-metadata-compat");
 const clean_type_model = () => cleanProject("packages/type-model");
 const clean_packages = gulp.parallel(
+    clean_async_semaphore,
     clean_cancelable,
     clean_cancelable_dom,
     clean_cancelable_dom_shim,
@@ -123,6 +132,7 @@ const clean_packages = gulp.parallel(
     clean_collection_core_dom_shim,
     clean_collection_core_shim,
     clean_collections,
+    clean_collections_linkedlist,
     clean_decorators,
     clean_decorators_stage1_core,
     clean_disposable,

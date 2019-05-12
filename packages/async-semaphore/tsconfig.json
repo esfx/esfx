@@ -6,6 +6,9 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../packages/type-model" }
+        { "path": "../cancelable" },
+        { "path": "../collections-linkedlist" },
+        { "path": "../../internal/guards" },
+        { "path": "../../internal/integers" },
     ]
 }

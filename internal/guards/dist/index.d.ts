@@ -13,8 +13,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+import { Constructor, AbstractConstructor } from "@esfx/type-model";
 export declare function isFunction(value: unknown): value is Function;
 export declare function isObject(value: unknown): value is object;
+export declare function isInstance<C extends Constructor>(value: unknown, ctor: C): value is InstanceType<C>;
+export declare function isInstance<C extends AbstractConstructor>(value: unknown, ctor: C): value is C["prototype"];
+export declare function isMissing(value: unknown): value is null | undefined;
 export declare function isDefined<T>(value: T): value is NonNullable<T>;
 export declare function isIterable(value: unknown): value is Iterable<any>;
 export declare function isNumber(value: unknown): value is number;

@@ -4,6 +4,7 @@
     "include": [],
     "exclude": [],
     "references": [
+        { "path": "./async-semaphore" },
         { "path": "./cancelable" },
         { "path": "./cancelable-dom" },
         { "path": "./cancelable-dom-shim" },
@@ -11,6 +12,7 @@
         { "path": "./collection-core-shim" },
         { "path": "./collection-core-dom-shim" },
         { "path": "./collections" },
+        { "path": "./collections-linkedlist" },
         { "path": "./decorators-stage1-core" },
         { "path": "./decorators" },
         { "path": "./disposable" },

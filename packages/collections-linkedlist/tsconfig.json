@@ -6,6 +6,8 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../packages/type-model" }
+        { "path": "../../internal/guards" },
+        { "path": "../collection-core" },
+        { "path": "../equatable" }
     ]
 }

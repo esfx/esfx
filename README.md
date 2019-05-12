@@ -6,6 +6,7 @@ The `@esfx` suite of packages is designed to provide low-level interoperability 
 
 The main packages in the `@esfx` suite include:
 
+- [`@esfx/async-semaphore`](packages/async-semaphore/README.md) - Provides `Semaphore`, an asynchronous coordination primitive.
 - [`@esfx/cancelable`](packages/cancelable/README.md) - A low-level Symbol-based API for defining a common cancellation protocol.
 - [`@esfx/collection-core`](packages/collection-core/README.md) - A low-level Symbol-based API for defining common collection behaviors.
 - [`@esfx/collections`](packages/collections/README.md) - A common collections API.
