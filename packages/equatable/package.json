@@ -1,6 +1,6 @@
 {
     "name": "@esfx/equatable",
-    "version": "1.0.0-pre.3",
+    "version": "1.0.0-pre.4",
     "description": "A low-level API for defining equality.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,7 +14,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/internal-hashcode": "^1.0.0-pre.3"
+        "@esfx/internal-hashcode": "^1.0.0-pre.4"
     },
     "publishConfig": {
         "access": "public"

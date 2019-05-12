@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections-linkedlist",
-    "version": "1.0.0-pre.3",
+    "version": "1.0.0-pre.4",
     "description": "LinkedList collection API.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,9 +14,9 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.0.0-pre.3",
-        "@esfx/equatable": "^1.0.0-pre.3",
-        "@esfx/internal-guards": "^1.0.0-pre.3"
+        "@esfx/collection-core": "^1.0.0-pre.4",
+        "@esfx/equatable": "^1.0.0-pre.4",
+        "@esfx/internal-guards": "^1.0.0-pre.4"
     },
     "publishConfig": {
         "access": "public"
