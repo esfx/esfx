@@ -18,6 +18,7 @@
     },
     "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b",
     "dependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.4"
+        "@esfx/internal-guards": "^1.0.0-pre.4",
+        "tslib": "^1.9.3"
     }
 }

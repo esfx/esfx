@@ -24,9 +24,9 @@ export interface CancelSignal {
     readonly signaled: boolean;
 
     /**
-     * Subscribes to notifications for when cancellation has been requested.
+     * Subscribes to notifications for when the object becomes signaled.
      */
-    subscribe(onCancellationRequested: () => void): CancelSubscription;
+    subscribe(onSignaled: () => void): CancelSubscription;
 }
 
 /**
@@ -58,6 +58,10 @@ export namespace Cancelable {
             && value !== null
             && cancelSignal in value;
     }
+}
+
+export interface CancelableCancelSignal extends CancelSignal {
+    [Cancelable.cancelSignal](): CancelableCancelSignal;
 }
 
 /**

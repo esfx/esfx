@@ -14,10 +14,12 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
+        "@esfx/async-canceltoken": "^1.0.0-pre.4",
         "@esfx/cancelable": "^1.0.0-pre.4",
         "@esfx/collections-linkedlist": "^1.0.0-pre.4",
         "@esfx/internal-guards": "^1.0.0-pre.4",
-        "@esfx/internal-integers": "^1.0.0-pre.4"
+        "@esfx/internal-integers": "^1.0.0-pre.4",
+        "tslib": "^1.9.3"
     },
     "publishConfig": {
         "access": "public"

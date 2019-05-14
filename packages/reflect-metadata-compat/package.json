@@ -16,7 +16,8 @@
     "dependencies": {
         "@esfx/internal-guards": "^1.0.0-pre.4",
         "@esfx/metadata": "^1.0.0-pre.4",
-        "@esfx/metadata-shim": "^1.0.0-pre.4"
+        "@esfx/metadata-shim": "^1.0.0-pre.4",
+        "tslib": "^1.9.3"
     },
     "publishConfig": {
         "access": "public"

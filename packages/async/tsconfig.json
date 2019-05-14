@@ -1,0 +1,20 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../async-autoresetevent" },
+        { "path": "../async-barrier" },
+        { "path": "../async-canceltoken" },
+        { "path": "../async-countdown" },
+        { "path": "../async-deferred" },
+        { "path": "../async-manualresetevent" },
+        { "path": "../async-queue" },
+        { "path": "../async-readerwriterlock" },
+        { "path": "../async-semaphore" },
+        { "path": "../async-stack" },
+    ]
+}

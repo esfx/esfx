@@ -5,9 +5,11 @@
     "exclude": [],
     "references": [
         { "path": "./binarysearch" },
+        { "path": "./collections-hash" },
         { "path": "./guards" },
         { "path": "./hashcode" },
         { "path": "./integers" },
         { "path": "./murmur3" },
+        // hygen: add new project references above this line
     ]
 }

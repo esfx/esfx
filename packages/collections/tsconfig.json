@@ -6,9 +6,10 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../collection-core" },
-        { "path": "../equatable" },
-        { "path": "../../internal/binarysearch" },
-        { "path": "../../internal/integers" },
+        { "path": "../collections-hashmap" },
+        { "path": "../collections-hashset" },
+        { "path": "../collections-sortedmap" },
+        { "path": "../collections-sortedset" },
+        { "path": "../collections-linkedlist" },
     ]
 }

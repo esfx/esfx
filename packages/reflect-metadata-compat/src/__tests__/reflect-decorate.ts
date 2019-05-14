@@ -42,6 +42,14 @@ describe("Reflect.decorate", () => {
         expect(() => Reflect.decorate(decorators, target as any, name, descriptor)).toThrow(TypeError);
     });
 
+    it("ExecutesClassDecoratorsWhenExcessArgumentsAreUndefined", () => {
+        const fn = jest.fn();
+        const decorators = [fn];
+        const target = function() { };
+        Reflect.decorate(decorators, target, undefined!, undefined!);
+        expect(fn).toBeCalledTimes(1);
+    });
+
     it("ExecutesDecoratorsInReverseOrderForFunctionOverload", () => {
         let order: number[] = [];
         let decorators = [

@@ -18,7 +18,6 @@ import "@esfx/metadata-shim";
 import * as metadata from "@esfx/metadata";
 import { MetadataKey } from "@esfx/metadata";
 import { isFunction, isObject, isPropertyKey, isDefined } from "@esfx/internal-guards";
-import { isUndefined } from 'util';
 
 declare global {
     namespace Reflect {
@@ -62,12 +61,12 @@ function isParameterOverload(args: Overloads): args is readonly [object, Propert
 }
 
 function isMemberOverload(args: Overloads): args is readonly [object, PropertyKey] {
-    if (args.length >= 2 && isObject(args[0]) && isPropertyKey(args[1]) && (args.length === 2 || isUndefined(args[2]) || isObject(args[2]))) return true;
+    if (args.length >= 2 && isObject(args[0]) && isPropertyKey(args[1]) && (args.length === 2 || !isDefined(args[2]) || isObject(args[2]))) return true;
     return false;
 }
 
 function isObjectOverload(args: Overloads): args is readonly [object] {
-    if (args.length >= 1 && isObject(args[0]) && (args.length === 1 || isUndefined(args[1]))) return true;
+    if (args.length >= 1 && isObject(args[0]) && (args.length === 1 || !isDefined(args[1]))) return true;
     return false;
 }
 
@@ -77,7 +76,7 @@ if (!Reflect.decorate) Reflect.decorate = (() => {
         | readonly [(PropertyDecorator | MethodDecorator)[], object, PropertyKey, PropertyDescriptor?];
 
     function isDecorateClassOverload(args: DecorateOverloads): args is readonly [ClassDecorator[], Function] {
-        if (args.length === 2 && Array.isArray(args[0]) && isFunction(args[1])) return true;
+        if (args.length >= 2 && Array.isArray(args[0]) && isFunction(args[1]) && (args.length === 2 || !isDefined(args[2])) && (args.length === 3 || !isDefined(args[3]))) return true;
         return false;
     }
 

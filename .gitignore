@@ -1,6 +1,5 @@
 .vscode
 node_modules
-packages/*/dist
-packages/*/node_modules
+dist
 *.log
 *.tsbuildinfo

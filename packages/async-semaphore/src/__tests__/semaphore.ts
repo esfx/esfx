@@ -1,39 +1,24 @@
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation.
-Licensed under the Apache License, Version 2.0.
-
-See LICENSE file in the project root for details.
-***************************************************************************** */
-
 import { Semaphore } from "..";
+import { CancelToken, CancelError } from "@esfx/async-canceltoken";
 
 describe("semaphore", () => {
     describe("ctor", () => {
-        it("throws when initialCount not number", () => {
-            expect(() => new Semaphore(<any>{})).toThrow(TypeError);
-        });
-        it("throws when maxCount not number", () => {
-            expect(() => new Semaphore(0, <any>{})).toThrow(TypeError);
-        });
-        it("throws when initialCount is less than zero", () => {
-            expect(() => new Semaphore(-1)).toThrow(RangeError);
-        });
-        it("throws when maxCount is less than or equal to zero", () => {
-            expect(() => new Semaphore(0, 0)).toThrow(RangeError);
-        });
-        it("throws when initialCount is greater than maxCount", () => {
-            expect(() => new Semaphore(2, 1)).toThrow(RangeError);
-        });
+        it("throws when initialCount not number", () => expect(() => new Semaphore(<any>{})).toThrow(TypeError));
+        it("throws when maxCount not number", () => expect(() => new Semaphore(0, <any>{})).toThrow(TypeError));
+        it("throws when initialCount is less than zero", () => expect(() => new Semaphore(-1)).toThrow(RangeError));
+        it("throws when maxCount is less than or equal to zero", () => expect(() => new Semaphore(0, 0)).toThrow(RangeError));
+        it("throws when initialCount is greater than maxCount", () => expect(() => new Semaphore(2, 1)).toThrow(RangeError));
+        it("sets initial count", () => expect(new Semaphore(1).count).toBe(1));
     });
 
-    // describe("wait", () => {
-    //     it("throws when token is not Cancelable", async () => {
-    //         await assert.throwsAsync(() => new Semaphore(1).wait(<any>{}), TypeError);
-    //     });
-    //     it("throws when token is canceled", async () => {
-    //         await assert.throwsAsync(() => new Semaphore(1).wait(CancellationToken.canceled), CancelError);
-    //     });
-    // });
+    describe("wait", () => {
+        it("throws when token is not Cancelable", async () => {
+            await expect(new Semaphore(1).wait({} as any)).rejects.toThrow(TypeError);
+        });
+        it("throws when token is canceled", async () => {
+            await expect(new Semaphore(1).wait(CancelToken.canceled)).rejects.toThrow(CancelError);
+        });
+    });
 
     describe("release", () => {
         it("throws when count not number", () => {

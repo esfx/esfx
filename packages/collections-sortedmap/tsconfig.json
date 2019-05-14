@@ -1,0 +1,14 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../collection-core" },
+        { "path": "../equatable" },
+        { "path": "../../internal/binarysearch" },
+        { "path": "../../internal/guards" },
+    ]
+}

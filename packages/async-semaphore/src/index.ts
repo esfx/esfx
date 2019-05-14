@@ -38,6 +38,7 @@
 
 import { LinkedList } from "@esfx/collections-linkedlist";
 import { Cancelable, CancelError } from "@esfx/cancelable";
+import { CancelToken } from "@esfx/async-canceltoken";
 import { isMissing, isNumber } from "@esfx/internal-guards";
 import { maxInt32 as MAX_INT32 } from "@esfx/internal-integers";
 
@@ -83,10 +84,8 @@ export class Semaphore {
      */
     public wait(cancelable?: Cancelable): Promise<void> {
         return new Promise<void>((resolve, reject) => {
-            const cancelSignal = cancelable && cancelable[Cancelable.cancelSignal]();
-            if (cancelSignal && cancelSignal.signaled) {
-                throw new CancelError();
-            }
+            const token = CancelToken.from(cancelable);
+            token.throwIfSignaled();
 
             if (this._currentCount > 0) {
                 this._currentCount--;
@@ -95,10 +94,8 @@ export class Semaphore {
             }
 
             const node = this._waiters.push(() => {
-                if (subscription) {
-                    subscription.unsubscribe();
-                }
-                if (cancelSignal && cancelSignal.signaled) {
+                subscription.unsubscribe();
+                if (token.signaled) {
                     reject(new CancelError());
                 }
                 else {
@@ -106,9 +103,8 @@ export class Semaphore {
                 }
             });
 
-            const subscription = cancelSignal && cancelSignal.subscribe(() => {
-                if (node.list) {
-                    node.list.deleteNode(node);
+            const subscription = token.subscribe(() => {
+                if (node.detachSelf()) {
                     reject(new CancelError());
                 }
             });

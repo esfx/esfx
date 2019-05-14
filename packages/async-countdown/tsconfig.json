@@ -1,0 +1,13 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../cancelable" },
+        { "path": "../async-manualresetevent" },
+        { "path": "../../internal/guards" },
+    ]
+}

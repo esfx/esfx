@@ -16,7 +16,8 @@
     "dependencies": {
         "@esfx/collection-core": "^1.0.0-pre.4",
         "@esfx/equatable": "^1.0.0-pre.4",
-        "@esfx/internal-guards": "^1.0.0-pre.4"
+        "@esfx/internal-guards": "^1.0.0-pre.4",
+        "tslib": "^1.9.3"
     },
     "publishConfig": {
         "access": "public"

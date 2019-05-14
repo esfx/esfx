@@ -60,6 +60,11 @@ export function isNumber(value: unknown): value is number {
 }
 
 /*@internal*/
+export function isBoolean(value: unknown): value is boolean {
+    return typeof value === "boolean";
+}
+
+/*@internal*/
 export function isPropertyKey(value: unknown): value is PropertyKey {
     return typeof value === "string"
         || typeof value === "symbol"
