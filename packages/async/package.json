@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async",
-    "version": "1.0.0-pre.4",
+    "version": "1.0.0-pre.5",
     "description": "Provides a number of async coordination primitive.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,16 +14,16 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-autoresetevent": "^1.0.0-pre.4",
-        "@esfx/async-barrier": "^1.0.0-pre.4",
-        "@esfx/async-canceltoken": "^1.0.0-pre.4",
-        "@esfx/async-countdown": "^1.0.0-pre.4",
-        "@esfx/async-deferred": "^1.0.0-pre.4",
-        "@esfx/async-manualresetevent": "^1.0.0-pre.4",
-        "@esfx/async-queue": "^1.0.0-pre.4",
-        "@esfx/async-readerwriterlock": "^1.0.0-pre.4",
-        "@esfx/async-semaphore": "^1.0.0-pre.4",
-        "@esfx/async-stack": "^1.0.0-pre.4",
+        "@esfx/async-autoresetevent": "^1.0.0-pre.5",
+        "@esfx/async-barrier": "^1.0.0-pre.5",
+        "@esfx/async-canceltoken": "^1.0.0-pre.5",
+        "@esfx/async-countdown": "^1.0.0-pre.5",
+        "@esfx/async-deferred": "^1.0.0-pre.5",
+        "@esfx/async-manualresetevent": "^1.0.0-pre.5",
+        "@esfx/async-queue": "^1.0.0-pre.5",
+        "@esfx/async-readerwriterlock": "^1.0.0-pre.5",
+        "@esfx/async-semaphore": "^1.0.0-pre.5",
+        "@esfx/async-stack": "^1.0.0-pre.5",
         "tslib": "^1.9.3"
     },
     "publishConfig": {
