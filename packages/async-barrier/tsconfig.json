@@ -6,9 +6,13 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../cancelable" },
+        // devDependencies:
         { "path": "../async-canceltoken" },
-        { "path": "../collections-linkedlist" },
+
+        // dependencies:
+        { "path": "../async-waitqueue" },
+        { "path": "../cancelable" },
         { "path": "../../internal/guards" },
+        { "path": "../../internal/tag" },
     ]
 }

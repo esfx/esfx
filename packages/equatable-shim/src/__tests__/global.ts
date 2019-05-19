@@ -5,7 +5,7 @@ import { hashUnknown } from "@esfx/internal-hashcode";
 const state = hashUnknown.getState();
 
 beforeEach(() => {
-    hashUnknown.setState({ 
+    hashUnknown.setState({
         objectSeed: 0x1dc8529e,
         stringSeed: 0x6744b005,
         bigIntSeed: 0x6c9503bc,

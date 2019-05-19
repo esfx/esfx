@@ -1,0 +1,19 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        // devDependencies:
+        { "path": "../async-mutex" },
+
+        // dependencies:
+        { "path": "../async-lockable" },
+        { "path": "../cancelable" },
+        { "path": "../collections-linkedlist" },
+        { "path": "../../internal/guards" },
+        { "path": "../../internal/tag" },
+    ]
+}

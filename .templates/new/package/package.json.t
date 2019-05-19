@@ -5,8 +5,8 @@ to: <%=packagePath%>/package.json
     "name": "<%=packageName%>",
     "version": "<%=version%>",
     "description": "<%=description%>",
-    "main": "index.js",
-    "types": "index.d.ts",
+    "main": "dist",
+    "types": "dist",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {
@@ -17,7 +17,7 @@ to: <%=packagePath%>/package.json
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-<% dependencies.forEach((pkg, i) => { -%>
+<% [{ name: "tslib", version: "1.9.3" }].concat(dependencies).forEach((pkg, i, dependencies) => { -%>
         <%-JSON.stringify(pkg.name)%>: <%-JSON.stringify("^" + pkg.version)%><% if (i !== dependencies.length - 1) {%>,<%}%>
 <% }); -%>
     },

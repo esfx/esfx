@@ -1,66 +1,51 @@
-# `@esfx/async-deferred`
+# `@esfx/async`
 
-The `@esfx/async-deferred` package provides the `Deferred` class, an async coordination primitive.
+Provides a number of asynchronous coordination primitives from the following packages:
+
+- [`@esfx/async-autoresetevent`](../async-autoresetevent#readme)
+- [`@esfx/async-barrier`](../async-barrier#readme)
+- [`@esfx/async-canceltoken`](../async-canceltoken#readme)
+- [`@esfx/async-conditionvariable`](../async-conditionvariable#readme)
+- [`@esfx/async-core`](../async-core#readme)
+- [`@esfx/async-countdown`](../async-countdown#readme)
+- [`@esfx/async-deferred`](../async-deferred#readme)
+- [`@esfx/async-delay`](../async-delay#readme)
+- [`@esfx/async-lazy`](../async-lazy#readme)
+- [`@esfx/async-lock`](../async-lock#readme)
+- [`@esfx/async-manualresetevent`](../async-manualresetevent#readme)
+- [`@esfx/async-queue`](../async-queue#readme)
+- [`@esfx/async-readerwriterlock`](../async-readerwriterlock#readme)
+- [`@esfx/async-semaphore`](../async-semaphore#readme)
+- [`@esfx/async-stack`](../async-stack#readme)
+- [`@esfx/async-waitqueue`](../async-waitqueue#readme)
 
 # Overview
 
 * [Installation](#installation)
-* [Usage](#usage)
 * [API](#api)
 
 # Installation
 
 ```sh
-npm i @esfx/async-deferred
-```
-
-# Usage
-
-```ts
-import { Deferred } from "@esfx/async-deferred";
-
-const deferred = new Deferred();
-
-// to resolve the deferred:
-deferred.resolve(value);
-
-// to reject the deferred:
-deferred.reject(error);
-
-// get the promise for the deferred:
-deferred.promise;
+npm i @esfx/async
 ```
 
 # API
 
 ```ts
-/**
- * Encapsulates a Promise and exposes its resolve and reject callbacks.
- */
-export declare class Deferred<T> {
-    /**
-     * Initializes a new instance of the Deferred class.
-     */
-    constructor();
-    /**
-     * Gets the promise.
-     */
-    readonly promise: Promise<T>;
-    /**
-     * Gets the callback used to resolve the promise.
-     */
-    readonly resolve: (value?: T | PromiseLike<T> | undefined) => void;
-    /**
-     * Gets the callback used to reject the promise.
-     */
-    readonly reject: (reason: any) => void;
-    /**
-     * Gets a NodeJS-style callback that can be used to resolve or reject the promise.
-     */
-    readonly callback: T extends void ? (err: Error | null | undefined) => void : (err: Error | null | undefined, value: T) => void;
-    /**
-     * Creates a NodeJS-style callback that can be used to resolve or reject the promise with multiple values.
-     */
-    createCallback<A extends any[]>(selector: (...args: A) => T): (err: Error | null | undefined, ...args: A) => void;
-}
+export * from "@esfx/async-autoresetevent";
+export * from "@esfx/async-barrier";
+export * from "@esfx/async-canceltoken";
+export * from "@esfx/async-conditionvariable";
+export * from "@esfx/async-countdown";
+export * from "@esfx/async-deferred";
+export * from "@esfx/async-delay";
+export * from "@esfx/async-lazy";
+export * from "@esfx/async-lockable";
+export * from "@esfx/async-manualresetevent";
+export * from "@esfx/async-mutex";
+export * from "@esfx/async-queue";
+export * from "@esfx/async-readerwriterlock";
+export * from "@esfx/async-semaphore";
+export * from "@esfx/async-stack";
 ```

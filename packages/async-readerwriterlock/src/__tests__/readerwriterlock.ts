@@ -1,12 +1,12 @@
 import { ReaderWriterLock } from "..";
-import { CancelToken, CancelError } from '@esfx/async-canceltoken';
+import { Cancelable, CancelError } from '@esfx/cancelable';
 
 describe("read", () => {
     it("throws when token not CancelToken", async () => {
         await expect(new ReaderWriterLock().read(<any>{})).rejects.toThrow(TypeError);
     });
     it("throws when token is canceled", async () => {
-        await expect(new ReaderWriterLock().read(CancelToken.canceled)).rejects.toThrow(CancelError);
+        await expect(new ReaderWriterLock().read(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
     it("multiple readers", async () => {
         const steps: string[] = [];
@@ -30,12 +30,12 @@ describe("read", () => {
         async function writer() {
             const lock = await writeLockPromise;
             steps.push("writer");
-            lock.release();
+            lock.unlock();
         }
         async function reader() {
             const lock = await readLockPromise;
             steps.push("reader");
-            lock.release();
+            lock.unlock();
         }
         await Promise.all([reader(), writer()]);
         expect(steps).toEqual(["writer", "reader"]);
@@ -46,7 +46,7 @@ describe("upgradeableRead", () => {
         await expect(new ReaderWriterLock().upgradeableRead(<any>{})).rejects.toThrow(TypeError);
     });
     it("throws when token is canceled", async () => {
-        await expect(new ReaderWriterLock().upgradeableRead(CancelToken.canceled)).rejects.toThrow(CancelError);
+        await expect(new ReaderWriterLock().upgradeableRead(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
     it("can take while reading", async () => {
         const steps: string[] = [];
@@ -57,24 +57,24 @@ describe("upgradeableRead", () => {
         async function reader1() {
             const lock = await readLockPromise1;
             steps.push("reader1");
-            lock.release();
+            lock.unlock();
         }
         async function reader2() {
             const lock = await readLockPromise2;
             steps.push("reader2");
-            lock.release();
+            lock.unlock();
         }
         async function upgradeableReader() {
             const lock = await upgradeableReadLockPromise;
             steps.push("upgradeableReader");
-            lock.release();
+            lock.unlock();
         }
 
         await Promise.all([reader1(), reader2(), upgradeableReader()]);
         expect(steps).toEqual([
             "reader1",
-            "reader2",
             "upgradeableReader",
+            "reader2",
         ]);
     });
     describe("upgrade", () => {
@@ -86,7 +86,7 @@ describe("upgradeableRead", () => {
         it("throws when token is canceled", async () => {
             const rw = new ReaderWriterLock();
             const upgradeable = await rw.upgradeableRead();
-            await expect(upgradeable.upgrade(CancelToken.canceled)).rejects.toThrow(CancelError);
+            await expect(upgradeable.upgrade(Cancelable.canceled)).rejects.toThrow(CancelError);
         });
     });
 });
@@ -95,7 +95,7 @@ describe("write", () => {
         await expect(new ReaderWriterLock().write(<any>{})).rejects.toThrow(TypeError);
     });
     it("throws when token is canceled", async () => {
-        await expect(new ReaderWriterLock().write(CancelToken.canceled)).rejects.toThrow(CancelError);
+        await expect(new ReaderWriterLock().write(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
     it("waits on existing readers", async () => {
         const steps: string[] = [];
@@ -105,13 +105,13 @@ describe("write", () => {
         async function reader() {
             const locks = await Promise.all(readLockPromises);
             steps.push("reader");
-            locks[0].release();
-            locks[1].release();
+            locks[0].unlock();
+            locks[1].unlock();
         }
         async function writer() {
             const lock = await writeLockPromise;
             steps.push("writer");
-            lock.release();
+            lock.unlock();
         }
         await Promise.all([writer(), reader()]);
         expect(steps).toEqual(["reader", "writer"]);

@@ -36,17 +36,26 @@
    limitations under the License.
 */
 
-import { LinkedList } from "@esfx/collections-linkedlist";
-import { Cancelable, CancelError } from "@esfx/cancelable";
-import { CancelToken } from "@esfx/async-canceltoken";
 import { isMissing, isIterable } from "@esfx/internal-guards";
+import { Tag } from "@esfx/internal-tag";
+import { WaitQueue } from "@esfx/async-waitqueue";
+import { Cancelable } from "@esfx/cancelable";
+
+const enum State {
+    Open = 0,
+    DoneReading = 1 << 0,
+    DoneWriting = 1 << 1,
+    Done = DoneReading | DoneWriting,
+}
 
 /**
  * An asynchronous Stack.
  */
+@Tag()
 export class AsyncStack<T> {
+    private _state = State.Open;
     private _available: Array<Promise<T>> | undefined = undefined;
-    private _pending: LinkedList<(value: T | PromiseLike<T>) => void> | undefined = undefined;
+    private _pending: WaitQueue<T> | undefined = undefined;
 
     /**
      * Initializes a new instance of the AsyncStack class.
@@ -64,11 +73,32 @@ export class AsyncStack<T> {
     }
 
     /**
+     * Gets a value indicating whether new items can be added to the stack.
+     */
+    get writable() {
+        return (this._state & State.DoneWriting) === 0 || this.size < 0;
+    }
+
+    /**
+     * Gets a value indicating whether items can be read from the stack.
+     */
+    get readable() {
+        return (this._state & State.DoneReading) === 0 || this.size > 0;
+    }
+    
+    /**
+     * Gets a value indicating whether the stack has ended and there are no more items available.
+     */
+    get done() {
+        return !this.readable && !this.writable;
+    }
+
+    /**
      * Gets the number of entries in the stack.
      * When positive, indicates the number of entries available to get.
      * When negative, indicates the number of requests waiting to be fulfilled.
      */
-    public get size() {
+    get size() {
         if (this._available && this._available.length > 0) {
             return this._available.length;
         }
@@ -78,62 +108,95 @@ export class AsyncStack<T> {
         return 0;
     }
 
+    /**
+     * Removes and returns a Promise for the top value of the stack. If the stack is empty,
+     * returns a Promise for the next value to be pushed on to the stack.
+     * @param cancelable A Cancelable used to cancel the request.
+     */
+    async pop(cancelable: Cancelable = Cancelable.none): Promise<T> {
+        Cancelable.throwIfSignaled(cancelable);
+        if (this._available !== undefined) {
+            const promise = this._available.pop();
+            if (promise !== undefined) {
+                if (this._available.length === 0) {
+                    this._available = undefined;
+                }
+                return await promise;
+            }
+        }
+
+        if (!this.readable) {
+            throw new Error("AsyncStack is not readable.");
+        }
+
+        if (this._pending === undefined) {
+            this._pending = new WaitQueue();
+        }
+
+        return await this._pending.wait(cancelable);
+    }
 
     /**
      * Adds a value to the top of the stack. If the stack is empty but has a pending
      * pop request, the value will be popped and the request fulfilled.
-     *
+     */
+    push(this: AsyncStack<void>): void;
+    /**
+     * Adds a value to the top of the stack. If the stack is empty but has a pending
+     * pop request, the value will be popped and the request fulfilled.
      * @param value A value or promise to add to the stack.
      */
-    public push(value: T | PromiseLike<T>): void {
-        if (this._pending !== undefined) {
-            const resolve = this._pending.shift();
-            if (resolve !== undefined) {
-                resolve(value);
-                return;
+    push(value: T | PromiseLike<T>): void;
+    /**
+     * Adds a value to the top of the stack. If the stack is empty but has a pending
+     * pop request, the value will be popped and the request fulfilled.
+     * @param value A value or promise to add to the stack.
+     */
+    push(value?: T | PromiseLike<T>): void {
+        if (!this.writable) throw new Error("AsyncStack is not writable.");
+        if (this._pending && this._pending.resolveOne(value!)) {
+            if (this._pending.size === 0) {
+                this._pending = undefined;
             }
+            return;
         }
-
         if (this._available === undefined) {
-            this._available = [];
+            this._available = [Promise.resolve(value!)];
         }
-
-        this._available.push(Promise.resolve(value));
+        else {
+            this._available.push(Promise.resolve(value!));
+        }
     }
 
     /**
-     * Removes and returns a Promise for the top value of the stack. If the stack is empty,
-     * returns a Promise for the next value to be pushed on to the stack.
-     *
-     * @param cancelable A Cancelable used to cancel the request.
+     * Blocks attempts to read from the stack until it is empty. Available items in the stack
+     * can still be read until the stack is empty.
      */
-    public pop(cancelable?: Cancelable): Promise<T> {
-        return new Promise<T>((resolve, reject) => {
-            const token = CancelToken.from(cancelable);
-            token.throwIfSignaled();
+    doneReading() {
+        if (this._state & State.DoneReading) return;
+        this._state |= State.DoneReading;
+    }
 
-            if (this._available !== undefined) {
-                const promise = this._available.pop();
-                if (promise !== undefined) {
-                    resolve(promise);
-                    return;
-                }
-            }
+    /**
+     * Blocks attempts to write to the stack. Pending requests in the stack can still be
+     * resolved until the stack is empty.
+     */
+    doneWriting() {
+        if (this._state & State.DoneWriting) return;
+        this._state |= State.DoneWriting;
+    }
 
-            if (this._pending === undefined) {
-                this._pending = new LinkedList();
-            }
-
-            const node = this._pending.push(value => {
-                subscription.unsubscribe();
-                resolve(value);
-            });
-
-            const subscription = token.subscribe(() => {
-                if (node.detachSelf()) {
-                    reject(new CancelError());
-                }
-            });
-        });
+    /**
+     * Blocks future attempts to read or write from the stack. Available items in the stack
+     * can still be read until the stack is empty. Pending reads from the stack are rejected
+     * with a `CancelError`.
+     */
+    end() {
+        this.doneReading();
+        this.doneWriting();
+        if (this._pending) {
+            this._pending.cancelAll();
+            this._pending = undefined;
+        }
     }
 }

@@ -31,7 +31,7 @@ const noopFactoryState: LazyFactoryState<any> = createFactoryState(noop, /*args*
 const resolvingState: LazyResolvingState = { state: "resolving" };
 
 function createFactoryState<T>(factory: () => T, args: any[] | undefined): LazyFactoryState<T> {
-    return { state: "factory", factory, args: undefined };;
+    return { state: "factory", factory, args };;
 }
 
 function createValueState<T>(value: T): LazyValueState<T> {

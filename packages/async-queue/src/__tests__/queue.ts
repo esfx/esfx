@@ -72,7 +72,7 @@ describe("end", () => {
     it("get past end when empty throws", async () => {
         const queue = new AsyncQueue<number>();
         queue.end();
-        await expect(queue.get()).rejects.toThrow(CancelError);
+        await expect(queue.get()).rejects.toThrow();
     });
     it("get before end when empty throws", async () => {
         const queue = new AsyncQueue<number>();

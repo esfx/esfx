@@ -14,7 +14,6 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-canceltoken": "^1.0.0-pre.5",
         "@esfx/cancelable": "^1.0.0-pre.5",
         "tslib": "^1.9.3"
     },

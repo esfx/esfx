@@ -36,18 +36,26 @@
    limitations under the License.
 */
 
-import { LinkedList } from "@esfx/collections-linkedlist";
-import { Cancelable, CancelError } from "@esfx/cancelable";
-import { CancelToken } from "@esfx/async-canceltoken";
 import { isMissing, isIterable } from "@esfx/internal-guards";
+import { Tag } from "@esfx/internal-tag";
+import { WaitQueue } from "@esfx/async-waitqueue";
+import { Cancelable } from "@esfx/cancelable";
+
+const enum State {
+    Open = 0,
+    DoneReading = 1 << 0,
+    DoneWriting = 1 << 1,
+    Done = DoneReading | DoneWriting,
+}
 
 /**
  * An asynchronous queue.
  */
+@Tag()
 export class AsyncQueue<T> {
-    private _ended = false;
+    private _state = State.Open;
     private _available: Array<Promise<T>> | undefined = undefined;
-    private _pending: LinkedList<{ resolve: (value: T | PromiseLike<T>) => void, reject: (reason: any) => void }> | undefined = undefined;
+    private _pending: WaitQueue<T> | undefined = undefined;
 
     /**
      * Initializes a new instance of the AsyncQueue class.
@@ -68,14 +76,21 @@ export class AsyncQueue<T> {
      * Gets a value indicating whether new items can be added to the queue.
      */
     get writable() {
-        return !this._ended;
+        return (this._state & State.DoneWriting) === 0 || this.size < 0;
     }
 
+    /**
+     * Gets a value indicating whether items can be read from the queue.
+     */
+    get readable() {
+        return (this._state & State.DoneReading) === 0 || this.size > 0;
+    }
+    
     /**
      * Gets a value indicating whether the queue has ended and there are no more items available.
      */
     get done() {
-        return this._ended && this.size <= 0;
+        return !this.readable && !this.writable;
     }
 
     /**
@@ -94,80 +109,96 @@ export class AsyncQueue<T> {
     }
 
     /**
-     * Adds a value to the end of the queue. If the queue is empty but has a pending
-     * dequeue request, the value will be dequeued and the request fulfilled.
+     * Removes and returns a `Promise` for the first value in the queue. If the queue is empty,
+     * returns a `Promise` for the next value to be added to the queue.
      *
-     * @param value A value or promise to add to the queue.
+     * @param cancelable A `Cancelable` used to cancel the request.
      */
-    put(value: T | PromiseLike<T>): void {
-        if (this._ended) throw new Error("Cannot put new values into an AsyncQueue that has ended.");
-        if (this._pending !== undefined) {
-            const pending = this._pending.shift();
-            if (pending !== undefined) {
-                pending.resolve(value);
-                return;
+    async get(cancelable?: Cancelable): Promise<T> {
+        Cancelable.throwIfSignaled(cancelable);
+        if (this._available) {
+            const promise = this._available.shift();
+            if (promise !== undefined) {
+                if (this._available.length === 0) {
+                    this._available = undefined;
+                }
+                return await promise;
             }
         }
 
-        if (this._available === undefined) {
-            this._available = [];
+        if (!this.readable) {
+            throw new Error("AsyncQueue is not readable.");
         }
 
-        this._available.push(Promise.resolve(value));
+        if (this._pending === undefined) {
+            this._pending = new WaitQueue();
+        }
+
+        return await this._pending.wait(cancelable);
     }
 
     /**
-     * Removes and returns a Promise for the first value in the queue. If the queue is empty,
-     * returns a Promise for the next value to be added to the queue.
-     *
-     * @param cancelable A Cancelable used to cancel the request.
+     * Adds a value to the end of the queue. If the queue is empty but has a pending
+     * dequeue request, the value will be dequeued and the request fulfilled.
      */
-    get(cancelable?: Cancelable): Promise<T> {
-        return new Promise<T>((resolve, reject) => {
-            const token = CancelToken.from(cancelable);
-            token.throwIfSignaled();
-
-            const promise = this._available && this._available.shift();
-            if (promise !== undefined) {
-                resolve(promise);
-                return;
+    put(this: AsyncQueue<void>): void;
+    /**
+     * Adds a value to the end of the queue. If the queue is empty but has a pending
+     * dequeue request, the value will be dequeued and the request fulfilled.
+     * @param value A value or promise to add to the queue.
+     */
+    put(value: T | PromiseLike<T>): void;
+    /**
+     * Adds a value to the end of the queue. If the queue is empty but has a pending
+     * dequeue request, the value will be dequeued and the request fulfilled.
+     * @param value A value or promise to add to the queue.
+     */
+    put(value?: T | PromiseLike<T>): void {
+        if (!this.writable) throw new Error("AsyncQueue is not writable.");
+        if (this._pending && this._pending.resolveOne(value!)) {
+            if (this._pending.size === 0) {
+                this._pending = undefined;
             }
+            return;
+        }
 
-            if (this._ended) {
-                reject(new CancelError());
-                return;
-            }
-
-            if (this._pending === undefined) {
-                this._pending = new LinkedList();
-            }
-
-            const node = this._pending.push({
-                resolve: value => {
-                    subscription.unsubscribe();
-                    resolve(value);
-                },
-                reject
-            });
-
-            const subscription = token.subscribe(() => {
-                if (node.detachSelf()) {
-                    reject(new CancelError());
-                }
-            });
-        });
+        if (this._available === undefined) {
+            this._available = [Promise.resolve(value!)];
+        }
+        else {
+            this._available.push(Promise.resolve(value!));
+        }
     }
 
-    end() {
-        if (this._ended) return;
-        this._ended = true;
+    /**
+     * Blocks attempts to read from the queue until it is empty. Available items in the queue
+     * can still be read until the queue is empty.
+     */
+    doneReading() {
+        if (this._state & State.DoneReading) return;
+        this._state |= State.DoneReading;
+    }
 
+    /**
+     * Blocks attempts to write to the queue. Pending requests in the queue can still be
+     * resolved until the queue is empty.
+     */
+    doneWriting() {
+        if (this._state & State.DoneWriting) return;
+        this._state |= State.DoneWriting;
+    }
+
+    /**
+     * Blocks future attempts to read or write from the queue. Available items in the queue
+     * can still be read until the queue is empty. Pending reads from the queue are rejected
+     * with a `CancelError`.
+     */
+    end() {
+        this.doneReading();
+        this.doneWriting();
         if (this._pending) {
-            for (const node of [...this._pending.nodes()]) {
-                if (node.detachSelf()) {
-                    node.value.reject(new CancelError());
-                }
-            }
+            this._pending.cancelAll();
+            this._pending = undefined;
         }
     }
 }

@@ -1,9 +1,9 @@
 ---
 to: <%=packagePath%>/README.md
 ---
-<% if (internal) { %>
+<% if (internal) { -%>
 This package provides internal utilities for `@esfx` and is not intended for use in user-code.
-<% } else { %> 
+<% } else { -%>
 # `<%=packageName%>`
 
 <%=description%>

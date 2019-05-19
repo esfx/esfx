@@ -22,18 +22,16 @@ import { AutoResetEvent } from "@esfx/async-autoresetevent";
 const event = new AutoResetEvent();
 
 async function doSomeActivity() {
-    // do some work asynchronously...
+    while (true) {
+        // do some work asynchronously...
 
-    // indicate continuous work can resume
-    event.set();
-
-    // do some more work asynchronously...
-
-    // indicate continuous work can resume
-    event.set();
+        // indicate 'waitForActivity' can resume. Event is immediately reset to 
+        // the signaled state.
+        event.set();
+    }
 }
 
-async function doSomeActivityContinuously() {
+async function waitForActivity() {
     while (true) {
         // wait for 'doSomeActivity' to set the event...
         await event.wait();
@@ -42,38 +40,37 @@ async function doSomeActivityContinuously() {
     }
 }
 
-doSomeActivityContinuously();
 doSomeActivity();
+waitForActivity();
 ```
 
 # API
 
 ```ts
 import { Cancelable } from "@esfx/cancelable";
+
 /**
- * Asynchronously notifies one or more waiting Promises that an event has occurred.
+ * Represents a synchronization event that, when signaled, resets automatically after releasing a
+ * single waiting asynchronous operation.
  */
 export declare class AutoResetEvent {
-    private _signaled;
-    private _waiters;
     /**
      * Initializes a new instance of the AutoResetEvent class.
-     *
      * @param initialState A value indicating whether to set the initial state to signaled.
      */
     constructor(initialState?: boolean);
     /**
-     * Sets the state of the event to signaled, resolving one or more waiting Promises.
+     * Sets the state of the event to signaled, resolving at most one waiting Promise.
      * The event is then automatically reset.
+     * @returns `true` if the operation successfully resolved a waiting Promise; otherwise, `false`.
      */
-    set(): void;
+    set(): boolean;
     /**
      * Sets the state of the event to nonsignaled, causing asynchronous operations to pause.
      */
     reset(): void;
     /**
      * Asynchronously waits for the event to become signaled.
-     *
      * @param cancelable A Cancelable used to cancel the request.
      */
     wait(cancelable?: Cancelable): Promise<void>;

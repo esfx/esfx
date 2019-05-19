@@ -41,15 +41,12 @@ if (typeof AbortSignal === "function" && typeof AbortController === "function") 
             subscribe(onCancellationRequested): CancelSubscription {
                 let callback = () => onCancellationRequested();
                 abortSignal.addEventListener("abort", callback);
-                return {
-                    unsubscribe() {
-                        if (callback && abortSignal) {
-                            abortSignal.removeEventListener("abort", callback);
-                            abortSignal = undefined!;
-                            callback = undefined!;
-                        }
+                return CancelSubscription.create(() => {
+                    if (callback && abortSignal) {
+                        abortSignal.removeEventListener("abort", callback);
+                        callback = undefined!;
                     }
-                };
+                });
             }
         };
     }

@@ -5,6 +5,9 @@
     "type": "git",
     "url": "https://github.com/esfx/esfx.git"
   },
+  "scripts": {
+    "test": "gulp test"
+  },
   "bugs": {
     "url": "https://github.com/esfx/esfx/issues"
   },

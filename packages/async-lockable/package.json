@@ -1,0 +1,26 @@
+{
+    "name": "@esfx/async-lockable",
+    "version": "1.0.0-pre.5",
+    "description": "A low-level Symbol-based common API for async coordination primitives.",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "dependencies": {
+        "@esfx/cancelable": "^1.0.0-pre.5",
+        "@esfx/disposable": "^1.0.0-pre.5",
+        "@esfx/internal-guards": "^1.0.0-pre.5",
+        "@esfx/internal-tag": "^1.0.0-pre.5",
+        "tslib": "^1.9.3"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

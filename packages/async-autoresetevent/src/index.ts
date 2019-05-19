@@ -36,45 +36,43 @@
    limitations under the License.
 */
 
-import { LinkedList } from "@esfx/collections-linkedlist";
-import { Cancelable, CancelError } from "@esfx/cancelable";
-import { CancelToken } from "@esfx/async-canceltoken";
-import { isMissing, isBoolean } from "@esfx/internal-guards";
+import { isBoolean } from "@esfx/internal-guards";
+import { Tag } from "@esfx/internal-tag";
+import { Cancelable } from "@esfx/cancelable";
+import { WaitQueue } from "@esfx/async-waitqueue";
 
 /**
- * Asynchronously notifies one or more waiting Promises that an event has occurred.
+ * Represents a synchronization event that, when signaled, resets automatically after releasing a
+ * single waiting asynchronous operation.
  */
+@Tag()
 export class AutoResetEvent {
     private _signaled: boolean;
-    private _waiters = new LinkedList<() => void>();
+    private _waiters = new WaitQueue<void>();
 
     /**
      * Initializes a new instance of the AutoResetEvent class.
-     *
      * @param initialState A value indicating whether to set the initial state to signaled.
      */
-    constructor(initialState?: boolean) {
-        if (isMissing(initialState)) initialState = false;
+    constructor(initialState = false) {
         if (!isBoolean(initialState)) throw new TypeError("Boolean expected: initialState.");
-
         this._signaled = initialState;
     }
 
     /**
-     * Sets the state of the event to signaled, resolving one or more waiting Promises.
+     * Sets the state of the event to signaled, resolving at most one waiting Promise.
      * The event is then automatically reset.
+     * @returns `true` if the operation successfully resolved a waiting Promise; otherwise, `false`.
      */
-    set(): void {
+    set() {
         if (!this._signaled) {
             this._signaled = true;
-            if (this._waiters.size > 0) {
-                for (const waiter of this._waiters.drain()) {
-                    if (waiter) waiter();
-                }
-
+            if (this._waiters.resolveOne()) {
                 this._signaled = false;
+                return true;
             }
         }
+        return false;
     }
 
     /**
@@ -86,30 +84,14 @@ export class AutoResetEvent {
 
     /**
      * Asynchronously waits for the event to become signaled.
-     *
      * @param cancelable A Cancelable used to cancel the request.
      */
-    wait(cancelable?: Cancelable): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            const token = CancelToken.from(cancelable);
-            token.throwIfSignaled();
-
-            if (this._signaled) {
-                resolve();
-                this._signaled = false;
-                return;
-            }
-
-            const node = this._waiters.push(() => {
-                subscription.unsubscribe();
-                resolve();
-            });
-
-            const subscription = token.subscribe(() => {
-                if (node.detachSelf()) {
-                    reject(new CancelError());
-                }
-            });
-        });
+    async wait(cancelable?: Cancelable): Promise<void> {
+        Cancelable.throwIfSignaled(cancelable);
+        if (this._signaled) {
+            this._signaled = false;
+            return;
+        }
+        await this._waiters.wait(cancelable);
     }
 }

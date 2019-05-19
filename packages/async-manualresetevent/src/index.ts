@@ -36,17 +36,18 @@
    limitations under the License.
 */
 
-import { LinkedList } from "@esfx/collections-linkedlist";
-import { Cancelable, CancelError } from "@esfx/cancelable";
-import { CancelToken } from "@esfx/async-canceltoken";
 import { isMissing, isBoolean } from "@esfx/internal-guards";
+import { Tag } from "@esfx/internal-tag";
+import { Cancelable } from "@esfx/cancelable";
+import { WaitQueue } from "@esfx/async-waitqueue";
 
 /**
  * Asynchronously notifies one or more waiting Promises that an event has occurred.
  */
+@Tag()
 export class ManualResetEvent {
     private _signaled: boolean;
-    private _waiters = new LinkedList<() => void>();
+    private _waiters = new WaitQueue<void>();
 
     /**
      * Initializes a new instance of the ManualResetEvent class.
@@ -72,9 +73,7 @@ export class ManualResetEvent {
     set(): void {
         if (!this._signaled) {
             this._signaled = true;
-            for (const waiter of this._waiters.drain()) {
-                if (waiter) waiter();
-            }
+            this._waiters.resolveAll();
         }
     }
 
@@ -90,31 +89,11 @@ export class ManualResetEvent {
      *
      * @param cancelable A Cancelable used to cancel the request.
      */
-    wait(cancelable?: Cancelable): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            const token = CancelToken.from(cancelable);
-            token.throwIfSignaled();
-
-            if (this._signaled) {
-                resolve();
-                return;
-            }
-
-            const node = this._waiters.push(() => {
-                subscription.unsubscribe();
-                if (token.signaled) {
-                    reject(new CancelError());
-                }
-                else {
-                    resolve();
-                }
-            });
-
-            const subscription = token.subscribe(() => {
-                if (node.detachSelf()) {
-                    reject(new CancelError());
-                }
-            });
-        });
+    async wait(cancelable?: Cancelable): Promise<void> {
+        Cancelable.throwIfSignaled(cancelable);
+        if (this._signaled) {
+            return;
+        }
+        await this._waiters.wait(cancelable);
     }
 }

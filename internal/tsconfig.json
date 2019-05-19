@@ -10,6 +10,7 @@
         { "path": "./hashcode" },
         { "path": "./integers" },
         { "path": "./murmur3" },
+        { "path": "./tag" },
         // hygen: add new project references above this line
     ]
 }

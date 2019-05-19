@@ -37,74 +37,58 @@
 */
 
 import { Cancelable, CancelError } from "@esfx/cancelable";
-import { CancelToken } from "@esfx/async-canceltoken";
 
 /**
  * Waits the specified number of milliseconds before resolving.
- *
  * @param msec The number of milliseconds to wait before resolving.
  */
 export function delay(msec: number): Promise<void>;
-
 /**
  * Waits the specified number of milliseconds before resolving with the provided value.
- *
  * @param msec The number of milliseconds to wait before resolving.
  * @param value An optional value for the resulting Promise.
  */
 export function delay<T>(msec: number, value: T | PromiseLike<T>): Promise<T>;
-
 /**
  * Waits the specified number of milliseconds before resolving.
- *
  * @param cancelable A Cancelable
  * @param msec The number of milliseconds to wait before resolving.
  */
 export function delay(cancelable: Cancelable, msec: number): Promise<void>;
-
 /**
  * Waits the specified number of milliseconds before resolving with the provided value.
- *
  * @param cancelable A Cancelable
  * @param msec The number of milliseconds to wait before resolving.
  * @param value An optional value for the resulting Promise.
  */
 export function delay<T>(cancelable: Cancelable, msec: number, value: T | PromiseLike<T>): Promise<T>;
-
 /**
  * Waits the specified number of milliseconds before resolving with the provided value.
- *
  * @param cancelable A Cancelable
  * @param msec The number of milliseconds to wait before resolving.
  * @param value An optional value for the resulting Promise.
  */
-export function delay<T>(cancelable: number | Cancelable, msec_?: T | PromiseLike<T> | number, value?: T | PromiseLike<T>) {
+export function delay<T>(cancelable: number | Cancelable, msec?: T | PromiseLike<T> | number, value?: T | PromiseLike<T>) {
+    const _msec = msec;
     return new Promise<T>((resolve, reject) => {
-        let token: CancelToken;
         let msec: number;
         if (typeof cancelable === "number") {
-            value = msec_ as T | PromiseLike<T>;
+            value = _msec as T | PromiseLike<T>;
             msec = cancelable;
-            token = CancelToken.none;
+            cancelable = Cancelable.none;
         }
         else {
-            msec = msec_ as number;
-            token = CancelToken.from(cancelable);
+            msec = _msec as number;
         }
 
-        if (!token.canBeSignaled) {
-            setTimeout(resolve, msec, value);
-            return;
-        }
-
-        token.throwIfSignaled();
+        Cancelable.throwIfSignaled(cancelable);
 
         const handle = setTimeout(() => {
             subscription.unsubscribe();
             resolve(value);
         }, msec);
 
-        const subscription = token.subscribe(() => {
+        const subscription = Cancelable.subscribe(cancelable, () => {
             clearTimeout(handle);
             reject(new CancelError());
         });

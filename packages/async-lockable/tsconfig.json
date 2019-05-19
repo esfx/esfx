@@ -1,0 +1,14 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../cancelable" },
+        { "path": "../disposable" },
+        { "path": "../../internal/guards" },
+        { "path": "../../internal/tag" },
+    ]
+}

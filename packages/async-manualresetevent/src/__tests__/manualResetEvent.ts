@@ -1,4 +1,4 @@
-import { CancelToken, CancelError } from "@esfx/async-canceltoken";
+import { Cancelable, CancelError } from '@esfx/cancelable';
 import { ManualResetEvent } from "..";
 
 describe("ctor", () => {
@@ -12,7 +12,7 @@ describe("wait", () => {
         await expect(new ManualResetEvent().wait(<any>{})).rejects.toThrow(TypeError);
     });
     it("throws if token is canceled.", async () => {
-        await expect(new ManualResetEvent().wait(CancelToken.canceled)).rejects.toThrow(CancelError);
+        await expect(new ManualResetEvent().wait(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
 });
 

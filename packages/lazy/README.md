@@ -27,15 +27,15 @@ lazy1.value; // SomeObject {}
 lazy1.hasValue; // true
 
 // lazy initialize with arguments
-const lazy1 = Lazy.from((a, b) => a + b, 1, 2);
-lazy1.hasValue; // false
-lazy1.value; // 3
-lazy1.hasValue; // true
+const lazy2 = Lazy.from((a, b) => a + b, 1, 2);
+lazy2.hasValue; // false
+lazy2.value; // 3
+lazy2.hasValue; // true
 
 // initialized "lazy"
-const lazy2 = Lazy.for("test");
-lazy2.hasValue; // true
-lazy2.value; // "test"
+const lazy3 = Lazy.for("test");
+lazy3.hasValue; // true
+lazy3.value; // "test"
 ```
 
 # API

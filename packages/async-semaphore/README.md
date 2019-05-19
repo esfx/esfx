@@ -19,6 +19,7 @@ npm i @esfx/async-semaphore
 ```ts
 import { Semaphore } from "@esfx/async-semaphore";
 
+// create a semaphore that allows one participant
 const semaphore = new Semaphore(1);
 
 async function updateResource(updates) {

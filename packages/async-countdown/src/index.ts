@@ -36,13 +36,15 @@
    limitations under the License.
 */
 
+import { isMissing, isNumber } from "@esfx/internal-guards";
+import { Tag } from "@esfx/internal-tag";
 import { Cancelable } from "@esfx/cancelable";
 import { ManualResetEvent } from "@esfx/async-manualresetevent";
-import { isMissing, isNumber } from "@esfx/internal-guards";
 
 /**
  * An event that is set when all participants have signaled.
  */
+@Tag()
 export class CountdownEvent {
     private _initialCount: number;
     private _remainingCount: number;

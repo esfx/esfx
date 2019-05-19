@@ -55,7 +55,7 @@ module.exports = {
             type: "input",
             name: "packageName",
             message: "package name",
-            initial: `@esfx/${name}`,
+            initial: internal ? `@esfx/internal-${name}` : `@esfx/${name}`,
             validate: value => packages.some(pkg => pkg.name === value)
                 ? `Package '${value}' already exists.`
                 : true

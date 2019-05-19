@@ -36,22 +36,23 @@
    limitations under the License.
 */
 
-import { LinkedList } from "@esfx/collections-linkedlist";
-import { Cancelable, CancelError } from "@esfx/cancelable";
-import { CancelToken } from "@esfx/async-canceltoken";
 import { isMissing, isNumber, isFunction } from "@esfx/internal-guards";
+import { Tag } from "@esfx/internal-tag";
+import { Cancelable } from "@esfx/cancelable";
+import { WaitQueue } from "@esfx/async-waitqueue";
 
 /**
  * Enables multiple tasks to cooperatively work on an algorithm through
  * multiple phases.
  */
+@Tag()
 export class Barrier {
     private _isExecutingPostPhaseAction = false;
     private _postPhaseAction: ((barrier: Barrier) => void | PromiseLike<void>) | undefined;
     private _phaseNumber: number = 0;
     private _participantCount: number;
     private _remainingParticipants: number;
-    private _waiters = new LinkedList<{ resolve: () => void; reject: (reason: any) => void; }>();
+    private _waiters = new WaitQueue<void>();
 
     /**
      * Initializes a new instance of the Barrier class.
@@ -130,46 +131,20 @@ export class Barrier {
      *
      * @param cancelable An optional Cancelable used to cancel the request.
      */
-    signalAndWait(cancelable?: Cancelable): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            const token = CancelToken.from(cancelable);
-            token.throwIfSignaled();
-            if (this._isExecutingPostPhaseAction) throw new Error("This method may not be called from within the postPhaseAction.");
-            if (this._participantCount === 0) throw new Error("The barrier has no registered participants.");
-            if (this._remainingParticipants === 0) throw new Error("The number of operations using the barrier exceeded the number of registered participants.");
+    async signalAndWait(cancelable?: Cancelable): Promise<void> {
+        Cancelable.throwIfSignaled(cancelable);
 
-            const node = this._waiters.push({
-                resolve: () => {
-                    subscription.unsubscribe();
-                    if (token.signaled) {
-                        reject(new CancelError());
-                    }
-                    else {
-                        resolve();
-                    }
-                },
-                reject: reason => {
-                    subscription.unsubscribe();
-                    if (token.signaled) {
-                        reject(new CancelError());
-                    }
-                    else {
-                        reject(reason);
-                    }
-                }
-            });
+        if (this._isExecutingPostPhaseAction) throw new Error("This method may not be called from within the postPhaseAction.");
+        if (this._participantCount === 0) throw new Error("The barrier has no registered participants.");
+        if (this._remainingParticipants === 0) throw new Error("The number of operations using the barrier exceeded the number of registered participants.");
 
-            const subscription = token.subscribe(() => {
-                if (node.detachSelf()) {
-                    reject(new CancelError());
-                }
-            });
-
-            this._remainingParticipants--;
-            if (this._remainingParticipants === 0) {
-                this._finishPhase();
-            }
-        });
+        const waiter = this._waiters.wait(cancelable);
+        this._remainingParticipants--;
+        if (this._remainingParticipants === 0) {
+            this._finishPhase();
+        }
+        
+        await waiter;
     }
 
     private _finishPhase() {
@@ -196,15 +171,11 @@ export class Barrier {
 
     private _resolveNextPhase() {
         this._nextPhase();
-        for (const deferred of this._waiters.drain()) {
-            if (deferred) deferred.resolve();
-        }
+        this._waiters.resolveAll();
     }
 
     private _rejectNextPhase(error: any) {
         this._nextPhase();
-        for (const deferred of this._waiters.drain()) {
-            if (deferred) deferred.reject(error);
-        }
+        this._waiters.rejectAll(error);
     }
 }

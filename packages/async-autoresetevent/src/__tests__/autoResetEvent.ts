@@ -1,4 +1,5 @@
-import { CancelToken, CancelError } from "@esfx/async-canceltoken";
+import { CancelToken } from "@esfx/async-canceltoken";
+import { CancelError, Cancelable } from "@esfx/cancelable";
 import { AutoResetEvent } from "..";
 
 function delay(ms: number) {
@@ -60,7 +61,7 @@ describe("wait", () => {
         await expect(new AutoResetEvent().wait(<any>{})).rejects.toThrow(TypeError);
     });
     it("throws if token is canceled.", async () => {
-        await expect(new AutoResetEvent().wait(CancelToken.canceled)).rejects.toThrow(CancelError);
+        await expect(new AutoResetEvent().wait(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
 });
 
@@ -106,7 +107,7 @@ describe("set", () => {
             steps.push("set1");
             event.set();
 
-            await delay(1);
+            await delay(10);
 
             steps.push("set2");
             event.set();

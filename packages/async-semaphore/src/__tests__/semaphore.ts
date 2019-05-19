@@ -1,5 +1,5 @@
 import { Semaphore } from "..";
-import { CancelToken, CancelError } from "@esfx/async-canceltoken";
+import { Cancelable, CancelError } from '@esfx/cancelable';
 
 describe("semaphore", () => {
     describe("ctor", () => {
@@ -16,7 +16,7 @@ describe("semaphore", () => {
             await expect(new Semaphore(1).wait({} as any)).rejects.toThrow(TypeError);
         });
         it("throws when token is canceled", async () => {
-            await expect(new Semaphore(1).wait(CancelToken.canceled)).rejects.toThrow(CancelError);
+            await expect(new Semaphore(1).wait(Cancelable.canceled)).rejects.toThrow(CancelError);
         });
     });
 

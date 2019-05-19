@@ -44,7 +44,7 @@ export namespace Equatable {
     export const hash = Symbol.for("@esfx/equatable:Equatable.hash");
 
     /**
-     * Determines whether an value is Equatable.
+     * Determines whether a value is Equatable.
      */
     export function isEquatable(value: unknown): value is Equatable {
         const obj = Object(value);

@@ -45,3 +45,43 @@ function exec(cmd, args, { ignoreExitCode, verbose, cancelToken = CancellationTo
     });
 }
 exports.exec = exec;
+
+class ArgsBuilder {
+    constructor(args = []) {
+        this.args = args;
+    }
+    add(name, value, defaultValue) {
+        if (!name || value === undefined || value === defaultValue) return;
+        if (Array.isArray(value)) {
+            for (const v of value) {
+                this.add(name, v, defaultValue);
+            }
+        }
+        else if (typeof name === "object") {
+            for (const key of Object.keys(name)) {
+                this.add(key, name[key], defaultValue && typeof defaultValue === "object" ? defaultValue[key] : defaultValue);
+            }
+        }
+        else if (typeof name === "string") {
+            const [prefix, suffix] =
+                name.startsWith("--") ? ["--", name.slice(2)] :
+                name.startsWith("-") ? ["-", name.slice(1)] :
+                name.startsWith("//") ? ["//", name.slice(2)] :
+                name.startsWith("/") ? ["/", name.slice(1)] :
+                name.length === "1" ? ["-", name] :
+                ["--", name];
+            if (typeof value === "boolean") {
+                name = `${prefix}${value ? "" : prefix.startsWith("/") ? "no" : "no-"}${suffix}`;
+                this.args.push(name);
+            }
+            else {
+                name = `${prefix}${suffix}`;
+                this.args.push(name, value);
+            }
+        }
+    }
+    [Symbol.iterator]() {
+        return this.args.values();
+    }
+}
+exports.ArgsBuilder = ArgsBuilder;

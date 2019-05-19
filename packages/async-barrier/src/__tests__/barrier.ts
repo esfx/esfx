@@ -1,5 +1,6 @@
+import { CancelToken } from '@esfx/async-canceltoken';
+import { CancelError, Cancelable } from '@esfx/cancelable';
 import { Barrier } from "..";
-import { CancelToken, CancelError } from '@esfx/async-canceltoken';
 
 describe("ctor", () => {
     it("correct", () => {
@@ -82,7 +83,7 @@ describe("signalAndWait", () => {
         await expect(new Barrier(1).signalAndWait(<any>{})).rejects.toThrow(TypeError);
     });
     it("throws if token is canceled", async () => {
-        await expect(new Barrier(1).signalAndWait(CancelToken.canceled)).rejects.toThrow(CancelError);
+        await expect(new Barrier(1).signalAndWait(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
     it("throws if token is later", async () => {
         const barrier = new Barrier(2);

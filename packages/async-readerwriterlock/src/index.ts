@@ -36,335 +36,317 @@
    limitations under the License.
 */
 
-import { LinkedList } from "@esfx/collections-linkedlist";
-import { Cancelable, CancelError } from "@esfx/cancelable";
-import { CancelToken } from "@esfx/async-canceltoken";
-import { Disposable } from '@esfx/disposable';
+import { Tag, defineTag } from "@esfx/internal-tag";
+import { WaitQueue } from "@esfx/async-waitqueue";
+import { LockHandle, UpgradeableLockHandle, AsyncLockable } from "@esfx/async-lockable";
+import { Cancelable } from "@esfx/cancelable";
+import { Disposable } from "@esfx/disposable";
+
+export { LockHandle, UpgradeableLockHandle } from "@esfx/async-lockable";
+
+const disposablePrototype: object = Object.getPrototypeOf(Disposable.create(() => { }));
+
+const lockHandlePrototype: object = {
+    get mutex() {
+        return this;
+    },
+    async [AsyncLockable.lock](this: LockHandle, cancelable?: Cancelable) {
+        await this.lock(cancelable);
+        return this;
+    },
+    [AsyncLockable.unlock](this: LockHandle) {
+        this.unlock();
+    },
+    [Disposable.dispose](this: LockHandle) {
+        if (this.ownsLock) {
+            this.unlock();
+        }
+    }
+};
+
+defineTag(lockHandlePrototype, "LockHandle");
+Object.setPrototypeOf(lockHandlePrototype, disposablePrototype);
+
+const readerPrototype: object = {};
+defineTag(readerPrototype, "ReaderWriterLockReader");
+Object.setPrototypeOf(readerPrototype, lockHandlePrototype);
+
+const writerPrototype: object = {};
+defineTag(writerPrototype, "ReaderWriterLockWriter");
+Object.setPrototypeOf(writerPrototype, lockHandlePrototype);
+
+const upgradeableReaderPrototype: object = {};
+defineTag(upgradeableReaderPrototype, "ReaderWriterLockUpgradeableReader");
+Object.setPrototypeOf(upgradeableReaderPrototype, readerPrototype);
+
+const upgradedWriterPrototype: object = {};
+defineTag(upgradedWriterPrototype, "ReaderWriterLockUpgradedWriter");
+Object.setPrototypeOf(upgradedWriterPrototype, writerPrototype);
 
 /**
  * Coordinates readers and writers for a resource.
  */
+@Tag()
 export class ReaderWriterLock {
-    private _readers = new LinkedList<() => void>();
-    private _upgradeables = new LinkedList<() => void>();
-    private _upgrades = new LinkedList<() => void>();
-    private _writers = new LinkedList<() => void>();
-    private _upgradeable: UpgradeableLockHandle | undefined;
-    private _upgraded: LockHandle | undefined;
-    private _count = 0;
+    private _readerQueue = new WaitQueue<void>();
+    private _writerQueue = new WaitQueue<void>();
+    private _readers = new Set<LockHandle>();
+    private _writer: LockHandle | undefined;
+    private _upgradeable: LockHandle | undefined;
+
+    /**
+     * Creates a `ReaderWriterLockReader` that can be used to take and release "read" locks on a resource.
+     */
+    createReader() {
+        const owner = this;
+        const handle: ReaderWriterLockReader = Object.setPrototypeOf({
+            get owner() {
+                return owner;
+            },
+            get ownsLock() {
+                return owner._readers.has(handle);
+            },
+            async lock(cancelable?: Cancelable) {
+                await owner._lockReader(handle, false, cancelable);
+                return handle;
+            },
+            unlock() {
+                owner._unlockReader(handle);
+            }
+        }, readerPrototype);
+        return handle;
+    }
+
+    /**
+     * Creates a `ReaderWriterLockUpgradeableReader` that can be used to take and release "read" locks on a resource
+     * and can be later upgraded to take and release "write" locks.
+     */
+    createUpgradeableReader() {
+        const owner = this;
+        const handle: ReaderWriterLockUpgradeableReader = Object.setPrototypeOf({
+            get owner() {
+                return handle;
+            },
+            get ownsLock() {
+                return owner._readers.has(handle);
+            },
+            async lock(cancelable?: Cancelable) {
+                await owner._lockReader(handle, true, cancelable);
+                return handle;
+            },
+            unlock() {
+                owner._unlockReader(handle);
+            },
+            createWriter() {
+                return owner._createUpgradedWriter(handle);
+            },
+            async upgrade(cancelable?: Cancelable) {
+                const upgradedWriter = this.createWriter();
+                await upgradedWriter.lock(cancelable);
+                return upgradedWriter;
+            }
+        }, upgradeableReaderPrototype);
+        return handle;
+    }
+
+    /**
+     * Creates a `ReaderWriterLockWriter` that can be used to take and release "write" locks on a resource.
+     */
+    createWriter() {
+        const owner = this;
+        const handle: ReaderWriterLockWriter = Object.setPrototypeOf({
+            get owner() {
+                return owner;
+            },
+            get ownsLock() {
+                return owner._writer === handle;
+            },
+            async lock(cancelable?: Cancelable) {
+                await owner._lockWriter(handle, undefined, cancelable);
+                return handle;
+            },
+            unlock() {
+                owner._unlockWriter(handle);
+            }
+        }, writerPrototype);
+        return handle;
+    }
+
+    private _createUpgradedWriter(upgradeable: ReaderWriterLockUpgradeableReader) {
+        const owner = this;
+        const handle: ReaderWriterLockWriter = Object.setPrototypeOf({
+            get owner() {
+                return owner;
+            },
+            get ownsLock() {
+                return owner._writer === handle;
+            },
+            async lock(cancelable?: Cancelable) {
+                await owner._lockWriter(handle, upgradeable, cancelable);
+                return handle;
+            },
+            unlock() {
+                owner._unlockWriter(handle);
+            }
+        }, upgradedWriterPrototype);
+        return handle;
+    }
 
     /**
      * Asynchronously waits for and takes a read lock on a resource.
      *
-     * @param cancelable A Cancelable used to cancel the request.
+     * @param cancelable A `Cancelable` used to cancel the request.
      */
-    read(cancelable?: Cancelable): Promise<LockHandle> {
-        return new Promise<LockHandle>((resolve, reject) => {
-            const token = CancelToken.from(cancelable);
-            token.throwIfSignaled();
-
-            if (this._canTakeReadLock()) {
-                resolve(this._takeReadLock());
-                return;
-            }
-
-            const node = this._readers.push(() => {
-                subscription.unsubscribe();
-                if (token.signaled) {
-                    reject(new CancelError());
-                }
-                else {
-                    resolve(this._takeReadLock());
-                }
-            });
-
-            const subscription = token.subscribe(() => {
-                if (node.detachSelf()) {
-                    reject(new CancelError());
-                }
-            });
-        });
+    async read(cancelable?: Cancelable) {
+        const reader = this.createReader();
+        await reader.lock(cancelable);
+        return reader;
     }
 
     /**
      * Asynchronously waits for and takes a read lock on a resource
      * that can later be upgraded to a write lock.
      *
-     * @param cancelable A Cancelable used to cancel the request.
+     * @param cancelable A `Cancelable` used to cancel the request.
      */
-    upgradeableRead(cancelable?: Cancelable): Promise<UpgradeableLockHandle> {
-        return new Promise<UpgradeableLockHandle>((resolve, reject) => {
-            const token = CancelToken.from(cancelable);
-            token.throwIfSignaled();
-
-            if (this._canTakeUpgradeableReadLock()) {
-                resolve(this._takeUpgradeableReadLock());
-                return;
-            }
-
-            const node = this._upgradeables.push(() => {
-                subscription.unsubscribe();
-                if (token.signaled) {
-                    reject(new CancelError());
-                }
-                else {
-                    resolve(this._takeUpgradeableReadLock());
-                }
-            });
-
-            const subscription = token.subscribe(() => {
-                if (node.list) {
-                    node.list.deleteNode(node);
-                    reject(new CancelError());
-                }
-            });
-        });
+    async upgradeableRead(cancelable?: Cancelable) {
+        const upgradeableReader = this.createUpgradeableReader();
+        await upgradeableReader.lock(cancelable);
+        return upgradeableReader;
     }
 
     /**
      * Asynchronously waits for and takes a write lock on a resource.
      *
-     * @param cancelable A Cancelable used to cancel the request.
+     * @param cancelable A `Cancelable` used to cancel the request.
      */
-    write(cancelable?: Cancelable): Promise<LockHandle> {
-        return new Promise<LockHandle>((resolve, reject) => {
-            const token = CancelToken.from(cancelable);
-            token.throwIfSignaled();
-
-            if (this._canTakeWriteLock()) {
-                resolve(this._takeWriteLock());
-                return;
-            }
-
-            const node = this._writers.push(() => {
-                subscription.unsubscribe();
-                if (token.signaled) {
-                    reject(new CancelError());
-                }
-                else {
-                    resolve(this._takeWriteLock());
-                }
-            });
-
-            const subscription = token.subscribe(() => {
-                if (node.list) {
-                    node.list.deleteNode(node);
-                    reject(new CancelError());
-                }
-            });
-        });
-    }
-
-    private _upgrade(cancelable?: Cancelable): Promise<LockHandle> {
-        return new Promise<LockHandle>((resolve, reject) => {
-            const token = CancelToken.from(cancelable);
-            token.throwIfSignaled();
-
-            if (this._canTakeUpgradeLock()) {
-                resolve(this._takeUpgradeLock());
-                return;
-            }
-
-            const node = this._upgrades.push(() => {
-                subscription.unsubscribe();
-                if (token.signaled) {
-                    reject(new CancelError());
-                }
-                else {
-                    resolve(this._takeUpgradeLock());
-                }
-            });
-
-            const subscription = token.subscribe(() => {
-                if (node.list) {
-                    node.list.deleteNode(node);
-                    reject(new CancelError());
-                }
-            });
-        });
+    async write(cancelable?: Cancelable) {
+        const writer = this.createWriter();
+        await writer.lock(cancelable);
+        return writer;
     }
 
     private _processLockRequests(): void {
-        if (this._processWriteLockRequest()) return;
-        if (this._processUpgradeRequest()) return;
-        this._processUpgradeableReadLockRequest();
-        this._processReadLockRequests();
+        if (this._processWriteRequest()) return;
+        this._processReadRequests();
+    }
+
+    private _processWriteRequest(): boolean {
+        if (this._canTakeWriteLock()) {
+            if (this._writerQueue.resolveOne()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private _processReadRequests(): void {
+        if (this._canTakeReadLock()) {
+            this._readerQueue.resolveAll();
+        }
     }
 
     private _canTakeReadLock() {
-        return this._count >= 0
-            && this._writers.size === 0
-            && this._upgrades.size === 0
-            && this._writers.size === 0;
-    }
-
-    private _processReadLockRequests(): void {
-        if (this._canTakeReadLock()) {
-            this._readers.forEach(resolve => resolve());
-            this._readers.clear();
-        }
-    }
-
-    private _takeReadLock(): LockHandle {
-        let released = false;
-        this._count++;
-        const release = () => {
-            if (released)
-                throw new Error("Lock already released.");
-            released = true;
-            this._releaseReadLock();
-        };
-        return {
-            release,
-            [Disposable.dispose]: release,
-        };
-    }
-
-    private _releaseReadLock(): void {
-        this._count--;
-        this._processLockRequests();
-    }
-
-    private _canTakeUpgradeableReadLock() {
-        return this._count >= 0 && !this._upgradeable;
-    }
-
-    private _processUpgradeableReadLockRequest(): void {
-        if (this._canTakeUpgradeableReadLock()) {
-            const resolve = this._upgradeables.shift();
-            if (resolve) {
-                resolve();
-            }
-        }
-    }
-
-    private _takeUpgradeableReadLock(): UpgradeableLockHandle {
-        const upgrade = (cancelable?: Cancelable) => {
-            if (this._upgradeable !== hold) throw new Error("Lock already released.");
-            return this._upgrade(cancelable);
-        };
-        const release = () => {
-            if (this._upgradeable !== hold) throw new Error("Lock already released.");
-            this._releaseUpgradeableReadLock();
-        };
-        const hold: UpgradeableLockHandle = {
-            upgrade,
-            release,
-            [Disposable.dispose]: release,
-        };
-        this._count++;
-        this._upgradeable = hold;
-        return hold;
-    }
-
-    private _releaseUpgradeableReadLock(): void {
-        if (this._count === -1) {
-            this._count = 0;
-        }
-        else {
-            this._count--;
-        }
-
-        this._upgraded = undefined;
-        this._upgradeable = undefined;
-        this._processLockRequests();
-    }
-
-    private _canTakeUpgradeLock() {
-        return this._count === 1
-            && this._upgradeable
-            && !this._upgraded;
-    }
-
-    private _processUpgradeRequest(): boolean {
-        if (this._canTakeUpgradeLock()) {
-            const resolve = this._upgrades.shift();
-            if (resolve) {
-                resolve();
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private _takeUpgradeLock(): LockHandle {
-        const release = () => {
-            if (this._upgraded !== hold)
-                throw new Error("Lock already released.");
-            this._releaseUpgradeLock();
-        };
-        const hold: LockHandle = {
-            release,
-            [Disposable.dispose]: release
-        };
-
-        this._upgraded = hold;
-        this._count = -1;
-        return hold;
-    }
-
-    private _releaseUpgradeLock(): void {
-        this._upgraded = undefined;
-        this._count = 1;
-        this._processLockRequests();
+        return !this._writer
+            && this._writerQueue.size === 0;
     }
 
     private _canTakeWriteLock() {
-        return this._count === 0;
+        return !this._writer
+            && this._readers.size === 0;
     }
 
-    private _processWriteLockRequest(): boolean {
-        if (this._canTakeWriteLock()) {
-            const resolve = this._writers.shift();
-            if (resolve) {
-                resolve();
-                return true;
+    private async _lockReader(handle: LockHandle, upgradeable: boolean, cancelable?: Cancelable) {
+        Cancelable.throwIfSignaled(cancelable);
+        while (true) {
+            if (this._readers.has(handle)) {
+                throw new Error("Lock already taken.");
             }
+            if (this._canTakeReadLock() && !(upgradeable && this._upgradeable)) {
+                this._readers.add(handle);
+                if (upgradeable) {
+                    this._upgradeable = handle;
+                }
+                return;
+            }
+            await this._readerQueue.wait(cancelable);
         }
-
-        return false;
     }
 
-    private _takeWriteLock(): LockHandle {
-        let released = false;
-        this._count = -1;
-        const release = () => {
-            if (released)
+    private _unlockReader(handle: LockHandle): void {
+        if (!this._readers.has(handle)) {
+            throw new Error("Lock already released.");
+        }
+        if (handle === this._upgradeable) {
+            if (this._writer) {
+                throw new Error("Cannot unlock an upgraded lock.");
+            }
+            this._upgradeable = undefined;
+        }
+        this._readers.delete(handle);
+        this._processLockRequests();
+    }
+
+    private async _lockWriter(handle: LockHandle, upgradeable: LockHandle | undefined, cancelable?: Cancelable) {
+        Cancelable.throwIfSignaled(cancelable);
+        while (true) {
+            if (this._writer === handle) {
+                throw new Error("Lock already taken.");
+            }
+            if (this._upgradeable !== upgradeable) {
                 throw new Error("Lock already released.");
-            released = true;
-            this._releaseWriteLock();
-        };
-        return {
-            release,
-            [Disposable.dispose]: release,
-        };
+            }
+            if (this._canTakeWriteLock()) {
+                this._writer = handle;
+                return;
+            }
+            await this._writerQueue.wait(cancelable);
+        }
     }
 
-    private _releaseWriteLock(): void {
-        this._count = 0;
+    private _unlockWriter(handle: LockHandle): void {
+        if (this._writer !== handle) {
+            throw new Error("Lock already released.");
+        }
+        this._writer = undefined;
         this._processLockRequests();
     }
 }
 
-/**
- * An object used to release a held lock.
- */
-export interface LockHandle extends Disposable {
+export interface ReaderWriterLockReader extends LockHandle<ReaderWriterLockReader> {
     /**
-     * Releases the lock.
+     * Gets the `ReaderWriterLock` that owns this object.
      */
-    release(): void;
+    readonly owner: ReaderWriterLock;
 }
 
-/**
- * An object used to release a held lock or upgrade to a write lock.
- */
-export interface UpgradeableLockHandle extends LockHandle, Disposable {
+export interface ReaderWriterLockWriter extends LockHandle<ReaderWriterLockWriter> {
     /**
-     * Upgrades the lock to a write lock.
-     *
-     * @param token A Cancelable used to cancel the request.
+     * Gets the `ReaderWriterLock` that owns this object.
      */
-    upgrade(token?: Cancelable): Promise<LockHandle>;
+    readonly owner: ReaderWriterLock;
+}
+
+export interface ReaderWriterLockUpgradedWriter extends LockHandle<ReaderWriterLockUpgradedWriter> {
+    /**
+     * Gets the `ReaderWriterLock` that owns this object.
+     */
+    readonly owner: ReaderWriterLock;
+}
+
+export interface ReaderWriterLockUpgradeableReader extends UpgradeableLockHandle<ReaderWriterLockUpgradeableReader, ReaderWriterLockUpgradedWriter> {
+    /**
+     * Gets the `ReaderWriterLock` that owns this object.
+     */
+    readonly owner: ReaderWriterLock;
+    /**
+     * Creates a `ReaderWriterLockUpgradedWriter` that can be used to take and release "write" locks on a resource.
+     */
+    createWriter(): ReaderWriterLockUpgradedWriter;
+    /**
+     * Asynchronously waits for and takes a write lock on a resource.
+     *
+     * @param cancelable A `Cancelable` used to cancel the request.
+     */
+    upgrade(cancelable?: Cancelable): Promise<ReaderWriterLockUpgradedWriter>;
 }

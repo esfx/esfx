@@ -7,8 +7,9 @@
     "include": ["src/**/*.ts"],
     "references": [
         { "path": "../cancelable" },
-        { "path": "../disposable" },
         { "path": "../collections-linkedlist" },
+        { "path": "../disposable" },
         { "path": "../../internal/guards" },
+        { "path": "../../internal/tag" },
     ]
 }

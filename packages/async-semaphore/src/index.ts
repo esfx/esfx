@@ -36,20 +36,21 @@
    limitations under the License.
 */
 
-import { LinkedList } from "@esfx/collections-linkedlist";
-import { Cancelable, CancelError } from "@esfx/cancelable";
-import { CancelToken } from "@esfx/async-canceltoken";
 import { isMissing, isNumber } from "@esfx/internal-guards";
 import { maxInt32 as MAX_INT32 } from "@esfx/internal-integers";
+import { Tag } from "@esfx/internal-tag";
+import { WaitQueue } from "@esfx/async-waitqueue";
+import { Cancelable } from "@esfx/cancelable";
 
 /**
  * Limits the number of asynchronous operations that can access a resource
  * or pool of resources.
  */
+@Tag()
 export class Semaphore {
     private _maxCount: number;
     private _currentCount: number;
-    private _waiters = new LinkedList<() => void>();
+    private _waiters = new WaitQueue<void>();
 
     /**
      * Initializes a new instance of the Semaphore class.
@@ -73,7 +74,7 @@ export class Semaphore {
      * Gets the number of remaining asynchronous operations that can enter
      * the Semaphore.
      */
-    public get count(): number {
+    get count(): number {
         return this._currentCount;
     }
 
@@ -82,33 +83,13 @@ export class Semaphore {
      *
      * @param cancelable An optional [[Cancelable]] used to cancel the request.
      */
-    public wait(cancelable?: Cancelable): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            const token = CancelToken.from(cancelable);
-            token.throwIfSignaled();
-
-            if (this._currentCount > 0) {
-                this._currentCount--;
-                resolve();
-                return;
-            }
-
-            const node = this._waiters.push(() => {
-                subscription.unsubscribe();
-                if (token.signaled) {
-                    reject(new CancelError());
-                }
-                else {
-                    resolve();
-                }
-            });
-
-            const subscription = token.subscribe(() => {
-                if (node.detachSelf()) {
-                    reject(new CancelError());
-                }
-            });
-        });
+    async wait(cancelable?: Cancelable): Promise<void> {
+        Cancelable.throwIfSignaled(cancelable);
+        if (this._currentCount > 0) {
+            this._currentCount--;
+            return;
+        }
+        await this._waiters.wait(cancelable);
     }
 
     /**
@@ -116,7 +97,7 @@ export class Semaphore {
      *
      * @param count The number of times to release the [[Semaphore]].
      */
-    public release(count?: number): void {
+    release(count?: number): void {
         if (isMissing(count)) count = 1;
         if (!isNumber(count)) throw new TypeError("Number expected: count.");
         if ((count |= 0) < 1) throw new RangeError("Argument out of range: count.");
@@ -124,11 +105,7 @@ export class Semaphore {
 
         while (count > 0) {
             count--;
-            const resolve = this._waiters.shift();
-            if (resolve) {
-                resolve();
-            }
-            else {
+            if (!this._waiters.resolveOne()) {
                 this._currentCount++;
             }
         }
