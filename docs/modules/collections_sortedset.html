@@ -109,6 +109,25 @@
     }
 }</code></pre>
 					</blockquote>
+					<h2 id="sortedset">SortedSet</h2>
+					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { SortedSet } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/collections-sortedset"</span>;
+
+<span class="hljs-comment">// <span class="hljs-doctag">NOTE:</span> see definition of Person above</span>
+<span class="hljs-keyword">const</span> obj1 = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">"Alice"</span>, <span class="hljs-string">"Johnson"</span>);
+<span class="hljs-keyword">const</span> obj2 = <span class="hljs-keyword">new</span> Person(<span class="hljs-string">"Bob"</span>, <span class="hljs-string">"Clark"</span>);
+
+<span class="hljs-comment">// ECMAScript native set iterates in insertion order</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">set</span> = <span class="hljs-keyword">new</span> Set(); <span class="hljs-comment">// native ECMAScript Set</span>
+<span class="hljs-keyword">set</span>.add(obj1);
+<span class="hljs-keyword">set</span>.add(obj2);
+[...set]; <span class="hljs-comment">// Alice Johnson,Bob Clark</span>
+
+<span class="hljs-comment">// SortedSet uses Comparable.compareTo if available</span>
+<span class="hljs-keyword">const</span> sortedSet = <span class="hljs-keyword">new</span> SortedSet();
+sortedSet.add(obj1);
+sortedSet.add(obj2);
+[...sortedSet]; <span class="hljs-comment">// Bob Clark,Alice Johnson</span>
+</code></pre>
 					<h2 id="api">API</h2>
 					<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/collections_sortedset.html">here</a>.</p>
 				</div>

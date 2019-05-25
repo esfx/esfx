@@ -49,6 +49,28 @@ npm i @esfx/collections-sortedset
 > }
 > ```
 
+## SortedSet
+
+```ts
+import { SortedSet } from "@esfx/collections-sortedset";
+
+// NOTE: see definition of Person above
+const obj1 = new Person("Alice", "Johnson");
+const obj2 = new Person("Bob", "Clark");
+
+// ECMAScript native set iterates in insertion order
+const set = new Set(); // native ECMAScript Set
+set.add(obj1);
+set.add(obj2);
+[...set]; // Alice Johnson,Bob Clark
+
+// SortedSet uses Comparable.compareTo if available
+const sortedSet = new SortedSet();
+sortedSet.add(obj1);
+sortedSet.add(obj2);
+[...sortedSet]; // Bob Clark,Alice Johnson
+
+```
 ## API
 
 You can read more about the API [here](https://esfx.github.io/esfx/modules/collections_sortedset.html).
