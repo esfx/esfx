@@ -1,0 +1,1530 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>metadata | esfx</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">esfx</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="metadata.html">metadata</a>
+				</li>
+			</ul>
+			<h1>Package metadata</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<h1 id="-esfx-metadata">@esfx/metadata</h1>
+					<p>The <code>@esfx/metadata</code> package provides an API for defining metadata about an object.</p>
+					<h1 id="overview">Overview</h1>
+					<ul>
+						<li><a href="#installation">Installation</a></li>
+						<li><a href="#usage">Usage</a></li>
+						<li><a href="#api">API</a></li>
+					</ul>
+					<h1 id="installation">Installation</h1>
+					<pre><code class="language-sh">npm i @esfx/metadata</code></pre>
+					<h1 id="usage">Usage</h1>
+					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Metadata, getClassMetadata, getMemberMetadata, getParameterMetadata } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/metadata"</span>;
+
+<span class="hljs-keyword">const</span> Service = <span class="hljs-function"><span class="hljs-params">name</span> =&gt;</span> Metadata(<span class="hljs-string">"Service"</span>, name);
+<span class="hljs-keyword">const</span> ReturnType = <span class="hljs-function"><span class="hljs-params">type</span> =&gt;</span> Metadata(<span class="hljs-string">"ReturnType"</span>, <span class="hljs-keyword">type</span>);
+<span class="hljs-keyword">const</span> Type = <span class="hljs-function"><span class="hljs-params">type</span> =&gt;</span> Metadata(<span class="hljs-string">"Type"</span>, <span class="hljs-keyword">type</span>);
+
+<span class="hljs-meta">@Service</span>(<span class="hljs-string">"MyService"</span>)
+<span class="hljs-keyword">class</span> MyClass {
+    <span class="hljs-meta">@ReturnType</span>(<span class="hljs-string">"string"</span>)
+    method(<span class="hljs-meta">@Type</span>(<span class="hljs-string">"number"</span>) x) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"hi"</span>;
+    }
+}
+
+<span class="hljs-keyword">const</span> c = <span class="hljs-keyword">new</span> MyClass();
+getClassMetadata(MyClass, <span class="hljs-string">"Service"</span>); <span class="hljs-comment">// "MyService"</span>
+getMemberMetadata(c, <span class="hljs-string">"method"</span>, <span class="hljs-string">"ReturnType"</span>); <span class="hljs-comment">// "string"</span>
+getParameterMetadata(c, <span class="hljs-string">"method"</span>, <span class="hljs-number">0</span>, <span class="hljs-string">"Type"</span>); <span class="hljs-comment">// "number"</span></code></pre>
+					<h1 id="api">API</h1>
+					<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/metadata.html">here</a>.</p>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="metadata.html#metadatakey" class="tsd-kind-icon">Metadata<wbr>Key</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Variables</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-variable tsd-parent-kind-external-module"><a href="metadata.html#metadata-1" class="tsd-kind-icon">metadata</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#defineobjectmetadata" class="tsd-kind-icon">define<wbr>Object<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#defineparametermetadata" class="tsd-kind-icon">define<wbr>Parameter<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#definepropertymetadata" class="tsd-kind-icon">define<wbr>Property<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#deleteobjectmetadata" class="tsd-kind-icon">delete<wbr>Object<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#deleteparametermetadata" class="tsd-kind-icon">delete<wbr>Parameter<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#deletepropertymetadata" class="tsd-kind-icon">delete<wbr>Property<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getmetadataparameterlength" class="tsd-kind-icon">get<wbr>Metadata<wbr>Parameter<wbr>Length</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getmetadataproperties" class="tsd-kind-icon">get<wbr>Metadata<wbr>Properties</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getobjectmetadata" class="tsd-kind-icon">get<wbr>Object<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getobjectmetadatakeys" class="tsd-kind-icon">get<wbr>Object<wbr>Metadata<wbr>Keys</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getownmetadataparameterlength" class="tsd-kind-icon">get<wbr>Own<wbr>Metadata<wbr>Parameter<wbr>Length</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getownmetadataproperties" class="tsd-kind-icon">get<wbr>Own<wbr>Metadata<wbr>Properties</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getownobjectmetadata" class="tsd-kind-icon">get<wbr>Own<wbr>Object<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getownobjectmetadatakeys" class="tsd-kind-icon">get<wbr>Own<wbr>Object<wbr>Metadata<wbr>Keys</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getownparametermetadata" class="tsd-kind-icon">get<wbr>Own<wbr>Parameter<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getownparametermetadatakeys" class="tsd-kind-icon">get<wbr>Own<wbr>Parameter<wbr>Metadata<wbr>Keys</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getownpropertymetadata" class="tsd-kind-icon">get<wbr>Own<wbr>Property<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getownpropertymetadatakeys" class="tsd-kind-icon">get<wbr>Own<wbr>Property<wbr>Metadata<wbr>Keys</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getparametermetadata" class="tsd-kind-icon">get<wbr>Parameter<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getparametermetadatakeys" class="tsd-kind-icon">get<wbr>Parameter<wbr>Metadata<wbr>Keys</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getpropertymetadata" class="tsd-kind-icon">get<wbr>Property<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#getpropertymetadatakeys" class="tsd-kind-icon">get<wbr>Property<wbr>Metadata<wbr>Keys</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#hasobjectmetadata" class="tsd-kind-icon">has<wbr>Object<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#hasownobjectmetadata" class="tsd-kind-icon">has<wbr>Own<wbr>Object<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#hasownparametermetadata" class="tsd-kind-icon">has<wbr>Own<wbr>Parameter<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#hasownpropertymetadata" class="tsd-kind-icon">has<wbr>Own<wbr>Property<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#hasparametermetadata" class="tsd-kind-icon">has<wbr>Parameter<wbr>Metadata</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="metadata.html#haspropertymetadata" class="tsd-kind-icon">has<wbr>Property<wbr>Metadata</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+					<a name="metadatakey" class="tsd-anchor"></a>
+					<h3>Metadata<wbr>Key</h3>
+					<div class="tsd-signature tsd-kind-icon">Metadata<wbr>Key<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L20">metadata/src/index.ts:20</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Variables</h2>
+				<section class="tsd-panel tsd-member tsd-kind-variable tsd-parent-kind-external-module">
+					<a name="metadata-1" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagConst">Const</span> metadata</h3>
+					<div class="tsd-signature tsd-kind-icon">metadata<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> =&nbsp;Object.assign(createDecoratorFactory(metadataDecorator), {defineObjectMetadata,deleteObjectMetadata,hasOwnObjectMetadata,hasObjectMetadata,getOwnObjectMetadata,getObjectMetadata,getOwnObjectMetadataKeys,getObjectMetadataKeys,definePropertyMetadata,deletePropertyMetadata,hasOwnPropertyMetadata,hasPropertyMetadata,getOwnPropertyMetadata,getPropertyMetadata,getOwnPropertyMetadataKeys,getPropertyMetadataKeys,getOwnMetadataProperties,getMetadataProperties,defineParameterMetadata,deleteParameterMetadata,hasOwnParameterMetadata,hasParameterMetadata,getOwnParameterMetadata,getParameterMetadata,getOwnParameterMetadataKeys,getParameterMetadataKeys,getOwnMetadataParameterLength,getMetadataParameterLength,})</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L622">metadata/src/index.ts:622</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Attaches metadata to a class, member, or parameter.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>param</dt>
+							<dd><p>The metadata key.</p>
+							</dd>
+							<dt>param</dt>
+							<dd><p>The metadata value.</p>
+							</dd>
+						</dl>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="defineobjectmetadata" class="tsd-anchor"></a>
+					<h3>define<wbr>Object<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">define<wbr>Object<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a>, metadataValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L237">metadata/src/index.ts:237</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Define metadata on an object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataValue: <span class="tsd-signature-type">unknown</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata value.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="defineparametermetadata" class="tsd-anchor"></a>
+					<h3>define<wbr>Parameter<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">define<wbr>Parameter<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, parameterIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a>, metadataValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L458">metadata/src/index.ts:458</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Define metadata on a parameter of a method of an object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the method.</p>
+									</div>
+								</li>
+								<li>
+									<h5>parameterIndex: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The ordinal index of the parameter.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataValue: <span class="tsd-signature-type">unknown</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata value.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="definepropertymetadata" class="tsd-anchor"></a>
+					<h3>define<wbr>Property<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">define<wbr>Property<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a>, metadataValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L334">metadata/src/index.ts:334</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Define metadata for a property of an object. The property does not have to exist.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the property.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataValue: <span class="tsd-signature-type">unknown</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata value.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="deleteobjectmetadata" class="tsd-anchor"></a>
+					<h3>delete<wbr>Object<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">delete<wbr>Object<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L248">metadata/src/index.ts:248</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Deletes an own metadata key from an object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="deleteparametermetadata" class="tsd-anchor"></a>
+					<h3>delete<wbr>Parameter<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">delete<wbr>Parameter<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, parameterIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L472">metadata/src/index.ts:472</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Deletes an own metadata key from a parameter of a method of an object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the method.</p>
+									</div>
+								</li>
+								<li>
+									<h5>parameterIndex: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The ordinal index of the parameter.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="deletepropertymetadata" class="tsd-anchor"></a>
+					<h3>delete<wbr>Property<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">delete<wbr>Property<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L346">metadata/src/index.ts:346</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Deletes an own metadata key from a property of an object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the property.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getmetadataparameterlength" class="tsd-anchor"></a>
+					<h3>get<wbr>Metadata<wbr>Parameter<wbr>Length</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Metadata<wbr>Parameter<wbr>Length<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L594">metadata/src/index.ts:594</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the maximum known length of a method of an object or its prototypes from its parameters that have metadata metadata.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the method.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getmetadataproperties" class="tsd-anchor"></a>
+					<h3>get<wbr>Metadata<wbr>Properties</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Metadata<wbr>Properties<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L435">metadata/src/index.ts:435</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the property names for an object or its prototypes for which there is metadata defined.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An object.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getobjectmetadata" class="tsd-anchor"></a>
+					<h3>get<wbr>Object<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Object<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L292">metadata/src/index.ts:292</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the metadata value for a metadata key on an object or its prototypes.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getobjectmetadatakeys" class="tsd-anchor"></a>
+					<h3>get<wbr>Object<wbr>Metadata<wbr>Keys</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Object<wbr>Metadata<wbr>Keys<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L311">metadata/src/index.ts:311</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the metadata keys defined on an object or its prototypes.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getownmetadataparameterlength" class="tsd-anchor"></a>
+					<h3>get<wbr>Own<wbr>Metadata<wbr>Parameter<wbr>Length</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Own<wbr>Metadata<wbr>Parameter<wbr>Length<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L583">metadata/src/index.ts:583</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the maximum known length of a method of an object from its parameters that have metadata metadata.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the method.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getownmetadataproperties" class="tsd-anchor"></a>
+					<h3>get<wbr>Own<wbr>Metadata<wbr>Properties</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Own<wbr>Metadata<wbr>Properties<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L424">metadata/src/index.ts:424</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the own property names for an object for which there is metadata defined.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An object.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getownobjectmetadata" class="tsd-anchor"></a>
+					<h3>get<wbr>Own<wbr>Object<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Own<wbr>Object<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L281">metadata/src/index.ts:281</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the metadata value for an own metadata key on an object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getownobjectmetadatakeys" class="tsd-anchor"></a>
+					<h3>get<wbr>Own<wbr>Object<wbr>Metadata<wbr>Keys</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Own<wbr>Object<wbr>Metadata<wbr>Keys<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L302">metadata/src/index.ts:302</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the own metadata keys defined on an object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getownparametermetadata" class="tsd-anchor"></a>
+					<h3>get<wbr>Own<wbr>Parameter<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Own<wbr>Parameter<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, parameterIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L514">metadata/src/index.ts:514</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the metadata value for an own metadata key on a parameter of a method of an object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the method.</p>
+									</div>
+								</li>
+								<li>
+									<h5>parameterIndex: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The ordinal index of the parameter.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getownparametermetadatakeys" class="tsd-anchor"></a>
+					<h3>get<wbr>Own<wbr>Parameter<wbr>Metadata<wbr>Keys</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Own<wbr>Parameter<wbr>Metadata<wbr>Keys<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, parameterIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L541">metadata/src/index.ts:541</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the own metadata keys defined on a parameter of a method of an object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the method.</p>
+									</div>
+								</li>
+								<li>
+									<h5>parameterIndex: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The ordinal index of the parameter.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getownpropertymetadata" class="tsd-anchor"></a>
+					<h3>get<wbr>Own<wbr>Property<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Own<wbr>Property<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L382">metadata/src/index.ts:382</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the metadata value for an own metadata key on a property of an object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the property.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getownpropertymetadatakeys" class="tsd-anchor"></a>
+					<h3>get<wbr>Own<wbr>Property<wbr>Metadata<wbr>Keys</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Own<wbr>Property<wbr>Metadata<wbr>Keys<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L405">metadata/src/index.ts:405</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the own metadata keys defined on a property of an object.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the property.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getparametermetadata" class="tsd-anchor"></a>
+					<h3>get<wbr>Parameter<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Parameter<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, parameterIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L528">metadata/src/index.ts:528</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the metadata value for a metadata key on a parameter of a method of an object or its prototypes.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the method.</p>
+									</div>
+								</li>
+								<li>
+									<h5>parameterIndex: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The ordinal index of the parameter.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getparametermetadatakeys" class="tsd-anchor"></a>
+					<h3>get<wbr>Parameter<wbr>Metadata<wbr>Keys</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Parameter<wbr>Metadata<wbr>Keys<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, parameterIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L553">metadata/src/index.ts:553</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the metadata keys defined on a parameter of a method of an object or its prototypes.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the method.</p>
+									</div>
+								</li>
+								<li>
+									<h5>parameterIndex: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The ordinal index of the parameter.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getpropertymetadata" class="tsd-anchor"></a>
+					<h3>get<wbr>Property<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Property<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L394">metadata/src/index.ts:394</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the metadata value for a metadata key on a property of an object or its prototypes.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the property.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">unknown</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="getpropertymetadatakeys" class="tsd-anchor"></a>
+					<h3>get<wbr>Property<wbr>Metadata<wbr>Keys</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Property<wbr>Metadata<wbr>Keys<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L415">metadata/src/index.ts:415</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the metadata keys defined on a property of an object or its prototypes.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the property.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="hasobjectmetadata" class="tsd-anchor"></a>
+					<h3>has<wbr>Object<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Object<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L270">metadata/src/index.ts:270</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tests whether an object or its prototypes have metadata for the provided key.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="hasownobjectmetadata" class="tsd-anchor"></a>
+					<h3>has<wbr>Own<wbr>Object<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Own<wbr>Object<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L259">metadata/src/index.ts:259</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tests whether an object has own metadata for the provided key.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="hasownparametermetadata" class="tsd-anchor"></a>
+					<h3>has<wbr>Own<wbr>Parameter<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Own<wbr>Parameter<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, parameterIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L486">metadata/src/index.ts:486</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tests whether a parameter of a method of an object has own metadata for the provided key.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the method.</p>
+									</div>
+								</li>
+								<li>
+									<h5>parameterIndex: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The ordinal index of the parameter.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="hasownpropertymetadata" class="tsd-anchor"></a>
+					<h3>has<wbr>Own<wbr>Property<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Own<wbr>Property<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L358">metadata/src/index.ts:358</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tests whether a property of an object has own metadata for the provided key.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the property.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="hasparametermetadata" class="tsd-anchor"></a>
+					<h3>has<wbr>Parameter<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Parameter<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, parameterIndex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L500">metadata/src/index.ts:500</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tests whether a parameter of a method of an object or its prototypes have metadata for the provided key.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the method.</p>
+									</div>
+								</li>
+								<li>
+									<h5>parameterIndex: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The ordinal index of the parameter.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="haspropertymetadata" class="tsd-anchor"></a>
+					<h3>has<wbr>Property<wbr>Metadata</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">has<wbr>Property<wbr>Metadata<span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span>, propertyKey<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyKey</span>, metadataKey<span class="tsd-signature-symbol">: </span><a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/metadata/src/index.ts#L370">metadata/src/index.ts:370</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tests whether a property of an object or its prototypes have metadata for the provided key.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>target: <span class="tsd-signature-type">object</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The target object.</p>
+									</div>
+								</li>
+								<li>
+									<h5>propertyKey: <span class="tsd-signature-type">PropertyKey</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The name of the property.</p>
+									</div>
+								</li>
+								<li>
+									<h5>metadataKey: <a href="metadata.html#metadatakey" class="tsd-signature-type">MetadataKey</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata key.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="metadata.html">metadata</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-external-module">
+						<a href="metadata.html" class="tsd-kind-icon">metadata</a>
+						<ul>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+								<a href="metadata.html#metadatakey" class="tsd-kind-icon">Metadata<wbr>Key</a>
+							</li>
+							<li class=" tsd-kind-variable tsd-parent-kind-external-module">
+								<a href="metadata.html#metadata-1" class="tsd-kind-icon">metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#defineobjectmetadata" class="tsd-kind-icon">define<wbr>Object<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#defineparametermetadata" class="tsd-kind-icon">define<wbr>Parameter<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#definepropertymetadata" class="tsd-kind-icon">define<wbr>Property<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#deleteobjectmetadata" class="tsd-kind-icon">delete<wbr>Object<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#deleteparametermetadata" class="tsd-kind-icon">delete<wbr>Parameter<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#deletepropertymetadata" class="tsd-kind-icon">delete<wbr>Property<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getmetadataparameterlength" class="tsd-kind-icon">get<wbr>Metadata<wbr>Parameter<wbr>Length</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getmetadataproperties" class="tsd-kind-icon">get<wbr>Metadata<wbr>Properties</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getobjectmetadata" class="tsd-kind-icon">get<wbr>Object<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getobjectmetadatakeys" class="tsd-kind-icon">get<wbr>Object<wbr>Metadata<wbr>Keys</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getownmetadataparameterlength" class="tsd-kind-icon">get<wbr>Own<wbr>Metadata<wbr>Parameter<wbr>Length</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getownmetadataproperties" class="tsd-kind-icon">get<wbr>Own<wbr>Metadata<wbr>Properties</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getownobjectmetadata" class="tsd-kind-icon">get<wbr>Own<wbr>Object<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getownobjectmetadatakeys" class="tsd-kind-icon">get<wbr>Own<wbr>Object<wbr>Metadata<wbr>Keys</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getownparametermetadata" class="tsd-kind-icon">get<wbr>Own<wbr>Parameter<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getownparametermetadatakeys" class="tsd-kind-icon">get<wbr>Own<wbr>Parameter<wbr>Metadata<wbr>Keys</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getownpropertymetadata" class="tsd-kind-icon">get<wbr>Own<wbr>Property<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getownpropertymetadatakeys" class="tsd-kind-icon">get<wbr>Own<wbr>Property<wbr>Metadata<wbr>Keys</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getparametermetadata" class="tsd-kind-icon">get<wbr>Parameter<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getparametermetadatakeys" class="tsd-kind-icon">get<wbr>Parameter<wbr>Metadata<wbr>Keys</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getpropertymetadata" class="tsd-kind-icon">get<wbr>Property<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#getpropertymetadatakeys" class="tsd-kind-icon">get<wbr>Property<wbr>Metadata<wbr>Keys</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#hasobjectmetadata" class="tsd-kind-icon">has<wbr>Object<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#hasownobjectmetadata" class="tsd-kind-icon">has<wbr>Own<wbr>Object<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#hasownparametermetadata" class="tsd-kind-icon">has<wbr>Own<wbr>Parameter<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#hasownpropertymetadata" class="tsd-kind-icon">has<wbr>Own<wbr>Property<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#hasparametermetadata" class="tsd-kind-icon">has<wbr>Parameter<wbr>Metadata</a>
+							</li>
+							<li class=" tsd-kind-function tsd-parent-kind-external-module">
+								<a href="metadata.html#haspropertymetadata" class="tsd-kind-icon">has<wbr>Property<wbr>Metadata</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

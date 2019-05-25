@@ -52,32 +52,4 @@ async function main() {
 
 # API
 
-```ts
-import { AsyncLockable, LockHandle } from "@esfx/async-lockable";
-import { Cancelable } from "@esfx/cancelable";
-/**
- * An async coordination primitive used to coordinate access to a protected resource.
- */
-export declare class Mutex implements AsyncLockable {
-    /**
-     * Indicates whether the lock has been taken.
-     */
-    readonly lockTaken: boolean;
-    /**
-     * Asynchronously waits for the lock to become available and then takes the lock.
-     * @param cancelable A `Cancelable` used to cancel the pending request.
-     */
-    lock(cancelable?: Cancelable): Promise<LockHandle<Mutex>>;
-    /**
-     * Synchronously tries to take a lock.
-     */
-    tryLock(): boolean;
-    /**
-     * Releases the lock.
-     */
-    unlock(): boolean;
-    [AsyncLockable.lock](cancelable?: Cancelable): Promise<LockHandle<Mutex>>;
-    [AsyncLockable.unlock](): void;
-}
-```
-
+You can read more about the API [here](https://esfx.github.io/esfx/modules/async_mutex.html).

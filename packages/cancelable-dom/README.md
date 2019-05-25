@@ -27,6 +27,4 @@ async function doSomeWork(cancelable: Cancelable) {
 
 # API
 
-```ts
-export declare function toAbortSignal(cancelable: Cancelable): AbortSignal;
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/cancelable_dom.html).

@@ -46,35 +46,4 @@ doSomeOtherActivity();
 
 # API
 
-```ts
-import { Cancelable } from "@esfx/cancelable";
-/**
- * Asynchronously notifies one or more waiting Promises that an event has occurred.
- */
-export declare class ManualResetEvent {
-    /**
-     * Initializes a new instance of the ManualResetEvent class.
-     *
-     * @param initialState A value indicating whether to set the initial state to signaled.
-     */
-    constructor(initialState?: boolean);
-    /**
-     * Gets a value indicating whether the event is signaled.
-     */
-    readonly isSet: boolean;
-    /**
-     * Sets the state of the event to signaled, resolving one or more waiting Promises.
-     */
-    set(): void;
-    /**
-     * Sets the state of the event to nonsignaled, causing asynchronous operations to pause.
-     */
-    reset(): void;
-    /**
-     * Asynchronously waits for the event to become signaled.
-     *
-     * @param cancelable A Cancelable used to cancel the request.
-     */
-    wait(cancelable?: Cancelable): Promise<void>;
-}
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/async_manualresetevent.html).

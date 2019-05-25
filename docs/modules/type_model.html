@@ -1,0 +1,1306 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>type-model | esfx</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">esfx</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="type_model.html">type-model</a>
+				</li>
+			</ul>
+			<h1>Package type-model</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<h1 id="-esfx-type-model">@esfx/type-model</h1>
+					<p>The <code>@esfx/type-model</code> package provides a number of utility types for TypeScript.</p>
+					<h1 id="overview">Overview</h1>
+					<ul>
+						<li><a href="#installation">Installation</a></li>
+						<li><a href="#usage">Usage</a></li>
+						<li><a href="#api">API</a></li>
+					</ul>
+					<h1 id="installation">Installation</h1>
+					<pre><code class="language-sh">npm i @esfx/<span class="hljs-built_in">type</span>-model</code></pre>
+					<h1 id="usage">Usage</h1>
+					<pre><code class="language-ts"><span class="hljs-comment">// TypeScript</span>
+<span class="hljs-keyword">import</span> { Diff } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/type-model"</span>;
+
+<span class="hljs-keyword">type</span> A = { x: <span class="hljs-built_in">number</span>, y: <span class="hljs-built_in">string</span> };
+<span class="hljs-keyword">type</span> B = { x: <span class="hljs-built_in">number</span> };
+<span class="hljs-keyword">type</span> C = Diff&lt;A, B&gt;; <span class="hljs-comment">// { y: string }</span></code></pre>
+					<h1 id="api">API</h1>
+					<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/type_model.html">here</a>.</p>
+				</div>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section ">
+							<h3>Interfaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter"><a href="../interfaces/type_model.accessorpropertydescriptor.html" class="tsd-kind-icon">Accessor<wbr>Property<wbr>Descriptor</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter"><a href="../interfaces/type_model.methodpropertydescriptor.html" class="tsd-kind-icon">Method<wbr>Property<wbr>Descriptor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Type aliases</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#abstractconstructor" class="tsd-kind-icon">Abstract<wbr>Constructor</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#and" class="tsd-kind-icon">And</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#assign" class="tsd-kind-icon">Assign</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#asyncgeneratornexttype" class="tsd-kind-icon">Async<wbr>Generator<wbr>Next<wbr>Type</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#asyncgeneratorreturntype" class="tsd-kind-icon">Async<wbr>Generator<wbr>Return<wbr>Type</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#asynciteratedtype" class="tsd-kind-icon">Async<wbr>Iterated<wbr>Type</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#await" class="tsd-kind-icon">Await</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#awaitall" class="tsd-kind-icon">Await<wbr>All</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#conjoin" class="tsd-kind-icon">Conjoin</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#constructor" class="tsd-kind-icon">Constructor</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#diff" class="tsd-kind-icon">Diff</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#disjoin" class="tsd-kind-icon">Disjoin</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#disjoinoverlaps" class="tsd-kind-icon">Disjoin<wbr>Overlaps</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#every" class="tsd-kind-icon">Every</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="type_model.html#falsey" class="tsd-kind-icon">Falsey</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#functionkeys" class="tsd-kind-icon">Function<wbr>Keys</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#generatornexttype" class="tsd-kind-icon">Generator<wbr>Next<wbr>Type</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#generatorreturntype" class="tsd-kind-icon">Generator<wbr>Return<wbr>Type</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#intersect" class="tsd-kind-icon">Intersect</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#isany" class="tsd-kind-icon">Is<wbr>Any</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#iscallable" class="tsd-kind-icon">Is<wbr>Callable</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#isconstructable" class="tsd-kind-icon">Is<wbr>Constructable</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#isempty" class="tsd-kind-icon">Is<wbr>Empty</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#isnever" class="tsd-kind-icon">Is<wbr>Never</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#ispropersubsetof" class="tsd-kind-icon">Is<wbr>Proper<wbr>Subset<wbr>Of</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#ispropersupersetof" class="tsd-kind-icon">Is<wbr>Proper<wbr>Superset<wbr>Of</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#issubsetof" class="tsd-kind-icon">Is<wbr>Subset<wbr>Of</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#issubtypeof" class="tsd-kind-icon">Is<wbr>Subtype<wbr>Of</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#issupersetof" class="tsd-kind-icon">Is<wbr>Superset<wbr>Of</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#issupertypeof" class="tsd-kind-icon">Is<wbr>Supertype<wbr>Of</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#isunknown" class="tsd-kind-icon">Is<wbr>Unknown</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#iteratedtype" class="tsd-kind-icon">Iterated<wbr>Type</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#matchingkeys" class="tsd-kind-icon">Matching<wbr>Keys</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#nonfunctionkeys" class="tsd-kind-icon">Non<wbr>Function<wbr>Keys</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#nonmatchingkeys" class="tsd-kind-icon">Non<wbr>Matching<wbr>Keys</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#nonoptional" class="tsd-kind-icon">Non<wbr>Optional</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#not" class="tsd-kind-icon">Not</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#nullable" class="tsd-kind-icon">Nullable</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#omit" class="tsd-kind-icon">Omit</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#one" class="tsd-kind-icon">One</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#optional" class="tsd-kind-icon">Optional</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#or" class="tsd-kind-icon">Or</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#overlaps" class="tsd-kind-icon">Overlaps</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#pop" class="tsd-kind-icon">Pop</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module"><a href="type_model.html#primitive" class="tsd-kind-icon">Primitive</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#promisedtype" class="tsd-kind-icon">Promised<wbr>Type</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#push" class="tsd-kind-icon">Push</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#relatable" class="tsd-kind-icon">Relatable</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#reshape" class="tsd-kind-icon">Reshape</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#reverse" class="tsd-kind-icon">Reverse</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#sametype" class="tsd-kind-icon">Same<wbr>Type</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#sametypes" class="tsd-kind-icon">Same<wbr>Types</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#shift" class="tsd-kind-icon">Shift</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#some" class="tsd-kind-icon">Some</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#uniontointersection" class="tsd-kind-icon">Union<wbr>ToIntersection</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#unshift" class="tsd-kind-icon">Unshift</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter"><a href="type_model.html#xor" class="tsd-kind-icon">XOr</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Type aliases</h2>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="abstractconstructor" class="tsd-anchor"></a>
+					<h3>Abstract<wbr>Constructor</h3>
+					<div class="tsd-signature tsd-kind-icon">Abstract<wbr>Constructor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L77">type-model/src/index.ts:77</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Represents an abstract class constructor.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="and" class="tsd-anchor"></a>
+					<h3>And</h3>
+					<div class="tsd-signature tsd-kind-icon">And<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">And&lt;A, B&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L210">type-model/src/index.ts:210</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if both <code>A</code> and <code>B</code> are <code>true</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="assign" class="tsd-anchor"></a>
+					<h3>Assign</h3>
+					<div class="tsd-signature tsd-kind-icon">Assign<span class="tsd-signature-symbol">:</span> <a href="type_model.html#reshape" class="tsd-signature-type">Reshape</a><span class="tsd-signature-symbol">&lt;</span><a href="type_model.html#diff" class="tsd-signature-type">Diff</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L502">type-model/src/index.ts:502</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Combine the properties of <code>A</code> and <code>B</code>, chosing the properties in <code>B</code> if the types differ.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="asyncgeneratornexttype" class="tsd-anchor"></a>
+					<h3>Async<wbr>Generator<wbr>Next<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">Async<wbr>Generator<wbr>Next<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AsyncGeneratorNextType&lt;T&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L119">type-model/src/index.ts:119</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets the type that can be sent to a generator via its <code>next</code> method.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="asyncgeneratorreturntype" class="tsd-anchor"></a>
+					<h3>Async<wbr>Generator<wbr>Return<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">Async<wbr>Generator<wbr>Return<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AsyncGeneratorReturnType&lt;T&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L126">type-model/src/index.ts:126</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets the type that can be returned from a generator when it has finished executing.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="asynciteratedtype" class="tsd-anchor"></a>
+					<h3>Async<wbr>Iterated<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">Async<wbr>Iterated<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">AsyncIteratedType&lt;T&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L109">type-model/src/index.ts:109</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets the type yielded by an <a href="https://tc39.github.io/ecma262/#sec-symbol.asyncIterator" class="external">AsyncIterable</a>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="await" class="tsd-anchor"></a>
+					<h3>Await</h3>
+					<div class="tsd-signature tsd-kind-icon">Await<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">{ 0: T; 1: T extends { then(onfulfilled: infer U): any; } ? U extends (value: infer V) &#x3D;&gt; any ? { 0: V; 1: V extends { then(onfulfilled: infer U): any; } ? U extends (value: infer V) &#x3D;&gt; any ? ...[V extends { then(): any; } ? 1 : 0] : never : never; }[V extends { ...; } ? 1 : 0] : never : never; }[T extends { ...; } ...</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L404">type-model/src/index.ts:404</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps <code>T</code> to its awaited type if <code>T</code> is a promise.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="awaitall" class="tsd-anchor"></a>
+					<h3>Await<wbr>All</h3>
+					<div class="tsd-signature tsd-kind-icon">Await<wbr>All<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L412">type-model/src/index.ts:412</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps each element of <code>T</code> to its awaited type if the element is a promise.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="conjoin" class="tsd-anchor"></a>
+					<h3>Conjoin</h3>
+					<div class="tsd-signature tsd-kind-icon">Conjoin<span class="tsd-signature-symbol">:</span> <a href="type_model.html#reshape" class="tsd-signature-type">Reshape</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">__Conjoin</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L469">type-model/src/index.ts:469</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Joins a union of disjoint object types into a single object type.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>Constructor</h3>
+					<div class="tsd-signature tsd-kind-icon">Constructor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L72">type-model/src/index.ts:72</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Represents a concrete ECMAScript constructor object.</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="diff" class="tsd-anchor"></a>
+					<h3>Diff</h3>
+					<div class="tsd-signature tsd-kind-icon">Diff<span class="tsd-signature-symbol">:</span> <a href="type_model.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">keyof B</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L492">type-model/src/index.ts:492</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Remove from <code>A</code> all properties with the same types that exist in <code>B</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="disjoin" class="tsd-anchor"></a>
+					<h3>Disjoin</h3>
+					<div class="tsd-signature tsd-kind-icon">Disjoin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Disjoin&lt;T&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L454">type-model/src/index.ts:454</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Split an object into a union of objects for each key/value pair.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="disjoinoverlaps" class="tsd-anchor"></a>
+					<h3>Disjoin<wbr>Overlaps</h3>
+					<div class="tsd-signature tsd-kind-icon">Disjoin<wbr>Overlaps<span class="tsd-signature-symbol">:</span> <a href="type_model.html#overlaps" class="tsd-signature-type">Overlaps</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A extends object ? Disjoin&lt;A&gt; : A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">B extends object ? Disjoin&lt;B&gt; : B</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L475">type-model/src/index.ts:475</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if any type in <code>A</code> is assignable to or shares a property with any type in <code>B</code>, otherwise <code>false</code>.
+							This is similar to <code>Overlaps</code>, except object types in <code>A</code> and <code>B</code> are mapped through <code>Disjoin</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="every" class="tsd-anchor"></a>
+					<h3>Every</h3>
+					<div class="tsd-signature tsd-kind-icon">Every<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Every&lt;L&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L259">type-model/src/index.ts:259</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if every element of the tuple <code>L</code> is <code>true</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+					<a name="falsey" class="tsd-anchor"></a>
+					<h3>Falsey</h3>
+					<div class="tsd-signature tsd-kind-icon">Falsey<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">0</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">0n</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L27">type-model/src/index.ts:27</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A union of all of the falsey types in TypeScript.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="functionkeys" class="tsd-anchor"></a>
+					<h3>Function<wbr>Keys</h3>
+					<div class="tsd-signature tsd-kind-icon">Function<wbr>Keys<span class="tsd-signature-symbol">:</span> <a href="type_model.html#matchingkeys" class="tsd-signature-type">MatchingKeys</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L394">type-model/src/index.ts:394</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to the keys of <code>T</code> whose values are functions.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="generatornexttype" class="tsd-anchor"></a>
+					<h3>Generator<wbr>Next<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">Generator<wbr>Next<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">GeneratorNextType&lt;T&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L92">type-model/src/index.ts:92</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets the type that can be sent to a generator via its <code>next</code> method.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="generatorreturntype" class="tsd-anchor"></a>
+					<h3>Generator<wbr>Return<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">Generator<wbr>Return<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">GeneratorReturnType&lt;T&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L99">type-model/src/index.ts:99</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets the type that can be returned from a generator when it has finished executing.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="intersect" class="tsd-anchor"></a>
+					<h3>Intersect</h3>
+					<div class="tsd-signature tsd-kind-icon">Intersect<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">A</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">B</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Extract</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">keyof A</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">keyof B</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Extract</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">keyof B</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">keyof A</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L497">type-model/src/index.ts:497</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Pick from <code>A</code> all properties with the same types that exist in <code>B</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="isany" class="tsd-anchor"></a>
+					<h3>Is<wbr>Any</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Any<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IsAny&lt;A&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L148">type-model/src/index.ts:148</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if <code>A</code> is precisely the <code>any</code> type, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="iscallable" class="tsd-anchor"></a>
+					<h3>Is<wbr>Callable</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Callable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IsCallable&lt;T&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L158">type-model/src/index.ts:158</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if the type has a call signature, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="isconstructable" class="tsd-anchor"></a>
+					<h3>Is<wbr>Constructable</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Constructable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IsConstructable&lt;T&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L168">type-model/src/index.ts:168</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if the type has a construct signature, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="isempty" class="tsd-anchor"></a>
+					<h3>Is<wbr>Empty</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Empty<span class="tsd-signature-symbol">:</span> <a href="type_model.html#isnever" class="tsd-signature-type">IsNever</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">keyof T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L482">type-model/src/index.ts:482</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if <code>T</code> is an empty object (<code>{}</code>).</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="isnever" class="tsd-anchor"></a>
+					<h3>Is<wbr>Never</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Never<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IsNever&lt;A&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L153">type-model/src/index.ts:153</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if <code>A</code> is precisely the <code>never</code> type, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="ispropersubsetof" class="tsd-anchor"></a>
+					<h3>Is<wbr>Proper<wbr>Subset<wbr>Of</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Proper<wbr>Subset<wbr>Of<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IsProperSubsetOf&lt;Sub, Super&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L368">type-model/src/index.ts:368</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if <code>Sub</code> is a proper subset of <code>Super</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="ispropersupersetof" class="tsd-anchor"></a>
+					<h3>Is<wbr>Proper<wbr>Superset<wbr>Of</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Proper<wbr>Superset<wbr>Of<span class="tsd-signature-symbol">:</span> <a href="type_model.html#ispropersubsetof" class="tsd-signature-type">IsProperSubsetOf</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Sub</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Super</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L377">type-model/src/index.ts:377</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if <code>Super</code> is a proper superset of <code>Sub</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="issubsetof" class="tsd-anchor"></a>
+					<h3>Is<wbr>Subset<wbr>Of</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Subset<wbr>Of<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IsSubsetOf&lt;Sub, Super&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L355">type-model/src/index.ts:355</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if <code>Sub</code> is a subset of <code>Super</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="issubtypeof" class="tsd-anchor"></a>
+					<h3>Is<wbr>Subtype<wbr>Of</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Subtype<wbr>Of<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IsSubtypeOf&lt;Sub, Super&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L186">type-model/src/index.ts:186</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if <code>Sub</code> is a subtype of <code>Super</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="issupersetof" class="tsd-anchor"></a>
+					<h3>Is<wbr>Superset<wbr>Of</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Superset<wbr>Of<span class="tsd-signature-symbol">:</span> <a href="type_model.html#issubsetof" class="tsd-signature-type">IsSubsetOf</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Sub</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Super</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L363">type-model/src/index.ts:363</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if <code>Super</code> is a superset of <code>Sub</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="issupertypeof" class="tsd-anchor"></a>
+					<h3>Is<wbr>Supertype<wbr>Of</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Supertype<wbr>Of<span class="tsd-signature-symbol">:</span> <a href="type_model.html#issubtypeof" class="tsd-signature-type">IsSubtypeOf</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Sub</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Super</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L197">type-model/src/index.ts:197</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if <code>Super</code> is a supertype of <code>Sub</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="isunknown" class="tsd-anchor"></a>
+					<h3>Is<wbr>Unknown</h3>
+					<div class="tsd-signature tsd-kind-icon">Is<wbr>Unknown<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IsUnknown&lt;A&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L178">type-model/src/index.ts:178</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if <code>A</code> is precisely the <code>unknown</code> type, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="iteratedtype" class="tsd-anchor"></a>
+					<h3>Iterated<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">Iterated<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">IteratedType&lt;T&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L82">type-model/src/index.ts:82</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets the type yielded by an <a href="https://tc39.github.io/ecma262/#sec-symbol.iterator" class="external">Iterable</a>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="matchingkeys" class="tsd-anchor"></a>
+					<h3>Matching<wbr>Keys</h3>
+					<div class="tsd-signature tsd-kind-icon">Matching<wbr>Keys<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">__MatchingKeys</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TMatch</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">keyof T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L384">type-model/src/index.ts:384</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to the keys of <code>T</code> whose values match <code>TMatch</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="nonfunctionkeys" class="tsd-anchor"></a>
+					<h3>Non<wbr>Function<wbr>Keys</h3>
+					<div class="tsd-signature tsd-kind-icon">Non<wbr>Function<wbr>Keys<span class="tsd-signature-symbol">:</span> <a href="type_model.html#nonmatchingkeys" class="tsd-signature-type">NonMatchingKeys</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">F</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L399">type-model/src/index.ts:399</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to the keys of <code>T</code> whose values are not functions.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="nonmatchingkeys" class="tsd-anchor"></a>
+					<h3>Non<wbr>Matching<wbr>Keys</h3>
+					<div class="tsd-signature tsd-kind-icon">Non<wbr>Matching<wbr>Keys<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">keyof T</span><span class="tsd-signature-symbol">, </span><a href="type_model.html#matchingkeys" class="tsd-signature-type">MatchingKeys</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">TMatch</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L389">type-model/src/index.ts:389</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to the keys of <code>T</code> whose values do not match <code>TMatch</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="nonoptional" class="tsd-anchor"></a>
+					<h3>Non<wbr>Optional</h3>
+					<div class="tsd-signature tsd-kind-icon">Non<wbr>Optional<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">NonOptional&lt;T&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L57">type-model/src/index.ts:57</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Strips <code>undefined</code> from a type.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="not" class="tsd-anchor"></a>
+					<h3>Not</h3>
+					<div class="tsd-signature tsd-kind-icon">Not<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Not&lt;A&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L202">type-model/src/index.ts:202</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if <code>A</code> is <code>false</code>, otherwise <code>true</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="nullable" class="tsd-anchor"></a>
+					<h3>Nullable</h3>
+					<div class="tsd-signature tsd-kind-icon">Nullable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L62">type-model/src/index.ts:62</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Indicates a type that may be <code>null</code> or <code>undefined</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="omit" class="tsd-anchor"></a>
+					<h3>Omit</h3>
+					<div class="tsd-signature tsd-kind-icon">Omit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">keyof T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L487">type-model/src/index.ts:487</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Remove from <code>T</code> all keys in <code>K</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="one" class="tsd-anchor"></a>
+					<h3>One</h3>
+					<div class="tsd-signature tsd-kind-icon">One<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">One&lt;L&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L292">type-model/src/index.ts:292</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if exactly one element of the tuple <code>L</code> is <code>true</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="optional" class="tsd-anchor"></a>
+					<h3>Optional</h3>
+					<div class="tsd-signature tsd-kind-icon">Optional<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L52">type-model/src/index.ts:52</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Indicates a type that may be <code>undefined</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="or" class="tsd-anchor"></a>
+					<h3>Or</h3>
+					<div class="tsd-signature tsd-kind-icon">Or<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Or&lt;A, B&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L220">type-model/src/index.ts:220</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if either <code>A</code> or <code>B</code> are <code>true</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="overlaps" class="tsd-anchor"></a>
+					<h3>Overlaps</h3>
+					<div class="tsd-signature tsd-kind-icon">Overlaps<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Overlaps&lt;A, B&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L335">type-model/src/index.ts:335</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if any type in <code>A</code> is assignable to any type in <code>B</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="pop" class="tsd-anchor"></a>
+					<h3>Pop</h3>
+					<div class="tsd-signature tsd-kind-icon">Pop<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">__PopRest</span><span class="tsd-signature-symbol">&lt;</span><a href="type_model.html#shift" class="tsd-signature-type">Shift</a><span class="tsd-signature-symbol">&lt;</span><a href="type_model.html#reverse" class="tsd-signature-type">Reverse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">L</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L442">type-model/src/index.ts:442</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to a tuple where the first element is the last element of <code>L</code> and the second element are the remaining elements of <code>L</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module">
+					<a name="primitive" class="tsd-anchor"></a>
+					<h3>Primitive</h3>
+					<div class="tsd-signature tsd-kind-icon">Primitive<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">bigint</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L22">type-model/src/index.ts:22</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A union of all of the primitive types in TypeScript.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="promisedtype" class="tsd-anchor"></a>
+					<h3>Promised<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">Promised<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">PromisedType&lt;T&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L136">type-model/src/index.ts:136</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets the promised type of a <a href="https://tc39.github.io/ecma262/#sec-promise-objects" class="external">Promise</a>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="push" class="tsd-anchor"></a>
+					<h3>Push</h3>
+					<div class="tsd-signature tsd-kind-icon">Push<span class="tsd-signature-symbol">:</span> <a href="type_model.html#reverse" class="tsd-signature-type">Reverse</a><span class="tsd-signature-symbol">&lt;</span><a href="type_model.html#unshift" class="tsd-signature-type">Unshift</a><span class="tsd-signature-symbol">&lt;</span><a href="type_model.html#reverse" class="tsd-signature-type">Reverse</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">H</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L447">type-model/src/index.ts:447</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Push an element on to the end of a tuple.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="relatable" class="tsd-anchor"></a>
+					<h3>Relatable</h3>
+					<div class="tsd-signature tsd-kind-icon">Relatable<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Relatable&lt;A, B&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L323">type-model/src/index.ts:323</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if either <code>A</code> or <code>B</code> are relatable to each other.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="reshape" class="tsd-anchor"></a>
+					<h3>Reshape</h3>
+					<div class="tsd-signature tsd-kind-icon">Reshape<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">keyof T</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L462">type-model/src/index.ts:462</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Map an intersection of object types into a single object type.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="reverse" class="tsd-anchor"></a>
+					<h3>Reverse</h3>
+					<div class="tsd-signature tsd-kind-icon">Reverse<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">__Reverse</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">L</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L435">type-model/src/index.ts:435</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Reverse the order of the elements of a tuple.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="sametype" class="tsd-anchor"></a>
+					<h3>Same<wbr>Type</h3>
+					<div class="tsd-signature tsd-kind-icon">Same<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SameType&lt;A, B&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L299">type-model/src/index.ts:299</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if both <code>A</code> and <code>B</code> are assignable to each other, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="sametypes" class="tsd-anchor"></a>
+					<h3>Same<wbr>Types</h3>
+					<div class="tsd-signature tsd-kind-icon">Same<wbr>Types<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">SameTypes&lt;L&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L315">type-model/src/index.ts:315</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if all elements of the tuple <code>L</code> are assignable to each other, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="shift" class="tsd-anchor"></a>
+					<h3>Shift</h3>
+					<div class="tsd-signature tsd-kind-icon">Shift<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Shift&lt;L&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L417">type-model/src/index.ts:417</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to a tuple where the first element is the first element of <code>L</code> and the second element are the remaining elements of <code>L</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="some" class="tsd-anchor"></a>
+					<h3>Some</h3>
+					<div class="tsd-signature tsd-kind-icon">Some<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Some&lt;L&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L274">type-model/src/index.ts:274</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if any element of the tuple <code>L</code> is <code>true</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="uniontointersection" class="tsd-anchor"></a>
+					<h3>Union<wbr>ToIntersection</h3>
+					<div class="tsd-signature tsd-kind-icon">Union<wbr>ToIntersection<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">(U extends unknown ? (u: U) &#x3D;&gt; void : never) extends (i: infer I) &#x3D;&gt; void ? I : never</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">never</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L143">type-model/src/index.ts:143</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps a union of types into an intersection of types.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="unshift" class="tsd-anchor"></a>
+					<h3>Unshift</h3>
+					<div class="tsd-signature tsd-kind-icon">Unshift<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Unshift&lt;T, H&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L425">type-model/src/index.ts:425</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Inserts an element at the start of a tuple.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+					<a name="xor" class="tsd-anchor"></a>
+					<h3>XOr</h3>
+					<div class="tsd-signature tsd-kind-icon">XOr<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">XOr&lt;A, B&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/type-model/src/index.ts#L230">type-model/src/index.ts:230</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Maps to <code>true</code> if only one of either <code>A</code> or <code>B</code> are <code>true</code>, otherwise <code>false</code>.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="current tsd-kind-external-module">
+						<a href="type_model.html">type-<wbr>model</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-external-module">
+						<a href="type_model.html" class="tsd-kind-icon">type-<wbr>model</a>
+						<ul>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="../interfaces/type_model.accessorpropertydescriptor.html" class="tsd-kind-icon">Accessor<wbr>Property<wbr>Descriptor</a>
+							</li>
+							<li class=" tsd-kind-interface tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="../interfaces/type_model.methodpropertydescriptor.html" class="tsd-kind-icon">Method<wbr>Property<wbr>Descriptor</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#abstractconstructor" class="tsd-kind-icon">Abstract<wbr>Constructor</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#and" class="tsd-kind-icon">And</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#assign" class="tsd-kind-icon">Assign</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#asyncgeneratornexttype" class="tsd-kind-icon">Async<wbr>Generator<wbr>Next<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#asyncgeneratorreturntype" class="tsd-kind-icon">Async<wbr>Generator<wbr>Return<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#asynciteratedtype" class="tsd-kind-icon">Async<wbr>Iterated<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#await" class="tsd-kind-icon">Await</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#awaitall" class="tsd-kind-icon">Await<wbr>All</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#conjoin" class="tsd-kind-icon">Conjoin</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#constructor" class="tsd-kind-icon">Constructor</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#diff" class="tsd-kind-icon">Diff</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#disjoin" class="tsd-kind-icon">Disjoin</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#disjoinoverlaps" class="tsd-kind-icon">Disjoin<wbr>Overlaps</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#every" class="tsd-kind-icon">Every</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+								<a href="type_model.html#falsey" class="tsd-kind-icon">Falsey</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#functionkeys" class="tsd-kind-icon">Function<wbr>Keys</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#generatornexttype" class="tsd-kind-icon">Generator<wbr>Next<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#generatorreturntype" class="tsd-kind-icon">Generator<wbr>Return<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#intersect" class="tsd-kind-icon">Intersect</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#isany" class="tsd-kind-icon">Is<wbr>Any</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#iscallable" class="tsd-kind-icon">Is<wbr>Callable</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#isconstructable" class="tsd-kind-icon">Is<wbr>Constructable</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#isempty" class="tsd-kind-icon">Is<wbr>Empty</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#isnever" class="tsd-kind-icon">Is<wbr>Never</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#ispropersubsetof" class="tsd-kind-icon">Is<wbr>Proper<wbr>Subset<wbr>Of</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#ispropersupersetof" class="tsd-kind-icon">Is<wbr>Proper<wbr>Superset<wbr>Of</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#issubsetof" class="tsd-kind-icon">Is<wbr>Subset<wbr>Of</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#issubtypeof" class="tsd-kind-icon">Is<wbr>Subtype<wbr>Of</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#issupersetof" class="tsd-kind-icon">Is<wbr>Superset<wbr>Of</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#issupertypeof" class="tsd-kind-icon">Is<wbr>Supertype<wbr>Of</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#isunknown" class="tsd-kind-icon">Is<wbr>Unknown</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#iteratedtype" class="tsd-kind-icon">Iterated<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#matchingkeys" class="tsd-kind-icon">Matching<wbr>Keys</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#nonfunctionkeys" class="tsd-kind-icon">Non<wbr>Function<wbr>Keys</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#nonmatchingkeys" class="tsd-kind-icon">Non<wbr>Matching<wbr>Keys</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#nonoptional" class="tsd-kind-icon">Non<wbr>Optional</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#not" class="tsd-kind-icon">Not</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#nullable" class="tsd-kind-icon">Nullable</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#omit" class="tsd-kind-icon">Omit</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#one" class="tsd-kind-icon">One</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#optional" class="tsd-kind-icon">Optional</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#or" class="tsd-kind-icon">Or</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#overlaps" class="tsd-kind-icon">Overlaps</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#pop" class="tsd-kind-icon">Pop</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module">
+								<a href="type_model.html#primitive" class="tsd-kind-icon">Primitive</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#promisedtype" class="tsd-kind-icon">Promised<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#push" class="tsd-kind-icon">Push</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#relatable" class="tsd-kind-icon">Relatable</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#reshape" class="tsd-kind-icon">Reshape</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#reverse" class="tsd-kind-icon">Reverse</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#sametype" class="tsd-kind-icon">Same<wbr>Type</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#sametypes" class="tsd-kind-icon">Same<wbr>Types</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#shift" class="tsd-kind-icon">Shift</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#some" class="tsd-kind-icon">Some</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#uniontointersection" class="tsd-kind-icon">Union<wbr>ToIntersection</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#unshift" class="tsd-kind-icon">Unshift</a>
+							</li>
+							<li class=" tsd-kind-type-alias tsd-parent-kind-external-module tsd-has-type-parameter">
+								<a href="type_model.html#xor" class="tsd-kind-icon">XOr</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

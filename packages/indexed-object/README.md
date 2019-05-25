@@ -46,44 +46,4 @@ console.log(booleans[1]); // true
 
 # API
 
-```ts
-/**
- * Represents an object that can be indexed by an integer value similar to a native
- * Array or TypedArray.
- */
-export declare abstract class IntegerIndexedObject<T> {
-    constructor();
-    /**
-     * Gets or sets the value at the specified index.
-     */
-    [index: number]: T;
-    /**
-     * Gets the "length" of the indexed object, which should be one more than the
-     * largest index stored in the object.
-     */
-    protected abstract getLength(): number;
-    /**
-     * Determines whether the object contains a value at the specified index.
-     * @param index An integer index greater than or equal to zero (`0`).
-     */
-    protected hasIndex(index: number): boolean;
-    /**
-     * Gets the value at the specified index.
-     * @param index An integer index greater than or equal to zero (`0`).
-     */
-    protected abstract getIndex(index: number): T;
-    /**
-     * Sets the value at the specified index.
-     * @param index An integer index greater than or equal to zero (`0`).
-     * @param value The value to set for the specified index.
-     * @returns `true` if the value could be set; otherwise, `false`.
-     */
-    protected setIndex(index: number, value: T): boolean;
-    /**
-     * Deletes the value at the specified index/
-     * @param index An integer index greater than or equal to zero (`0`).
-     * @returns `true` if the value was successfully deleted; otherwise, `false`.
-     */
-    protected deleteIndex(index: number): boolean;
-}
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/indexed_object.html).

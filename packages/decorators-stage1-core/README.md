@@ -21,5 +21,4 @@ npm i @esfx/decorators-stage1-core
 
 # API
 
-```ts
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/decorators_stage1_core.html).

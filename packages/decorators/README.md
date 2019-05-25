@@ -1,6 +1,6 @@
-# `@esfx/decorator-s1-core`
+# `@esfx/decorators`
 
-The `@esfx/decorator-s1-core` package provides a low-level API for working with ECMAScript Stage 1 Decorators.
+The `@esfx/decorators` package provides a number of frequently used decorators.
 
 # Overview
 
@@ -11,7 +11,7 @@ The `@esfx/decorator-s1-core` package provides a low-level API for working with 
 # Installation
 
 ```sh
-npm i @esfx/decorator-s1-core
+npm i @esfx/decorators
 ```
 
 # Usage
@@ -21,5 +21,4 @@ npm i @esfx/decorator-s1-core
 
 # API
 
-```ts
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/decorators.html).

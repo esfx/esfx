@@ -1,5 +1,6 @@
 const gulp = require("gulp");
 const del = require("del");
+const typedoc = require("./scripts/typedoc");
 const { buildProject, cleanProject } = require("./scripts/build");
 const { exec, ArgsBuilder } = require("./scripts/exec");
 const { argv } = require("yargs");
@@ -96,6 +97,29 @@ gulp.task("test", gulp.series(build, test));
 
 // const watch = () => spawn('node', [require.resolve("jest/bin/jest"), "--watch"], { stdio: "inherit" });
 // gulp.task("watch", watch);
+
+gulp.task("docs", () => gulp.src("packages/*/src/**/*.ts", { read: false })
+    .pipe(typedoc({
+        tsconfig: "packages/tsconfig-typedoc.json",
+        out: "docs",
+        mode: "modules",
+        name: "esfx",
+        readme: "README.md",
+        gitRevision: "master",
+        excludePrivate: true,
+        excludeNotExported: true,
+        "external-modulemap": ".*/(?:packages|internal)/([^/]+)/.*",
+        rewriteLinks: "./.typedoc/linkrewriter.js",
+        // excludeEmpty: true,
+        // groupCategories: true,
+        // renameModuleToNamespace: true,
+        biblio: "./.typedoc/biblio.json",
+        // noJekyll: true,
+        // plugin: [
+        //     require.resolve("./dist/typedoc/plugin"),
+        //     "typedoc-plugin-external-module-name",
+        // ]
+    })))
 
 gulp.task("default", build);
 

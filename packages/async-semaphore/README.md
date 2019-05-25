@@ -48,36 +48,4 @@ async function updateResource(updates) {
 
 # API
 
-```ts
-import { Cancelable } from "@esfx/cancelable";
-/**
- * Limits the number of asynchronous operations that can access a resource
- * or pool of resources.
- */
-export declare class Semaphore {
-    /**
-     * Initializes a new instance of the Semaphore class.
-     *
-     * @param initialCount The initial number of entries.
-     * @param maxCount The maximum number of entries.
-     */
-    constructor(initialCount: number, maxCount?: number);
-    /**
-     * Gets the number of remaining asynchronous operations that can enter
-     * the Semaphore.
-     */
-    readonly count: number;
-    /**
-     * Asynchronously waits for the event to become signaled.
-     *
-     * @param cancelable An optional Cancelable used to cancel the request.
-     */
-    wait(cancelable?: Cancelable): Promise<void>;
-    /**
-     * Releases the Semaphore one or more times.
-     *
-     * @param count The number of times to release the Semaphore.
-     */
-    release(count?: number): void;
-}
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/async_semaphore.html).

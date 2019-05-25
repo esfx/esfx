@@ -56,3 +56,7 @@ Shim packages augment built-in objects with functionality from the main packages
 Adapter packages provide functionality to simplify interoperability scenarios with different platforms:
 
 - [`@esfx/cancelable-dom`](packages/cancelable-dom#readme)
+
+# Documentation
+
+You can read more about the API [here](https://esfx.github.io/esfx/).

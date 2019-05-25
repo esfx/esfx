@@ -1,0 +1,7 @@
+{
+    "Iterable": "https://tc39.github.io/ecma262/#sec-symbol.iterator",
+    "Iterator": "https://tc39.github.io/ecma262/#sec-symbol.iterator",
+    "AsyncIterable": "https://tc39.github.io/ecma262/#sec-symbol.asyncIterator",
+    "AsyncIterator": "https://tc39.github.io/ecma262/#sec-symbol.asyncIterator",
+    "Promise": "https://tc39.github.io/ecma262/#sec-promise-objects"
+}

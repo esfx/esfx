@@ -48,13 +48,4 @@ main().catch(e => console.error(e));
 
 # API
 
-```ts
-export declare class AsyncLazy<T> {
-    constructor(factory: () => T | PromiseLike<T>);
-    readonly isStarted: boolean;
-    readonly value: Promise<T>;
-    static from<T, A extends any[]>(factory: (...args: A) => T | PromiseLike<T>, ...args: A): AsyncLazy<T>;
-    static for<T>(value: T | PromiseLike<T>): AsyncLazy<T>;
-}
-```
-
+You can read more about the API [here](https://esfx.github.io/esfx/modules/async_lazy.html).

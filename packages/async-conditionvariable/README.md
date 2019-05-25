@@ -85,31 +85,4 @@ main().catch(e => console.error(e));
 
 # API
 
-```ts
-import { AsyncLockable } from "@esfx/async-lockable";
-import { Cancelable } from "@esfx/cancelable";
-export declare class ConditionVariable {
-    /**
-     * Releases `lock`, waiting until notified before reacquiring `lock`.
-     * @param lock An `AsyncLockable` to release and reacquire.
-     * @param cancelable A `Cancelable` object that can be used to cancel the request.
-     */
-    wait(lock: AsyncLockable, cancelable?: Cancelable): Promise<void>;
-    /**
-     * Releases `lock`, waiting until notified before reacquiring `lock`.
-     * @param lock An `AsyncLockable` to release and reacquire.
-     * @param condition When specified, loops until `condition` returns `true`.
-     * @param cancelable A `Cancelable` object that can be used to cancel the request.
-     */
-    wait(lock: AsyncLockable, condition?: () => boolean, cancelable?: Cancelable): Promise<void>;
-    /**
-     * Notifies one waiter to reacquire its lock.
-     */
-    notifyOne(): void;
-    /**
-     * Notifies all current waiters to reacquire their locks.
-     */
-    notifyAll(): void;
-}
-```
-
+You can read more about the API [here](https://esfx.github.io/esfx/modules/async_conditionvariable.html).

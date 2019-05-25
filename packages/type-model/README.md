@@ -27,4 +27,4 @@ type C = Diff<A, B>; // { y: string }
 
 # API
 
-See the full API [here](src/index.ts).
+You can read more about the API [here](https://esfx.github.io/esfx/modules/type_model.html).

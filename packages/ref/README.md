@@ -158,42 +158,4 @@ print(count); // 1
 
 # API
 
-```ts
-export interface Reference<T> {
-    value: T;
-    [Symbol.toStringTag]: string;
-}
-/**
- * Create a reference to a value.
- * @param get Gets the value of the reference.
- * @param set Sets the value of the reference.
- */
-export declare function ref<T>(get: () => T, set?: (value: T) => void): Reference<T>;
-export declare namespace ref {
-    /**
-     * Creates a `ref` to a property of an object.
-     */
-    function at<T, K extends keyof T>(object: T, key: K, readonly?: boolean): Reference<T[K]>;
-    /**
-     * Creates a `ref` that must be set before it can be read.
-     */
-    function out<T>(): Reference<T>;
-    /**
-     * Creates a `ref` that must be set before it can be read.
-     */
-    function out<T>(get: () => T, set: (value: T) => void): Reference<T>;
-    const prototype: Reference<unknown>;
-}
-export declare namespace ref {
-    /**
-     * Determines whether `value` is a [[ref]].
-     */
-    function _is(value: unknown): value is Reference<any>;
-    export { _is as is };
-    /**
-     * Creates a `ref` for an initial value.
-     */
-    function _for<T>(value: T): Reference<T>;
-    export { _for as for };
-}
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/ref.html).

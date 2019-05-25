@@ -71,31 +71,4 @@ hashSet.length; // 1
 
 # API
 
-```ts
-import { Collection } from "@esfx/collection-core";
-import { Equaler } from "@esfx/equatable";
-export declare class HashSet<T> implements Collection<T> {
-    constructor(equaler?: Equaler<T>);
-    constructor(iterable?: Iterable<T>, equaler?: Equaler<T>);
-    constructor(capacity: number, equaler?: Equaler<T>);
-    readonly equaler: Equaler<T>;
-    readonly size: number;
-    has(value: T): boolean;
-    add(value: T): this;
-    delete(value: T): boolean;
-    clear(): void;
-    ensureCapacity(capacity: number): number | undefined;
-    trimExcess(capacity?: number): void;
-    keys(): IterableIterator<T>;
-    values(): IterableIterator<T>;
-    entries(): IterableIterator<[T, T]>;
-    [Symbol.iterator](): IterableIterator<T>;
-    forEach(callback: (value: T, key: T, map: this) => void, thisArg?: any): void;
-    [Symbol.toStringTag]: string;
-    readonly [Collection.size]: number;
-    [Collection.has](value: T): boolean;
-    [Collection.add](value: T): void;
-    [Collection.delete](value: T): boolean;
-    [Collection.clear](): void;
-}
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/collections_hashset.html).

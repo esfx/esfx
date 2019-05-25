@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "commonjs",
+        "lib": ["esnext"],
+        "composite": true,
+        "declaration": true,
+        "declarationMap": true,
+        "sourceMap": true,
+        "strict": true,
+        "noEmitOnError": true,
+        "importHelpers": true,
+        "inlineSources": true,
+        "experimentalDecorators": true,
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "noImplicitAny": false,
+    },
+    "exclude": ["node_modules", "scripts"],
+    "include": ["*/src/**/*.ts"]
+}

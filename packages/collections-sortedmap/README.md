@@ -73,31 +73,4 @@ sortedMap.set(obj2, "obj2");
 
 # API
 
-```ts
-import { KeyedCollection } from "@esfx/collection-core";
-import { Comparison, Comparer } from "@esfx/equatable";
-export declare class SortedMap<K, V> implements KeyedCollection<K, V> {
-    constructor(comparer?: Comparison<K> | Comparer<K>);
-    constructor(iterable?: Iterable<[K, V]>, comparer?: Comparison<K> | Comparer<K>);
-    readonly size: number;
-    has(key: K): boolean;
-    get(key: K): V | undefined;
-    set(key: K, value: V): this;
-    delete(key: K): boolean;
-    clear(): void;
-    keys(): IterableIterator<K>;
-    values(): IterableIterator<V>;
-    entries(): IterableIterator<[K, V]>;
-    [Symbol.iterator](): IterableIterator<[K, V]>;
-    forEach(cb: (value: V, key: K, map: this) => void, thisArg?: unknown): void;
-    [Symbol.toStringTag]: string;
-    readonly [KeyedCollection.size]: number;
-    [KeyedCollection.has](key: K): boolean;
-    [KeyedCollection.get](key: K): V | undefined;
-    [KeyedCollection.set](key: K, value: V): void;
-    [KeyedCollection.delete](key: K): boolean;
-    [KeyedCollection.clear](): void;
-    [KeyedCollection.keys](): IterableIterator<K>;
-    [KeyedCollection.values](): IterableIterator<V>;
-}
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/collections_sortedmap.html).

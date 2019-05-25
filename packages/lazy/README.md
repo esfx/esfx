@@ -40,12 +40,4 @@ lazy3.value; // "test"
 
 # API
 
-```ts
-export declare class Lazy<T> {
-    constructor(factory: () => T);
-    readonly hasValue: boolean;
-    readonly value: T;
-    static from<T, A extends any[]>(factory: (...args: A) => T, ...args: A): Lazy<T>;
-    static for<T>(value: T): Lazy<T>;
-}```
-
+You can read more about the API [here](https://esfx.github.io/esfx/modules/lazy.html).

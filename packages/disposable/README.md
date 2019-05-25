@@ -38,19 +38,4 @@ class MyFileResouce {
 
 # API
 
-```ts
-export interface Disposable {
-    [Disposable.dispose](): void;
-}
-export namespace Disposable {
-    const dispose: unique symbol;
-    function isDisposable(value: unknown): value is Disposable;
-}
-export interface AsyncDisposable {
-    [AsyncDisposable.asyncDispose](): Promise<void>;
-}
-export namespace AsyncDisposable {
-    const asyncDispose: unique symbol;
-    function isAsyncDisposable(value: unknown): value is AsyncDisposable;
-}
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/disposable.html).

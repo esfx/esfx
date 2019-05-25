@@ -27,40 +27,4 @@ async function doSomeAction() {
 
 # API
 
-```ts
-import { Cancelable } from "@esfx/cancelable";
-/**
- * Waits the specified number of milliseconds before resolving.
- *
- * @param msec The number of milliseconds to wait before resolving.
- */
-export declare function delay(msec: number): Promise<void>;
-/**
- * Waits the specified number of milliseconds before resolving.
- *
- * @param msec The number of milliseconds to wait before resolving.
- */
-export declare function delay(msec: number): Promise<void>;
-/**
- * Waits the specified number of milliseconds before resolving with the provided value.
- *
- * @param msec The number of milliseconds to wait before resolving.
- * @param value An optional value for the resulting Promise.
- */
-export declare function delay<T>(msec: number, value: T | PromiseLike<T>): Promise<T>;
-/**
- * Waits the specified number of milliseconds before resolving.
- *
- * @param cancelable A Cancelable
- * @param msec The number of milliseconds to wait before resolving.
- */
-export declare function delay(cancelable: Cancelable, msec: number): Promise<void>;
-/**
- * Waits the specified number of milliseconds before resolving with the provided value.
- *
- * @param cancelable A Cancelable
- * @param msec The number of milliseconds to wait before resolving.
- * @param value An optional value for the resulting Promise.
- */
-export declare function delay<T>(cancelable: Cancelable, msec: number, value: T | PromiseLike<T>): Promise<T>;
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/async_delay.html).

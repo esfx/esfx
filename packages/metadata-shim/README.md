@@ -36,15 +36,4 @@ getMemberMetadata(c, "method", "design:paramtypes"); // [Number]
 
 # API
 
-```ts
-import { MetadataKey } from "@esfx/metadata";
-declare global {
-    namespace Reflect {
-        function metadata(metadataKey: MetadataKey, metadataValue?: unknown): {
-            (target: Function): void;
-            (target: object, propertyKey: PropertyKey, propertyDescriptor?: PropertyDescriptor): void;
-            (target: object, propertyKey: PropertyKey, parameterIndex: number): void;
-        };
-    }
-}
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/metadata_shim.html).

@@ -12,16 +12,23 @@
     "url": "https://github.com/esfx/esfx/issues"
   },
   "devDependencies": {
+    "@strictsoftware/typedoc-plugin-monorepo": "^0.2.1",
     "@types/jest": "^23.3.11",
     "@types/node": "^10.12.12",
     "chalk": "^2.4.2",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
+    "gulp-typedoc": "^2.2.2",
     "jest": "^23.6.0",
     "lerna": "^3.14.1",
     "prex": "^0.4.5",
     "ts-jest": "^23.10.5",
+    "typedoc": "^0.14.2",
+    "typedoc-plugin-biblio": "^1.0.0",
+    "typedoc-plugin-fixcomputednames": "^1.0.1",
+    "typedoc-plugin-linkrewriter": "^0.1.1",
     "typescript": "^3.4.5",
+    "vm-sandbox": "0.0.0",
     "yargs": "^13.2.2",
     "yargs-unparser": "^1.5.0"
   }
