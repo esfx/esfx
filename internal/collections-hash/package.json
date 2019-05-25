@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-collections-hash",
-    "version": "1.0.0-pre.5",
+    "version": "1.0.0-pre.6",
     "description": "This package provides internal utilities for @esfx and is not intended for use in user-code.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -14,7 +14,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.0.0-pre.5",
+        "@esfx/equatable": "^1.0.0-pre.6",
         "@esfx/internal-integers": "^1.0.0-pre.5",
         "tslib": "^1.9.3"
     },
