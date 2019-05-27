@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections",
-    "version": "1.0.0-pre.6",
+    "version": "1.0.0-pre.7",
     "description": "Common collections API.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -18,7 +18,7 @@
         "@esfx/collections-hashset": "^1.0.0-pre.6",
         "@esfx/collections-linkedlist": "^1.0.0-pre.6",
         "@esfx/collections-sortedmap": "^1.0.0-pre.6",
-        "@esfx/collections-sortedset": "^1.0.0-pre.6",
+        "@esfx/collections-sortedset": "^1.0.0-pre.7",
         "tslib": "^1.9.3"
     },
     "publishConfig": {

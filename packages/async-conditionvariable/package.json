@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-conditionvariable",
-    "version": "1.0.0-pre.6",
+    "version": "1.0.0-pre.7",
     "description": "Provides 'AsyncConditionVariable', an async coordination primitive.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,7 +14,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "devDependencies": {
-        "@esfx/async-mutex": "^1.0.0-pre.6"
+        "@esfx/async-mutex": "^1.0.0-pre.7"
     },
     "dependencies": {
         "@esfx/async-lockable": "^1.0.0-pre.6",
