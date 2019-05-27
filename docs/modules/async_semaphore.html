@@ -67,7 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<h1 id="-esfx-async-semaphore">@esfx/async-semaphore</h1>
-					<p>The <code>@esfx/async-semaphore</code> package provides the Semaphore class, an async coordination primitive.</p>
+					<p>The <code>@esfx/async-semaphore</code> package provides the <code>AsyncSemaphore</code> class, an async coordination primitive.</p>
 					<h1 id="overview">Overview</h1>
 					<ul>
 						<li><a href="#installation">Installation</a></li>
@@ -77,10 +77,10 @@
 					<h1 id="installation">Installation</h1>
 					<pre><code class="language-sh">npm i @esfx/async-semaphore</code></pre>
 					<h1 id="usage">Usage</h1>
-					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Semaphore } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/async-semaphore"</span>;
+					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { AsyncSemaphore } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/async-semaphore"</span>;
 
 <span class="hljs-comment">// create a semaphore that allows one participant</span>
-<span class="hljs-keyword">const</span> semaphore = <span class="hljs-keyword">new</span> Semaphore(<span class="hljs-number">1</span>);
+<span class="hljs-keyword">const</span> semaphore = <span class="hljs-keyword">new</span> AsyncSemaphore(<span class="hljs-number">1</span>);
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updateResource</span>(<span class="hljs-params">updates</span>) </span>{
     <span class="hljs-comment">// Wait for a lock on the semaphore</span>
@@ -115,7 +115,7 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/async_semaphore.semaphore.html" class="tsd-kind-icon">Semaphore</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/async_semaphore.asyncsemaphore.html" class="tsd-kind-icon">Async<wbr>Semaphore</a></li>
 							</ul>
 						</section>
 					</div>
@@ -141,7 +141,7 @@
 						<a href="async_semaphore.html" class="tsd-kind-icon">async-<wbr>semaphore</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/async_semaphore.semaphore.html" class="tsd-kind-icon">Semaphore</a>
+								<a href="../classes/async_semaphore.asyncsemaphore.html" class="tsd-kind-icon">Async<wbr>Semaphore</a>
 							</li>
 						</ul>
 					</li>

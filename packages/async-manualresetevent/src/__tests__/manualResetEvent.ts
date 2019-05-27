@@ -1,24 +1,24 @@
 import { Cancelable, CancelError } from '@esfx/cancelable';
-import { ManualResetEvent } from "..";
+import { AsyncManualResetEvent } from "..";
 
 describe("ctor", () => {
     it("throws if initialState not boolean", () => {
-        expect(() => new ManualResetEvent(<any>{})).toThrow(TypeError);
+        expect(() => new AsyncManualResetEvent(<any>{})).toThrow(TypeError);
     });
 });
 
 describe("wait", () => {
     it("throws if token not CancellationToken", async () => {
-        await expect(new ManualResetEvent().wait(<any>{})).rejects.toThrow(TypeError);
+        await expect(new AsyncManualResetEvent().wait(<any>{})).rejects.toThrow(TypeError);
     });
     it("throws if token is canceled.", async () => {
-        await expect(new ManualResetEvent().wait(Cancelable.canceled)).rejects.toThrow(CancelError);
+        await expect(new AsyncManualResetEvent().wait(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
 });
 
 it("set", async () => {
     const steps: string[] = [];
-    const event = new ManualResetEvent();
+    const event = new AsyncManualResetEvent();
 
     async function waitForEvent() {
         steps.push("before wait");
@@ -37,7 +37,7 @@ it("set", async () => {
 
 it("reset", async () => {
     const steps: string[] = [];
-    const event1 = new ManualResetEvent();
+    const event1 = new AsyncManualResetEvent();
 
     async function startWaiting() {
         steps.push("before wait1");
@@ -81,7 +81,7 @@ it("reset", async () => {
 
 it("signaled", async () => {
     const steps: string[] = [];
-    const event = new ManualResetEvent(/*initialState*/ true);
+    const event = new AsyncManualResetEvent(/*initialState*/ true);
 
     async function waitForEvent() {
         steps.push("before wait");

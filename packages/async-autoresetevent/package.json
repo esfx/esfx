@@ -1,7 +1,7 @@
 {
     "name": "@esfx/async-autoresetevent",
     "version": "1.0.0-pre.6",
-    "description": "Provides 'AutoResetEvent', an async coordination primitive.",
+    "description": "Provides 'AsyncAutoResetEvent', an async coordination primitive.",
     "main": "index.js",
     "types": "index.d.ts",
     "author": "Ron Buckton (rbuckton@chronicles.org)",

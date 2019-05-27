@@ -1,42 +1,42 @@
 import { CancelToken } from '@esfx/async-canceltoken';
 import { CancelError, Cancelable } from '@esfx/cancelable';
-import { Barrier } from "..";
+import { AsyncBarrier } from "..";
 
 describe("ctor", () => {
     it("correct", () => {
-        const barrier = new Barrier(1);
+        const barrier = new AsyncBarrier(1);
         expect(barrier.currentPhaseNumber).toBe(0);
         expect(barrier.participantCount).toBe(1);
         expect(barrier.remainingParticipants).toBe(1);
     });
     it("throws if participantCount not number", () => {
-        expect(() => new Barrier(<any>{})).toThrow(TypeError);
+        expect(() => new AsyncBarrier(<any>{})).toThrow(TypeError);
     });
     it("throws if participantCount less than zero", () => {
-        expect(() => new Barrier(-1)).toThrow(RangeError);
+        expect(() => new AsyncBarrier(-1)).toThrow(RangeError);
     });
     it("throws if postPhaseAction not function", () => {
-        expect(() => new Barrier(1, <any>{})).toThrow(TypeError);
+        expect(() => new AsyncBarrier(1, <any>{})).toThrow(TypeError);
     });
 });
 describe("add", () => {
     it("one", () => {
-        const barrier = new Barrier(1);
+        const barrier = new AsyncBarrier(1);
         barrier.add();
         expect(barrier.participantCount).toBe(2);
         expect(barrier.remainingParticipants).toBe(2);
     });
     it("multiple", () => {
-        const barrier = new Barrier(1);
+        const barrier = new AsyncBarrier(1);
         barrier.add(3);
         expect(barrier.participantCount).toBe(4);
         expect(barrier.remainingParticipants).toBe(4);
     });
     it("throws if participantCount not number", () => {
-        expect(() => new Barrier(1).add(<any>{})).toThrow(TypeError);
+        expect(() => new AsyncBarrier(1).add(<any>{})).toThrow(TypeError);
     });
     it("throws if participantCount less than or equal to zero", () => {
-        expect(() => new Barrier(1).add(0)).toThrow(RangeError);
+        expect(() => new AsyncBarrier(1).add(0)).toThrow(RangeError);
     });
     // it("throws if executing post phase action", async () => {
     //     const queue = new AsyncQueue<void>();
@@ -49,25 +49,25 @@ describe("add", () => {
 });
 describe("remove", () => {
     it("one", () => {
-        const barrier = new Barrier(1);
+        const barrier = new AsyncBarrier(1);
         barrier.remove();
         expect(barrier.participantCount).toBe(0);
         expect(barrier.remainingParticipants).toBe(0);
     });
     it("multiple", () => {
-        const barrier = new Barrier(4);
+        const barrier = new AsyncBarrier(4);
         barrier.remove(3);
         expect(barrier.participantCount).toBe(1);
         expect(barrier.remainingParticipants).toBe(1);
     });
     it("throws if participantCount not number", () => {
-        expect(() => new Barrier(1).remove(<any>{})).toThrow(TypeError);
+        expect(() => new AsyncBarrier(1).remove(<any>{})).toThrow(TypeError);
     });
     it("throws if participantCount less than or equal to zero", () => {
-        expect(() => new Barrier(1).remove(0)).toThrow(RangeError);
+        expect(() => new AsyncBarrier(1).remove(0)).toThrow(RangeError);
     });
     it("throws if participantCount greater than initial participants", () => {
-        expect(() => new Barrier(1).remove(2)).toThrow(RangeError);
+        expect(() => new AsyncBarrier(1).remove(2)).toThrow(RangeError);
     });
     // it("throws if executing post phase action", async () => {
     //     const queue = new AsyncQueue<void>();
@@ -80,13 +80,13 @@ describe("remove", () => {
 });
 describe("signalAndWait", () => {
     it("throws if token is not CancellationToken", async () => {
-        await expect(new Barrier(1).signalAndWait(<any>{})).rejects.toThrow(TypeError);
+        await expect(new AsyncBarrier(1).signalAndWait(<any>{})).rejects.toThrow(TypeError);
     });
     it("throws if token is canceled", async () => {
-        await expect(new Barrier(1).signalAndWait(Cancelable.canceled)).rejects.toThrow(CancelError);
+        await expect(new AsyncBarrier(1).signalAndWait(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
     it("throws if token is later", async () => {
-        const barrier = new Barrier(2);
+        const barrier = new AsyncBarrier(2);
         const source = CancelToken.source();
         const waitPromise = barrier.signalAndWait(source.token);
         source.cancel();
@@ -102,16 +102,16 @@ describe("signalAndWait", () => {
     //     await queue.get();
     // });
     it("throws if no registered participants", async () => {
-        await expect(new Barrier(0).signalAndWait()).rejects.toThrow(Error);
+        await expect(new AsyncBarrier(0).signalAndWait()).rejects.toThrow(Error);
     });
     it("throws if no remaining participants", async () => {
-        const barrier = new Barrier(1);
+        const barrier = new AsyncBarrier(1);
         barrier.signalAndWait();
         await expect(barrier.signalAndWait()).rejects.toThrow(Error);
     });
     it("with 3 participants", async () => {
         const steps: string[] = [];
-        const barrier = new Barrier(3);
+        const barrier = new AsyncBarrier(3);
 
         async function operation1() {
             steps.push("begin1");
@@ -135,14 +135,14 @@ describe("signalAndWait", () => {
         expect(steps).toEqual(["begin1", "begin2", "begin3", "end1", "end2", "end3"]);
     });
     it("error in postPhaseAction raised to participant", async () => {
-        const barrier = new Barrier(1, () => { throw new Error(); });
+        const barrier = new AsyncBarrier(1, () => { throw new Error(); });
         await expect(barrier.signalAndWait()).rejects.toThrow();
     });
 });
 
 it("postPhaseAction", async () => {
     const steps: string[] = [];
-    const barrier = new Barrier(1, () => {
+    const barrier = new AsyncBarrier(1, () => {
         steps.push("post-phase");
     });
 
@@ -159,7 +159,7 @@ it("postPhaseAction", async () => {
 });
 it("participants", async () => {
     const steps: string[] = [];
-    const barrier = new Barrier(1);
+    const barrier = new AsyncBarrier(1);
     async function one() {
         steps.push("one.1");
         await barrier.signalAndWait();

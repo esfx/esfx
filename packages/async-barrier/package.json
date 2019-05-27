@@ -1,7 +1,7 @@
 {
     "name": "@esfx/async-barrier",
     "version": "1.0.0-pre.6",
-    "description": "Provides 'Barrier', an async coordination primitive.",
+    "description": "Provides 'AsyncBarrier', an async coordination primitive.",
     "main": "index.js",
     "types": "index.d.ts",
     "author": "Ron Buckton (rbuckton@chronicles.org)",

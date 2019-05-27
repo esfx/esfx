@@ -1,6 +1,6 @@
 import { CancelToken } from "@esfx/async-canceltoken";
 import { CancelError, Cancelable } from "@esfx/cancelable";
-import { AutoResetEvent } from "..";
+import { AsyncAutoResetEvent } from "..";
 
 function delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -8,7 +8,7 @@ function delay(ms: number) {
 
 describe("ctor", () => {
     it("start signaled", async () => {
-        const event = new AutoResetEvent(true);
+        const event = new AsyncAutoResetEvent(true);
         async function waitForEvent() {
             await event.wait();
             return 1;
@@ -21,7 +21,7 @@ describe("ctor", () => {
         expect(result).toBe(1);
     });
     it("start signaled and reset", async () => {
-        const event = new AutoResetEvent(true);
+        const event = new AsyncAutoResetEvent(true);
         event.reset();
 
         async function waitForEvent() {
@@ -37,20 +37,20 @@ describe("ctor", () => {
         expect(result).toBe(2);
     });
     it("throws if initialState not boolean", () => {
-        expect(() => new AutoResetEvent(<any>{})).toThrow(TypeError);
+        expect(() => new AsyncAutoResetEvent(<any>{})).toThrow(TypeError);
     });
 });
 
 describe("wait", () => {
     it("when canceled later", async () => {
-        const event = new AutoResetEvent();
+        const event = new AsyncAutoResetEvent();
         const source = CancelToken.source();
         const waitPromise = event.wait(source.token);
         source.cancel();
         await expect(waitPromise).rejects.toThrow(CancelError);
     });
     it("when canceled after set", async () => {
-        const event = new AutoResetEvent();
+        const event = new AsyncAutoResetEvent();
         const source = CancelToken.source();
         const waitPromise = event.wait(source.token);
         event.set();
@@ -58,17 +58,17 @@ describe("wait", () => {
         await waitPromise;
     });
     it("throws if token not CancellationToken", async () => {
-        await expect(new AutoResetEvent().wait(<any>{})).rejects.toThrow(TypeError);
+        await expect(new AsyncAutoResetEvent().wait(<any>{})).rejects.toThrow(TypeError);
     });
     it("throws if token is canceled.", async () => {
-        await expect(new AutoResetEvent().wait(Cancelable.canceled)).rejects.toThrow(CancelError);
+        await expect(new AsyncAutoResetEvent().wait(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
 });
 
 describe("set", () => {
     it("before waiters", async () => {
         const steps: string[] = [];
-        const event = new AutoResetEvent();
+        const event = new AsyncAutoResetEvent();
 
         async function setEvent() {
             steps.push("set1");
@@ -91,7 +91,7 @@ describe("set", () => {
 
     it("general", async () => {
         const steps: string[] = [];
-        const event = new AutoResetEvent();
+        const event = new AsyncAutoResetEvent();
 
         async function waitForEvent() {
             steps.push("before wait1");
@@ -125,7 +125,7 @@ describe("set", () => {
 
     it("before waiters when already signaled", async () => {
         const steps: string[] = [];
-        const event = new AutoResetEvent(true);
+        const event = new AsyncAutoResetEvent(true);
 
         async function setEvent() {
             steps.push("set1");

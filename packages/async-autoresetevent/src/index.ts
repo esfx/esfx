@@ -46,7 +46,7 @@ import { WaitQueue } from "@esfx/async-waitqueue";
  * single waiting asynchronous operation.
  */
 @Tag()
-export class AutoResetEvent {
+export class AsyncAutoResetEvent {
     private _signaled: boolean;
     private _waiters = new WaitQueue<void>();
 

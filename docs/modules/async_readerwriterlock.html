@@ -67,7 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<h1 id="-esfx-async-readerwriterlock">@esfx/async-readerwriterlock</h1>
-					<p>The <code>@esfx/async-readerwriterlock</code> package provides the <code>ReaderWriterLock</code> class, an async coordination primitive.</p>
+					<p>The <code>@esfx/async-readerwriterlock</code> package provides the <code>AsyncReaderWriterLock</code> class, an async coordination primitive.</p>
 					<h1 id="overview">Overview</h1>
 					<ul>
 						<li><a href="#installation">Installation</a></li>
@@ -77,10 +77,10 @@
 					<h1 id="installation">Installation</h1>
 					<pre><code class="language-sh">npm i @esfx/async-readerwriterlock</code></pre>
 					<h1 id="usage">Usage</h1>
-					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { ReaderWriterLock } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/async-readerwriterlock"</span>;
+					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { AsyncReaderWriterLock } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/async-readerwriterlock"</span>;
 
 <span class="hljs-comment">// 'rwlock' protects access to 'userCache' and data stored on disk</span>
-<span class="hljs-keyword">const</span> rwlock = <span class="hljs-keyword">new</span> ReaderWriterLock();
+<span class="hljs-keyword">const</span> rwlock = <span class="hljs-keyword">new</span> AsyncReaderWriterLock();
 <span class="hljs-keyword">const</span> userCache = <span class="hljs-keyword">new</span> Map();
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getUser</span>(<span class="hljs-params">id</span>) </span>{
@@ -151,16 +151,16 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/async_readerwriterlock.readerwriterlock.html" class="tsd-kind-icon">Reader<wbr>Writer<wbr>Lock</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/async_readerwriterlock.asyncreaderwriterlock.html" class="tsd-kind-icon">Async<wbr>Reader<wbr>Writer<wbr>Lock</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/async_readerwriterlock.readerwriterlockreader.html" class="tsd-kind-icon">Reader<wbr>Writer<wbr>Lock<wbr>Reader</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/async_readerwriterlock.readerwriterlockupgradeablereader.html" class="tsd-kind-icon">Reader<wbr>Writer<wbr>Lock<wbr>Upgradeable<wbr>Reader</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/async_readerwriterlock.readerwriterlockupgradedwriter.html" class="tsd-kind-icon">Reader<wbr>Writer<wbr>Lock<wbr>Upgraded<wbr>Writer</a></li>
-								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/async_readerwriterlock.readerwriterlockwriter.html" class="tsd-kind-icon">Reader<wbr>Writer<wbr>Lock<wbr>Writer</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/async_readerwriterlock.asyncreaderwriterlockreader.html" class="tsd-kind-icon">Async<wbr>Reader<wbr>Writer<wbr>Lock<wbr>Reader</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/async_readerwriterlock.asyncreaderwriterlockupgradeablereader.html" class="tsd-kind-icon">Async<wbr>Reader<wbr>Writer<wbr>Lock<wbr>Upgradeable<wbr>Reader</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/async_readerwriterlock.asyncreaderwriterlockupgradedwriter.html" class="tsd-kind-icon">Async<wbr>Reader<wbr>Writer<wbr>Lock<wbr>Upgraded<wbr>Writer</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-external-module"><a href="../interfaces/async_readerwriterlock.asyncreaderwriterlockwriter.html" class="tsd-kind-icon">Async<wbr>Reader<wbr>Writer<wbr>Lock<wbr>Writer</a></li>
 							</ul>
 						</section>
 					</div>
@@ -186,19 +186,19 @@
 						<a href="async_readerwriterlock.html" class="tsd-kind-icon">async-<wbr>readerwriterlock</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/async_readerwriterlock.readerwriterlock.html" class="tsd-kind-icon">Reader<wbr>Writer<wbr>Lock</a>
+								<a href="../classes/async_readerwriterlock.asyncreaderwriterlock.html" class="tsd-kind-icon">Async<wbr>Reader<wbr>Writer<wbr>Lock</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/async_readerwriterlock.readerwriterlockreader.html" class="tsd-kind-icon">Reader<wbr>Writer<wbr>Lock<wbr>Reader</a>
+								<a href="../interfaces/async_readerwriterlock.asyncreaderwriterlockreader.html" class="tsd-kind-icon">Async<wbr>Reader<wbr>Writer<wbr>Lock<wbr>Reader</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/async_readerwriterlock.readerwriterlockupgradeablereader.html" class="tsd-kind-icon">Reader<wbr>Writer<wbr>Lock<wbr>Upgradeable<wbr>Reader</a>
+								<a href="../interfaces/async_readerwriterlock.asyncreaderwriterlockupgradeablereader.html" class="tsd-kind-icon">Async<wbr>Reader<wbr>Writer<wbr>Lock<wbr>Upgradeable<wbr>Reader</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/async_readerwriterlock.readerwriterlockupgradedwriter.html" class="tsd-kind-icon">Reader<wbr>Writer<wbr>Lock<wbr>Upgraded<wbr>Writer</a>
+								<a href="../interfaces/async_readerwriterlock.asyncreaderwriterlockupgradedwriter.html" class="tsd-kind-icon">Async<wbr>Reader<wbr>Writer<wbr>Lock<wbr>Upgraded<wbr>Writer</a>
 							</li>
 							<li class=" tsd-kind-interface tsd-parent-kind-external-module">
-								<a href="../interfaces/async_readerwriterlock.readerwriterlockwriter.html" class="tsd-kind-icon">Reader<wbr>Writer<wbr>Lock<wbr>Writer</a>
+								<a href="../interfaces/async_readerwriterlock.asyncreaderwriterlockwriter.html" class="tsd-kind-icon">Async<wbr>Reader<wbr>Writer<wbr>Lock<wbr>Writer</a>
 							</li>
 						</ul>
 					</li>

@@ -68,26 +68,26 @@ defineTag(lockHandlePrototype, "LockHandle");
 Object.setPrototypeOf(lockHandlePrototype, disposablePrototype);
 
 const readerPrototype: object = {};
-defineTag(readerPrototype, "ReaderWriterLockReader");
+defineTag(readerPrototype, "AsyncReaderWriterLockReader");
 Object.setPrototypeOf(readerPrototype, lockHandlePrototype);
 
 const writerPrototype: object = {};
-defineTag(writerPrototype, "ReaderWriterLockWriter");
+defineTag(writerPrototype, "AsyncReaderWriterLockWriter");
 Object.setPrototypeOf(writerPrototype, lockHandlePrototype);
 
 const upgradeableReaderPrototype: object = {};
-defineTag(upgradeableReaderPrototype, "ReaderWriterLockUpgradeableReader");
+defineTag(upgradeableReaderPrototype, "AsyncReaderWriterLockUpgradeableReader");
 Object.setPrototypeOf(upgradeableReaderPrototype, readerPrototype);
 
 const upgradedWriterPrototype: object = {};
-defineTag(upgradedWriterPrototype, "ReaderWriterLockUpgradedWriter");
+defineTag(upgradedWriterPrototype, "AsyncReaderWriterLockUpgradedWriter");
 Object.setPrototypeOf(upgradedWriterPrototype, writerPrototype);
 
 /**
  * Coordinates readers and writers for a resource.
  */
 @Tag()
-export class ReaderWriterLock {
+export class AsyncReaderWriterLock {
     private _readerQueue = new WaitQueue<void>();
     private _writerQueue = new WaitQueue<void>();
     private _readers = new Set<LockHandle>();
@@ -95,11 +95,11 @@ export class ReaderWriterLock {
     private _upgradeable: LockHandle | undefined;
 
     /**
-     * Creates a `ReaderWriterLockReader` that can be used to take and release "read" locks on a resource.
+     * Creates a `AsyncReaderWriterLockReader` that can be used to take and release "read" locks on a resource.
      */
     createReader() {
         const owner = this;
-        const handle: ReaderWriterLockReader = Object.setPrototypeOf({
+        const handle: AsyncReaderWriterLockReader = Object.setPrototypeOf({
             get owner() {
                 return owner;
             },
@@ -118,12 +118,12 @@ export class ReaderWriterLock {
     }
 
     /**
-     * Creates a `ReaderWriterLockUpgradeableReader` that can be used to take and release "read" locks on a resource
+     * Creates a `AsyncReaderWriterLockUpgradeableReader` that can be used to take and release "read" locks on a resource
      * and can be later upgraded to take and release "write" locks.
      */
     createUpgradeableReader() {
         const owner = this;
-        const handle: ReaderWriterLockUpgradeableReader = Object.setPrototypeOf({
+        const handle: AsyncReaderWriterLockUpgradeableReader = Object.setPrototypeOf({
             get owner() {
                 return handle;
             },
@@ -150,11 +150,11 @@ export class ReaderWriterLock {
     }
 
     /**
-     * Creates a `ReaderWriterLockWriter` that can be used to take and release "write" locks on a resource.
+     * Creates a `AsyncReaderWriterLockWriter` that can be used to take and release "write" locks on a resource.
      */
     createWriter() {
         const owner = this;
-        const handle: ReaderWriterLockWriter = Object.setPrototypeOf({
+        const handle: AsyncReaderWriterLockWriter = Object.setPrototypeOf({
             get owner() {
                 return owner;
             },
@@ -172,9 +172,9 @@ export class ReaderWriterLock {
         return handle;
     }
 
-    private _createUpgradedWriter(upgradeable: ReaderWriterLockUpgradeableReader) {
+    private _createUpgradedWriter(upgradeable: AsyncReaderWriterLockUpgradeableReader) {
         const owner = this;
-        const handle: ReaderWriterLockWriter = Object.setPrototypeOf({
+        const handle: AsyncReaderWriterLockWriter = Object.setPrototypeOf({
             get owner() {
                 return owner;
             },
@@ -313,40 +313,40 @@ export class ReaderWriterLock {
     }
 }
 
-export interface ReaderWriterLockReader extends LockHandle<ReaderWriterLockReader> {
+export interface AsyncReaderWriterLockReader extends LockHandle<AsyncReaderWriterLockReader> {
     /**
-     * Gets the `ReaderWriterLock` that owns this object.
+     * Gets the `AsyncReaderWriterLock` that owns this object.
      */
-    readonly owner: ReaderWriterLock;
+    readonly owner: AsyncReaderWriterLock;
 }
 
-export interface ReaderWriterLockWriter extends LockHandle<ReaderWriterLockWriter> {
+export interface AsyncReaderWriterLockWriter extends LockHandle<AsyncReaderWriterLockWriter> {
     /**
-     * Gets the `ReaderWriterLock` that owns this object.
+     * Gets the `AsyncReaderWriterLock` that owns this object.
      */
-    readonly owner: ReaderWriterLock;
+    readonly owner: AsyncReaderWriterLock;
 }
 
-export interface ReaderWriterLockUpgradedWriter extends LockHandle<ReaderWriterLockUpgradedWriter> {
+export interface AsyncReaderWriterLockUpgradedWriter extends LockHandle<AsyncReaderWriterLockUpgradedWriter> {
     /**
-     * Gets the `ReaderWriterLock` that owns this object.
+     * Gets the `AsyncReaderWriterLock` that owns this object.
      */
-    readonly owner: ReaderWriterLock;
+    readonly owner: AsyncReaderWriterLock;
 }
 
-export interface ReaderWriterLockUpgradeableReader extends UpgradeableLockHandle<ReaderWriterLockUpgradeableReader, ReaderWriterLockUpgradedWriter> {
+export interface AsyncReaderWriterLockUpgradeableReader extends UpgradeableLockHandle<AsyncReaderWriterLockUpgradeableReader, AsyncReaderWriterLockUpgradedWriter> {
     /**
-     * Gets the `ReaderWriterLock` that owns this object.
+     * Gets the `AsyncReaderWriterLock` that owns this object.
      */
-    readonly owner: ReaderWriterLock;
+    readonly owner: AsyncReaderWriterLock;
     /**
-     * Creates a `ReaderWriterLockUpgradedWriter` that can be used to take and release "write" locks on a resource.
+     * Creates a `AsyncReaderWriterLockUpgradedWriter` that can be used to take and release "write" locks on a resource.
      */
-    createWriter(): ReaderWriterLockUpgradedWriter;
+    createWriter(): AsyncReaderWriterLockUpgradedWriter;
     /**
      * Asynchronously waits for and takes a write lock on a resource.
      *
      * @param cancelable A `Cancelable` used to cancel the request.
      */
-    upgrade(cancelable?: Cancelable): Promise<ReaderWriterLockUpgradedWriter>;
+    upgrade(cancelable?: Cancelable): Promise<AsyncReaderWriterLockUpgradedWriter>;
 }

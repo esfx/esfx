@@ -46,9 +46,9 @@ import { WaitQueue } from "@esfx/async-waitqueue";
  * multiple phases.
  */
 @Tag()
-export class Barrier {
+export class AsyncBarrier {
     private _isExecutingPostPhaseAction = false;
-    private _postPhaseAction: ((barrier: Barrier) => void | PromiseLike<void>) | undefined;
+    private _postPhaseAction: ((barrier: AsyncBarrier) => void | PromiseLike<void>) | undefined;
     private _phaseNumber: number = 0;
     private _participantCount: number;
     private _remainingParticipants: number;
@@ -60,7 +60,7 @@ export class Barrier {
      * @param participantCount The initial number of participants for the barrier.
      * @param postPhaseAction An action to execute between each phase.
      */
-    constructor(participantCount: number, postPhaseAction?: (barrier: Barrier) => void | PromiseLike<void>) {
+    constructor(participantCount: number, postPhaseAction?: (barrier: AsyncBarrier) => void | PromiseLike<void>) {
         if (!isNumber(participantCount)) throw new TypeError("Number expected: participantCount.");
         if ((participantCount |= 0) < 0) throw new RangeError("Argument out of range: participantCount.");
         if (!isMissing(postPhaseAction) && !isFunction(postPhaseAction)) throw new TypeError("Function expected: postPhaseAction.");

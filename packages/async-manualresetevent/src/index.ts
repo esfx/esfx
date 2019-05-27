@@ -45,7 +45,7 @@ import { WaitQueue } from "@esfx/async-waitqueue";
  * Asynchronously notifies one or more waiting Promises that an event has occurred.
  */
 @Tag()
-export class ManualResetEvent {
+export class AsyncManualResetEvent {
     private _signaled: boolean;
     private _waiters = new WaitQueue<void>();
 

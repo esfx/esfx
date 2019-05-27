@@ -1,10 +1,10 @@
-import { ConditionVariable } from "..";
-import { Mutex } from "@esfx/async-mutex";
+import { AsyncConditionVariable } from "..";
+import { AsyncMutex } from "@esfx/async-mutex";
 
 describe("wait", () => {
     it("wait one", async () => {
-        const m = new Mutex();
-        const cv = new ConditionVariable();
+        const m = new AsyncMutex();
+        const cv = new AsyncConditionVariable();
         let ready = false;
         let processed = false;
         const steps: string[] = [];

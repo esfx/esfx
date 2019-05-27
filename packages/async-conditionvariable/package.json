@@ -1,7 +1,7 @@
 {
     "name": "@esfx/async-conditionvariable",
     "version": "1.0.0-pre.6",
-    "description": "Provides &#39;ConditionVariable&#39;, an async coordination primitive.",
+    "description": "Provides 'AsyncConditionVariable', an async coordination primitive.",
     "main": "index.js",
     "types": "index.d.ts",
     "author": "Ron Buckton (rbuckton@chronicles.org)",

@@ -67,7 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<h1 id="-esfx-async-mutex">@esfx/async-mutex</h1>
-					<p>Provides <code>Mutex</code>, an async coordination primitive.</p>
+					<p>Provides <code>AsyncMutex</code>, an async coordination primitive.</p>
 					<h1 id="overview">Overview</h1>
 					<ul>
 						<li><a href="#installation">Installation</a></li>
@@ -77,9 +77,9 @@
 					<h1 id="installation">Installation</h1>
 					<pre><code class="language-sh">npm i @esfx/async-mutex</code></pre>
 					<h1 id="usage">Usage</h1>
-					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Mutex } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/async-mutex"</span>;
+					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { AsyncMutex } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/async-mutex"</span>;
 
-<span class="hljs-keyword">const</span> m = <span class="hljs-keyword">new</span> Mutex();
+<span class="hljs-keyword">const</span> m = <span class="hljs-keyword">new</span> AsyncMutex();
 <span class="hljs-keyword">let</span> counter = <span class="hljs-number">0</span>;
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">worker</span>(<span class="hljs-params"></span>) </span>{
@@ -119,7 +119,7 @@
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/async_mutex.mutex.html" class="tsd-kind-icon">Mutex</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/async_mutex.asyncmutex.html" class="tsd-kind-icon">Async<wbr>Mutex</a></li>
 							</ul>
 						</section>
 					</div>
@@ -145,7 +145,7 @@
 						<a href="async_mutex.html" class="tsd-kind-icon">async-<wbr>mutex</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/async_mutex.mutex.html" class="tsd-kind-icon">Mutex</a>
+								<a href="../classes/async_mutex.asyncmutex.html" class="tsd-kind-icon">Async<wbr>Mutex</a>
 							</li>
 						</ul>
 					</li>

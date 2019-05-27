@@ -77,14 +77,14 @@
 					<h1 id="installation">Installation</h1>
 					<pre><code class="language-sh">npm i @esfx/async-conditionvariable</code></pre>
 					<h1 id="usage">Usage</h1>
-					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { ConditionVariable } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/async-conditionvariable"</span>;
-<span class="hljs-keyword">import</span> { Mutex } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/async-mutex"</span>;
+					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { AsyncConditionVariable } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/async-conditionvariable"</span>;
+<span class="hljs-keyword">import</span> { AsyncMutex } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/async-mutex"</span>;
 
 <span class="hljs-comment">// create a mutex used to lock a resource</span>
-<span class="hljs-keyword">const</span> m = <span class="hljs-keyword">new</span> Mutex();
+<span class="hljs-keyword">const</span> m = <span class="hljs-keyword">new</span> AsyncMutex();
 
 <span class="hljs-comment">// create a condition variable to maintain a list of waiters for a resource</span>
-<span class="hljs-keyword">const</span> cv = <span class="hljs-keyword">new</span> ConditionVariable();
+<span class="hljs-keyword">const</span> cv = <span class="hljs-keyword">new</span> AsyncConditionVariable();
 
 <span class="hljs-keyword">let</span> tasks = getTasksToPerform(); <span class="hljs-comment">// get some array of tasks to perform.</span>
 <span class="hljs-keyword">let</span> ready = <span class="hljs-literal">false</span>;
@@ -151,7 +151,7 @@ main().catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/async_conditionvariable.conditionvariable.html" class="tsd-kind-icon">Condition<wbr>Variable</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/async_conditionvariable.asyncconditionvariable.html" class="tsd-kind-icon">Async<wbr>Condition<wbr>Variable</a></li>
 							</ul>
 						</section>
 					</div>
@@ -177,7 +177,7 @@ main().catch(<span class="hljs-function"><span class="hljs-params">e</span> =&gt
 						<a href="async_conditionvariable.html" class="tsd-kind-icon">async-<wbr>conditionvariable</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/async_conditionvariable.conditionvariable.html" class="tsd-kind-icon">Condition<wbr>Variable</a>
+								<a href="../classes/async_conditionvariable.asyncconditionvariable.html" class="tsd-kind-icon">Async<wbr>Condition<wbr>Variable</a>
 							</li>
 						</ul>
 					</li>

@@ -17,9 +17,9 @@ npm i @esfx/async-autoresetevent
 # Usage
 
 ```ts
-import { AutoResetEvent } from "@esfx/async-autoresetevent";
+import { AsyncAutoResetEvent } from "@esfx/async-autoresetevent";
 
-const event = new AutoResetEvent();
+const event = new AsyncAutoResetEvent();
 
 async function doSomeActivity() {
     while (true) {

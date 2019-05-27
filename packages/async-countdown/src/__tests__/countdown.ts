@@ -1,28 +1,28 @@
-import { CountdownEvent } from "..";
-import { ManualResetEvent } from '@esfx/async-manualresetevent';
+import { AsyncCountdownEvent } from "..";
+import { AsyncManualResetEvent } from '@esfx/async-manualresetevent';
 
 describe("ctor", () => {
     it("throws if initialCount not number", () => {
-        expect(() => new CountdownEvent(<any>{})).toThrow(TypeError);
+        expect(() => new AsyncCountdownEvent(<any>{})).toThrow(TypeError);
     });
     it("throws if initialCount less than zero", () => {
-        expect(() => new CountdownEvent(-1)).toThrow(RangeError);
+        expect(() => new AsyncCountdownEvent(-1)).toThrow(RangeError);
     });
 });
 describe("add", () => {
     it("throws if count not number", () => {
-        expect(() => new CountdownEvent(1).add(<any>{})).toThrow(TypeError);
+        expect(() => new AsyncCountdownEvent(1).add(<any>{})).toThrow(TypeError);
     });
     it("throws if count less than or equal to zero", () => {
-        expect(() => new CountdownEvent(1).add(0)).toThrow(RangeError);
+        expect(() => new AsyncCountdownEvent(1).add(0)).toThrow(RangeError);
     });
     it("throws if already signaled", () => {
-        expect(() => new CountdownEvent(0).add(1)).toThrow(Error);
+        expect(() => new AsyncCountdownEvent(0).add(1)).toThrow(Error);
     });
     it("for count = 1", async () => {
         const steps: string[] = [];
-        const event = new ManualResetEvent();
-        const countdown = new CountdownEvent(2);
+        const event = new AsyncManualResetEvent();
+        const countdown = new AsyncCountdownEvent(2);
         async function waiter() {
             steps.push("before wait");
             await countdown.wait();
@@ -67,19 +67,19 @@ describe("add", () => {
 });
 describe("reset", () => {
     it("throws if count not number", () => {
-        expect(() => new CountdownEvent(1).reset(<any>{})).toThrow(TypeError);
+        expect(() => new AsyncCountdownEvent(1).reset(<any>{})).toThrow(TypeError);
     });
     it("throws if count less than zero", () => {
-        expect(() => new CountdownEvent(1).reset(-1)).toThrow(RangeError);
+        expect(() => new AsyncCountdownEvent(1).reset(-1)).toThrow(RangeError);
     });
     it("changes initial count", () => {
-        const countdown = new CountdownEvent(1);
+        const countdown = new AsyncCountdownEvent(1);
         countdown.reset(3);
         expect(countdown.initialCount).toBe(3);
         expect(countdown.remainingCount).toBe(3);
     });
     it("restores initial count", () => {
-        const countdown = new CountdownEvent(3);
+        const countdown = new AsyncCountdownEvent(3);
         countdown.signal(1);
         countdown.reset();
         expect(countdown.initialCount).toBe(3);
@@ -88,18 +88,18 @@ describe("reset", () => {
 });
 describe("signal", () => {
     it("throws if count not number", () => {
-        expect(() => new CountdownEvent(1).signal(<any>{})).toThrow(TypeError);
+        expect(() => new AsyncCountdownEvent(1).signal(<any>{})).toThrow(TypeError);
     });
     it("throws if count less than or equal to zero", () => {
-        expect(() => new CountdownEvent(1).signal(0)).toThrow(RangeError);
+        expect(() => new AsyncCountdownEvent(1).signal(0)).toThrow(RangeError);
     });
     it("throws if count greater than remaining count", () => {
-        expect(() => new CountdownEvent(0).add(1)).toThrow(Error);
+        expect(() => new AsyncCountdownEvent(0).add(1)).toThrow(Error);
     });
     it("for count = 1", async () => {
         const steps: string[] = [];
-        const event = new ManualResetEvent();
-        const countdown = new CountdownEvent(3);
+        const event = new AsyncManualResetEvent();
+        const countdown = new AsyncCountdownEvent(3);
         async function waiter() {
             steps.push("before wait");
             await countdown.wait();
@@ -135,8 +135,8 @@ describe("signal", () => {
     });
     it("for count = 2", async () => {
         const steps: string[] = [];
-        const event = new ManualResetEvent();
-        const countdown = new CountdownEvent(3);
+        const event = new AsyncManualResetEvent();
+        const countdown = new AsyncCountdownEvent(3);
         async function waiter() {
             steps.push("before wait");
             await countdown.wait();

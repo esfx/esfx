@@ -47,7 +47,7 @@ import { Cancelable } from "@esfx/cancelable";
  * or pool of resources.
  */
 @Tag()
-export class Semaphore {
+export class AsyncSemaphore {
     private _maxCount: number;
     private _currentCount: number;
     private _waiters = new WaitQueue<void>();

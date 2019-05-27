@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Semaphore | esfx</title>
+	<title>AsyncCountdownEvent | esfx</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/async_semaphore.html">async-semaphore</a>
+					<a href="../modules/async_countdown.html">async-countdown</a>
 				</li>
 				<li>
-					<a href="async_semaphore.semaphore.html">Semaphore</a>
+					<a href="async_countdown.asynccountdownevent.html">AsyncCountdownEvent</a>
 				</li>
 			</ul>
-			<h1>Class Semaphore</h1>
+			<h1>Class AsyncCountdownEvent</h1>
 		</div>
 	</div>
 </header>
@@ -70,8 +70,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Limits the number of asynchronous operations that can access a resource
-						or pool of resources.</p>
+						<p>An event that is set when all participants have signaled.</p>
 					</div>
 				</div>
 			</section>
@@ -79,7 +78,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Semaphore</span>
+						<span class="target">AsyncCountdownEvent</span>
 					</li>
 				</ul>
 			</section>
@@ -90,20 +89,23 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="async_semaphore.semaphore.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="async_countdown.asynccountdownevent.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="async_semaphore.semaphore.html#count" class="tsd-kind-icon">count</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="async_countdown.asynccountdownevent.html#initialcount" class="tsd-kind-icon">initial<wbr>Count</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="async_countdown.asynccountdownevent.html#remainingcount" class="tsd-kind-icon">remaining<wbr>Count</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_semaphore.semaphore.html#release" class="tsd-kind-icon">release</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_semaphore.semaphore.html#wait" class="tsd-kind-icon">wait</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_countdown.asynccountdownevent.html#add" class="tsd-kind-icon">add</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_countdown.asynccountdownevent.html#reset" class="tsd-kind-icon">reset</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_countdown.asynccountdownevent.html#signal" class="tsd-kind-icon">signal</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_countdown.asynccountdownevent.html#wait" class="tsd-kind-icon">wait</a></li>
 							</ul>
 						</section>
 					</div>
@@ -115,18 +117,18 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Semaphore<span class="tsd-signature-symbol">(</span>initialCount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, maxCount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="async_semaphore.semaphore.html" class="tsd-signature-type">Semaphore</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Async<wbr>Countdown<wbr>Event<span class="tsd-signature-symbol">(</span>initialCount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="async_countdown.asynccountdownevent.html" class="tsd-signature-type">AsyncCountdownEvent</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-semaphore/src/index.ts#L53">async-semaphore/src/index.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-countdown/src/index.ts#L51">async-countdown/src/index.ts:51</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Initializes a new instance of the Semaphore class.</p>
+									<p>Initializes a new instance of the CountdownEvent class.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -135,20 +137,12 @@
 									<h5>initialCount: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>The initial number of entries.</p>
-										</div>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> maxCount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>The maximum number of entries.</p>
+											<p>The initial participant count.</p>
 										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="async_semaphore.semaphore.html" class="tsd-signature-type">Semaphore</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="async_countdown.asynccountdownevent.html" class="tsd-signature-type">AsyncCountdownEvent</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -156,22 +150,43 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="count" class="tsd-anchor"></a>
-					<h3>count</h3>
+					<a name="initialcount" class="tsd-anchor"></a>
+					<h3>initial<wbr>Count</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> count<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> initialCount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-semaphore/src/index.ts#L77">async-semaphore/src/index.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-countdown/src/index.ts#L70">async-countdown/src/index.ts:70</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets the number of remaining asynchronous operations that can enter
-									the Semaphore.</p>
+									<p>Gets the number of signals initially required to set the event.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
+					<a name="remainingcount" class="tsd-anchor"></a>
+					<h3>remaining<wbr>Count</h3>
+					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> remainingCount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-countdown/src/index.ts#L77">async-countdown/src/index.ts:77</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets the number of remaining signals required to set the event.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -182,21 +197,21 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="release" class="tsd-anchor"></a>
-					<h3>release</h3>
+					<a name="add" class="tsd-anchor"></a>
+					<h3>add</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">release<span class="tsd-signature-symbol">(</span>count<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>count<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-semaphore/src/index.ts#L100">async-semaphore/src/index.ts:100</a></li>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-countdown/src/index.ts#L86">async-countdown/src/index.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Releases the <a href="async_semaphore.semaphore.html">Semaphore</a> one or more times.</p>
+									<p>Increments the event&#39;s current count by one or more.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -204,11 +219,73 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> count: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The number of times to release the <a href="async_semaphore.semaphore.html">Semaphore</a>.</p>
+										<p>An optional count specifying the additional number of signals for which the event will wait.</p>
 									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="reset" class="tsd-anchor"></a>
+					<h3>reset</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">reset<span class="tsd-signature-symbol">(</span>count<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-countdown/src/index.ts#L102">async-countdown/src/index.ts:102</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Resets the remaining and initial count to the specified value, or the initial count.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> count: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An optional count specifying the number of required signals.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="signal" class="tsd-anchor"></a>
+					<h3>signal</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">signal<span class="tsd-signature-symbol">(</span>count<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-countdown/src/index.ts#L122">async-countdown/src/index.ts:122</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Registers one or more signals with the CountdownEvent, decrementing the remaining count.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> count: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An optional count specifying the number of signals to register.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -222,7 +299,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-semaphore/src/index.ts#L86">async-semaphore/src/index.ts:86</a></li>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-countdown/src/index.ts#L142">async-countdown/src/index.ts:142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -235,7 +312,7 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cancelable: <a href="../modules/cancelable.cancelable-1.html" class="tsd-signature-type">Cancelable</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>An optional <a href="../modules/cancelable.cancelable-1.html">Cancelable</a> used to cancel the request.</p>
+										<p>An optional Cancelable used to cancel the request.</p>
 									</div>
 								</li>
 							</ul>
@@ -252,7 +329,7 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/async_semaphore.html">async-<wbr>semaphore</a>
+						<a href="../modules/async_countdown.html">async-<wbr>countdown</a>
 					</li>
 				</ul>
 			</nav>
@@ -261,22 +338,31 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/async_semaphore.html" class="tsd-kind-icon">async-<wbr>semaphore</a>
+						<a href="../modules/async_countdown.html" class="tsd-kind-icon">async-<wbr>countdown</a>
 						<ul>
 							<li class="current tsd-kind-class tsd-parent-kind-external-module">
-								<a href="async_semaphore.semaphore.html" class="tsd-kind-icon">Semaphore</a>
+								<a href="async_countdown.asynccountdownevent.html" class="tsd-kind-icon">Async<wbr>Countdown<wbr>Event</a>
 								<ul>
 									<li class=" tsd-kind-constructor tsd-parent-kind-class">
-										<a href="async_semaphore.semaphore.html#constructor" class="tsd-kind-icon">constructor</a>
+										<a href="async_countdown.asynccountdownevent.html#constructor" class="tsd-kind-icon">constructor</a>
 									</li>
 									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-										<a href="async_semaphore.semaphore.html#count" class="tsd-kind-icon">count</a>
+										<a href="async_countdown.asynccountdownevent.html#initialcount" class="tsd-kind-icon">initial<wbr>Count</a>
+									</li>
+									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
+										<a href="async_countdown.asynccountdownevent.html#remainingcount" class="tsd-kind-icon">remaining<wbr>Count</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="async_semaphore.semaphore.html#release" class="tsd-kind-icon">release</a>
+										<a href="async_countdown.asynccountdownevent.html#add" class="tsd-kind-icon">add</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="async_semaphore.semaphore.html#wait" class="tsd-kind-icon">wait</a>
+										<a href="async_countdown.asynccountdownevent.html#reset" class="tsd-kind-icon">reset</a>
+									</li>
+									<li class=" tsd-kind-method tsd-parent-kind-class">
+										<a href="async_countdown.asynccountdownevent.html#signal" class="tsd-kind-icon">signal</a>
+									</li>
+									<li class=" tsd-kind-method tsd-parent-kind-class">
+										<a href="async_countdown.asynccountdownevent.html#wait" class="tsd-kind-icon">wait</a>
 									</li>
 								</ul>
 							</li>

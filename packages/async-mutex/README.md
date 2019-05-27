@@ -1,6 +1,6 @@
 # `@esfx/async-mutex`
 
-Provides `Mutex`, an async coordination primitive.
+Provides `AsyncMutex`, an async coordination primitive.
 
 # Overview
 
@@ -17,9 +17,9 @@ npm i @esfx/async-mutex
 # Usage
 
 ```ts
-import { Mutex } from "@esfx/async-mutex";
+import { AsyncMutex } from "@esfx/async-mutex";
 
-const m = new Mutex();
+const m = new AsyncMutex();
 let counter = 0;
 
 async function worker() {

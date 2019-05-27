@@ -24,9 +24,9 @@ import { Disposable } from "@esfx/disposable";
  * An async coordination primitive used to coordinate access to a protected resource.
  */
 @Tag()
-export class Mutex implements AsyncLockable {
+export class AsyncMutex implements AsyncLockable {
     private _waiters = new WaitQueue<void>();
-    private _handle: LockHandle<Mutex> | undefined;
+    private _handle: LockHandle<AsyncMutex> | undefined;
 
     /**
      * Indicates whether the lock has been taken.
@@ -39,7 +39,7 @@ export class Mutex implements AsyncLockable {
      * Asynchronously waits for the lock to become available and then takes the lock.
      * @param cancelable A `Cancelable` used to cancel the pending request.
      */
-    async lock(cancelable?: Cancelable): Promise<LockHandle<Mutex>> {
+    async lock(cancelable?: Cancelable): Promise<LockHandle<AsyncMutex>> {
         const handle = createLockHandle(this);
         await handle.lock(cancelable);
         return handle;
@@ -67,7 +67,7 @@ export class Mutex implements AsyncLockable {
         return false;
     }
 
-    private async _lock(handle: LockHandle<Mutex>, cancelable?: Cancelable) {
+    private async _lock(handle: LockHandle<AsyncMutex>, cancelable?: Cancelable) {
         Cancelable.throwIfSignaled(cancelable);
         if (this._handle === handle) {
             throw new Error("Lock already taken.");
@@ -81,7 +81,7 @@ export class Mutex implements AsyncLockable {
         this._handle = handle;
     }
 
-    private _unlock(handle: LockHandle<Mutex>) {
+    private _unlock(handle: LockHandle<AsyncMutex>) {
         if (this._handle !== handle) {
             throw new Error("Lock already released.");
         }
@@ -121,8 +121,8 @@ const mutexLockHandlePrototype: object = {
 defineTag(mutexLockHandlePrototype, "MutexLockHandle");
 Object.setPrototypeOf(mutexLockHandlePrototype, disposablePrototype);
 
-function createLockHandle(mutex: Mutex): LockHandle<Mutex> {
-    const handle: LockHandle<Mutex> = Object.setPrototypeOf({
+function createLockHandle(mutex: AsyncMutex): LockHandle<AsyncMutex> {
+    const handle: LockHandle<AsyncMutex> = Object.setPrototypeOf({
         get mutex() {
             return mutex;
         },

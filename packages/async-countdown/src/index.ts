@@ -39,16 +39,16 @@
 import { isMissing, isNumber } from "@esfx/internal-guards";
 import { Tag } from "@esfx/internal-tag";
 import { Cancelable } from "@esfx/cancelable";
-import { ManualResetEvent } from "@esfx/async-manualresetevent";
+import { AsyncManualResetEvent } from "@esfx/async-manualresetevent";
 
 /**
  * An event that is set when all participants have signaled.
  */
 @Tag()
-export class CountdownEvent {
+export class AsyncCountdownEvent {
     private _initialCount: number;
     private _remainingCount: number;
-    private _event: ManualResetEvent;
+    private _event: AsyncManualResetEvent;
 
     /**
      * Initializes a new instance of the CountdownEvent class.
@@ -61,7 +61,7 @@ export class CountdownEvent {
 
         this._initialCount = initialCount;
         this._remainingCount = initialCount;
-        this._event = new ManualResetEvent(initialCount === 0);
+        this._event = new AsyncManualResetEvent(initialCount === 0);
     }
 
     /**

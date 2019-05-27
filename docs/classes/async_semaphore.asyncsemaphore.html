@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Barrier | esfx</title>
+	<title>AsyncSemaphore | esfx</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,13 +54,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/async_barrier.html">async-barrier</a>
+					<a href="../modules/async_semaphore.html">async-semaphore</a>
 				</li>
 				<li>
-					<a href="async_barrier.barrier.html">Barrier</a>
+					<a href="async_semaphore.asyncsemaphore.html">AsyncSemaphore</a>
 				</li>
 			</ul>
-			<h1>Class Barrier</h1>
+			<h1>Class AsyncSemaphore</h1>
 		</div>
 	</div>
 </header>
@@ -70,8 +70,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Enables multiple tasks to cooperatively work on an algorithm through
-						multiple phases.</p>
+						<p>Limits the number of asynchronous operations that can access a resource
+						or pool of resources.</p>
 					</div>
 				</div>
 			</section>
@@ -79,7 +79,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Barrier</span>
+						<span class="target">AsyncSemaphore</span>
 					</li>
 				</ul>
 			</section>
@@ -90,23 +90,20 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="async_barrier.barrier.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="async_semaphore.asyncsemaphore.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="async_barrier.barrier.html#currentphasenumber" class="tsd-kind-icon">current<wbr>Phase<wbr>Number</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="async_barrier.barrier.html#participantcount" class="tsd-kind-icon">participant<wbr>Count</a></li>
-								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="async_barrier.barrier.html#remainingparticipants" class="tsd-kind-icon">remaining<wbr>Participants</a></li>
+								<li class="tsd-kind-get-signature tsd-parent-kind-class"><a href="async_semaphore.asyncsemaphore.html#count" class="tsd-kind-icon">count</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_barrier.barrier.html#add" class="tsd-kind-icon">add</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_barrier.barrier.html#remove" class="tsd-kind-icon">remove</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_barrier.barrier.html#signalandwait" class="tsd-kind-icon">signal<wbr>And<wbr>Wait</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_semaphore.asyncsemaphore.html#release" class="tsd-kind-icon">release</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_semaphore.asyncsemaphore.html#wait" class="tsd-kind-icon">wait</a></li>
 							</ul>
 						</section>
 					</div>
@@ -118,40 +115,40 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Barrier<span class="tsd-signature-symbol">(</span>participantCount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, postPhaseAction<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="async_barrier.barrier.html" class="tsd-signature-type">Barrier</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Async<wbr>Semaphore<span class="tsd-signature-symbol">(</span>initialCount<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, maxCount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="async_semaphore.asyncsemaphore.html" class="tsd-signature-type">AsyncSemaphore</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-barrier/src/index.ts#L55">async-barrier/src/index.ts:55</a></li>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-semaphore/src/index.ts#L53">async-semaphore/src/index.ts:53</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Initializes a new instance of the Barrier class.</p>
+									<p>Initializes a new instance of the Semaphore class.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>participantCount: <span class="tsd-signature-type">number</span></h5>
+									<h5>initialCount: <span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>The initial number of participants for the barrier.</p>
+											<p>The initial number of entries.</p>
 										</div>
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> postPhaseAction: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> maxCount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
-											<p>An action to execute between each phase.</p>
+											<p>The maximum number of entries.</p>
 										</div>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="async_barrier.barrier.html" class="tsd-signature-type">Barrier</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="async_semaphore.asyncsemaphore.html" class="tsd-signature-type">AsyncSemaphore</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -159,65 +156,22 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
 				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="currentphasenumber" class="tsd-anchor"></a>
-					<h3>current<wbr>Phase<wbr>Number</h3>
+					<a name="count" class="tsd-anchor"></a>
+					<h3>count</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> currentPhaseNumber<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> count<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-barrier/src/index.ts#L76">async-barrier/src/index.ts:76</a></li>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-semaphore/src/index.ts#L77">async-semaphore/src/index.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Gets the number of the Barrier&#39;s current phase.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="participantcount" class="tsd-anchor"></a>
-					<h3>participant<wbr>Count</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> participantCount<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-barrier/src/index.ts#L83">async-barrier/src/index.ts:83</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets the total number of participants in the barrier.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-get-signature tsd-parent-kind-class">
-					<a name="remainingparticipants" class="tsd-anchor"></a>
-					<h3>remaining<wbr>Participants</h3>
-					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> remainingParticipants<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-barrier/src/index.ts#L90">async-barrier/src/index.ts:90</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets the number of participants in the barrier that haven&#39;t yet signaled in the current phase.</p>
+									<p>Gets the number of remaining asynchronous operations that can enter
+									the Semaphore.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -228,29 +182,29 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="add" class="tsd-anchor"></a>
-					<h3>add</h3>
+					<a name="release" class="tsd-anchor"></a>
+					<h3>release</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">add<span class="tsd-signature-symbol">(</span>participantCount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">release<span class="tsd-signature-symbol">(</span>count<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-barrier/src/index.ts#L99">async-barrier/src/index.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-semaphore/src/index.ts#L100">async-semaphore/src/index.ts:100</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Notifies the Barrier there will be additional participants.</p>
+									<p>Releases the [[Semaphore]] one or more times.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> participantCount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> count: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The number of additional participants.</p>
+										<p>The number of times to release the [[Semaphore]].</p>
 									</div>
 								</li>
 							</ul>
@@ -259,53 +213,21 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="remove" class="tsd-anchor"></a>
-					<h3>remove</h3>
+					<a name="wait" class="tsd-anchor"></a>
+					<h3>wait</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">remove<span class="tsd-signature-symbol">(</span>participantCount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">wait<span class="tsd-signature-symbol">(</span>cancelable<span class="tsd-signature-symbol">?: </span><a href="../modules/cancelable.cancelable-1.html" class="tsd-signature-type">Cancelable</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="https://tc39.github.io/ecma262/#sec-promise-objects" class="tsd-signature-type">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-barrier/src/index.ts#L114">async-barrier/src/index.ts:114</a></li>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-semaphore/src/index.ts#L86">async-semaphore/src/index.ts:86</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Notifies the Barrier there will be fewer participants.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> participantCount: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The number of participants to remove.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="signalandwait" class="tsd-anchor"></a>
-					<h3>signal<wbr>And<wbr>Wait</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">signal<wbr>And<wbr>Wait<span class="tsd-signature-symbol">(</span>cancelable<span class="tsd-signature-symbol">?: </span><a href="../modules/cancelable.cancelable-1.html" class="tsd-signature-type">Cancelable</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="https://tc39.github.io/ecma262/#sec-promise-objects" class="tsd-signature-type">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-barrier/src/index.ts#L134">async-barrier/src/index.ts:134</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Signals that a participant has reached the barrier and waits for all other participants
-									to reach the barrier.</p>
+									<p>Asynchronously waits for the event to become signaled.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -313,7 +235,7 @@
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cancelable: <a href="../modules/cancelable.cancelable-1.html" class="tsd-signature-type">Cancelable</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>An optional Cancelable used to cancel the request.</p>
+										<p>An optional <a href="../modules/cancelable.cancelable-1.html">Cancelable</a> used to cancel the request.</p>
 									</div>
 								</li>
 							</ul>
@@ -330,7 +252,7 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/async_barrier.html">async-<wbr>barrier</a>
+						<a href="../modules/async_semaphore.html">async-<wbr>semaphore</a>
 					</li>
 				</ul>
 			</nav>
@@ -339,31 +261,22 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/async_barrier.html" class="tsd-kind-icon">async-<wbr>barrier</a>
+						<a href="../modules/async_semaphore.html" class="tsd-kind-icon">async-<wbr>semaphore</a>
 						<ul>
 							<li class="current tsd-kind-class tsd-parent-kind-external-module">
-								<a href="async_barrier.barrier.html" class="tsd-kind-icon">Barrier</a>
+								<a href="async_semaphore.asyncsemaphore.html" class="tsd-kind-icon">Async<wbr>Semaphore</a>
 								<ul>
 									<li class=" tsd-kind-constructor tsd-parent-kind-class">
-										<a href="async_barrier.barrier.html#constructor" class="tsd-kind-icon">constructor</a>
+										<a href="async_semaphore.asyncsemaphore.html#constructor" class="tsd-kind-icon">constructor</a>
 									</li>
 									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-										<a href="async_barrier.barrier.html#currentphasenumber" class="tsd-kind-icon">current<wbr>Phase<wbr>Number</a>
-									</li>
-									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-										<a href="async_barrier.barrier.html#participantcount" class="tsd-kind-icon">participant<wbr>Count</a>
-									</li>
-									<li class=" tsd-kind-get-signature tsd-parent-kind-class">
-										<a href="async_barrier.barrier.html#remainingparticipants" class="tsd-kind-icon">remaining<wbr>Participants</a>
+										<a href="async_semaphore.asyncsemaphore.html#count" class="tsd-kind-icon">count</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="async_barrier.barrier.html#add" class="tsd-kind-icon">add</a>
+										<a href="async_semaphore.asyncsemaphore.html#release" class="tsd-kind-icon">release</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="async_barrier.barrier.html#remove" class="tsd-kind-icon">remove</a>
-									</li>
-									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="async_barrier.barrier.html#signalandwait" class="tsd-kind-icon">signal<wbr>And<wbr>Wait</a>
+										<a href="async_semaphore.asyncsemaphore.html#wait" class="tsd-kind-icon">wait</a>
 									</li>
 								</ul>
 							</li>

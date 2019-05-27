@@ -1,18 +1,18 @@
-import { Mutex } from "..";
+import { AsyncMutex } from "..";
 import { Cancelable, CancelError } from "@esfx/cancelable";
 
 describe("lock", () => {
     it("throws when token is not Cancelable", async () => {
-        await expect(new Mutex().lock({} as any)).rejects.toThrow(TypeError);
+        await expect(new AsyncMutex().lock({} as any)).rejects.toThrow(TypeError);
     });
     it("throws when token is canceled", async () => {
-        await expect(new Mutex().lock(Cancelable.canceled)).rejects.toThrow(CancelError);
+        await expect(new AsyncMutex().lock(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
 });
 
 it("AsyncLock()", async () => {
     const steps: string[] = [];
-    const lock = new Mutex();
+    const lock = new AsyncMutex();
 
     async function operation1() {
         steps.push("operation1.1");

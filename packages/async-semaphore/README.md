@@ -1,6 +1,6 @@
 # `@esfx/async-semaphore`
 
-The `@esfx/async-semaphore` package provides the Semaphore class, an async coordination primitive.
+The `@esfx/async-semaphore` package provides the `AsyncSemaphore` class, an async coordination primitive.
 
 # Overview
 
@@ -17,10 +17,10 @@ npm i @esfx/async-semaphore
 # Usage
 
 ```ts
-import { Semaphore } from "@esfx/async-semaphore";
+import { AsyncSemaphore } from "@esfx/async-semaphore";
 
 // create a semaphore that allows one participant
-const semaphore = new Semaphore(1);
+const semaphore = new AsyncSemaphore(1);
 
 async function updateResource(updates) {
     // Wait for a lock on the semaphore

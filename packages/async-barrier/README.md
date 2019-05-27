@@ -1,6 +1,6 @@
 # `@esfx/async-barrier`
 
-The `@esfx/async-barrier` package provides the `Barrier` class, an async coordination primitive.
+The `@esfx/async-barrier` package provides the `AsyncBarrier` class, an async coordination primitive.
 
 # Overview
 
@@ -17,14 +17,14 @@ npm i @esfx/async-barrier
 # Usage
 
 ```ts
-import { Barrier } from "@esfx/async-barrier";
+import { AsyncBarrier } from "@esfx/async-barrier";
 
 async function main() {
     let count = 0;
 
     // Create a barrier with 3 participants and a post-phase action to print results.
     // When phase 2 completes, throw an exception to be observed by all participants.
-    const barrier = new Barrier(3, b => {
+    const barrier = new AsyncBarrier(3, b => {
         console.log(`Post-phase action: count=${count}, phase=${b.currentPhaseNumber}`);
         if (b.currentPhaseNumber === 2) throw new Error("Oops");
     });

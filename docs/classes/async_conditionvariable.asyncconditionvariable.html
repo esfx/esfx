@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AutoResetEvent | esfx</title>
+	<title>AsyncConditionVariable | esfx</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,32 +54,24 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/async_autoresetevent.html">async-autoresetevent</a>
+					<a href="../modules/async_conditionvariable.html">async-conditionvariable</a>
 				</li>
 				<li>
-					<a href="async_autoresetevent.autoresetevent.html">AutoResetEvent</a>
+					<a href="async_conditionvariable.asyncconditionvariable.html">AsyncConditionVariable</a>
 				</li>
 			</ul>
-			<h1>Class AutoResetEvent</h1>
+			<h1>Class AsyncConditionVariable</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Represents a synchronization event that, when signaled, resets automatically after releasing a
-						single waiting asynchronous operation.</p>
-					</div>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AutoResetEvent</span>
+						<span class="target">AsyncConditionVariable</span>
 					</li>
 				</ul>
 			</section>
@@ -88,76 +80,34 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="async_autoresetevent.autoresetevent.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_autoresetevent.autoresetevent.html#reset" class="tsd-kind-icon">reset</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_autoresetevent.autoresetevent.html#set" class="tsd-kind-icon">set</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_autoresetevent.autoresetevent.html#wait" class="tsd-kind-icon">wait</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_conditionvariable.asyncconditionvariable.html#notifyall" class="tsd-kind-icon">notify<wbr>All</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_conditionvariable.asyncconditionvariable.html#notifyone" class="tsd-kind-icon">notify<wbr>One</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="async_conditionvariable.asyncconditionvariable.html#wait" class="tsd-kind-icon">wait</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Auto<wbr>Reset<wbr>Event<span class="tsd-signature-symbol">(</span>initialState<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="async_autoresetevent.autoresetevent.html" class="tsd-signature-type">AutoResetEvent</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-autoresetevent/src/index.ts#L51">async-autoresetevent/src/index.ts:51</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Initializes a new instance of the AutoResetEvent class.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> initialState: <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> =&nbsp;false</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>A value indicating whether to set the initial state to signaled.</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="async_autoresetevent.autoresetevent.html" class="tsd-signature-type">AutoResetEvent</a></h4>
-						</li>
-					</ul>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="reset" class="tsd-anchor"></a>
-					<h3>reset</h3>
+					<a name="notifyall" class="tsd-anchor"></a>
+					<h3>notify<wbr>All</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">reset<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">notify<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-autoresetevent/src/index.ts#L81">async-autoresetevent/src/index.ts:81</a></li>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-conditionvariable/src/index.ts#L77">async-conditionvariable/src/index.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sets the state of the event to nonsignaled, causing asynchronous operations to pause.</p>
+									<p>Notifies all current waiters to reacquire their locks.</p>
 								</div>
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -165,26 +115,24 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="set" class="tsd-anchor"></a>
-					<h3>set</h3>
+					<a name="notifyone" class="tsd-anchor"></a>
+					<h3>notify<wbr>One</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">set<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">notify<wbr>One<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-autoresetevent/src/index.ts#L67">async-autoresetevent/src/index.ts:67</a></li>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-conditionvariable/src/index.ts#L67">async-conditionvariable/src/index.ts:67</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Sets the state of the event to signaled, resolving at most one waiting Promise.
-									The event is then automatically reset.</p>
+									<p>Notifies one waiter to reacquire its lock.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-							<p><code>true</code> if the operation successfully resolved a waiting Promise; otherwise, <code>false</code>.</p>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -192,26 +140,67 @@
 					<a name="wait" class="tsd-anchor"></a>
 					<h3>wait</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">wait<span class="tsd-signature-symbol">(</span>cancelable<span class="tsd-signature-symbol">?: </span><a href="../modules/cancelable.cancelable-1.html" class="tsd-signature-type">Cancelable</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="https://tc39.github.io/ecma262/#sec-promise-objects" class="tsd-signature-type">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">wait<span class="tsd-signature-symbol">(</span>lock<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncLockable</span>, cancelable<span class="tsd-signature-symbol">?: </span><a href="../modules/cancelable.cancelable-1.html" class="tsd-signature-type">Cancelable</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="https://tc39.github.io/ecma262/#sec-promise-objects" class="tsd-signature-type">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">wait<span class="tsd-signature-symbol">(</span>lock<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">AsyncLockable</span>, condition<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span>, cancelable<span class="tsd-signature-symbol">?: </span><a href="../modules/cancelable.cancelable-1.html" class="tsd-signature-type">Cancelable</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="https://tc39.github.io/ecma262/#sec-promise-objects" class="tsd-signature-type">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-autoresetevent/src/index.ts#L89">async-autoresetevent/src/index.ts:89</a></li>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-conditionvariable/src/index.ts#L40">async-conditionvariable/src/index.ts:40</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Asynchronously waits for the event to become signaled.</p>
+									<p>Releases <code>lock</code>, waiting until notified before reacquiring <code>lock</code>.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
+									<h5>lock: <span class="tsd-signature-type">AsyncLockable</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An <code>AsyncLockable</code> to release and reacquire.</p>
+									</div>
+								</li>
+								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cancelable: <a href="../modules/cancelable.cancelable-1.html" class="tsd-signature-type">Cancelable</a></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>A Cancelable used to cancel the request.</p>
+										<p>A <code>Cancelable</code> object that can be used to cancel the request.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="https://tc39.github.io/ecma262/#sec-promise-objects" class="tsd-signature-type">Promise</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/esfx/esfx/blob/master/packages/async-conditionvariable/src/index.ts#L47">async-conditionvariable/src/index.ts:47</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Releases <code>lock</code>, waiting until notified before reacquiring <code>lock</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>lock: <span class="tsd-signature-type">AsyncLockable</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>An <code>AsyncLockable</code> to release and reacquire.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> condition: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>When specified, loops until <code>condition</code> returns <code>true</code>.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> cancelable: <a href="../modules/cancelable.cancelable-1.html" class="tsd-signature-type">Cancelable</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A <code>Cancelable</code> object that can be used to cancel the request.</p>
 									</div>
 								</li>
 							</ul>
@@ -228,7 +217,7 @@
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/async_autoresetevent.html">async-<wbr>autoresetevent</a>
+						<a href="../modules/async_conditionvariable.html">async-<wbr>conditionvariable</a>
 					</li>
 				</ul>
 			</nav>
@@ -237,22 +226,19 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-external-module">
-						<a href="../modules/async_autoresetevent.html" class="tsd-kind-icon">async-<wbr>autoresetevent</a>
+						<a href="../modules/async_conditionvariable.html" class="tsd-kind-icon">async-<wbr>conditionvariable</a>
 						<ul>
 							<li class="current tsd-kind-class tsd-parent-kind-external-module">
-								<a href="async_autoresetevent.autoresetevent.html" class="tsd-kind-icon">Auto<wbr>Reset<wbr>Event</a>
+								<a href="async_conditionvariable.asyncconditionvariable.html" class="tsd-kind-icon">Async<wbr>Condition<wbr>Variable</a>
 								<ul>
-									<li class=" tsd-kind-constructor tsd-parent-kind-class">
-										<a href="async_autoresetevent.autoresetevent.html#constructor" class="tsd-kind-icon">constructor</a>
+									<li class=" tsd-kind-method tsd-parent-kind-class">
+										<a href="async_conditionvariable.asyncconditionvariable.html#notifyall" class="tsd-kind-icon">notify<wbr>All</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="async_autoresetevent.autoresetevent.html#reset" class="tsd-kind-icon">reset</a>
+										<a href="async_conditionvariable.asyncconditionvariable.html#notifyone" class="tsd-kind-icon">notify<wbr>One</a>
 									</li>
 									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="async_autoresetevent.autoresetevent.html#set" class="tsd-kind-icon">set</a>
-									</li>
-									<li class=" tsd-kind-method tsd-parent-kind-class">
-										<a href="async_autoresetevent.autoresetevent.html#wait" class="tsd-kind-icon">wait</a>
+										<a href="async_conditionvariable.asyncconditionvariable.html#wait" class="tsd-kind-icon">wait</a>
 									</li>
 								</ul>
 							</li>

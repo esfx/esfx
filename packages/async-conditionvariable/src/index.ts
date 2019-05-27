@@ -29,7 +29,7 @@ interface Entry {
 }
 
 @Tag()
-export class ConditionVariable {
+export class AsyncConditionVariable {
     private _waiters = new LinkedList<Entry>();
 
     /**

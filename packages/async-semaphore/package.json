@@ -1,7 +1,7 @@
 {
     "name": "@esfx/async-semaphore",
     "version": "1.0.0-pre.6",
-    "description": "Semaphore async coordination primitive.",
+    "description": "Provides 'AsyncSemaphore', an async coordination primitive.",
     "main": "index.js",
     "types": "index.d.ts",
     "author": "Ron Buckton (rbuckton@chronicles.org)",

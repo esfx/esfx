@@ -18,14 +18,14 @@ npm i @esfx/async-conditionvariable
 # Usage
 
 ```ts
-import { ConditionVariable } from "@esfx/async-conditionvariable";
-import { Mutex } from "@esfx/async-mutex";
+import { AsyncConditionVariable } from "@esfx/async-conditionvariable";
+import { AsyncMutex } from "@esfx/async-mutex";
 
 // create a mutex used to lock a resource
-const m = new Mutex();
+const m = new AsyncMutex();
 
 // create a condition variable to maintain a list of waiters for a resource
-const cv = new ConditionVariable();
+const cv = new AsyncConditionVariable();
 
 let tasks = getTasksToPerform(); // get some array of tasks to perform.
 let ready = false;

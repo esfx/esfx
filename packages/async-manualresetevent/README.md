@@ -1,6 +1,6 @@
 # `@esfx/async-manualresetevent`
 
-The `@esfx/async-manualresetevent` package provides the `ManualResetEvent` class, an async coordination primitive.
+The `@esfx/async-manualresetevent` package provides the `AsyncManualResetEvent` class, an async coordination primitive.
 
 # Overview
 
@@ -17,9 +17,9 @@ npm i @esfx/async-manualresetevent
 # Usage
 
 ```ts
-import { ManualResetEvent } from "@esfx/async-manualresetevent";
+import { AsyncManualResetEvent } from "@esfx/async-manualresetevent";
 
-const event = new ManualResetEvent();
+const event = new AsyncManualResetEvent();
 
 async function doSomeActivity() {
     // do some work asynchronously...

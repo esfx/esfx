@@ -1,16 +1,16 @@
-import { ReaderWriterLock } from "..";
+import { AsyncReaderWriterLock } from "..";
 import { Cancelable, CancelError } from '@esfx/cancelable';
 
 describe("read", () => {
     it("throws when token not CancelToken", async () => {
-        await expect(new ReaderWriterLock().read(<any>{})).rejects.toThrow(TypeError);
+        await expect(new AsyncReaderWriterLock().read(<any>{})).rejects.toThrow(TypeError);
     });
     it("throws when token is canceled", async () => {
-        await expect(new ReaderWriterLock().read(Cancelable.canceled)).rejects.toThrow(CancelError);
+        await expect(new AsyncReaderWriterLock().read(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
     it("multiple readers", async () => {
         const steps: string[] = [];
-        const rw = new ReaderWriterLock();
+        const rw = new AsyncReaderWriterLock();
         async function operation1() {
             await rw.read();
             steps.push("operation1");
@@ -24,7 +24,7 @@ describe("read", () => {
     });
     it("waits on existing writer", async () => {
         const steps: string[] = [];
-        const rw = new ReaderWriterLock();
+        const rw = new AsyncReaderWriterLock();
         const writeLockPromise = rw.write();
         const readLockPromise = rw.read();
         async function writer() {
@@ -43,14 +43,14 @@ describe("read", () => {
 });
 describe("upgradeableRead", () => {
     it("throws when token not Cancelable", async () => {
-        await expect(new ReaderWriterLock().upgradeableRead(<any>{})).rejects.toThrow(TypeError);
+        await expect(new AsyncReaderWriterLock().upgradeableRead(<any>{})).rejects.toThrow(TypeError);
     });
     it("throws when token is canceled", async () => {
-        await expect(new ReaderWriterLock().upgradeableRead(Cancelable.canceled)).rejects.toThrow(CancelError);
+        await expect(new AsyncReaderWriterLock().upgradeableRead(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
     it("can take while reading", async () => {
         const steps: string[] = [];
-        const rw = new ReaderWriterLock();
+        const rw = new AsyncReaderWriterLock();
         const readLockPromise1 = rw.read();
         const upgradeableReadLockPromise = rw.upgradeableRead();
         const readLockPromise2 = rw.read();
@@ -79,12 +79,12 @@ describe("upgradeableRead", () => {
     });
     describe("upgrade", () => {
         it("throws when token not CancelToken", async () => {
-            const rw = new ReaderWriterLock();
+            const rw = new AsyncReaderWriterLock();
             const upgradeable = await rw.upgradeableRead();
             await expect(upgradeable.upgrade(<any>{})).rejects.toThrow(TypeError);
         });
         it("throws when token is canceled", async () => {
-            const rw = new ReaderWriterLock();
+            const rw = new AsyncReaderWriterLock();
             const upgradeable = await rw.upgradeableRead();
             await expect(upgradeable.upgrade(Cancelable.canceled)).rejects.toThrow(CancelError);
         });
@@ -92,14 +92,14 @@ describe("upgradeableRead", () => {
 });
 describe("write", () => {
     it("throws when token not CancelToken", async () => {
-        await expect(new ReaderWriterLock().write(<any>{})).rejects.toThrow(TypeError);
+        await expect(new AsyncReaderWriterLock().write(<any>{})).rejects.toThrow(TypeError);
     });
     it("throws when token is canceled", async () => {
-        await expect(new ReaderWriterLock().write(Cancelable.canceled)).rejects.toThrow(CancelError);
+        await expect(new AsyncReaderWriterLock().write(Cancelable.canceled)).rejects.toThrow(CancelError);
     });
     it("waits on existing readers", async () => {
         const steps: string[] = [];
-        const rw = new ReaderWriterLock();
+        const rw = new AsyncReaderWriterLock();
         const readLockPromises = [rw.read(), rw.read()];
         const writeLockPromise = rw.write();
         async function reader() {

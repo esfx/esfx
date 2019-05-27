@@ -67,7 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<h1 id="-esfx-async-barrier">@esfx/async-barrier</h1>
-					<p>The <code>@esfx/async-barrier</code> package provides the <code>Barrier</code> class, an async coordination primitive.</p>
+					<p>The <code>@esfx/async-barrier</code> package provides the <code>AsyncBarrier</code> class, an async coordination primitive.</p>
 					<h1 id="overview">Overview</h1>
 					<ul>
 						<li><a href="#installation">Installation</a></li>
@@ -77,14 +77,14 @@
 					<h1 id="installation">Installation</h1>
 					<pre><code class="language-sh">npm i @esfx/async-barrier</code></pre>
 					<h1 id="usage">Usage</h1>
-					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Barrier } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/async-barrier"</span>;
+					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { AsyncBarrier } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/async-barrier"</span>;
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">let</span> count = <span class="hljs-number">0</span>;
 
     <span class="hljs-comment">// Create a barrier with 3 participants and a post-phase action to print results.</span>
     <span class="hljs-comment">// When phase 2 completes, throw an exception to be observed by all participants.</span>
-    <span class="hljs-keyword">const</span> barrier = <span class="hljs-keyword">new</span> Barrier(<span class="hljs-number">3</span>, <span class="hljs-function"><span class="hljs-params">b</span> =&gt;</span> {
+    <span class="hljs-keyword">const</span> barrier = <span class="hljs-keyword">new</span> AsyncBarrier(<span class="hljs-number">3</span>, <span class="hljs-function"><span class="hljs-params">b</span> =&gt;</span> {
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Post-phase action: count=<span class="hljs-subst">${count}</span>, phase=<span class="hljs-subst">${b.currentPhaseNumber}</span>`</span>);
         <span class="hljs-keyword">if</span> (b.currentPhaseNumber === <span class="hljs-number">2</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">"Oops"</span>);
     });
@@ -147,7 +147,7 @@ main();
 						<section class="tsd-index-section ">
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/async_barrier.barrier.html" class="tsd-kind-icon">Barrier</a></li>
+								<li class="tsd-kind-class tsd-parent-kind-external-module"><a href="../classes/async_barrier.asyncbarrier.html" class="tsd-kind-icon">Async<wbr>Barrier</a></li>
 							</ul>
 						</section>
 					</div>
@@ -173,7 +173,7 @@ main();
 						<a href="async_barrier.html" class="tsd-kind-icon">async-<wbr>barrier</a>
 						<ul>
 							<li class=" tsd-kind-class tsd-parent-kind-external-module">
-								<a href="../classes/async_barrier.barrier.html" class="tsd-kind-icon">Barrier</a>
+								<a href="../classes/async_barrier.asyncbarrier.html" class="tsd-kind-icon">Async<wbr>Barrier</a>
 							</li>
 						</ul>
 					</li>

@@ -1,6 +1,6 @@
 # `@esfx/async-readerwriterlock`
 
-The `@esfx/async-readerwriterlock` package provides the `ReaderWriterLock` class, an async coordination primitive.
+The `@esfx/async-readerwriterlock` package provides the `AsyncReaderWriterLock` class, an async coordination primitive.
 
 # Overview
 
@@ -17,10 +17,10 @@ npm i @esfx/async-readerwriterlock
 # Usage
 
 ```ts
-import { ReaderWriterLock } from "@esfx/async-readerwriterlock";
+import { AsyncReaderWriterLock } from "@esfx/async-readerwriterlock";
 
 // 'rwlock' protects access to 'userCache' and data stored on disk
-const rwlock = new ReaderWriterLock();
+const rwlock = new AsyncReaderWriterLock();
 const userCache = new Map();
 
 async function getUser(id) {
