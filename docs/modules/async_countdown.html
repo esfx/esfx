@@ -67,7 +67,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<h1 id="-esfx-async-countdown">@esfx/async-countdown</h1>
-					<p>The <code>@esfx/async-countdown</code> package provides the <code>Countdown</code> class, an async coordination primitive.</p>
+					<p>The <code>@esfx/async-countdown</code> package provides the <code>AsyncCountdownEvent</code> class, an async coordination primitive.</p>
 					<h1 id="overview">Overview</h1>
 					<ul>
 						<li><a href="#installation">Installation</a></li>
@@ -77,11 +77,11 @@
 					<h1 id="installation">Installation</h1>
 					<pre><code class="language-sh">npm i @esfx/async-countdown</code></pre>
 					<h1 id="usage">Usage</h1>
-					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { CountdownEvent } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/cancelable"</span>;
+					<pre><code class="language-ts"><span class="hljs-keyword">import</span> { AsyncCountdownEvent } <span class="hljs-keyword">from</span> <span class="hljs-string">"@esfx/cancelable"</span>;
 
 <span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-comment">// create a CountdownEvent with 4 participants</span>
-    <span class="hljs-keyword">const</span> countdown = <span class="hljs-keyword">new</span> CountdownEvent(<span class="hljs-number">4</span>);
+    <span class="hljs-comment">// create an AsyncCountdownEvent with 4 participants</span>
+    <span class="hljs-keyword">const</span> countdown = <span class="hljs-keyword">new</span> AsyncCountdownEvent(<span class="hljs-number">4</span>);
 
     <span class="hljs-keyword">const</span> worker = <span class="hljs-keyword">async</span> () =&gt; {
         <span class="hljs-comment">// dome some work async...</span>

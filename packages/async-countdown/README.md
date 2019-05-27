@@ -1,6 +1,6 @@
 # `@esfx/async-countdown`
 
-The `@esfx/async-countdown` package provides the `Countdown` class, an async coordination primitive.
+The `@esfx/async-countdown` package provides the `AsyncCountdownEvent` class, an async coordination primitive.
 
 # Overview
 
@@ -17,11 +17,11 @@ npm i @esfx/async-countdown
 # Usage
 
 ```ts
-import { CountdownEvent } from "@esfx/cancelable";
+import { AsyncCountdownEvent } from "@esfx/cancelable";
 
 async function main() {
-    // create a CountdownEvent with 4 participants
-    const countdown = new CountdownEvent(4);
+    // create an AsyncCountdownEvent with 4 participants
+    const countdown = new AsyncCountdownEvent(4);
     
     const worker = async () => {
         // dome some work async...
