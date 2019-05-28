@@ -1,0 +1,516 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Package @esfx/ref
+   | @esfx API Reference </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Package @esfx/ref
+   | @esfx API Reference ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ref">
+  
+  
+  <h1 id="ref" data-uid="ref">Package @esfx/ref
+  </h1>
+  <div class="markdown level0 summary"><h1 id="esfxref"><code>@esfx/ref</code></h1>
+<p>The <code>@esfx/ref</code> package provides a low-level API for defining forward references.</p>
+<blockquote><p>NOTE: This implementation is an approximation of the <code>Reference</code> behavior from <a href="https://github.com/rbuckton/proposal-refs">https://github.com/rbuckton/proposal-refs</a>.</p>
+</blockquote>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#api">API</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/ref
+</code></pre><h1 id="usage">Usage</h1>
+<blockquote><p>NOTE: Examples adapted from <a href="https://github.com/rbuckton/proposal-refs#examples">https://github.com/rbuckton/proposal-refs#examples</a> where applicable.</p>
+</blockquote>
+<h2 id="take-a-reference-to-a-variable">Take a reference to a variable</h2>
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+let x = 1;
+const r = ref(() =&gt; x, _ =&gt; x = _);
+print(r.value); // 1
+r.value = 2;
+print(x); // 2
+</code></pre><h2 id="take-a-reference-to-a-property">Take a reference to a property</h2>
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+let o = { x: 1 };
+const r = ref.at(o, &quot;x&quot;);
+print(r.value); // 1
+r.value = 2;
+print(o); // { x: 2 }
+</code></pre><h2 id="take-a-reference-to-an-element">Take a reference to an element</h2>
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+let ar = [1];
+const r = ref.at(ar, 0);
+print(r.value); // 1
+r.value = 2;
+print(ar); // [2]
+</code></pre><h2 id="reference-passing">Reference passing</h2>
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+function update(ref_r) {
+    ref_r.value = 2;
+}
+
+let x = 1;
+update(ref(() =&gt; x, _ =&gt; x = _));
+print(x); // 2
+</code></pre><h2 id="referencing-a-local-declaration-creates-a-closure">Referencing a local declaration creates a closure</h2>
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+function f() {
+    let x = 1;
+    return [ref(() =&gt; x, _ =&gt; x = _), () =&gt; print(x)];
+}
+
+const [r, p] = f();
+p(); // 1
+r.value = 2;
+p(); // 2
+</code></pre><h2 id="more-complex-reference-passing">More complex reference passing</h2>
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+function max(ref_first, ref_second, ref_third) {
+    const ref_max = ref_first.value &gt; ref_second.value ? ref_first : ref_second;
+    return ref_max.value &gt; ref_third.value ? ref_max : ref_third;
+}
+
+let x = 1, y = 2, z = 3;
+const ref_x = ref(() =&gt; x, _ =&gt; x = _);
+const ref_y = ref(() =&gt; y, _ =&gt; y = _);
+const ref_z = ref(() =&gt; z, _ =&gt; z = _);
+const ref_w = max(ref_x, ref_y, ref_z);
+ref_w.value = 4;
+print(x); // 1
+print(y); // 2
+print(z); // 4
+</code></pre><h2 id="forward-reference-to-a-var">Forward reference to a <code>var</code></h2>
+<pre><code class="lang-ts">const ref_a = ref(() =&gt; a, _ =&gt; a = _);
+ref_a.value = 1; // ok, no error as `a` is a var.
+var a;
+</code></pre><h2 id="forward-reference-to-a-block-scoped-variable">Forward reference to a block-scoped variable</h2>
+<pre><code class="lang-ts">const ref_a = ref(() =&gt; a, _ =&gt; a = _);
+let a;
+ref_a.value = 1; // ok, no error as `a` has been declared.
+
+const ref_b = ref(() =&gt; b, _ =&gt; b = _);
+ref_b.value = 1; // error as `b` has not yet been declared.
+let b;
+</code></pre><h2 id="forward-reference-to-a-member-of-a-block-scoped-variable">Forward reference to a member of a block-scoped variable</h2>
+<pre><code class="lang-ts">const ref_x = ref.at(b, &quot;x&quot;); // error, `b` has not yet been declared
+let b = { x: 1 };
+</code></pre><h2 id="forward-references-for-decorators">Forward references for decorators</h2>
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+import { metadata } from &quot;@esfx/metadata&quot;;
+
+const Type = ref_type =&gt; metadata(&quot;design:type&quot;, ref_type);
+
+class Node {
+    @Type(ref(() =&gt; Container))
+    get parent() { /*...*/ }
+
+    @Type(ref(() =&gt; Node)) 
+    get nextSibling() { /*...*/ }
+}
+
+class Container extends Node {
+    @Type(ref(() =&gt; Node))
+    get firstChild() { /*...*/ }
+}
+</code></pre><h2 id="side-effects">Side effects</h2>
+<pre><code class="lang-ts">let count = 0;
+let e = [0, 1, 2];
+const ref_e = ref.at(e, count++); // `count++` is evaluated when Reference is taken.
+print(ref_e.value); // 0
+print(ref_e.value); // 0
+print(count); // 1
+</code></pre><h1 id="api">API</h1>
+<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/ref.html">here</a>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h3 id="functions">Functions
+  </h3>
+  
+  
+  <h4 id="ref_ref_Function" data-uid="ref.ref_Function">ref(get, set)</h4>
+  <div class="markdown level1 summary"><p>Create a reference to a value in the current lexical scope.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare function ref&lt;T&gt;(get: () =&gt; T, set?: (value: T) =&gt; void): Reference&lt;T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">() =&gt; T</span></td>
+        <td><em>get</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">(value: T) =&gt; void</span></td>
+        <td><em>set</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Reference&lt;T&gt;</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ref_ref_Namespace__for" data-uid="ref.ref_Namespace._for">ref_Namespace._for</h4>
+  <div class="markdown level1 summary"><p>Creates a <code>ref</code> for an initial value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">function _for&lt;T&gt;(value: T): Reference&lt;T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><em>value</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Reference&lt;T&gt;</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ref_ref_Namespace__is" data-uid="ref.ref_Namespace._is">ref_Namespace._is</h4>
+  <div class="markdown level1 summary"><p>Determines whether <code>value</code> is a [[ref]].</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">function _is(value: unknown): value is Reference&lt;any&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">unknown</span></td>
+        <td><em>value</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">value is Reference&lt;any&gt;</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ref_ref_Namespace_at" data-uid="ref.ref_Namespace.at">ref_Namespace.at</h4>
+  <div class="markdown level1 summary"><p>Creates a <code>ref</code> to a property of an object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">function at&lt;T, K extends keyof T&gt;(object: T, key: K, readonly?: boolean): Reference&lt;T[K]&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><em>object</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">K</span></td>
+        <td><em>key</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">boolean</span></td>
+        <td><em>readonly</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Reference&lt;T[K]&gt;</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ref_ref_Namespace_out_Function" data-uid="ref.ref_Namespace.out_Function">ref_Namespace.out_Function</h4>
+  <div class="markdown level1 summary"><p>Creates a <code>ref</code> that must be set before it can be read.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">function out&lt;T&gt;(): Reference&lt;T&gt;;</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Reference&lt;T&gt;</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="ref_ref_Namespace_out_Function_1" data-uid="ref.ref_Namespace.out_Function_1">ref_Namespace.out_Function_1</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">function out&lt;T&gt;(get: () =&gt; T, set: (value: T) =&gt; void): Reference&lt;T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">() =&gt; T</span></td>
+        <td><em>get</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">(value: T) =&gt; void</span></td>
+        <td><em>set</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Reference&lt;T&gt;</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

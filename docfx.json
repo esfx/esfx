@@ -1,0 +1,18 @@
+{
+    "build": {
+      "content": [
+        {
+          "files": [
+            "**/*.yml",
+            "**/*.md"
+          ],
+          "src": "obj/docs",
+          "dest": "."
+        }
+      ],
+      "globalMetadata": {
+        "_appTitle": "@esfx API Reference"
+      },
+      "dest": "docs"
+    }
+  }

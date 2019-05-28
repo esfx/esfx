@@ -4,3 +4,4 @@ dist
 !scripts/**/dist
 *.log
 *.tsbuildinfo
+/obj

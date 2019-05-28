@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Package @esfx/collection-core-dom-shim
+   | @esfx API Reference </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Package @esfx/collection-core-dom-shim
+   | @esfx API Reference ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="collection-core-dom-shim">
+  
+  
+  <h1 id="collection_core_dom_shim" data-uid="collection-core-dom-shim">Package @esfx/collection-core-dom-shim
+  </h1>
+  <div class="markdown level0 summary"><h1 id="esfxcollection-core-dom-shim"><code>@esfx/collection-core-dom-shim</code></h1>
+<p>The <code>@esfx/collection-core-dom-shim</code> package provides a global shim to add default @esfx/collection-core behaviors to global DOM objects.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/collection-core-dom-shim
+</code></pre><h1 id="usage">Usage</h1>
+<p>The global shim adds a default implementation the collection interfaces to the following global DOM objects:</p>
+<ul>
+<li><code>AudioParamMap</code> implements:<ul>
+<li><code>ReadonlyKeyedCollection</code></li>
+</ul>
+</li>
+<li><code>AudioTrackList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>CSSRuleList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>CSSStyleDeclaration</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>ClientRectList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>DOMRectList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>DOMStringList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>DOMTokenList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>DataTransferItemList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>FileList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>FormData</code> implements:<ul>
+<li><code>KeyedCollection</code></li>
+<li><code>ReadonlyKeyedCollection</code></li>
+</ul>
+</li>
+<li><code>HTMLAllCollection</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>HTMLCollectionBase</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>HTMLCollectionOf</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>HTMLFormElement</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>HTMLSelectElement</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>Headers</code> implements:<ul>
+<li><code>KeyedCollection</code></li>
+<li><code>ReadonlyKeyedCollection</code></li>
+</ul>
+</li>
+<li><code>MediaKeyStatusMap</code> implements:<ul>
+<li><code>ReadonlyKeyedCollection</code></li>
+</ul>
+</li>
+<li><code>MediaList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>MimeTypeArray</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>NamedNodeMap</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>NodeList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>Plugin</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>PluginArray</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>RTCStatsReport</code> implements:<ul>
+<li><code>ReadonlyKeyedCollection</code></li>
+</ul>
+</li>
+<li><code>SVGLengthList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>SVGNumberList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>SVGStringList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>SourceBufferList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>SpeechGrammarList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>SpeechRecognitionResult</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>SpeechRecognitionResultList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>StyleSheetList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>TextTrackCueList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>TextTrackList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>TouchList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+<li><code>URLSearchParams</code> implements:<ul>
+<li><code>KeyedCollection</code></li>
+<li><code>ReadonlyKeyedCollection</code></li>
+<li><code>ReadonlyKeyedCollection</code></li>
+</ul>
+</li>
+<li><code>VideoTrackList</code> implements:<ul>
+<li><code>ReadonlyIndexedCollection</code></li>
+<li><code>ReadonlyCollection</code></li>
+</ul>
+</li>
+</ul>
+<p>To install the global shim, import <code>@esfx/collection-core-dom-shim</code>:</p>
+<pre><code class="lang-ts">import &quot;@esfx/collection-core-dom-shim&quot;; // triggers global-scope side effects
+import { ReadonlyIndexedCollection } from &quot;@esfx/collection-core&quot;;
+
+document.anchors[ReadonlyIndexedCollection.size]; // gets the number of anchors in the document
+</code></pre></div>
+  <div class="markdown level0 conceptual"></div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

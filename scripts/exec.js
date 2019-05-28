@@ -11,15 +11,16 @@ const isWindows = /^win/.test(process.platform);
  * @param {boolean} [options.ignoreExitCode]
  * @param {boolean} [options.verbose]
  * @param {CancellationToken} [options.cancelToken]
+ * @param {string} [options.cwd]
  * @returns {Promise<{exitCode: number}>}
  */
-function exec(cmd, args, { ignoreExitCode, verbose, cancelToken = CancellationToken.none } = {}) {
+function exec(cmd, args = [], { ignoreExitCode, verbose, cancelToken = CancellationToken.none, cwd } = {}) {
     return new Promise((resolve, reject) => {
         cancelToken.throwIfCancellationRequested();
         const shell = isWindows ? "cmd" : "/bin/sh";
         const shellArgs = isWindows ? ["/c", cmd.includes(" ") >= 0 ? `"${cmd}"` : cmd, ...args] : ["-c", `${cmd} ${args.join(" ")}`];
         if (verbose) log(`> ${chalk.green(cmd)} ${args.join(" ")}`);
-        const child = spawn(shell, shellArgs, { stdio: "inherit", windowsVerbatimArguments: true });
+        const child = spawn(shell, shellArgs, { stdio: "inherit", cwd, windowsVerbatimArguments: true });
         const reg = cancelToken.register(() => {
             child.removeAllListeners();
             if (verbose) log(`${chalk.red("killing")} '${chalk.green(cmd)} ${args.join(" ")}'...`);
@@ -50,16 +51,27 @@ class ArgsBuilder {
     constructor(args = []) {
         this.args = args;
     }
-    add(name, value, defaultValue) {
+    addValue(value) {
+        if (value === undefined) return;
+        if (Array.isArray(value)) {
+            for (const v of value) {
+                this.addValue(v);
+            }
+        }
+        else {
+            this.args.push(value);
+        }
+    }
+    addSwitch(name, value, defaultValue) {
         if (!name || value === undefined || value === defaultValue) return;
         if (Array.isArray(value)) {
             for (const v of value) {
-                this.add(name, v, defaultValue);
+                this.addSwitch(name, v, defaultValue);
             }
         }
         else if (typeof name === "object") {
             for (const key of Object.keys(name)) {
-                this.add(key, name[key], defaultValue && typeof defaultValue === "object" ? defaultValue[key] : defaultValue);
+                this.addSwitch(key, name[key], defaultValue && typeof defaultValue === "object" ? defaultValue[key] : defaultValue);
             }
         }
         else if (typeof name === "string") {

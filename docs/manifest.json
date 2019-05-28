@@ -1,0 +1,1306 @@
+{
+  "homepages": [],
+  "source_base_path": "C:/dev/esfx",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-autoresetevent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-autoresetevent.html",
+          "hash": "dsOVSpF+5BWQQyPBFrTylg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-autoresetevent/asyncautoresetevent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-autoresetevent/asyncautoresetevent.html",
+          "hash": "VrBBfYUas5LTgI6/hrLJ2A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-barrier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-barrier.html",
+          "hash": "n5sOupF/acEobVl83+HPyA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-barrier/asyncbarrier.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-barrier/asyncbarrier.html",
+          "hash": "zJXyFWPqxrmr+ume45lBig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-canceltoken.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-canceltoken.html",
+          "hash": "V2KBZLiXvD5z1Q0eyEh7Gw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-canceltoken/cancelsource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-canceltoken/cancelsource.html",
+          "hash": "bBnBv8T7Vux+Hh3MmQmj5w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-canceltoken/canceltoken.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-canceltoken/canceltoken.html",
+          "hash": "oE3jTV9pJQSk6O7yLzc7qw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-conditionvariable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-conditionvariable.html",
+          "hash": "7xwfoaD/pC/9nGACV6FVXA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-conditionvariable/asyncconditionvariable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-conditionvariable/asyncconditionvariable.html",
+          "hash": "L4Lx/vBObPu/m3ipeqRb7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-countdown.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-countdown.html",
+          "hash": "m2MrT1vyfUHu869OtYN7Zw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-countdown/asynccountdownevent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-countdown/asynccountdownevent.html",
+          "hash": "M7CoCpVRtqjBFdwzwZkkCg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-deferred.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-deferred.html",
+          "hash": "aVKcF72W8VvphVZnqNAWKQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-deferred/deferred.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-deferred/deferred.html",
+          "hash": "jXwDe7IJcF0COuuJdqPNqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-delay.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-delay.html",
+          "hash": "sLr0ppJkvF8HgcYYbGvvIQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-lazy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-lazy.html",
+          "hash": "Ip2523osVMj1vyYK1dWMqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-lazy/asynclazy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-lazy/asynclazy.html",
+          "hash": "7mWMGxl79Z9FiyJI7dXnkQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-lockable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-lockable.html",
+          "hash": "RsUWDsTmhXvbLCczxqRqyA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-lockable/asynclockable_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-lockable/asynclockable_interface.html",
+          "hash": "Gl7WV5kXVE9Dn4ATUUgEiw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-lockable/lockhandle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-lockable/lockhandle.html",
+          "hash": "F6q9IfNkb4SgysyVg75zSA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-lockable/upgradeablelockhandle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-lockable/upgradeablelockhandle.html",
+          "hash": "CUfzOOfjwE/Xr3vNaQan8w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-manualresetevent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-manualresetevent.html",
+          "hash": "lXWi3WVo+JVv2yPGsgY4mQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-manualresetevent/asyncmanualresetevent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-manualresetevent/asyncmanualresetevent.html",
+          "hash": "P4oiJzdZLZc2A6mwOBqLkA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-mutex.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-mutex.html",
+          "hash": "JqIoSCe+fDi4evOTw71jOA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-mutex/asyncmutex.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-mutex/asyncmutex.html",
+          "hash": "aXVYy1P5MHiz+Yl2CPgcbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-queue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-queue.html",
+          "hash": "IzosXWDpr6eKcXA01itH3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-queue/asyncqueue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-queue/asyncqueue.html",
+          "hash": "khFw5OCg+J5eUnr7/ygzog=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-readerwriterlock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-readerwriterlock.html",
+          "hash": "S5wkYMvX+ekMTWYn1L1vrw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-readerwriterlock/asyncreaderwriterlock.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-readerwriterlock/asyncreaderwriterlock.html",
+          "hash": "xGy1iHQxQBFr3t0cPhtjSQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-readerwriterlock/asyncreaderwriterlockreader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-readerwriterlock/asyncreaderwriterlockreader.html",
+          "hash": "QsUnNL4V3yP80te5hFkMdA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-readerwriterlock/asyncreaderwriterlockupgradeablereader.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-readerwriterlock/asyncreaderwriterlockupgradeablereader.html",
+          "hash": "enrTB2JAol5mtkh0/X7X4A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-readerwriterlock/asyncreaderwriterlockupgradedwriter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-readerwriterlock/asyncreaderwriterlockupgradedwriter.html",
+          "hash": "FevDhJKA1pskmiNkXFGchw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-readerwriterlock/asyncreaderwriterlockwriter.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-readerwriterlock/asyncreaderwriterlockwriter.html",
+          "hash": "obg/h5rWcW9ToadGDm6yLg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-semaphore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-semaphore.html",
+          "hash": "G/4RbNPIM8XEp2F8gex4Kg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-semaphore/asyncsemaphore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-semaphore/asyncsemaphore.html",
+          "hash": "jzHfHSGQ7FqYN+CpPebnkA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-stack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-stack.html",
+          "hash": "uRo2pLgNCy6dRFwS9dq4Bw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-stack/asyncstack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-stack/asyncstack.html",
+          "hash": "9LQKFlFh/mx4ndp5IuaWHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-waitqueue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-waitqueue.html",
+          "hash": "vsaPga6fQ5Mi5PPVztrhSw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async-waitqueue/waitqueue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-waitqueue/waitqueue.html",
+          "hash": "YIWdw5E6nHW+nNjgMrV/TA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/async.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async.html",
+          "hash": "sKCI5bcIvvVKPxSmOZSDlA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/cancelable-dom-shim.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/cancelable-dom-shim.html",
+          "hash": "noz/+SPsLl0UhByEdrQYYA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/cancelable-dom.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/cancelable-dom.html",
+          "hash": "O4UYJ9yxdXSxGPDo2pZyew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/cancelable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/cancelable.html",
+          "hash": "ZxhSzNznXqS92vPerGZZmQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/cancelable/cancelable_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/cancelable/cancelable_interface.html",
+          "hash": "cIlZoogrjkCeLadHJ16IBw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/cancelable/cancelablecancelsignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/cancelable/cancelablecancelsignal.html",
+          "hash": "1+HBqB99O52DK1B2oC6nzA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/cancelable/cancelablesource_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/cancelable/cancelablesource_interface.html",
+          "hash": "5XJh6Lglxq6XodQAq3vU7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/cancelable/cancelerror.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/cancelable/cancelerror.html",
+          "hash": "H87GQj1mxbOMnWP4I8Yrkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/cancelable/cancelsignal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/cancelable/cancelsignal.html",
+          "hash": "ZLiknzfHF1Qhayuuu0f9zw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/cancelable/cancelsubscription_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/cancelable/cancelsubscription_interface.html",
+          "hash": "S6aNx/wkaBlIJ7GEG1tPhA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collection-core-dom-shim.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core-dom-shim.html",
+          "hash": "iKvx6ZLqOOtmFYe676/rmw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collection-core-shim.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core-shim.html",
+          "hash": "X2tIT0Yx0xoYDBhsi841Gw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collection-core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core.html",
+          "hash": "1Fi6aEuHBMJYJ5+ypSS57Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collection-core/collection_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/collection_interface.html",
+          "hash": "WhSyK6CBMPN8jfmDGeIWrA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collection-core/fixedsizeindexedcollection_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/fixedsizeindexedcollection_interface.html",
+          "hash": "iH02fkZTL1tsWu5/EfIR4Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collection-core/indexedcollection_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/indexedcollection_interface.html",
+          "hash": "14KRhRhegJeMNxwX5+2qDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collection-core/keyedcollection_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/keyedcollection_interface.html",
+          "hash": "9M7SR2asRAko1zWDT36Q8g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collection-core/readonlycollection_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/readonlycollection_interface.html",
+          "hash": "WTC3Lj/IDAyvbe+pMtJHAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collection-core/readonlyindexedcollection_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/readonlyindexedcollection_interface.html",
+          "hash": "Yh61TeHgYRlJSFPE3oYlhg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collection-core/readonlykeyedcollection_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/readonlykeyedcollection_interface.html",
+          "hash": "EyFh7ab+AZWNkiQ62MGnDw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collections-hashmap.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collections-hashmap.html",
+          "hash": "XACV2ejXKrUwa2X0MjpwJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collections-hashmap/hashmap.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collections-hashmap/hashmap.html",
+          "hash": "jIaKAhZ7q4ZeSjVNizEXhw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collections-hashset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collections-hashset.html",
+          "hash": "o9Q7+scl3BwMSQhkpw8krQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collections-hashset/hashset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collections-hashset/hashset.html",
+          "hash": "3iIrKXLHn5gb0AMvYnEZjg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collections-linkedlist.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collections-linkedlist.html",
+          "hash": "+RjoVKinnh0fQAqq/8FkuA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collections-linkedlist/linkedlist.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collections-linkedlist/linkedlist.html",
+          "hash": "B/uH8BqPUOYG7aHZqpkNCQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collections-linkedlist/linkedlistnode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collections-linkedlist/linkedlistnode.html",
+          "hash": "d7q9Hy4DrMnjs+jRY8IOHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collections-sortedmap.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collections-sortedmap.html",
+          "hash": "Oq4Wc2CjAoiXtojn21v/Kg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collections-sortedmap/sortedmap.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collections-sortedmap/sortedmap.html",
+          "hash": "g3qgut5yBfjojZW72mG04A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collections-sortedset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collections-sortedset.html",
+          "hash": "X3vGADTEtu/iMWEFL0S6KA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collections-sortedset/sortedset.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collections-sortedset/sortedset.html",
+          "hash": "o39myf6WwcAd1AfCGduq7Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/collections.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collections.html",
+          "hash": "6nKcPc+wUn9pyKAEDS1U+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/decorators-stage1-core.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/decorators-stage1-core.html",
+          "hash": "rP/JsaTdPN0UuX28s8bvHQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/decorators-stage1-core/accessormemberdescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/decorators-stage1-core/accessormemberdescriptor.html",
+          "hash": "Mfb58slWO5t7f0nl1Q0p7w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/decorators-stage1-core/classdescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/decorators-stage1-core/classdescriptor.html",
+          "hash": "Q2AGuFGfje9X3Uwy1+bYIA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/decorators-stage1-core/fieldmemberdescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/decorators-stage1-core/fieldmemberdescriptor.html",
+          "hash": "sPUTptMob+bIa0RaN8nF/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/decorators-stage1-core/memberdescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/decorators-stage1-core/memberdescriptor.html",
+          "hash": "DtxCfMszR8gVNT6Bc417Rg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/decorators-stage1-core/methodmemberdescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/decorators-stage1-core/methodmemberdescriptor.html",
+          "hash": "p0EFOUMovRc4gohSz3j7RA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/decorators-stage1-core/parameterdescriptor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/decorators-stage1-core/parameterdescriptor.html",
+          "hash": "MLPs9FConzohomDT3pzFfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/decorators.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/decorators.html",
+          "hash": "JUYHKwxGt2K1pDHErm1dTA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/disposable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/disposable.html",
+          "hash": "B+L7l1UM83dp5YqDoxiV+w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/disposable/asyncdisposable_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/disposable/asyncdisposable_interface.html",
+          "hash": "/6XISFzZrsJDx8AKYRNfxw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/disposable/disposable_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/disposable/disposable_interface.html",
+          "hash": "rEbUxed2OLOYHGo4O8ttiA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/equatable-shim.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable-shim.html",
+          "hash": "0PPiQS0ZigAqVDqXg4RS2Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/equatable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable.html",
+          "hash": "wwF0CkjrpdWyHU6weyHqDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/equatable/comparable_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable/comparable_interface.html",
+          "hash": "bzhlGe9mfMu97p4eFMylXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/equatable/comparer_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable/comparer_interface.html",
+          "hash": "JF5sAh91evJAdhmen+HquA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/equatable/equaler_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable/equaler_interface.html",
+          "hash": "4Cw3CE8mQx9tAmd1brvNAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/equatable/equatable_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable/equatable_interface.html",
+          "hash": "nVpWJf2UtkrMpyx8OWYmmQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/equatable/structuralcomparable_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable/structuralcomparable_interface.html",
+          "hash": "HneZnIjTT1sfyDyxyJusXw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/equatable/structuralequatable_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable/structuralequatable_interface.html",
+          "hash": "ZGIfW+BchEi9oUEp6z+PUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/events.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/events.html",
+          "hash": "Dr5xyIEi8kKKyc+cCZctVQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/events/event_class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/events/event_class.html",
+          "hash": "36C8VUYqbVw2VDqUfFovHw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/events/event_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/events/event_interface.html",
+          "hash": "TjGkXshQEu+hofIFTHVWOg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/events/eventsource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/events/eventsource.html",
+          "hash": "2iypwUJDlrGT6vDjNWvhAQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/indexed-object.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/indexed-object.html",
+          "hash": "JvNqfg6nyXnLkNENWUOaPA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/indexed-object/integerindexedobject.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/indexed-object/integerindexedobject.html",
+          "hash": "TesC070uY+BJwScwNYOnuw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/lazy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/lazy.html",
+          "hash": "zawpWPqJaDXdkwucjZySYQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/lazy/lazy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/lazy/lazy.html",
+          "hash": "7PJiBMD9/CWpENEpnM9gkw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/metadata-shim.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/metadata-shim.html",
+          "hash": "zIs2lKDPcwgoMyWs7h1tmQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/metadata.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/metadata.html",
+          "hash": "pgFaTh/0MnMJ1oYYISeY1g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/ref.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ref.html",
+          "hash": "nPAxkARLopYISFvTP3BCiA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/ref/reference.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ref/reference.html",
+          "hash": "D8bHJR9KxxChEhgQ/9SLHA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/reflect-metadata-compat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/reflect-metadata-compat.html",
+          "hash": "uYjuI+FX/0L3Sg9RZBPc5A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/docs/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "2x89Ynp6sjnAj40948PheA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "log_codes": [
+        "UidNotFound"
+      ],
+      "type": "Conceptual",
+      "source_relative_path": "obj/docs/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html",
+          "hash": "wYQ4nONyLXp58PZakEZkRg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    }
+  ],
+  "incremental_info": [
+    {
+      "status": {
+        "can_incremental": true,
+        "incrementalPhase": "build",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {
+        "TocDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 1
+        },
+        "UniversalReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor UniversalReferenceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        }
+      }
+    },
+    {
+      "status": {
+        "can_incremental": true,
+        "details": "Can support incremental post processing.",
+        "incrementalPhase": "postProcessing",
+        "total_file_count": 0,
+        "skipped_file_count": 0
+      },
+      "processors": {}
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

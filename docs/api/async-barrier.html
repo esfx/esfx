@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Package @esfx/async-barrier
+   | @esfx API Reference </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Package @esfx/async-barrier
+   | @esfx API Reference ">
+    <meta name="generator" content="docfx 2.42.4.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="async-barrier">
+  
+  
+  <h1 id="async_barrier" data-uid="async-barrier">Package @esfx/async-barrier
+  </h1>
+  <div class="markdown level0 summary"><h1 id="esfxasync-barrier"><code>@esfx/async-barrier</code></h1>
+<p>The <code>@esfx/async-barrier</code> package provides the <code>AsyncBarrier</code> class, an async coordination primitive.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#api">API</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/async-barrier
+</code></pre><h1 id="usage">Usage</h1>
+<pre><code class="lang-ts">import { AsyncBarrier } from &quot;@esfx/async-barrier&quot;;
+
+async function main() {
+    let count = 0;
+
+    // Create a barrier with 3 participants and a post-phase action to print results.
+    // When phase 2 completes, throw an exception to be observed by all participants.
+    const barrier = new AsyncBarrier(3, b =&gt; {
+        console.log(`Post-phase action: count=${count}, phase=${b.currentPhaseNumber}`);
+        if (b.currentPhaseNumber === 2) throw new Error(&quot;Oops&quot;);
+    });
+
+    // Add two participants
+    barrier.add(2);
+    barrier.participantCount; // 5
+
+    // Remove one participant
+    barrier.remove();
+    barrier.participantcount; // 4
+
+    const action = async () =&gt; {
+        count++;
+
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 4 and 
+        // &#39;phase&#39; will be 0.
+        await barrier.signalAndWait();
+
+        count++;
+
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 8 and 
+        // &#39;phase&#39; will be 1.
+        await barrier.signalAndWait();
+
+        count++;
+
+        // When phase 2 ends an exception is thrown to all participants:
+        try {
+            await barrier.signalAndWait();
+        }
+        catch (e) {
+            console.log(`Caught error: ${e.message}`);
+        }
+
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 16 and 
+        // &#39;phase&#39; will be 3.
+        await barrier.signalAndWait();
+    };
+
+    // Start 4 async actions to serve as the 4 participants.
+    await Promise.all([action(), action(), action(), action()]);
+}
+
+main();
+// prints:
+// Post-phase action: count=4, phase=0
+// Post-phase action: count=8, phase=1
+// Post-phase action: count=12, phase=2
+// Caught error: Oops
+// Post-phase action: count=16, phase=3
+</code></pre><h1 id="api">API</h1>
+<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/async_barrier.html">here</a>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
