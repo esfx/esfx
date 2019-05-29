@@ -7,65 +7,18 @@ const { exec, ArgsBuilder } = require("./scripts/exec");
 const { argv } = require("yargs");
 const { apiExtractor, apiDocumenter, docfx } = require("./scripts/docs");
 
-const internalPackages = [
-    "internal/binarysearch",
-    "internal/collections-hash",
-    "internal/guards",
-    "internal/hashcode",
-    "internal/integers",
-    "internal/murmur3",
-    "internal/tag",
-    // hygen: add new internal projects above this line
-];
-
-const publicPackages = [
-    "packages/async-autoresetevent",
-    "packages/async-barrier",
-    "packages/async-canceltoken",
-    "packages/async-conditionvariable",
-    "packages/async-countdown",
-    "packages/async-deferred",
-    "packages/async-delay",
-    "packages/async-lazy",
-    "packages/async-lockable",
-    "packages/async-manualresetevent",
-    "packages/async-mutex",
-    "packages/async-queue",
-    "packages/async-readerwriterlock",
-    "packages/async-semaphore",
-    "packages/async-stack",
-    "packages/async-waitqueue",
-    "packages/async",
-    "packages/cancelable-dom-shim",
-    "packages/cancelable-dom",
-    "packages/cancelable",
-    "packages/collection-core-dom-shim",
-    "packages/collection-core-shim",
-    "packages/collection-core",
-    "packages/collections-hashmap",
-    "packages/collections-hashset",
-    "packages/collections-linkedlist",
-    "packages/collections-sortedmap",
-    "packages/collections-sortedset",
-    "packages/collections",
-    "packages/decorators-stage1-core",
-    "packages/decorators",
-    "packages/disposable",
-    "packages/equatable-shim",
-    "packages/equatable",
-    "packages/events",
-    "packages/indexed-object",
-    "packages/lazy",
-    "packages/metadata-shim",
-    "packages/metadata",
-    "packages/ref",
-    "packages/reflect-metadata-compat",
-    "packages/type-model",
-    // hygen: add new public projects above this line
-];
+const internalPackages = fs.readdirSync("internal")
+    .map(name => `internal/${name}`)
+    .filter(pkg => fs.existsSync(`${pkg}/tsconfig.json`))
+    .sort();
 
 const { build: build_internal, clean: clean_internal } = makeProjects(internalPackages);
 gulp.task("internal", build_internal);
+
+const publicPackages = fs.readdirSync("packages")
+    .map(name => `packages/${name}`)
+    .filter(pkg => fs.existsSync(`${pkg}/tsconfig.json`))
+    .sort();
 
 const { build: build_packages, clean: clean_packages } = makeProjects(publicPackages);
 gulp.task("packages", build_packages);
