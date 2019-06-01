@@ -1,0 +1,27 @@
+{
+    "name": "@esfx/threading-semaphore",
+    "version": "1.0.0-pre.6",
+    "description": "Provides 'Semaphore', a thread synchronization primitive for use with Workers",
+    "main": "dist",
+    "types": "dist",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "dependencies": {
+        "@esfx/disposable": "^1.0.0-pre.6",
+        "@esfx/internal-threading": "^1.0.0-pre.6",
+        "tslib": "^1.9.3"
+    },
+    "devDependencies": {
+        "@esfx/internal-ts-worker": "^1.0.0-pre.6"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

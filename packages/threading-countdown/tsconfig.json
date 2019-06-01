@@ -1,0 +1,16 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../../internal/integers" },
+        { "path": "../../internal/threading" },
+        { "path": "../../internal/ts-worker" },
+        { "path": "../disposable" },
+        { "path": "../threading-manualresetevent" },
+        { "path": "../threading-spinwait" },
+    ]
+}

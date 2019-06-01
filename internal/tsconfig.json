@@ -11,6 +11,8 @@
         { "path": "./integers" },
         { "path": "./murmur3" },
         { "path": "./tag" },
+        { "path": "./threading" },
+        { "path": "./ts-worker" },
         // hygen: add new project references above this line
     ]
 }

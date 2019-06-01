@@ -1,0 +1,16 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../../internal/threading" },
+        { "path": "../../internal/ts-worker" },
+        { "path": "../struct-type" },
+        { "path": "../threading-lockable" },
+        { "path": "../threading-mutex" },
+        { "path": "../disposable" },
+    ]
+}

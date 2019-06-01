@@ -10,6 +10,7 @@ module.exports = {
     },
     testPathIgnorePatterns: [
         '/dist/',
+        '/workers/',
     ],
     globals: {
         'ts-jest': {

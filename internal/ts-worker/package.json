@@ -1,0 +1,25 @@
+{
+    "name": "@esfx/internal-ts-worker",
+    "version": "1.0.0-pre.6",
+    "description": "This package provides internal utilities for '@esfx' and is not intended for use in user-code.",
+    "private": true,
+    "main": "dist",
+    "types": "dist",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "dependencies": {
+        "tslib": "^1.9.3",
+        "ts-node": "^8.2.0",
+        "source-map-support": "^0.5.12"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

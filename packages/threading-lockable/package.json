@@ -1,0 +1,22 @@
+{
+    "name": "@esfx/threading-lockable",
+    "version": "1.0.0-pre.6",
+    "description": "A low-level Symbol-based API for defining locking semantics for thread synchronization primitives for Workers",
+    "main": "dist",
+    "types": "dist",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "dependencies": {
+        "tslib": "^1.9.3"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

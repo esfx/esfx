@@ -44,6 +44,16 @@
         { "path": "./ref" },
         { "path": "./reflect-metadata-compat" },
         { "path": "./type-model" },
+        { "path": "./threading-autoresetevent" },
+        { "path": "./threading-manualresetevent" },
+        { "path": "./threading-mutex" },
+        { "path": "./threading-sleep" },
+        { "path": "./threading-conditionvariable" },
+        { "path": "./threading-countdown" },
+        { "path": "./threading-semaphore" },
+        { "path": "./threading-lockable" },
+        { "path": "./struct-type" },
+        { "path": "./threading-spinwait" },
         // hygen: add new project references above this line
     ]
 }
