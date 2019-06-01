@@ -4,9 +4,9 @@ to: <%=packagePath%>/README.md
 <% if (internal) { -%>
 This package provides internal utilities for `@esfx` and is not intended for use in user-code.
 <% } else { -%>
-# `<%=packageName%>`
+# `<%-packageName%>`
 
-<%=description%>
+<%-description%>
 
 # Overview
 
@@ -17,7 +17,7 @@ This package provides internal utilities for `@esfx` and is not intended for use
 # Installation
 
 ```sh
-npm i <%=packageName%>
+npm i <%-packageName%>
 ```
 
 # Usage
@@ -27,6 +27,5 @@ npm i <%=packageName%>
 
 # API
 
-```ts
-```
+You can read more about the API [here](https://esfx.github.io/esfx/modules/<%-unscopedPackageName.replace(/-/g, "_")%>.html).
 <% } %>

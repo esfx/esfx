@@ -54,6 +54,7 @@
         { "path": "./threading-lockable" },
         { "path": "./struct-type" },
         { "path": "./threading-spinwait" },
+        { "path": "./threading" },
         // hygen: add new project references above this line
     ]
 }

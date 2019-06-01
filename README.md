@@ -38,6 +38,16 @@ The main packages in the `@esfx` suite include:
 - [`@esfx/lazy`](packages/lazy#readme) - Provides a class to simplify lazy-initialization logic.
 - [`@esfx/metadata`](packages/metadata#readme) - An API for defining metadata about an object.
 - [`@esfx/ref`](packages/ref#readme) - A low-level API for defining forward references.
+- [`@esfx/threading`](packages/threading#readme) - Thread synchronization primitives for use with Workers:
+    - [`@esfx/threading-autoresetevent`](packages/threading-autoresetevent#readme)
+    - [`@esfx/threading-conditionvariable`](packages/threading-conditionvariable#readme)
+    - [`@esfx/threading-countdown`](packages/threading-countdown#readme)
+    - [`@esfx/threading-lockable`](packages/threading-lockable#readme)
+    - [`@esfx/threading-manualresetevent`](packages/threading-manualresetevent#readme)
+    - [`@esfx/threading-mutex`](packages/threading-mutex#readme)
+    - [`@esfx/threading-semaphore`](packages/threading-semaphore#readme)
+    - [`@esfx/threading-sleep`](packages/threading-sleep#readme)
+    - [`@esfx/threading-spinwait`](packages/threading-spinwait#readme)
 - [`@esfx/type-model`](packages/type-model#readme) - A number of useful types for TypeScript.
 
 # Shims

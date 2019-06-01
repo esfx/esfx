@@ -4,7 +4,7 @@ to: <%=packagePath%>/package.json
 {
     "name": "<%=packageName%>",
     "version": "<%=version%>",
-    "description": "<%=description%>",
+    "description": "<%-description%>",
     "main": "dist",
     "types": "dist",
     "author": "Ron Buckton (rbuckton@chronicles.org)",

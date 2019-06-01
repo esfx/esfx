@@ -61,6 +61,8 @@ module.exports = {
                 : true
         });
 
+        const unscopedPackageName = packageName.replace(/^@\w+\//, "");
+
         const { description } = await prompter.prompt({
             type: "input",
             name: "description",
@@ -100,6 +102,7 @@ module.exports = {
             rootRelativePackagePath: cleanPath(path.relative(resolvedRootPath, resolvedPackagePath)).replace(/^\.\//, ""),
             prefixRelativePackagePath: cleanPath(path.relative(resolvedPrefix, resolvedPackagePath)),
             packageName,
+            unscopedPackageName,
             description,
             dependencies,
             injectGulpfileBefore: `add new ${internal ? "internal" : "public"} projects above this line`,

@@ -1228,12 +1228,312 @@
       "version": ""
     },
     {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/struct-type.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/struct-type.html",
+          "hash": "hEj22qfSXLjYYv5gO9/whA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/struct-type/struct.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/struct-type/struct.html",
+          "hash": "i8YLiVWs2j08QS2kGtfwyg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/struct-type/structclass.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/struct-type/structclass.html",
+          "hash": "uzaMvRRv4UpLq6djjleKTQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/struct-type/structfielddefinition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/struct-type/structfielddefinition.html",
+          "hash": "rhD8m0Rk2wFI0X5bhrZ3Qg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/struct-type/structprimitivetype.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/struct-type/structprimitivetype.html",
+          "hash": "sw5X/yQOV6p/7GsL1Mx2uQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/struct-type/structtype_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/struct-type/structtype_interface.html",
+          "hash": "j4/mZ5Sy8F50oJ55us4Gqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/struct-type/structtypeconstructor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/struct-type/structtypeconstructor.html",
+          "hash": "qiVtaJvUWo+gVJYELDs1/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-autoresetevent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-autoresetevent.html",
+          "hash": "JAkKN9/3Kdtahi6s4yqyEQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-autoresetevent/autoresetevent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-autoresetevent/autoresetevent.html",
+          "hash": "VwD5NQi17qjaV28AzcpDag=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-conditionvariable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-conditionvariable.html",
+          "hash": "wZ7BMy4Wt2irNhfXbyADtg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-conditionvariable/conditionvariable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-conditionvariable/conditionvariable.html",
+          "hash": "EFOgXnKf13TSK7tjOQTSPg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-countdown.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-countdown.html",
+          "hash": "4wcYjV12V5IJ2lY7NVRaZg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-countdown/countdownevent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-countdown/countdownevent.html",
+          "hash": "ASqPg5RxI6Y0fZfwj8jidA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-lockable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-lockable.html",
+          "hash": "dMY0oSZdOinaam2kh3bYLw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-lockable/lockable_interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-lockable/lockable_interface.html",
+          "hash": "oS8lrwYia4NICnrSSFGrtQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-manualresetevent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-manualresetevent.html",
+          "hash": "GrNF9UFFcjJ24eGfLmbAYg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-manualresetevent/manualresetevent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-manualresetevent/manualresetevent.html",
+          "hash": "VL9+XJRWBjsvOtVrGe3vqA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-mutex.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-mutex.html",
+          "hash": "WbBq1ocMh4/3xsoNaZbEDQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-mutex/mutex.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-mutex/mutex.html",
+          "hash": "1Xjd4PQtz6gePhEcQWOnbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-semaphore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-semaphore.html",
+          "hash": "QzkQz3hLWrSeC9QnrD5i6g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-semaphore/semaphore.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-semaphore/semaphore.html",
+          "hash": "lE69kSiF2XL4JSflGirwBA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-sleep.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-sleep.html",
+          "hash": "qK5TmRXoRBan11aV0lLWqQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-spinwait.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-spinwait.html",
+          "hash": "g3xbQwaLBuOjae76HpWimw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading-spinwait/spinwait.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-spinwait/spinwait.html",
+          "hash": "jZgBeePsdRB9rV2F9FPHPQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/docs/api/threading.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading.html",
+          "hash": "tEqGZFAD10dMHZ2QnqXwKQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "obj/docs/api/toc.yml",
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "2x89Ynp6sjnAj40948PheA=="
+          "hash": "U5HWGKt+xIeMrTkOG8s49A=="
         }
       },
       "is_incremental": false,
@@ -1248,10 +1548,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "wYQ4nONyLXp58PZakEZkRg=="
+          "hash": "F23SNivhCBpmM/m8LYiwvQ=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     }
   ],
@@ -1282,7 +1582,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 1,
-          "skipped_file_count": 1
+          "skipped_file_count": 0
         }
       }
     },

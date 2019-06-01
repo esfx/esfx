@@ -1,0 +1,19 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../threading-autoresetevent" },
+        { "path": "../threading-conditionvariable" },
+        { "path": "../threading-countdown" },
+        { "path": "../threading-lockable" },
+        { "path": "../threading-manualresetevent" },
+        { "path": "../threading-mutex" },
+        { "path": "../threading-semaphore" },
+        { "path": "../threading-sleep" },
+        { "path": "../threading-spinwait" },
+    ]
+}

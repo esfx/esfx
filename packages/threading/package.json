@@ -1,0 +1,31 @@
+{
+    "name": "@esfx/threading",
+    "version": "1.0.0-pre.7",
+    "description": "Thread synchronization primitives for use with Workers.",
+    "main": "dist",
+    "types": "dist",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "dependencies": {
+        "tslib": "^1.9.3",
+        "@esfx/threading-autoresetevent": "^1.0.0-pre.6",
+        "@esfx/threading-conditionvariable": "^1.0.0-pre.6",
+        "@esfx/threading-countdown": "^1.0.0-pre.6",
+        "@esfx/threading-lockable": "^1.0.0-pre.6",
+        "@esfx/threading-manualresetevent": "^1.0.0-pre.6",
+        "@esfx/threading-mutex": "^1.0.0-pre.6",
+        "@esfx/threading-semaphore": "^1.0.0-pre.6",
+        "@esfx/threading-sleep": "^1.0.0-pre.6",
+        "@esfx/threading-spinwait": "^1.0.0-pre.7"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
