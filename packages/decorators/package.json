@@ -1,6 +1,6 @@
 {
     "name": "@esfx/decorators",
-    "version": "1.0.0-pre.6",
+    "version": "1.0.0-pre.8",
     "description": "A set of decorators for common tasks.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,7 +14,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/decorators-stage1-core": "^1.0.0-pre.6",
+        "@esfx/decorators-stage1-core": "^1.0.0-pre.8",
         "@esfx/internal-guards": "^1.0.0-pre.6",
         "tslib": "^1.9.3"
     },

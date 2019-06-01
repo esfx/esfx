@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-countdown",
-    "version": "1.0.0-pre.6",
+    "version": "1.0.0-pre.8",
     "description": "Provides 'CountdownEvent', a thread synchronization primitive for use with Workers",
     "main": "dist",
     "types": "dist",
@@ -14,15 +14,15 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.0.0-pre.6",
+        "@esfx/disposable": "^1.0.0-pre.8",
         "@esfx/internal-integers": "^1.0.0-pre.5",
-        "@esfx/internal-threading": "^1.0.0-pre.6",
-        "@esfx/threading-manualresetevent": "^1.0.0-pre.6",
-        "@esfx/threading-spinwait": "^1.0.0-pre.7",
+        "@esfx/internal-threading": "^1.0.0-pre.8",
+        "@esfx/threading-manualresetevent": "^1.0.0-pre.8",
+        "@esfx/threading-spinwait": "^1.0.0-pre.8",
         "tslib": "^1.9.3"
     },
     "devDependencies": {
-        "@esfx/internal-ts-worker": "^1.0.0-pre.6"
+        "@esfx/internal-ts-worker": "^1.0.0-pre.8"
     },
     "publishConfig": {
         "access": "public"

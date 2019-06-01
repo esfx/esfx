@@ -1,6 +1,6 @@
 {
     "name": "@esfx/disposable",
-    "version": "1.0.0-pre.6",
+    "version": "1.0.0-pre.8",
     "description": "A low-level API for defining explicit resource management.",
     "main": "index.js",
     "types": "index.d.ts",

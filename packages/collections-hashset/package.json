@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections-hashset",
-    "version": "1.0.0-pre.6",
+    "version": "1.0.0-pre.8",
     "description": "Provides 'HashSet', a collection class that utilizes '@esfx/collection-core' and '@esfx/equatable'.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,9 +14,9 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.0.0-pre.6",
-        "@esfx/equatable": "^1.0.0-pre.6",
-        "@esfx/internal-collections-hash": "^1.0.0-pre.6",
+        "@esfx/collection-core": "^1.0.0-pre.8",
+        "@esfx/equatable": "^1.0.0-pre.8",
+        "@esfx/internal-collections-hash": "^1.0.0-pre.8",
         "@esfx/internal-guards": "^1.0.0-pre.6",
         "tslib": "^1.9.3"
     },
