@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,18 +83,72 @@
   
   <h1 id="equatable" data-uid="equatable">Package @esfx/equatable
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxequatable"><code>@esfx/equatable</code></h1>
-<p>The <code>@esfx/equatable</code> package provides a low level API for defining equality.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Provides a low level API for defining equality.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/equatable
 </code></pre><h1 id="usage">Usage</h1>
-<pre><code class="lang-ts">import { Equatable, Equaler, Comparable, Comparer } from &quot;@esfx/equatable&quot;; 
+<div class="tabGroup" id="tabgroup_UYDTHc1nGU">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_UYDTHc1nGU_ts" role="tab" aria-controls="tabpanel_UYDTHc1nGU_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_UYDTHc1nGU_js" role="tab" aria-controls="tabpanel_UYDTHc1nGU_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_UYDTHc1nGU_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { Equatable, Equaler, Comparable, Comparer } from &quot;@esfx/equatable&quot;;
+
+class Person {
+    firstName: string;
+    lastName: string;
+    constructor(firstName: string, lastName: string) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    toString() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+
+    [Equatable.equals](other: unknown) {
+        return other instanceof Person
+            &amp;&amp; this.lastName === other.lastName
+            &amp;&amp; this.firstName === other.firstName;
+    }
+
+    [Equatable.hash]() {
+        return Equaler.defaultEqualer.hash(this.lastName)
+            ^ Equaler.defaultEqualer.hash(this.firstName);
+    }
+
+    [Comparable.compareTo](other: unknown) {
+        if (!(other instanceof Person)) throw new TypeError();
+        return Comparer.defaultComparer.compare(this.lastName, other.lastName)
+            || Comparer.defaultComparer.compare(this.firstName, other.firstName);
+    }
+}
+
+const people = [
+    new Person(&quot;Alice&quot;, &quot;Johnson&quot;)
+    new Person(&quot;Bob&quot;, &quot;Clark&quot;),
+];
+people.sort(Comparer.defaultComparer.compare);
+console.log(people); // Bob Clark,Alice Johnson
+
+const obj1 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
+const obj2 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
+obj1 === obj2; // false
+Equaler.defaultEqualer.equals(obj1, obj2); // true
+</code></pre></section>
+<section id="tabpanel_UYDTHc1nGU_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Equatable, Equaler, Comparable, Comparer } = require(&quot;@esfx/equatable&quot;);
 
 class Person {
     constructor(firstName, lastName) {
@@ -104,7 +168,7 @@ class Person {
 
     [Equatable.hash]() {
         return Equaler.defaultEqualer.hash(this.lastName)
-             ^ Equaler.defaultEqualer.hash(this.firstName);
+            ^ Equaler.defaultEqualer.hash(this.firstName);
     }
 
     [Comparable.compareTo](other) {
@@ -125,290 +189,10 @@ const obj1 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
 const obj2 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
 obj1 === obj2; // false
 Equaler.defaultEqualer.equals(obj1, obj2); // true
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/equatable.html">here</a>.</p>
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <h3 id="functions">Functions
-  </h3>
-  
-  
-  <h4 id="equatable_Comparable_Namespace_isComparable" data-uid="equatable.Comparable_Namespace.isComparable">Comparable_Namespace.isComparable</h4>
-  <div class="markdown level1 summary"><p>Determines whether a value is Comparable.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function isComparable(value: unknown): value is Comparable;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">unknown</span></td>
-        <td><em>value</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">value is Comparable</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   
-  
-  <h4 id="equatable_Comparer_Namespace_create" data-uid="equatable.Comparer_Namespace.create">Comparer_Namespace.create</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>Comparer</code> from a comparison function.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function create&lt;T&gt;(comparison: Comparison&lt;T&gt;): Comparer&lt;T&gt;;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Comparison&lt;T&gt;</span></td>
-        <td><em>comparison</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Comparer&lt;T&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="equatable_Equaler_Namespace_create" data-uid="equatable.Equaler_Namespace.create">Equaler_Namespace.create</h4>
-  <div class="markdown level1 summary"><p>Creates an <code>Equaler</code> from a comparison function and an optional hash generator.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function create&lt;T&gt;(equalityComparison: EqualityComparison&lt;T&gt;, hashGenerator?: HashGenerator&lt;T&gt;): Equaler&lt;T&gt;;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">EqualityComparison&lt;T&gt;</span></td>
-        <td><em>equalityComparison</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><span class="xref">HashGenerator&lt;T&gt;</span></td>
-        <td><em>hashGenerator</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Equaler&lt;T&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="equatable_Equatable_Namespace_isEquatable" data-uid="equatable.Equatable_Namespace.isEquatable">Equatable_Namespace.isEquatable</h4>
-  <div class="markdown level1 summary"><p>Determines whether a value is Equatable.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function isEquatable(value: unknown): value is Equatable;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">unknown</span></td>
-        <td><em>value</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">value is Equatable</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="equatable_StructuralComparable_Namespace_isStructuralComparable" data-uid="equatable.StructuralComparable_Namespace.isStructuralComparable">StructuralComparable_Namespace.isStructuralComparable</h4>
-  <div class="markdown level1 summary"><p>Determines whether a value is StructuralComparable.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function isStructuralComparable(value: unknown): value is StructuralComparable;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">unknown</span></td>
-        <td><em>value</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">value is StructuralComparable</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="equatable_StructuralEquatable_Namespace_isStructuralEquatable" data-uid="equatable.StructuralEquatable_Namespace.isStructuralEquatable">StructuralEquatable_Namespace.isStructuralEquatable</h4>
-  <div class="markdown level1 summary"><p>Determines whether a value is StructuralEquatable.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function isStructuralEquatable(value: unknown): value is StructuralEquatable;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">unknown</span></td>
-        <td><em>value</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">value is StructuralEquatable</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
 </article>
           </div>
           
@@ -416,6 +200,9 @@ Equaler.defaultEqualer.equals(obj1, obj2); // true
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/equatable.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

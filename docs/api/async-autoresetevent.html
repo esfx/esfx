@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,17 +83,26 @@
   
   <h1 id="async_autoresetevent" data-uid="async-autoresetevent">Package @esfx/async-autoresetevent
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxasync-autoresetevent"><code>@esfx/async-autoresetevent</code></h1>
-<p>The <code>@esfx/async-autoresetevent</code> package provides the <code>AutoResetEvent</code> class, an async coordination primitive.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>The <code>@esfx/async-autoresetevent</code> package provides the <a class="xref" href="async-autoresetevent/asyncautoresetevent.html#async_autoresetevent_AsyncAutoResetEvent">AsyncAutoResetEvent</a> class, an async coordination primitive.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/async-autoresetevent
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_fsF+zbuM5h">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_fsF+zbuM5h_ts" role="tab" aria-controls="tabpanel_fsF+zbuM5h_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_fsF+zbuM5h_js" role="tab" aria-controls="tabpanel_fsF+zbuM5h_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_fsF+zbuM5h_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { AsyncAutoResetEvent } from &quot;@esfx/async-autoresetevent&quot;;
 
 const event = new AsyncAutoResetEvent();
@@ -92,7 +111,7 @@ async function doSomeActivity() {
     while (true) {
         // do some work asynchronously...
 
-        // indicate &#39;waitForActivity&#39; can resume. Event is immediately reset to 
+        // indicate &#39;waitForActivity&#39; can resume. Event is immediately reset to
         // the signaled state.
         event.set();
     }
@@ -109,10 +128,37 @@ async function waitForActivity() {
 
 doSomeActivity();
 waitForActivity();
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/async_autoresetevent.html">here</a>.</p>
+</code></pre></section>
+<section id="tabpanel_fsF+zbuM5h_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { AsyncAutoResetEvent } = require(&quot;@esfx/async-autoresetevent&quot;);
+
+const event = new AsyncAutoResetEvent();
+
+async function doSomeActivity() {
+    while (true) {
+        // do some work asynchronously...
+
+        // indicate &#39;waitForActivity&#39; can resume. Event is immediately reset to
+        // the signaled state.
+        event.set();
+    }
+}
+
+async function waitForActivity() {
+    while (true) {
+        // wait for &#39;doSomeActivity&#39; to set the event...
+        await event.wait();
+
+        // do something asynchronous...
+    }
+}
+
+doSomeActivity();
+waitForActivity();
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
+</div>
+  
 </article>
           </div>
           
@@ -120,6 +166,9 @@ waitForActivity();
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/async-autoresetevent.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

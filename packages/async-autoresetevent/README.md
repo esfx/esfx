@@ -1,5 +1,3 @@
-# `@esfx/async-autoresetevent`
-
 The `@esfx/async-autoresetevent` package provides the `AutoResetEvent` class, an async coordination primitive.
 
 # Overview
@@ -46,4 +44,4 @@ waitForActivity();
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/async_autoresetevent.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/async-autoresetevent.html).

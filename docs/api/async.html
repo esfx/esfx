@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,37 +83,30 @@
   
   <h1 id="async" data-uid="async">Package @esfx/async
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxasync"><code>@esfx/async</code></h1>
-<p>Provides a number of asynchronous coordination primitives from the following packages:</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Provides a number of asynchronous coordination primitives from the following packages:</p>
 <ul>
-<li><a href="async-autoresetevent.html"><code>@esfx/async-autoresetevent</code></a></li>
-<li><a href="async-barrier.html"><code>@esfx/async-barrier</code></a></li>
-<li><a href="async-canceltoken.html"><code>@esfx/async-canceltoken</code></a></li>
-<li><a href="async-conditionvariable.html"><code>@esfx/async-conditionvariable</code></a></li>
-<li><a href="async-countdown.html"><code>@esfx/async-countdown</code></a></li>
-<li><a href="async-deferred.html"><code>@esfx/async-deferred</code></a></li>
-<li><a href="async-delay.html"><code>@esfx/async-delay</code></a></li>
-<li><a href="async-lazy.html"><code>@esfx/async-lazy</code></a></li>
-<li><a href="async-lockable.html"><code>@esfx/async-lockable</code></a></li>
-<li><a href="async-manualresetevent.html"><code>@esfx/async-manualresetevent</code></a></li>
-<li><a href="async-mutex.html"><code>@esfx/async-mutex</code></a></li>
-<li><a href="async-queue.html"><code>@esfx/async-queue</code></a></li>
-<li><a href="async-readerwriterlock.html"><code>@esfx/async-readerwriterlock</code></a></li>
-<li><a href="async-semaphore.html"><code>@esfx/async-semaphore</code></a></li>
-<li><a href="async-stack.html"><code>@esfx/async-stack</code></a></li>
-<li><a href="async-waitqueue.html"><code>@esfx/async-waitqueue</code></a></li>
-</ul>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#api">API</a></li>
+<li><a class="xref" href="async-autoresetevent.html">@esfx/async-autoresetevent</a></li>
+<li><a class="xref" href="async-barrier.html">@esfx/async-barrier</a></li>
+<li><a class="xref" href="async-canceltoken.html">@esfx/async-canceltoken</a></li>
+<li><a class="xref" href="async-conditionvariable.html">@esfx/async-conditionvariable</a></li>
+<li><a class="xref" href="async-countdown.html">@esfx/async-countdown</a></li>
+<li><a class="xref" href="async-deferred.html">@esfx/async-deferred</a></li>
+<li><a class="xref" href="async-delay.html">@esfx/async-delay</a></li>
+<li><a class="xref" href="async-lazy.html">@esfx/async-lazy</a></li>
+<li><a class="xref" href="async-lockable.html">@esfx/async-lockable</a></li>
+<li><a class="xref" href="async-manualresetevent.html">@esfx/async-manualresetevent</a></li>
+<li><a class="xref" href="async-mutex.html">@esfx/async-mutex</a></li>
+<li><a class="xref" href="async-queue.html">@esfx/async-queue</a></li>
+<li><a class="xref" href="async-readerwriterlock.html">@esfx/async-readerwriterlock</a></li>
+<li><a class="xref" href="async-semaphore.html">@esfx/async-semaphore</a></li>
+<li><a class="xref" href="async-stack.html">@esfx/async-stack</a></li>
+<li><a class="xref" href="async-waitqueue.html">@esfx/async-waitqueue</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/async
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/async.html">here</a>.</p>
-</div>
-  <div class="markdown level0 conceptual"></div>
+</code></pre></div>
+  
 </article>
           </div>
           
@@ -111,6 +114,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/async.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

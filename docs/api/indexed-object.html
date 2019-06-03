@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,8 +83,8 @@
   
   <h1 id="indexed_object" data-uid="indexed-object">Package @esfx/indexed-object
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxindexed-object"><code>@esfx/indexed-object</code></h1>
-<p>The <code>@esfx/indexed-object</code> package provides a A base class for custom integer-indexed collections.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Provides a base class for custom integer-indexed collections.</p>
 <p>The underlying implementation uses a <code>Proxy</code> to trap integer indexes in a fashion similar to
 the <a href="https://tc39.github.io/ecma262/#integer-indexed-exotic-object">Integer-Indexed Exotic Object</a> 
 in the ECMAScript specification.</p>
@@ -82,17 +92,51 @@ in the ECMAScript specification.</p>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/indexed-object
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_MqxLlpRLko">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_MqxLlpRLko_ts" role="tab" aria-controls="tabpanel_MqxLlpRLko_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_MqxLlpRLko_js" role="tab" aria-controls="tabpanel_MqxLlpRLko_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_MqxLlpRLko_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { IntegerIndexedObject } from &quot;indexed-object&quot;;
 
+class BooleansCollection extends IntegerIndexedObject&lt;boolean&gt; {
+    protected getLength() {
+        return 2;
+    }
+    protected getIndex(index: number) {
+        switch (index) {
+            case 0: return false;
+            case 1: return true;
+            default: return undefined;
+        }
+    }
+    // hasIndex(index): boolean
+    // setIndex(index, value): boolean
+    // deleteIndex(index): boolean
+}
+
+const booleans = new BooleansCollection();
+console.log(booleans[0]); // false
+console.log(booleans[1]); // true
+</code></pre></section>
+<section id="tabpanel_MqxLlpRLko_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { IntegerIndexedObject } = require(&quot;indexed-object&quot;);
+
 class BooleansCollection extends IntegerIndexedObject {
+    /** @protected */
     getLength() {
         return 2;
     }
+    /** @protected */
     getIndex(index) {
         switch (index) {
             case 0: return false;
@@ -108,10 +152,10 @@ class BooleansCollection extends IntegerIndexedObject {
 const booleans = new BooleansCollection();
 console.log(booleans[0]); // false
 console.log(booleans[1]); // true
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/indexed_object.html">here</a>.</p>
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
+</div>
+  
 </article>
           </div>
           
@@ -119,6 +163,9 @@ console.log(booleans[1]); // true
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/indexed-object.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

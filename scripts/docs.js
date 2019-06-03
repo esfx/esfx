@@ -12,8 +12,7 @@ const path = require("path");
 const del = require("del");
 const { Extractor } = require("@microsoft/api-extractor");
 const { ApiModel, ApiDocumentedItem, ApiDeclaredItem, ApiItemContainerMixin, ApiParameterListMixin } = require("@microsoft/api-extractor-model");
-const { YamlDocumenter } = require("@microsoft/api-documenter/lib/documenters/YamlDocumenter");
-const { PackageName } = require("@microsoft/node-core-library");
+const { CustomYamlDocumenter } = require("./docs/yamlDocumenter");
 const { exec } = require("./exec");
 
 /**
@@ -29,133 +28,39 @@ async function apiExtractor(docPackage) {
 }
 exports.apiExtractor = apiExtractor;
 
-const safeNames = Symbol();
 
-// @ts-ignore
-class CustomYamlDocumenter extends YamlDocumenter {
-    constructor(apiModel) {
-        super(apiModel);
-        /** @type {Map<import("@microsoft/api-extractor-model").ApiItem, string>} */
-        this[safeNames] = new Map();
-    }
-
-    onGetTocRoot() {
-        let text = fs.readFileSync("README.md", "utf8");
-        text = text.replace(/packages\/([^\/]+)#readme/g, "xref:$1");
-        fs.writeFileSync("obj/docs/index.md", text, "utf8");
-        return {
-            name: "@esfx reference",
-            href: "../index.md",
-            items: []
-        }
-    }
-
-    onCustomizeYamlItem(yamlItem) {
-        if (yamlItem.type === "package" && !yamlItem.summary) {
-            try {
-                let text = fs.readFileSync(`packages/${yamlItem.uid}/README.md`, "utf8");
-                text = text.replace(/\.\.\/([^\/]+)#readme/g, "./$1.yml");
-                yamlItem.summary = text;
-            }
-            catch (_) {
-            }
-        }
-    }
-
-    /**
-     * @param {import("@microsoft/api-extractor-model").ApiItem} apiItem
-     */
-    _getSafeName(apiItem) {
-        let safeName = this[safeNames].get(apiItem);
-        if (!safeName) {
-            safeName = apiItem.displayName;
-            if (safeName === "__computed" && apiItem instanceof ApiDeclaredItem) {
-                const match = /\[[^\[\]]+\]/.exec(apiItem.excerpt.text);
-                if (match) {
-                    safeName = match[0];
-                }
-            }
-            if (apiItem.kind === "Class" ||
-                apiItem.kind === "Interface" ||
-                apiItem.kind === "Function" ||
-                apiItem.kind === "Namespace") {
-                const same = apiItem.parent.members.filter(m => m.displayName === apiItem.displayName);
-                if (same.length > 1) {
-                    safeName += `_${apiItem.kind}`;
-                }
-            }
-            // For overloaded methods, add a suffix such as "MyClass.myMethod_2".
-            if (ApiParameterListMixin.isBaseClassOf(apiItem)) {
-                if (apiItem.overloadIndex > 0) {
-                    safeName += `_${apiItem.overloadIndex}`;
-                }
-            }
-            this[safeNames].set(apiItem, safeName);
-        }
-        return safeName;
-    }
-    /**
-     * @param {import("@microsoft/api-extractor-model").ApiItem} apiItem
-     */
-    _getUid(apiItem) {
-        let result = '';
-        for (const hierarchyItem of apiItem.getHierarchy()) {
-            switch (hierarchyItem.kind) {
-                case "Model" /* Model */:
-                case "EntryPoint" /* EntryPoint */:
-                    break;
-                case "Package" /* Package */:
-                    result += PackageName.getUnscopedName(hierarchyItem.displayName);
-                    break;
-                default:
-                    result += '.';
-                    result += this._getSafeName(hierarchyItem);
-                    break;
-            }
-        }
-        return result;
-    }
-    /**
-     * @param {import("@microsoft/api-extractor-model").ApiItem} apiItem
-     */
-    _getYamlFilePath(apiItem) {
-        let result = '';
-        for (const current of apiItem.getHierarchy()) {
-            switch (current.kind) {
-                case "Model" /* Model */:
-                case "EntryPoint" /* EntryPoint */:
-                    break;
-                case "Package" /* Package */:
-                    result += PackageName.getUnscopedName(current.displayName);
-                    break;
-                default:
-                    if (current.parent && current.parent.kind === "EntryPoint" /* EntryPoint */) {
-                        result += '/';
-                    }
-                    else {
-                        result += '.';
-                    }
-                    result += this._getSafeName(current);
-                    break;
-            }
-        }
-        // @ts-ignore
-        return path.join(this._outputFolder, result.toLowerCase() + '.yml');
-    }
+function replaceVars(file, vars) {
+    return file.replace(/<([^>]+)>/g, (_, varName) => {
+        return typeof vars[varName] === "string" ? vars[varName] : _;
+    });
 }
 
-async function apiDocumenter(inputDir = "obj/api", outputDir = "obj/docs/api") {
-    await del(outputDir);
-    const apiModel = new ApiModel();
-    for (const entry of await fs.promises.readdir(inputDir)) {
-        if (!entry.endsWith(".api.json")) continue;
-        apiModel.loadPackage(path.resolve(inputDir, entry));
+/**
+ * @param {string[]} projectFolders
+ */
+async function apiDocumenter(projectFolders, apiDir = "<projectFolder>/.docs/api", yamlDir = ".docs/yml") {
+    const outputDirs = [...new Set(projectFolders.map(projectFolder => path.resolve(replaceVars(yamlDir, { projectFolder }))))];
+    await del(outputDirs);
+
+    /** @type {Map<string, ApiModel>} */
+    const apiModels = new Map();
+
+    for (const projectFolder of projectFolders) {
+        const inputDir = path.resolve(replaceVars(apiDir, { projectFolder }));
+        const outputDir = path.resolve(replaceVars(yamlDir, { projectFolder }));
+        let apiModel = apiModels.get(outputDir);
+        if (!apiModel) apiModels.set(outputDir, apiModel = new ApiModel());
+        for (const entry of await fs.promises.readdir(inputDir)) {
+            if (!entry.endsWith(".api.json")) continue;
+            apiModel.loadPackage(path.resolve(inputDir, entry));
+        }
+        fixupModel(apiModel, apiModel);
     }
 
-    fixupModel(apiModel, apiModel);
-
-    const documenter = new CustomYamlDocumenter(apiModel);
-    documenter.generateFiles(outputDir);
+    for (const [outputDir, apiModel] of apiModels) {
+        const documenter = new CustomYamlDocumenter(apiModel);
+        documenter.generateFiles(outputDir);
+    }
 }
 exports.apiDocumenter = apiDocumenter;
 
@@ -229,8 +134,8 @@ function copyInheritedDocs(targetDocComment, sourceDocComment) {
     targetDocComment.inheritDocTag = undefined;
 }
 
-async function docfx() {
+async function docfx(serve = false) {
     await del("docs");
-    await exec("docfx");
+    await exec("docfx", serve ? ["--serve"] : []);
 }
 exports.docfx = docfx;

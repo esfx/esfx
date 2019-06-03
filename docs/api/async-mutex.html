@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,17 +83,26 @@
   
   <h1 id="async_mutex" data-uid="async-mutex">Package @esfx/async-mutex
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxasync-mutex"><code>@esfx/async-mutex</code></h1>
-<p>Provides <code>AsyncMutex</code>, an async coordination primitive.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="async-mutex/asyncmutex.html#async_mutex_AsyncMutex">AsyncMutex</a> class, an async coordination primitive.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/async-mutex
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_J5107uXyik">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_J5107uXyik_ts" role="tab" aria-controls="tabpanel_J5107uXyik_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_J5107uXyik_js" role="tab" aria-controls="tabpanel_J5107uXyik_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_J5107uXyik_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { AsyncMutex } from &quot;@esfx/async-mutex&quot;;
 
 const m = new AsyncMutex();
@@ -114,10 +133,42 @@ async function main() {
 
     counter; // 6
 }
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/async_mutex.html">here</a>.</p>
+</code></pre></section>
+<section id="tabpanel_J5107uXyik_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { AsyncMutex } = require(&quot;@esfx/async-mutex&quot;);
+
+const m = new AsyncMutex();
+let counter = 0;
+
+async function worker() {
+    for (let i = 0; i &lt; 3; i++) {
+        // get exclusive access to &#39;m&#39;, which protects &#39;counter&#39;.
+        const lk = await m.lock();
+        try {
+            const current = counter;
+
+            await doSomethingElse();
+
+            // we still have exclusive access to &#39;m&#39;, which protects &#39;counter&#39;.
+            counter = current + 1;
+        }
+        finally {
+            // release the lock
+            lk.unlock();
+        }
+    }
+}
+
+async function main() {
+    // start two workers that share a resource
+    await Promise.all([worker(), worker()]);
+
+    counter; // 6
+}
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
+</div>
+  
 </article>
           </div>
           
@@ -125,6 +176,9 @@ async function main() {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/async-mutex.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

@@ -1,0 +1,8 @@
+### YamlMime:UniversalReference
+items:
+  - uid: type-model
+    name: '@esfx/type-model'
+    fullName: '@esfx/type-model'
+    langs:
+      - typeScript
+    type: package

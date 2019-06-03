@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,22 +83,28 @@
   
   <h1 id="struct_type" data-uid="struct-type">Package @esfx/struct-type
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxstruct-type"><code>@esfx/struct-type</code></h1>
-<p>Define structured types using <code>ArrayBuffer</code> and <code>SharedArrayBuffer</code>.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Define structured types using <a class="xref" href="https://tc39.github.io/ecma262/#sec-arraybuffer-objects">ArrayBuffer</a> and <a class="xref" href="https://tc39.github.io/ecma262/#sec-sharedarraybuffer-objects">SharedArrayBuffer</a>.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/struct-type
 </code></pre><h1 id="usage">Usage</h1>
+<h2 id="basic-usage">Basic Usage</h2>
+<div class="tabGroup" id="tabgroup_kS1gGqbyud">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_kS1gGqbyud_ts" role="tab" aria-controls="tabpanel_kS1gGqbyud_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_kS1gGqbyud_js" role="tab" aria-controls="tabpanel_kS1gGqbyud_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_kS1gGqbyud_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { StructType, int32 } from &quot;@esfx/struct-type&quot;;
-
-// NOTE: For TypeScript, the `as const` is needed in the 
-//       declaration below to infer the correct field names.
-//       For JavaScript, remove the `as const` and type annotations.
 
 // simple types
 const Point = StructType([
@@ -130,19 +146,81 @@ console.log(l1[0][0]); // 1
 console.log(l1[0][1]); // 2
 console.log(l1[1][0]); // 3
 console.log(l1[1][1]); // 4
-</code></pre><h2 id="using-with-workers">Using with Workers</h2>
+</code></pre></section>
+<section id="tabpanel_kS1gGqbyud_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { StructType, int32 } = require(&quot;@esfx/struct-type&quot;);
+
+// simple types
+const Point = StructType([
+    { name: &quot;x&quot;, type: int32 },
+    { name: &quot;y&quot;, type: int32 },
+]);
+
+// complex types
+const Line = StructType([
+    { name: &quot;from&quot;, type: Point },
+    { name: &quot;to&quot;, type: Point },
+]);
+
+// inherited types
+const Point3D = StructType(Point, [
+    { name: &quot;z&quot;, type: int32 }
+]);
+
+// create instances
+const p1 = new Point({ x: 1, y: 2 }); // by field name
+const p2 = new Point([3, 4]); // by field ordinal
+
+// copy contents
+const buffer = new ArrayBuffer(16);
+const l = new Line([p1, p2]);
+l.writeTo(buffer);
+
+// create from a buffer
+const l2 = new Line(buffer);
+
+// read from field names
+console.log(l1.from.x); // 1
+console.log(l1.from.y); // 2
+console.log(l1.to.x); // 3
+console.log(l1.to.y); // 4
+
+// read from field ordinals
+console.log(l1[0][0]); // 1
+console.log(l1[0][1]); // 2
+console.log(l1[1][0]); // 3
+console.log(l1[1][1]); // 4
+</code></pre></section>
+</div>
+<h2 id="using-with-workers">Using with Workers</h2>
+<div class="tabGroup" id="tabgroup_kS1gGqbyud-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_kS1gGqbyud-1_ts" role="tab" aria-controls="tabpanel_kS1gGqbyud-1_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_kS1gGqbyud-1_js" role="tab" aria-controls="tabpanel_kS1gGqbyud-1_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_kS1gGqbyud-1_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { StructType, int32 } from &quot;@esfx/struct-type&quot;;
 import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
-
-// NOTE: For TypeScript, the `as const` is needed in the 
-//       declaration below to infer the correct field names.
-//       For JavaScript, remove the `as const` and type annotations.
 
 const ThreadData = StructType([
     { name: &quot;itemsRemaining&quot;, type: int32 },
 ] as const);
 
-if (isMainThread) {
+function worker_thread() {
+    // this is running in a background worker...
+    const data = new ThreadData(workerData); // allocate struct using the SharedArrayBuffer
+    while (data.itemsRemaining) {
+        // do some work...
+        data.itemsRemaining--;
+    }
+    parentPort.postMessage(&quot;done&quot;);
+}
+
+function main() {
     // this is running on the main thread...
     const data = new ThreadData(/*shared*/ true); // allocate struct using a SharedArrayBuffer
     data.itemsRemaining = 5;
@@ -154,7 +232,23 @@ if (isMainThread) {
         }
     });
 }
+
+if (isMainThread) {
+    main();
+}
 else if (parentPort) {
+    worker_thread();
+}
+</code></pre></section>
+<section id="tabpanel_kS1gGqbyud-1_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { StructType, int32 } = require(&quot;@esfx/struct-type&quot;);
+const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
+
+const ThreadData = StructType([
+    { name: &quot;itemsRemaining&quot;, type: int32 },
+]);
+
+function worker_thread() {
     // this is running in a background worker...
     const data = new ThreadData(workerData); // allocate struct using the SharedArrayBuffer
     while (data.itemsRemaining) {
@@ -163,10 +257,30 @@ else if (parentPort) {
     }
     parentPort.postMessage(&quot;done&quot;);
 }
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/struct_type.html">here</a>.</p>
+
+function main() {
+    // this is running on the main thread...
+    const data = new ThreadData(/*shared*/ true); // allocate struct using a SharedArrayBuffer
+    data.itemsRemaining = 5;
+
+    const worker = new Worker(__filename, { workerData: data.buffer });
+    worker.on(&quot;message&quot;, message =&gt; {
+        if (message === &quot;done&quot;) {
+            console.log(data.itemsRemaining); // 0
+        }
+    });
+}
+
+if (isMainThread) {
+    main();
+}
+else if (parentPort) {
+    worker_thread();
+}
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
+</div>
+  
 </article>
           </div>
           
@@ -174,6 +288,9 @@ else if (parentPort) {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/struct-type.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

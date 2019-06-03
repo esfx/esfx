@@ -1,18 +1,26 @@
 {
-    "build": {
-      "content": [
-        {
-          "files": [
-            "**/*.yml",
-            "**/*.md"
-          ],
-          "src": "obj/docs",
-          "dest": "."
-        }
-      ],
-      "globalMetadata": {
-        "_appTitle": "@esfx API Reference"
-      },
-      "dest": "docs"
-    }
+  "build": {
+    "template": ["default", "docs-sources/templates/esfx"],
+    "content": [
+      { "files": ["**/*.yml", "**/*.md"], "src": "docs-sources/content" },
+      { "files": ["**/*.yml", "**/*.md"], "src": ".docs/yml", "dest": "api" }
+    ],
+    "resource": [
+      { "files": ["**"], "src": "docs-sources/resources" }
+    ],
+    "overwrite": [
+      { "files": ["**/*.md"], "src": "docs-sources/overwrite" }
+    ],
+    "xref": [
+      "docs-sources/xrefmap-dom.yml",
+      "docs-sources/xrefmap-ecma262.yml"
+    ],
+    "globalMetadata": {
+      "_appTitle": "@esfx API Reference",
+      "_appLogoPath": "images/esfx-logo-white-38x38.svg",
+      "_appFaviconPath": "images/favicon-32x32.png",
+      "_enableSearch": true
+    },
+    "dest": "docs"
   }
+}

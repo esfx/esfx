@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,28 +83,57 @@
   
   <h1 id="async_delay" data-uid="async-delay">Package @esfx/async-delay
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxasync-delay"><code>@esfx/async-delay</code></h1>
-<p>The <code>@esfx/async-delay</code> package provides the <code>delay</code> function.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>The <code>@esfx/async-delay</code> package provides the @&quot;async-delay.delay&quot; function.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/async-delay
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_JVkf1WDdLk">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_JVkf1WDdLk_ts" role="tab" aria-controls="tabpanel_JVkf1WDdLk_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_JVkf1WDdLk_js" role="tab" aria-controls="tabpanel_JVkf1WDdLk_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_JVkf1WDdLk_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { delay } from &quot;@esfx/async-delay&quot;;
 
 async function doSomeAction() {
     // wait 10 seconds
     await delay(10 * 1000);
 }
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/async_delay.html">here</a>.</p>
+</code></pre></section>
+<section id="tabpanel_JVkf1WDdLk_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { delay } = require(&quot;@esfx/async-delay&quot;);
+
+async function doSomeAction() {
+    // wait 10 seconds
+    await delay(10 * 1000);
+}
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <h3 id="functions">Functions
+</div>
+  
+  <h3 id="functions">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  Functions
   </h3>
   
   
@@ -110,15 +149,15 @@ async function doSomeAction() {
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
-        <th>Type</th>
         <th>Name</th>
+        <th>Type</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">number</span></td>
         <td><em>msec</em></td>
+        <td><span class="xref">number</span></td>
         <td>
           
           
@@ -155,23 +194,23 @@ async function doSomeAction() {
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
-        <th>Type</th>
         <th>Name</th>
+        <th>Type</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">number</span></td>
         <td><em>msec</em></td>
+        <td><span class="xref">number</span></td>
         <td>
           
           
         </td>
       </tr>
       <tr>
-        <td><span class="xref">T | PromiseLike&lt;T&gt;</span></td>
         <td><em>value</em></td>
+        <td><span class="xref">T | PromiseLike&lt;T&gt;</span></td>
         <td>
           
           
@@ -208,23 +247,23 @@ async function doSomeAction() {
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
-        <th>Type</th>
         <th>Name</th>
+        <th>Type</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></td>
         <td><em>cancelable</em></td>
+        <td><a class="xref" href="cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></td>
         <td>
           
           
         </td>
       </tr>
       <tr>
-        <td><span class="xref">number</span></td>
         <td><em>msec</em></td>
+        <td><span class="xref">number</span></td>
         <td>
           
           
@@ -261,31 +300,31 @@ async function doSomeAction() {
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
-        <th>Type</th>
         <th>Name</th>
+        <th>Type</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></td>
         <td><em>cancelable</em></td>
+        <td><a class="xref" href="cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></td>
         <td>
           
           
         </td>
       </tr>
       <tr>
-        <td><span class="xref">number</span></td>
         <td><em>msec</em></td>
+        <td><span class="xref">number</span></td>
         <td>
           
           
         </td>
       </tr>
       <tr>
-        <td><span class="xref">T | PromiseLike&lt;T&gt;</span></td>
         <td><em>value</em></td>
+        <td><span class="xref">T | PromiseLike&lt;T&gt;</span></td>
         <td>
           
           
@@ -315,6 +354,9 @@ async function doSomeAction() {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/async-delay.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

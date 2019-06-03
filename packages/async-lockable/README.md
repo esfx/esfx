@@ -16,4 +16,4 @@ npm i @esfx/async-lockable
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/async_lockable.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/async-lockable.html).

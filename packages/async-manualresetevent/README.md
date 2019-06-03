@@ -46,4 +46,4 @@ doSomeOtherActivity();
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/async_manualresetevent.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/async-manualresetevent.html).

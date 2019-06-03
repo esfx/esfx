@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,17 +83,26 @@
   
   <h1 id="threading_countdown" data-uid="threading-countdown">Package @esfx/threading-countdown
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxthreading-countdown"><code>@esfx/threading-countdown</code></h1>
-<p>Provides <code>CountdownEvent</code>, a thread synchronization primitive for use with Workers.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="threading-countdown/countdownevent.html#threading_countdown_CountdownEvent">CountdownEvent</a> class, a thread synchronization primitive for use with Workers.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/threading-countdown
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_2KziMkZ4w3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_2KziMkZ4w3_ts" role="tab" aria-controls="tabpanel_2KziMkZ4w3_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_2KziMkZ4w3_js" role="tab" aria-controls="tabpanel_2KziMkZ4w3_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_2KziMkZ4w3_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
 import { CountdownEvent } from &quot;@esfx/threading-countdown&quot;;
 
@@ -114,10 +133,42 @@ if (isMainThread) {
 else {
     worker_thread();
 }
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/threading_countdown.html">here</a>.</p>
+</code></pre></section>
+<section id="tabpanel_2KziMkZ4w3_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
+const { CountdownEvent } = require(&quot;@esfx/threading-countdown&quot;);
+
+function worker_thread() {
+    const countdown = new CountdownEvent(workerData);
+
+    // do work in background...
+
+    // signal worker is finished
+    countdown.signal();
+}
+
+function main() {
+    const countdown = new CountdownEvent(5);
+
+    // start 5 workers
+    for (let i = 0; i &lt; 5; i++) {
+        new Worker(__filename, { workerData: countdown.buffer });
+    }
+
+    // wait for the workers to finish
+    countdown.wait();
+}
+
+if (isMainThread) {
+    main();
+}
+else {
+    worker_thread();
+}
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
+</div>
+  
 </article>
           </div>
           
@@ -125,6 +176,9 @@ else {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/threading-countdown.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

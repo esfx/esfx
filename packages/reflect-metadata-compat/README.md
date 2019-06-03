@@ -34,4 +34,4 @@ Reflect.getMetadata("design:paramtypes", c, "method"); // [Number]
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/reflect_metadata_compat.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/reflect-metadata-compat.html).

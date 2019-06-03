@@ -1,0 +1,11 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: AbortController
+  name: AbortController
+  href: https://developer.mozilla.org/en-US/docs/Web/API/AbortController
+  fullName: AbortController
+- uid: AbortSignal
+  name: AbortSignal
+  href: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
+  fullName: AbortSignal

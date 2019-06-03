@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,19 +83,77 @@
   
   <h1 id="collections_sortedmap" data-uid="collections-sortedmap">Package @esfx/collections-sortedmap
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxcollections-sortedmap"><code>@esfx/collections-sortedmap</code></h1>
-<p>The <code>@esfx/collections-sortedmap</code> package provides <code>SortedMap</code>, a collection class that utilizes <code>@esfx/collection-core</code> and <code>@esfx/equatable</code>.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap">SortedMap</a> class, a collection class that utilizes <a class="xref" href="collection-core.html">@esfx/collection-core</a> and <a class="xref" href="equatable.html">@esfx/equatable</a>.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/collections-sortedmap
 </code></pre><h1 id="usage">Usage</h1>
-<blockquote><p>NOTE: The examples below use the following definition of <code>Person</code>:</p>
-<pre><code class="lang-ts">import { Equatable, Equaler, Comparable, Comparer } from &quot;@esfx/equatable&quot;;
+<div class="tabGroup" id="tabgroup_L0ybMMQmnp">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_L0ybMMQmnp_ts" role="tab" aria-controls="tabpanel_L0ybMMQmnp_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_L0ybMMQmnp_js" role="tab" aria-controls="tabpanel_L0ybMMQmnp_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_L0ybMMQmnp_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { SortedMap } from &quot;@esfx/collections-sortedmap&quot;;
+import { Equatable, Equaler, Comparable, Comparer } from &quot;@esfx/equatable&quot;;
+
+class Person {
+    firstName: string;
+    lastName: string;
+    constructor(firstName: string, lastName: string) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    toString() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+
+    [Equatable.equals](other: unknown) {
+        return other instanceof Person
+            &amp;&amp; this.lastName === other.lastName
+            &amp;&amp; this.firstName === other.firstName;
+    }
+
+    [Equatable.hash]() {
+        return Equaler.defaultEqualer.hash(this.lastName)
+            ^ Equaler.defaultEqualer.hash(this.firstName);
+    }
+
+    [Comparable.compareTo](other: unknown) {
+        if (!(other instanceof Person)) throw new TypeError();
+        return Comparer.defaultComparer.compare(this.lastName, other.lastName)
+            || Comparer.defaultComparer.compare(this.firstName, other.firstName);
+    }
+}
+
+const obj1 = new Person(&quot;Alice&quot;, &quot;Johnson&quot;);
+const obj2 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
+
+// ECMAScript native map iterates in insertion order
+const map = new Map&lt;Person, string&gt;(); // native ECMAScript Map
+set.set(obj1, &quot;obj1&quot;);
+set.set(obj2, &quot;obj2&quot;);
+[...set.keys()]; // Alice Johnson,Bob Clark
+
+// SortedMap uses Comparable.compareTo if available
+const sortedMap = new SortedMap&lt;Person, string&gt;();
+sortedMap.set(obj1, &quot;obj1&quot;);
+sortedMap.set(obj2, &quot;obj2&quot;);
+[...sortedMap.keys()]; // Bob Clark,Alice Johnson
+</code></pre></section>
+<section id="tabpanel_L0ybMMQmnp_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { SortedMap } = require(&quot;@esfx/collections-sortedmap&quot;);
+const { Equatable, Equaler, Comparable, Comparer } = require(&quot;@esfx/equatable&quot;);
 
 class Person {
     constructor(firstName, lastName) {
@@ -105,7 +173,7 @@ class Person {
 
     [Equatable.hash]() {
         return Equaler.defaultEqualer.hash(this.lastName)
-             ^ Equaler.defaultEqualer.hash(this.firstName);
+            ^ Equaler.defaultEqualer.hash(this.firstName);
     }
 
     [Comparable.compareTo](other) {
@@ -114,11 +182,7 @@ class Person {
             || Comparer.defaultComparer.compare(this.firstName, other.firstName);
     }
 }
-</code></pre></blockquote>
-<h2 id="sortedmap">SortedMap</h2>
-<pre><code class="lang-ts">import { SortedMap } from &quot;@esfx/collections-sortedmap&quot;;
 
-// NOTE: see definition of Person above
 const obj1 = new Person(&quot;Alice&quot;, &quot;Johnson&quot;);
 const obj2 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
 
@@ -133,10 +197,10 @@ const sortedMap = new SortedMap();
 sortedMap.set(obj1, &quot;obj1&quot;);
 sortedMap.set(obj2, &quot;obj2&quot;);
 [...sortedMap.keys()]; // Bob Clark,Alice Johnson
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/collections_sortedmap.html">here</a>.</p>
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
+</div>
+  
 </article>
           </div>
           
@@ -144,6 +208,9 @@ sortedMap.set(obj2, &quot;obj2&quot;);
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/collections-sortedmap.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

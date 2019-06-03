@@ -1,7 +1,6 @@
- 
 # `@esfx/async-conditionvariable`
 
-Provides `ConditionVariable`, an async coordination primitive.
+Provides `AsyncConditionVariable`, an async coordination primitive.
 
 # Overview
 
@@ -85,4 +84,4 @@ main().catch(e => console.error(e));
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/async_conditionvariable.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/async-conditionvariable.html).

@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,8 +83,8 @@
   
   <h1 id="cancelable_dom_shim" data-uid="cancelable-dom-shim">Package @esfx/cancelable-dom-shim
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxcancelable-dom-shim"><code>@esfx/cancelable-dom-shim</code></h1>
-<p>The <code>@esfx/cancelable-dom-shim</code> package provides a global shim to make the DOM <code>AbortController</code> and <code>AbortSignal</code> classes compatible with <code>@esfx/cancelable</code>.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>The <code>@esfx/cancelable-dom-shim</code> package provides a global shim to make the DOM <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">AbortController</a> and <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">AbortSignal</a> classes compatible with <a class="xref" href="cancelable.html">@esfx/cancelable</a>.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
@@ -85,24 +95,43 @@
 </code></pre><h1 id="usage">Usage</h1>
 <p>The global shim adds a default implementation the collection interfaces to the following global DOM objects:</p>
 <ul>
-<li><code>AbortController</code> implements:<ul>
-<li><code>CancelableSource</code></li>
-<li><code>Cancelable</code></li>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">AbortController</a> implements:<ul>
+<li>@&quot;cancelable.CancelableSource&quot;</li>
+<li>@&quot;cancelable.Cancelable&quot;</li>
 </ul>
 </li>
-<li><code>AbortSignal</code> implements:<ul>
-<li><code>Cancelable</code></li>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">AbortSignal</a> implements:<ul>
+<li>@&quot;cancelable.Cancelable&quot;</li>
 </ul>
 </li>
 </ul>
 <p>To install the global shim, import <code>@esfx/cancelable/global</code>:</p>
+<div class="tabGroup" id="tabgroup_G6SwYsjPgj">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_G6SwYsjPgj_ts" role="tab" aria-controls="tabpanel_G6SwYsjPgj_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_G6SwYsjPgj_js" role="tab" aria-controls="tabpanel_G6SwYsjPgj_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_G6SwYsjPgj_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import &quot;@esfx/cancelable-dom-shim&quot;; // triggers global-scope side effects
 import { Cancelable } from &quot;@esfx/cancelable&quot;;
 
 const abortController = new AbortController();
 const signal = abortController[Cancelable.cancelSignal]();
-</code></pre></div>
-  <div class="markdown level0 conceptual"></div>
+</code></pre></section>
+<section id="tabpanel_G6SwYsjPgj_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">require(&quot;@esfx/cancelable-dom-shim&quot;); // triggers global-scope side effects
+const { Cancelable } = require(&quot;@esfx/cancelable&quot;);
+
+const abortController = new AbortController();
+const signal = abortController[Cancelable.cancelSignal]();
+</code></pre></section>
+</div>
+</div>
+  
 </article>
           </div>
           
@@ -110,6 +139,9 @@ const signal = abortController[Cancelable.cancelSignal]();
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/cancelable-dom-shim.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

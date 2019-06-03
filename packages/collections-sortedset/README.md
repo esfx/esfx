@@ -73,4 +73,4 @@ sortedSet.add(obj2);
 ```
 ## API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/collections_sortedset.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/collections-sortedset.html).

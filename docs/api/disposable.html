@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,27 +83,40 @@
   
   <h1 id="disposable" data-uid="disposable">Package @esfx/disposable
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxdisposable"><code>@esfx/disposable</code></h1>
-<p>The <code>@esfx/disposable</code> package provides a low-level API for defining explicit resource management that third-party libraries can use to interoperate.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Provides a low-level API for defining explicit resource management that third-party libraries can use to interoperate.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/disposable
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_EaLRocg437">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_EaLRocg437_ts" role="tab" aria-controls="tabpanel_EaLRocg437_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_EaLRocg437_js" role="tab" aria-controls="tabpanel_EaLRocg437_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_EaLRocg437_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { Disposable } from &quot;@esfx/disposable&quot;;
 
 class MyFileResouce {
+    private _handle?: number;
+
     constructor() {
-        this.handle = fs.openSync(&quot;path/to/file&quot;);
+        this._handle = fs.openSync(&quot;path/to/file&quot;);
     }
 
     close() {
-        fs.closeSync(this.handle);
-        this.handle = undefined;
+        if (this._handle !== undefined) {
+            fs.closeSync(this._handle);
+            this._handle = undefined;
+        }
     }
 
     // provide low-level &#39;dispose&#39; primitive for interop
@@ -101,388 +124,31 @@ class MyFileResouce {
         this.close();
     }
 }
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/disposable.html">here</a>.</p>
+</code></pre></section>
+<section id="tabpanel_EaLRocg437_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Disposable } = require(&quot;@esfx/disposable&quot;);
+
+class MyFileResouce {
+    constructor() {
+        this._handle = fs.openSync(&quot;path/to/file&quot;);
+    }
+
+    close() {
+        if (this._handle !== undefined) {
+            fs.closeSync(this._handle);
+            this._handle = undefined;
+        }
+    }
+
+    // provide low-level &#39;dispose&#39; primitive for interop
+    [Disposable.dispose]() {
+        this.close();
+    }
+}
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <h3 id="functions">Functions
-  </h3>
-  
-  
-  <h4 id="disposable_AsyncDisposable_Namespace_create" data-uid="disposable.AsyncDisposable_Namespace.create">AsyncDisposable_Namespace.create</h4>
-  <div class="markdown level1 summary"><p>Creates an <code>AsyncDisposable</code> wrapper around a callback used to dispose resources.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function create(dispose: () =&gt; void | PromiseLike&lt;void&gt;): AsyncDisposable;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">() =&gt; void | PromiseLike&lt;void&gt;</span></td>
-        <td><em>dispose</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="disposable/asyncdisposable_interface.html#disposable_AsyncDisposable_Interface">AsyncDisposable</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   
-  
-  <h4 id="disposable_AsyncDisposable_Namespace_from" data-uid="disposable.AsyncDisposable_Namespace.from">AsyncDisposable_Namespace.from</h4>
-  <div class="markdown level1 summary"><p>Creates an <code>AsyncDisposable</code> wrapper around a set of other disposables.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function from(resources: Iterable&lt;AsyncDisposable | Disposable | null | undefined&gt;): AsyncDisposable;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Iterable&lt;AsyncDisposable | Disposable | null | undefined&gt;</span></td>
-        <td><em>resources</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="disposable/asyncdisposable_interface.html#disposable_AsyncDisposable_Interface">AsyncDisposable</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="disposable_AsyncDisposable_Namespace_isAsyncDisposable" data-uid="disposable.AsyncDisposable_Namespace.isAsyncDisposable">AsyncDisposable_Namespace.isAsyncDisposable</h4>
-  <div class="markdown level1 summary"><p>Determines whether a value is [[AsyncDisposable]].</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function isAsyncDisposable(value: unknown): value is AsyncDisposable;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">unknown</span></td>
-        <td><em>value</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">value is AsyncDisposable</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="disposable_AsyncDisposable_Namespace_use" data-uid="disposable.AsyncDisposable_Namespace.use">AsyncDisposable_Namespace.use</h4>
-  <div class="markdown level1 summary"><p>Executes a callback with the provided <code>AsyncDisposable</code> resource, disposing the resource when the callback completes asynchronously.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function use&lt;T extends AsyncDisposable | Disposable | null | undefined, U&gt;(resource: T, callback: (resource: T) =&gt; U | PromiseLike&lt;U&gt;): Promise&lt;U&gt;;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><em>resource</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><span class="xref">(resource: T) =&gt; U | PromiseLike&lt;U&gt;</span></td>
-        <td><em>callback</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Promise&lt;U&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="disposable_Disposable_Namespace_create" data-uid="disposable.Disposable_Namespace.create">Disposable_Namespace.create</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>Disposable</code> wrapper around a callback used to dispose of a resource.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function create(dispose: () =&gt; void): Disposable;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">() =&gt; void</span></td>
-        <td><em>dispose</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="disposable/disposable_interface.html#disposable_Disposable_Interface">Disposable</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="disposable_Disposable_Namespace_from" data-uid="disposable.Disposable_Namespace.from">Disposable_Namespace.from</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>Disposable</code> wrapper around a set of other disposables.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function from(disposables: Iterable&lt;Disposable | null | undefined&gt;): Disposable;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Iterable&lt;Disposable | null | undefined&gt;</span></td>
-        <td><em>disposables</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="disposable/disposable_interface.html#disposable_Disposable_Interface">Disposable</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="disposable_Disposable_Namespace_isDisposable" data-uid="disposable.Disposable_Namespace.isDisposable">Disposable_Namespace.isDisposable</h4>
-  <div class="markdown level1 summary"><p>Determines whether a value is [[Disposable]].</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function isDisposable(value: unknown): value is Disposable;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">unknown</span></td>
-        <td><em>value</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">value is Disposable</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="disposable_Disposable_Namespace_use" data-uid="disposable.Disposable_Namespace.use">Disposable_Namespace.use</h4>
-  <div class="markdown level1 summary"><p>Executes a callback with the provided <code>Disposable</code> resource, disposing the resource when the callback completes.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function use&lt;T extends Disposable | null | undefined, U&gt;(resource: T, callback: (resource: T) =&gt; U): U;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><em>resource</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><span class="xref">(resource: T) =&gt; U</span></td>
-        <td><em>callback</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">U</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
 </article>
           </div>
           
@@ -490,6 +156,9 @@ class MyFileResouce {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/disposable.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

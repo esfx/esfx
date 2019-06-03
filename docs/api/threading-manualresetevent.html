@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,17 +83,26 @@
   
   <h1 id="threading_manualresetevent" data-uid="threading-manualresetevent">Package @esfx/threading-manualresetevent
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxthreading-manualresetevent"><code>@esfx/threading-manualresetevent</code></h1>
-<p>Provides <code>ManualResetEvent</code>, a threading primitive for use with Workers.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="threading-manualresetevent/manualresetevent.html#threading_manualresetevent_ManualResetEvent">ManualResetEvent</a> class, a threading primitive for use with Workers.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/threading-manualresetevent
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_fS+e4ttQqA">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_fS+e4ttQqA_ts" role="tab" aria-controls="tabpanel_fS+e4ttQqA_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_fS+e4ttQqA_js" role="tab" aria-controls="tabpanel_fS+e4ttQqA_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_fS+e4ttQqA_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
 import { createInterface } from &quot;readline&quot;;
 import { ManualResetEvent } from &quot;@esfx/threading-manualresetevent&quot;;
@@ -124,10 +143,52 @@ if (isMainThread) {
 else {
     worker_thread();
 }
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/threading_manualresetevent.html">here</a>.</p>
+</code></pre></section>
+<section id="tabpanel_fS+e4ttQqA_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
+const { createInterface } = require(&quot;readline&quot;);
+const { ManualResetEvent } = require(&quot;@esfx/threading-manualresetevent&quot;);
+const { sleep } = require(&quot;@esfx/threading-sleep&quot;);
+
+function worker_thread() {
+    const mre = new ManualResetEvent(workerData);
+    let count = 0;
+    while (true) {
+        mre.wait(); // wait until signaled
+        console.log(`counter: ${count++}`);
+        sleep(500);
+    }
+}
+
+function main() {
+    const mre = new ManualResetEvent();
+    const worker = new Worker(__filename, { workerData: mre.buffer, stdout: true });
+    worker.stdout.pipe(process.stdout);
+
+    console.log(&quot;Press ENTER to start counter:&quot;);
+    const rl = createInterface({ input: process.stdin, output: process.stdout });
+    rl.on(&quot;line&quot;, () =&gt; {
+        if (mre.isSet) {
+            mre.reset();
+            console.log(&quot;Press ENTER to start counter:&quot;);
+        }
+        else {
+            console.log(&quot;Press ENTER to stop counter:&quot;);
+            mre.set();
+        }
+    });
+}
+
+if (isMainThread) {
+    main();
+}
+else {
+    worker_thread();
+}
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
+</div>
+  
 </article>
           </div>
           
@@ -135,6 +196,9 @@ else {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/threading-manualresetevent.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

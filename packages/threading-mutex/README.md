@@ -78,4 +78,4 @@ else {
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/threading_mutex.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/threading-mutex.html).

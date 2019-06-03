@@ -71,4 +71,4 @@ hashSet.length; // 1
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/collections_hashset.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/collections-hashset.html).

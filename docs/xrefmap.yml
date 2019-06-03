@@ -14,9 +14,9 @@ references:
   href: api/async-autoresetevent/asyncautoresetevent.html#async_autoresetevent_AsyncAutoResetEvent
   fullName: AsyncAutoResetEvent
 - uid: async-autoresetevent.AsyncAutoResetEvent.(constructor)
-  name: (constructor)(initialState)
+  name: constructor(initialState)
   href: api/async-autoresetevent/asyncautoresetevent.html#async_autoresetevent_AsyncAutoResetEvent__constructor_
-  fullName: (constructor)(initialState)
+  fullName: constructor(initialState)
 - uid: async-autoresetevent.AsyncAutoResetEvent.reset
   name: reset()
   href: api/async-autoresetevent/asyncautoresetevent.html#async_autoresetevent_AsyncAutoResetEvent_reset
@@ -38,9 +38,9 @@ references:
   href: api/async-barrier/asyncbarrier.html#async_barrier_AsyncBarrier
   fullName: AsyncBarrier
 - uid: async-barrier.AsyncBarrier.(constructor)
-  name: (constructor)(participantCount, postPhaseAction)
+  name: constructor(participantCount, postPhaseAction)
   href: api/async-barrier/asyncbarrier.html#async_barrier_AsyncBarrier__constructor_
-  fullName: (constructor)(participantCount, postPhaseAction)
+  fullName: constructor(participantCount, postPhaseAction)
 - uid: async-barrier.AsyncBarrier.add
   name: add(participantCount)
   href: api/async-barrier/asyncbarrier.html#async_barrier_AsyncBarrier_add
@@ -166,9 +166,9 @@ references:
   href: api/async-countdown/asynccountdownevent.html#async_countdown_AsyncCountdownEvent
   fullName: AsyncCountdownEvent
 - uid: async-countdown.AsyncCountdownEvent.(constructor)
-  name: (constructor)(initialCount)
+  name: constructor(initialCount)
   href: api/async-countdown/asynccountdownevent.html#async_countdown_AsyncCountdownEvent__constructor_
-  fullName: (constructor)(initialCount)
+  fullName: constructor(initialCount)
 - uid: async-countdown.AsyncCountdownEvent.add
   name: add(count)
   href: api/async-countdown/asynccountdownevent.html#async_countdown_AsyncCountdownEvent_add
@@ -202,9 +202,9 @@ references:
   href: api/async-deferred/deferred.html#async_deferred_Deferred
   fullName: Deferred
 - uid: async-deferred.Deferred.(constructor)
-  name: (constructor)()
+  name: constructor()
   href: api/async-deferred/deferred.html#async_deferred_Deferred__constructor_
-  fullName: (constructor)()
+  fullName: constructor()
 - uid: async-deferred.Deferred.callback
   name: callback
   href: api/async-deferred/deferred.html#async_deferred_Deferred_callback
@@ -254,9 +254,9 @@ references:
   href: api/async-lazy/asynclazy.html#async_lazy_AsyncLazy
   fullName: AsyncLazy
 - uid: async-lazy.AsyncLazy.(constructor)
-  name: (constructor)(factory)
+  name: constructor(factory)
   href: api/async-lazy/asynclazy.html#async_lazy_AsyncLazy__constructor_
-  fullName: (constructor)(factory)
+  fullName: constructor(factory)
 - uid: async-lazy.AsyncLazy.for
   name: for(value)
   href: api/async-lazy/asynclazy.html#async_lazy_AsyncLazy_for
@@ -285,10 +285,14 @@ references:
   name: '[AsyncLockable.lock](cancelable)'
   href: api/async-lockable/asynclockable_interface.html#async_lockable_AsyncLockable_Interface__AsyncLockable_lock_
   fullName: '[AsyncLockable.lock](cancelable)'
+- uid: async-lockable.AsyncLockable_Namespace
+  name: AsyncLockable
+  href: api/async-lockable/asynclockable_namespace.html#async_lockable_AsyncLockable_Namespace
+  fullName: AsyncLockable
 - uid: async-lockable.AsyncLockable_Namespace.isAsyncLockable
-  name: AsyncLockable_Namespace.isAsyncLockable
-  href: api/async-lockable.html#async_lockable_AsyncLockable_Namespace_isAsyncLockable
-  fullName: AsyncLockable_Namespace.isAsyncLockable
+  name: isAsyncLockable(value)
+  href: api/async-lockable/asynclockable_namespace.html
+  fullName: isAsyncLockable(value)
 - uid: async-lockable.LockHandle
   name: LockHandle
   href: api/async-lockable/lockhandle.html#async_lockable_LockHandle
@@ -326,9 +330,9 @@ references:
   href: api/async-manualresetevent/asyncmanualresetevent.html#async_manualresetevent_AsyncManualResetEvent
   fullName: AsyncManualResetEvent
 - uid: async-manualresetevent.AsyncManualResetEvent.(constructor)
-  name: (constructor)(initialState)
+  name: constructor(initialState)
   href: api/async-manualresetevent/asyncmanualresetevent.html#async_manualresetevent_AsyncManualResetEvent__constructor_
-  fullName: (constructor)(initialState)
+  fullName: constructor(initialState)
 - uid: async-manualresetevent.AsyncManualResetEvent.isSet
   name: isSet
   href: api/async-manualresetevent/asyncmanualresetevent.html#async_manualresetevent_AsyncManualResetEvent_isSet
@@ -382,9 +386,9 @@ references:
   href: api/async-queue/asyncqueue.html#async_queue_AsyncQueue
   fullName: AsyncQueue
 - uid: async-queue.AsyncQueue.(constructor)
-  name: (constructor)(iterable)
+  name: constructor(iterable)
   href: api/async-queue/asyncqueue.html#async_queue_AsyncQueue__constructor_
-  fullName: (constructor)(iterable)
+  fullName: constructor(iterable)
 - uid: async-queue.AsyncQueue.done
   name: done
   href: api/async-queue/asyncqueue.html#async_queue_AsyncQueue_done
@@ -506,9 +510,9 @@ references:
   href: api/async-semaphore/asyncsemaphore.html#async_semaphore_AsyncSemaphore
   fullName: AsyncSemaphore
 - uid: async-semaphore.AsyncSemaphore.(constructor)
-  name: (constructor)(initialCount, maxCount)
+  name: constructor(initialCount, maxCount)
   href: api/async-semaphore/asyncsemaphore.html#async_semaphore_AsyncSemaphore__constructor_
-  fullName: (constructor)(initialCount, maxCount)
+  fullName: constructor(initialCount, maxCount)
 - uid: async-semaphore.AsyncSemaphore.count
   name: count
   href: api/async-semaphore/asyncsemaphore.html#async_semaphore_AsyncSemaphore_count
@@ -530,9 +534,9 @@ references:
   href: api/async-stack/asyncstack.html#async_stack_AsyncStack
   fullName: AsyncStack
 - uid: async-stack.AsyncStack.(constructor)
-  name: (constructor)(iterable)
+  name: constructor(iterable)
   href: api/async-stack/asyncstack.html#async_stack_AsyncStack__constructor_
-  fullName: (constructor)(iterable)
+  fullName: constructor(iterable)
 - uid: async-stack.AsyncStack.done
   name: done
   href: api/async-stack/asyncstack.html#async_stack_AsyncStack_done
@@ -633,22 +637,26 @@ references:
   name: '[Cancelable.cancelSignal]()'
   href: api/cancelable/cancelable_interface.html#cancelable_Cancelable_Interface__Cancelable_cancelSignal_
   fullName: '[Cancelable.cancelSignal]()'
+- uid: cancelable.Cancelable_Namespace
+  name: Cancelable
+  href: api/cancelable/cancelable_namespace.html#cancelable_Cancelable_Namespace
+  fullName: Cancelable
 - uid: cancelable.Cancelable_Namespace.isCancelable
-  name: Cancelable_Namespace.isCancelable
-  href: api/cancelable.html#cancelable_Cancelable_Namespace_isCancelable
-  fullName: Cancelable_Namespace.isCancelable
+  name: isCancelable(value)
+  href: api/cancelable/cancelable_namespace.html
+  fullName: isCancelable(value)
 - uid: cancelable.Cancelable_Namespace.isSignaled
-  name: Cancelable_Namespace.isSignaled
-  href: api/cancelable.html#cancelable_Cancelable_Namespace_isSignaled
-  fullName: Cancelable_Namespace.isSignaled
+  name: isSignaled(cancelable)
+  href: api/cancelable/cancelable_namespace.html
+  fullName: isSignaled(cancelable)
 - uid: cancelable.Cancelable_Namespace.subscribe
-  name: Cancelable_Namespace.subscribe
-  href: api/cancelable.html#cancelable_Cancelable_Namespace_subscribe
-  fullName: Cancelable_Namespace.subscribe
+  name: subscribe(cancelable, onSignaled)
+  href: api/cancelable/cancelable_namespace.html
+  fullName: subscribe(cancelable, onSignaled)
 - uid: cancelable.Cancelable_Namespace.throwIfSignaled
-  name: Cancelable_Namespace.throwIfSignaled
-  href: api/cancelable.html#cancelable_Cancelable_Namespace_throwIfSignaled
-  fullName: Cancelable_Namespace.throwIfSignaled
+  name: throwIfSignaled(cancelable)
+  href: api/cancelable/cancelable_namespace.html
+  fullName: throwIfSignaled(cancelable)
 - uid: cancelable.CancelableCancelSignal
   name: CancelableCancelSignal
   href: api/cancelable/cancelablecancelsignal.html#cancelable_CancelableCancelSignal
@@ -665,18 +673,22 @@ references:
   name: '[CancelableSource.cancel]()'
   href: api/cancelable/cancelablesource_interface.html#cancelable_CancelableSource_Interface__CancelableSource_cancel_
   fullName: '[CancelableSource.cancel]()'
+- uid: cancelable.CancelableSource_Namespace
+  name: CancelableSource
+  href: api/cancelable/cancelablesource_namespace.html#cancelable_CancelableSource_Namespace
+  fullName: CancelableSource
 - uid: cancelable.CancelableSource_Namespace.isCancelableSource
-  name: CancelableSource_Namespace.isCancelableSource
-  href: api/cancelable.html#cancelable_CancelableSource_Namespace_isCancelableSource
-  fullName: CancelableSource_Namespace.isCancelableSource
+  name: isCancelableSource(value)
+  href: api/cancelable/cancelablesource_namespace.html
+  fullName: isCancelableSource(value)
 - uid: cancelable.CancelError
   name: CancelError
   href: api/cancelable/cancelerror.html#cancelable_CancelError
   fullName: CancelError
 - uid: cancelable.CancelError.(constructor)
-  name: (constructor)(message)
+  name: constructor(message)
   href: api/cancelable/cancelerror.html#cancelable_CancelError__constructor_
-  fullName: (constructor)(message)
+  fullName: constructor(message)
 - uid: cancelable.CancelSignal
   name: CancelSignal
   href: api/cancelable/cancelsignal.html#cancelable_CancelSignal
@@ -697,10 +709,14 @@ references:
   name: unsubscribe()
   href: api/cancelable/cancelsubscription_interface.html#cancelable_CancelSubscription_Interface_unsubscribe
   fullName: unsubscribe()
+- uid: cancelable.CancelSubscription_Namespace
+  name: CancelSubscription
+  href: api/cancelable/cancelsubscription_namespace.html#cancelable_CancelSubscription_Namespace
+  fullName: CancelSubscription
 - uid: cancelable.CancelSubscription_Namespace.create
-  name: CancelSubscription_Namespace.create
-  href: api/cancelable.html#cancelable_CancelSubscription_Namespace_create
-  fullName: CancelSubscription_Namespace.create
+  name: create(unsubscribe)
+  href: api/cancelable/cancelsubscription_namespace.html
+  fullName: create(unsubscribe)
 - uid: cancelable-dom
   name: '@esfx/cancelable-dom'
   href: api/cancelable-dom.html
@@ -725,14 +741,18 @@ references:
   name: '[Collection.add](value)'
   href: api/collection-core/collection_interface.html#collection_core_Collection_Interface__Collection_add_
   fullName: '[Collection.add](value)'
+- uid: collection-core.Collection_Namespace
+  name: Collection
+  href: api/collection-core/collection_namespace.html#collection_core_Collection_Namespace
+  fullName: Collection
 - uid: collection-core.Collection_Namespace.isCollection_Function
-  name: Collection_Namespace.isCollection_Function
-  href: api/collection-core.html#collection_core_Collection_Namespace_isCollection_Function
-  fullName: Collection_Namespace.isCollection_Function
+  name: isCollection(value)
+  href: api/collection-core/collection_namespace.html
+  fullName: isCollection(value)
 - uid: collection-core.Collection_Namespace.isCollection_Function_1
-  name: Collection_Namespace.isCollection_Function_1
-  href: api/collection-core.html#collection_core_Collection_Namespace_isCollection_Function_1
-  fullName: Collection_Namespace.isCollection_Function_1
+  name: isCollection(value)
+  href: api/collection-core/collection_namespace.html
+  fullName: isCollection(value)
 - uid: collection-core.FixedSizeIndexedCollection_Interface
   name: FixedSizeIndexedCollection
   href: api/collection-core/fixedsizeindexedcollection_interface.html#collection_core_FixedSizeIndexedCollection_Interface
@@ -741,14 +761,18 @@ references:
   name: '[FixedSizeIndexedCollection.setAt](index, value)'
   href: api/collection-core/fixedsizeindexedcollection_interface.html#collection_core_FixedSizeIndexedCollection_Interface__FixedSizeIndexedCollection_setAt_
   fullName: '[FixedSizeIndexedCollection.setAt](index, value)'
+- uid: collection-core.FixedSizeIndexedCollection_Namespace
+  name: FixedSizeIndexedCollection
+  href: api/collection-core/fixedsizeindexedcollection_namespace.html#collection_core_FixedSizeIndexedCollection_Namespace
+  fullName: FixedSizeIndexedCollection
 - uid: collection-core.FixedSizeIndexedCollection_Namespace.isFixedSizeIndexedCollection_Function
-  name: FixedSizeIndexedCollection_Namespace.isFixedSizeIndexedCollection_Function
-  href: api/collection-core.html#collection_core_FixedSizeIndexedCollection_Namespace_isFixedSizeIndexedCollection_Function
-  fullName: FixedSizeIndexedCollection_Namespace.isFixedSizeIndexedCollection_Function
+  name: isFixedSizeIndexedCollection(value)
+  href: api/collection-core/fixedsizeindexedcollection_namespace.html
+  fullName: isFixedSizeIndexedCollection(value)
 - uid: collection-core.FixedSizeIndexedCollection_Namespace.isFixedSizeIndexedCollection_Function_1
-  name: FixedSizeIndexedCollection_Namespace.isFixedSizeIndexedCollection_Function_1
-  href: api/collection-core.html#collection_core_FixedSizeIndexedCollection_Namespace_isFixedSizeIndexedCollection_Function_1
-  fullName: FixedSizeIndexedCollection_Namespace.isFixedSizeIndexedCollection_Function_1
+  name: isFixedSizeIndexedCollection(value)
+  href: api/collection-core/fixedsizeindexedcollection_namespace.html
+  fullName: isFixedSizeIndexedCollection(value)
 - uid: collection-core.IndexedCollection_Interface
   name: IndexedCollection
   href: api/collection-core/indexedcollection_interface.html#collection_core_IndexedCollection_Interface
@@ -757,14 +781,18 @@ references:
   name: '[IndexedCollection.insertAt](index, value)'
   href: api/collection-core/indexedcollection_interface.html#collection_core_IndexedCollection_Interface__IndexedCollection_insertAt_
   fullName: '[IndexedCollection.insertAt](index, value)'
+- uid: collection-core.IndexedCollection_Namespace
+  name: IndexedCollection
+  href: api/collection-core/indexedcollection_namespace.html#collection_core_IndexedCollection_Namespace
+  fullName: IndexedCollection
 - uid: collection-core.IndexedCollection_Namespace.isIndexedCollection_Function
-  name: IndexedCollection_Namespace.isIndexedCollection_Function
-  href: api/collection-core.html#collection_core_IndexedCollection_Namespace_isIndexedCollection_Function
-  fullName: IndexedCollection_Namespace.isIndexedCollection_Function
+  name: isIndexedCollection(value)
+  href: api/collection-core/indexedcollection_namespace.html
+  fullName: isIndexedCollection(value)
 - uid: collection-core.IndexedCollection_Namespace.isIndexedCollection_Function_1
-  name: IndexedCollection_Namespace.isIndexedCollection_Function_1
-  href: api/collection-core.html#collection_core_IndexedCollection_Namespace_isIndexedCollection_Function_1
-  fullName: IndexedCollection_Namespace.isIndexedCollection_Function_1
+  name: isIndexedCollection(value)
+  href: api/collection-core/indexedcollection_namespace.html
+  fullName: isIndexedCollection(value)
 - uid: collection-core.KeyedCollection_Interface
   name: KeyedCollection
   href: api/collection-core/keyedcollection_interface.html#collection_core_KeyedCollection_Interface
@@ -773,14 +801,18 @@ references:
   name: '[KeyedCollection.set](key, value)'
   href: api/collection-core/keyedcollection_interface.html#collection_core_KeyedCollection_Interface__KeyedCollection_set_
   fullName: '[KeyedCollection.set](key, value)'
+- uid: collection-core.KeyedCollection_Namespace
+  name: KeyedCollection
+  href: api/collection-core/keyedcollection_namespace.html#collection_core_KeyedCollection_Namespace
+  fullName: KeyedCollection
 - uid: collection-core.KeyedCollection_Namespace.isKeyedCollection_Function
-  name: KeyedCollection_Namespace.isKeyedCollection_Function
-  href: api/collection-core.html#collection_core_KeyedCollection_Namespace_isKeyedCollection_Function
-  fullName: KeyedCollection_Namespace.isKeyedCollection_Function
+  name: isKeyedCollection(value)
+  href: api/collection-core/keyedcollection_namespace.html
+  fullName: isKeyedCollection(value)
 - uid: collection-core.KeyedCollection_Namespace.isKeyedCollection_Function_1
-  name: KeyedCollection_Namespace.isKeyedCollection_Function_1
-  href: api/collection-core.html#collection_core_KeyedCollection_Namespace_isKeyedCollection_Function_1
-  fullName: KeyedCollection_Namespace.isKeyedCollection_Function_1
+  name: isKeyedCollection(value)
+  href: api/collection-core/keyedcollection_namespace.html
+  fullName: isKeyedCollection(value)
 - uid: collection-core.ReadonlyCollection_Interface
   name: ReadonlyCollection
   href: api/collection-core/readonlycollection_interface.html#collection_core_ReadonlyCollection_Interface
@@ -793,14 +825,18 @@ references:
   name: '[ReadonlyCollection.size]'
   href: api/collection-core/readonlycollection_interface.html#collection_core_ReadonlyCollection_Interface__ReadonlyCollection_size_
   fullName: '[ReadonlyCollection.size]'
+- uid: collection-core.ReadonlyCollection_Namespace
+  name: ReadonlyCollection
+  href: api/collection-core/readonlycollection_namespace.html#collection_core_ReadonlyCollection_Namespace
+  fullName: ReadonlyCollection
 - uid: collection-core.ReadonlyCollection_Namespace.isReadonlyCollection_Function
-  name: ReadonlyCollection_Namespace.isReadonlyCollection_Function
-  href: api/collection-core.html#collection_core_ReadonlyCollection_Namespace_isReadonlyCollection_Function
-  fullName: ReadonlyCollection_Namespace.isReadonlyCollection_Function
+  name: isReadonlyCollection(value)
+  href: api/collection-core/readonlycollection_namespace.html
+  fullName: isReadonlyCollection(value)
 - uid: collection-core.ReadonlyCollection_Namespace.isReadonlyCollection_Function_1
-  name: ReadonlyCollection_Namespace.isReadonlyCollection_Function_1
-  href: api/collection-core.html#collection_core_ReadonlyCollection_Namespace_isReadonlyCollection_Function_1
-  fullName: ReadonlyCollection_Namespace.isReadonlyCollection_Function_1
+  name: isReadonlyCollection(value)
+  href: api/collection-core/readonlycollection_namespace.html
+  fullName: isReadonlyCollection(value)
 - uid: collection-core.ReadonlyIndexedCollection_Interface
   name: ReadonlyIndexedCollection
   href: api/collection-core/readonlyindexedcollection_interface.html#collection_core_ReadonlyIndexedCollection_Interface
@@ -809,14 +845,18 @@ references:
   name: '[ReadonlyIndexedCollection.indexOf](value, fromIndex)'
   href: api/collection-core/readonlyindexedcollection_interface.html#collection_core_ReadonlyIndexedCollection_Interface__ReadonlyIndexedCollection_indexOf_
   fullName: '[ReadonlyIndexedCollection.indexOf](value, fromIndex)'
+- uid: collection-core.ReadonlyIndexedCollection_Namespace
+  name: ReadonlyIndexedCollection
+  href: api/collection-core/readonlyindexedcollection_namespace.html#collection_core_ReadonlyIndexedCollection_Namespace
+  fullName: ReadonlyIndexedCollection
 - uid: collection-core.ReadonlyIndexedCollection_Namespace.isReadonlyIndexedCollection_Function
-  name: ReadonlyIndexedCollection_Namespace.isReadonlyIndexedCollection_Function
-  href: api/collection-core.html#collection_core_ReadonlyIndexedCollection_Namespace_isReadonlyIndexedCollection_Function
-  fullName: ReadonlyIndexedCollection_Namespace.isReadonlyIndexedCollection_Function
+  name: isReadonlyIndexedCollection(value)
+  href: api/collection-core/readonlyindexedcollection_namespace.html
+  fullName: isReadonlyIndexedCollection(value)
 - uid: collection-core.ReadonlyIndexedCollection_Namespace.isReadonlyIndexedCollection_Function_1
-  name: ReadonlyIndexedCollection_Namespace.isReadonlyIndexedCollection_Function_1
-  href: api/collection-core.html#collection_core_ReadonlyIndexedCollection_Namespace_isReadonlyIndexedCollection_Function_1
-  fullName: ReadonlyIndexedCollection_Namespace.isReadonlyIndexedCollection_Function_1
+  name: isReadonlyIndexedCollection(value)
+  href: api/collection-core/readonlyindexedcollection_namespace.html
+  fullName: isReadonlyIndexedCollection(value)
 - uid: collection-core.ReadonlyKeyedCollection_Interface
   name: ReadonlyKeyedCollection
   href: api/collection-core/readonlykeyedcollection_interface.html#collection_core_ReadonlyKeyedCollection_Interface
@@ -829,14 +869,18 @@ references:
   name: '[ReadonlyKeyedCollection.size]'
   href: api/collection-core/readonlykeyedcollection_interface.html#collection_core_ReadonlyKeyedCollection_Interface__ReadonlyKeyedCollection_size_
   fullName: '[ReadonlyKeyedCollection.size]'
+- uid: collection-core.ReadonlyKeyedCollection_Namespace
+  name: ReadonlyKeyedCollection
+  href: api/collection-core/readonlykeyedcollection_namespace.html#collection_core_ReadonlyKeyedCollection_Namespace
+  fullName: ReadonlyKeyedCollection
 - uid: collection-core.ReadonlyKeyedCollection_Namespace.isReadonlyKeyedCollection_Function
-  name: ReadonlyKeyedCollection_Namespace.isReadonlyKeyedCollection_Function
-  href: api/collection-core.html#collection_core_ReadonlyKeyedCollection_Namespace_isReadonlyKeyedCollection_Function
-  fullName: ReadonlyKeyedCollection_Namespace.isReadonlyKeyedCollection_Function
+  name: isReadonlyKeyedCollection(value)
+  href: api/collection-core/readonlykeyedcollection_namespace.html
+  fullName: isReadonlyKeyedCollection(value)
 - uid: collection-core.ReadonlyKeyedCollection_Namespace.isReadonlyKeyedCollection_Function_1
-  name: ReadonlyKeyedCollection_Namespace.isReadonlyKeyedCollection_Function_1
-  href: api/collection-core.html#collection_core_ReadonlyKeyedCollection_Namespace_isReadonlyKeyedCollection_Function_1
-  fullName: ReadonlyKeyedCollection_Namespace.isReadonlyKeyedCollection_Function_1
+  name: isReadonlyKeyedCollection(value)
+  href: api/collection-core/readonlykeyedcollection_namespace.html
+  fullName: isReadonlyKeyedCollection(value)
 - uid: collection-core-dom-shim
   name: '@esfx/collection-core-dom-shim'
   href: api/collection-core-dom-shim.html
@@ -858,17 +902,17 @@ references:
   href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap
   fullName: HashMap
 - uid: collections-hashmap.HashMap.(constructor)
-  name: (constructor)(equaler)
+  name: constructor(equaler)
   href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__constructor_
-  fullName: (constructor)(equaler)
+  fullName: constructor(equaler)
 - uid: collections-hashmap.HashMap.(constructor)_1
-  name: (constructor)(iterable, equaler)
+  name: constructor(iterable, equaler)
   href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__constructor__1
-  fullName: (constructor)(iterable, equaler)
+  fullName: constructor(iterable, equaler)
 - uid: collections-hashmap.HashMap.(constructor)_2
-  name: (constructor)(capacity, equaler)
+  name: constructor(capacity, equaler)
   href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__constructor__2
-  fullName: (constructor)(capacity, equaler)
+  fullName: constructor(capacity, equaler)
 - uid: collections-hashmap.HashMap.[KeyedCollection.has]
   name: '[KeyedCollection.has](key)'
   href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_has_
@@ -946,17 +990,17 @@ references:
   href: api/collections-hashset/hashset.html#collections_hashset_HashSet
   fullName: HashSet
 - uid: collections-hashset.HashSet.(constructor)
-  name: (constructor)(equaler)
+  name: constructor(equaler)
   href: api/collections-hashset/hashset.html#collections_hashset_HashSet__constructor_
-  fullName: (constructor)(equaler)
+  fullName: constructor(equaler)
 - uid: collections-hashset.HashSet.(constructor)_1
-  name: (constructor)(iterable, equaler)
+  name: constructor(iterable, equaler)
   href: api/collections-hashset/hashset.html#collections_hashset_HashSet__constructor__1
-  fullName: (constructor)(iterable, equaler)
+  fullName: constructor(iterable, equaler)
 - uid: collections-hashset.HashSet.(constructor)_2
-  name: (constructor)(capacity, equaler)
+  name: constructor(capacity, equaler)
   href: api/collections-hashset/hashset.html#collections_hashset_HashSet__constructor__2
-  fullName: (constructor)(capacity, equaler)
+  fullName: constructor(capacity, equaler)
 - uid: collections-hashset.HashSet.[Collection.has]
   name: '[Collection.has](value)'
   href: api/collections-hashset/hashset.html#collections_hashset_HashSet__Collection_has_
@@ -1030,13 +1074,13 @@ references:
   href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList
   fullName: LinkedList
 - uid: collections-linkedlist.LinkedList.(constructor)
-  name: (constructor)(equaler)
+  name: constructor(equaler)
   href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList__constructor_
-  fullName: (constructor)(equaler)
+  fullName: constructor(equaler)
 - uid: collections-linkedlist.LinkedList.(constructor)_1
-  name: (constructor)(iterable, equaler)
+  name: constructor(iterable, equaler)
   href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList__constructor__1
-  fullName: (constructor)(iterable, equaler)
+  fullName: constructor(iterable, equaler)
 - uid: collections-linkedlist.LinkedList.[ReadonlyCollection.has]
   name: '[ReadonlyCollection.has](value)'
   href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList__ReadonlyCollection_has_
@@ -1242,9 +1286,9 @@ references:
   href: api/collections-linkedlist/linkedlistnode.html#collections_linkedlist_LinkedListNode
   fullName: LinkedListNode
 - uid: collections-linkedlist.LinkedListNode.(constructor)
-  name: (constructor)(value)
+  name: constructor(value)
   href: api/collections-linkedlist/linkedlistnode.html#collections_linkedlist_LinkedListNode__constructor_
-  fullName: (constructor)(value)
+  fullName: constructor(value)
 - uid: collections-linkedlist.LinkedListNode.[kList]
   name: '[kList]'
   href: api/collections-linkedlist/linkedlistnode.html#collections_linkedlist_LinkedListNode__kList_
@@ -1282,13 +1326,13 @@ references:
   href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap
   fullName: SortedMap
 - uid: collections-sortedmap.SortedMap.(constructor)
-  name: (constructor)(comparer)
+  name: constructor(comparer)
   href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__constructor_
-  fullName: (constructor)(comparer)
+  fullName: constructor(comparer)
 - uid: collections-sortedmap.SortedMap.(constructor)_1
-  name: (constructor)(iterable, comparer)
+  name: constructor(iterable, comparer)
   href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__constructor__1
-  fullName: (constructor)(iterable, comparer)
+  fullName: constructor(iterable, comparer)
 - uid: collections-sortedmap.SortedMap.[KeyedCollection.has]
   name: '[KeyedCollection.has](key)'
   href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__KeyedCollection_has_
@@ -1354,13 +1398,13 @@ references:
   href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet
   fullName: SortedSet
 - uid: collections-sortedset.SortedSet.(constructor)
-  name: (constructor)(comparer)
+  name: constructor(comparer)
   href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet__constructor_
-  fullName: (constructor)(comparer)
+  fullName: constructor(comparer)
 - uid: collections-sortedset.SortedSet.(constructor)_1
-  name: (constructor)(iterable, comparer)
+  name: constructor(iterable, comparer)
   href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet__constructor__1
-  fullName: (constructor)(iterable, comparer)
+  fullName: constructor(iterable, comparer)
 - uid: collections-sortedset.SortedSet.[Collection.has]
   name: '[Collection.has](value)'
   href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet__Collection_has_
@@ -1617,22 +1661,26 @@ references:
   name: '[AsyncDisposable.asyncDispose]()'
   href: api/disposable/asyncdisposable_interface.html#disposable_AsyncDisposable_Interface__AsyncDisposable_asyncDispose_
   fullName: '[AsyncDisposable.asyncDispose]()'
+- uid: disposable.AsyncDisposable_Namespace
+  name: AsyncDisposable
+  href: api/disposable/asyncdisposable_namespace.html#disposable_AsyncDisposable_Namespace
+  fullName: AsyncDisposable
 - uid: disposable.AsyncDisposable_Namespace.create
-  name: AsyncDisposable_Namespace.create
-  href: api/disposable.html#disposable_AsyncDisposable_Namespace_create
-  fullName: AsyncDisposable_Namespace.create
+  name: create(dispose)
+  href: api/disposable/asyncdisposable_namespace.html
+  fullName: create(dispose)
 - uid: disposable.AsyncDisposable_Namespace.from
-  name: AsyncDisposable_Namespace.from
-  href: api/disposable.html#disposable_AsyncDisposable_Namespace_from
-  fullName: AsyncDisposable_Namespace.from
+  name: from(resources)
+  href: api/disposable/asyncdisposable_namespace.html
+  fullName: from(resources)
 - uid: disposable.AsyncDisposable_Namespace.isAsyncDisposable
-  name: AsyncDisposable_Namespace.isAsyncDisposable
-  href: api/disposable.html#disposable_AsyncDisposable_Namespace_isAsyncDisposable
-  fullName: AsyncDisposable_Namespace.isAsyncDisposable
+  name: isAsyncDisposable(value)
+  href: api/disposable/asyncdisposable_namespace.html
+  fullName: isAsyncDisposable(value)
 - uid: disposable.AsyncDisposable_Namespace.use
-  name: AsyncDisposable_Namespace.use
-  href: api/disposable.html#disposable_AsyncDisposable_Namespace_use
-  fullName: AsyncDisposable_Namespace.use
+  name: use(resource, callback)
+  href: api/disposable/asyncdisposable_namespace.html
+  fullName: use(resource, callback)
 - uid: disposable.Disposable_Interface
   name: Disposable
   href: api/disposable/disposable_interface.html#disposable_Disposable_Interface
@@ -1641,22 +1689,26 @@ references:
   name: '[Disposable.dispose]()'
   href: api/disposable/disposable_interface.html#disposable_Disposable_Interface__Disposable_dispose_
   fullName: '[Disposable.dispose]()'
+- uid: disposable.Disposable_Namespace
+  name: Disposable
+  href: api/disposable/disposable_namespace.html#disposable_Disposable_Namespace
+  fullName: Disposable
 - uid: disposable.Disposable_Namespace.create
-  name: Disposable_Namespace.create
-  href: api/disposable.html#disposable_Disposable_Namespace_create
-  fullName: Disposable_Namespace.create
+  name: create(dispose)
+  href: api/disposable/disposable_namespace.html
+  fullName: create(dispose)
 - uid: disposable.Disposable_Namespace.from
-  name: Disposable_Namespace.from
-  href: api/disposable.html#disposable_Disposable_Namespace_from
-  fullName: Disposable_Namespace.from
+  name: from(disposables)
+  href: api/disposable/disposable_namespace.html
+  fullName: from(disposables)
 - uid: disposable.Disposable_Namespace.isDisposable
-  name: Disposable_Namespace.isDisposable
-  href: api/disposable.html#disposable_Disposable_Namespace_isDisposable
-  fullName: Disposable_Namespace.isDisposable
+  name: isDisposable(value)
+  href: api/disposable/disposable_namespace.html
+  fullName: isDisposable(value)
 - uid: disposable.Disposable_Namespace.use
-  name: Disposable_Namespace.use
-  href: api/disposable.html#disposable_Disposable_Namespace_use
-  fullName: Disposable_Namespace.use
+  name: use(resource, callback)
+  href: api/disposable/disposable_namespace.html
+  fullName: use(resource, callback)
 - uid: equatable
   name: '@esfx/equatable'
   href: api/equatable.html
@@ -1669,10 +1721,14 @@ references:
   name: '[Comparable.compareTo](other)'
   href: api/equatable/comparable_interface.html#equatable_Comparable_Interface__Comparable_compareTo_
   fullName: '[Comparable.compareTo](other)'
+- uid: equatable.Comparable_Namespace
+  name: Comparable
+  href: api/equatable/comparable_namespace.html#equatable_Comparable_Namespace
+  fullName: Comparable
 - uid: equatable.Comparable_Namespace.isComparable
-  name: Comparable_Namespace.isComparable
-  href: api/equatable.html#equatable_Comparable_Namespace_isComparable
-  fullName: Comparable_Namespace.isComparable
+  name: isComparable(value)
+  href: api/equatable/comparable_namespace.html
+  fullName: isComparable(value)
 - uid: equatable.Comparer_Interface
   name: Comparer
   href: api/equatable/comparer_interface.html#equatable_Comparer_Interface
@@ -1681,10 +1737,14 @@ references:
   name: compare(x, y)
   href: api/equatable/comparer_interface.html#equatable_Comparer_Interface_compare
   fullName: compare(x, y)
+- uid: equatable.Comparer_Namespace
+  name: Comparer
+  href: api/equatable/comparer_namespace.html#equatable_Comparer_Namespace
+  fullName: Comparer
 - uid: equatable.Comparer_Namespace.create
-  name: Comparer_Namespace.create
-  href: api/equatable.html#equatable_Comparer_Namespace_create
-  fullName: Comparer_Namespace.create
+  name: create(comparison)
+  href: api/equatable/comparer_namespace.html
+  fullName: create(comparison)
 - uid: equatable.Equaler_Interface
   name: Equaler
   href: api/equatable/equaler_interface.html#equatable_Equaler_Interface
@@ -1697,10 +1757,14 @@ references:
   name: hash(x)
   href: api/equatable/equaler_interface.html#equatable_Equaler_Interface_hash
   fullName: hash(x)
+- uid: equatable.Equaler_Namespace
+  name: Equaler
+  href: api/equatable/equaler_namespace.html#equatable_Equaler_Namespace
+  fullName: Equaler
 - uid: equatable.Equaler_Namespace.create
-  name: Equaler_Namespace.create
-  href: api/equatable.html#equatable_Equaler_Namespace_create
-  fullName: Equaler_Namespace.create
+  name: create(equalityComparison, hashGenerator)
+  href: api/equatable/equaler_namespace.html
+  fullName: create(equalityComparison, hashGenerator)
 - uid: equatable.Equatable_Interface
   name: Equatable
   href: api/equatable/equatable_interface.html#equatable_Equatable_Interface
@@ -1709,10 +1773,14 @@ references:
   name: '[Equatable.equals](other)'
   href: api/equatable/equatable_interface.html#equatable_Equatable_Interface__Equatable_equals_
   fullName: '[Equatable.equals](other)'
+- uid: equatable.Equatable_Namespace
+  name: Equatable
+  href: api/equatable/equatable_namespace.html#equatable_Equatable_Namespace
+  fullName: Equatable
 - uid: equatable.Equatable_Namespace.isEquatable
-  name: Equatable_Namespace.isEquatable
-  href: api/equatable.html#equatable_Equatable_Namespace_isEquatable
-  fullName: Equatable_Namespace.isEquatable
+  name: isEquatable(value)
+  href: api/equatable/equatable_namespace.html
+  fullName: isEquatable(value)
 - uid: equatable.StructuralComparable_Interface
   name: StructuralComparable
   href: api/equatable/structuralcomparable_interface.html#equatable_StructuralComparable_Interface
@@ -1721,10 +1789,14 @@ references:
   name: '[StructuralComparable.structuralCompareTo](other, comparer)'
   href: api/equatable/structuralcomparable_interface.html#equatable_StructuralComparable_Interface__StructuralComparable_structuralCompareTo_
   fullName: '[StructuralComparable.structuralCompareTo](other, comparer)'
+- uid: equatable.StructuralComparable_Namespace
+  name: StructuralComparable
+  href: api/equatable/structuralcomparable_namespace.html#equatable_StructuralComparable_Namespace
+  fullName: StructuralComparable
 - uid: equatable.StructuralComparable_Namespace.isStructuralComparable
-  name: StructuralComparable_Namespace.isStructuralComparable
-  href: api/equatable.html#equatable_StructuralComparable_Namespace_isStructuralComparable
-  fullName: StructuralComparable_Namespace.isStructuralComparable
+  name: isStructuralComparable(value)
+  href: api/equatable/structuralcomparable_namespace.html
+  fullName: isStructuralComparable(value)
 - uid: equatable.StructuralEquatable_Interface
   name: StructuralEquatable
   href: api/equatable/structuralequatable_interface.html#equatable_StructuralEquatable_Interface
@@ -1733,14 +1805,21 @@ references:
   name: '[StructuralEquatable.structuralEquals](other, equaler)'
   href: api/equatable/structuralequatable_interface.html#equatable_StructuralEquatable_Interface__StructuralEquatable_structuralEquals_
   fullName: '[StructuralEquatable.structuralEquals](other, equaler)'
+- uid: equatable.StructuralEquatable_Namespace
+  name: StructuralEquatable
+  href: api/equatable/structuralequatable_namespace.html#equatable_StructuralEquatable_Namespace
+  fullName: StructuralEquatable
 - uid: equatable.StructuralEquatable_Namespace.isStructuralEquatable
-  name: StructuralEquatable_Namespace.isStructuralEquatable
-  href: api/equatable.html#equatable_StructuralEquatable_Namespace_isStructuralEquatable
-  fullName: StructuralEquatable_Namespace.isStructuralEquatable
+  name: isStructuralEquatable(value)
+  href: api/equatable/structuralequatable_namespace.html
+  fullName: isStructuralEquatable(value)
 - uid: equatable-shim
   name: '@esfx/equatable-shim'
   href: api/equatable-shim.html
   fullName: '@esfx/equatable-shim'
+- uid: esfx
+  name: '@esfx reference'
+  href: index.html
 - uid: events
   name: '@esfx/events'
   href: api/events.html
@@ -1834,9 +1913,9 @@ references:
   href: api/indexed-object/integerindexedobject.html#indexed_object_IntegerIndexedObject
   fullName: IntegerIndexedObject
 - uid: indexed-object.IntegerIndexedObject.(constructor)
-  name: (constructor)()
+  name: constructor()
   href: api/indexed-object/integerindexedobject.html#indexed_object_IntegerIndexedObject__constructor_
-  fullName: (constructor)()
+  fullName: constructor()
 - uid: indexed-object.IntegerIndexedObject.deleteIndex
   name: deleteIndex(index)
   href: api/indexed-object/integerindexedobject.html#indexed_object_IntegerIndexedObject_deleteIndex
@@ -1866,9 +1945,9 @@ references:
   href: api/lazy/lazy.html#lazy_Lazy
   fullName: Lazy
 - uid: lazy.Lazy.(constructor)
-  name: (constructor)(factory)
+  name: constructor(factory)
   href: api/lazy/lazy.html#lazy_Lazy__constructor_
-  fullName: (constructor)(factory)
+  fullName: constructor(factory)
 - uid: lazy.Lazy.for
   name: for(value)
   href: api/lazy/lazy.html#lazy_Lazy_for
@@ -2013,26 +2092,30 @@ references:
   name: ref(get, set)
   href: api/ref.html#ref_ref_Function
   fullName: ref(get, set)
+- uid: ref.ref_Namespace
+  name: ref
+  href: api/ref/ref_namespace.html#ref_ref_Namespace
+  fullName: ref
 - uid: ref.ref_Namespace._for
-  name: ref_Namespace._for
-  href: api/ref.html#ref_ref_Namespace__for
-  fullName: ref_Namespace._for
+  name: _for(value)
+  href: api/ref/ref_namespace.html
+  fullName: _for(value)
 - uid: ref.ref_Namespace._is
-  name: ref_Namespace._is
-  href: api/ref.html#ref_ref_Namespace__is
-  fullName: ref_Namespace._is
+  name: _is(value)
+  href: api/ref/ref_namespace.html
+  fullName: _is(value)
 - uid: ref.ref_Namespace.at
-  name: ref_Namespace.at
-  href: api/ref.html#ref_ref_Namespace_at
-  fullName: ref_Namespace.at
+  name: at(object, key, readonly)
+  href: api/ref/ref_namespace.html
+  fullName: at(object, key, readonly)
 - uid: ref.ref_Namespace.out_Function
-  name: ref_Namespace.out_Function
-  href: api/ref.html#ref_ref_Namespace_out_Function
-  fullName: ref_Namespace.out_Function
+  name: out()
+  href: api/ref/ref_namespace.html
+  fullName: out()
 - uid: ref.ref_Namespace.out_Function_1
-  name: ref_Namespace.out_Function_1
-  href: api/ref.html#ref_ref_Namespace_out_Function_1
-  fullName: ref_Namespace.out_Function_1
+  name: out(get, set)
+  href: api/ref/ref_namespace.html
+  fullName: out(get, set)
 - uid: ref.Reference
   name: Reference
   href: api/ref/reference.html#ref_Reference
@@ -2058,25 +2141,25 @@ references:
   href: api/struct-type/struct.html#struct_type_Struct
   fullName: Struct
 - uid: struct-type.Struct.(constructor)
-  name: (constructor)()
+  name: constructor()
   href: api/struct-type/struct.html#struct_type_Struct__constructor_
-  fullName: (constructor)()
+  fullName: constructor()
 - uid: struct-type.Struct.(constructor)_1
-  name: (constructor)(shared)
+  name: constructor(shared)
   href: api/struct-type/struct.html#struct_type_Struct__constructor__1
-  fullName: (constructor)(shared)
+  fullName: constructor(shared)
 - uid: struct-type.Struct.(constructor)_2
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/struct-type/struct.html#struct_type_Struct__constructor__2
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: struct-type.Struct.(constructor)_3
-  name: (constructor)(object, shared)
+  name: constructor(object, shared)
   href: api/struct-type/struct.html#struct_type_Struct__constructor__3
-  fullName: (constructor)(object, shared)
+  fullName: constructor(object, shared)
 - uid: struct-type.Struct.(constructor)_4
-  name: (constructor)(elements, shared)
+  name: constructor(elements, shared)
   href: api/struct-type/struct.html#struct_type_Struct__constructor__4
-  fullName: (constructor)(elements, shared)
+  fullName: constructor(elements, shared)
 - uid: struct-type.Struct.buffer
   name: buffer
   href: api/struct-type/struct.html#struct_type_Struct_buffer
@@ -2182,13 +2265,13 @@ references:
   href: api/threading-autoresetevent/autoresetevent.html#threading_autoresetevent_AutoResetEvent
   fullName: AutoResetEvent
 - uid: threading-autoresetevent.AutoResetEvent.(constructor)
-  name: (constructor)(initialState)
+  name: constructor(initialState)
   href: api/threading-autoresetevent/autoresetevent.html#threading_autoresetevent_AutoResetEvent__constructor_
-  fullName: (constructor)(initialState)
+  fullName: constructor(initialState)
 - uid: threading-autoresetevent.AutoResetEvent.(constructor)_1
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/threading-autoresetevent/autoresetevent.html#threading_autoresetevent_AutoResetEvent__constructor__1
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: threading-autoresetevent.AutoResetEvent.[Disposable.dispose]
   name: '[Disposable.dispose]()'
   href: api/threading-autoresetevent/autoresetevent.html#threading_autoresetevent_AutoResetEvent__Disposable_dispose_
@@ -2234,9 +2317,9 @@ references:
   href: api/threading-conditionvariable/conditionvariable.html#threading_conditionvariable_ConditionVariable
   fullName: ConditionVariable
 - uid: threading-conditionvariable.ConditionVariable.(constructor)
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/threading-conditionvariable/conditionvariable.html#threading_conditionvariable_ConditionVariable__constructor_
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: threading-conditionvariable.ConditionVariable.[Disposable.dispose]
   name: '[Disposable.dispose]()'
   href: api/threading-conditionvariable/conditionvariable.html#threading_conditionvariable_ConditionVariable__Disposable_dispose_
@@ -2286,13 +2369,13 @@ references:
   href: api/threading-countdown/countdownevent.html#threading_countdown_CountdownEvent
   fullName: CountdownEvent
 - uid: threading-countdown.CountdownEvent.(constructor)
-  name: (constructor)(initialCount)
+  name: constructor(initialCount)
   href: api/threading-countdown/countdownevent.html#threading_countdown_CountdownEvent__constructor_
-  fullName: (constructor)(initialCount)
+  fullName: constructor(initialCount)
 - uid: threading-countdown.CountdownEvent.(constructor)_1
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/threading-countdown/countdownevent.html#threading_countdown_CountdownEvent__constructor__1
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: threading-countdown.CountdownEvent.[Disposable.dispose]
   name: '[Disposable.dispose]()'
   href: api/threading-countdown/countdownevent.html#threading_countdown_CountdownEvent__Disposable_dispose_
@@ -2361,6 +2444,10 @@ references:
   name: '[Lockable.lock](ms)'
   href: api/threading-lockable/lockable_interface.html#threading_lockable_Lockable_Interface__Lockable_lock_
   fullName: '[Lockable.lock](ms)'
+- uid: threading-lockable.Lockable_Namespace
+  name: Lockable
+  href: api/threading-lockable/lockable_namespace.html#threading_lockable_Lockable_Namespace
+  fullName: Lockable
 - uid: threading-manualresetevent
   name: '@esfx/threading-manualresetevent'
   href: api/threading-manualresetevent.html
@@ -2370,13 +2457,13 @@ references:
   href: api/threading-manualresetevent/manualresetevent.html#threading_manualresetevent_ManualResetEvent
   fullName: ManualResetEvent
 - uid: threading-manualresetevent.ManualResetEvent.(constructor)
-  name: (constructor)(initialState)
+  name: constructor(initialState)
   href: api/threading-manualresetevent/manualresetevent.html#threading_manualresetevent_ManualResetEvent__constructor_
-  fullName: (constructor)(initialState)
+  fullName: constructor(initialState)
 - uid: threading-manualresetevent.ManualResetEvent.(constructor)_1
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/threading-manualresetevent/manualresetevent.html#threading_manualresetevent_ManualResetEvent__constructor__1
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: threading-manualresetevent.ManualResetEvent.[Disposable.dispose]
   name: '[Disposable.dispose]()'
   href: api/threading-manualresetevent/manualresetevent.html#threading_manualresetevent_ManualResetEvent__Disposable_dispose_
@@ -2426,13 +2513,13 @@ references:
   href: api/threading-mutex/mutex.html#threading_mutex_Mutex
   fullName: Mutex
 - uid: threading-mutex.Mutex.(constructor)
-  name: (constructor)(initiallyOwned)
+  name: constructor(initiallyOwned)
   href: api/threading-mutex/mutex.html#threading_mutex_Mutex__constructor_
-  fullName: (constructor)(initiallyOwned)
+  fullName: constructor(initiallyOwned)
 - uid: threading-mutex.Mutex.(constructor)_1
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/threading-mutex/mutex.html#threading_mutex_Mutex__constructor__1
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: threading-mutex.Mutex.[Lockable.lock]
   name: '[Lockable.lock](ms)'
   href: api/threading-mutex/mutex.html#threading_mutex_Mutex__Lockable_lock_
@@ -2486,13 +2573,13 @@ references:
   href: api/threading-semaphore/semaphore.html#threading_semaphore_Semaphore
   fullName: Semaphore
 - uid: threading-semaphore.Semaphore.(constructor)
-  name: (constructor)(initialCount, maxCount)
+  name: constructor(initialCount, maxCount)
   href: api/threading-semaphore/semaphore.html#threading_semaphore_Semaphore__constructor_
-  fullName: (constructor)(initialCount, maxCount)
+  fullName: constructor(initialCount, maxCount)
 - uid: threading-semaphore.Semaphore.(constructor)_1
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/threading-semaphore/semaphore.html#threading_semaphore_Semaphore__constructor__1
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: threading-semaphore.Semaphore.buffer
   name: buffer
   href: api/threading-semaphore/semaphore.html#threading_semaphore_Semaphore_buffer
@@ -2549,3 +2636,7 @@ references:
   name: spinUntil(condition, ms)
   href: api/threading-spinwait/spinwait.html#threading_spinwait_SpinWait_spinUntil
   fullName: spinUntil(condition, ms)
+- uid: type-model
+  name: '@esfx/type-model'
+  href: api/type-model.html
+  fullName: '@esfx/type-model'

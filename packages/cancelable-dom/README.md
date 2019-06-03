@@ -27,4 +27,4 @@ async function doSomeWork(cancelable: Cancelable) {
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/cancelable_dom.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/cancelable-dom.html).

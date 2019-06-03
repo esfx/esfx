@@ -62,4 +62,4 @@ else {
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/threading_semaphore.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/threading-semaphore.html).

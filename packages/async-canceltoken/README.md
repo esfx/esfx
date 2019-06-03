@@ -98,4 +98,4 @@ async function downloadFile(url, path, token = CancelToken.none) {
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/async_canceltoken.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/async-canceltoken.html).

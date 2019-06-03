@@ -4,12 +4,21 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      },
+      "is_incremental": false
+    },
+    {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-autoresetevent.yml",
+      "source_relative_path": ".docs/yml/async-autoresetevent.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-autoresetevent.html",
-          "hash": "dsOVSpF+5BWQQyPBFrTylg=="
+          "hash": "SrR89Aeix5ZYsNvya3kyMw=="
         }
       },
       "is_incremental": false,
@@ -17,11 +26,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-autoresetevent/asyncautoresetevent.yml",
+      "source_relative_path": ".docs/yml/async-autoresetevent/asyncautoresetevent.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-autoresetevent/asyncautoresetevent.html",
-          "hash": "VrBBfYUas5LTgI6/hrLJ2A=="
+          "hash": "BfNYTyorebbxjNkVUwbmzg=="
         }
       },
       "is_incremental": false,
@@ -29,11 +38,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-barrier.yml",
+      "source_relative_path": ".docs/yml/async-barrier.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-barrier.html",
-          "hash": "n5sOupF/acEobVl83+HPyA=="
+          "hash": "A7ELx/ramw7QJcisxclJ7A=="
         }
       },
       "is_incremental": false,
@@ -41,11 +50,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-barrier/asyncbarrier.yml",
+      "source_relative_path": ".docs/yml/async-barrier/asyncbarrier.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-barrier/asyncbarrier.html",
-          "hash": "zJXyFWPqxrmr+ume45lBig=="
+          "hash": "1nEA9t3r2XHhmd2mFmFT/g=="
         }
       },
       "is_incremental": false,
@@ -53,11 +62,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-canceltoken.yml",
+      "source_relative_path": ".docs/yml/async-canceltoken.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-canceltoken.html",
-          "hash": "V2KBZLiXvD5z1Q0eyEh7Gw=="
+          "hash": "YIbrXGPNVj+u6GzZH8jiAg=="
         }
       },
       "is_incremental": false,
@@ -65,11 +74,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-canceltoken/cancelsource.yml",
+      "source_relative_path": ".docs/yml/async-canceltoken/cancelsource.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-canceltoken/cancelsource.html",
-          "hash": "bBnBv8T7Vux+Hh3MmQmj5w=="
+          "hash": "/SsLum7k589/1KQy5C+Kyg=="
         }
       },
       "is_incremental": false,
@@ -77,11 +86,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-canceltoken/canceltoken.yml",
+      "source_relative_path": ".docs/yml/async-canceltoken/canceltoken.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-canceltoken/canceltoken.html",
-          "hash": "oE3jTV9pJQSk6O7yLzc7qw=="
+          "hash": "+w0K/yz9D+eKtqN7kEpWPQ=="
         }
       },
       "is_incremental": false,
@@ -89,11 +98,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-conditionvariable.yml",
+      "source_relative_path": ".docs/yml/async-conditionvariable.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-conditionvariable.html",
-          "hash": "7xwfoaD/pC/9nGACV6FVXA=="
+          "hash": "/ki3QRb9ejUuOpfyIendcA=="
         }
       },
       "is_incremental": false,
@@ -101,11 +110,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-conditionvariable/asyncconditionvariable.yml",
+      "source_relative_path": ".docs/yml/async-conditionvariable/asyncconditionvariable.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-conditionvariable/asyncconditionvariable.html",
-          "hash": "L4Lx/vBObPu/m3ipeqRb7g=="
+          "hash": "jrExfd7F7XYnrKMZ9IO4oQ=="
         }
       },
       "is_incremental": false,
@@ -113,11 +122,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-countdown.yml",
+      "source_relative_path": ".docs/yml/async-countdown.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-countdown.html",
-          "hash": "m2MrT1vyfUHu869OtYN7Zw=="
+          "hash": "X3tneJNa6TgEWciTLvyutg=="
         }
       },
       "is_incremental": false,
@@ -125,11 +134,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-countdown/asynccountdownevent.yml",
+      "source_relative_path": ".docs/yml/async-countdown/asynccountdownevent.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-countdown/asynccountdownevent.html",
-          "hash": "M7CoCpVRtqjBFdwzwZkkCg=="
+          "hash": "xAm7SvGWot4nPSxX8IlwZA=="
         }
       },
       "is_incremental": false,
@@ -137,11 +146,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-deferred.yml",
+      "source_relative_path": ".docs/yml/async-deferred.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-deferred.html",
-          "hash": "aVKcF72W8VvphVZnqNAWKQ=="
+          "hash": "fS2sSWPQ/xZ5zGLvTImvMg=="
         }
       },
       "is_incremental": false,
@@ -149,11 +158,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-deferred/deferred.yml",
+      "source_relative_path": ".docs/yml/async-deferred/deferred.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-deferred/deferred.html",
-          "hash": "jXwDe7IJcF0COuuJdqPNqw=="
+          "hash": "JjivA/bwYFdXv0zsZGLhvg=="
         }
       },
       "is_incremental": false,
@@ -161,11 +170,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-delay.yml",
+      "source_relative_path": ".docs/yml/async-delay.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-delay.html",
-          "hash": "sLr0ppJkvF8HgcYYbGvvIQ=="
+          "hash": "2kI39ci+Fg1z3CHLo10Hkw=="
         }
       },
       "is_incremental": false,
@@ -173,11 +182,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-lazy.yml",
+      "source_relative_path": ".docs/yml/async-lazy.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-lazy.html",
-          "hash": "Ip2523osVMj1vyYK1dWMqQ=="
+          "hash": "LY9L01bGSK+SkFVn5uGFCg=="
         }
       },
       "is_incremental": false,
@@ -185,11 +194,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-lazy/asynclazy.yml",
+      "source_relative_path": ".docs/yml/async-lazy/asynclazy.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-lazy/asynclazy.html",
-          "hash": "7mWMGxl79Z9FiyJI7dXnkQ=="
+          "hash": "+3RdzxJNHhLMukXmeQ4iUQ=="
         }
       },
       "is_incremental": false,
@@ -197,11 +206,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-lockable.yml",
+      "source_relative_path": ".docs/yml/async-lockable.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-lockable.html",
-          "hash": "RsUWDsTmhXvbLCczxqRqyA=="
+          "hash": "PVpdAwtPeHTzhPLT5+7+Bg=="
         }
       },
       "is_incremental": false,
@@ -209,11 +218,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-lockable/asynclockable_interface.yml",
+      "source_relative_path": ".docs/yml/async-lockable/asynclockable_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-lockable/asynclockable_interface.html",
-          "hash": "Gl7WV5kXVE9Dn4ATUUgEiw=="
+          "hash": "luf6pSXOxPpoP3DVNxWyhg=="
         }
       },
       "is_incremental": false,
@@ -221,11 +230,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-lockable/lockhandle.yml",
+      "source_relative_path": ".docs/yml/async-lockable/asynclockable_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/async-lockable/asynclockable_namespace.html",
+          "hash": "PciBiulR0XNaglizaOeV7g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/async-lockable/lockhandle.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-lockable/lockhandle.html",
-          "hash": "F6q9IfNkb4SgysyVg75zSA=="
+          "hash": "s7m1kSkgin9UkEmIEbQ72Q=="
         }
       },
       "is_incremental": false,
@@ -233,11 +254,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-lockable/upgradeablelockhandle.yml",
+      "source_relative_path": ".docs/yml/async-lockable/upgradeablelockhandle.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-lockable/upgradeablelockhandle.html",
-          "hash": "CUfzOOfjwE/Xr3vNaQan8w=="
+          "hash": "UnIa0qhzhqmJErG1ZSjkhg=="
         }
       },
       "is_incremental": false,
@@ -245,11 +266,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-manualresetevent.yml",
+      "source_relative_path": ".docs/yml/async-manualresetevent.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-manualresetevent.html",
-          "hash": "lXWi3WVo+JVv2yPGsgY4mQ=="
+          "hash": "zPyYdG1B1xV5GCUWlmTj5w=="
         }
       },
       "is_incremental": false,
@@ -257,11 +278,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-manualresetevent/asyncmanualresetevent.yml",
+      "source_relative_path": ".docs/yml/async-manualresetevent/asyncmanualresetevent.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-manualresetevent/asyncmanualresetevent.html",
-          "hash": "P4oiJzdZLZc2A6mwOBqLkA=="
+          "hash": "LdPb5LRMAdVEhimkZEzVzw=="
         }
       },
       "is_incremental": false,
@@ -269,11 +290,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-mutex.yml",
+      "source_relative_path": ".docs/yml/async-mutex.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-mutex.html",
-          "hash": "JqIoSCe+fDi4evOTw71jOA=="
+          "hash": "vq2ChzfWUQifhywCYxl++g=="
         }
       },
       "is_incremental": false,
@@ -281,11 +302,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-mutex/asyncmutex.yml",
+      "source_relative_path": ".docs/yml/async-mutex/asyncmutex.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-mutex/asyncmutex.html",
-          "hash": "aXVYy1P5MHiz+Yl2CPgcbw=="
+          "hash": "TT58J7qCU23PQuwekolU+g=="
         }
       },
       "is_incremental": false,
@@ -293,11 +314,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-queue.yml",
+      "source_relative_path": ".docs/yml/async-queue.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-queue.html",
-          "hash": "IzosXWDpr6eKcXA01itH3Q=="
+          "hash": "d2hw+cnEIvqTuEPJKlP8kQ=="
         }
       },
       "is_incremental": false,
@@ -305,11 +326,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-queue/asyncqueue.yml",
+      "source_relative_path": ".docs/yml/async-queue/asyncqueue.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-queue/asyncqueue.html",
-          "hash": "khFw5OCg+J5eUnr7/ygzog=="
+          "hash": "quGa4YfrBLlZna/pgPMOIA=="
         }
       },
       "is_incremental": false,
@@ -317,11 +338,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-readerwriterlock.yml",
+      "source_relative_path": ".docs/yml/async-readerwriterlock.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-readerwriterlock.html",
-          "hash": "S5wkYMvX+ekMTWYn1L1vrw=="
+          "hash": "Qk3L6BjjGTMTRBbhTmX7sg=="
         }
       },
       "is_incremental": false,
@@ -329,11 +350,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-readerwriterlock/asyncreaderwriterlock.yml",
+      "source_relative_path": ".docs/yml/async-readerwriterlock/asyncreaderwriterlock.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-readerwriterlock/asyncreaderwriterlock.html",
-          "hash": "xGy1iHQxQBFr3t0cPhtjSQ=="
+          "hash": "hc/Xux9tUxjSMBiQPN0tPA=="
         }
       },
       "is_incremental": false,
@@ -341,11 +362,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-readerwriterlock/asyncreaderwriterlockreader.yml",
+      "source_relative_path": ".docs/yml/async-readerwriterlock/asyncreaderwriterlockreader.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-readerwriterlock/asyncreaderwriterlockreader.html",
-          "hash": "QsUnNL4V3yP80te5hFkMdA=="
+          "hash": "jEgp4f+tHCtiuNU5osPPLA=="
         }
       },
       "is_incremental": false,
@@ -353,11 +374,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-readerwriterlock/asyncreaderwriterlockupgradeablereader.yml",
+      "source_relative_path": ".docs/yml/async-readerwriterlock/asyncreaderwriterlockupgradeablereader.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-readerwriterlock/asyncreaderwriterlockupgradeablereader.html",
-          "hash": "enrTB2JAol5mtkh0/X7X4A=="
+          "hash": "8uoiQEhaWNs3tmWSaWYcTQ=="
         }
       },
       "is_incremental": false,
@@ -365,11 +386,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-readerwriterlock/asyncreaderwriterlockupgradedwriter.yml",
+      "source_relative_path": ".docs/yml/async-readerwriterlock/asyncreaderwriterlockupgradedwriter.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-readerwriterlock/asyncreaderwriterlockupgradedwriter.html",
-          "hash": "FevDhJKA1pskmiNkXFGchw=="
+          "hash": "CNa18gSxAJAOZFLZSof6Xg=="
         }
       },
       "is_incremental": false,
@@ -377,11 +398,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-readerwriterlock/asyncreaderwriterlockwriter.yml",
+      "source_relative_path": ".docs/yml/async-readerwriterlock/asyncreaderwriterlockwriter.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-readerwriterlock/asyncreaderwriterlockwriter.html",
-          "hash": "obg/h5rWcW9ToadGDm6yLg=="
+          "hash": "yhu8ZE5TS+rq9rXroa7nQQ=="
         }
       },
       "is_incremental": false,
@@ -389,11 +410,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-semaphore.yml",
+      "source_relative_path": ".docs/yml/async-semaphore.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-semaphore.html",
-          "hash": "G/4RbNPIM8XEp2F8gex4Kg=="
+          "hash": "m0dJgHX/oYDHIeMgAN2trA=="
         }
       },
       "is_incremental": false,
@@ -401,11 +422,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-semaphore/asyncsemaphore.yml",
+      "source_relative_path": ".docs/yml/async-semaphore/asyncsemaphore.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-semaphore/asyncsemaphore.html",
-          "hash": "jzHfHSGQ7FqYN+CpPebnkA=="
+          "hash": "I8E1Na3SDu+UOCFpdcL2uA=="
         }
       },
       "is_incremental": false,
@@ -413,11 +434,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-stack.yml",
+      "source_relative_path": ".docs/yml/async-stack.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-stack.html",
-          "hash": "uRo2pLgNCy6dRFwS9dq4Bw=="
+          "hash": "KWHqo1K8FsxxSl7fIg/HXw=="
         }
       },
       "is_incremental": false,
@@ -425,11 +446,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-stack/asyncstack.yml",
+      "source_relative_path": ".docs/yml/async-stack/asyncstack.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-stack/asyncstack.html",
-          "hash": "9LQKFlFh/mx4ndp5IuaWHw=="
+          "hash": "neOpDRUiGEHyT4O4LUI8/w=="
         }
       },
       "is_incremental": false,
@@ -437,11 +458,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-waitqueue.yml",
+      "source_relative_path": ".docs/yml/async-waitqueue.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-waitqueue.html",
-          "hash": "vsaPga6fQ5Mi5PPVztrhSw=="
+          "hash": "0VxO00MSDQi3vnFt6X5rpw=="
         }
       },
       "is_incremental": false,
@@ -449,11 +470,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async-waitqueue/waitqueue.yml",
+      "source_relative_path": ".docs/yml/async-waitqueue/waitqueue.yml",
       "output": {
         ".html": {
           "relative_path": "api/async-waitqueue/waitqueue.html",
-          "hash": "YIWdw5E6nHW+nNjgMrV/TA=="
+          "hash": "sc87rH3WcJ45hXBwKgILJQ=="
         }
       },
       "is_incremental": false,
@@ -461,11 +482,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/async.yml",
+      "source_relative_path": ".docs/yml/async.yml",
       "output": {
         ".html": {
           "relative_path": "api/async.html",
-          "hash": "sKCI5bcIvvVKPxSmOZSDlA=="
+          "hash": "lAbMI6zNnajxKi+HzOV7TQ=="
         }
       },
       "is_incremental": false,
@@ -473,11 +494,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/cancelable-dom-shim.yml",
+      "source_relative_path": ".docs/yml/cancelable-dom-shim.yml",
       "output": {
         ".html": {
           "relative_path": "api/cancelable-dom-shim.html",
-          "hash": "noz/+SPsLl0UhByEdrQYYA=="
+          "hash": "RY+XKUUIGomh2fOAim22Fw=="
         }
       },
       "is_incremental": false,
@@ -485,11 +506,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/cancelable-dom.yml",
+      "source_relative_path": ".docs/yml/cancelable-dom.yml",
       "output": {
         ".html": {
           "relative_path": "api/cancelable-dom.html",
-          "hash": "O4UYJ9yxdXSxGPDo2pZyew=="
+          "hash": "wqUoBDXGt/KruCeDpW8Gbw=="
         }
       },
       "is_incremental": false,
@@ -497,11 +518,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/cancelable.yml",
+      "source_relative_path": ".docs/yml/cancelable.yml",
       "output": {
         ".html": {
           "relative_path": "api/cancelable.html",
-          "hash": "ZxhSzNznXqS92vPerGZZmQ=="
+          "hash": "5bc8KtTxlYgEhizpsw6buw=="
         }
       },
       "is_incremental": false,
@@ -509,11 +530,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/cancelable/cancelable_interface.yml",
+      "source_relative_path": ".docs/yml/cancelable/cancelable_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/cancelable/cancelable_interface.html",
-          "hash": "cIlZoogrjkCeLadHJ16IBw=="
+          "hash": "pKtGbZGT3+fRFNePxHcFGw=="
         }
       },
       "is_incremental": false,
@@ -521,11 +542,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/cancelable/cancelablecancelsignal.yml",
+      "source_relative_path": ".docs/yml/cancelable/cancelable_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/cancelable/cancelable_namespace.html",
+          "hash": "OOR3NW9HH326WCGU+BD3+A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/cancelable/cancelablecancelsignal.yml",
       "output": {
         ".html": {
           "relative_path": "api/cancelable/cancelablecancelsignal.html",
-          "hash": "1+HBqB99O52DK1B2oC6nzA=="
+          "hash": "njsM6lJq0ueQngWzHpawkA=="
         }
       },
       "is_incremental": false,
@@ -533,11 +566,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/cancelable/cancelablesource_interface.yml",
+      "source_relative_path": ".docs/yml/cancelable/cancelablesource_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/cancelable/cancelablesource_interface.html",
-          "hash": "5XJh6Lglxq6XodQAq3vU7g=="
+          "hash": "wR4bLys96J9r2gFGAwEuag=="
         }
       },
       "is_incremental": false,
@@ -545,11 +578,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/cancelable/cancelerror.yml",
+      "source_relative_path": ".docs/yml/cancelable/cancelablesource_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/cancelable/cancelablesource_namespace.html",
+          "hash": "FhsAJtDS3oBjkgG5Nvhwzw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/cancelable/cancelerror.yml",
       "output": {
         ".html": {
           "relative_path": "api/cancelable/cancelerror.html",
-          "hash": "H87GQj1mxbOMnWP4I8Yrkw=="
+          "hash": "CiFlW0W17kWQbcibouSt8w=="
         }
       },
       "is_incremental": false,
@@ -557,11 +602,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/cancelable/cancelsignal.yml",
+      "source_relative_path": ".docs/yml/cancelable/cancelsignal.yml",
       "output": {
         ".html": {
           "relative_path": "api/cancelable/cancelsignal.html",
-          "hash": "ZLiknzfHF1Qhayuuu0f9zw=="
+          "hash": "2Wy7yvq+FHTI36z+3ZQKiQ=="
         }
       },
       "is_incremental": false,
@@ -569,11 +614,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/cancelable/cancelsubscription_interface.yml",
+      "source_relative_path": ".docs/yml/cancelable/cancelsubscription_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/cancelable/cancelsubscription_interface.html",
-          "hash": "S6aNx/wkaBlIJ7GEG1tPhA=="
+          "hash": "bI3K3VzFFvBZVnXLDncv4A=="
         }
       },
       "is_incremental": false,
@@ -581,11 +626,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collection-core-dom-shim.yml",
+      "source_relative_path": ".docs/yml/cancelable/cancelsubscription_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/cancelable/cancelsubscription_namespace.html",
+          "hash": "uUZ1yGz5+0ZX4YMj3wKBLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/collection-core-dom-shim.yml",
       "output": {
         ".html": {
           "relative_path": "api/collection-core-dom-shim.html",
-          "hash": "iKvx6ZLqOOtmFYe676/rmw=="
+          "hash": "8OnUX6/swtMWzq1+DajcSw=="
         }
       },
       "is_incremental": false,
@@ -593,11 +650,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collection-core-shim.yml",
+      "source_relative_path": ".docs/yml/collection-core-shim.yml",
       "output": {
         ".html": {
           "relative_path": "api/collection-core-shim.html",
-          "hash": "X2tIT0Yx0xoYDBhsi841Gw=="
+          "hash": "uvyUDRh2MNSnkqG5O0pEKQ=="
         }
       },
       "is_incremental": false,
@@ -605,11 +662,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collection-core.yml",
+      "source_relative_path": ".docs/yml/collection-core.yml",
       "output": {
         ".html": {
           "relative_path": "api/collection-core.html",
-          "hash": "1Fi6aEuHBMJYJ5+ypSS57Q=="
+          "hash": "xeCVurlDmRcnWI+qUrjrDQ=="
         }
       },
       "is_incremental": false,
@@ -617,11 +674,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collection-core/collection_interface.yml",
+      "source_relative_path": ".docs/yml/collection-core/collection_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/collection-core/collection_interface.html",
-          "hash": "WhSyK6CBMPN8jfmDGeIWrA=="
+          "hash": "pywDRpdOQNcQ/3yTpeJmIQ=="
         }
       },
       "is_incremental": false,
@@ -629,11 +686,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collection-core/fixedsizeindexedcollection_interface.yml",
+      "source_relative_path": ".docs/yml/collection-core/collection_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/collection_namespace.html",
+          "hash": "+yk6E1KLihee8ubzHnFaUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/collection-core/fixedsizeindexedcollection_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/collection-core/fixedsizeindexedcollection_interface.html",
-          "hash": "iH02fkZTL1tsWu5/EfIR4Q=="
+          "hash": "hhzTcg7p+5KVR9xXQ0LKDg=="
         }
       },
       "is_incremental": false,
@@ -641,11 +710,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collection-core/indexedcollection_interface.yml",
+      "source_relative_path": ".docs/yml/collection-core/fixedsizeindexedcollection_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/fixedsizeindexedcollection_namespace.html",
+          "hash": "HmN9XktSBzSrhBEy4Oc32A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/collection-core/indexedcollection_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/collection-core/indexedcollection_interface.html",
-          "hash": "14KRhRhegJeMNxwX5+2qDg=="
+          "hash": "lC0djTdnfh3AB8uOmHDTTw=="
         }
       },
       "is_incremental": false,
@@ -653,11 +734,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collection-core/keyedcollection_interface.yml",
+      "source_relative_path": ".docs/yml/collection-core/indexedcollection_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/indexedcollection_namespace.html",
+          "hash": "ZA+szlf1bKTFMhWEeKZ6ig=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/collection-core/keyedcollection_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/collection-core/keyedcollection_interface.html",
-          "hash": "9M7SR2asRAko1zWDT36Q8g=="
+          "hash": "EU3c/vPPmG9tX1C+OcXG0Q=="
         }
       },
       "is_incremental": false,
@@ -665,11 +758,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collection-core/readonlycollection_interface.yml",
+      "source_relative_path": ".docs/yml/collection-core/keyedcollection_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/keyedcollection_namespace.html",
+          "hash": "Do2ojLK/7Z8ToClNDpuSDg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/collection-core/readonlycollection_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/collection-core/readonlycollection_interface.html",
-          "hash": "WTC3Lj/IDAyvbe+pMtJHAA=="
+          "hash": "q0aLKDEg0A/PPB8cDAGA9A=="
         }
       },
       "is_incremental": false,
@@ -677,11 +782,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collection-core/readonlyindexedcollection_interface.yml",
+      "source_relative_path": ".docs/yml/collection-core/readonlycollection_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/readonlycollection_namespace.html",
+          "hash": "thZqCUCzlApW0IpSghKW/A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/collection-core/readonlyindexedcollection_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/collection-core/readonlyindexedcollection_interface.html",
-          "hash": "Yh61TeHgYRlJSFPE3oYlhg=="
+          "hash": "wclTz9fbFJCmA5BlAha4AQ=="
         }
       },
       "is_incremental": false,
@@ -689,11 +806,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collection-core/readonlykeyedcollection_interface.yml",
+      "source_relative_path": ".docs/yml/collection-core/readonlyindexedcollection_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/readonlyindexedcollection_namespace.html",
+          "hash": "lZOEroeLzXsqOEcKJhth3Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/collection-core/readonlykeyedcollection_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/collection-core/readonlykeyedcollection_interface.html",
-          "hash": "EyFh7ab+AZWNkiQ62MGnDw=="
+          "hash": "DsXXgAzh7iHiOCw2ahbtgw=="
         }
       },
       "is_incremental": false,
@@ -701,11 +830,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collections-hashmap.yml",
+      "source_relative_path": ".docs/yml/collection-core/readonlykeyedcollection_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/collection-core/readonlykeyedcollection_namespace.html",
+          "hash": "a1KkNwybVLB8p3TFZgbP4A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/collections-hashmap.yml",
       "output": {
         ".html": {
           "relative_path": "api/collections-hashmap.html",
-          "hash": "XACV2ejXKrUwa2X0MjpwJw=="
+          "hash": "F/ogaFX+ofqScBWuYXJvGw=="
         }
       },
       "is_incremental": false,
@@ -713,11 +854,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collections-hashmap/hashmap.yml",
+      "source_relative_path": ".docs/yml/collections-hashmap/hashmap.yml",
       "output": {
         ".html": {
           "relative_path": "api/collections-hashmap/hashmap.html",
-          "hash": "jIaKAhZ7q4ZeSjVNizEXhw=="
+          "hash": "g3YHHQ4vafyJDq1+onncWQ=="
         }
       },
       "is_incremental": false,
@@ -725,11 +866,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collections-hashset.yml",
+      "source_relative_path": ".docs/yml/collections-hashset.yml",
       "output": {
         ".html": {
           "relative_path": "api/collections-hashset.html",
-          "hash": "o9Q7+scl3BwMSQhkpw8krQ=="
+          "hash": "1HqpIzDlUUAjCFSsrcMCgQ=="
         }
       },
       "is_incremental": false,
@@ -737,11 +878,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collections-hashset/hashset.yml",
+      "source_relative_path": ".docs/yml/collections-hashset/hashset.yml",
       "output": {
         ".html": {
           "relative_path": "api/collections-hashset/hashset.html",
-          "hash": "3iIrKXLHn5gb0AMvYnEZjg=="
+          "hash": "gVRCq19OeUtNYRbJlkzMVA=="
         }
       },
       "is_incremental": false,
@@ -749,11 +890,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collections-linkedlist.yml",
+      "source_relative_path": ".docs/yml/collections-linkedlist.yml",
       "output": {
         ".html": {
           "relative_path": "api/collections-linkedlist.html",
-          "hash": "+RjoVKinnh0fQAqq/8FkuA=="
+          "hash": "cd1ugrNe/YqkpiCXkDb4BQ=="
         }
       },
       "is_incremental": false,
@@ -761,11 +902,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collections-linkedlist/linkedlist.yml",
+      "source_relative_path": ".docs/yml/collections-linkedlist/linkedlist.yml",
       "output": {
         ".html": {
           "relative_path": "api/collections-linkedlist/linkedlist.html",
-          "hash": "B/uH8BqPUOYG7aHZqpkNCQ=="
+          "hash": "CQNbk947boZZDyO3Ubp1zg=="
         }
       },
       "is_incremental": false,
@@ -773,11 +914,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collections-linkedlist/linkedlistnode.yml",
+      "source_relative_path": ".docs/yml/collections-linkedlist/linkedlistnode.yml",
       "output": {
         ".html": {
           "relative_path": "api/collections-linkedlist/linkedlistnode.html",
-          "hash": "d7q9Hy4DrMnjs+jRY8IOHw=="
+          "hash": "6BmMnwC6c8b21wx2ycsihQ=="
         }
       },
       "is_incremental": false,
@@ -785,11 +926,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collections-sortedmap.yml",
+      "source_relative_path": ".docs/yml/collections-sortedmap.yml",
       "output": {
         ".html": {
           "relative_path": "api/collections-sortedmap.html",
-          "hash": "Oq4Wc2CjAoiXtojn21v/Kg=="
+          "hash": "HTduQb260FA8btKDF/xj/A=="
         }
       },
       "is_incremental": false,
@@ -797,11 +938,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collections-sortedmap/sortedmap.yml",
+      "source_relative_path": ".docs/yml/collections-sortedmap/sortedmap.yml",
       "output": {
         ".html": {
           "relative_path": "api/collections-sortedmap/sortedmap.html",
-          "hash": "g3qgut5yBfjojZW72mG04A=="
+          "hash": "zjkQpalcO2Ne4L0am10SGw=="
         }
       },
       "is_incremental": false,
@@ -809,11 +950,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collections-sortedset.yml",
+      "source_relative_path": ".docs/yml/collections-sortedset.yml",
       "output": {
         ".html": {
           "relative_path": "api/collections-sortedset.html",
-          "hash": "X3vGADTEtu/iMWEFL0S6KA=="
+          "hash": "JdyO3vQ1vbe4iZwW0ZklLw=="
         }
       },
       "is_incremental": false,
@@ -821,11 +962,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collections-sortedset/sortedset.yml",
+      "source_relative_path": ".docs/yml/collections-sortedset/sortedset.yml",
       "output": {
         ".html": {
           "relative_path": "api/collections-sortedset/sortedset.html",
-          "hash": "o39myf6WwcAd1AfCGduq7Q=="
+          "hash": "Mb3X7WayHfPFvLtpD29xZQ=="
         }
       },
       "is_incremental": false,
@@ -833,11 +974,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/collections.yml",
+      "source_relative_path": ".docs/yml/collections.yml",
       "output": {
         ".html": {
           "relative_path": "api/collections.html",
-          "hash": "6nKcPc+wUn9pyKAEDS1U+A=="
+          "hash": "sUwyxMM7GGFIvOzfGsTEbg=="
         }
       },
       "is_incremental": false,
@@ -845,11 +986,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/decorators-stage1-core.yml",
+      "source_relative_path": ".docs/yml/decorators-stage1-core.yml",
       "output": {
         ".html": {
           "relative_path": "api/decorators-stage1-core.html",
-          "hash": "rP/JsaTdPN0UuX28s8bvHQ=="
+          "hash": "l8B8ecoM49x6cYURrn63jw=="
         }
       },
       "is_incremental": false,
@@ -857,11 +998,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/decorators-stage1-core/accessormemberdescriptor.yml",
+      "source_relative_path": ".docs/yml/decorators-stage1-core/accessormemberdescriptor.yml",
       "output": {
         ".html": {
           "relative_path": "api/decorators-stage1-core/accessormemberdescriptor.html",
-          "hash": "Mfb58slWO5t7f0nl1Q0p7w=="
+          "hash": "SLEgnnfrJmfgLSvknGcZpw=="
         }
       },
       "is_incremental": false,
@@ -869,11 +1010,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/decorators-stage1-core/classdescriptor.yml",
+      "source_relative_path": ".docs/yml/decorators-stage1-core/classdescriptor.yml",
       "output": {
         ".html": {
           "relative_path": "api/decorators-stage1-core/classdescriptor.html",
-          "hash": "Q2AGuFGfje9X3Uwy1+bYIA=="
+          "hash": "DRDDxo+2P2Ggqs9do/lrfw=="
         }
       },
       "is_incremental": false,
@@ -881,11 +1022,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/decorators-stage1-core/fieldmemberdescriptor.yml",
+      "source_relative_path": ".docs/yml/decorators-stage1-core/fieldmemberdescriptor.yml",
       "output": {
         ".html": {
           "relative_path": "api/decorators-stage1-core/fieldmemberdescriptor.html",
-          "hash": "sPUTptMob+bIa0RaN8nF/g=="
+          "hash": "M3pt+NlA8+gcH/ckMzidbQ=="
         }
       },
       "is_incremental": false,
@@ -893,11 +1034,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/decorators-stage1-core/memberdescriptor.yml",
+      "source_relative_path": ".docs/yml/decorators-stage1-core/memberdescriptor.yml",
       "output": {
         ".html": {
           "relative_path": "api/decorators-stage1-core/memberdescriptor.html",
-          "hash": "DtxCfMszR8gVNT6Bc417Rg=="
+          "hash": "FxGg1uK9MkFkyS7w1iAylQ=="
         }
       },
       "is_incremental": false,
@@ -905,11 +1046,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/decorators-stage1-core/methodmemberdescriptor.yml",
+      "source_relative_path": ".docs/yml/decorators-stage1-core/methodmemberdescriptor.yml",
       "output": {
         ".html": {
           "relative_path": "api/decorators-stage1-core/methodmemberdescriptor.html",
-          "hash": "p0EFOUMovRc4gohSz3j7RA=="
+          "hash": "f4ThLe+4JM+k77bG0GCHhQ=="
         }
       },
       "is_incremental": false,
@@ -917,11 +1058,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/decorators-stage1-core/parameterdescriptor.yml",
+      "source_relative_path": ".docs/yml/decorators-stage1-core/parameterdescriptor.yml",
       "output": {
         ".html": {
           "relative_path": "api/decorators-stage1-core/parameterdescriptor.html",
-          "hash": "MLPs9FConzohomDT3pzFfA=="
+          "hash": "pXqXIzO9rlRKv+cKVn8m5Q=="
         }
       },
       "is_incremental": false,
@@ -929,11 +1070,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/decorators.yml",
+      "source_relative_path": ".docs/yml/decorators.yml",
       "output": {
         ".html": {
           "relative_path": "api/decorators.html",
-          "hash": "JUYHKwxGt2K1pDHErm1dTA=="
+          "hash": "gOcbrupV1EepQS5mBnCwfQ=="
         }
       },
       "is_incremental": false,
@@ -941,11 +1082,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/disposable.yml",
+      "source_relative_path": ".docs/yml/disposable.yml",
       "output": {
         ".html": {
           "relative_path": "api/disposable.html",
-          "hash": "B+L7l1UM83dp5YqDoxiV+w=="
+          "hash": "1MLe12FLgMLxAD3cFDJhBg=="
         }
       },
       "is_incremental": false,
@@ -953,11 +1094,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/disposable/asyncdisposable_interface.yml",
+      "source_relative_path": ".docs/yml/disposable/asyncdisposable_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/disposable/asyncdisposable_interface.html",
-          "hash": "/6XISFzZrsJDx8AKYRNfxw=="
+          "hash": "eMQ2hmstXs8WgQNF6+BWkQ=="
         }
       },
       "is_incremental": false,
@@ -965,11 +1106,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/disposable/disposable_interface.yml",
+      "source_relative_path": ".docs/yml/disposable/asyncdisposable_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/disposable/asyncdisposable_namespace.html",
+          "hash": "N8Qg8p+Tz8jWPMPx7PGVYQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/disposable/disposable_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/disposable/disposable_interface.html",
-          "hash": "rEbUxed2OLOYHGo4O8ttiA=="
+          "hash": "3Fz4TpJWOyT4ApZrn8jk1Q=="
         }
       },
       "is_incremental": false,
@@ -977,11 +1130,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/equatable-shim.yml",
+      "source_relative_path": ".docs/yml/disposable/disposable_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/disposable/disposable_namespace.html",
+          "hash": "MUdVdCCKYeUnC5KbZjr9+g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/equatable-shim.yml",
       "output": {
         ".html": {
           "relative_path": "api/equatable-shim.html",
-          "hash": "0PPiQS0ZigAqVDqXg4RS2Q=="
+          "hash": "ORljf2mtdzC8uMsKh/io7g=="
         }
       },
       "is_incremental": false,
@@ -989,11 +1154,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/equatable.yml",
+      "source_relative_path": ".docs/yml/equatable.yml",
       "output": {
         ".html": {
           "relative_path": "api/equatable.html",
-          "hash": "wwF0CkjrpdWyHU6weyHqDA=="
+          "hash": "i/4Gn1tSwc6uX8NRIUhgiA=="
         }
       },
       "is_incremental": false,
@@ -1001,11 +1166,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/equatable/comparable_interface.yml",
+      "source_relative_path": ".docs/yml/equatable/comparable_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/equatable/comparable_interface.html",
-          "hash": "bzhlGe9mfMu97p4eFMylXw=="
+          "hash": "n+9FOYZ4LfOoKsYmITML9g=="
         }
       },
       "is_incremental": false,
@@ -1013,11 +1178,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/equatable/comparer_interface.yml",
+      "source_relative_path": ".docs/yml/equatable/comparable_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable/comparable_namespace.html",
+          "hash": "JrgISOavxaVHyjumvfnWsQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/equatable/comparer_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/equatable/comparer_interface.html",
-          "hash": "JF5sAh91evJAdhmen+HquA=="
+          "hash": "TbfoWRrQk2l+lUH9iMHCUg=="
         }
       },
       "is_incremental": false,
@@ -1025,11 +1202,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/equatable/equaler_interface.yml",
+      "source_relative_path": ".docs/yml/equatable/comparer_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable/comparer_namespace.html",
+          "hash": "0iGT23re1GiJGk6xt3jmzQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/equatable/equaler_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/equatable/equaler_interface.html",
-          "hash": "4Cw3CE8mQx9tAmd1brvNAA=="
+          "hash": "Qaz83qz752IyBK7315VBcQ=="
         }
       },
       "is_incremental": false,
@@ -1037,11 +1226,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/equatable/equatable_interface.yml",
+      "source_relative_path": ".docs/yml/equatable/equaler_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable/equaler_namespace.html",
+          "hash": "zolMI5nA4JRAEz00yWZzAw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/equatable/equatable_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/equatable/equatable_interface.html",
-          "hash": "nVpWJf2UtkrMpyx8OWYmmQ=="
+          "hash": "q6P1J6I70wzbKDtl1olCSg=="
         }
       },
       "is_incremental": false,
@@ -1049,11 +1250,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/equatable/structuralcomparable_interface.yml",
+      "source_relative_path": ".docs/yml/equatable/equatable_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable/equatable_namespace.html",
+          "hash": "DMxRYvJzKcOg7HEH6kIDaA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/equatable/structuralcomparable_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/equatable/structuralcomparable_interface.html",
-          "hash": "HneZnIjTT1sfyDyxyJusXw=="
+          "hash": "64ECr5z0DMxnFol4sitBTw=="
         }
       },
       "is_incremental": false,
@@ -1061,11 +1274,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/equatable/structuralequatable_interface.yml",
+      "source_relative_path": ".docs/yml/equatable/structuralcomparable_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable/structuralcomparable_namespace.html",
+          "hash": "KCrB9FFmWEvvCczAvuAU5Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/equatable/structuralequatable_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/equatable/structuralequatable_interface.html",
-          "hash": "ZGIfW+BchEi9oUEp6z+PUg=="
+          "hash": "39CIxse0Cv6Bjg2uiUA/gw=="
         }
       },
       "is_incremental": false,
@@ -1073,11 +1298,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/events.yml",
+      "source_relative_path": ".docs/yml/equatable/structuralequatable_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/equatable/structuralequatable_namespace.html",
+          "hash": "Gp0uw3qCWnmlUqEuStsEAA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/events.yml",
       "output": {
         ".html": {
           "relative_path": "api/events.html",
-          "hash": "Dr5xyIEi8kKKyc+cCZctVQ=="
+          "hash": "iVTI2/KrurSnRvG1b7TbAw=="
         }
       },
       "is_incremental": false,
@@ -1085,11 +1322,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/events/event_class.yml",
+      "source_relative_path": ".docs/yml/events/event_class.yml",
       "output": {
         ".html": {
           "relative_path": "api/events/event_class.html",
-          "hash": "36C8VUYqbVw2VDqUfFovHw=="
+          "hash": "5Vc0l7G8B68RJXe8JASFrA=="
         }
       },
       "is_incremental": false,
@@ -1097,11 +1334,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/events/event_interface.yml",
+      "source_relative_path": ".docs/yml/events/event_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/events/event_interface.html",
-          "hash": "TjGkXshQEu+hofIFTHVWOg=="
+          "hash": "J5zzw6FH0aE+YP19M9z6mw=="
         }
       },
       "is_incremental": false,
@@ -1109,11 +1346,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/events/eventsource.yml",
+      "source_relative_path": ".docs/yml/events/eventsource.yml",
       "output": {
         ".html": {
           "relative_path": "api/events/eventsource.html",
-          "hash": "2iypwUJDlrGT6vDjNWvhAQ=="
+          "hash": "IvQzvduDKy8l5AqR5lr5UQ=="
         }
       },
       "is_incremental": false,
@@ -1121,11 +1358,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/indexed-object.yml",
+      "source_relative_path": ".docs/yml/indexed-object.yml",
       "output": {
         ".html": {
           "relative_path": "api/indexed-object.html",
-          "hash": "JvNqfg6nyXnLkNENWUOaPA=="
+          "hash": "63zBR1ryOteMLak5NUIS2g=="
         }
       },
       "is_incremental": false,
@@ -1133,11 +1370,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/indexed-object/integerindexedobject.yml",
+      "source_relative_path": ".docs/yml/indexed-object/integerindexedobject.yml",
       "output": {
         ".html": {
           "relative_path": "api/indexed-object/integerindexedobject.html",
-          "hash": "TesC070uY+BJwScwNYOnuw=="
+          "hash": "42KuY12w5pUSnSr4MMTCDA=="
         }
       },
       "is_incremental": false,
@@ -1145,11 +1382,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/lazy.yml",
+      "source_relative_path": ".docs/yml/lazy.yml",
       "output": {
         ".html": {
           "relative_path": "api/lazy.html",
-          "hash": "zawpWPqJaDXdkwucjZySYQ=="
+          "hash": "J5/p0L6IWoJ1Cc7nmmxEAw=="
         }
       },
       "is_incremental": false,
@@ -1157,11 +1394,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/lazy/lazy.yml",
+      "source_relative_path": ".docs/yml/lazy/lazy.yml",
       "output": {
         ".html": {
           "relative_path": "api/lazy/lazy.html",
-          "hash": "7PJiBMD9/CWpENEpnM9gkw=="
+          "hash": "tNbIckH90nXCQHpTdhiIoQ=="
         }
       },
       "is_incremental": false,
@@ -1169,11 +1406,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/metadata-shim.yml",
+      "source_relative_path": ".docs/yml/metadata-shim.yml",
       "output": {
         ".html": {
           "relative_path": "api/metadata-shim.html",
-          "hash": "zIs2lKDPcwgoMyWs7h1tmQ=="
+          "hash": "n0wL4qbmTKmc0OnTw50EdA=="
         }
       },
       "is_incremental": false,
@@ -1181,11 +1418,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/metadata.yml",
+      "source_relative_path": ".docs/yml/metadata.yml",
       "output": {
         ".html": {
           "relative_path": "api/metadata.html",
-          "hash": "pgFaTh/0MnMJ1oYYISeY1g=="
+          "hash": "QzdsrS2YP6Iu8NY8E2wEWA=="
         }
       },
       "is_incremental": false,
@@ -1193,11 +1430,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/ref.yml",
+      "source_relative_path": ".docs/yml/ref.yml",
       "output": {
         ".html": {
           "relative_path": "api/ref.html",
-          "hash": "nPAxkARLopYISFvTP3BCiA=="
+          "hash": "YCP9BI10v0QvThMgwc6RvQ=="
         }
       },
       "is_incremental": false,
@@ -1205,11 +1442,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/ref/reference.yml",
+      "source_relative_path": ".docs/yml/ref/ref_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/ref/ref_namespace.html",
+          "hash": "DPZ9atGaTjMaBFsZga2ELg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/ref/reference.yml",
       "output": {
         ".html": {
           "relative_path": "api/ref/reference.html",
-          "hash": "D8bHJR9KxxChEhgQ/9SLHA=="
+          "hash": "P4U4I4KLczzdL2RpMz43Vg=="
         }
       },
       "is_incremental": false,
@@ -1217,11 +1466,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/reflect-metadata-compat.yml",
+      "source_relative_path": ".docs/yml/reflect-metadata-compat.yml",
       "output": {
         ".html": {
           "relative_path": "api/reflect-metadata-compat.html",
-          "hash": "uYjuI+FX/0L3Sg9RZBPc5A=="
+          "hash": "4nqWfkVFdnKVelCAf34WxA=="
         }
       },
       "is_incremental": false,
@@ -1229,11 +1478,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/struct-type.yml",
+      "source_relative_path": ".docs/yml/struct-type.yml",
       "output": {
         ".html": {
           "relative_path": "api/struct-type.html",
-          "hash": "hEj22qfSXLjYYv5gO9/whA=="
+          "hash": "1N7V7Ms0T4kRutKC84V0Vw=="
         }
       },
       "is_incremental": false,
@@ -1241,11 +1490,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/struct-type/struct.yml",
+      "source_relative_path": ".docs/yml/struct-type/struct.yml",
       "output": {
         ".html": {
           "relative_path": "api/struct-type/struct.html",
-          "hash": "i8YLiVWs2j08QS2kGtfwyg=="
+          "hash": "iPLih7iQfnPkqBSr6uzsew=="
         }
       },
       "is_incremental": false,
@@ -1253,11 +1502,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/struct-type/structclass.yml",
+      "source_relative_path": ".docs/yml/struct-type/structclass.yml",
       "output": {
         ".html": {
           "relative_path": "api/struct-type/structclass.html",
-          "hash": "uzaMvRRv4UpLq6djjleKTQ=="
+          "hash": "ruyLSgHe5oYEFi6K2TP3dQ=="
         }
       },
       "is_incremental": false,
@@ -1265,11 +1514,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/struct-type/structfielddefinition.yml",
+      "source_relative_path": ".docs/yml/struct-type/structfielddefinition.yml",
       "output": {
         ".html": {
           "relative_path": "api/struct-type/structfielddefinition.html",
-          "hash": "rhD8m0Rk2wFI0X5bhrZ3Qg=="
+          "hash": "UED2BqC1tJPnGF+W736emw=="
         }
       },
       "is_incremental": false,
@@ -1277,11 +1526,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/struct-type/structprimitivetype.yml",
+      "source_relative_path": ".docs/yml/struct-type/structprimitivetype.yml",
       "output": {
         ".html": {
           "relative_path": "api/struct-type/structprimitivetype.html",
-          "hash": "sw5X/yQOV6p/7GsL1Mx2uQ=="
+          "hash": "H1As75/3CgEaG/SAkdZ6VQ=="
         }
       },
       "is_incremental": false,
@@ -1289,11 +1538,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/struct-type/structtype_interface.yml",
+      "source_relative_path": ".docs/yml/struct-type/structtype_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/struct-type/structtype_interface.html",
-          "hash": "j4/mZ5Sy8F50oJ55us4Gqw=="
+          "hash": "9r5OoCnQBMcPFZe2sXaB4Q=="
         }
       },
       "is_incremental": false,
@@ -1301,11 +1550,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/struct-type/structtypeconstructor.yml",
+      "source_relative_path": ".docs/yml/struct-type/structtypeconstructor.yml",
       "output": {
         ".html": {
           "relative_path": "api/struct-type/structtypeconstructor.html",
-          "hash": "qiVtaJvUWo+gVJYELDs1/g=="
+          "hash": "KoZ4WieNFuyOxuPZeFZSPQ=="
         }
       },
       "is_incremental": false,
@@ -1313,11 +1562,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-autoresetevent.yml",
+      "source_relative_path": ".docs/yml/threading-autoresetevent.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-autoresetevent.html",
-          "hash": "JAkKN9/3Kdtahi6s4yqyEQ=="
+          "hash": "SIODcInD97vDTSMWvn6Htg=="
         }
       },
       "is_incremental": false,
@@ -1325,11 +1574,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-autoresetevent/autoresetevent.yml",
+      "source_relative_path": ".docs/yml/threading-autoresetevent/autoresetevent.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-autoresetevent/autoresetevent.html",
-          "hash": "VwD5NQi17qjaV28AzcpDag=="
+          "hash": "gtnAsNH9sCZm1JgwprzSpQ=="
         }
       },
       "is_incremental": false,
@@ -1337,11 +1586,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-conditionvariable.yml",
+      "source_relative_path": ".docs/yml/threading-conditionvariable.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-conditionvariable.html",
-          "hash": "wZ7BMy4Wt2irNhfXbyADtg=="
+          "hash": "22dGuiVa7h0DaSfwZdHsXA=="
         }
       },
       "is_incremental": false,
@@ -1349,11 +1598,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-conditionvariable/conditionvariable.yml",
+      "source_relative_path": ".docs/yml/threading-conditionvariable/conditionvariable.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-conditionvariable/conditionvariable.html",
-          "hash": "EFOgXnKf13TSK7tjOQTSPg=="
+          "hash": "+8v2PQPguriXKx8sZhs7YA=="
         }
       },
       "is_incremental": false,
@@ -1361,11 +1610,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-countdown.yml",
+      "source_relative_path": ".docs/yml/threading-countdown.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-countdown.html",
-          "hash": "4wcYjV12V5IJ2lY7NVRaZg=="
+          "hash": "uOm9nbvfuoskgeTmj3HD2w=="
         }
       },
       "is_incremental": false,
@@ -1373,11 +1622,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-countdown/countdownevent.yml",
+      "source_relative_path": ".docs/yml/threading-countdown/countdownevent.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-countdown/countdownevent.html",
-          "hash": "ASqPg5RxI6Y0fZfwj8jidA=="
+          "hash": "r7ZrYR54TXRrd9BfvR19og=="
         }
       },
       "is_incremental": false,
@@ -1385,11 +1634,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-lockable.yml",
+      "source_relative_path": ".docs/yml/threading-lockable.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-lockable.html",
-          "hash": "dMY0oSZdOinaam2kh3bYLw=="
+          "hash": "9hmD14ndB/qVEdv5AmnSTw=="
         }
       },
       "is_incremental": false,
@@ -1397,11 +1646,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-lockable/lockable_interface.yml",
+      "source_relative_path": ".docs/yml/threading-lockable/lockable_interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-lockable/lockable_interface.html",
-          "hash": "oS8lrwYia4NICnrSSFGrtQ=="
+          "hash": "+dd6nTjKAckd3OxdMu8DJQ=="
         }
       },
       "is_incremental": false,
@@ -1409,11 +1658,23 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-manualresetevent.yml",
+      "source_relative_path": ".docs/yml/threading-lockable/lockable_namespace.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/threading-lockable/lockable_namespace.html",
+          "hash": "OX9/UKROp0Ee4Vm+2GElSQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": ".docs/yml/threading-manualresetevent.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-manualresetevent.html",
-          "hash": "GrNF9UFFcjJ24eGfLmbAYg=="
+          "hash": "52KzTOHRMrDtTVycc2XAQA=="
         }
       },
       "is_incremental": false,
@@ -1421,11 +1682,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-manualresetevent/manualresetevent.yml",
+      "source_relative_path": ".docs/yml/threading-manualresetevent/manualresetevent.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-manualresetevent/manualresetevent.html",
-          "hash": "VL9+XJRWBjsvOtVrGe3vqA=="
+          "hash": "CUkn3ddwP8bAmb1poPHmgg=="
         }
       },
       "is_incremental": false,
@@ -1433,11 +1694,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-mutex.yml",
+      "source_relative_path": ".docs/yml/threading-mutex.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-mutex.html",
-          "hash": "WbBq1ocMh4/3xsoNaZbEDQ=="
+          "hash": "/xM76AgxGjkoCWuXYgWCUw=="
         }
       },
       "is_incremental": false,
@@ -1445,11 +1706,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-mutex/mutex.yml",
+      "source_relative_path": ".docs/yml/threading-mutex/mutex.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-mutex/mutex.html",
-          "hash": "1Xjd4PQtz6gePhEcQWOnbw=="
+          "hash": "dbS+MOl9wBLOajGzsF97xg=="
         }
       },
       "is_incremental": false,
@@ -1457,11 +1718,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-semaphore.yml",
+      "source_relative_path": ".docs/yml/threading-semaphore.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-semaphore.html",
-          "hash": "QzkQz3hLWrSeC9QnrD5i6g=="
+          "hash": "uiO8tYe5N3shMf/uIaKivg=="
         }
       },
       "is_incremental": false,
@@ -1469,11 +1730,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-semaphore/semaphore.yml",
+      "source_relative_path": ".docs/yml/threading-semaphore/semaphore.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-semaphore/semaphore.html",
-          "hash": "lE69kSiF2XL4JSflGirwBA=="
+          "hash": "2Z6qWWGhAVZlAMjHIoLc3w=="
         }
       },
       "is_incremental": false,
@@ -1481,11 +1742,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-sleep.yml",
+      "source_relative_path": ".docs/yml/threading-sleep.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-sleep.html",
-          "hash": "qK5TmRXoRBan11aV0lLWqQ=="
+          "hash": "uSUNpv3i8kDm1MAN2YKo6Q=="
         }
       },
       "is_incremental": false,
@@ -1493,11 +1754,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-spinwait.yml",
+      "source_relative_path": ".docs/yml/threading-spinwait.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-spinwait.html",
-          "hash": "g3xbQwaLBuOjae76HpWimw=="
+          "hash": "j+1IgQ7EVWRX+DX6gR4uLw=="
         }
       },
       "is_incremental": false,
@@ -1505,11 +1766,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading-spinwait/spinwait.yml",
+      "source_relative_path": ".docs/yml/threading-spinwait/spinwait.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading-spinwait/spinwait.html",
-          "hash": "jZgBeePsdRB9rV2F9FPHPQ=="
+          "hash": "zrTGM5MvvJ5oLewnzmjmZg=="
         }
       },
       "is_incremental": false,
@@ -1517,11 +1778,11 @@
     },
     {
       "type": "UniversalReference",
-      "source_relative_path": "obj/docs/api/threading.yml",
+      "source_relative_path": ".docs/yml/threading.yml",
       "output": {
         ".html": {
           "relative_path": "api/threading.html",
-          "hash": "tEqGZFAD10dMHZ2QnqXwKQ=="
+          "hash": "36wcsWlh0xcZK/UbGXXJow=="
         }
       },
       "is_incremental": false,
@@ -1529,29 +1790,126 @@
     },
     {
       "type": "Toc",
-      "source_relative_path": "obj/docs/api/toc.yml",
+      "source_relative_path": ".docs/yml/toc.yml",
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "U5HWGKt+xIeMrTkOG8s49A=="
+          "hash": "ee/DyhEdTA0UMP4y5CEQeA=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
+      "type": "UniversalReference",
+      "source_relative_path": "docs-sources/content/api/type-model.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/type-model.html",
+          "hash": "F0Gf1sTb0rgpttMZMxIVXg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Conceptual",
-      "source_relative_path": "obj/docs/index.md",
+      "source_relative_path": "docs-sources/content/index.md",
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "F23SNivhCBpmM/m8LYiwvQ=="
+          "hash": "SK2KlHEXNXfn1J/lUoG3iA=="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs-sources/resources/images/esfx-logo-black-38x38.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/esfx-logo-black-38x38.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs-sources/resources/images/esfx-logo-color-38x38.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/esfx-logo-color-38x38.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs-sources/resources/images/esfx-logo-white-38x38.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/esfx-logo-white-38x38.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs-sources/resources/images/favicon-16x16.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/favicon-16x16.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs-sources/resources/images/favicon-16x16.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/favicon-16x16.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs-sources/resources/images/favicon-32x32.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/favicon-32x32.png"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs-sources/resources/images/favicon-32x32.svg",
+      "output": {
+        "resource": {
+          "relative_path": "images/favicon-32x32.svg"
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "docs-sources/resources/styles/main.css",
+      "output": {
+        "resource": {
+          "relative_path": "styles/main.css"
+        }
+      },
+      "is_incremental": false,
       "version": ""
     }
   ],
@@ -1571,25 +1929,32 @@
           "total_file_count": 0,
           "skipped_file_count": 0
         },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 1
+        },
+        "ResourceDocumentProcessor": {
+          "can_incremental": false,
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "incrementalPhase": "build",
+          "total_file_count": 0,
+          "skipped_file_count": 0
+        },
         "TocDocumentProcessor": {
           "can_incremental": false,
           "details": "Processor TocDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
           "skipped_file_count": 0
-        },
-        "ConceptualDocumentProcessor": {
-          "can_incremental": true,
-          "incrementalPhase": "build",
-          "total_file_count": 1,
-          "skipped_file_count": 1
         }
       }
     },
     {
       "status": {
-        "can_incremental": true,
-        "details": "Can support incremental post processing.",
+        "can_incremental": false,
+        "details": "Cannot support incremental post processing, the reason is: should not trace intermediate info.",
         "incrementalPhase": "postProcessing",
         "total_file_count": 0,
         "skipped_file_count": 0

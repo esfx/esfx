@@ -21,4 +21,4 @@ npm i @esfx/threading-lockable
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/threading_lockable.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/threading-lockable.html).

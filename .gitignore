@@ -1,4 +1,6 @@
 .vscode
+.docfx
+.docs
 node_modules
 dist
 !scripts/**/dist

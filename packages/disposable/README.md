@@ -38,4 +38,4 @@ class MyFileResouce {
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/disposable.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/disposable.html).

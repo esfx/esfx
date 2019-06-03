@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,25 +83,34 @@
   
   <h1 id="async_queue" data-uid="async-queue">Package @esfx/async-queue
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxasync-queue"><code>@esfx/async-queue</code></h1>
-<p>The <code>@esfx/async-queue</code> package provides the <code>AsyncQueue</code> class, an async coordination primitive.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>The <code>@esfx/async-queue</code> package provides the <a class="xref" href="async-queue/asyncqueue.html#async_queue_AsyncQueue">AsyncQueue</a> class, an async coordination primitive.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/async-queue
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_BFPvczaw6y">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_BFPvczaw6y_ts" role="tab" aria-controls="tabpanel_BFPvczaw6y_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_BFPvczaw6y_js" role="tab" aria-controls="tabpanel_BFPvczaw6y_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_BFPvczaw6y_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { AsyncQueue } from &quot;@esfx/async-queue&quot;;
 
 async function main() {
-    const queue = new AsyncQueue();
+    const queue = new AsyncQueue&lt;number&gt;();
 
     // put two items on the queue
     queue.put(1);
-    queue.put(2);
+    queue.put(Promise.resolve(2));
 
     // take two items from the queue
     await queue.get(); // 1
@@ -108,10 +127,36 @@ async function main() {
     await p3; // 3
     await p4; // 4
 }
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/async_queue.html">here</a>.</p>
+</code></pre></section>
+<section id="tabpanel_BFPvczaw6y_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { AsyncQueue } = require(&quot;@esfx/async-queue&quot;);
+
+async function main() {
+    const queue = new AsyncQueue();
+
+    // put two items on the queue
+    queue.put(1);
+    queue.put(Promise.resolve(2));
+
+    // take two items from the queue
+    await queue.get(); // 1
+    await queue.get(); // 2
+
+    // take two more pending items from the queue
+    const p3 = queue.get();
+    const p4 = queue.get();
+
+    // put two more items on the queue
+    queue.put(3);
+    queue.put(4);
+
+    await p3; // 3
+    await p4; // 4
+}
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
+</div>
+  
 </article>
           </div>
           
@@ -119,6 +164,9 @@ async function main() {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/async-queue.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

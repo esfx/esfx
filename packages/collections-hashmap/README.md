@@ -71,4 +71,4 @@ hashMap.size; // 1
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/collections_hashmap.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/collections-hashmap.html).

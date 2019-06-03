@@ -39,4 +39,4 @@ getParameterMetadata(c, "method", 0, "Type"); // "number"
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/metadata.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/metadata.html).

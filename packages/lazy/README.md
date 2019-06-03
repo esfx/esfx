@@ -40,4 +40,4 @@ lazy3.value; // "test"
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/lazy.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/lazy.html).

@@ -48,4 +48,4 @@ async function updateResource(updates) {
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/async_semaphore.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/async-semaphore.html).

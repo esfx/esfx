@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,17 +83,26 @@
   
   <h1 id="lazy" data-uid="lazy">Package @esfx/lazy
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxlazy"><code>@esfx/lazy</code></h1>
-<p>Provides a class to simplify lazy-initialization logic.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Provides a class to simplify lazy-initialization logic.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/lazy
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_O4fQQslApo">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_O4fQQslApo_ts" role="tab" aria-controls="tabpanel_O4fQQslApo_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_O4fQQslApo_js" role="tab" aria-controls="tabpanel_O4fQQslApo_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_O4fQQslApo_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { Lazy } from &quot;@esfx/lazy&quot;;
 
 // lazy initialize an object
@@ -102,10 +121,30 @@ lazy2.hasValue; // true
 const lazy3 = Lazy.for(&quot;test&quot;);
 lazy3.hasValue; // true
 lazy3.value; // &quot;test&quot;
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/lazy.html">here</a>.</p>
+</code></pre></section>
+<section id="tabpanel_O4fQQslApo_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Lazy } = require(&quot;@esfx/lazy&quot;);
+
+// lazy initialize an object
+const lazy1 = new Lazy(() =&gt; new SomeObject());
+lazy1.hasValue; // false
+lazy1.value; // SomeObject {}
+lazy1.hasValue; // true
+
+// lazy initialize with arguments
+const lazy2 = Lazy.from((a, b) =&gt; a + b, 1, 2);
+lazy2.hasValue; // false
+lazy2.value; // 3
+lazy2.hasValue; // true
+
+// initialized &quot;lazy&quot;
+const lazy3 = Lazy.for(&quot;test&quot;);
+lazy3.hasValue; // true
+lazy3.value; // &quot;test&quot;
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
+</div>
+  
 </article>
           </div>
           
@@ -113,6 +152,9 @@ lazy3.value; // &quot;test&quot;
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/lazy.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

@@ -62,4 +62,4 @@ Equaler.defaultEqualer.equals(obj1, obj2); // true
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/equatable.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/equatable.html).

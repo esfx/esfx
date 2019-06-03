@@ -37,4 +37,4 @@ async function main() {
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/async_waitqueue.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/async-waitqueue.html).

@@ -46,4 +46,4 @@ console.log(booleans[1]); // true
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/indexed_object.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/indexed-object.html).

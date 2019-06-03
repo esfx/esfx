@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,20 +83,28 @@
   
   <h1 id="events" data-uid="events">Package @esfx/events
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxevents"><code>@esfx/events</code></h1>
-<p>The <code>@esfx/events</code> package provides a low-level API for defining events.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Provides a low-level API for defining events.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/events
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_ts4pEqHjjQ">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_ts4pEqHjjQ_ts" role="tab" aria-controls="tabpanel_ts4pEqHjjQ_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_ts4pEqHjjQ_js" role="tab" aria-controls="tabpanel_ts4pEqHjjQ_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_ts4pEqHjjQ_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { Event } from &quot;@esfx/events&quot;;
 
-// Definition (TypeScript)
 class MyService {
     private _loadedEvent = Event.create&lt;(this: MyService) =&gt; void(this);
     readonly loadedEvent = this._loadedEvent.event;
@@ -97,7 +115,13 @@ class MyService {
     }
 }
 
-// Definition (JavaScript)
+const svc = new MyService();
+svc.loadedEvent.on(() =&gt; console.log(&quot;loaded&quot;));
+svc.load();
+</code></pre></section>
+<section id="tabpanel_ts4pEqHjjQ_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Event } = require(&quot;@esfx/events&quot;);
+
 class MyService {
     constructor() {
         this._loadedEvent = Event.create(this);
@@ -114,10 +138,10 @@ class MyService {
 const svc = new MyService();
 svc.loadedEvent.on(() =&gt; console.log(&quot;loaded&quot;));
 svc.load();
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/events.html">here</a>.</p>
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
+</div>
+  
 </article>
           </div>
           
@@ -125,6 +149,9 @@ svc.load();
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/events.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

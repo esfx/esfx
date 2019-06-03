@@ -43,4 +43,4 @@ class MyCollection {
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/collection_core.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/collection-core.html).

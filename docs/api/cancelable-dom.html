@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,28 +83,57 @@
   
   <h1 id="cancelable_dom" data-uid="cancelable-dom">Package @esfx/cancelable-dom
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxcancelable-dom"><code>@esfx/cancelable-dom</code></h1>
-<p>The <code>@esfx/cancelable-dom</code> package provides a DOM interop library for <code>@esfx/cancelable</code>.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>The <code>@esfx/cancelable-dom</code> package provides a DOM interop library for <a class="xref" href="cancelable.html">@esfx/cancelable</a>.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/cancelable-dom
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_PgXNZ0-ivZ">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_PgXNZ0-ivZ_ts" role="tab" aria-controls="tabpanel_PgXNZ0-ivZ_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_PgXNZ0-ivZ_js" role="tab" aria-controls="tabpanel_PgXNZ0-ivZ_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_PgXNZ0-ivZ_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { Cancelable } from &quot;@esfx/cancelable&quot;;
 import { toAbortSignal } from &quot;@esfx/cancelable-dom&quot;;
 
 async function doSomeWork(cancelable: Cancelable) {
     await fetch(&quot;some/uri&quot;, { signal: toAbortSignal(cancelable) });
 }
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/cancelable_dom.html">here</a>.</p>
+</code></pre></section>
+<section id="tabpanel_PgXNZ0-ivZ_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Cancelable } = require(&quot;@esfx/cancelable&quot;);
+const { toAbortSignal } = require(&quot;@esfx/cancelable-dom&quot;);
+
+async function doSomeWork(cancelable) {
+    await fetch(&quot;some/uri&quot;, { signal: toAbortSignal(cancelable) });
+}
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <h3 id="functions">Functions
+</div>
+  
+  <h3 id="functions">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  Functions
   </h3>
   
   
@@ -109,15 +148,15 @@ async function doSomeWork(cancelable: Cancelable) {
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
-        <th>Type</th>
         <th>Name</th>
+        <th>Type</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></td>
         <td><em>cancelable</em></td>
+        <td><a class="xref" href="cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></td>
         <td>
           
           
@@ -135,7 +174,7 @@ async function doSomeWork(cancelable: Cancelable) {
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">AbortSignal</span></td>
+        <td><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">AbortSignal</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -147,6 +186,9 @@ async function doSomeWork(cancelable: Cancelable) {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/cancelable-dom.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

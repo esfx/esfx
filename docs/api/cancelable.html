@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,27 +83,36 @@
   
   <h1 id="cancelable" data-uid="cancelable">Package @esfx/cancelable
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxcancelable"><code>@esfx/cancelable</code></h1>
-<p>The <code>@esfx/cancelable</code> package provides a low-level Symbol-based API for defining a common cancellation protocol.</p>
-<blockquote><p>NOTE: This package does not contain an <em>implementation</em> of cancellation signals, but rather provides only a
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>The <code>@esfx/cancelable</code> package provides a low-level Symbol-based API for defining a common cancellation protocol.</p>
+<div class="NOTE"><h5>Note</h5><p>This package does not contain an <em>implementation</em> of cancellation signals, but rather provides only a
 protocol for interoperable libraries that depend on cancellation.</p>
 <p>For an implementation of this protocol, please consider the following packages:</p>
 <ul>
-<li><a href="async-canceltoken.html"><code>@esfx/async-canceltoken</code></a></li>
-<li><a href="cancelable-dom.html"><code>@esfx/cancelable-dom</code></a></li>
-<li><a href="cancelable-dom-shim.html"><code>@esfx/cancelable-dom-shim</code></a></li>
-<li><a href="https://github.com/rbuckton/prex#readme"><code>prex</code></a> (version 0.4.6 or later)</li>
+<li><a class="xref" href="async-canceltoken.html">@esfx/async-canceltoken</a></li>
+<li><a class="xref" href="cancelable-dom.html">@esfx/cancelable-dom</a></li>
+<li><a class="xref" href="cancelable-dom-shim.html">@esfx/cancelable-dom-shim</a></li>
+<li><a href="https://github.com/rbuckton/prex#readme">prex</a> (version 0.4.6 or later)</li>
 </ul>
-</blockquote>
+</div>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/cancelable
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_Z1KQqOW7Z6">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_Z1KQqOW7Z6_ts" role="tab" aria-controls="tabpanel_Z1KQqOW7Z6_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_Z1KQqOW7Z6_js" role="tab" aria-controls="tabpanel_Z1KQqOW7Z6_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_Z1KQqOW7Z6_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { Cancelable } from &quot;@esfx/cancelable&quot;;
 
 function doSomeWork(cancelable: Cancelable) {
@@ -114,290 +133,32 @@ function doSomeWork(cancelable: Cancelable) {
         });
     });
 }
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/cancelable.html">here</a>.</p>
+</code></pre></section>
+<section id="tabpanel_Z1KQqOW7Z6_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Cancelable } = require(&quot;@esfx/cancelable&quot;);
+
+function doSomeWork(cancelable) {
+    return new Promise((resolve, reject) =&gt; {
+        const cancelSignal = cancelable[Cancelable.cancelSignal]();
+        if (cancelSignal.signaled) throw new Error(&quot;Operation canceled.&quot;);
+
+        const child = fork(&quot;worker.js&quot;);
+        const subscription = cancelSignal.subscribe(() =&gt; {
+            // cancellation requested, abort worker
+            worker.kill();
+            reject(new Error(&quot;Operation canceled.&quot;));
+        });
+
+        worker.on(&quot;exit&quot;, () =&gt; {
+            subscription.unsubscribe();
+            resolve();
+        });
+    });
+}
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <h3 id="functions">Functions
-  </h3>
-  
-  
-  <h4 id="cancelable_Cancelable_Namespace_isCancelable" data-uid="cancelable.Cancelable_Namespace.isCancelable">Cancelable_Namespace.isCancelable</h4>
-  <div class="markdown level1 summary"><p>Determines whether a value is a <code>Cancelable</code> object.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function isCancelable(value: unknown): value is Cancelable;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">unknown</span></td>
-        <td><em>value</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">value is Cancelable</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   
-  
-  <h4 id="cancelable_Cancelable_Namespace_isSignaled" data-uid="cancelable.Cancelable_Namespace.isSignaled">Cancelable_Namespace.isSignaled</h4>
-  <div class="markdown level1 summary"><p>Determines whether <code>cancelable</code> is in the signaled state.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function isSignaled(cancelable: Cancelable | undefined): boolean;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Cancelable | undefined</span></td>
-        <td><em>cancelable</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="cancelable_Cancelable_Namespace_subscribe" data-uid="cancelable.Cancelable_Namespace.subscribe">Cancelable_Namespace.subscribe</h4>
-  <div class="markdown level1 summary"><p>Subscribes to be notified when a <code>cancelable</code> becomes signaled.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function subscribe(cancelable: Cancelable | undefined, onSignaled: () =&gt; void): CancelSubscription;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Cancelable | undefined</span></td>
-        <td><em>cancelable</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><span class="xref">() =&gt; void</span></td>
-        <td><em>onSignaled</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="cancelable/cancelsubscription_interface.html#cancelable_CancelSubscription_Interface">CancelSubscription</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="cancelable_Cancelable_Namespace_throwIfSignaled" data-uid="cancelable.Cancelable_Namespace.throwIfSignaled">Cancelable_Namespace.throwIfSignaled</h4>
-  <div class="markdown level1 summary"><p>Throws a <code>CancelError</code> exception if the provided <code>cancelable</code> is in the signaled state.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function throwIfSignaled(cancelable: Cancelable | undefined): void;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Cancelable | undefined</span></td>
-        <td><em>cancelable</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">void</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="cancelable_CancelableSource_Namespace_isCancelableSource" data-uid="cancelable.CancelableSource_Namespace.isCancelableSource">CancelableSource_Namespace.isCancelableSource</h4>
-  <div class="markdown level1 summary"><p>Determines whether a value is a <code>CancelableSource</code> object.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function isCancelableSource(value: unknown): value is CancelableSource;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">unknown</span></td>
-        <td><em>value</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">value is CancelableSource</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="cancelable_CancelSubscription_Namespace_create" data-uid="cancelable.CancelSubscription_Namespace.create">CancelSubscription_Namespace.create</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>CancelSubscription</code> object for an <code>unsubscribe</code> callback.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function create(unsubscribe: () =&gt; void): CancelSubscription;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">() =&gt; void</span></td>
-        <td><em>unsubscribe</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="cancelable/cancelsubscription_interface.html#cancelable_CancelSubscription_Interface">CancelSubscription</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
 </article>
           </div>
           
@@ -405,6 +166,9 @@ function doSomeWork(cancelable: Cancelable) {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/cancelable.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

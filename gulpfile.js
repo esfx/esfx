@@ -6,6 +6,7 @@ const { buildProject, cleanProject } = require("./scripts/build");
 const { exec, ArgsBuilder } = require("./scripts/exec");
 const { argv } = require("yargs");
 const { apiExtractor, apiDocumenter, docfx } = require("./scripts/docs");
+const { fname } = require("./scripts/fname");
 
 const internalPackages = fs.readdirSync("internal")
     .map(name => `internal/${name}`)
@@ -24,8 +25,10 @@ const { build: build_packages, clean: clean_packages } = makeProjects(publicPack
 gulp.task("packages", build_packages);
 
 const clean_dist = () => del([
+    "packages/*/.docs",
     "packages/*/dist",
     "packages/*/*.tsbuildinfo",
+    "internal/*/.docs",
     "internal/*/dist",
     "internal/*/*.tsbuildinfo",
 ]);
@@ -57,29 +60,6 @@ gulp.task("test", gulp.series(build, test));
 // const watch = () => spawn('node', [require.resolve("jest/bin/jest"), "--watch"], { stdio: "inherit" });
 // gulp.task("watch", watch);
 
-// gulp.task("docs", () => gulp.src("packages/*/src/**/*.ts", { read: false })
-//     .pipe(typedoc({
-//         tsconfig: "packages/tsconfig-typedoc.json",
-//         out: "docs",
-//         mode: "modules",
-//         name: "esfx",
-//         readme: "README.md",
-//         gitRevision: "master",
-//         excludePrivate: true,
-//         excludeNotExported: true,
-//         "external-modulemap": ".*/(?:packages|internal)/([^/]+)/.*",
-//         rewriteLinks: "./.typedoc/linkrewriter.js",
-//         // excludeEmpty: true,
-//         // groupCategories: true,
-//         // renameModuleToNamespace: true,
-//         biblio: "./.typedoc/biblio.json",
-//         // noJekyll: true,
-//         // plugin: [
-//         //     require.resolve("./dist/typedoc/plugin"),
-//         //     "typedoc-plugin-external-module-name",
-//         // ]
-//     })))
-
 gulp.task("default", build);
 
 function makeProjects(projects) {
@@ -97,15 +77,9 @@ function makeProjects(projects) {
     return { build, clean };
 }
 
-
 const docPackages = publicPackages.filter(docPackage => fs.existsSync(path.resolve(docPackage, "api-extractor.json")));
 
 gulp.task("docs", gulp.series(
-    gulp.parallel(docPackages.map(docPackage => ({
-            [`api-extractor:${docPackage}`]: async () => {
-                await apiExtractor(docPackage);
-            }
-        }[`api-extractor:${docPackage}`]))),
-    () => apiDocumenter(),
-    docfx,
-));
+    gulp.parallel(docPackages.map(docPackage => fname(`api-extractor:${docPackage}`, () => apiExtractor(docPackage)))),
+    fname("api-documenter", () => apiDocumenter(docPackages)),
+    fname("docfx", () => docfx(argv.serve || false))));

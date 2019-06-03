@@ -5,7 +5,7 @@
   "apiReport": { "enabled": false },
   "dtsRollup": { "enabled": false },
   "tsdocMetadata": { "enabled": false },
-  "docModel": { "enabled": true, "apiJsonFilePath": "obj/api/<unscopedPackageName>.api.json" },
+  "docModel": { "enabled": true, "apiJsonFilePath": "<projectFolder>/.docs/api/<unscopedPackageName>.api.json" },
   "messages": {
     "extractorMessageReporting": {
       "ae-missing-release-tag": {

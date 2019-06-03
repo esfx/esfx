@@ -48,4 +48,4 @@ function main() {
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/struct_type.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/struct-type.html).

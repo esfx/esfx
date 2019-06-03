@@ -1,0 +1,11 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: ArrayBuffer
+  name: ArrayBuffer
+  href: https://tc39.github.io/ecma262/#sec-arraybuffer-objects
+  fullName: ArrayBuffer
+- uid: SharedArrayBuffer
+  name: SharedArrayBuffer
+  href: https://tc39.github.io/ecma262/#sec-sharedarraybuffer-objects
+  fullName: SharedArrayBuffer

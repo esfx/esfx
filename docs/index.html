@@ -5,19 +5,19 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>@esfx | @esfx API Reference </title>
+    <title>@esfx reference | @esfx API Reference </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="@esfx | @esfx API Reference ">
+    <meta name="title" content="@esfx reference | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="shortcut icon" href="images/favicon-32x32.png">
     <link rel="stylesheet" href="styles/docfx.vendor.css">
     <link rel="stylesheet" href="styles/docfx.css">
     <link rel="stylesheet" href="styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="api/toc.html">
     
-    
+    <meta property="docfx:rel" content="">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -35,7 +35,7 @@
               </button>
               
               <a class="navbar-brand" href="index.html">
-                <img id="logo" class="svg" src="logo.svg" alt="">
+                <img id="logo" class="svg" src="images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -56,6 +56,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -66,80 +76,77 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="">
-<h1 id="esfx"><code>@esfx</code></h1>
+            <article class="content wrap" id="_content" data-uid="esfx">
 
 <p>The <code>@esfx</code> suite of packages is designed to provide low-level interoperability between 3rd-party packages for a number of common operations.</p>
 <h1 id="packages">Packages</h1>
 <p>The main packages in the <code>@esfx</code> suite include:</p>
 <ul>
-<li><a class="xref" href="api/async.html"><code>@esfx/async</code></a> - Provides a number of asynchronous coordination primitives from the following packages:<ul>
-<li><a class="xref" href="api/async-autoresetevent.html"><code>@esfx/async-autoresetevent</code></a></li>
-<li><a class="xref" href="api/async-barrier.html"><code>@esfx/async-barrier</code></a></li>
-<li><a class="xref" href="api/async-canceltoken.html"><code>@esfx/async-canceltoken</code></a></li>
-<li><a class="xref" href="api/async-conditionvariable.html"><code>@esfx/async-conditionvariable</code></a></li>
-<li><a class="xref" href="api/async-countdown.html"><code>@esfx/async-countdown</code></a></li>
-<li><a class="xref" href="api/async-deferred.html"><code>@esfx/async-deferred</code></a></li>
-<li><a class="xref" href="api/async-delay.html"><code>@esfx/async-delay</code></a></li>
-<li><a class="xref" href="api/async-lazy.html"><code>@esfx/async-lazy</code></a></li>
-<li><a class="xref" href="api/async-lockable.html"><code>@esfx/async-lockable</code></a></li>
-<li><a class="xref" href="api/async-manualresetevent.html"><code>@esfx/async-manualresetevent</code></a></li>
-<li><a class="xref" href="api/async-mutex.html"><code>@esfx/async-mutex</code></a></li>
-<li><a class="xref" href="api/async-queue.html"><code>@esfx/async-queue</code></a></li>
-<li><a class="xref" href="api/async-readerwriterlock.html"><code>@esfx/async-readerwriterlock</code></a></li>
-<li><a class="xref" href="api/async-semaphore.html"><code>@esfx/async-semaphore</code></a></li>
-<li><a class="xref" href="api/async-stack.html"><code>@esfx/async-stack</code></a></li>
-<li><a class="xref" href="api/async-waitqueue.html"><code>@esfx/async-waitqueue</code></a></li>
+<li><a class="xref" href="api/async.html">@esfx/async</a> - Provides a number of asynchronous coordination primitives from the following packages:<ul>
+<li><a class="xref" href="api/async-autoresetevent.html">@esfx/async-autoresetevent</a></li>
+<li><a class="xref" href="api/async-barrier.html">@esfx/async-barrier</a></li>
+<li><a class="xref" href="api/async-canceltoken.html">@esfx/async-canceltoken</a></li>
+<li><a class="xref" href="api/async-conditionvariable.html">@esfx/async-conditionvariable</a></li>
+<li><a class="xref" href="api/async-countdown.html">@esfx/async-countdown</a></li>
+<li><a class="xref" href="api/async-deferred.html">@esfx/async-deferred</a></li>
+<li><a class="xref" href="api/async-delay.html">@esfx/async-delay</a></li>
+<li><a class="xref" href="api/async-lazy.html">@esfx/async-lazy</a></li>
+<li><a class="xref" href="api/async-lockable.html">@esfx/async-lockable</a></li>
+<li><a class="xref" href="api/async-manualresetevent.html">@esfx/async-manualresetevent</a></li>
+<li><a class="xref" href="api/async-mutex.html">@esfx/async-mutex</a></li>
+<li><a class="xref" href="api/async-queue.html">@esfx/async-queue</a></li>
+<li><a class="xref" href="api/async-readerwriterlock.html">@esfx/async-readerwriterlock</a></li>
+<li><a class="xref" href="api/async-semaphore.html">@esfx/async-semaphore</a></li>
+<li><a class="xref" href="api/async-stack.html">@esfx/async-stack</a></li>
+<li><a class="xref" href="api/async-waitqueue.html">@esfx/async-waitqueue</a></li>
 </ul>
 </li>
-<li><a class="xref" href="api/cancelable.html"><code>@esfx/cancelable</code></a> - A low-level Symbol-based API for defining a common cancellation protocol.</li>
-<li><a class="xref" href="api/collection-core.html"><code>@esfx/collection-core</code></a> - A low-level Symbol-based API for defining common collection behaviors.</li>
-<li><a class="xref" href="api/collections.html"><code>@esfx/collections</code></a> - A common collections API composed of the following packages:<ul>
-<li><a class="xref" href="api/collections-hashmap.html"><code>@esfx/collections-hashmap</code></a></li>
-<li><a class="xref" href="api/collections-hashset.html"><code>@esfx/collections-hashset</code></a></li>
-<li><a class="xref" href="api/collections-linkedlist.html"><code>@esfx/collections-linkedlist</code></a></li>
-<li><a class="xref" href="api/collections-sortedmap.html"><code>@esfx/collections-sortedmap</code></a></li>
-<li><a class="xref" href="api/collections-sortedset.html"><code>@esfx/collections-sortedset</code></a></li>
+<li><a class="xref" href="api/cancelable.html">@esfx/cancelable</a> - A low-level Symbol-based API for defining a common cancellation protocol.</li>
+<li><a class="xref" href="api/collection-core.html">@esfx/collection-core</a> - A low-level Symbol-based API for defining common collection behaviors.</li>
+<li><a class="xref" href="api/collections.html">@esfx/collections</a> - A common collections API composed of the following packages:<ul>
+<li><a class="xref" href="api/collections-hashmap.html">@esfx/collections-hashmap</a></li>
+<li><a class="xref" href="api/collections-hashset.html">@esfx/collections-hashset</a></li>
+<li><a class="xref" href="api/collections-linkedlist.html">@esfx/collections-linkedlist</a></li>
+<li><a class="xref" href="api/collections-sortedmap.html">@esfx/collections-sortedmap</a></li>
+<li><a class="xref" href="api/collections-sortedset.html">@esfx/collections-sortedset</a></li>
 </ul>
 </li>
-<li><a class="xref" href="api/disposable.html"><code>@esfx/disposable</code></a> - A low-level Symbol-based API for defining explicit resource management.</li>
-<li><a class="xref" href="api/equatable.html"><code>@esfx/equatable</code></a> - A low-level Symbol-based API for defining equality.</li>
-<li><a class="xref" href="api/events.html"><code>@esfx/events</code></a> - A low-level API for defining events.</li>
-<li><a class="xref" href="api/indexed-object.html"><code>@esfx/indexed-object</code></a> - A base class for custom integer-indexed objects.</li>
-<li><a class="xref" href="api/lazy.html"><code>@esfx/lazy</code></a> - Provides a class to simplify lazy-initialization logic.</li>
-<li><a class="xref" href="api/metadata.html"><code>@esfx/metadata</code></a> - An API for defining metadata about an object.</li>
-<li><a class="xref" href="api/ref.html"><code>@esfx/ref</code></a> - A low-level API for defining forward references.</li>
-<li><a class="xref" href="api/threading.html"><code>@esfx/threading</code></a> - Thread synchronization primitives for use with Workers:<ul>
-<li><a class="xref" href="api/threading-autoresetevent.html"><code>@esfx/threading-autoresetevent</code></a></li>
-<li><a class="xref" href="api/threading-conditionvariable.html"><code>@esfx/threading-conditionvariable</code></a></li>
-<li><a class="xref" href="api/threading-countdown.html"><code>@esfx/threading-countdown</code></a></li>
-<li><a class="xref" href="api/threading-lockable.html"><code>@esfx/threading-lockable</code></a></li>
-<li><a class="xref" href="api/threading-manualresetevent.html"><code>@esfx/threading-manualresetevent</code></a></li>
-<li><a class="xref" href="api/threading-mutex.html"><code>@esfx/threading-mutex</code></a></li>
-<li><a class="xref" href="api/threading-semaphore.html"><code>@esfx/threading-semaphore</code></a></li>
-<li><a class="xref" href="api/threading-sleep.html"><code>@esfx/threading-sleep</code></a></li>
-<li><a class="xref" href="api/threading-spinwait.html"><code>@esfx/threading-spinwait</code></a></li>
+<li><a class="xref" href="api/disposable.html">@esfx/disposable</a> - A low-level Symbol-based API for defining explicit resource management.</li>
+<li><a class="xref" href="api/equatable.html">@esfx/equatable</a> - A low-level Symbol-based API for defining equality.</li>
+<li><a class="xref" href="api/events.html">@esfx/events</a> - A low-level API for defining events.</li>
+<li><a class="xref" href="api/indexed-object.html">@esfx/indexed-object</a> - A base class for custom integer-indexed objects.</li>
+<li><a class="xref" href="api/lazy.html">@esfx/lazy</a> - Provides a class to simplify lazy-initialization logic.</li>
+<li><a class="xref" href="api/metadata.html">@esfx/metadata</a> - An API for defining metadata about an object.</li>
+<li><a class="xref" href="api/ref.html">@esfx/ref</a> - A low-level API for defining forward references.</li>
+<li><a class="xref" href="api/threading.html">@esfx/threading</a> - Thread synchronization primitives for use with Workers:<ul>
+<li><a class="xref" href="api/threading-autoresetevent.html">@esfx/threading-autoresetevent</a></li>
+<li><a class="xref" href="api/threading-conditionvariable.html">@esfx/threading-conditionvariable</a></li>
+<li><a class="xref" href="api/threading-countdown.html">@esfx/threading-countdown</a></li>
+<li><a class="xref" href="api/threading-lockable.html">@esfx/threading-lockable</a></li>
+<li><a class="xref" href="api/threading-manualresetevent.html">@esfx/threading-manualresetevent</a></li>
+<li><a class="xref" href="api/threading-mutex.html">@esfx/threading-mutex</a></li>
+<li><a class="xref" href="api/threading-semaphore.html">@esfx/threading-semaphore</a></li>
+<li><a class="xref" href="api/threading-sleep.html">@esfx/threading-sleep</a></li>
+<li><a class="xref" href="api/threading-spinwait.html">@esfx/threading-spinwait</a></li>
 </ul>
 </li>
-<li><a href="xref:type-model"><code>@esfx/type-model</code></a> - A number of useful types for TypeScript.</li>
+<li><a class="xref" href="api/type-model.html">@esfx/type-model</a> - A number of useful types for TypeScript.</li>
 </ul>
 <h1 id="shims">Shims</h1>
 <p>Shim packages augment built-in objects with functionality from the main packages.</p>
 <ul>
-<li><a class="xref" href="api/cancelable-dom-shim.html"><code>@esfx/cancelable-dom-shim</code></a></li>
-<li><a class="xref" href="api/collection-core-shim.html"><code>@esfx/collection-core-shim</code></a></li>
-<li><a class="xref" href="api/collection-core-dom-shim.html"><code>@esfx/collection-core-dom-shim</code></a></li>
-<li><a class="xref" href="api/equatable-shim.html"><code>@esfx/equatable-shim</code></a></li>
-<li><a class="xref" href="api/metadata-shim.html"><code>@esfx/metadata-shim</code></a></li>
-<li><a class="xref" href="api/reflect-metadata-compat.html"><code>@esfx/reflect-metadata-compat</code></a></li>
+<li><a class="xref" href="api/cancelable-dom-shim.html">@esfx/cancelable-dom-shim</a></li>
+<li><a class="xref" href="api/collection-core-shim.html">@esfx/collection-core-shim</a></li>
+<li><a class="xref" href="api/collection-core-dom-shim.html">@esfx/collection-core-dom-shim</a></li>
+<li><a class="xref" href="api/equatable-shim.html">@esfx/equatable-shim</a></li>
+<li><a class="xref" href="api/metadata-shim.html">@esfx/metadata-shim</a></li>
+<li><a class="xref" href="api/reflect-metadata-compat.html">@esfx/reflect-metadata-compat</a></li>
 </ul>
 <h1 id="adapters">Adapters</h1>
 <p>Adapter packages provide functionality to simplify interoperability scenarios with different platforms:</p>
 <ul>
-<li><a class="xref" href="api/cancelable-dom.html"><code>@esfx/cancelable-dom</code></a></li>
+<li><a class="xref" href="api/cancelable-dom.html">@esfx/cancelable-dom</a></li>
 </ul>
-<h1 id="documentation">Documentation</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/">here</a>.</p>
 </article>
           </div>
           
@@ -148,7 +155,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/threading/obj/docs/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/content/index.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

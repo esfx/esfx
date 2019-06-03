@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,8 +83,8 @@
   
   <h1 id="collection_core_dom_shim" data-uid="collection-core-dom-shim">Package @esfx/collection-core-dom-shim
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxcollection-core-dom-shim"><code>@esfx/collection-core-dom-shim</code></h1>
-<p>The <code>@esfx/collection-core-dom-shim</code> package provides a global shim to add default @esfx/collection-core behaviors to global DOM objects.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Provides a global shim to add default <a class="xref" href="collection-core.html">@esfx/collection-core</a> behaviors to global DOM objects.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
@@ -86,201 +96,219 @@
 <p>The global shim adds a default implementation the collection interfaces to the following global DOM objects:</p>
 <ul>
 <li><code>AudioParamMap</code> implements:<ul>
-<li><code>ReadonlyKeyedCollection</code></li>
+<li>@&quot;collection-core.ReadonlyKeyedCollection&quot;</li>
 </ul>
 </li>
 <li><code>AudioTrackList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>CSSRuleList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>CSSStyleDeclaration</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>ClientRectList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>DOMRectList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>DOMStringList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>DOMTokenList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>DataTransferItemList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>FileList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>FormData</code> implements:<ul>
-<li><code>KeyedCollection</code></li>
-<li><code>ReadonlyKeyedCollection</code></li>
+<li>@&quot;collection-core.KeyedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyKeyedCollection&quot;</li>
 </ul>
 </li>
 <li><code>HTMLAllCollection</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>HTMLCollectionBase</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>HTMLCollectionOf</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>HTMLFormElement</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>HTMLSelectElement</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>Headers</code> implements:<ul>
-<li><code>KeyedCollection</code></li>
-<li><code>ReadonlyKeyedCollection</code></li>
+<li>@&quot;collection-core.KeyedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyKeyedCollection&quot;</li>
 </ul>
 </li>
 <li><code>MediaKeyStatusMap</code> implements:<ul>
-<li><code>ReadonlyKeyedCollection</code></li>
+<li>@&quot;collection-core.ReadonlyKeyedCollection&quot;</li>
 </ul>
 </li>
 <li><code>MediaList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>MimeTypeArray</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>NamedNodeMap</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>NodeList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>Plugin</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>PluginArray</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>RTCStatsReport</code> implements:<ul>
-<li><code>ReadonlyKeyedCollection</code></li>
+<li>@&quot;collection-core.ReadonlyKeyedCollection&quot;</li>
 </ul>
 </li>
 <li><code>SVGLengthList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>SVGNumberList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>SVGStringList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>SourceBufferList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>SpeechGrammarList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>SpeechRecognitionResult</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>SpeechRecognitionResultList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>StyleSheetList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>TextTrackCueList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>TextTrackList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>TouchList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 <li><code>URLSearchParams</code> implements:<ul>
-<li><code>KeyedCollection</code></li>
-<li><code>ReadonlyKeyedCollection</code></li>
-<li><code>ReadonlyKeyedCollection</code></li>
+<li>@&quot;collection-core.KeyedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyKeyedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyKeyedCollection&quot;</li>
 </ul>
 </li>
 <li><code>VideoTrackList</code> implements:<ul>
-<li><code>ReadonlyIndexedCollection</code></li>
-<li><code>ReadonlyCollection</code></li>
+<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
+<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
 </ul>
 </li>
 </ul>
-<p>To install the global shim, import <code>@esfx/collection-core-dom-shim</code>:</p>
+<p>To install the global shim, import <a class="xref" href="collection-core-dom-shim.html">@esfx/collection-core-dom-shim</a>:</p>
+<div class="tabGroup" id="tabgroup_eqN2cJd7df">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_eqN2cJd7df_ts" role="tab" aria-controls="tabpanel_eqN2cJd7df_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_eqN2cJd7df_js" role="tab" aria-controls="tabpanel_eqN2cJd7df_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_eqN2cJd7df_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import &quot;@esfx/collection-core-dom-shim&quot;; // triggers global-scope side effects
 import { ReadonlyIndexedCollection } from &quot;@esfx/collection-core&quot;;
 
 document.anchors[ReadonlyIndexedCollection.size]; // gets the number of anchors in the document
-</code></pre></div>
-  <div class="markdown level0 conceptual"></div>
+</code></pre></section>
+<section id="tabpanel_eqN2cJd7df_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">require(&quot;@esfx/collection-core-dom-shim&quot;); // triggers global-scope side effects
+const { ReadonlyIndexedCollection } = require(&quot;@esfx/collection-core&quot;);
+
+document.anchors[ReadonlyIndexedCollection.size]; // gets the number of anchors in the document
+</code></pre></section>
+</div>
+</div>
+  
 </article>
           </div>
           
@@ -288,6 +316,9 @@ document.anchors[ReadonlyIndexedCollection.size]; // gets the number of anchors 
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/collection-core-dom-shim.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

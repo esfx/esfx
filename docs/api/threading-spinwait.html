@@ -12,14 +12,14 @@
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
     <link rel="stylesheet" href="../styles/docfx.css">
     <link rel="stylesheet" href="../styles/main.css">
     <meta property="docfx:navrel" content="">
     <meta property="docfx:tocrel" content="toc.html">
     
-    
+    <meta property="docfx:rel" content="../">
     
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
@@ -37,7 +37,7 @@
               </button>
               
               <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -58,6 +58,16 @@
           </div>
         </div>
       </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
@@ -73,20 +83,65 @@
   
   <h1 id="threading_spinwait" data-uid="threading-spinwait">Package @esfx/threading-spinwait
   </h1>
-  <div class="markdown level0 summary"><h1 id="esfxthreading-spinwait"><code>@esfx/threading-spinwait</code></h1>
-<p>Provides <code>SpinWait</code>, a thread synchronization primitive for use with Workers.</p>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="threading-spinwait/spinwait.html#threading_spinwait_SpinWait">SpinWait</a> class, a thread synchronization primitive for use with Workers.</p>
 <h1 id="overview">Overview</h1>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
-<li><a href="#api">API</a></li>
 </ul>
 <h1 id="installation">Installation</h1>
 <pre><code class="lang-sh">npm i @esfx/threading-spinwait
 </code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_N9tO9zJVdm">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_N9tO9zJVdm_ts" role="tab" aria-controls="tabpanel_N9tO9zJVdm_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_N9tO9zJVdm_js" role="tab" aria-controls="tabpanel_N9tO9zJVdm_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_N9tO9zJVdm_ts" role="tabpanel" data-tab="ts">
 <pre><code class="lang-ts">import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
 import { SpinWait } from &quot;@esfx/threading-spinwait&quot;;
 import { StructType, int32 } from &quot;@esfx/struct-type&quot;;
+
+const SharedData = StructType([
+    { name: &quot;ready&quot;, type: int32 },
+] as const);
+
+function worker_thread() {
+    const data = new SharedData(workerData);
+
+    // do some long running process...
+
+    // signal that the work has completed.
+    data.ready = 1;
+}
+
+function main() {
+    const data = new SharedData(/*shared*/ true);
+    const worker = new Worker(__filename, { workerData: data.buffer });
+
+    // start spinning until the condition is met.
+    // this results in the thread sleeping periodically
+    // while it waits for the condition.
+    const spinWait = new SpinWait();
+    spinWait.spinUntil(() =&gt; data.ready === 1);
+}
+
+if (isMainThread) {
+    main();
+}
+else {
+    worker_thread();
+}
+</code></pre></section>
+<section id="tabpanel_N9tO9zJVdm_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
+const { SpinWait } = require(&quot;@esfx/threading-spinwait&quot;);
+const { StructType, int32 } = require(&quot;@esfx/struct-type&quot;);
 
 const SharedData = StructType([
     { name: &quot;ready&quot;, type: int32 },
@@ -111,10 +166,17 @@ function main() {
     const spinWait = new SpinWait();
     spinWait.spinUntil(() =&gt; data.ready === 1);
 }
-</code></pre><h1 id="api">API</h1>
-<p>You can read more about the API <a href="https://esfx.github.io/esfx/modules/struct_type.html">here</a>.</p>
+
+if (isMainThread) {
+    main();
+}
+else {
+    worker_thread();
+}
+</code></pre></section>
 </div>
-  <div class="markdown level0 conceptual"></div>
+</div>
+  
 </article>
           </div>
           
@@ -122,6 +184,9 @@ function main() {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/threading-spinwait.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
