@@ -80,19 +80,12 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="async-lockable.AsyncLockable_Interface">
   
-  
   <h1 id="async_lockable_AsyncLockable_Interface" data-uid="async-lockable.AsyncLockable_Interface">Interface AsyncLockable
   </h1>
   <div class="markdown level0 summary"><p>Represents a value that can be used to synchronize access to a resource.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
   <h3 id="methods">
-  
-  Interfaces
-  
-  
-  
   
   
   Methods
@@ -111,41 +104,38 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">[AsyncLockable.lock](cancelable?: Cancelable): Promise&lt;LockHandle&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>cancelable</em></td>
-        <td><a class="xref" href="../cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>cancelable</dt>
+    <dd class="type"><a class="xref" href="../cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Promise&lt;LockHandle&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><span class="xref">Promise</span>&lt;<a class="xref" href="lockhandle.html#async_lockable_LockHandle">LockHandle</a>&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="async_lockable_AsyncLockable_Interface__AsyncLockable_unlock_" data-uid="async-lockable.AsyncLockable_Interface.[AsyncLockable.unlock]">[AsyncLockable.unlock]()</h4>
+  <div class="markdown level1 summary"><p>Releases a lock.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[AsyncLockable.unlock](): void;</code></pre>
+  </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type">void</span>
+  <p class="description">
+  </div>
+  
 </article>
           </div>
           

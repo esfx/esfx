@@ -80,19 +80,12 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="async-deferred.Deferred">
   
-  
   <h1 id="async_deferred_Deferred" data-uid="async-deferred.Deferred">Class Deferred
   </h1>
   <div class="markdown level0 summary"><p>Encapsulates a Promise and exposes its resolve and reject callbacks.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
-  <h3 id="constructors">Classes
-  
-  
-  
-  
-  Constructors
+  <h3 id="constructors">Constructors
   
   
   
@@ -111,12 +104,8 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">constructor();</code></pre>
   </div>
-  <h3 id="properties">Classes
   
-  
-  
-  
-  
+  <h3 id="properties">
   
   Properties
   
@@ -135,21 +124,12 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly callback: T extends void ? (err: Error | null | undefined) =&gt; void : (err: Error | null | undefined, value: T) =&gt; void;</code></pre>
   </div>
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T extends void ? (err: Error | null | undefined) =&gt; void : (err: Error | null | undefined, value: T) =&gt; void</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="propertyValue">
+  <span class="type"><span class="xref">T</span> extends void ? (<span class="xref">err</span>: <span class="xref">Error</span> | null | undefined) =&gt; void : (<span class="xref">err</span>: <span class="xref">Error</span> | null | undefined, <span class="xref">value</span>: <span class="xref">T</span>) =&gt; void</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="async_deferred_Deferred_promise" data-uid="async-deferred.Deferred.promise">promise</h4>
@@ -160,21 +140,12 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly promise: Promise&lt;T&gt;;</code></pre>
   </div>
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Promise&lt;T&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="propertyValue">
+  <span class="type"><span class="xref">Promise</span>&lt;<span class="xref">T</span>&gt;</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="async_deferred_Deferred_reject" data-uid="async-deferred.Deferred.reject">reject</h4>
@@ -185,21 +156,12 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly reject: (reason: any) =&gt; void;</code></pre>
   </div>
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">(reason: any) =&gt; void</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="propertyValue">
+  <span class="type">(<span class="xref">reason</span>: any) =&gt; void</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="async_deferred_Deferred_resolve" data-uid="async-deferred.Deferred.resolve">resolve</h4>
@@ -210,27 +172,13 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly resolve: (value?: T | PromiseLike&lt;T&gt; | undefined) =&gt; void;</code></pre>
   </div>
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">(value?: T | PromiseLike&lt;T&gt; | undefined) =&gt; void</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Classes
-  
-  
-  
-  
-  
+  <div class="propertyValue">
+  <span class="type">(<span class="xref">value</span>?: <span class="xref">T</span> | <span class="xref">PromiseLike</span>&lt;<span class="xref">T</span>&gt; | undefined) =&gt; void</span>
+  <p class="description">
+  </div>
+  <h3 id="methods">
   
   
   Methods
@@ -249,41 +197,22 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">createCallback&lt;A extends any[]&gt;(selector: (...args: A) =&gt; T): (err: Error | null | undefined, ...args: A) =&gt; void;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>selector</em></td>
-        <td><span class="xref">(...args: A) =&gt; T</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>selector</dt>
+    <dd class="type">(...<span class="xref">args</span>: <span class="xref">A</span>) =&gt; <span class="xref">T</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">(err: Error | null | undefined, ...args: A) =&gt; void</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type">(<span class="xref">err</span>: <span class="xref">Error</span> | null | undefined, ...<span class="xref">args</span>: <span class="xref">A</span>) =&gt; void</span>
+  <p class="description">
+  </div>
+  
 </article>
           </div>
           

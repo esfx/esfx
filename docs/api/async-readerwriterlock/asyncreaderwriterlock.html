@@ -80,19 +80,12 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="async-readerwriterlock.AsyncReaderWriterLock">
   
-  
   <h1 id="async_readerwriterlock_AsyncReaderWriterLock" data-uid="async-readerwriterlock.AsyncReaderWriterLock">Class AsyncReaderWriterLock
   </h1>
   <div class="markdown level0 summary"><p>Coordinates readers and writers for a resource.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
-  <h3 id="methods">Classes
-  
-  
-  
-  
-  
+  <h3 id="methods">
   
   
   Methods
@@ -111,21 +104,12 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">createReader(): AsyncReaderWriterLockReader;</code></pre>
   </div>
+  
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="asyncreaderwriterlockreader.html#async_readerwriterlock_AsyncReaderWriterLockReader">AsyncReaderWriterLockReader</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="asyncreaderwriterlockreader.html#async_readerwriterlock_AsyncReaderWriterLockReader">AsyncReaderWriterLockReader</a></span>
+  <p class="description">
+  </div>
   
   
   <h4 id="async_readerwriterlock_AsyncReaderWriterLock_createUpgradeableReader" data-uid="async-readerwriterlock.AsyncReaderWriterLock.createUpgradeableReader">createUpgradeableReader()</h4>
@@ -136,21 +120,12 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">createUpgradeableReader(): AsyncReaderWriterLockUpgradeableReader;</code></pre>
   </div>
+  
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="asyncreaderwriterlockupgradeablereader.html#async_readerwriterlock_AsyncReaderWriterLockUpgradeableReader">AsyncReaderWriterLockUpgradeableReader</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="asyncreaderwriterlockupgradeablereader.html#async_readerwriterlock_AsyncReaderWriterLockUpgradeableReader">AsyncReaderWriterLockUpgradeableReader</a></span>
+  <p class="description">
+  </div>
   
   
   <h4 id="async_readerwriterlock_AsyncReaderWriterLock_createWriter" data-uid="async-readerwriterlock.AsyncReaderWriterLock.createWriter">createWriter()</h4>
@@ -161,21 +136,12 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">createWriter(): AsyncReaderWriterLockWriter;</code></pre>
   </div>
+  
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="asyncreaderwriterlockwriter.html#async_readerwriterlock_AsyncReaderWriterLockWriter">AsyncReaderWriterLockWriter</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="asyncreaderwriterlockwriter.html#async_readerwriterlock_AsyncReaderWriterLockWriter">AsyncReaderWriterLockWriter</a></span>
+  <p class="description">
+  </div>
   
   
   <h4 id="async_readerwriterlock_AsyncReaderWriterLock_read" data-uid="async-readerwriterlock.AsyncReaderWriterLock.read">read(cancelable)</h4>
@@ -186,41 +152,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">read(cancelable?: Cancelable): Promise&lt;AsyncReaderWriterLockReader&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>cancelable</em></td>
-        <td><a class="xref" href="../cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>cancelable</dt>
+    <dd class="type"><a class="xref" href="../cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Promise&lt;AsyncReaderWriterLockReader&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><span class="xref">Promise</span>&lt;<a class="xref" href="asyncreaderwriterlockreader.html#async_readerwriterlock_AsyncReaderWriterLockReader">AsyncReaderWriterLockReader</a>&gt;</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="async_readerwriterlock_AsyncReaderWriterLock_upgradeableRead" data-uid="async-readerwriterlock.AsyncReaderWriterLock.upgradeableRead">upgradeableRead(cancelable)</h4>
@@ -231,41 +177,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">upgradeableRead(cancelable?: Cancelable): Promise&lt;AsyncReaderWriterLockUpgradeableReader&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>cancelable</em></td>
-        <td><a class="xref" href="../cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>cancelable</dt>
+    <dd class="type"><a class="xref" href="../cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Promise&lt;AsyncReaderWriterLockUpgradeableReader&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><span class="xref">Promise</span>&lt;<a class="xref" href="asyncreaderwriterlockupgradeablereader.html#async_readerwriterlock_AsyncReaderWriterLockUpgradeableReader">AsyncReaderWriterLockUpgradeableReader</a>&gt;</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="async_readerwriterlock_AsyncReaderWriterLock_write" data-uid="async-readerwriterlock.AsyncReaderWriterLock.write">write(cancelable)</h4>
@@ -276,41 +202,22 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">write(cancelable?: Cancelable): Promise&lt;AsyncReaderWriterLockWriter&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>cancelable</em></td>
-        <td><a class="xref" href="../cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>cancelable</dt>
+    <dd class="type"><a class="xref" href="../cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Promise&lt;AsyncReaderWriterLockWriter&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><span class="xref">Promise</span>&lt;<a class="xref" href="asyncreaderwriterlockwriter.html#async_readerwriterlock_AsyncReaderWriterLockWriter">AsyncReaderWriterLockWriter</a>&gt;</span>
+  <p class="description">
+  </div>
+  
 </article>
           </div>
           

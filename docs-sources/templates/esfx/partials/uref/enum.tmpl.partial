@@ -1,0 +1,3 @@
+{{>partials/uref/enum.header}}
+{{>partials/uref/enum.members}}
+{{>partials/uref/enum.footer}}

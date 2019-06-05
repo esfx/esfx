@@ -285,6 +285,10 @@ references:
   name: '[AsyncLockable.lock](cancelable)'
   href: api/async-lockable/asynclockable_interface.html#async_lockable_AsyncLockable_Interface__AsyncLockable_lock_
   fullName: '[AsyncLockable.lock](cancelable)'
+- uid: async-lockable.AsyncLockable_Interface.[AsyncLockable.unlock]
+  name: '[AsyncLockable.unlock]()'
+  href: api/async-lockable/asynclockable_interface.html#async_lockable_AsyncLockable_Interface__AsyncLockable_unlock_
+  fullName: '[AsyncLockable.unlock]()'
 - uid: async-lockable.AsyncLockable_Namespace
   name: AsyncLockable
   href: api/async-lockable/asynclockable_namespace.html#async_lockable_AsyncLockable_Namespace
@@ -361,6 +365,10 @@ references:
   name: '[AsyncLockable.lock](cancelable)'
   href: api/async-mutex/asyncmutex.html#async_mutex_AsyncMutex__AsyncLockable_lock_
   fullName: '[AsyncLockable.lock](cancelable)'
+- uid: async-mutex.AsyncMutex.[AsyncLockable.unlock]
+  name: '[AsyncLockable.unlock]()'
+  href: api/async-mutex/asyncmutex.html#async_mutex_AsyncMutex__AsyncLockable_unlock_
+  fullName: '[AsyncLockable.unlock]()'
 - uid: async-mutex.AsyncMutex.isLocked
   name: isLocked
   href: api/async-mutex/asyncmutex.html#async_mutex_AsyncMutex_isLocked
@@ -741,6 +749,14 @@ references:
   name: '[Collection.add](value)'
   href: api/collection-core/collection_interface.html#collection_core_Collection_Interface__Collection_add_
   fullName: '[Collection.add](value)'
+- uid: collection-core.Collection_Interface.[Collection.clear]
+  name: '[Collection.clear]()'
+  href: api/collection-core/collection_interface.html#collection_core_Collection_Interface__Collection_clear_
+  fullName: '[Collection.clear]()'
+- uid: collection-core.Collection_Interface.[Collection.delete]
+  name: '[Collection.delete](value)'
+  href: api/collection-core/collection_interface.html#collection_core_Collection_Interface__Collection_delete_
+  fullName: '[Collection.delete](value)'
 - uid: collection-core.Collection_Namespace
   name: Collection
   href: api/collection-core/collection_namespace.html#collection_core_Collection_Namespace
@@ -781,6 +797,10 @@ references:
   name: '[IndexedCollection.insertAt](index, value)'
   href: api/collection-core/indexedcollection_interface.html#collection_core_IndexedCollection_Interface__IndexedCollection_insertAt_
   fullName: '[IndexedCollection.insertAt](index, value)'
+- uid: collection-core.IndexedCollection_Interface.[IndexedCollection.removeAt]
+  name: '[IndexedCollection.removeAt](index)'
+  href: api/collection-core/indexedcollection_interface.html#collection_core_IndexedCollection_Interface__IndexedCollection_removeAt_
+  fullName: '[IndexedCollection.removeAt](index)'
 - uid: collection-core.IndexedCollection_Namespace
   name: IndexedCollection
   href: api/collection-core/indexedcollection_namespace.html#collection_core_IndexedCollection_Namespace
@@ -797,6 +817,14 @@ references:
   name: KeyedCollection
   href: api/collection-core/keyedcollection_interface.html#collection_core_KeyedCollection_Interface
   fullName: KeyedCollection
+- uid: collection-core.KeyedCollection_Interface.[KeyedCollection.clear]
+  name: '[KeyedCollection.clear]()'
+  href: api/collection-core/keyedcollection_interface.html#collection_core_KeyedCollection_Interface__KeyedCollection_clear_
+  fullName: '[KeyedCollection.clear]()'
+- uid: collection-core.KeyedCollection_Interface.[KeyedCollection.delete]
+  name: '[KeyedCollection.delete](key)'
+  href: api/collection-core/keyedcollection_interface.html#collection_core_KeyedCollection_Interface__KeyedCollection_delete_
+  fullName: '[KeyedCollection.delete](key)'
 - uid: collection-core.KeyedCollection_Interface.[KeyedCollection.set]
   name: '[KeyedCollection.set](key, value)'
   href: api/collection-core/keyedcollection_interface.html#collection_core_KeyedCollection_Interface__KeyedCollection_set_
@@ -841,6 +869,10 @@ references:
   name: ReadonlyIndexedCollection
   href: api/collection-core/readonlyindexedcollection_interface.html#collection_core_ReadonlyIndexedCollection_Interface
   fullName: ReadonlyIndexedCollection
+- uid: collection-core.ReadonlyIndexedCollection_Interface.[ReadonlyIndexedCollection.getAt]
+  name: '[ReadonlyIndexedCollection.getAt](index)'
+  href: api/collection-core/readonlyindexedcollection_interface.html#collection_core_ReadonlyIndexedCollection_Interface__ReadonlyIndexedCollection_getAt_
+  fullName: '[ReadonlyIndexedCollection.getAt](index)'
 - uid: collection-core.ReadonlyIndexedCollection_Interface.[ReadonlyIndexedCollection.indexOf]
   name: '[ReadonlyIndexedCollection.indexOf](value, fromIndex)'
   href: api/collection-core/readonlyindexedcollection_interface.html#collection_core_ReadonlyIndexedCollection_Interface__ReadonlyIndexedCollection_indexOf_
@@ -861,14 +893,26 @@ references:
   name: ReadonlyKeyedCollection
   href: api/collection-core/readonlykeyedcollection_interface.html#collection_core_ReadonlyKeyedCollection_Interface
   fullName: ReadonlyKeyedCollection
+- uid: collection-core.ReadonlyKeyedCollection_Interface.[ReadonlyKeyedCollection.get]
+  name: '[ReadonlyKeyedCollection.get](key)'
+  href: api/collection-core/readonlykeyedcollection_interface.html#collection_core_ReadonlyKeyedCollection_Interface__ReadonlyKeyedCollection_get_
+  fullName: '[ReadonlyKeyedCollection.get](key)'
 - uid: collection-core.ReadonlyKeyedCollection_Interface.[ReadonlyKeyedCollection.has]
   name: '[ReadonlyKeyedCollection.has](key)'
   href: api/collection-core/readonlykeyedcollection_interface.html#collection_core_ReadonlyKeyedCollection_Interface__ReadonlyKeyedCollection_has_
   fullName: '[ReadonlyKeyedCollection.has](key)'
+- uid: collection-core.ReadonlyKeyedCollection_Interface.[ReadonlyKeyedCollection.keys]
+  name: '[ReadonlyKeyedCollection.keys]()'
+  href: api/collection-core/readonlykeyedcollection_interface.html#collection_core_ReadonlyKeyedCollection_Interface__ReadonlyKeyedCollection_keys_
+  fullName: '[ReadonlyKeyedCollection.keys]()'
 - uid: collection-core.ReadonlyKeyedCollection_Interface.[ReadonlyKeyedCollection.size]
   name: '[ReadonlyKeyedCollection.size]'
   href: api/collection-core/readonlykeyedcollection_interface.html#collection_core_ReadonlyKeyedCollection_Interface__ReadonlyKeyedCollection_size_
   fullName: '[ReadonlyKeyedCollection.size]'
+- uid: collection-core.ReadonlyKeyedCollection_Interface.[ReadonlyKeyedCollection.values]
+  name: '[ReadonlyKeyedCollection.values]()'
+  href: api/collection-core/readonlykeyedcollection_interface.html#collection_core_ReadonlyKeyedCollection_Interface__ReadonlyKeyedCollection_values_
+  fullName: '[ReadonlyKeyedCollection.values]()'
 - uid: collection-core.ReadonlyKeyedCollection_Namespace
   name: ReadonlyKeyedCollection
   href: api/collection-core/readonlykeyedcollection_namespace.html#collection_core_ReadonlyKeyedCollection_Namespace
@@ -913,22 +957,46 @@ references:
   name: constructor(capacity, equaler)
   href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__constructor__2
   fullName: constructor(capacity, equaler)
+- uid: collections-hashmap.HashMap.[KeyedCollection.clear]
+  name: '[KeyedCollection.clear]()'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_clear_
+  fullName: '[KeyedCollection.clear]()'
+- uid: collections-hashmap.HashMap.[KeyedCollection.delete]
+  name: '[KeyedCollection.delete](key)'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_delete_
+  fullName: '[KeyedCollection.delete](key)'
+- uid: collections-hashmap.HashMap.[KeyedCollection.get]
+  name: '[KeyedCollection.get](key)'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_get_
+  fullName: '[KeyedCollection.get](key)'
 - uid: collections-hashmap.HashMap.[KeyedCollection.has]
   name: '[KeyedCollection.has](key)'
   href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_has_
   fullName: '[KeyedCollection.has](key)'
+- uid: collections-hashmap.HashMap.[KeyedCollection.keys]
+  name: '[KeyedCollection.keys]()'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_keys_
+  fullName: '[KeyedCollection.keys]()'
+- uid: collections-hashmap.HashMap.[KeyedCollection.set]
+  name: '[KeyedCollection.set](key, value)'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_set_
+  fullName: '[KeyedCollection.set](key, value)'
 - uid: collections-hashmap.HashMap.[KeyedCollection.size]
   name: '[KeyedCollection.size]'
   href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_size_
   fullName: '[KeyedCollection.size]'
-- uid: collections-hashmap.HashMap.__@iterator
-  name: __@iterator()
-  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap____iterator
-  fullName: __@iterator()
-- uid: collections-hashmap.HashMap.__@toStringTag
-  name: __@toStringTag
-  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap____toStringTag
-  fullName: __@toStringTag
+- uid: collections-hashmap.HashMap.[KeyedCollection.values]
+  name: '[KeyedCollection.values]()'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_values_
+  fullName: '[KeyedCollection.values]()'
+- uid: collections-hashmap.HashMap.[Symbol.iterator]
+  name: '[Symbol.iterator]()'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__Symbol_iterator_
+  fullName: '[Symbol.iterator]()'
+- uid: collections-hashmap.HashMap.[Symbol.toStringTag]
+  name: '[Symbol.toStringTag]'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__Symbol_toStringTag_
+  fullName: '[Symbol.toStringTag]'
 - uid: collections-hashmap.HashMap.clear
   name: clear()
   href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap_clear
@@ -1001,6 +1069,18 @@ references:
   name: constructor(capacity, equaler)
   href: api/collections-hashset/hashset.html#collections_hashset_HashSet__constructor__2
   fullName: constructor(capacity, equaler)
+- uid: collections-hashset.HashSet.[Collection.add]
+  name: '[Collection.add](value)'
+  href: api/collections-hashset/hashset.html#collections_hashset_HashSet__Collection_add_
+  fullName: '[Collection.add](value)'
+- uid: collections-hashset.HashSet.[Collection.clear]
+  name: '[Collection.clear]()'
+  href: api/collections-hashset/hashset.html#collections_hashset_HashSet__Collection_clear_
+  fullName: '[Collection.clear]()'
+- uid: collections-hashset.HashSet.[Collection.delete]
+  name: '[Collection.delete](value)'
+  href: api/collections-hashset/hashset.html#collections_hashset_HashSet__Collection_delete_
+  fullName: '[Collection.delete](value)'
 - uid: collections-hashset.HashSet.[Collection.has]
   name: '[Collection.has](value)'
   href: api/collections-hashset/hashset.html#collections_hashset_HashSet__Collection_has_
@@ -1009,14 +1089,14 @@ references:
   name: '[Collection.size]'
   href: api/collections-hashset/hashset.html#collections_hashset_HashSet__Collection_size_
   fullName: '[Collection.size]'
-- uid: collections-hashset.HashSet.__@iterator
-  name: __@iterator()
-  href: api/collections-hashset/hashset.html#collections_hashset_HashSet____iterator
-  fullName: __@iterator()
-- uid: collections-hashset.HashSet.__@toStringTag
-  name: __@toStringTag
-  href: api/collections-hashset/hashset.html#collections_hashset_HashSet____toStringTag
-  fullName: __@toStringTag
+- uid: collections-hashset.HashSet.[Symbol.iterator]
+  name: '[Symbol.iterator]()'
+  href: api/collections-hashset/hashset.html#collections_hashset_HashSet__Symbol_iterator_
+  fullName: '[Symbol.iterator]()'
+- uid: collections-hashset.HashSet.[Symbol.toStringTag]
+  name: '[Symbol.toStringTag]'
+  href: api/collections-hashset/hashset.html#collections_hashset_HashSet__Symbol_toStringTag_
+  fullName: '[Symbol.toStringTag]'
 - uid: collections-hashset.HashSet.add
   name: add(value)
   href: api/collections-hashset/hashset.html#collections_hashset_HashSet_add
@@ -1081,6 +1161,18 @@ references:
   name: constructor(iterable, equaler)
   href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList__constructor__1
   fullName: constructor(iterable, equaler)
+- uid: collections-linkedlist.LinkedList.[Collection.add]
+  name: '[Collection.add](value)'
+  href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList__Collection_add_
+  fullName: '[Collection.add](value)'
+- uid: collections-linkedlist.LinkedList.[Collection.clear]
+  name: '[Collection.clear]()'
+  href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList__Collection_clear_
+  fullName: '[Collection.clear]()'
+- uid: collections-linkedlist.LinkedList.[Collection.delete]
+  name: '[Collection.delete](value)'
+  href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList__Collection_delete_
+  fullName: '[Collection.delete](value)'
 - uid: collections-linkedlist.LinkedList.[ReadonlyCollection.has]
   name: '[ReadonlyCollection.has](value)'
   href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList__ReadonlyCollection_has_
@@ -1089,14 +1181,14 @@ references:
   name: '[ReadonlyCollection.size]'
   href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList__ReadonlyCollection_size_
   fullName: '[ReadonlyCollection.size]'
-- uid: collections-linkedlist.LinkedList.__@iterator
-  name: __@iterator()
-  href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList____iterator
-  fullName: __@iterator()
-- uid: collections-linkedlist.LinkedList.__@toStringTag
-  name: __@toStringTag
-  href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList____toStringTag
-  fullName: __@toStringTag
+- uid: collections-linkedlist.LinkedList.[Symbol.iterator]
+  name: '[Symbol.iterator]()'
+  href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList__Symbol_iterator_
+  fullName: '[Symbol.iterator]()'
+- uid: collections-linkedlist.LinkedList.[Symbol.toStringTag]
+  name: '[Symbol.toStringTag]'
+  href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList__Symbol_toStringTag_
+  fullName: '[Symbol.toStringTag]'
 - uid: collections-linkedlist.LinkedList.clear
   name: clear()
   href: api/collections-linkedlist/linkedlist.html#collections_linkedlist_LinkedList_clear
@@ -1293,10 +1385,18 @@ references:
   name: '[kList]'
   href: api/collections-linkedlist/linkedlistnode.html#collections_linkedlist_LinkedListNode__kList_
   fullName: '[kList]'
-- uid: collections-linkedlist.LinkedListNode.__@toStringTag
-  name: __@toStringTag
-  href: api/collections-linkedlist/linkedlistnode.html#collections_linkedlist_LinkedListNode____toStringTag
-  fullName: __@toStringTag
+- uid: collections-linkedlist.LinkedListNode.[kNext]
+  name: '[kNext]'
+  href: api/collections-linkedlist/linkedlistnode.html#collections_linkedlist_LinkedListNode__kNext_
+  fullName: '[kNext]'
+- uid: collections-linkedlist.LinkedListNode.[kPrevious]
+  name: '[kPrevious]'
+  href: api/collections-linkedlist/linkedlistnode.html#collections_linkedlist_LinkedListNode__kPrevious_
+  fullName: '[kPrevious]'
+- uid: collections-linkedlist.LinkedListNode.[Symbol.toStringTag]
+  name: '[Symbol.toStringTag]'
+  href: api/collections-linkedlist/linkedlistnode.html#collections_linkedlist_LinkedListNode__Symbol_toStringTag_
+  fullName: '[Symbol.toStringTag]'
 - uid: collections-linkedlist.LinkedListNode.detachSelf
   name: detachSelf()
   href: api/collections-linkedlist/linkedlistnode.html#collections_linkedlist_LinkedListNode_detachSelf
@@ -1333,22 +1433,46 @@ references:
   name: constructor(iterable, comparer)
   href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__constructor__1
   fullName: constructor(iterable, comparer)
+- uid: collections-sortedmap.SortedMap.[KeyedCollection.clear]
+  name: '[KeyedCollection.clear]()'
+  href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__KeyedCollection_clear_
+  fullName: '[KeyedCollection.clear]()'
+- uid: collections-sortedmap.SortedMap.[KeyedCollection.delete]
+  name: '[KeyedCollection.delete](key)'
+  href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__KeyedCollection_delete_
+  fullName: '[KeyedCollection.delete](key)'
+- uid: collections-sortedmap.SortedMap.[KeyedCollection.get]
+  name: '[KeyedCollection.get](key)'
+  href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__KeyedCollection_get_
+  fullName: '[KeyedCollection.get](key)'
 - uid: collections-sortedmap.SortedMap.[KeyedCollection.has]
   name: '[KeyedCollection.has](key)'
   href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__KeyedCollection_has_
   fullName: '[KeyedCollection.has](key)'
+- uid: collections-sortedmap.SortedMap.[KeyedCollection.keys]
+  name: '[KeyedCollection.keys]()'
+  href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__KeyedCollection_keys_
+  fullName: '[KeyedCollection.keys]()'
+- uid: collections-sortedmap.SortedMap.[KeyedCollection.set]
+  name: '[KeyedCollection.set](key, value)'
+  href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__KeyedCollection_set_
+  fullName: '[KeyedCollection.set](key, value)'
 - uid: collections-sortedmap.SortedMap.[KeyedCollection.size]
   name: '[KeyedCollection.size]'
   href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__KeyedCollection_size_
   fullName: '[KeyedCollection.size]'
-- uid: collections-sortedmap.SortedMap.__@iterator
-  name: __@iterator()
-  href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap____iterator
-  fullName: __@iterator()
-- uid: collections-sortedmap.SortedMap.__@toStringTag
-  name: __@toStringTag
-  href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap____toStringTag
-  fullName: __@toStringTag
+- uid: collections-sortedmap.SortedMap.[KeyedCollection.values]
+  name: '[KeyedCollection.values]()'
+  href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__KeyedCollection_values_
+  fullName: '[KeyedCollection.values]()'
+- uid: collections-sortedmap.SortedMap.[Symbol.iterator]
+  name: '[Symbol.iterator]()'
+  href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__Symbol_iterator_
+  fullName: '[Symbol.iterator]()'
+- uid: collections-sortedmap.SortedMap.[Symbol.toStringTag]
+  name: '[Symbol.toStringTag]'
+  href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap__Symbol_toStringTag_
+  fullName: '[Symbol.toStringTag]'
 - uid: collections-sortedmap.SortedMap.clear
   name: clear()
   href: api/collections-sortedmap/sortedmap.html#collections_sortedmap_SortedMap_clear
@@ -1405,6 +1529,18 @@ references:
   name: constructor(iterable, comparer)
   href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet__constructor__1
   fullName: constructor(iterable, comparer)
+- uid: collections-sortedset.SortedSet.[Collection.add]
+  name: '[Collection.add](value)'
+  href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet__Collection_add_
+  fullName: '[Collection.add](value)'
+- uid: collections-sortedset.SortedSet.[Collection.clear]
+  name: '[Collection.clear]()'
+  href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet__Collection_clear_
+  fullName: '[Collection.clear]()'
+- uid: collections-sortedset.SortedSet.[Collection.delete]
+  name: '[Collection.delete](value)'
+  href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet__Collection_delete_
+  fullName: '[Collection.delete](value)'
 - uid: collections-sortedset.SortedSet.[Collection.has]
   name: '[Collection.has](value)'
   href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet__Collection_has_
@@ -1413,14 +1549,14 @@ references:
   name: '[Collection.size]'
   href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet__Collection_size_
   fullName: '[Collection.size]'
-- uid: collections-sortedset.SortedSet.__@iterator
-  name: __@iterator()
-  href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet____iterator
-  fullName: __@iterator()
-- uid: collections-sortedset.SortedSet.__@toStringTag
-  name: __@toStringTag
-  href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet____toStringTag
-  fullName: __@toStringTag
+- uid: collections-sortedset.SortedSet.[Symbol.iterator]
+  name: '[Symbol.iterator]()'
+  href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet__Symbol_iterator_
+  fullName: '[Symbol.iterator]()'
+- uid: collections-sortedset.SortedSet.[Symbol.toStringTag]
+  name: '[Symbol.toStringTag]'
+  href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet__Symbol_toStringTag_
+  fullName: '[Symbol.toStringTag]'
 - uid: collections-sortedset.SortedSet.add
   name: add(value)
   href: api/collections-sortedset/sortedset.html#collections_sortedset_SortedSet_add
@@ -1773,6 +1909,10 @@ references:
   name: '[Equatable.equals](other)'
   href: api/equatable/equatable_interface.html#equatable_Equatable_Interface__Equatable_equals_
   fullName: '[Equatable.equals](other)'
+- uid: equatable.Equatable_Interface.[Equatable.hash]
+  name: '[Equatable.hash]()'
+  href: api/equatable/equatable_interface.html#equatable_Equatable_Interface__Equatable_hash_
+  fullName: '[Equatable.hash]()'
 - uid: equatable.Equatable_Namespace
   name: Equatable
   href: api/equatable/equatable_namespace.html#equatable_Equatable_Namespace
@@ -1805,6 +1945,10 @@ references:
   name: '[StructuralEquatable.structuralEquals](other, equaler)'
   href: api/equatable/structuralequatable_interface.html#equatable_StructuralEquatable_Interface__StructuralEquatable_structuralEquals_
   fullName: '[StructuralEquatable.structuralEquals](other, equaler)'
+- uid: equatable.StructuralEquatable_Interface.[StructuralEquatable.structuralHash]
+  name: '[StructuralEquatable.structuralHash](equaler)'
+  href: api/equatable/structuralequatable_interface.html#equatable_StructuralEquatable_Interface__StructuralEquatable_structuralHash_
+  fullName: '[StructuralEquatable.structuralHash](equaler)'
 - uid: equatable.StructuralEquatable_Namespace
   name: StructuralEquatable
   href: api/equatable/structuralequatable_namespace.html#equatable_StructuralEquatable_Namespace
@@ -2120,10 +2264,10 @@ references:
   name: Reference
   href: api/ref/reference.html#ref_Reference
   fullName: Reference
-- uid: ref.Reference.__@toStringTag
-  name: __@toStringTag
-  href: api/ref/reference.html#ref_Reference____toStringTag
-  fullName: __@toStringTag
+- uid: ref.Reference.[Symbol.toStringTag]
+  name: '[Symbol.toStringTag]'
+  href: api/ref/reference.html#ref_Reference__Symbol_toStringTag_
+  fullName: '[Symbol.toStringTag]'
 - uid: ref.Reference.value
   name: value
   href: api/ref/reference.html#ref_Reference_value
@@ -2444,6 +2588,14 @@ references:
   name: '[Lockable.lock](ms)'
   href: api/threading-lockable/lockable_interface.html#threading_lockable_Lockable_Interface__Lockable_lock_
   fullName: '[Lockable.lock](ms)'
+- uid: threading-lockable.Lockable_Interface.[Lockable.tryLock]
+  name: '[Lockable.tryLock]()'
+  href: api/threading-lockable/lockable_interface.html#threading_lockable_Lockable_Interface__Lockable_tryLock_
+  fullName: '[Lockable.tryLock]()'
+- uid: threading-lockable.Lockable_Interface.[Lockable.unlock]
+  name: '[Lockable.unlock]()'
+  href: api/threading-lockable/lockable_interface.html#threading_lockable_Lockable_Interface__Lockable_unlock_
+  fullName: '[Lockable.unlock]()'
 - uid: threading-lockable.Lockable_Namespace
   name: Lockable
   href: api/threading-lockable/lockable_namespace.html#threading_lockable_Lockable_Namespace
@@ -2520,10 +2672,22 @@ references:
   name: constructor(buffer, byteOffset)
   href: api/threading-mutex/mutex.html#threading_mutex_Mutex__constructor__1
   fullName: constructor(buffer, byteOffset)
+- uid: threading-mutex.Mutex.[Disposable.dispose]
+  name: '[Disposable.dispose]()'
+  href: api/threading-mutex/mutex.html#threading_mutex_Mutex__Disposable_dispose_
+  fullName: '[Disposable.dispose]()'
 - uid: threading-mutex.Mutex.[Lockable.lock]
   name: '[Lockable.lock](ms)'
   href: api/threading-mutex/mutex.html#threading_mutex_Mutex__Lockable_lock_
   fullName: '[Lockable.lock](ms)'
+- uid: threading-mutex.Mutex.[Lockable.tryLock]
+  name: '[Lockable.tryLock]()'
+  href: api/threading-mutex/mutex.html#threading_mutex_Mutex__Lockable_tryLock_
+  fullName: '[Lockable.tryLock]()'
+- uid: threading-mutex.Mutex.[Lockable.unlock]
+  name: '[Lockable.unlock]()'
+  href: api/threading-mutex/mutex.html#threading_mutex_Mutex__Lockable_unlock_
+  fullName: '[Lockable.unlock]()'
 - uid: threading-mutex.Mutex.buffer
   name: buffer
   href: api/threading-mutex/mutex.html#threading_mutex_Mutex_buffer

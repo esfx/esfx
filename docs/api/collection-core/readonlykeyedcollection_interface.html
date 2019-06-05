@@ -80,18 +80,11 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="collection-core.ReadonlyKeyedCollection_Interface">
   
-  
   <h1 id="collection_core_ReadonlyKeyedCollection_Interface" data-uid="collection-core.ReadonlyKeyedCollection_Interface">Interface ReadonlyKeyedCollection
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  
   <h3 id="properties">
-  
-  Interfaces
-  
-  
-  
   
   Properties
   
@@ -110,27 +103,13 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly [ReadonlyKeyedCollection.size]: number;</code></pre>
   </div>
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">number</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="propertyValue">
+  <span class="type">number</span>
+  <p class="description">
+  </div>
   <h3 id="methods">
-  
-  Interfaces
-  
-  
-  
   
   
   Methods
@@ -141,6 +120,31 @@
   </h3>
   
   
+  <h4 id="collection_core_ReadonlyKeyedCollection_Interface__ReadonlyKeyedCollection_get_" data-uid="collection-core.ReadonlyKeyedCollection_Interface.[ReadonlyKeyedCollection.get]">[ReadonlyKeyedCollection.get](key)</h4>
+  <div class="markdown level1 summary"><p>Gets the value in the collection associated with the provided key, if it exists.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[ReadonlyKeyedCollection.get](key: K): V | undefined;</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><span class="xref">V</span> | undefined</span>
+  <p class="description">
+  </div>
+  
+  
   <h4 id="collection_core_ReadonlyKeyedCollection_Interface__ReadonlyKeyedCollection_has_" data-uid="collection-core.ReadonlyKeyedCollection_Interface.[ReadonlyKeyedCollection.has]">[ReadonlyKeyedCollection.has](key)</h4>
   <div class="markdown level1 summary"><p>Tests whether a key is present in the collection.</p>
 </div>
@@ -149,41 +153,54 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">[ReadonlyKeyedCollection.has](key: K): boolean;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>key</em></td>
-        <td><span class="xref">K</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type">boolean</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collection_core_ReadonlyKeyedCollection_Interface__ReadonlyKeyedCollection_keys_" data-uid="collection-core.ReadonlyKeyedCollection_Interface.[ReadonlyKeyedCollection.keys]">[ReadonlyKeyedCollection.keys]()</h4>
+  <div class="markdown level1 summary"><p>Gets an <code>IterableIterator</code> for the keys present in the collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[ReadonlyKeyedCollection.keys](): IterableIterator&lt;K&gt;;</code></pre>
+  </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><span class="xref">IterableIterator</span>&lt;<span class="xref">K</span>&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collection_core_ReadonlyKeyedCollection_Interface__ReadonlyKeyedCollection_values_" data-uid="collection-core.ReadonlyKeyedCollection_Interface.[ReadonlyKeyedCollection.values]">[ReadonlyKeyedCollection.values]()</h4>
+  <div class="markdown level1 summary"><p>Gets an <code>IterableIterator</code> for the values present in the collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[ReadonlyKeyedCollection.values](): IterableIterator&lt;V&gt;;</code></pre>
+  </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><span class="xref">IterableIterator</span>&lt;<span class="xref">V</span>&gt;</span>
+  <p class="description">
+  </div>
+  
 </article>
           </div>
           

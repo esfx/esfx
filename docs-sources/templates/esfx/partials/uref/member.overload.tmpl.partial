@@ -1,0 +1,3 @@
+{{#overload}}
+<a id="{{id}}" data-uid="{{uid}}"></a>
+{{/overload}}

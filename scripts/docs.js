@@ -10,6 +10,7 @@
 const fs = require("fs");
 const path = require("path");
 const del = require("del");
+// require("./docs/patchApiExtractor");
 const { Extractor } = require("@microsoft/api-extractor");
 const { ApiModel, ApiDocumentedItem, ApiDeclaredItem, ApiItemContainerMixin, ApiParameterListMixin } = require("@microsoft/api-extractor-model");
 const { CustomYamlDocumenter } = require("./docs/yamlDocumenter");

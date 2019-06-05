@@ -79,13 +79,11 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="disposable.Disposable_Namespace">
-  
   <h1 id="disposable_Disposable_Namespace" data-uid="disposable.Disposable_Namespace" class="text-break">Namespace Disposable
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
-  
   <h3 id="functions">
   
   
@@ -110,41 +108,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function create(dispose: () =&gt; void): Disposable;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>dispose</em></td>
-        <td><span class="xref">() =&gt; void</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>dispose</dt>
+    <dd class="type">() =&gt; void</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="disposable_interface.html#disposable_Disposable_Interface">Disposable</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="disposable_interface.html#disposable_Disposable_Interface">Disposable</a></span>
+  <p class="description">
+  </div>
   
   
   <h4 id="disposable_Disposable_Namespace_from" data-uid="disposable.Disposable_Namespace.from">from(disposables)</h4>
@@ -155,41 +133,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function from(disposables: Iterable&lt;Disposable | null | undefined&gt;): Disposable;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>disposables</em></td>
-        <td><span class="xref">Iterable&lt;Disposable | null | undefined&gt;</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>disposables</dt>
+    <dd class="type"><span class="xref">Iterable</span>&lt;<a class="xref" href="disposable_interface.html#disposable_Disposable_Interface">Disposable</a> | null | undefined&gt;</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="disposable_interface.html#disposable_Disposable_Interface">Disposable</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="disposable_interface.html#disposable_Disposable_Interface">Disposable</a></span>
+  <p class="description">
+  </div>
   
   
   <h4 id="disposable_Disposable_Namespace_isDisposable" data-uid="disposable.Disposable_Namespace.isDisposable">isDisposable(value)</h4>
@@ -200,41 +158,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function isDisposable(value: unknown): value is Disposable;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>value</em></td>
-        <td><span class="xref">unknown</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>value</dt>
+    <dd class="type">unknown</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">value is Disposable</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><span class="xref">value</span> is <a class="xref" href="disposable_interface.html#disposable_Disposable_Interface">Disposable</a></span>
+  <p class="description">
+  </div>
   
   
   <h4 id="disposable_Disposable_Namespace_use" data-uid="disposable.Disposable_Namespace.use">use(resource, callback)</h4>
@@ -245,49 +183,27 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function use&lt;T extends Disposable | null | undefined, U&gt;(resource: T, callback: (resource: T) =&gt; U): U;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>resource</em></td>
-        <td><span class="xref">T</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><em>callback</em></td>
-        <td><span class="xref">(resource: T) =&gt; U</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>resource</dt>
+    <dd class="type"><span class="xref">T</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+    <dt>callback</dt>
+    <dd class="type">(<span class="xref">resource</span>: <span class="xref">T</span>) =&gt; <span class="xref">U</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">U</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><span class="xref">U</span></span>
+  <p class="description">
+  </div>
 </article>
           </div>
           

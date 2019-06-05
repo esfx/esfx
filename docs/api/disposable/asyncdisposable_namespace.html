@@ -79,13 +79,11 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="disposable.AsyncDisposable_Namespace">
-  
   <h1 id="disposable_AsyncDisposable_Namespace" data-uid="disposable.AsyncDisposable_Namespace" class="text-break">Namespace AsyncDisposable
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
-  
   <h3 id="functions">
   
   
@@ -110,41 +108,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function create(dispose: () =&gt; void | PromiseLike&lt;void&gt;): AsyncDisposable;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>dispose</em></td>
-        <td><span class="xref">() =&gt; void | PromiseLike&lt;void&gt;</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>dispose</dt>
+    <dd class="type">() =&gt; void | <span class="xref">PromiseLike</span>&lt;void&gt;</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="asyncdisposable_interface.html#disposable_AsyncDisposable_Interface">AsyncDisposable</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="asyncdisposable_interface.html#disposable_AsyncDisposable_Interface">AsyncDisposable</a></span>
+  <p class="description">
+  </div>
   
   
   <h4 id="disposable_AsyncDisposable_Namespace_from" data-uid="disposable.AsyncDisposable_Namespace.from">from(resources)</h4>
@@ -155,41 +133,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function from(resources: Iterable&lt;AsyncDisposable | Disposable | null | undefined&gt;): AsyncDisposable;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>resources</em></td>
-        <td><span class="xref">Iterable&lt;AsyncDisposable | Disposable | null | undefined&gt;</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>resources</dt>
+    <dd class="type"><span class="xref">Iterable</span>&lt;<a class="xref" href="asyncdisposable_interface.html#disposable_AsyncDisposable_Interface">AsyncDisposable</a> | <a class="xref" href="disposable_interface.html#disposable_Disposable_Interface">Disposable</a> | null | undefined&gt;</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="asyncdisposable_interface.html#disposable_AsyncDisposable_Interface">AsyncDisposable</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="asyncdisposable_interface.html#disposable_AsyncDisposable_Interface">AsyncDisposable</a></span>
+  <p class="description">
+  </div>
   
   
   <h4 id="disposable_AsyncDisposable_Namespace_isAsyncDisposable" data-uid="disposable.AsyncDisposable_Namespace.isAsyncDisposable">isAsyncDisposable(value)</h4>
@@ -200,41 +158,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function isAsyncDisposable(value: unknown): value is AsyncDisposable;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>value</em></td>
-        <td><span class="xref">unknown</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>value</dt>
+    <dd class="type">unknown</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">value is AsyncDisposable</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><span class="xref">value</span> is <a class="xref" href="asyncdisposable_interface.html#disposable_AsyncDisposable_Interface">AsyncDisposable</a></span>
+  <p class="description">
+  </div>
   
   
   <h4 id="disposable_AsyncDisposable_Namespace_use" data-uid="disposable.AsyncDisposable_Namespace.use">use(resource, callback)</h4>
@@ -245,49 +183,27 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function use&lt;T extends AsyncDisposable | Disposable | null | undefined, U&gt;(resource: T, callback: (resource: T) =&gt; U | PromiseLike&lt;U&gt;): Promise&lt;U&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>resource</em></td>
-        <td><span class="xref">T</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><em>callback</em></td>
-        <td><span class="xref">(resource: T) =&gt; U | PromiseLike&lt;U&gt;</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>resource</dt>
+    <dd class="type"><span class="xref">T</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+    <dt>callback</dt>
+    <dd class="type">(<span class="xref">resource</span>: <span class="xref">T</span>) =&gt; <span class="xref">U</span> | <span class="xref">PromiseLike</span>&lt;<span class="xref">U</span>&gt;</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Promise&lt;U&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><span class="xref">Promise</span>&lt;<span class="xref">U</span>&gt;</span>
+  <p class="description">
+  </div>
 </article>
           </div>
           

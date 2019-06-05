@@ -79,13 +79,11 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="ref.ref_Namespace">
-  
   <h1 id="ref_ref_Namespace" data-uid="ref.ref_Namespace" class="text-break">Namespace ref
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
-  
   <h3 id="functions">
   
   
@@ -110,41 +108,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function _for&lt;T&gt;(value: T): Reference&lt;T&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>value</em></td>
-        <td><span class="xref">T</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>value</dt>
+    <dd class="type"><span class="xref">T</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Reference&lt;T&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="reference.html#ref_Reference">Reference</a>&lt;<span class="xref">T</span>&gt;</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="ref_ref_Namespace__is" data-uid="ref.ref_Namespace._is">_is(value)</h4>
@@ -155,41 +133,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function _is(value: unknown): value is Reference&lt;any&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>value</em></td>
-        <td><span class="xref">unknown</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>value</dt>
+    <dd class="type">unknown</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">value is Reference&lt;any&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><span class="xref">value</span> is <a class="xref" href="reference.html#ref_Reference">Reference</a>&lt;any&gt;</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="ref_ref_Namespace_at" data-uid="ref.ref_Namespace.at">at(object, key, readonly)</h4>
@@ -200,57 +158,33 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function at&lt;T, K extends keyof T&gt;(object: T, key: K, readonly?: boolean): Reference&lt;T[K]&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>object</em></td>
-        <td><span class="xref">T</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><em>key</em></td>
-        <td><span class="xref">K</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><em>readonly</em></td>
-        <td><span class="xref">boolean</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>object</dt>
+    <dd class="type"><span class="xref">T</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+    <dt>readonly</dt>
+    <dd class="type">boolean</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Reference&lt;T[K]&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="reference.html#ref_Reference">Reference</a>&lt;<span class="xref">T</span>[<span class="xref">K</span>]&gt;</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="ref_ref_Namespace_out_Function" data-uid="ref.ref_Namespace.out_Function">out()</h4>
@@ -261,21 +195,12 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function out&lt;T&gt;(): Reference&lt;T&gt;;</code></pre>
   </div>
+  
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Reference&lt;T&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="reference.html#ref_Reference">Reference</a>&lt;<span class="xref">T</span>&gt;</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="ref_ref_Namespace_out_Function_1" data-uid="ref.ref_Namespace.out_Function_1">out(get, set)</h4>
@@ -285,49 +210,27 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">function out&lt;T&gt;(get: () =&gt; T, set: (value: T) =&gt; void): Reference&lt;T&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>get</em></td>
-        <td><span class="xref">() =&gt; T</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><em>set</em></td>
-        <td><span class="xref">(value: T) =&gt; void</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>get</dt>
+    <dd class="type">() =&gt; <span class="xref">T</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+    <dt>set</dt>
+    <dd class="type">(<span class="xref">value</span>: <span class="xref">T</span>) =&gt; void</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Reference&lt;T&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="reference.html#ref_Reference">Reference</a>&lt;<span class="xref">T</span>&gt;</span>
+  <p class="description">
+  </div>
 </article>
           </div>
           

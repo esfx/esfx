@@ -1,0 +1,12 @@
+<h5 class="decalaration">{{__global.declaration}}</h5>
+{{#syntax}}
+<div class="codewrapper">
+  <pre><code class="lang-{{syntax.content.0.lang}} hljs">{{syntax.content.0.value}}</code></pre>
+</div>
+{{>partials/uref/syntax.parameters}}
+{{>partials/uref/syntax.return}}
+{{>partials/uref/syntax.typeParameters}}
+{{>partials/uref/syntax.field}}
+{{>partials/uref/syntax.property}}
+{{>partials/uref/syntax.event}}
+{{/syntax}}

@@ -1,0 +1,7 @@
+{{#return}}
+<h5 class="returns">{{__global.returns}}</h5>
+<div class="return">
+<span class="type">{{{value.type.0.specName.0.value}}}</span>
+<p class="description">{{{value.description}}}</p>
+</div>
+{{/return}}

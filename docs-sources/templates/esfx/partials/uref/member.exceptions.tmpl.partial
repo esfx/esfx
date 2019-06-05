@@ -1,0 +1,21 @@
+{{#exceptions.0}}
+<h5 class="exceptions">{{__global.exceptions}}</h5>
+<table class="table table-bordered table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>{{__global.type}}</th>
+      <th>{{__global.condition}}</th>
+    </tr>
+  </thead>
+  <tbody>
+{{/exceptions.0}}
+{{#exceptions.0.value}}
+    <tr>
+      <td>{{{type.specName.0.value}}}</td>
+      <td>{{{description}}}</td>
+    </tr>
+{{/exceptions.0.value}}
+{{#exceptions.0}}
+  </tbody>
+</table>
+{{/exceptions.0}}

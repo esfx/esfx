@@ -1,0 +1,6 @@
+{{#children}}
+<h3 id="{{id}}">{{>partials/uref/group}}</h3>
+{{#children}}
+{{>partials/uref/member}}
+{{/children}}
+{{/children}}

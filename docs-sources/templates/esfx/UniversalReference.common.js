@@ -260,7 +260,8 @@ function getDefinitions(category) {
     "enum":         { inEnum: true,         typePropertyName: "inEnum",         id: "enums" },
     "delegate":     { inDelegate: true,     typePropertyName: "inDelegate",     id: "delegates" },
     "function":     { inFunction: true,     typePropertyName: "inFunction",     id: "functions" },
-    "package":      { inDelegate: true,     typePropertyName: "inPackage",      id: "packages" }
+    "package":      { inPackage: true,      typePropertyName: "inPackage",      id: "packages" },
+    // "namespace":    { isNamespace: true,    typePropertyName: "isNamespace",    id: "namespaces" },
   };
   var classItems = {
     "constructor":  { inConstructor: true,  typePropertyName: "inConstructor",  id: "constructors" },

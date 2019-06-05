@@ -1,7 +1,7 @@
 {{!Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE file in the project root for full license information.}}
 
 {{#properties.0}}
-<h6 class="parameters">Properties</h6>
+<h6 class="parameters">{{__global.propertiesInSubtitle}}</h6>
 <table class="table table-bordered table-striped table-condensed">
   <thead>
     <tr>
@@ -18,7 +18,7 @@
       <td><em class="text-break">{{{id}}}</em></td>
       <td>
         {{{description}}}
-        {{>partials/parameters}}
+        {{>partials/uref/syntax.parameters.properties}}
       </td>
     </tr>
 {{/properties}}

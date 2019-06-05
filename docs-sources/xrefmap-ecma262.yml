@@ -9,3 +9,31 @@ references:
   name: SharedArrayBuffer
   href: https://tc39.github.io/ecma262/#sec-sharedarraybuffer-objects
   fullName: SharedArrayBuffer
+- uid: Promise
+  name: Promise
+  fullName: Promise
+  href: https://tc39.github.io/ecma262/#sec-promise-objects
+- uid: boolean
+  name: boolean
+  fullName: boolean
+  href: https://tc39.github.io/ecma262/#sec-boolean-objects
+- uid: symbol
+  name: symbol
+  fullName: symbol
+  href: https://tc39.github.io/ecma262/#sec-symbol-objects
+- uid: number
+  name: number
+  fullName: number
+  href: https://tc39.github.io/ecma262/#sec-number-objects
+- uid: string
+  name: string
+  fullName: string
+  href: https://tc39.github.io/ecma262/#sec-string-objects
+- uid: undefined
+  name: undefined
+  fullName: undefined
+  href: https://tc39.github.io/ecma262/#sec-ecmascript-language-types-undefined-type
+- uid: 'null'
+  name: 'null'
+  fullName: 'null'
+  href: https://tc39.github.io/ecma262/#sec-ecmascript-language-types-null-type

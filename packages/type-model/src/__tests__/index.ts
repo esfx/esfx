@@ -1,4 +1,52 @@
-import { IsNever, IsAny, IteratedType, GeneratorNextType, GeneratorReturnType, AsyncIteratedType, AsyncGeneratorNextType, AsyncGeneratorReturnType, PromisedType, UnionToIntersection, IsCallable, IsConstructable, IsUnknown, IsSubtypeOf, Not, And, Or, XOr, Every, Some, One, SameType, SameTypes, Relatable, Overlaps, IsSubsetOf, IsSupersetOf, IsProperSubsetOf, IsProperSupersetOf, MatchingKeys, FunctionKeys, Constructor, Await, AwaitAll, Shift, Unshift, Reverse, Pop, Push, Disjoin, Conjoin, DisjoinOverlaps, IsEmpty, Diff, Intersect, Assign } from "..";
+import {
+    IsNever,
+    IsAny,
+    IsUnion,
+    IteratedType,
+    GeneratorNextType,
+    GeneratorReturnType,
+    // AsyncIteratedType,
+    // AsyncGeneratorNextType,
+    // AsyncGeneratorReturnType,
+    PromisedType,
+    // UnionToIntersection,
+    IsCallable,
+    IsConstructable,
+    IsUnknown,
+    IsSubtypeOf,
+    Not,
+    And,
+    Or,
+    XOr,
+    Every,
+    Some,
+    One,
+    SameType,
+    SameTypes,
+    Relatable,
+    Overlaps,
+    IsSubsetOf,
+    IsSupersetOf,
+    IsProperSubsetOf,
+    IsProperSupersetOf,
+    MatchingKeys,
+    FunctionKeys,
+    Constructor,
+    // Await,
+    // AwaitAll,
+    // Shift,
+    // Unshift,
+    // Reverse,
+    // Pop,
+    // Push,
+    Disjoin,
+    Conjoin,
+    DisjoinOverlaps,
+    IsEmpty,
+    Diff,
+    Intersect,
+    Assign
+} from "..";
 
 it("type-model", () => {
     // Only Type-only tests are provided, below.
@@ -30,31 +78,34 @@ it("type-model", () => {
 }
 // #endregion GeneratorReturnType tests
 
-// #region AsyncIteratedType tests
-{
-    type _ = [
-        __Verify<__ExactType<AsyncIteratedType<AsyncIterable<number>>, number>>,
-        __Verify<__ExactType<AsyncIteratedType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: false, value: number }> } }>, number>>,
-    ];
-}
-// #endregion AsyncIteratedType tests
+// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
+// // #region AsyncIteratedType tests
+// {
+//     type _ = [
+//         __Verify<__ExactType<AsyncIteratedType<AsyncIterable<number>>, number>>,
+//         __Verify<__ExactType<AsyncIteratedType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: false, value: number }> } }>, number>>,
+//     ];
+// }
+// // #endregion AsyncIteratedType tests
 
-// #region AsyncGeneratorNextType tests
-{
-    type _ = [
-        __Verify<__ExactType<AsyncGeneratorNextType<{ [Symbol.asyncIterator](): { next(value?: number): any } }>, number>>,
-    ];
-}
-// #endregion AsyncGeneratorNextType tests
+// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
+// // #region AsyncGeneratorNextType tests
+// {
+//     type _ = [
+//         __Verify<__ExactType<AsyncGeneratorNextType<{ [Symbol.asyncIterator](): { next(value?: number): any } }>, number>>,
+//     ];
+// }
+// // #endregion AsyncGeneratorNextType tests
 
-// #region AsyncGeneratorReturnType tests
-{
-    type _ = [
-        __Verify<__ExactType<AsyncGeneratorReturnType<AsyncIterable<number>>, number>>,
-        __Verify<__ExactType<AsyncGeneratorReturnType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: true, value: number }> } }>, number>>,
-    ];
-}
-// #endregion AsyncGeneratorReturnType tests
+// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
+// // #region AsyncGeneratorReturnType tests
+// {
+//     type _ = [
+//         __Verify<__ExactType<AsyncGeneratorReturnType<AsyncIterable<number>>, number>>,
+//         __Verify<__ExactType<AsyncGeneratorReturnType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: true, value: number }> } }>, number>>,
+//     ];
+// }
+// // #endregion AsyncGeneratorReturnType tests
 
 // #region PromisedType tests
 {
@@ -67,15 +118,15 @@ it("type-model", () => {
 }
 // #endregion
 
-// #region UnionToIntersection tests
-{
-    type _ = [
-        __Verify<__ExactType<UnionToIntersection<1 | 2>, 1 & 2>>,
-        __Verify<__ExactType<UnionToIntersection<1 | never>, 1>>,
-        __Verify<__ExactType<UnionToIntersection<1 | unknown>, unknown>>,
-    ];
-}
-// #endregion
+// // #region UnionToIntersection tests
+// {
+//     type _ = [
+//         __Verify<__ExactType<UnionToIntersection<1 | 2>, 1 & 2>>,
+//         __Verify<__ExactType<UnionToIntersection<1 | never>, 1>>,
+//         __Verify<__ExactType<UnionToIntersection<1 | unknown>, unknown>>,
+//     ];
+// }
+// // #endregion
 
 // #region IsAny tests
 {
@@ -98,6 +149,22 @@ it("type-model", () => {
     ];
 }
 // #endregion IsNever tests
+
+// #region IsUnion tests
+{
+    const enum E { One, Two }
+    type _ = [
+        __Verify<__ExactType<IsUnion<never>,    false>>,
+        __Verify<__ExactType<IsUnion<any>,      false>>,
+        __Verify<__ExactType<IsUnion<1>,        false>>,
+        __Verify<__ExactType<IsUnion<1 | 2>,    true>>,
+        __Verify<__ExactType<IsUnion<number>,   false>>,
+        __Verify<__ExactType<IsUnion<boolean>,  true>>,
+        __Verify<__ExactType<IsUnion<E>,        true>>,
+    ];
+}
+// #endregion IsUnion tests
+
 
 // #region IsCallable tests
 {
@@ -299,6 +366,7 @@ it("type-model", () => {
         __Verify<__ExactType<Some<[true, never]>,       never>>,
         __Verify<__ExactType<Some<[false, never]>,      never>>,
         __Verify<__ExactType<Some<[never, never]>,      never>>,
+        __Verify<__ExactType<Some<[]>,                  never>>,
     ]
 }
 // #endregion Some tests
@@ -325,6 +393,7 @@ it("type-model", () => {
         __Verify<__ExactType<One<[true, never]>,      never>>,
         __Verify<__ExactType<One<[false, never]>,     never>>,
         __Verify<__ExactType<One<[never, never]>,     never>>,
+        __Verify<__ExactType<One<[]>,                 never>>,
     ]
 }
 // #endregion One tests
@@ -356,6 +425,7 @@ it("type-model", () => {
 }
 // #endregion SameType tests
 
+// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
 // #region SameTypes tests
 {
     type A = { a: number };
@@ -537,83 +607,90 @@ it("type-model", () => {
 }
 // #endregion FunctionKeys tests
 
-// #region Await tests
-{
-    type _ = [
-        __Verify<__ExactType<Await<number>,                   number>>,
-        __Verify<__ExactType<Await<Promise<number>>,          number>>,
-        __Verify<__ExactType<Await<Promise<Promise<number>>>, number>>,
-    ];
-}
-// #endregion Await tests
+// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
+// // #region Await tests
+// {
+//     type _ = [
+//         __Verify<__ExactType<Await<number>,                   number>>,
+//         __Verify<__ExactType<Await<Promise<number>>,          number>>,
+//         __Verify<__ExactType<Await<Promise<Promise<number>>>, number>>,
+//     ];
+// }
+// // #endregion Await tests
 
-// #region AwaitAll tests
-{
-    type _ = [
-        __Verify<__ExactType<AwaitAll<[]>,                          []>>,
-        __Verify<__ExactType<AwaitAll<[number]>,                    [number]>>,
-        __Verify<__ExactType<AwaitAll<[Promise<number>]>,           [number]>>,
-        __Verify<__ExactType<AwaitAll<[Promise<number>, number]>,   [number, number]>>,
-    ];
-}
-// #endregion AwaitAll tests
+// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
+// // #region AwaitAll tests
+// {
+//     type _ = [
+//         __Verify<__ExactType<AwaitAll<[]>,                          []>>,
+//         __Verify<__ExactType<AwaitAll<[number]>,                    [number]>>,
+//         __Verify<__ExactType<AwaitAll<[Promise<number>]>,           [number]>>,
+//         __Verify<__ExactType<AwaitAll<[Promise<number>, number]>,   [number, number]>>,
+//     ];
+// }
+// // #endregion AwaitAll tests
 
-// #region Shift tests
-{
-    type _ = [
-        __Verify<__ExactType<Shift<[1, 2, 3]>,  [1, [2, 3]]>>,
-        __Verify<__ExactType<Shift<[1, 2]>,     [1, [2]]>>,
-        __Verify<__ExactType<Shift<[1]>,        [1, []]>>,
-        __Verify<__ExactType<Shift<[]>,         [never, never]>>,
-    ];
-}
-// #endregion Shift tests
+// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
+// // #region Shift tests
+// {
+//     type _ = [
+//         __Verify<__ExactType<Shift<[1, 2, 3]>,  [1, [2, 3]]>>,
+//         __Verify<__ExactType<Shift<[1, 2]>,     [1, [2]]>>,
+//         __Verify<__ExactType<Shift<[1]>,        [1, []]>>,
+//         __Verify<__ExactType<Shift<[]>,         [never, never]>>,
+//     ];
+// }
+// // #endregion Shift tests
 
-// #region Unshift tests
-{
-    type _ = [
-        __Verify<__ExactType<Unshift<[1, 2], 3>,    [3, 1, 2]>>,
-        __Verify<__ExactType<Unshift<[1], 2>,       [2, 1]>>,
-        __Verify<__ExactType<Unshift<[], 1>,        [1]>>,
-        __Verify<__ExactType<Unshift<never, 1>,     never>>,
-    ];
-}
-// #endregion Unshift tests
+// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
+// // #region Unshift tests
+// {
+//     type _ = [
+//         __Verify<__ExactType<Unshift<[1, 2], 3>,    [3, 1, 2]>>,
+//         __Verify<__ExactType<Unshift<[1], 2>,       [2, 1]>>,
+//         __Verify<__ExactType<Unshift<[], 1>,        [1]>>,
+//         __Verify<__ExactType<Unshift<never, 1>,     never>>,
+//     ];
+// }
+// // #endregion Unshift tests
 
-// #region Reverse tests
-{
-    type _ = [
-        __Verify<__ExactType<Reverse<[1, 2, 3]>,        [3, 2, 1]>>,
-        __Verify<__ExactType<Reverse<[1, 2]>,           [2, 1]>>,
-        __Verify<__ExactType<Reverse<[1]>,              [1]>>,
-        __Verify<__ExactType<Reverse<[]>,               []>>,
-        __Verify<__ExactType<Reverse<[1, ...number[]]>, [1]>>,
-        __Verify<__ExactType<Reverse<never>,            never>>,
-    ];
-}
-// #endregion Reverse tests
+// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
+// // #region Reverse tests
+// {
+//     type _ = [
+//         __Verify<__ExactType<Reverse<[1, 2, 3]>,        [3, 2, 1]>>,
+//         __Verify<__ExactType<Reverse<[1, 2]>,           [2, 1]>>,
+//         __Verify<__ExactType<Reverse<[1]>,              [1]>>,
+//         __Verify<__ExactType<Reverse<[]>,               []>>,
+//         __Verify<__ExactType<Reverse<[1, ...number[]]>, [1]>>,
+//         __Verify<__ExactType<Reverse<never>,            never>>,
+//     ];
+// }
+// // #endregion Reverse tests
 
-// #region Pop tests
-{
-    type _ = [
-        __Verify<__ExactType<Pop<[1, 2, 3]>,   [3, [1, 2]]>>,
-        __Verify<__ExactType<Pop<[1, 2]>,      [2, [1]]>>,
-        __Verify<__ExactType<Pop<[1]>,         [1, []]>>,
-        __Verify<__ExactType<Pop<[]>,          [never, never]>>,
-    ];
-}
-// #endregion Pop tests
+// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
+// // #region Pop tests
+// {
+//     type _ = [
+//         __Verify<__ExactType<Pop<[1, 2, 3]>,   [3, [1, 2]]>>,
+//         __Verify<__ExactType<Pop<[1, 2]>,      [2, [1]]>>,
+//         __Verify<__ExactType<Pop<[1]>,         [1, []]>>,
+//         __Verify<__ExactType<Pop<[]>,          [never, never]>>,
+//     ];
+// }
+// // #endregion Pop tests
 
-// #region Push tests
-{
-    type _ = [
-        __Verify<__ExactType<Push<[1, 2], 3>,   [1, 2, 3]>>,
-        __Verify<__ExactType<Push<[1], 2>,      [1, 2]>>,
-        __Verify<__ExactType<Push<[], 1>,       [1]>>,
-        __Verify<__ExactType<Push<never, 1>,    never>>,
-    ]
-}
-// #endregion Push tests
+// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
+// // #region Push tests
+// {
+//     type _ = [
+//         __Verify<__ExactType<Push<[1, 2], 3>,   [1, 2, 3]>>,
+//         __Verify<__ExactType<Push<[1], 2>,      [1, 2]>>,
+//         __Verify<__ExactType<Push<[], 1>,       [1]>>,
+//         __Verify<__ExactType<Push<never, 1>,    never>>,
+//     ]
+// }
+// // #endregion Push tests
 
 // #region Disjoin tests
 {

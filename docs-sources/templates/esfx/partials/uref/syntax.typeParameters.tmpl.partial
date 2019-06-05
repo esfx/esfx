@@ -1,0 +1,21 @@
+{{#typeParameters.0}}
+<h5 class="typeParameters">{{__global.typeParameters}}</h5>
+<table class="table table-bordered table-striped table-condensed">
+  <thead>
+    <tr>
+      <th>{{__global.name}}</th>
+      <th>{{__global.description}}</th>
+    </tr>
+  </thead>
+  <tbody>
+{{/typeParameters.0}}
+{{#typeParameters}}
+    <tr>
+      <td><em>{{{id}}}</em></td>
+      <td>{{{description}}}</td>
+    </tr>
+{{/typeParameters}}
+{{#typeParameters.0}}
+  </tbody>
+</table>
+{{/typeParameters.0}}

@@ -1,0 +1,6 @@
+{{#example.0}}
+<h5 id="{{id}}_examples">{{__global.examples}}</h5>
+{{/example.0}}
+{{#example}}
+{{{.}}}
+{{/example}}

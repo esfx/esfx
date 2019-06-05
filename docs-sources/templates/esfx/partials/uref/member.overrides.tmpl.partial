@@ -1,0 +1,4 @@
+{{#overridden}}
+<h5 class="overrides">{{__global.overrides}}</h5>
+<div><xref href="{{uid}}" altProperty="fullName" displayProperty="nameWithType"/></div>
+{{/overridden}}

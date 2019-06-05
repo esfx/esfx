@@ -27,7 +27,7 @@ export type Primitive = string | symbol | boolean | number | bigint;
 export type Falsey = null | undefined | false | 0 | 0n | '';
 
 /**
- * A [[PropertyDescriptor]] constrained to the valid attributes for an accessor.
+ * A PropertyDescriptor constrained to the valid attributes for an accessor.
  */
 export interface AccessorPropertyDescriptor<T = any> {
     enumerable?: boolean;
@@ -37,7 +37,7 @@ export interface AccessorPropertyDescriptor<T = any> {
 }
 
 /**
- * A [[PropertyDescriptor]] constrained to the valid attributes for a method.
+ * A PropertyDescriptor constrained to the valid attributes for a method.
  */
 export interface MethodPropertyDescriptor<T extends (...args: any[]) => any = (...args: any[]) => any> {
     enumerable?: boolean;
@@ -67,6 +67,21 @@ export type Nullable<T> = T | undefined | null;
 export import NonNullable = globalThis.NonNullable;
 
 /**
+ * Gets a union of `keyof T'` of each constituent `T'` of `T`.
+ */
+export type AnyKeyof<T> = T extends unknown ? keyof T : never;
+
+/**
+ * Gets a union of `Extract<T', U>` for each constituent `T'` of `T`.
+ */
+export type AnyExtract<T, U> = T extends unknown ? Extract<T, U> : never;
+
+/**
+ * Gets a union of `Exclude<T', U>` for each constituent `T'` of `T`.
+ */
+export type AnyExclude<T, U> = T extends unknown ? Exclude<T, U> : never;
+
+/**
  * Represents a concrete ECMAScript constructor object.
  */
 export type Constructor<T = {}, A extends any[] = any[]> = new (...args: A) => T;
@@ -77,7 +92,7 @@ export type Constructor<T = {}, A extends any[] = any[]> = new (...args: A) => T
 export type AbstractConstructor<T = {}> = Function & { prototype: T };
 
 /**
- * Gets the type yielded by an [[Iterable]].
+ * Gets the type yielded by an Iterable.
  */
 export type IteratedType<T> =
     T extends { [Symbol.iterator](): { next(): { done: false, value: infer U } } } ? U :
@@ -103,77 +118,63 @@ export type GeneratorReturnType<T> =
     T extends { [Symbol.iterator](): any } ? void :
     never;
 
-/**
- * Gets the type yielded by an [[AsyncIterable]].
- */
-export type AsyncIteratedType<T> =
-    T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: false, value: infer U }) => any): any; } } } ? Await<U> :
-    T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: true }) => any): any; } } } ? never :
-    T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: boolean, value: infer U }) => any): any; } } } ? Await<U> :
-    T extends { [Symbol.asyncIterator](): any } ? void :
-    never;
+// TODO(rbuckton): Depends on `Await<T>`, which is currently unsafe.
+// /**
+//  * Gets the type yielded by an AsyncIterable.
+//  */
+// export type AsyncIteratedType<T> =
+//     T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: false, value: infer U }) => any): any; } } } ? Await<U> :
+//     T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: true }) => any): any; } } } ? never :
+//     T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: boolean, value: infer U }) => any): any; } } } ? Await<U> :
+//     T extends { [Symbol.asyncIterator](): any } ? void :
+//     never;
+
+// TODO(rbuckton): Depends on `Await<T>`, which is currently unsafe.
+// /**
+//  * Gets the type that can be sent to a generator via its `next` method.
+//  */
+// export type AsyncGeneratorNextType<T> =
+//     T extends { [Symbol.asyncIterator](): { next(value?: infer U): any } } ? U :
+//     never;
+
+// TODO(rbuckton): Depends on `Await<T>`, which is currently unsafe.
+// /**
+//  * Gets the type that can be returned from a generator when it has finished executing.
+//  */
+// export type AsyncGeneratorReturnType<T> =
+//     T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: true, value?: infer U }) => any): any; } } } ? Await<U> :
+//     T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: false }) => any): any; } } } ? never :
+//     T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: boolean, value?: infer U }) => any): any; } } } ? Await<U> :
+//     T extends { [Symbol.asyncIterator](): any } ? void :
+//     never;
 
 /**
- * Gets the type that can be sent to a generator via its `next` method.
- */
-export type AsyncGeneratorNextType<T> =
-    T extends { [Symbol.asyncIterator](): { next(value?: infer U): any } } ? U :
-    never;
-
-/**
- * Gets the type that can be returned from a generator when it has finished executing.
- */
-export type AsyncGeneratorReturnType<T> =
-    T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: true, value?: infer U }) => any): any; } } } ? Await<U> :
-    T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: false }) => any): any; } } } ? never :
-    T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: boolean, value?: infer U }) => any): any; } } } ? Await<U> :
-    T extends { [Symbol.asyncIterator](): any } ? void :
-    never;
-
-/**
- * Gets the promised type of a [[Promise]].
+ * Gets the promised type of a Promise.
  */
 export type PromisedType<T> =
     T extends { then(onfulfilled: infer U): any } ? U extends ((value: infer V) => any) ? V : never :
     never;
 
-/**
- * Maps a union of types into an intersection of types.
- */
-export type UnionToIntersection<U> = ((U extends unknown ? (u: U) => void : never) extends ((i: infer I) => void) ? I : never) | never;
+// TODO(rbuckton): Investigate whether UnionToIntersection should be kept. Intersections are ordered
+//                  while unions are unordered.
+
+// /**
+//  * Maps a union of types into an intersection of types.
+//  */
+// export type UnionToIntersection<U> = ((U extends unknown ? (u: U) => void : never) extends ((i: infer I) => void) ? I : never) | never;
 
 /**
- * Maps to `true` if `A` is precisely the `any` type, otherwise `false`.
+ * Maps to `true` if `A` is precisely the `any` type; otherwise, `false`.
  */
 export type IsAny<A> = (1 | 2) extends (A extends never ? 1 : 2) ? true : false;
 
 /**
- * Maps to `true` if `A` is precisely the `never` type, otherwise `false`.
+ * Maps to `true` if `A` is precisely the `never` type; otherwise, `false`.
  */
 export type IsNever<A> = (A extends never ? true : false) extends true ? true : false;
 
 /**
- * Maps to `true` if the type has a call signature, otherwise `false`.
- */
-export type IsCallable<T> =
-    IsAny<T> extends true ? boolean :
-    IsNever<T> extends true ? never :
-    SameType<T, Function> extends true ? true :
-    [T] extends [(...args: any) => any] ? true :
-    false;
-
-/**
- * Maps to `true` if the type has a construct signature, otherwise `false`.
- */
-export type IsConstructable<T> =
-    IsAny<T> extends true ? boolean :
-    IsNever<T> extends true ? never :
-    SameType<T, Function> extends true ? true :
-    [T] extends [new (...args: any) => any] ? true :
-    false;
-
-/**
- * Maps to `true` if `A` is precisely the `unknown` type, otherwise `false`.
+ * Maps to `true` if `A` is precisely the `unknown` type; otherwise, `false`.
  */
 export type IsUnknown<A> =
     IsAny<A> extends true ? false :
@@ -181,7 +182,16 @@ export type IsUnknown<A> =
     false;
 
 /**
- * Maps to `true` if `Sub` is a subtype of `Super`, otherwise `false`.
+ * Maps to `true` if `T` is a union of multiple types; otherwise, `false`.
+ */
+export type IsUnion<T> =
+    IsNever<T> extends true ? false :
+    __IsUnionRest<T, [T]>;
+
+type __IsUnionRest<T, Q> = T extends unknown ? Not<SameType<[T], Q>> : never;
+
+/**
+ * Maps to `true` if `Sub` is a subtype of `Super`; otherwise, `false`.
  */
 export type IsSubtypeOf<Sub, Super> =
     IsNever<Super> extends true ? IsNever<Sub> :
@@ -192,9 +202,29 @@ export type IsSubtypeOf<Sub, Super> =
     false;
 
 /**
- * Maps to `true` if `Super` is a supertype of `Sub`, otherwise `false`.
+ * Maps to `true` if `Super` is a supertype of `Sub`; otherwise, `false`.
  */
 export type IsSupertypeOf<Super, Sub> = IsSubtypeOf<Sub, Super>;
+
+/**
+ * Maps to `true` if the type has a call signature; otherwise, `false`.
+ */
+export type IsCallable<T> =
+    IsAny<T> extends true ? boolean :
+    IsNever<T> extends true ? never :
+    SameType<T, Function> extends true ? true :
+    [T] extends [(...args: any) => any] ? true :
+    false;
+
+/**
+ * Maps to `true` if the type has a construct signature; otherwise, `false`.
+ */
+export type IsConstructable<T> =
+    IsAny<T> extends true ? boolean :
+    IsNever<T> extends true ? never :
+    SameType<T, Function> extends true ? true :
+    [T] extends [new (...args: any) => any] ? true :
+    false;
 
 /**
  * Maps to `true` if `A` is `false`, otherwise `true`.
@@ -205,7 +235,7 @@ export type Not<A extends boolean> =
     false;
 
 /**
- * Maps to `true` if both `A` and `B` are `true`, otherwise `false`.
+ * Maps to `true` if both `A` and `B` are `true`; otherwise, `false`.
  */
 export type And<A extends boolean, B extends boolean> =
     IsNever<A> extends true ? never :
@@ -215,7 +245,7 @@ export type And<A extends boolean, B extends boolean> =
     true;
 
 /**
- * Maps to `true` if either `A` or `B` are `true`, otherwise `false`.
+ * Maps to `true` if either `A` or `B` are `true`; otherwise, `false`.
  */
 export type Or<A extends boolean, B extends boolean> =
     IsNever<A> extends true ? never :
@@ -225,7 +255,7 @@ export type Or<A extends boolean, B extends boolean> =
     false;
 
 /**
- * Maps to `true` if only one of either `A` or `B` are `true`, otherwise `false`.
+ * Maps to `true` if only one of either `A` or `B` are `true`; otherwise, `false`.
  */
 export type XOr<A extends boolean, B extends boolean> =
     IsNever<A> extends true ? never :
@@ -234,67 +264,65 @@ export type XOr<A extends boolean, B extends boolean> =
     B extends true ? Not<A> :
     false;
 
-type __Box<T extends any[]> = { [I in keyof T]: [T[I]] };
-
-type __UnboxBoolean<T extends [boolean]> =
-    T extends unknown ?
-        IsAny<T[0]> extends true ? "any" :
-        IsNever<T[0]> extends true ? "never" :
-        T extends [true] ? "true" :
-        T extends [false] ? "false" :
-        "boolean" :
-    never;
-
-type __EveryRest<T extends "true" | "false" | "boolean" | "any" | "never"> =
-    "never" extends T ? never :
-    "false" extends T ? false :
-    "any" extends T ? boolean :
-    "boolean" extends T ? boolean :
-    "true" extends T ? true :
-    never;
-
 /**
- * Maps to `true` if every element of the tuple `L` is `true`, otherwise `false`.
+ * Maps to `true` if every element of the tuple `L` is `true`; otherwise, `false`.
  */
 export type Every<L extends boolean[]> =
-    IsNever<L> extends true ? never :
-    __EveryRest<__UnboxBoolean<__Box<L>[number]>>;
+    L extends [] ? never :
+    __EveryRest<{
+        [P in keyof L]:
+            IsNever<L[P]> extends true ? "never" :
+            IsAny<L[P]> extends true ? "boolean" :
+            boolean extends L[P] ? "boolean" :
+            L[P] extends false ? "false" :
+            never;
+    }[number]>;
 
-type __SomeRest<T extends "true" | "false" | "boolean" | "any" | "never"> =
-    "never" extends T ? never :
-    "true" extends T ? true :
-    "any" extends T ? boolean :
-    "boolean" extends T ? boolean :
-    "false" extends T ? false :
-    never;
+type __EveryRest<R> =
+    "never" extends R ? never : // an element was `never`
+    "false" extends R ? false : // at least one element was `false`
+    "boolean" extends R ? boolean : // an element was `any` or `boolean`
+    true; // no elements were false
 
 /**
- * Maps to `true` if any element of the tuple `L` is `true`, otherwise `false`.
+ * Maps to `true` if any element of the tuple `L` is `true`; otherwise, `false`.
  */
-export type Some<L extends boolean[]> =
-    IsNever<L> extends true ? never :
-    __SomeRest<__UnboxBoolean<__Box<L>[number]>>;
+export type Some<L extends boolean[]> = L extends [] ? never : __SomeRest<{
+    [P in keyof L]:
+        IsNever<L[P]> extends true ? "never" :
+        IsAny<L[P]> extends true ? "boolean" :
+        boolean extends L[P] ? "boolean" :
+        L[P] extends true ? "true" :
+        never;
+}[number]>;
 
-type __One<L extends any[], F extends boolean = false> = {
-    0: F,
-    1: ((...l: L) => void) extends ((h: infer H, ...t: infer T) => void) ?
-        IsNever<H> extends true ? never :
-        IsAny<H> extends true ? boolean :
-        boolean extends H ? boolean :
-        H extends false ? __One<T, F> :
-        H extends true ? F extends true ? false : __One<T, true> :
-        never : never;
-}[L extends [any, ...any[]] ? 1 : 0];
+type __SomeRest<R> =
+    "never" extends R ? never : // an element was `never`
+    "true" extends R ? true : // at least one element was `true`
+    "boolean" extends R ? boolean : // an element was `any` or `boolean`
+    false; // no elements were true
 
 /**
- * Maps to `true` if exactly one element of the tuple `L` is `true`, otherwise `false`.
+ * Maps to `true` if exactly one element of the tuple `L` is `true`; otherwise, `false`.
  */
-export type One<L extends boolean[]> =
-    IsNever<L> extends true ? never :
-    __One<L>;
+export type One<L extends boolean[]> = L extends [] ? never : __OneRest<{
+    [P in keyof L]:
+        IsNever<L[P]> extends true ? "never" :
+        IsAny<L[P]> extends true ? "boolean" :
+        boolean extends L[P] ? "boolean" :
+        L[P] extends true ? [P] :
+        never;
+}[number]>;
+
+type __OneRest<R> =
+    "never" extends R ? never : // an element was `never`
+    "boolean" extends R ? boolean : // an element was `any` or `boolean`
+    IsNever<R> extends true ? false : // no elements were `true`
+    IsUnion<R> extends true ? false : // multiple elements were `true`
+    true; // only one element was `true`
 
 /**
- * Maps to `true` if both `A` and `B` are assignable to each other, otherwise `false`.
+ * Maps to `true` if both `A` and `B` are assignable to each other; otherwise, `false`.
  */
 export type SameType<A, B> =
     IsNever<A> extends true ? IsNever<B> :
@@ -302,20 +330,12 @@ export type SameType<A, B> =
     [A, B] extends [B, A] ? true :
     false;
 
-type __SameTypesRest<L extends any[], Target> = {
-    0: true,
-    1: ((...l: L) => void) extends ((h: infer H, ...t: infer T) => void)
-        ? SameType<H, Target> extends false ? false
-        : __SameTypesRest<T, Target> : never;
-}[L extends [any, ...any[]] ? 1 : 0];
-
 /**
- * Maps to `true` if all elements of the tuple `L` are assignable to each other, otherwise `false`.
+ * Maps to `true` if all elements of the tuple `L` are assignable to each other; otherwise, `false`.
  */
 export type SameTypes<L extends any[]> =
     L extends [] ? never :
-    ((...a: L) => void) extends ((head: infer H, ...tail: infer T) => void) ? __SameTypesRest<T, H> :
-    never;
+    SameType<{ [P in keyof L]: SameType<L[P], L[number]> }[number], true>;
 
 /**
  * Maps to `true` if either `A` or `B` are relatable to each other.
@@ -330,7 +350,7 @@ export type Relatable<A, B> =
     false;
 
 /**
- * Maps to `true` if any type in `A` is assignable to any type in `B`, otherwise `false`.
+ * Maps to `true` if any type in `A` is assignable to any type in `B`; otherwise, `false`.
  */
 export type Overlaps<A, B> =
     IsNever<A> extends true ? false :
@@ -341,6 +361,14 @@ export type Overlaps<A, B> =
     1 extends (B extends unknown ? B extends A ? 1 : 2 : 3) ? true :
     false;
 
+/**
+ * Maps to `true` if `Sub` is a subset of `Super`; otherwise, `false`.
+ */
+export type IsSubsetOf<Sub, Super> =
+    IsAny<Sub> extends true ? boolean :         // Nothing can be determined about a subset of `any`
+    IsAny<Super> extends true ? boolean :       // Nothing can be determined about a superset of `any`
+    __IsSubsetOf<Sub, Super>;
+
 type __IsSubsetOf<Sub, Super> =
     IsNever<Sub> extends true ? true :          // The empty set is a subset of all sets
     IsNever<Super> extends true ? false :       // No other set is a subset of the empty set
@@ -350,20 +378,12 @@ type __IsSubsetOf<Sub, Super> =
     false;
 
 /**
- * Maps to `true` if `Sub` is a subset of `Super`, otherwise `false`.
- */
-export type IsSubsetOf<Sub, Super> =
-    IsAny<Sub> extends true ? boolean :         // Nothing can be determined about a subset of `any`
-    IsAny<Super> extends true ? boolean :       // Nothing can be determined about a superset of `any`
-    __IsSubsetOf<Sub, Super>;
-
-/**
- * Maps to `true` if `Super` is a superset of `Sub`, otherwise `false`.
+ * Maps to `true` if `Super` is a superset of `Sub`; otherwise, `false`.
  */
 export type IsSupersetOf<Super, Sub> = IsSubsetOf<Sub, Super>;
 
 /**
- * Maps to `true` if `Sub` is a proper subset of `Super`, otherwise `false`.
+ * Maps to `true` if `Sub` is a proper subset of `Super`; otherwise, `false`.
  */
 export type IsProperSubsetOf<Sub, Super> =
     IsAny<Sub> extends true ? boolean :         // Nothing can be determined about a subset of `any`
@@ -372,16 +392,16 @@ export type IsProperSubsetOf<Sub, Super> =
     __IsSubsetOf<Sub, Super>;
 
 /**
- * Maps to `true` if `Super` is a proper superset of `Sub`, otherwise `false`.
+ * Maps to `true` if `Super` is a proper superset of `Sub`; otherwise, `false`.
  */
 export type IsProperSupersetOf<Super, Sub> = IsProperSubsetOf<Sub, Super>;
-
-type __MatchingKeys<T, TSuper, K extends keyof T> = K extends (T[K] extends TSuper ? K : never) ? K : never;
 
 /**
  * Maps to the keys of `T` whose values match `TMatch`.
  */
 export type MatchingKeys<T, TMatch> = __MatchingKeys<T, TMatch, keyof T>;
+
+type __MatchingKeys<T, TSuper, K extends keyof T> = K extends (T[K] extends TSuper ? K : never) ? K : never;
 
 /**
  * Maps to the keys of `T` whose values do not match `TMatch`.
@@ -398,55 +418,53 @@ export type FunctionKeys<T, F extends Function = Function> = MatchingKeys<T, F>;
  */
 export type NonFunctionKeys<T, F extends Function = Function> = NonMatchingKeys<T, F>;
 
-/**
- * Maps `T` to its awaited type if `T` is a promise.
- */
-export type Await<T> = {
-    0: T,
-    1: T extends { then(onfulfilled: infer U): any } ? U extends ((value: infer V) => any) ? Await<V> : never : never;
-}[T extends { then(): any } ? 1 : 0];
+// /**
+//  * Maps `T` to its awaited type if `T` is a promise.
+//  */
+// export type Await<T> = {
+//     0: T,
+//     1: T extends { then(onfulfilled: infer U): any } ? U extends ((value: infer V) => any) ? Await<V> : never : never;
+// }[T extends { then(): any } ? 1 : 0];
 
-/**
- * Maps each element of `T` to its awaited type if the element is a promise.
- */
-export type AwaitAll<T extends any[]> = { [P in keyof T]: Await<T[P]>; };
+// /**
+//  * Maps each element of `T` to its awaited type if the element is a promise.
+//  */
+// export type AwaitAll<T extends any[]> = { [P in keyof T]: Await<T[P]>; };
 
-/**
- * Maps to a tuple where the first element is the first element of `L` and the second element are the remaining elements of `L`.
- */
-export type Shift<L extends any[]> =
-    [] extends L ? [never, never] :
-    ((...a: L) => void) extends ((head: infer H, ...tail: infer T) => void) ? [H, T] :
-    never;
+// /**
+//  * Maps to a tuple where the first element is the first element of `L` and the second element are the remaining elements of `L`.
+//  */
+// export type Shift<L extends any[]> =
+//     [] extends L ? [never, never] :
+//     ((...a: L) => void) extends ((head: infer H, ...tail: infer T) => void) ? [H, T] :
+//     never;
 
-/**
- * Inserts an element at the start of a tuple.
- */
-export type Unshift<T extends any[], H> = ((h: H, ...t: T) => void) extends ((...l: infer L) => void) ? L : never;
+// /**
+//  * Inserts an element at the start of a tuple.
+//  */
+// export type Unshift<T extends any[], H> = ((h: H, ...t: T) => void) extends ((...l: infer L) => void) ? L : never;
 
-type __Reverse<L extends any[], R extends any[] = []> = {
-    0: R,
-    1: ((...l: L) => void) extends ((h: infer H, ...t: infer T) => void) ? __Reverse<T, Unshift<R, H>> : never
-}[L extends [any, ...any[]] ? 1 : 0];
+// type __Reverse<L extends any[], R extends any[] = []> = {
+//     0: R,
+//     1: ((...l: L) => void) extends ((h: infer H, ...t: infer T) => void) ? __Reverse<T, Unshift<R, H>> : never
+// }[L extends [any, ...any[]] ? 1 : 0];
 
-/**
- * Reverse the order of the elements of a tuple.
- */
-export type Reverse<L extends any[]> = __Reverse<L>;
+// /**
+//  * Reverse the order of the elements of a tuple.
+//  */
+// export type Reverse<L extends any[]> = __Reverse<L>;
 
-type __PopRest<R extends [any, any[]]> = [R[0], Reverse<R[1]>];
+// type __PopRest<R extends [any, any[]]> = [R[0], Reverse<R[1]>];
 
-/**
- * Maps to a tuple where the first element is the last element of `L` and the second element are the remaining elements of `L`.
- */
-export type Pop<L extends any[]> = __PopRest<Shift<Reverse<L>>>;
+// /**
+//  * Maps to a tuple where the first element is the last element of `L` and the second element are the remaining elements of `L`.
+//  */
+// export type Pop<L extends any[]> = __PopRest<Shift<Reverse<L>>>;
 
-/**
- * Push an element on to the end of a tuple.
- */
-export type Push<H extends any[], T> = Reverse<Unshift<Reverse<H>, T>>;
-
-type __DisjoinRest<T> = IsNever<T> extends true ? {} : T;
+// /**
+//  * Push an element on to the end of a tuple.
+//  */
+// export type Push<H extends any[], T> = Reverse<Unshift<Reverse<H>, T>>;
 
 /**
  * Split an object into a union of objects for each key/value pair.
@@ -456,20 +474,22 @@ export type Disjoin<T extends object> =
     IsAny<T> extends true ? any :
     __DisjoinRest<{ [K in keyof T]: { [P in K]: T[P] }; }[keyof T]>;
 
+type __DisjoinRest<T> = IsNever<T> extends true ? {} : T;
+
 /**
  * Map an intersection of object types into a single object type.
  */
 export type Reshape<T extends object> = Pick<T, keyof T>;
 
-type __Conjoin<T extends object> = UnionToIntersection<T extends unknown ? Disjoin<T> : never>;
-
 /**
  * Joins a union of disjoint object types into a single object type.
  */
-export type Conjoin<T extends object> = Reshape<__Conjoin<T>>;
+export type Conjoin<T extends object> = {
+    [P in AnyKeyof<T>]: AnyExtract<T, { readonly [U in P]: unknown }>[P];
+};
 
 /**
- * Maps to `true` if any type in `A` is assignable to or shares a property with any type in `B`, otherwise `false`.
+ * Maps to `true` if any type in `A` is assignable to or shares a property with any type in `B`; otherwise, `false`.
  * This is similar to `Overlaps`, except object types in `A` and `B` are mapped through `Disjoin`.
  */
 export type DisjoinOverlaps<A, B> = Overlaps<

@@ -80,18 +80,11 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="lazy.Lazy">
   
-  
   <h1 id="lazy_Lazy" data-uid="lazy.Lazy">Class Lazy
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  
-  <h3 id="constructors">Classes
-  
-  
-  
-  
-  Constructors
+  <h3 id="constructors">Constructors
   
   
   
@@ -110,32 +103,17 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">constructor(factory: () =&gt; T);</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>factory</em></td>
-        <td><span class="xref">() =&gt; T</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Classes
-  
-  
-  
-  
-  
+  <dl class="parameterList">
+    <dt>factory</dt>
+    <dd class="type">() =&gt; <span class="xref">T</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h3 id="properties">
   
   Properties
   
@@ -153,21 +131,12 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly hasValue: boolean;</code></pre>
   </div>
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="propertyValue">
+  <span class="type">boolean</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="lazy_Lazy_value" data-uid="lazy.Lazy.value">value</h4>
@@ -177,27 +146,13 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly value: T;</code></pre>
   </div>
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Classes
-  
-  
-  
-  
-  
+  <div class="propertyValue">
+  <span class="type"><span class="xref">T</span></span>
+  <p class="description">
+  </div>
+  <h3 id="methods">
   
   
   Methods
@@ -215,41 +170,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">static for&lt;T&gt;(value: T): Lazy&lt;T&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>value</em></td>
-        <td><span class="xref">T</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>value</dt>
+    <dd class="type"><span class="xref">T</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Lazy&lt;T&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="lazy.html#lazy_Lazy">Lazy</a>&lt;<span class="xref">T</span>&gt;</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="lazy_Lazy_from" data-uid="lazy.Lazy.from">from(factory, args)</h4>
@@ -259,49 +194,28 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">static from&lt;T, A extends any[]&gt;(factory: (...args: A) =&gt; T, ...args: A): Lazy&lt;T&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>factory</em></td>
-        <td><span class="xref">(...args: A) =&gt; T</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><em>args</em></td>
-        <td><span class="xref">A</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>factory</dt>
+    <dd class="type">(...<span class="xref">args</span>: <span class="xref">A</span>) =&gt; <span class="xref">T</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+    <dt>args</dt>
+    <dd class="type"><span class="xref">A</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Lazy&lt;T&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="lazy.html#lazy_Lazy">Lazy</a>&lt;<span class="xref">T</span>&gt;</span>
+  <p class="description">
+  </div>
+  
 </article>
           </div>
           

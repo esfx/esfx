@@ -1,4 +1,4 @@
-import { UnionToIntersection, SameType, And, IsNever, Some, Not, SameTypes, Every, IsSubtypeOf } from "@esfx/type-model";
+import { SameType, And, IsNever, Some, Not, SameTypes, Every, IsSubtypeOf } from "@esfx/type-model";
 import { ClassDescriptor, MemberDescriptor, ParameterDescriptor, DecoratorDescriptor } from ".";
 
 type TOrVoidClassDecoratorSignature<A extends any[] = any[]> = (<T extends Function>(descriptor: ClassDescriptor<T>, ...args: A) => T | void) | never;
@@ -143,6 +143,8 @@ type __MappedDecoratorSignatureRest<
         (target: object, key: PropertyKey, parameterIndex: number): void;
     } :
     never;
+
+type UnionToIntersection<U> = ((U extends unknown ? (u: U) => void : never) extends ((i: infer I) => void) ? I : never) | never;
 
 type __MappedDecoratorSignature<
     S extends DecoratorSignature<any>,

@@ -80,19 +80,12 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="async-lazy.AsyncLazy">
   
-  
   <h1 id="async_lazy_AsyncLazy" data-uid="async-lazy.AsyncLazy">Class AsyncLazy
   </h1>
   <div class="markdown level0 summary"><p>A lazy-initialized asynchronous value.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  
-  <h3 id="constructors">Classes
-  
-  
-  
-  
-  Constructors
+  <h3 id="constructors">Constructors
   
   
   
@@ -111,32 +104,17 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">constructor(factory: () =&gt; T | PromiseLike&lt;T&gt;);</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>factory</em></td>
-        <td><span class="xref">() =&gt; T | PromiseLike&lt;T&gt;</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Classes
-  
-  
-  
-  
-  
+  <dl class="parameterList">
+    <dt>factory</dt>
+    <dd class="type">() =&gt; <span class="xref">T</span> | <span class="xref">PromiseLike</span>&lt;<span class="xref">T</span>&gt;</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h3 id="properties">
   
   Properties
   
@@ -154,21 +132,12 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly isStarted: boolean;</code></pre>
   </div>
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="propertyValue">
+  <span class="type">boolean</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="async_lazy_AsyncLazy_value" data-uid="async-lazy.AsyncLazy.value">value</h4>
@@ -178,27 +147,13 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly value: Promise&lt;T&gt;;</code></pre>
   </div>
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Promise&lt;T&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Classes
-  
-  
-  
-  
-  
+  <div class="propertyValue">
+  <span class="type"><span class="xref">Promise</span>&lt;<span class="xref">T</span>&gt;</span>
+  <p class="description">
+  </div>
+  <h3 id="methods">
   
   
   Methods
@@ -216,41 +171,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">static for&lt;T&gt;(value: T | PromiseLike&lt;T&gt;): AsyncLazy&lt;T&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>value</em></td>
-        <td><span class="xref">T | PromiseLike&lt;T&gt;</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>value</dt>
+    <dd class="type"><span class="xref">T</span> | <span class="xref">PromiseLike</span>&lt;<span class="xref">T</span>&gt;</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">AsyncLazy&lt;T&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="asynclazy.html#async_lazy_AsyncLazy">AsyncLazy</a>&lt;<span class="xref">T</span>&gt;</span>
+  <p class="description">
+  </div>
   
   
   <h4 id="async_lazy_AsyncLazy_from" data-uid="async-lazy.AsyncLazy.from">from(factory, args)</h4>
@@ -260,49 +195,28 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">static from&lt;T, A extends any[]&gt;(factory: (...args: A) =&gt; T | PromiseLike&lt;T&gt;, ...args: A): AsyncLazy&lt;T&gt;;</code></pre>
   </div>
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>factory</em></td>
-        <td><span class="xref">(...args: A) =&gt; T | PromiseLike&lt;T&gt;</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><em>args</em></td>
-        <td><span class="xref">A</span></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <dl class="parameterList">
+    <dt>factory</dt>
+    <dd class="type">(...<span class="xref">args</span>: <span class="xref">A</span>) =&gt; <span class="xref">T</span> | <span class="xref">PromiseLike</span>&lt;<span class="xref">T</span>&gt;</dd>
+    <dd class="description">
+      
+      
+    </dd>
+    <dt>args</dt>
+    <dd class="type"><span class="xref">A</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">AsyncLazy&lt;T&gt;</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="return">
+  <span class="type"><a class="xref" href="asynclazy.html#async_lazy_AsyncLazy">AsyncLazy</a>&lt;<span class="xref">T</span>&gt;</span>
+  <p class="description">
+  </div>
+  
 </article>
           </div>
           

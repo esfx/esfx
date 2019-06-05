@@ -1,0 +1,4 @@
+{{#remarks}}
+<h5 id="{{id}}_remarks">{{__global.remarks}}</h5>
+<div class="markdown level1 remarks">{{{remarks}}}</div>
+{{/remarks}}
