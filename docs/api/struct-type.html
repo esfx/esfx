@@ -279,6 +279,352 @@ else if (parentPort) {
 </code></pre></section>
 </div>
 </div>
+  <h3 id="typealiases">
+  
+  
+  
+  
+  
+  
+  
+  
+  Type Aliases
+  </h3>
+  
+  
+  <h4 id="struct_type_StructDefinition" data-uid="struct-type.StructDefinition">StructDefinition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructDefinition = readonly StructFieldDefinition[];</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">readonly <a class="xref" href="struct-type/structfielddefinition.html#struct_type_StructFieldDefinition">StructFieldDefinition</a>[]</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_StructElements" data-uid="struct-type.StructElements">StructElements</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructElements&lt;TDef extends StructDefinition&gt; = {
+    [I in Extract&lt;keyof TDef, number&gt;]: StructFieldRuntimeType&lt;TDef[I][&quot;type&quot;]&gt;;
+};</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">{
+    [<span class="xref">I</span> in <span class="xref">Extract</span>&lt;keyof <span class="xref">TDef</span>, number&gt;]: <a class="xref" href="struct-type.html#struct_type_StructFieldRuntimeType">StructFieldRuntimeType</a>&lt;<span class="xref">TDef</span>[<span class="xref">I</span>][&quot;type&quot;]&gt;;
+}</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_StructFieldRuntimeType" data-uid="struct-type.StructFieldRuntimeType">StructFieldRuntimeType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructFieldRuntimeType&lt;T extends StructFieldType&gt; = T extends StructPrimitiveType ? ReturnType&lt;T&gt; : T extends StructType ? InstanceType&lt;T&gt; : never;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><span class="xref">T</span> extends <a class="xref" href="struct-type/structprimitivetype.html#struct_type_StructPrimitiveType">StructPrimitiveType</a> ? <span class="xref">ReturnType</span>&lt;<span class="xref">T</span>&gt; : <span class="xref">T</span> extends <a class="xref" href="struct-type/structtype_interface.html#struct_type_StructType_Interface">StructType</a> ? <span class="xref">InstanceType</span>&lt;<span class="xref">T</span>&gt; : never</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_StructFieldType" data-uid="struct-type.StructFieldType">StructFieldType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructFieldType = typeof int8 | typeof int16 | typeof int32 | typeof uint8 | typeof uint16 | typeof uint32 | typeof bigint64 | typeof biguint64 | typeof float32 | typeof float64 | StructType;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">typeof <span class="xref">int8</span> | typeof <span class="xref">int16</span> | typeof <span class="xref">int32</span> | typeof <span class="xref">uint8</span> | typeof <span class="xref">uint16</span> | typeof <span class="xref">uint32</span> | typeof <span class="xref">bigint64</span> | typeof <span class="xref">biguint64</span> | typeof <span class="xref">float32</span> | typeof <span class="xref">float64</span> | <a class="xref" href="struct-type/structtype_interface.html#struct_type_StructType_Interface">StructType</a></span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_StructInitElements" data-uid="struct-type.StructInitElements">StructInitElements</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructInitElements&lt;TDef extends StructDefinition&gt; = {
+    [I in keyof TDef]: TDef[I] extends StructFieldDefinition ? StructInitFieldType&lt;TDef[I][&quot;type&quot;]&gt; : never;
+};</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">{
+    [<span class="xref">I</span> in keyof <span class="xref">TDef</span>]: <span class="xref">TDef</span>[<span class="xref">I</span>] extends <a class="xref" href="struct-type/structfielddefinition.html#struct_type_StructFieldDefinition">StructFieldDefinition</a> ? <a class="xref" href="struct-type.html#struct_type_StructInitFieldType">StructInitFieldType</a>&lt;<span class="xref">TDef</span>[<span class="xref">I</span>][&quot;type&quot;]&gt; : never;
+}</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_StructInitFieldType" data-uid="struct-type.StructInitFieldType">StructInitFieldType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructInitFieldType&lt;T extends StructFieldType&gt; = T extends StructPrimitiveType ? ReturnType&lt;T&gt; : T extends StructType&lt;infer TDef&gt; ? InstanceType&lt;T&gt; | StructInitProperties&lt;TDef&gt; | StructInitElements&lt;TDef&gt; : never;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><span class="xref">T</span> extends <a class="xref" href="struct-type/structprimitivetype.html#struct_type_StructPrimitiveType">StructPrimitiveType</a> ? <span class="xref">ReturnType</span>&lt;<span class="xref">T</span>&gt; : <span class="xref">T</span> extends <a class="xref" href="struct-type/structtype_interface.html#struct_type_StructType_Interface">StructType</a>&lt;infer <span class="xref">TDef</span>&gt; ? <span class="xref">InstanceType</span>&lt;<span class="xref">T</span>&gt; | <a class="xref" href="struct-type.html#struct_type_StructInitProperties">StructInitProperties</a>&lt;<span class="xref">TDef</span>&gt; | <a class="xref" href="struct-type.html#struct_type_StructInitElements">StructInitElements</a>&lt;<span class="xref">TDef</span>&gt; : never</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_StructInitProperties" data-uid="struct-type.StructInitProperties">StructInitProperties</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructInitProperties&lt;TDef extends StructDefinition&gt; = {
+    [P in TDef[number][&quot;name&quot;]]: StructInitFieldType&lt;Extract&lt;TDef[number], {
+        readonly name: P;
+    }&gt;[&quot;type&quot;]&gt;;
+};</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">{
+    [<span class="xref">P</span> in <span class="xref">TDef</span>[number][&quot;name&quot;]]: <a class="xref" href="struct-type.html#struct_type_StructInitFieldType">StructInitFieldType</a>&lt;<span class="xref">Extract</span>&lt;<span class="xref">TDef</span>[number], {
+        readonly <span class="xref">name</span>: <span class="xref">P</span>;
+    }&gt;[&quot;type&quot;]&gt;;
+}</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_StructProperties" data-uid="struct-type.StructProperties">StructProperties</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructProperties&lt;TDef extends StructDefinition&gt; = {
+    [P in TDef[number][&quot;name&quot;]]: StructFieldRuntimeType&lt;Extract&lt;TDef[number], {
+        readonly name: P;
+    }&gt;[&quot;type&quot;]&gt;;
+};</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">{
+    [<span class="xref">P</span> in <span class="xref">TDef</span>[number][&quot;name&quot;]]: <a class="xref" href="struct-type.html#struct_type_StructFieldRuntimeType">StructFieldRuntimeType</a>&lt;<span class="xref">Extract</span>&lt;<span class="xref">TDef</span>[number], {
+        readonly <span class="xref">name</span>: <span class="xref">P</span>;
+    }&gt;[&quot;type&quot;]&gt;;
+}</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_TypedStruct" data-uid="struct-type.TypedStruct">TypedStruct</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type TypedStruct&lt;TDef extends StructDefinition&gt; = Struct&lt;TDef&gt; &amp; StructProperties&lt;TDef&gt; &amp; StructElements&lt;TDef&gt;;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/struct.html#struct_type_Struct">Struct</a>&lt;<span class="xref">TDef</span>&gt; &amp; <a class="xref" href="struct-type.html#struct_type_StructProperties">StructProperties</a>&lt;<span class="xref">TDef</span>&gt; &amp; <a class="xref" href="struct-type.html#struct_type_StructElements">StructElements</a>&lt;<span class="xref">TDef</span>&gt;</span>
+  <p class="description">
+  </div>
+  <h3 id="variables">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  Variables</h3>
+  
+  
+  <h4 id="struct_type_bigint64" data-uid="struct-type.bigint64">bigint64</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">bigint64: StructPrimitiveType&lt;&quot;bigint64&quot;, bigint&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#struct_type_StructPrimitiveType">StructPrimitiveType</a>&lt;&quot;bigint64&quot;, bigint&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_biguint64" data-uid="struct-type.biguint64">biguint64</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">biguint64: StructPrimitiveType&lt;&quot;biguint64&quot;, bigint&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#struct_type_StructPrimitiveType">StructPrimitiveType</a>&lt;&quot;biguint64&quot;, bigint&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_float32" data-uid="struct-type.float32">float32</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">float32: StructPrimitiveType&lt;&quot;float32&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#struct_type_StructPrimitiveType">StructPrimitiveType</a>&lt;&quot;float32&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_float64" data-uid="struct-type.float64">float64</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">float64: StructPrimitiveType&lt;&quot;float64&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#struct_type_StructPrimitiveType">StructPrimitiveType</a>&lt;&quot;float64&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_int16" data-uid="struct-type.int16">int16</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">int16: StructPrimitiveType&lt;&quot;int16&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#struct_type_StructPrimitiveType">StructPrimitiveType</a>&lt;&quot;int16&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_int32" data-uid="struct-type.int32">int32</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">int32: StructPrimitiveType&lt;&quot;int32&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#struct_type_StructPrimitiveType">StructPrimitiveType</a>&lt;&quot;int32&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_int8" data-uid="struct-type.int8">int8</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">int8: StructPrimitiveType&lt;&quot;int8&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#struct_type_StructPrimitiveType">StructPrimitiveType</a>&lt;&quot;int8&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_StructType_Variable" data-uid="struct-type.StructType_Variable">StructType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">StructType: StructTypeConstructor</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structtypeconstructor.html#struct_type_StructTypeConstructor">StructTypeConstructor</a></span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_uint16" data-uid="struct-type.uint16">uint16</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">uint16: StructPrimitiveType&lt;&quot;uint16&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#struct_type_StructPrimitiveType">StructPrimitiveType</a>&lt;&quot;uint16&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_uint32" data-uid="struct-type.uint32">uint32</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">uint32: StructPrimitiveType&lt;&quot;uint32&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#struct_type_StructPrimitiveType">StructPrimitiveType</a>&lt;&quot;uint32&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="struct_type_uint8" data-uid="struct-type.uint8">uint8</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">uint8: StructPrimitiveType&lt;&quot;uint8&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#struct_type_StructPrimitiveType">StructPrimitiveType</a>&lt;&quot;uint8&quot;, number&gt;</span>
+  <p class="description">
+  </div>
   
 </article>
           </div>

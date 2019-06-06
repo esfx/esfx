@@ -190,6 +190,14 @@ function groupChildren(model, category, typeChildrenItems) {
       c.syntax.eventType = c.syntax.return;
       c.syntax.return = undefined;
     }
+    if (type === "typealias" && c.syntax) {
+      c.syntax.aliasType = c.syntax.return;
+      c.syntax.return = undefined;
+    }
+    if (type === "variable" && c.syntax) {
+      c.syntax.variableType = c.syntax.return;
+      c.syntax.return = undefined;
+    }
     grouped[type].push(c);
   })
 
@@ -261,6 +269,8 @@ function getDefinitions(category) {
     "delegate":     { inDelegate: true,     typePropertyName: "inDelegate",     id: "delegates" },
     "function":     { inFunction: true,     typePropertyName: "inFunction",     id: "functions" },
     "package":      { inPackage: true,      typePropertyName: "inPackage",      id: "packages" },
+    "typealias":    { inTypeAlias: true,    typePropertyName: "inTypeAlias",    id: "typealiases" },
+    "variable":     { inVariable: true,     typePropertyName: "inVariable",     id: "variables" },
     // "namespace":    { isNamespace: true,    typePropertyName: "isNamespace",    id: "namespaces" },
   };
   var classItems = {
@@ -272,7 +282,9 @@ function getDefinitions(category) {
     "operator":     { inOperator: true,     typePropertyName: "inOperator",     id: "operators" },
     "eii":          { inEii: true,          typePropertyName: "inEii",          id: "eii" },
     "function":     { inFunction: true,     typePropertyName: "inFunction",     id: "functions"},
-    "member":       { inMember: true,       typePropertyName: "inMember",       id: "members"}
+    "member":       { inMember: true,       typePropertyName: "inMember",       id: "members"},
+    "typealias":    { inTypeAlias: true,    typePropertyName: "inTypeAlias",    id: "typealiases" },
+    "variable":     { inVariable: true,     typePropertyName: "inVariable",     id: "variables" },
   };
   if (category === 'class') {
     return classItems;

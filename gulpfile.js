@@ -80,7 +80,8 @@ function makeProjects(projects) {
 const docPackages = publicPackages.filter(docPackage => fs.existsSync(path.resolve(docPackage, "api-extractor.json")));
 
 gulp.task("docs", gulp.series(
+    // build,
     // gulp.parallel(docPackages.map(docPackage => fname(`api-extractor:${docPackage}`, () => apiExtractor(docPackage)))),
     fname("api-documenter", () => apiDocumenter(docPackages)),
     // fname("docfx", () => docfx(argv.serve || false))
-    ));
+));

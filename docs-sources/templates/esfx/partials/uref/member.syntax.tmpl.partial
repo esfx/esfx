@@ -7,6 +7,8 @@
 {{>partials/uref/syntax.return}}
 {{>partials/uref/syntax.typeParameters}}
 {{>partials/uref/syntax.field}}
+{{>partials/uref/syntax.aliasType}}
+{{>partials/uref/syntax.variableType}}
 {{>partials/uref/syntax.property}}
 {{>partials/uref/syntax.event}}
 {{/syntax}}

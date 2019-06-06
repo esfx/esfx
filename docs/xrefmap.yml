@@ -297,6 +297,14 @@ references:
   name: isAsyncLockable(value)
   href: api/async-lockable/asynclockable_namespace.html
   fullName: isAsyncLockable(value)
+- uid: async-lockable.AsyncLockable_Namespace.lock
+  name: lock
+  href: api/async-lockable/asynclockable_namespace.html
+  fullName: lock
+- uid: async-lockable.AsyncLockable_Namespace.unlock
+  name: unlock
+  href: api/async-lockable/asynclockable_namespace.html
+  fullName: unlock
 - uid: async-lockable.LockHandle
   name: LockHandle
   href: api/async-lockable/lockhandle.html#async_lockable_LockHandle
@@ -649,6 +657,14 @@ references:
   name: Cancelable
   href: api/cancelable/cancelable_namespace.html#cancelable_Cancelable_Namespace
   fullName: Cancelable
+- uid: cancelable.Cancelable_Namespace.canceled
+  name: canceled
+  href: api/cancelable/cancelable_namespace.html
+  fullName: canceled
+- uid: cancelable.Cancelable_Namespace.cancelSignal
+  name: cancelSignal
+  href: api/cancelable/cancelable_namespace.html
+  fullName: cancelSignal
 - uid: cancelable.Cancelable_Namespace.isCancelable
   name: isCancelable(value)
   href: api/cancelable/cancelable_namespace.html
@@ -657,6 +673,10 @@ references:
   name: isSignaled(cancelable)
   href: api/cancelable/cancelable_namespace.html
   fullName: isSignaled(cancelable)
+- uid: cancelable.Cancelable_Namespace.none
+  name: none
+  href: api/cancelable/cancelable_namespace.html
+  fullName: none
 - uid: cancelable.Cancelable_Namespace.subscribe
   name: subscribe(cancelable, onSignaled)
   href: api/cancelable/cancelable_namespace.html
@@ -685,6 +705,10 @@ references:
   name: CancelableSource
   href: api/cancelable/cancelablesource_namespace.html#cancelable_CancelableSource_Namespace
   fullName: CancelableSource
+- uid: cancelable.CancelableSource_Namespace.cancel
+  name: cancel
+  href: api/cancelable/cancelablesource_namespace.html
+  fullName: cancel
 - uid: cancelable.CancelableSource_Namespace.isCancelableSource
   name: isCancelableSource(value)
   href: api/cancelable/cancelablesource_namespace.html
@@ -761,6 +785,18 @@ references:
   name: Collection
   href: api/collection-core/collection_namespace.html#collection_core_Collection_Namespace
   fullName: Collection
+- uid: collection-core.Collection_Namespace._delete
+  name: delete
+  href: api/collection-core/collection_namespace.html
+  fullName: delete
+- uid: collection-core.Collection_Namespace.add
+  name: add
+  href: api/collection-core/collection_namespace.html
+  fullName: add
+- uid: collection-core.Collection_Namespace.clear
+  name: clear
+  href: api/collection-core/collection_namespace.html
+  fullName: clear
 - uid: collection-core.Collection_Namespace.isCollection_Function
   name: isCollection(value)
   href: api/collection-core/collection_namespace.html
@@ -789,6 +825,10 @@ references:
   name: isFixedSizeIndexedCollection(value)
   href: api/collection-core/fixedsizeindexedcollection_namespace.html
   fullName: isFixedSizeIndexedCollection(value)
+- uid: collection-core.FixedSizeIndexedCollection_Namespace.setAt
+  name: setAt
+  href: api/collection-core/fixedsizeindexedcollection_namespace.html
+  fullName: setAt
 - uid: collection-core.IndexedCollection_Interface
   name: IndexedCollection
   href: api/collection-core/indexedcollection_interface.html#collection_core_IndexedCollection_Interface
@@ -805,6 +845,14 @@ references:
   name: IndexedCollection
   href: api/collection-core/indexedcollection_namespace.html#collection_core_IndexedCollection_Namespace
   fullName: IndexedCollection
+- uid: collection-core.IndexedCollection_Namespace._delete
+  name: delete
+  href: api/collection-core/indexedcollection_namespace.html
+  fullName: delete
+- uid: collection-core.IndexedCollection_Namespace.insertAt
+  name: insertAt
+  href: api/collection-core/indexedcollection_namespace.html
+  fullName: insertAt
 - uid: collection-core.IndexedCollection_Namespace.isIndexedCollection_Function
   name: isIndexedCollection(value)
   href: api/collection-core/indexedcollection_namespace.html
@@ -813,6 +861,10 @@ references:
   name: isIndexedCollection(value)
   href: api/collection-core/indexedcollection_namespace.html
   fullName: isIndexedCollection(value)
+- uid: collection-core.IndexedCollection_Namespace.removeAt
+  name: removeAt
+  href: api/collection-core/indexedcollection_namespace.html
+  fullName: removeAt
 - uid: collection-core.KeyedCollection_Interface
   name: KeyedCollection
   href: api/collection-core/keyedcollection_interface.html#collection_core_KeyedCollection_Interface
@@ -833,6 +885,14 @@ references:
   name: KeyedCollection
   href: api/collection-core/keyedcollection_namespace.html#collection_core_KeyedCollection_Namespace
   fullName: KeyedCollection
+- uid: collection-core.KeyedCollection_Namespace._delete
+  name: delete
+  href: api/collection-core/keyedcollection_namespace.html
+  fullName: delete
+- uid: collection-core.KeyedCollection_Namespace.clear
+  name: clear
+  href: api/collection-core/keyedcollection_namespace.html
+  fullName: clear
 - uid: collection-core.KeyedCollection_Namespace.isKeyedCollection_Function
   name: isKeyedCollection(value)
   href: api/collection-core/keyedcollection_namespace.html
@@ -841,6 +901,10 @@ references:
   name: isKeyedCollection(value)
   href: api/collection-core/keyedcollection_namespace.html
   fullName: isKeyedCollection(value)
+- uid: collection-core.KeyedCollection_Namespace.set
+  name: set
+  href: api/collection-core/keyedcollection_namespace.html
+  fullName: set
 - uid: collection-core.ReadonlyCollection_Interface
   name: ReadonlyCollection
   href: api/collection-core/readonlycollection_interface.html#collection_core_ReadonlyCollection_Interface
@@ -857,6 +921,10 @@ references:
   name: ReadonlyCollection
   href: api/collection-core/readonlycollection_namespace.html#collection_core_ReadonlyCollection_Namespace
   fullName: ReadonlyCollection
+- uid: collection-core.ReadonlyCollection_Namespace.has
+  name: has
+  href: api/collection-core/readonlycollection_namespace.html
+  fullName: has
 - uid: collection-core.ReadonlyCollection_Namespace.isReadonlyCollection_Function
   name: isReadonlyCollection(value)
   href: api/collection-core/readonlycollection_namespace.html
@@ -865,6 +933,10 @@ references:
   name: isReadonlyCollection(value)
   href: api/collection-core/readonlycollection_namespace.html
   fullName: isReadonlyCollection(value)
+- uid: collection-core.ReadonlyCollection_Namespace.size
+  name: size
+  href: api/collection-core/readonlycollection_namespace.html
+  fullName: size
 - uid: collection-core.ReadonlyIndexedCollection_Interface
   name: ReadonlyIndexedCollection
   href: api/collection-core/readonlyindexedcollection_interface.html#collection_core_ReadonlyIndexedCollection_Interface
@@ -881,6 +953,14 @@ references:
   name: ReadonlyIndexedCollection
   href: api/collection-core/readonlyindexedcollection_namespace.html#collection_core_ReadonlyIndexedCollection_Namespace
   fullName: ReadonlyIndexedCollection
+- uid: collection-core.ReadonlyIndexedCollection_Namespace.getAt
+  name: getAt
+  href: api/collection-core/readonlyindexedcollection_namespace.html
+  fullName: getAt
+- uid: collection-core.ReadonlyIndexedCollection_Namespace.indexOf
+  name: indexOf
+  href: api/collection-core/readonlyindexedcollection_namespace.html
+  fullName: indexOf
 - uid: collection-core.ReadonlyIndexedCollection_Namespace.isReadonlyIndexedCollection_Function
   name: isReadonlyIndexedCollection(value)
   href: api/collection-core/readonlyindexedcollection_namespace.html
@@ -917,6 +997,14 @@ references:
   name: ReadonlyKeyedCollection
   href: api/collection-core/readonlykeyedcollection_namespace.html#collection_core_ReadonlyKeyedCollection_Namespace
   fullName: ReadonlyKeyedCollection
+- uid: collection-core.ReadonlyKeyedCollection_Namespace.get
+  name: get
+  href: api/collection-core/readonlykeyedcollection_namespace.html
+  fullName: get
+- uid: collection-core.ReadonlyKeyedCollection_Namespace.has
+  name: has
+  href: api/collection-core/readonlykeyedcollection_namespace.html
+  fullName: has
 - uid: collection-core.ReadonlyKeyedCollection_Namespace.isReadonlyKeyedCollection_Function
   name: isReadonlyKeyedCollection(value)
   href: api/collection-core/readonlykeyedcollection_namespace.html
@@ -925,6 +1013,18 @@ references:
   name: isReadonlyKeyedCollection(value)
   href: api/collection-core/readonlykeyedcollection_namespace.html
   fullName: isReadonlyKeyedCollection(value)
+- uid: collection-core.ReadonlyKeyedCollection_Namespace.keys
+  name: keys
+  href: api/collection-core/readonlykeyedcollection_namespace.html
+  fullName: keys
+- uid: collection-core.ReadonlyKeyedCollection_Namespace.size
+  name: size
+  href: api/collection-core/readonlykeyedcollection_namespace.html
+  fullName: size
+- uid: collection-core.ReadonlyKeyedCollection_Namespace.values
+  name: values
+  href: api/collection-core/readonlykeyedcollection_namespace.html
+  fullName: values
 - uid: collection-core-dom-shim
   name: '@esfx/collection-core-dom-shim'
   href: api/collection-core-dom-shim.html
@@ -1597,6 +1697,50 @@ references:
   name: '@esfx/decorators'
   href: api/decorators.html
   fullName: '@esfx/decorators'
+- uid: decorators.autobind
+  name: autobind
+  href: api/decorators.html#decorators_autobind
+  fullName: autobind
+- uid: decorators.autoproperty
+  name: autoproperty
+  href: api/decorators.html#decorators_autoproperty
+  fullName: autoproperty
+- uid: decorators.configurable
+  name: configurable
+  href: api/decorators.html#decorators_configurable
+  fullName: configurable
+- uid: decorators.enumerable
+  name: enumerable
+  href: api/decorators.html#decorators_enumerable
+  fullName: enumerable
+- uid: decorators.lazyinit
+  name: lazyinit
+  href: api/decorators.html#decorators_lazyinit
+  fullName: lazyinit
+- uid: decorators.mixin
+  name: mixin
+  href: api/decorators.html#decorators_mixin
+  fullName: mixin
+- uid: decorators.nonconfigurable
+  name: nonconfigurable
+  href: api/decorators.html#decorators_nonconfigurable
+  fullName: nonconfigurable
+- uid: decorators.nonenumerable
+  name: nonenumerable
+  href: api/decorators.html#decorators_nonenumerable
+  fullName: nonenumerable
+- uid: decorators.obsolete
+  name: obsolete
+  href: api/decorators.html#decorators_obsolete
+  fullName: obsolete
+- uid: decorators.readonly
+  name: readonly
+  href: api/decorators.html#decorators_readonly
+  fullName: readonly
+- uid: decorators.writable
+  name: writable
+  href: api/decorators.html#decorators_writable
+  fullName: writable
 - uid: decorators-stage1-core
   name: '@esfx/decorators-stage1-core'
   href: api/decorators-stage1-core.html
@@ -1609,6 +1753,10 @@ references:
   name: descriptor
   href: api/decorators-stage1-core/accessormemberdescriptor.html#decorators_stage1_core_AccessorMemberDescriptor_descriptor
   fullName: descriptor
+- uid: decorators-stage1-core.ClassDecoratorArguments
+  name: ClassDecoratorArguments
+  href: api/decorators-stage1-core.html#decorators_stage1_core_ClassDecoratorArguments
+  fullName: ClassDecoratorArguments
 - uid: decorators-stage1-core.ClassDescriptor
   name: ClassDescriptor
   href: api/decorators-stage1-core/classdescriptor.html#decorators_stage1_core_ClassDescriptor
@@ -1661,6 +1809,26 @@ references:
   name: decorateMember(decorators, target, propertyKey, descriptor)
   href: api/decorators-stage1-core.html#decorators_stage1_core_decorateMember
   fullName: decorateMember(decorators, target, propertyKey, descriptor)
+- uid: decorators-stage1-core.DecoratorArguments
+  name: DecoratorArguments
+  href: api/decorators-stage1-core.html#decorators_stage1_core_DecoratorArguments
+  fullName: DecoratorArguments
+- uid: decorators-stage1-core.DecoratorDescriptor
+  name: DecoratorDescriptor
+  href: api/decorators-stage1-core.html#decorators_stage1_core_DecoratorDescriptor
+  fullName: DecoratorDescriptor
+- uid: decorators-stage1-core.defaultAccessorAttributes
+  name: defaultAccessorAttributes
+  href: api/decorators-stage1-core.html#decorators_stage1_core_defaultAccessorAttributes
+  fullName: defaultAccessorAttributes
+- uid: decorators-stage1-core.defaultFieldAttributes
+  name: defaultFieldAttributes
+  href: api/decorators-stage1-core.html#decorators_stage1_core_defaultFieldAttributes
+  fullName: defaultFieldAttributes
+- uid: decorators-stage1-core.defaultMethodAttributes
+  name: defaultMethodAttributes
+  href: api/decorators-stage1-core.html#decorators_stage1_core_defaultMethodAttributes
+  fullName: defaultMethodAttributes
 - uid: decorators-stage1-core.FieldMemberDescriptor
   name: FieldMemberDescriptor
   href: api/decorators-stage1-core/fieldmemberdescriptor.html#decorators_stage1_core_FieldMemberDescriptor
@@ -1737,6 +1905,10 @@ references:
   name: isStatic(value)
   href: api/decorators-stage1-core.html#decorators_stage1_core_isStatic
   fullName: isStatic(value)
+- uid: decorators-stage1-core.MemberDecoratorArguments
+  name: MemberDecoratorArguments
+  href: api/decorators-stage1-core.html#decorators_stage1_core_MemberDecoratorArguments
+  fullName: MemberDecoratorArguments
 - uid: decorators-stage1-core.MemberDescriptor
   name: MemberDescriptor
   href: api/decorators-stage1-core/memberdescriptor.html#decorators_stage1_core_MemberDescriptor
@@ -1765,6 +1937,10 @@ references:
   name: descriptor
   href: api/decorators-stage1-core/methodmemberdescriptor.html#decorators_stage1_core_MethodMemberDescriptor_descriptor
   fullName: descriptor
+- uid: decorators-stage1-core.ParameterDecoratorArguments
+  name: ParameterDecoratorArguments
+  href: api/decorators-stage1-core.html#decorators_stage1_core_ParameterDecoratorArguments
+  fullName: ParameterDecoratorArguments
 - uid: decorators-stage1-core.ParameterDescriptor
   name: ParameterDescriptor
   href: api/decorators-stage1-core/parameterdescriptor.html#decorators_stage1_core_ParameterDescriptor
@@ -1801,6 +1977,10 @@ references:
   name: AsyncDisposable
   href: api/disposable/asyncdisposable_namespace.html#disposable_AsyncDisposable_Namespace
   fullName: AsyncDisposable
+- uid: disposable.AsyncDisposable_Namespace.asyncDispose
+  name: asyncDispose
+  href: api/disposable/asyncdisposable_namespace.html
+  fullName: asyncDispose
 - uid: disposable.AsyncDisposable_Namespace.create
   name: create(dispose)
   href: api/disposable/asyncdisposable_namespace.html
@@ -1833,6 +2013,10 @@ references:
   name: create(dispose)
   href: api/disposable/disposable_namespace.html
   fullName: create(dispose)
+- uid: disposable.Disposable_Namespace.dispose
+  name: dispose
+  href: api/disposable/disposable_namespace.html
+  fullName: dispose
 - uid: disposable.Disposable_Namespace.from
   name: from(disposables)
   href: api/disposable/disposable_namespace.html
@@ -1861,6 +2045,10 @@ references:
   name: Comparable
   href: api/equatable/comparable_namespace.html#equatable_Comparable_Namespace
   fullName: Comparable
+- uid: equatable.Comparable_Namespace.compareTo
+  name: compareTo
+  href: api/equatable/comparable_namespace.html
+  fullName: compareTo
 - uid: equatable.Comparable_Namespace.isComparable
   name: isComparable(value)
   href: api/equatable/comparable_namespace.html
@@ -1881,6 +2069,26 @@ references:
   name: create(comparison)
   href: api/equatable/comparer_namespace.html
   fullName: create(comparison)
+- uid: equatable.Comparer_Namespace.defaultComparer
+  name: defaultComparer
+  href: api/equatable/comparer_namespace.html
+  fullName: defaultComparer
+- uid: equatable.Comparer_Namespace.structuralComparer
+  name: structuralComparer
+  href: api/equatable/comparer_namespace.html
+  fullName: structuralComparer
+- uid: equatable.Comparer_Namespace.tupleComparer
+  name: tupleComparer
+  href: api/equatable/comparer_namespace.html
+  fullName: tupleComparer
+- uid: equatable.Comparer_Namespace.tupleStructuralComparer
+  name: tupleStructuralComparer
+  href: api/equatable/comparer_namespace.html
+  fullName: tupleStructuralComparer
+- uid: equatable.Comparison
+  name: Comparison
+  href: api/equatable.html#equatable_Comparison
+  fullName: Comparison
 - uid: equatable.Equaler_Interface
   name: Equaler
   href: api/equatable/equaler_interface.html#equatable_Equaler_Interface
@@ -1901,6 +2109,26 @@ references:
   name: create(equalityComparison, hashGenerator)
   href: api/equatable/equaler_namespace.html
   fullName: create(equalityComparison, hashGenerator)
+- uid: equatable.Equaler_Namespace.defaultEqualer
+  name: defaultEqualer
+  href: api/equatable/equaler_namespace.html
+  fullName: defaultEqualer
+- uid: equatable.Equaler_Namespace.structuralEqualer
+  name: structuralEqualer
+  href: api/equatable/equaler_namespace.html
+  fullName: structuralEqualer
+- uid: equatable.Equaler_Namespace.tupleEqualer
+  name: tupleEqualer
+  href: api/equatable/equaler_namespace.html
+  fullName: tupleEqualer
+- uid: equatable.Equaler_Namespace.tupleStructuralEqualer
+  name: tupleStructuralEqualer
+  href: api/equatable/equaler_namespace.html
+  fullName: tupleStructuralEqualer
+- uid: equatable.EqualityComparison
+  name: EqualityComparison
+  href: api/equatable.html#equatable_EqualityComparison
+  fullName: EqualityComparison
 - uid: equatable.Equatable_Interface
   name: Equatable
   href: api/equatable/equatable_interface.html#equatable_Equatable_Interface
@@ -1917,10 +2145,22 @@ references:
   name: Equatable
   href: api/equatable/equatable_namespace.html#equatable_Equatable_Namespace
   fullName: Equatable
+- uid: equatable.Equatable_Namespace.equals
+  name: equals
+  href: api/equatable/equatable_namespace.html
+  fullName: equals
+- uid: equatable.Equatable_Namespace.hash
+  name: hash
+  href: api/equatable/equatable_namespace.html
+  fullName: hash
 - uid: equatable.Equatable_Namespace.isEquatable
   name: isEquatable(value)
   href: api/equatable/equatable_namespace.html
   fullName: isEquatable(value)
+- uid: equatable.HashGenerator
+  name: HashGenerator
+  href: api/equatable.html#equatable_HashGenerator
+  fullName: HashGenerator
 - uid: equatable.StructuralComparable_Interface
   name: StructuralComparable
   href: api/equatable/structuralcomparable_interface.html#equatable_StructuralComparable_Interface
@@ -1937,6 +2177,10 @@ references:
   name: isStructuralComparable(value)
   href: api/equatable/structuralcomparable_namespace.html
   fullName: isStructuralComparable(value)
+- uid: equatable.StructuralComparable_Namespace.structuralCompareTo
+  name: structuralCompareTo
+  href: api/equatable/structuralcomparable_namespace.html
+  fullName: structuralCompareTo
 - uid: equatable.StructuralEquatable_Interface
   name: StructuralEquatable
   href: api/equatable/structuralequatable_interface.html#equatable_StructuralEquatable_Interface
@@ -1957,6 +2201,14 @@ references:
   name: isStructuralEquatable(value)
   href: api/equatable/structuralequatable_namespace.html
   fullName: isStructuralEquatable(value)
+- uid: equatable.StructuralEquatable_Namespace.structuralEquals
+  name: structuralEquals
+  href: api/equatable/structuralequatable_namespace.html
+  fullName: structuralEquals
+- uid: equatable.StructuralEquatable_Namespace.structuralHash
+  name: structuralHash
+  href: api/equatable/structuralequatable_namespace.html
+  fullName: structuralHash
 - uid: equatable-shim
   name: '@esfx/equatable-shim'
   href: api/equatable-shim.html
@@ -2032,6 +2284,10 @@ references:
   name: Event
   href: api/events/event_interface.html#events_Event_Interface
   fullName: Event
+- uid: events.EventListener
+  name: EventListener
+  href: api/events.html#events_EventListener
+  fullName: EventListener
 - uid: events.EventSource
   name: EventSource
   href: api/events/eventsource.html#events_EventSource
@@ -2224,6 +2480,14 @@ references:
   name: hasPropertyMetadata(target, propertyKey, metadataKey)
   href: api/metadata.html#metadata_hasPropertyMetadata
   fullName: hasPropertyMetadata(target, propertyKey, metadataKey)
+- uid: metadata.metadata
+  name: metadata
+  href: api/metadata.html#metadata_metadata
+  fullName: metadata
+- uid: metadata.MetadataKey
+  name: MetadataKey
+  href: api/metadata.html#metadata_MetadataKey
+  fullName: MetadataKey
 - uid: metadata-shim
   name: '@esfx/metadata-shim'
   href: api/metadata-shim.html
@@ -2260,6 +2524,10 @@ references:
   name: out(get, set)
   href: api/ref/ref_namespace.html
   fullName: out(get, set)
+- uid: ref.ref_Namespace.prototype
+  name: prototype
+  href: api/ref/ref_namespace.html
+  fullName: prototype
 - uid: ref.Reference
   name: Reference
   href: api/ref/reference.html#ref_Reference
@@ -2280,6 +2548,34 @@ references:
   name: '@esfx/struct-type'
   href: api/struct-type.html
   fullName: '@esfx/struct-type'
+- uid: struct-type.bigint64
+  name: bigint64
+  href: api/struct-type.html#struct_type_bigint64
+  fullName: bigint64
+- uid: struct-type.biguint64
+  name: biguint64
+  href: api/struct-type.html#struct_type_biguint64
+  fullName: biguint64
+- uid: struct-type.float32
+  name: float32
+  href: api/struct-type.html#struct_type_float32
+  fullName: float32
+- uid: struct-type.float64
+  name: float64
+  href: api/struct-type.html#struct_type_float64
+  fullName: float64
+- uid: struct-type.int16
+  name: int16
+  href: api/struct-type.html#struct_type_int16
+  fullName: int16
+- uid: struct-type.int32
+  name: int32
+  href: api/struct-type.html#struct_type_int32
+  fullName: int32
+- uid: struct-type.int8
+  name: int8
+  href: api/struct-type.html#struct_type_int8
+  fullName: int8
 - uid: struct-type.Struct
   name: Struct
   href: api/struct-type/struct.html#struct_type_Struct
@@ -2352,6 +2648,14 @@ references:
   name: SIZE
   href: api/struct-type/structclass.html#struct_type_StructClass_SIZE
   fullName: SIZE
+- uid: struct-type.StructDefinition
+  name: StructDefinition
+  href: api/struct-type.html#struct_type_StructDefinition
+  fullName: StructDefinition
+- uid: struct-type.StructElements
+  name: StructElements
+  href: api/struct-type.html#struct_type_StructElements
+  fullName: StructElements
 - uid: struct-type.StructFieldDefinition
   name: StructFieldDefinition
   href: api/struct-type/structfielddefinition.html#struct_type_StructFieldDefinition
@@ -2364,6 +2668,26 @@ references:
   name: type
   href: api/struct-type/structfielddefinition.html#struct_type_StructFieldDefinition_type
   fullName: type
+- uid: struct-type.StructFieldRuntimeType
+  name: StructFieldRuntimeType
+  href: api/struct-type.html#struct_type_StructFieldRuntimeType
+  fullName: StructFieldRuntimeType
+- uid: struct-type.StructFieldType
+  name: StructFieldType
+  href: api/struct-type.html#struct_type_StructFieldType
+  fullName: StructFieldType
+- uid: struct-type.StructInitElements
+  name: StructInitElements
+  href: api/struct-type.html#struct_type_StructInitElements
+  fullName: StructInitElements
+- uid: struct-type.StructInitFieldType
+  name: StructInitFieldType
+  href: api/struct-type.html#struct_type_StructInitFieldType
+  fullName: StructInitFieldType
+- uid: struct-type.StructInitProperties
+  name: StructInitProperties
+  href: api/struct-type.html#struct_type_StructInitProperties
+  fullName: StructInitProperties
 - uid: struct-type.StructPrimitiveType
   name: StructPrimitiveType
   href: api/struct-type/structprimitivetype.html#struct_type_StructPrimitiveType
@@ -2376,6 +2700,10 @@ references:
   name: SIZE
   href: api/struct-type/structprimitivetype.html#struct_type_StructPrimitiveType_SIZE
   fullName: SIZE
+- uid: struct-type.StructProperties
+  name: StructProperties
+  href: api/struct-type.html#struct_type_StructProperties
+  fullName: StructProperties
 - uid: struct-type.StructType_Interface
   name: StructType
   href: api/struct-type/structtype_interface.html#struct_type_StructType_Interface
@@ -2388,6 +2716,10 @@ references:
   name: SIZE
   href: api/struct-type/structtype_interface.html#struct_type_StructType_Interface_SIZE
   fullName: SIZE
+- uid: struct-type.StructType_Variable
+  name: StructType
+  href: api/struct-type.html#struct_type_StructType_Variable
+  fullName: StructType
 - uid: struct-type.StructTypeConstructor
   name: StructTypeConstructor
   href: api/struct-type/structtypeconstructor.html#struct_type_StructTypeConstructor
@@ -2396,6 +2728,22 @@ references:
   name: prototype
   href: api/struct-type/structtypeconstructor.html#struct_type_StructTypeConstructor_prototype
   fullName: prototype
+- uid: struct-type.TypedStruct
+  name: TypedStruct
+  href: api/struct-type.html#struct_type_TypedStruct
+  fullName: TypedStruct
+- uid: struct-type.uint16
+  name: uint16
+  href: api/struct-type.html#struct_type_uint16
+  fullName: uint16
+- uid: struct-type.uint32
+  name: uint32
+  href: api/struct-type.html#struct_type_uint32
+  fullName: uint32
+- uid: struct-type.uint8
+  name: uint8
+  href: api/struct-type.html#struct_type_uint8
+  fullName: uint8
 - uid: threading
   name: '@esfx/threading'
   href: api/threading.html
@@ -2600,6 +2948,18 @@ references:
   name: Lockable
   href: api/threading-lockable/lockable_namespace.html#threading_lockable_Lockable_Namespace
   fullName: Lockable
+- uid: threading-lockable.Lockable_Namespace.lock
+  name: lock
+  href: api/threading-lockable/lockable_namespace.html
+  fullName: lock
+- uid: threading-lockable.Lockable_Namespace.tryLock
+  name: tryLock
+  href: api/threading-lockable/lockable_namespace.html
+  fullName: tryLock
+- uid: threading-lockable.Lockable_Namespace.unlock
+  name: unlock
+  href: api/threading-lockable/lockable_namespace.html
+  fullName: unlock
 - uid: threading-manualresetevent
   name: '@esfx/threading-manualresetevent'
   href: api/threading-manualresetevent.html

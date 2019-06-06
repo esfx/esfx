@@ -1,7 +1,32 @@
 // @ts-check
 const path = require("path");
 const ts = require("typescript");
-const { ApiModel, ApiClass, ApiInterface, ApiItem, ApiDocumentedItem, ApiDeclaredItem, ApiEnumMember, ApiConstructor, ApiFunction, ApiMethod, ApiMethodSignature, ApiPropertyItem, ApiItemContainerMixin, ApiParameterListMixin, ApiReturnTypeMixin, ApiReleaseTagMixin, Excerpt } = require("@microsoft/api-extractor-model");
+const {
+    ApiItem,
+    ApiDocumentedItem,
+    ApiDeclaredItem,
+    ApiPropertyItem,
+    ApiModel,
+    ApiClass,
+    ApiInterface,
+    ApiEnumMember,
+    ApiConstructor,
+    ApiFunction,
+    ApiVariable,
+    ApiMethod,
+    ApiMethodSignature,
+    // ApiCallSignature,
+    // ApiConstructSignature,
+    // ApiIndexSignature,
+    ApiTypeAlias,
+    // ApiVariable,
+    ApiItemContainerMixin,
+    ApiParameterListMixin,
+    ApiReturnTypeMixin,
+    ApiReleaseTagMixin,
+    Excerpt,
+    ExcerptToken
+} = require("@microsoft/api-extractor-model");
 const { YamlDocumenter } = require("@microsoft/api-documenter/lib/documenters/YamlDocumenter");
 const { Utilities } = require("@microsoft/api-documenter/lib/utils/Utilities");
 const { PackageName, JsonSchema } = require("@microsoft/node-core-library");
@@ -20,11 +45,9 @@ const yamlApiSchema = JsonSchema.fromFile(require.resolve("./typescript.schema.j
 
 const kSafeNames = Symbol("kSafeNames");
 const kCollisionMap = Symbol("kCollisionMap");
-const kFlattenChildren = Symbol("kFlattenChildren");
 const kCollidesWithItemsOfSameName = Symbol("kCollidesWithItemsOfSameName");
 const kGetSafeName = Symbol("kGetSafeName");
 const kAdaptType = Symbol("kAdaptType");
-const kAddReference = Symbol("kAddReference");
 
 // @ts-ignore
 class CustomYamlDocumenter extends YamlDocumenter {
@@ -83,15 +106,6 @@ class CustomYamlDocumenter extends YamlDocumenter {
 
             /** @type {ReadonlyArray<ApiItem>} */
             let children;
-            // if (apiItem.kind === "Package") {
-            //     // Skip over the entry point, since it's not part of the documentation hierarchy
-            //     // for a package, collect all nested namespaces and treat them as children of the top level
-            //     children = this[kFlattenChildren](apiItem.members[0].members, /*nsHandling*/ "allowed");
-            // } else {
-            //     // for anything else, skip over namespaces
-            //     children = this[kFlattenChildren](apiItem.members, /*nsHandling*/ "no-namespace");
-            // }
-
             if (apiItem.kind === "Package") {
                 // Skip over the entry point, since it's not part of the documentation hierarchy
                 children = apiItem.members[0].members;
@@ -161,28 +175,6 @@ class CustomYamlDocumenter extends YamlDocumenter {
         }
 
         return true;
-    }
-
-    /**
-     * @private
-     * @param {readonly ApiItem[]} children
-     * @param {"namespace-only" | "no-namespace" | "allowed"} nsHandling
-     */
-    [kFlattenChildren](children, nsHandling) {
-        /** @type {ApiItem[]} */
-        let flattenedChildren = [];
-        for (const child of children) {
-            if (child.kind === "Namespace") {
-                if (nsHandling !== "no-namespace") {
-                    flattenedChildren.push(child);
-                    flattenedChildren = [...flattenedChildren, ...this[kFlattenChildren](child.members, "namespace-only")];
-                }
-            }
-            else if (nsHandling !== "no-namespace") {
-                flattenedChildren.push(child);
-            }
-        }
-        return flattenedChildren;
     }
 
     /**
@@ -277,8 +269,6 @@ class CustomYamlDocumenter extends YamlDocumenter {
             case "CallSignature":
             case "ConstructSignature":
             case "IndexSignature":
-            case "TypeAlias":
-            case "Variable":
                 return undefined;
         }
 
@@ -381,6 +371,18 @@ class CustomYamlDocumenter extends YamlDocumenter {
                 yamlItem.type = 'function';
                 // @ts-ignore
                 this._populateYamlFunctionLike(yamlItem, /** @type {ApiFunction} */(apiItem), parentYamlFile);
+                break;
+
+            case "TypeAlias":
+                // @ts-ignore
+                yamlItem.type = 'typealias';
+                this._populateYamlTypeAlias(yamlItem, /** @type {ApiTypeAlias} */(apiItem), parentYamlFile);
+                break;
+
+            case "Variable":
+                // @ts-ignore
+                yamlItem.type = 'variable';
+                this._populateYamlVariable(yamlItem, /** @type {ApiVariable} */(apiItem), parentYamlFile);
                 break;
 
             default:
@@ -520,6 +522,50 @@ class CustomYamlDocumenter extends YamlDocumenter {
         }
     }
 
+    /**
+     * @private
+     * @param {Partial<IYamlItem>} yamlItem 
+     * @param {ApiVariable} apiItem 
+     * @param {IYamlApiFile | undefined} parentYamlFile
+     * @returns {void}
+     */
+    _populateYamlVariable(yamlItem, apiItem, parentYamlFile) {
+        /** @type {IYamlSyntax} */
+        const syntax = {
+            content: apiItem.getExcerptWithModifiers()
+        };
+        yamlItem.syntax = syntax;
+
+        if (apiItem.variableTypeExcerpt.text) {
+            syntax.return = {
+                type: [this[kAdaptType](apiItem.variableTypeExcerpt, parentYamlFile)]
+            };
+        }
+    }
+
+    /**
+     * @private
+     * @param {Partial<IYamlItem>} yamlItem 
+     * @param {ApiTypeAlias} apiItem 
+     * @param {IYamlApiFile | undefined} parentYamlFile
+     * @returns {void}
+     */
+    _populateYamlTypeAlias(yamlItem, apiItem, parentYamlFile) {
+        /** @type {IYamlSyntax} */
+        const syntax = {
+            content: apiItem.getExcerptWithModifiers()
+        };
+        yamlItem.syntax = syntax;
+
+        // @ts-ignore
+        if (apiItem.aliasTypeExcerpt) {
+            syntax.return = {
+                // @ts-ignore
+                type: [this[kAdaptType](apiItem.aliasTypeExcerpt, parentYamlFile)]
+            };
+        }
+    }
+
     // private _renderMarkdown(docSection: DocSection, contextApiItem: ApiItem): string
     // private _writeYamlFile(dataObject: {}, filePath: string, yamlMimeType: string, schema: JsonSchema|undefined): void
 
@@ -548,7 +594,58 @@ class CustomYamlDocumenter extends YamlDocumenter {
     }
 
     // private _initApiItemsByTypeName(): void
-    // private _initApiItemsByTypeNameRecursive(apiItem: ApiItem, ambiguousNames: Set<string>): void
+
+    /**
+     * @private
+     * @param {ApiItem} apiItem 
+     * @param {Set<string>} ambiguousNames 
+     * @returns {void}
+     */
+    _initApiItemsByTypeNameRecursive(apiItem, ambiguousNames) {
+        switch (apiItem.kind) {
+            case "Class":
+            case "Enum":
+            case "Interface":
+            case "TypeAlias":
+                // Attempt to register both the fully qualified name and the short name
+                const namesForType = [apiItem.displayName];
+
+                // Note that nameWithDot cannot conflict with apiItem.name (because apiItem.name
+                // cannot contain a dot)
+                // @ts-ignore
+                const nameWithDot = this._getTypeNameWithDot(apiItem);
+                if (nameWithDot) {
+                    namesForType.push(nameWithDot);
+                }
+
+                // Register all names
+                for (const typeName of namesForType) {
+                    if (ambiguousNames.has(typeName)) {
+                        break;
+                    }
+
+                    // @ts-ignore
+                    if (this._apiItemsByTypeName.has(typeName)) {
+                        // We saw this name before, so it's an ambiguous match
+                        ambiguousNames.add(typeName);
+                        break;
+                    }
+
+                    // @ts-ignore
+                    this._apiItemsByTypeName.set(typeName, apiItem);
+                }
+
+                break;
+        }
+
+        // Recurse container members
+        if (ApiItemContainerMixin.isBaseClassOf(apiItem)) {
+            for (const apiMember of apiItem.members) {
+                this._initApiItemsByTypeNameRecursive(apiMember, ambiguousNames);
+            }
+        }
+    }
+
     // private _linkToUidIfPossible(typeName: string): string
     // private _getTypeNameWithDot(apiItem: ApiItem): string | undefined
 
@@ -604,7 +701,9 @@ class CustomYamlDocumenter extends YamlDocumenter {
             if (apiItem.kind === "Class" ||
                 apiItem.kind === "Interface" ||
                 apiItem.kind === "Function" ||
-                apiItem.kind === "Namespace") {
+                apiItem.kind === "Namespace" ||
+                apiItem.kind === "TypeAlias" ||
+                apiItem.kind === "Variable") {
                 const same = apiItem.parent.members.filter(m => m.displayName === apiItem.displayName);
                 collision = same.length > 1;
                 for (const item of same) {
@@ -648,7 +747,8 @@ class CustomYamlDocumenter extends YamlDocumenter {
      * @param {IYamlApiFile | undefined} parentYamlFile
      */
     [kAdaptType](typeExcerpt, parentYamlFile) {
-        if (typeExcerpt.tokens.length === 1 || !parentYamlFile) {
+        const excerptTokens = typeExcerpt.tokens.slice(typeExcerpt.tokenRange.startIndex, typeExcerpt.tokenRange.endIndex);
+        if (!parentYamlFile) {
             // @ts-ignore
             return this._linkToUidIfPossible(typeExcerpt.text);
         }
@@ -657,7 +757,7 @@ class CustomYamlDocumenter extends YamlDocumenter {
         let fullName = "";
         /** @type {IYamlReferenceSpec[]} */
         const specs = [];
-        for (const token of typeExcerpt.tokens.slice(typeExcerpt.tokenRange.startIndex, typeExcerpt.tokenRange.endIndex)) {
+        for (const token of excerptTokens) {
             /** @type {IYamlReferenceSpec} */
             let spec;
             if (token.kind === "Reference") {
@@ -682,10 +782,10 @@ class CustomYamlDocumenter extends YamlDocumenter {
                 uid += token.text.replace(/\s*(=>|[,.|:&<>{}()\[\]])\s*/g, (_, s) => {
                     return s === "{" ? "{{" :
                         s === "}" ? "}}" :
-                        s === "<" ? "{" :
-                        s === ">" ? "}" :
-                        s === "=>" ? ":" :
-                        s;
+                            s === "<" ? "{" :
+                                s === ">" ? "}" :
+                                    s === "=>" ? ":" :
+                                        s;
                 });
                 name += token.text;
                 fullName += token.text;

@@ -15,6 +15,10 @@
       "docs-sources/xrefmap-dom.yml",
       "docs-sources/xrefmap-ecma262.yml"
     ],
+    "exportRawModel": true,
+    "rawModelOutputFolder": ".docs/raw",
+    "exportViewModel": true,
+    "viewModelOutputFolder": ".docs/view",
     "globalMetadata": {
       "_appTitle": "@esfx API Reference",
       "_appLogoPath": "images/esfx-logo-white-38x38.svg",

@@ -1,0 +1,7 @@
+{{#aliasType}}
+<h5 class="fieldValue">{{__global.type}}</h5>
+<div class="fieldValue">
+<span class="type">{{{value.type.0.specName.0.value}}}</span>
+<p class="description">{{{value.description}}}</p>
+</div>
+{{/aliasType}}
