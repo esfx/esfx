@@ -917,18 +917,22 @@ references:
   name: '[KeyedMultiCollection.clear]()'
   href: api/collection-core/keyedmulticollection_interface.html#collection_core_KeyedMultiCollection_Interface__KeyedMultiCollection_clear_
   fullName: '[KeyedMultiCollection.clear]()'
-- uid: collection-core.KeyedMultiCollection_Interface.[KeyedMultiCollection.deleteKey]
-  name: '[KeyedMultiCollection.deleteKey](key)'
-  href: api/collection-core/keyedmulticollection_interface.html#collection_core_KeyedMultiCollection_Interface__KeyedMultiCollection_deleteKey_
-  fullName: '[KeyedMultiCollection.deleteKey](key)'
-- uid: collection-core.KeyedMultiCollection_Interface.[KeyedMultiCollection.deleteKeyValue]
-  name: '[KeyedMultiCollection.deleteKeyValue](key, value)'
-  href: api/collection-core/keyedmulticollection_interface.html#collection_core_KeyedMultiCollection_Interface__KeyedMultiCollection_deleteKeyValue_
-  fullName: '[KeyedMultiCollection.deleteKeyValue](key, value)'
+- uid: collection-core.KeyedMultiCollection_Interface.[KeyedMultiCollection.delete]
+  name: '[KeyedMultiCollection.delete](key)'
+  href: api/collection-core/keyedmulticollection_interface.html#collection_core_KeyedMultiCollection_Interface__KeyedMultiCollection_delete_
+  fullName: '[KeyedMultiCollection.delete](key)'
+- uid: collection-core.KeyedMultiCollection_Interface.[KeyedMultiCollection.deleteValue]
+  name: '[KeyedMultiCollection.deleteValue](key, value)'
+  href: api/collection-core/keyedmulticollection_interface.html#collection_core_KeyedMultiCollection_Interface__KeyedMultiCollection_deleteValue_
+  fullName: '[KeyedMultiCollection.deleteValue](key, value)'
 - uid: collection-core.KeyedMultiCollection_Namespace
   name: KeyedMultiCollection
   href: api/collection-core/keyedmulticollection_namespace.html#collection_core_KeyedMultiCollection_Namespace
   fullName: KeyedMultiCollection
+- uid: collection-core.KeyedMultiCollection_Namespace._delete
+  name: _delete
+  href: api/collection-core/keyedmulticollection_namespace.html
+  fullName: _delete
 - uid: collection-core.KeyedMultiCollection_Namespace.add
   name: add
   href: api/collection-core/keyedmulticollection_namespace.html
@@ -937,14 +941,10 @@ references:
   name: clear
   href: api/collection-core/keyedmulticollection_namespace.html
   fullName: clear
-- uid: collection-core.KeyedMultiCollection_Namespace.deleteKey
-  name: deleteKey
+- uid: collection-core.KeyedMultiCollection_Namespace.deleteValue
+  name: deleteValue
   href: api/collection-core/keyedmulticollection_namespace.html
-  fullName: deleteKey
-- uid: collection-core.KeyedMultiCollection_Namespace.deleteKeyValue
-  name: deleteKeyValue
-  href: api/collection-core/keyedmulticollection_namespace.html
-  fullName: deleteKeyValue
+  fullName: deleteValue
 - uid: collection-core.KeyedMultiCollection_Namespace.isKeyedMultiCollection_Function
   name: isKeyedMultiCollection(value)
   href: api/collection-core/keyedmulticollection_namespace.html
@@ -1081,14 +1081,14 @@ references:
   name: '[ReadonlyKeyedMultiCollection.get](key)'
   href: api/collection-core/readonlykeyedmulticollection_interface.html#collection_core_ReadonlyKeyedMultiCollection_Interface__ReadonlyKeyedMultiCollection_get_
   fullName: '[ReadonlyKeyedMultiCollection.get](key)'
-- uid: collection-core.ReadonlyKeyedMultiCollection_Interface.[ReadonlyKeyedMultiCollection.hasKey]
-  name: '[ReadonlyKeyedMultiCollection.hasKey](key)'
-  href: api/collection-core/readonlykeyedmulticollection_interface.html#collection_core_ReadonlyKeyedMultiCollection_Interface__ReadonlyKeyedMultiCollection_hasKey_
-  fullName: '[ReadonlyKeyedMultiCollection.hasKey](key)'
-- uid: collection-core.ReadonlyKeyedMultiCollection_Interface.[ReadonlyKeyedMultiCollection.hasKeyValue]
-  name: '[ReadonlyKeyedMultiCollection.hasKeyValue](key, value)'
-  href: api/collection-core/readonlykeyedmulticollection_interface.html#collection_core_ReadonlyKeyedMultiCollection_Interface__ReadonlyKeyedMultiCollection_hasKeyValue_
-  fullName: '[ReadonlyKeyedMultiCollection.hasKeyValue](key, value)'
+- uid: collection-core.ReadonlyKeyedMultiCollection_Interface.[ReadonlyKeyedMultiCollection.has]
+  name: '[ReadonlyKeyedMultiCollection.has](key)'
+  href: api/collection-core/readonlykeyedmulticollection_interface.html#collection_core_ReadonlyKeyedMultiCollection_Interface__ReadonlyKeyedMultiCollection_has_
+  fullName: '[ReadonlyKeyedMultiCollection.has](key)'
+- uid: collection-core.ReadonlyKeyedMultiCollection_Interface.[ReadonlyKeyedMultiCollection.hasValue]
+  name: '[ReadonlyKeyedMultiCollection.hasValue](key, value)'
+  href: api/collection-core/readonlykeyedmulticollection_interface.html#collection_core_ReadonlyKeyedMultiCollection_Interface__ReadonlyKeyedMultiCollection_hasValue_
+  fullName: '[ReadonlyKeyedMultiCollection.hasValue](key, value)'
 - uid: collection-core.ReadonlyKeyedMultiCollection_Interface.[ReadonlyKeyedMultiCollection.keys]
   name: '[ReadonlyKeyedMultiCollection.keys]()'
   href: api/collection-core/readonlykeyedmulticollection_interface.html#collection_core_ReadonlyKeyedMultiCollection_Interface__ReadonlyKeyedMultiCollection_keys_
@@ -1109,14 +1109,14 @@ references:
   name: get
   href: api/collection-core/readonlykeyedmulticollection_namespace.html
   fullName: get
-- uid: collection-core.ReadonlyKeyedMultiCollection_Namespace.hasKey
-  name: hasKey
+- uid: collection-core.ReadonlyKeyedMultiCollection_Namespace.has
+  name: has
   href: api/collection-core/readonlykeyedmulticollection_namespace.html
-  fullName: hasKey
-- uid: collection-core.ReadonlyKeyedMultiCollection_Namespace.hasKeyValue
-  name: hasKeyValue
+  fullName: has
+- uid: collection-core.ReadonlyKeyedMultiCollection_Namespace.hasValue
+  name: hasValue
   href: api/collection-core/readonlykeyedmulticollection_namespace.html
-  fullName: hasKeyValue
+  fullName: hasValue
 - uid: collection-core.ReadonlyKeyedMultiCollection_Namespace.isReadonlyKeyedMultiCollection_Function
   name: isReadonlyKeyedMultiCollection(value)
   href: api/collection-core/readonlykeyedmulticollection_namespace.html
@@ -1681,38 +1681,38 @@ references:
   name: '[KeyedMultiCollection.clear]()'
   href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__KeyedMultiCollection_clear_
   fullName: '[KeyedMultiCollection.clear]()'
-- uid: collections-multimap.MultiMap.[KeyedMultiCollection.deleteKey]
-  name: '[KeyedMultiCollection.deleteKey](key)'
-  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__KeyedMultiCollection_deleteKey_
-  fullName: '[KeyedMultiCollection.deleteKey](key)'
-- uid: collections-multimap.MultiMap.[KeyedMultiCollection.deleteKeyValue]
-  name: '[KeyedMultiCollection.deleteKeyValue](key, value)'
-  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__KeyedMultiCollection_deleteKeyValue_
-  fullName: '[KeyedMultiCollection.deleteKeyValue](key, value)'
-- uid: collections-multimap.MultiMap.[KeyedMultiCollection.get]
-  name: '[KeyedMultiCollection.get](key)'
-  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__KeyedMultiCollection_get_
-  fullName: '[KeyedMultiCollection.get](key)'
-- uid: collections-multimap.MultiMap.[KeyedMultiCollection.hasKey]
-  name: '[KeyedMultiCollection.hasKey](key)'
-  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__KeyedMultiCollection_hasKey_
-  fullName: '[KeyedMultiCollection.hasKey](key)'
-- uid: collections-multimap.MultiMap.[KeyedMultiCollection.hasKeyValue]
-  name: '[KeyedMultiCollection.hasKeyValue](key, value)'
-  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__KeyedMultiCollection_hasKeyValue_
-  fullName: '[KeyedMultiCollection.hasKeyValue](key, value)'
-- uid: collections-multimap.MultiMap.[KeyedMultiCollection.keys]
-  name: '[KeyedMultiCollection.keys]()'
-  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__KeyedMultiCollection_keys_
-  fullName: '[KeyedMultiCollection.keys]()'
-- uid: collections-multimap.MultiMap.[KeyedMultiCollection.size]
-  name: '[KeyedMultiCollection.size]'
-  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__KeyedMultiCollection_size_
-  fullName: '[KeyedMultiCollection.size]'
-- uid: collections-multimap.MultiMap.[KeyedMultiCollection.values]
-  name: '[KeyedMultiCollection.values]()'
-  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__KeyedMultiCollection_values_
-  fullName: '[KeyedMultiCollection.values]()'
+- uid: collections-multimap.MultiMap.[KeyedMultiCollection.delete]
+  name: '[KeyedMultiCollection.delete](key)'
+  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__KeyedMultiCollection_delete_
+  fullName: '[KeyedMultiCollection.delete](key)'
+- uid: collections-multimap.MultiMap.[KeyedMultiCollection.deleteValue]
+  name: '[KeyedMultiCollection.deleteValue](key, value)'
+  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__KeyedMultiCollection_deleteValue_
+  fullName: '[KeyedMultiCollection.deleteValue](key, value)'
+- uid: collections-multimap.MultiMap.[ReadonlyKeyedMultiCollection.get]
+  name: '[ReadonlyKeyedMultiCollection.get](key)'
+  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__ReadonlyKeyedMultiCollection_get_
+  fullName: '[ReadonlyKeyedMultiCollection.get](key)'
+- uid: collections-multimap.MultiMap.[ReadonlyKeyedMultiCollection.has]
+  name: '[ReadonlyKeyedMultiCollection.has](key)'
+  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__ReadonlyKeyedMultiCollection_has_
+  fullName: '[ReadonlyKeyedMultiCollection.has](key)'
+- uid: collections-multimap.MultiMap.[ReadonlyKeyedMultiCollection.hasValue]
+  name: '[ReadonlyKeyedMultiCollection.hasValue](key, value)'
+  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__ReadonlyKeyedMultiCollection_hasValue_
+  fullName: '[ReadonlyKeyedMultiCollection.hasValue](key, value)'
+- uid: collections-multimap.MultiMap.[ReadonlyKeyedMultiCollection.keys]
+  name: '[ReadonlyKeyedMultiCollection.keys]()'
+  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__ReadonlyKeyedMultiCollection_keys_
+  fullName: '[ReadonlyKeyedMultiCollection.keys]()'
+- uid: collections-multimap.MultiMap.[ReadonlyKeyedMultiCollection.size]
+  name: '[ReadonlyKeyedMultiCollection.size]'
+  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__ReadonlyKeyedMultiCollection_size_
+  fullName: '[ReadonlyKeyedMultiCollection.size]'
+- uid: collections-multimap.MultiMap.[ReadonlyKeyedMultiCollection.values]
+  name: '[ReadonlyKeyedMultiCollection.values]()'
+  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__ReadonlyKeyedMultiCollection_values_
+  fullName: '[ReadonlyKeyedMultiCollection.values]()'
 - uid: collections-multimap.MultiMap.[Symbol.iterator]
   name: '[Symbol.iterator]()'
   href: api/collections-multimap/multimap.html#collections_multimap_MultiMap__Symbol_iterator_
@@ -1730,13 +1730,13 @@ references:
   href: api/collections-multimap/multimap.html#collections_multimap_MultiMap_clear
   fullName: clear()
 - uid: collections-multimap.MultiMap.delete
-  name: delete(key, value)
+  name: delete(key)
   href: api/collections-multimap/multimap.html#collections_multimap_MultiMap_delete
-  fullName: delete(key, value)
-- uid: collections-multimap.MultiMap.deleteKey
-  name: deleteKey(key)
-  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap_deleteKey
-  fullName: deleteKey(key)
+  fullName: delete(key)
+- uid: collections-multimap.MultiMap.deleteValue
+  name: deleteValue(key, value)
+  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap_deleteValue
+  fullName: deleteValue(key, value)
 - uid: collections-multimap.MultiMap.ensureCapacity
   name: ensureCapacity(capacity)
   href: api/collections-multimap/multimap.html#collections_multimap_MultiMap_ensureCapacity
@@ -1754,13 +1754,13 @@ references:
   href: api/collections-multimap/multimap.html#collections_multimap_MultiMap_get
   fullName: get(key)
 - uid: collections-multimap.MultiMap.has
-  name: has(key, value)
+  name: has(key)
   href: api/collections-multimap/multimap.html#collections_multimap_MultiMap_has
-  fullName: has(key, value)
-- uid: collections-multimap.MultiMap.hasKey
-  name: hasKey(key)
-  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap_hasKey
-  fullName: hasKey(key)
+  fullName: has(key)
+- uid: collections-multimap.MultiMap.hasValue
+  name: hasValue(key, value)
+  href: api/collections-multimap/multimap.html#collections_multimap_MultiMap_hasValue
+  fullName: hasValue(key, value)
 - uid: collections-multimap.MultiMap.keyEqualer
   name: keyEqualer
   href: api/collections-multimap/multimap.html#collections_multimap_MultiMap_keyEqualer

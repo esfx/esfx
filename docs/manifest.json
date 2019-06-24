@@ -774,7 +774,7 @@
       "output": {
         ".html": {
           "relative_path": "api/collection-core/keyedmulticollection_interface.html",
-          "hash": "t2rYNPgWHffRHyBxZJZNOw=="
+          "hash": "7bc7Xk1yp4lTC3tVkpAAGg=="
         }
       },
       "is_incremental": false,
@@ -786,7 +786,7 @@
       "output": {
         ".html": {
           "relative_path": "api/collection-core/keyedmulticollection_namespace.html",
-          "hash": "bthRz23Fm5wuQzR8Z5GILg=="
+          "hash": "bn6YXQQny1vfKuqlvf0x7w=="
         }
       },
       "is_incremental": false,
@@ -870,7 +870,7 @@
       "output": {
         ".html": {
           "relative_path": "api/collection-core/readonlykeyedmulticollection_interface.html",
-          "hash": "Ph52h0PoIo5oG7EF9sP4mA=="
+          "hash": "WVQO/BfDShATbYS3anZxpA=="
         }
       },
       "is_incremental": false,
@@ -882,7 +882,7 @@
       "output": {
         ".html": {
           "relative_path": "api/collection-core/readonlykeyedmulticollection_namespace.html",
-          "hash": "1dxz8r6P3ymVOB6mqlZr5A=="
+          "hash": "EppJvr7SLF82ji8UVVci7w=="
         }
       },
       "is_incremental": false,
@@ -1014,7 +1014,7 @@
       "output": {
         ".html": {
           "relative_path": "api/collections-multimap/multimap.html",
-          "hash": "Yam40/OvNKSIggxN0iyEHw=="
+          "hash": "fmB+Pamo+7bAHIpWCuc0GQ=="
         }
       },
       "is_incremental": false,
@@ -2049,30 +2049,22 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because config changed.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "ConfigChanged"
+        "skipped_file_count": 0
       },
       "processors": {
-        "UniversalReferenceDocumentProcessor": {
+        "ResourceDocumentProcessor": {
           "can_incremental": false,
-          "details": "Processor UniversalReferenceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
           "skipped_file_count": 0
         },
-        "ConceptualDocumentProcessor": {
+        "UniversalReferenceDocumentProcessor": {
           "can_incremental": false,
-          "incrementalPhase": "build",
-          "total_file_count": 1,
-          "skipped_file_count": 0
-        },
-        "ResourceDocumentProcessor": {
-          "can_incremental": false,
-          "details": "Processor ResourceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
+          "details": "Processor UniversalReferenceDocumentProcessor cannot support incremental build because the processor doesn't implement ISupportIncrementalDocumentProcessor interface.",
           "incrementalPhase": "build",
           "total_file_count": 0,
           "skipped_file_count": 0
@@ -2083,6 +2075,12 @@
           "incrementalPhase": "build",
           "total_file_count": 0,
           "skipped_file_count": 0
+        },
+        "ConceptualDocumentProcessor": {
+          "can_incremental": true,
+          "incrementalPhase": "build",
+          "total_file_count": 1,
+          "skipped_file_count": 1
         }
       }
     },

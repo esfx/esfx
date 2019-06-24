@@ -28,9 +28,9 @@ it("add", () => {
     set.add("a", p2);
     set.add("b", p3);
     expect(set.size).toBe(3);
-    expect(set.has("a", p0)).toBe(true);
-    expect(set.has("a", p1)).toBe(true);
-    expect(set.has("a", p2)).toBe(true);
+    expect(set.hasValue("a", p0)).toBe(true);
+    expect(set.hasValue("a", p1)).toBe(true);
+    expect(set.hasValue("a", p2)).toBe(true);
     expect(set.get("a")).toBeDefined();
     expect(set.get("a")!.has(p0)).toBe(true);
     expect(set.get("a")!.has(p1)).toBe(true);
@@ -44,6 +44,6 @@ it("delete", () => {
     const p1 = new Point(10, 20);
     const set = new MultiMap<string, Point>();
     set.add("a", p0);
-    set.delete("a", p1);
+    set.deleteValue("a", p1);
     expect(set.size).toBe(0);
 });

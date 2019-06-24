@@ -16,7 +16,7 @@
 
 import { isIterable, isObject, isDefined, isNumber } from "@esfx/internal-guards";
 import { Equaler } from "@esfx/equatable";
-import { ReadonlyCollection, KeyedMultiCollection } from "@esfx/collection-core";
+import { KeyedMultiCollection, ReadonlyKeyedMultiCollection } from "@esfx/collection-core";
 import { HashMap } from "@esfx/collections-hashmap";
 import { HashSet, ReadonlyHashSet } from "@esfx/collections-hashset";
 
@@ -72,16 +72,16 @@ export class MultiMap<K, V> implements KeyedMultiCollection<K, V> {
         return this._size;
     }
 
-    has(key: K, value: V) {
+    has(key: K) {
+        return this._map.has(key);
+    }
+
+    hasValue(key: K, value: V) {
         const values = this._map.get(key);
         if (values) {
             return values.has(value);
         }
         return false;
-    }
-
-    hasKey(key: K) {
-        return this._map.has(key);
     }
 
     get(key: K): ReadonlyHashSet<V> | undefined {
@@ -102,7 +102,17 @@ export class MultiMap<K, V> implements KeyedMultiCollection<K, V> {
         return this;
     }
 
-    delete(key: K, value: V) {
+    delete(key: K) {
+        const values = this._map.get(key);
+        if (values) {
+            this._size -= values.size;
+            this._map.delete(key);
+            return values.size;
+        }
+        return 0;
+    }
+
+    deleteValue(key: K, value: V) {
         const values = this._map.get(key);
         if (values) {
             const size = values.size;
@@ -115,16 +125,6 @@ export class MultiMap<K, V> implements KeyedMultiCollection<K, V> {
             }
         }
         return false;
-    }
-
-    deleteKey(key: K) {
-        const values = this._map.get(key);
-        if (values) {
-            this._size -= values.size;
-            this._map.delete(key);
-            return values.size;
-        }
-        return 0;
     }
 
     clear() {
@@ -172,16 +172,21 @@ export class MultiMap<K, V> implements KeyedMultiCollection<K, V> {
 
     [Symbol.toStringTag]: string;
 
-    get [KeyedMultiCollection.size]() { return this.size; }
-    [KeyedMultiCollection.hasKey](key: K) { return this.hasKey(key); }
-    [KeyedMultiCollection.hasKeyValue](key: K, value: V): boolean { return this.has(key, value); }
-    [KeyedMultiCollection.get](key: K) { return this.get(key) }
-    [KeyedMultiCollection.keys]() { return this.keys(); }
-    [KeyedMultiCollection.values]() { return this.values(); }
+    // #region ReadonlyKeyedMultiCollection
+    get [ReadonlyKeyedMultiCollection.size]() { return this.size; }
+    [ReadonlyKeyedMultiCollection.has](key: K) { return this.has(key); }
+    [ReadonlyKeyedMultiCollection.hasValue](key: K, value: V): boolean { return this.hasValue(key, value); }
+    [ReadonlyKeyedMultiCollection.get](key: K) { return this.get(key) }
+    [ReadonlyKeyedMultiCollection.keys]() { return this.keys(); }
+    [ReadonlyKeyedMultiCollection.values]() { return this.values(); }
+    // #endregion ReadonlyKeyedMultiCollection
+
+    // #region KeyedMultiCollection
     [KeyedMultiCollection.add](key: K, value: V) { this.add(key, value); }
-    [KeyedMultiCollection.deleteKey](key: K) { return this.deleteKey(key); }
-    [KeyedMultiCollection.deleteKeyValue](key: K, value: V) { return this.delete(key, value); }
+    [KeyedMultiCollection.delete](key: K) { return this.delete(key); }
+    [KeyedMultiCollection.deleteValue](key: K, value: V) { return this.deleteValue(key, value); }
     [KeyedMultiCollection.clear]() { this.clear(); }
+    // #endergion KeyedMultiCollection
 }
 
 Object.defineProperty(MultiMap, Symbol.toStringTag, {

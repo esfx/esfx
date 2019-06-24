@@ -428,12 +428,12 @@ export interface ReadonlyKeyedMultiCollection<K, V> extends Iterable<[K, V]> {
     /**
      * Tests whether a key is present in the collection.
      */
-    [ReadonlyKeyedMultiCollection.hasKey](key: K): boolean;
+    [ReadonlyKeyedMultiCollection.has](key: K): boolean;
 
     /**
      * Tests whether a key and value is present in the collection.
      */
-    [ReadonlyKeyedMultiCollection.hasKeyValue](key: K, value: V): boolean;
+    [ReadonlyKeyedMultiCollection.hasValue](key: K, value: V): boolean;
 
     /**
      * Gets the value in the collection associated with the provided key, if it exists.
@@ -459,14 +459,14 @@ export namespace ReadonlyKeyedMultiCollection {
     export const size = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.size");
 
     /**
-     * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.hasKey]` method.
+     * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.has]` method.
      */
-    export const hasKey = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.hasKey");
+    export const has = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.has");
 
     /**
-     * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.hasKeyValue]` method.
+     * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.hasValue]` method.
      */
-    export const hasKeyValue = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.hasKeyValue");
+    export const hasValue = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.hasValue");
 
     /**
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.get]` method.
@@ -497,8 +497,8 @@ export namespace ReadonlyKeyedMultiCollection {
     export function isReadonlyKeyedMultiCollection(value: unknown): value is ReadonlyKeyedMultiCollection<unknown, unknown> {
         return isIterable(value)
             && ReadonlyKeyedMultiCollection.size in value
-            && ReadonlyKeyedMultiCollection.hasKey in value
-            && ReadonlyKeyedMultiCollection.hasKeyValue in value
+            && ReadonlyKeyedMultiCollection.has in value
+            && ReadonlyKeyedMultiCollection.hasValue in value
             && ReadonlyKeyedMultiCollection.get in value
             && ReadonlyKeyedMultiCollection.keys in value
             && ReadonlyKeyedMultiCollection.values in value;
@@ -515,13 +515,13 @@ export interface KeyedMultiCollection<K, V> extends ReadonlyKeyedMultiCollection
      * Deletes a key and its associated values from the collection.
      * @returns The number of values removed when the key was deleted.
      */
-    [KeyedMultiCollection.deleteKey](key: K): number;
+    [KeyedMultiCollection.delete](key: K): number;
 
     /**
      * Deletes a key and its associated value from the collection.
      * @returns `true` if the key and value were found and removed; otherwise, `false`.
      */
-    [KeyedMultiCollection.deleteKeyValue](key: K, value: V): boolean;
+    [KeyedMultiCollection.deleteValue](key: K, value: V): boolean;
 
     /**
      * Clears the collection.
@@ -532,8 +532,8 @@ export interface KeyedMultiCollection<K, V> extends ReadonlyKeyedMultiCollection
 export namespace KeyedMultiCollection {
     // ReadonlyKeyedMultiCollection<K, V>
     export import size = ReadonlyKeyedMultiCollection.size;
-    export import hasKey = ReadonlyKeyedMultiCollection.hasKey;
-    export import hasKeyValue = ReadonlyKeyedMultiCollection.hasKeyValue;
+    export import has = ReadonlyKeyedMultiCollection.has;
+    export import hasValue = ReadonlyKeyedMultiCollection.hasValue;
     export import get = ReadonlyKeyedMultiCollection.get;
     export import keys = ReadonlyKeyedMultiCollection.keys;
     export import values = ReadonlyKeyedMultiCollection.values;
@@ -545,15 +545,12 @@ export namespace KeyedMultiCollection {
      */
     export const add = Symbol.for("@esfx/collection-core:KeyedMultiCollection.add");
 
-    /**
-     * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.deleteKey]` method.
-     */
-    export const deleteKey = Symbol.for("@esfx/collection-core:KeyedMultiCollection.deleteKey");
+    KeyedMultiCollection.delete = Symbol.for("@esfx/collection-core:KeyedMultiCollection.delete") as typeof KeyedMultiCollection.delete;
 
     /**
-     * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.deleteKeyValue]` method.
+     * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.deleteValue]` method.
      */
-    export const deleteKeyValue = Symbol.for("@esfx/collection-core:KeyedMultiCollection.deleteKeyValue");
+    export const deleteValue = Symbol.for("@esfx/collection-core:KeyedMultiCollection.deleteValue");
 
     /**
      * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.clear]` method.
@@ -574,8 +571,16 @@ export namespace KeyedMultiCollection {
     export function isKeyedMultiCollection(value: unknown): value is KeyedMultiCollection<unknown, unknown> {
         return isReadonlyKeyedMultiCollection(value)
             && KeyedMultiCollection.add in value
-            && KeyedMultiCollection.deleteKey in value
-            && KeyedMultiCollection.deleteKeyValue in value
+            && KeyedMultiCollection.delete in value
+            && KeyedMultiCollection.deleteValue in value
             && KeyedMultiCollection.clear in value;
     }
+}
+
+export declare namespace KeyedMultiCollection {
+    /**
+     * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.delete]` method.
+     */
+    const _delete: unique symbol;
+    export { _delete as delete };
 }
