@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collection-core",
-    "version": "1.0.0-pre.9",
+    "version": "1.0.0-pre.10",
     "description": "A low-level Symbol-based API for defining common collection behaviors.",
     "main": "index.js",
     "types": "index.d.ts",
