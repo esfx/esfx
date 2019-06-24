@@ -1,6 +1,6 @@
 {
     "name": "@esfx/type-model",
-    "version": "1.0.0-pre.9",
+    "version": "1.0.0-pre.11",
     "description": "Utility types for TypeScript.",
     "main": "index.js",
     "types": "index.d.ts",
