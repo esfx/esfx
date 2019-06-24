@@ -520,3 +520,10 @@ export type Intersect<A extends object, B extends object> = Pick<A & B, Extract<
  * Combine the properties of `A` and `B`, chosing the properties in `B` if the types differ.
  */
 export type Assign<A extends object, B extends object> = Reshape<Diff<A, B> & B>;
+
+/**
+ * Maps to a mutable copy of T.
+ */
+export type Mutable<T> = {
+    -readonly [P in keyof T]: T[P];
+}
