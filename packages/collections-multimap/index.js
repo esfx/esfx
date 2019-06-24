@@ -1,3 +1,4 @@
+
 /*!
    Copyright 2019 Ron Buckton
 
@@ -12,12 +13,6 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-
 */
 
-export * from "@esfx/collections-sortedmap";
-export * from "@esfx/collections-sortedset";
-export * from "@esfx/collections-hashmap";
-export * from "@esfx/collections-hashset";
-export * from "@esfx/collections-multimap";
-export * from "@esfx/collections-linkedlist";
+module.exports = require("./dist");

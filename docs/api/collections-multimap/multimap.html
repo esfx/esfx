@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class HashMap
+    <title>Class MultiMap
    | @esfx API Reference </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class HashMap
+    <meta name="title" content="Class MultiMap
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
@@ -78,9 +78,9 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="collections-hashmap.HashMap">
+            <article class="content wrap" id="_content" data-uid="collections-multimap.MultiMap">
   
-  <h1 id="collections_hashmap_HashMap" data-uid="collections-hashmap.HashMap">Class HashMap
+  <h1 id="collections_multimap_MultiMap" data-uid="collections-multimap.MultiMap">Class MultiMap
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
@@ -97,19 +97,19 @@
   </h3>
   
   
-  <h4 id="collections_hashmap_HashMap__constructor_" data-uid="collections-hashmap.HashMap.(constructor)">constructor(equaler)</h4>
-  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>HashMap</code> class</p>
+  <h4 id="collections_multimap_MultiMap__constructor_" data-uid="collections-multimap.MultiMap.(constructor)">constructor(options)</h4>
+  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>MultiMap</code> class</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">constructor(equaler?: Equaler&lt;K&gt;);</code></pre>
+    <pre><code class="lang-typeScript hljs">constructor(options?: MultiMapOptions&lt;K, V&gt;);</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
   <dl class="parameterList">
-    <dt>equaler</dt>
-    <dd class="type"><a class="xref" href="../equatable/equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;<span class="xref">K</span>&gt;</dd>
+    <dt>options</dt>
+    <dd class="type"><a class="xref" href="multimapoptions.html#collections_multimap_MultiMapOptions">MultiMapOptions</a>&lt;<span class="xref">K</span>, <span class="xref">V</span>&gt;</dd>
     <dd class="description">
       
       
@@ -117,13 +117,13 @@
   </dl>
   
   
-  <h4 id="collections_hashmap_HashMap__constructor__1" data-uid="collections-hashmap.HashMap.(constructor)_1">constructor(iterable, equaler)</h4>
-  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>HashMap</code> class</p>
+  <h4 id="collections_multimap_MultiMap__constructor__1" data-uid="collections-multimap.MultiMap.(constructor)_1">constructor(iterable, options)</h4>
+  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>MultiMap</code> class</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">constructor(iterable?: Iterable&lt;[K, V]&gt;, equaler?: Equaler&lt;K&gt;);</code></pre>
+    <pre><code class="lang-typeScript hljs">constructor(iterable?: Iterable&lt;[K, V]&gt;, options?: MultiMapOptions&lt;K, V&gt;);</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -134,8 +134,8 @@
       
       
     </dd>
-    <dt>equaler</dt>
-    <dd class="type"><a class="xref" href="../equatable/equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;<span class="xref">K</span>&gt;</dd>
+    <dt>options</dt>
+    <dd class="type"><a class="xref" href="multimapoptions.html#collections_multimap_MultiMapOptions">MultiMapOptions</a>&lt;<span class="xref">K</span>, <span class="xref">V</span>&gt;</dd>
     <dd class="description">
       
       
@@ -143,13 +143,13 @@
   </dl>
   
   
-  <h4 id="collections_hashmap_HashMap__constructor__2" data-uid="collections-hashmap.HashMap.(constructor)_2">constructor(capacity, equaler)</h4>
-  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>HashMap</code> class</p>
+  <h4 id="collections_multimap_MultiMap__constructor__2" data-uid="collections-multimap.MultiMap.(constructor)_2">constructor(capacity, options)</h4>
+  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>MultiMap</code> class</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">constructor(capacity: number, equaler?: Equaler&lt;K&gt;);</code></pre>
+    <pre><code class="lang-typeScript hljs">constructor(capacity: number, options?: MultiMapOptions&lt;K, V&gt;);</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -160,8 +160,8 @@
       
       
     </dd>
-    <dt>equaler</dt>
-    <dd class="type"><a class="xref" href="../equatable/equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;<span class="xref">K</span>&gt;</dd>
+    <dt>options</dt>
+    <dd class="type"><a class="xref" href="multimapoptions.html#collections_multimap_MultiMapOptions">MultiMapOptions</a>&lt;<span class="xref">K</span>, <span class="xref">V</span>&gt;</dd>
     <dd class="description">
       
       
@@ -180,12 +180,12 @@
   </h3>
   
   
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_size_" data-uid="collections-hashmap.HashMap.[KeyedCollection.size]">[KeyedCollection.size]</h4>
+  <h4 id="collections_multimap_MultiMap__KeyedMultiCollection_size_" data-uid="collections-multimap.MultiMap.[KeyedMultiCollection.size]">[KeyedMultiCollection.size]</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">readonly [KeyedCollection.size]: number;</code></pre>
+    <pre><code class="lang-typeScript hljs">readonly [KeyedMultiCollection.size]: number;</code></pre>
   </div>
   
   <h5 class="propertyValue">Property Value</h5>
@@ -195,7 +195,7 @@
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap__Symbol_toStringTag_" data-uid="collections-hashmap.HashMap.[Symbol.toStringTag]">[Symbol.toStringTag]</h4>
+  <h4 id="collections_multimap_MultiMap__Symbol_toStringTag_" data-uid="collections-multimap.MultiMap.[Symbol.toStringTag]">[Symbol.toStringTag]</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -210,12 +210,12 @@
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap_equaler" data-uid="collections-hashmap.HashMap.equaler">equaler</h4>
+  <h4 id="collections_multimap_MultiMap_keyEqualer" data-uid="collections-multimap.MultiMap.keyEqualer">keyEqualer</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">readonly equaler: Equaler&lt;K&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">readonly keyEqualer: Equaler&lt;K&gt;;</code></pre>
   </div>
   
   <h5 class="propertyValue">Property Value</h5>
@@ -225,7 +225,7 @@
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap_size" data-uid="collections-hashmap.HashMap.size">size</h4>
+  <h4 id="collections_multimap_MultiMap_size" data-uid="collections-multimap.MultiMap.size">size</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -236,6 +236,21 @@
   <h5 class="propertyValue">Property Value</h5>
   <div class="propertyValue">
   <span class="type">number</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap_valueEqualer" data-uid="collections-multimap.MultiMap.valueEqualer">valueEqualer</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">readonly valueEqualer: Equaler&lt;V&gt;;</code></pre>
+  </div>
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <div class="propertyValue">
+  <span class="type"><a class="xref" href="../equatable/equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;<span class="xref">V</span>&gt;</span>
   <p class="description">
   </div>
   <h3 id="methods">
@@ -251,114 +266,12 @@
   </h3>
   
   
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_clear_" data-uid="collections-hashmap.HashMap.[KeyedCollection.clear]">[KeyedCollection.clear]()</h4>
+  <h4 id="collections_multimap_MultiMap__KeyedMultiCollection_add_" data-uid="collections-multimap.MultiMap.[KeyedMultiCollection.add]">[KeyedMultiCollection.add](key, value)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[KeyedCollection.clear](): void;</code></pre>
-  </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type">void</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_delete_" data-uid="collections-hashmap.HashMap.[KeyedCollection.delete]">[KeyedCollection.delete](key)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[KeyedCollection.delete](key: K): boolean;</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type">boolean</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_get_" data-uid="collections-hashmap.HashMap.[KeyedCollection.get]">[KeyedCollection.get](key)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[KeyedCollection.get](key: K): V | undefined;</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">V</span> | undefined</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_has_" data-uid="collections-hashmap.HashMap.[KeyedCollection.has]">[KeyedCollection.has](key)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[KeyedCollection.has](key: K): boolean;</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type">boolean</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_keys_" data-uid="collections-hashmap.HashMap.[KeyedCollection.keys]">[KeyedCollection.keys]()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[KeyedCollection.keys](): IterableIterator&lt;K&gt;;</code></pre>
-  </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">IterableIterator</span>&lt;<span class="xref">K</span>&gt;</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_set_" data-uid="collections-hashmap.HashMap.[KeyedCollection.set]">[KeyedCollection.set](key, value)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[KeyedCollection.set](key: K, value: V): void;</code></pre>
+    <pre><code class="lang-typeScript hljs">[KeyedMultiCollection.add](key: K, value: V): void;</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -383,42 +296,12 @@
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_values_" data-uid="collections-hashmap.HashMap.[KeyedCollection.values]">[KeyedCollection.values]()</h4>
+  <h4 id="collections_multimap_MultiMap__KeyedMultiCollection_clear_" data-uid="collections-multimap.MultiMap.[KeyedMultiCollection.clear]">[KeyedMultiCollection.clear]()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[KeyedCollection.values](): IterableIterator&lt;V&gt;;</code></pre>
-  </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">IterableIterator</span>&lt;<span class="xref">V</span>&gt;</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="collections_hashmap_HashMap__Symbol_iterator_" data-uid="collections-hashmap.HashMap.[Symbol.iterator]">[Symbol.iterator]()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[Symbol.iterator](): IterableIterator&lt;[K, V]&gt;;</code></pre>
-  </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">IterableIterator</span>&lt;[<span class="xref">K</span>, <span class="xref">V</span>]&gt;</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="collections_hashmap_HashMap_clear" data-uid="collections-hashmap.HashMap.clear">clear()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">clear(): void;</code></pre>
+    <pre><code class="lang-typeScript hljs">[KeyedMultiCollection.clear](): void;</code></pre>
   </div>
   
   <h5 class="returns">Returns</h5>
@@ -428,12 +311,90 @@
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap_delete" data-uid="collections-hashmap.HashMap.delete">delete(key)</h4>
+  <h4 id="collections_multimap_MultiMap__KeyedMultiCollection_deleteKey_" data-uid="collections-multimap.MultiMap.[KeyedMultiCollection.deleteKey]">[KeyedMultiCollection.deleteKey](key)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">delete(key: K): boolean;</code></pre>
+    <pre><code class="lang-typeScript hljs">[KeyedMultiCollection.deleteKey](key: K): number;</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type">number</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap__KeyedMultiCollection_deleteKeyValue_" data-uid="collections-multimap.MultiMap.[KeyedMultiCollection.deleteKeyValue]">[KeyedMultiCollection.deleteKeyValue](key, value)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[KeyedMultiCollection.deleteKeyValue](key: K, value: V): boolean;</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+    <dt>value</dt>
+    <dd class="type"><span class="xref">V</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type">boolean</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap__KeyedMultiCollection_get_" data-uid="collections-multimap.MultiMap.[KeyedMultiCollection.get]">[KeyedMultiCollection.get](key)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[KeyedMultiCollection.get](key: K): ReadonlyHashSet&lt;V&gt; | undefined;</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><a class="xref" href="../collections-hashset/readonlyhashset.html#collections_hashset_ReadonlyHashSet">ReadonlyHashSet</a>&lt;<span class="xref">V</span>&gt; | undefined</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap__KeyedMultiCollection_hasKey_" data-uid="collections-multimap.MultiMap.[KeyedMultiCollection.hasKey]">[KeyedMultiCollection.hasKey](key)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[KeyedMultiCollection.hasKey](key: K): boolean;</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -452,7 +413,181 @@
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap_ensureCapacity" data-uid="collections-hashmap.HashMap.ensureCapacity">ensureCapacity(capacity)</h4>
+  <h4 id="collections_multimap_MultiMap__KeyedMultiCollection_hasKeyValue_" data-uid="collections-multimap.MultiMap.[KeyedMultiCollection.hasKeyValue]">[KeyedMultiCollection.hasKeyValue](key, value)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[KeyedMultiCollection.hasKeyValue](key: K, value: V): boolean;</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+    <dt>value</dt>
+    <dd class="type"><span class="xref">V</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type">boolean</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap__KeyedMultiCollection_keys_" data-uid="collections-multimap.MultiMap.[KeyedMultiCollection.keys]">[KeyedMultiCollection.keys]()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[KeyedMultiCollection.keys](): IterableIterator&lt;K&gt;;</code></pre>
+  </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><span class="xref">IterableIterator</span>&lt;<span class="xref">K</span>&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap__KeyedMultiCollection_values_" data-uid="collections-multimap.MultiMap.[KeyedMultiCollection.values]">[KeyedMultiCollection.values]()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[KeyedMultiCollection.values](): IterableIterator&lt;V&gt;;</code></pre>
+  </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><span class="xref">IterableIterator</span>&lt;<span class="xref">V</span>&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap__Symbol_iterator_" data-uid="collections-multimap.MultiMap.[Symbol.iterator]">[Symbol.iterator]()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[Symbol.iterator](): IterableIterator&lt;[K, V]&gt;;</code></pre>
+  </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><span class="xref">IterableIterator</span>&lt;[<span class="xref">K</span>, <span class="xref">V</span>]&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap_add" data-uid="collections-multimap.MultiMap.add">add(key, value)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">add(key: K, value: V): this;</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+    <dt>value</dt>
+    <dd class="type"><span class="xref">V</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type">this</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap_clear" data-uid="collections-multimap.MultiMap.clear">clear()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">clear(): void;</code></pre>
+  </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type">void</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap_delete" data-uid="collections-multimap.MultiMap.delete">delete(key, value)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">delete(key: K, value: V): boolean;</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+    <dt>value</dt>
+    <dd class="type"><span class="xref">V</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type">boolean</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap_deleteKey" data-uid="collections-multimap.MultiMap.deleteKey">deleteKey(key)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">deleteKey(key: K): number;</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type">number</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap_ensureCapacity" data-uid="collections-multimap.MultiMap.ensureCapacity">ensureCapacity(capacity)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -476,7 +611,7 @@
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap_entries" data-uid="collections-hashmap.HashMap.entries">entries()</h4>
+  <h4 id="collections_multimap_MultiMap_entries" data-uid="collections-multimap.MultiMap.entries">entries()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -491,7 +626,7 @@
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap_forEach" data-uid="collections-hashmap.HashMap.forEach">forEach(callback, thisArg)</h4>
+  <h4 id="collections_multimap_MultiMap_forEach" data-uid="collections-multimap.MultiMap.forEach">forEach(callback, thisArg)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -521,12 +656,12 @@
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap_get" data-uid="collections-hashmap.HashMap.get">get(key)</h4>
+  <h4 id="collections_multimap_MultiMap_get" data-uid="collections-multimap.MultiMap.get">get(key)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">get(key: K): V | undefined;</code></pre>
+    <pre><code class="lang-typeScript hljs">get(key: K): ReadonlyHashSet&lt;V&gt; | undefined;</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -540,56 +675,17 @@
   </dl>
   <h5 class="returns">Returns</h5>
   <div class="return">
-  <span class="type"><span class="xref">V</span> | undefined</span>
+  <span class="type"><a class="xref" href="../collections-hashset/readonlyhashset.html#collections_hashset_ReadonlyHashSet">ReadonlyHashSet</a>&lt;<span class="xref">V</span>&gt; | undefined</span>
   <p class="description">
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap_has" data-uid="collections-hashmap.HashMap.has">has(key)</h4>
+  <h4 id="collections_multimap_MultiMap_has" data-uid="collections-multimap.MultiMap.has">has(key, value)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">has(key: K): boolean;</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type">boolean</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="collections_hashmap_HashMap_keys" data-uid="collections-hashmap.HashMap.keys">keys()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">keys(): IterableIterator&lt;K&gt;;</code></pre>
-  </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">IterableIterator</span>&lt;<span class="xref">K</span>&gt;</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="collections_hashmap_HashMap_set" data-uid="collections-hashmap.HashMap.set">set(key, value)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">set(key: K, value: V): this;</code></pre>
+    <pre><code class="lang-typeScript hljs">has(key: K, value: V): boolean;</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
@@ -609,12 +705,51 @@
   </dl>
   <h5 class="returns">Returns</h5>
   <div class="return">
-  <span class="type">this</span>
+  <span class="type">boolean</span>
   <p class="description">
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap_trimExcess" data-uid="collections-hashmap.HashMap.trimExcess">trimExcess(capacity)</h4>
+  <h4 id="collections_multimap_MultiMap_hasKey" data-uid="collections-multimap.MultiMap.hasKey">hasKey(key)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">hasKey(key: K): boolean;</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type">boolean</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap_keys" data-uid="collections-multimap.MultiMap.keys">keys()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">keys(): IterableIterator&lt;K&gt;;</code></pre>
+  </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><span class="xref">IterableIterator</span>&lt;<span class="xref">K</span>&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_multimap_MultiMap_trimExcess" data-uid="collections-multimap.MultiMap.trimExcess">trimExcess(capacity)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -638,7 +773,7 @@
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap_values" data-uid="collections-hashmap.HashMap.values">values()</h4>
+  <h4 id="collections_multimap_MultiMap_values" data-uid="collections-multimap.MultiMap.values">values()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>

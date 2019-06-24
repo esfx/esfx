@@ -143,36 +143,12 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">autoproperty: ((readonly?: boolean | undefined) =&gt; {
-    &lt;T extends Function&gt;(target: T): void | T;
-    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
-} &amp; {
-    (target: Function): void;
-    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
-} &amp; ((target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void) &amp; {
-    &lt;T extends Function&gt;(target: T): T;
-    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
-} &amp; {
-    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
-    (target: object, key: string | number | symbol, parameterIndex: number): void;
-}) &amp; ((target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void)</code></pre>
+    <pre><code class="lang-typeScript hljs">autoproperty: ((readonly?: boolean | undefined) =&gt; (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void)</code></pre>
   </div>
   
   <h5 class="fieldValue">Type</h5>
   <div class="fieldValue">
-  <span class="type">((<span class="xref">readonly</span>?: boolean | undefined) =&gt; {
-    &lt;<span class="xref">T</span> extends <span class="xref">Function</span>&gt;(<span class="xref">target</span>: <span class="xref">T</span>): void | <span class="xref">T</span>;
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined): void;
-} &amp; {
-    (<span class="xref">target</span>: <span class="xref">Function</span>): void;
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined): void;
-} &amp; ((<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void) &amp; {
-    &lt;<span class="xref">T</span> extends <span class="xref">Function</span>&gt;(<span class="xref">target</span>: <span class="xref">T</span>): <span class="xref">T</span>;
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined): void;
-} &amp; {
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined): void;
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">parameterIndex</span>: number): void;
-}) &amp; ((<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void)</span>
+  <span class="type">((<span class="xref">readonly</span>?: boolean | undefined) =&gt; (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void) &amp; ((<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void)</span>
   <p class="description">
   </div>
   
@@ -218,19 +194,7 @@
     enumerable?: boolean | undefined;
     configurable?: boolean | undefined;
     writable?: boolean | undefined;
-} | undefined) =&gt; {
-    &lt;T extends Function&gt;(target: T): void | T;
-    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
-} &amp; {
-    (target: Function): void;
-    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
-} &amp; ((target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void) &amp; {
-    &lt;T extends Function&gt;(target: T): T;
-    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
-} &amp; {
-    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
-    (target: object, key: string | number | symbol, parameterIndex: number): void;
-}</code></pre>
+} | undefined) =&gt; (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void</code></pre>
   </div>
   
   <h5 class="fieldValue">Type</h5>
@@ -239,19 +203,7 @@
     <span class="xref">enumerable</span>?: boolean | undefined;
     <span class="xref">configurable</span>?: boolean | undefined;
     <span class="xref">writable</span>?: boolean | undefined;
-} | undefined) =&gt; {
-    &lt;<span class="xref">T</span> extends <span class="xref">Function</span>&gt;(<span class="xref">target</span>: <span class="xref">T</span>): void | <span class="xref">T</span>;
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined): void;
-} &amp; {
-    (<span class="xref">target</span>: <span class="xref">Function</span>): void;
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined): void;
-} &amp; ((<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void) &amp; {
-    &lt;<span class="xref">T</span> extends <span class="xref">Function</span>&gt;(<span class="xref">target</span>: <span class="xref">T</span>): <span class="xref">T</span>;
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined): void;
-} &amp; {
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined): void;
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">parameterIndex</span>: number): void;
-}</span>
+} | undefined) =&gt; (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void</span>
   <p class="description">
   </div>
   
@@ -261,24 +213,12 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">mixin: (...args: object[]) =&gt; {
-    (target: Function): void;
-    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
-} &amp; {
-    (target: Function): void;
-    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
-} &amp; ((target: Function) =&gt; void)</code></pre>
+    <pre><code class="lang-typeScript hljs">mixin: (...args: object[]) =&gt; (target: Function) =&gt; void</code></pre>
   </div>
   
   <h5 class="fieldValue">Type</h5>
   <div class="fieldValue">
-  <span class="type">(...<span class="xref">args</span>: object[]) =&gt; {
-    (<span class="xref">target</span>: <span class="xref">Function</span>): void;
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined): void;
-} &amp; {
-    (<span class="xref">target</span>: <span class="xref">Function</span>): void;
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined): void;
-} &amp; ((<span class="xref">target</span>: <span class="xref">Function</span>) =&gt; void)</span>
+  <span class="type">(...<span class="xref">args</span>: object[]) =&gt; (<span class="xref">target</span>: <span class="xref">Function</span>) =&gt; void</span>
   <p class="description">
   </div>
   
@@ -324,10 +264,6 @@
     <pre><code class="lang-typeScript hljs">obsolete: ((message?: string | undefined, error?: boolean | undefined) =&gt; {
     (target: Function): void;
     (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
-    (target: object, key: string | number | symbol, parameterIndex: number): void;
-} &amp; {
-    (target: Function): void;
-    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
 }) &amp; {
     &lt;T extends Function&gt;(target: T): void | T;
     (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
@@ -337,10 +273,6 @@
   <h5 class="fieldValue">Type</h5>
   <div class="fieldValue">
   <span class="type">((<span class="xref">message</span>?: string | undefined, <span class="xref">error</span>?: boolean | undefined) =&gt; {
-    (<span class="xref">target</span>: <span class="xref">Function</span>): void;
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined): void;
-    (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">parameterIndex</span>: number): void;
-} &amp; {
     (<span class="xref">target</span>: <span class="xref">Function</span>): void;
     (<span class="xref">target</span>: object, <span class="xref">key</span>: string | number | symbol, <span class="xref">descriptor</span>?: <span class="xref">PropertyDescriptor</span> | undefined): void;
 }) &amp; {

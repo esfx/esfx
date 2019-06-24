@@ -44,7 +44,7 @@
    SOFTWARE.
 */
 
-import { KeyedCollection } from "@esfx/collection-core";
+import { KeyedCollection, ReadonlyKeyedCollection } from "@esfx/collection-core";
 import { Equaler } from "@esfx/equatable";
 import { isIterable } from '@esfx/internal-guards';
 import { HashData, createHashData, findEntryIndex, findEntryValue, insertEntry, deleteEntry, clearEntries, ensureCapacity, trimExcessEntries, iterateEntries, selectEntryKey, selectEntryValue, selectEntryEntry, forEachEntry } from '@esfx/internal-collections-hash/dist/hashData';
@@ -160,3 +160,8 @@ Object.defineProperty(HashMap, Symbol.toStringTag, {
     writable: true,
     value: "HashMap"
 });
+
+export interface ReadonlyHashMap<K, V> extends ReadonlyMap<K, V>, ReadonlyKeyedCollection<K, V> {
+    readonly equaler: Equaler<K>;
+    [Symbol.iterator](): IterableIterator<[K, V]>;
+}

@@ -202,7 +202,7 @@ export namespace Equaler {
     /**
      * An `Equaler` that compares array values rather than the arrays themselves.
      */
-    export const tupleEqualer: Equaler<unknown[]> = {
+    export const tupleEqualer: Equaler<readonly unknown[]> = {
         equals(x, y) {
             if (!Array.isArray(x) && x !== null && x !== undefined ||
                 !Array.isArray(y) && y !== null && y !== undefined) throw new TypeError("Array expected");
@@ -227,7 +227,7 @@ export namespace Equaler {
     /**
      * An `Equaler` that compares array values that may be `StructuralEquatable` rather than the arrays themselves.
      */
-    export const tupleStructuralEqualer: Equaler<unknown[]> = {
+    export const tupleStructuralEqualer: Equaler<readonly unknown[]> = {
         equals(x, y) {
             if (!Array.isArray(x) && x !== null && x !== undefined ||
                 !Array.isArray(y) && y !== null && y !== undefined) {
@@ -302,7 +302,7 @@ export namespace Comparer {
     /**
      * A default `Comparer` that compares array values rather than the arrays themselves.
      */
-    export const tupleComparer: Comparer<unknown[]> = {
+    export const tupleComparer: Comparer<readonly unknown[]> = {
         compare(x, y) {
             if (!Array.isArray(x) && x !== null && x !== undefined ||
                 !Array.isArray(y) && y !== null && y !== undefined) {
@@ -324,7 +324,7 @@ export namespace Comparer {
     /**
      * A default `Comparer` that compares array values that may be `StructuralComparable` rather than the arrays themselves.
      */
-    export const tupleStructuralComparer: Comparer<unknown[]> = {
+    export const tupleStructuralComparer: Comparer<readonly unknown[]> = {
         compare(x, y) {
             if (!Array.isArray(x) && x !== null && x !== undefined ||
                 !Array.isArray(y) && y !== null && y !== undefined) {

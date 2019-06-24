@@ -44,7 +44,7 @@
    SOFTWARE.
 */
 
-import { Collection } from "@esfx/collection-core";
+import { Collection, ReadonlyCollection } from "@esfx/collection-core";
 import { Equaler } from "@esfx/equatable";
 import { isIterable } from '@esfx/internal-guards';
 import { HashData, createHashData, findEntryIndex, insertEntry, deleteEntry, clearEntries, ensureCapacity, trimExcessEntries, iterateEntries, selectEntryKey, selectEntryValue, selectEntryEntry, forEachEntry } from '@esfx/internal-collections-hash/dist/hashData';
@@ -153,3 +153,8 @@ Object.defineProperty(HashSet, Symbol.toStringTag, {
     writable: true,
     value: "HashSet"
 });
+
+export interface ReadonlyHashSet<T> extends ReadonlySet<T>, ReadonlyCollection<T> {
+    readonly equaler: Equaler<T>;
+    [Symbol.iterator](): IterableIterator<T>;
+}

@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace Equaler
+    <title>Namespace ReadonlyKeyedMultiCollection
    | @esfx API Reference </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace Equaler
+    <meta name="title" content="Namespace ReadonlyKeyedMultiCollection
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
@@ -78,8 +78,8 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="equatable.Equaler_Namespace">
-  <h1 id="equatable_Equaler_Namespace" data-uid="equatable.Equaler_Namespace" class="text-break">Namespace Equaler
+            <article class="content wrap" id="_content" data-uid="collection-core.ReadonlyKeyedMultiCollection_Namespace">
+  <h1 id="collection_core_ReadonlyKeyedMultiCollection_Namespace" data-uid="collection-core.ReadonlyKeyedMultiCollection_Namespace" class="text-break">Namespace ReadonlyKeyedMultiCollection
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
@@ -102,25 +102,19 @@
   </h3>
   
   
-  <h4 id="equatable_Equaler_Namespace_create" data-uid="equatable.Equaler_Namespace.create">create(equalityComparison, hashGenerator)</h4>
-  <div class="markdown level1 summary"><p>Creates an <code>Equaler</code> from a comparison function and an optional hash generator.</p>
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Namespace_isReadonlyKeyedMultiCollection_Function" data-uid="collection-core.ReadonlyKeyedMultiCollection_Namespace.isReadonlyKeyedMultiCollection_Function">isReadonlyKeyedMultiCollection(value)</h4>
+  <div class="markdown level1 summary"><p>Tests whether a value supports the minimal representation of a <code>ReadonlyKeyedMultiCollection</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function create&lt;T&gt;(equalityComparison: EqualityComparison&lt;T&gt;, hashGenerator?: HashGenerator&lt;T&gt;): Equaler&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">function isReadonlyKeyedMultiCollection&lt;K, V&gt;(value: Iterable&lt;[K, V]&gt;): value is ReadonlyKeyedMultiCollection&lt;K, V&gt;;</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
   <dl class="parameterList">
-    <dt>equalityComparison</dt>
-    <dd class="type"><a class="xref" href="../equatable.html#equatable_EqualityComparison">EqualityComparison</a>&lt;<span class="xref">T</span>&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>hashGenerator</dt>
-    <dd class="type"><a class="xref" href="../equatable.html#equatable_HashGenerator">HashGenerator</a>&lt;<span class="xref">T</span>&gt;</dd>
+    <dt>value</dt>
+    <dd class="type"><span class="xref">Iterable</span>&lt;[<span class="xref">K</span>, <span class="xref">V</span>]&gt;</dd>
     <dd class="description">
       
       
@@ -128,7 +122,32 @@
   </dl>
   <h5 class="returns">Returns</h5>
   <div class="return">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;<span class="xref">T</span>&gt;</span>
+  <span class="type"><span class="xref">value</span> is <a class="xref" href="readonlykeyedmulticollection_interface.html#collection_core_ReadonlyKeyedMultiCollection_Interface">ReadonlyKeyedMultiCollection</a>&lt;<span class="xref">K</span>, <span class="xref">V</span>&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Namespace_isReadonlyKeyedMultiCollection_Function_1" data-uid="collection-core.ReadonlyKeyedMultiCollection_Namespace.isReadonlyKeyedMultiCollection_Function_1">isReadonlyKeyedMultiCollection(value)</h4>
+  <div class="markdown level1 summary"><p>Tests whether a value supports the minimal representation of a <code>ReadonlyKeyedMultiCollection</code><!-- -->.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">function isReadonlyKeyedMultiCollection(value: unknown): value is ReadonlyKeyedMultiCollection&lt;unknown, unknown&gt;;</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>value</dt>
+    <dd class="type">unknown</dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><span class="xref">value</span> is <a class="xref" href="readonlykeyedmulticollection_interface.html#collection_core_ReadonlyKeyedMultiCollection_Interface">ReadonlyKeyedMultiCollection</a>&lt;unknown, unknown&gt;</span>
   <p class="description">
   </div>
   <h3 id="variables">
@@ -149,66 +168,98 @@
   Variables</h3>
   
   
-  <h4 id="equatable_Equaler_Namespace_defaultEqualer" data-uid="equatable.Equaler_Namespace.defaultEqualer">defaultEqualer</h4>
-  <div class="markdown level1 summary"><p>Gets the default <code>Equaler</code><!-- -->.</p>
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Namespace_get" data-uid="collection-core.ReadonlyKeyedMultiCollection_Namespace.get">get</h4>
+  <div class="markdown level1 summary"><p>A well-known symbol used to define the <code>ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.get]</code> method.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">defaultEqualer: Equaler&lt;unknown&gt;</code></pre>
+    <pre><code class="lang-typeScript hljs">get: unique symbol</code></pre>
   </div>
   
   <h5 class="fieldValue">Type</h5>
   <div class="fieldValue">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;unknown&gt;</span>
+  <span class="type">unique symbol</span>
   <p class="description">
   </div>
   
   
-  <h4 id="equatable_Equaler_Namespace_structuralEqualer" data-uid="equatable.Equaler_Namespace.structuralEqualer">structuralEqualer</h4>
-  <div class="markdown level1 summary"><p>Gets a default <code>Equaler</code> that supports <code>StructuralEquatable</code> values.</p>
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Namespace_hasKey" data-uid="collection-core.ReadonlyKeyedMultiCollection_Namespace.hasKey">hasKey</h4>
+  <div class="markdown level1 summary"><p>A well-known symbol used to define the <code>ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.hasKey]</code> method.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">structuralEqualer: Equaler&lt;unknown&gt;</code></pre>
+    <pre><code class="lang-typeScript hljs">hasKey: unique symbol</code></pre>
   </div>
   
   <h5 class="fieldValue">Type</h5>
   <div class="fieldValue">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;unknown&gt;</span>
+  <span class="type">unique symbol</span>
   <p class="description">
   </div>
   
   
-  <h4 id="equatable_Equaler_Namespace_tupleEqualer" data-uid="equatable.Equaler_Namespace.tupleEqualer">tupleEqualer</h4>
-  <div class="markdown level1 summary"><p>An <code>Equaler</code> that compares array values rather than the arrays themselves.</p>
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Namespace_hasKeyValue" data-uid="collection-core.ReadonlyKeyedMultiCollection_Namespace.hasKeyValue">hasKeyValue</h4>
+  <div class="markdown level1 summary"><p>A well-known symbol used to define the <code>ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.hasKeyValue]</code> method.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">tupleEqualer: Equaler&lt;readonly unknown[]&gt;</code></pre>
+    <pre><code class="lang-typeScript hljs">hasKeyValue: unique symbol</code></pre>
   </div>
   
   <h5 class="fieldValue">Type</h5>
   <div class="fieldValue">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;readonly unknown[]&gt;</span>
+  <span class="type">unique symbol</span>
   <p class="description">
   </div>
   
   
-  <h4 id="equatable_Equaler_Namespace_tupleStructuralEqualer" data-uid="equatable.Equaler_Namespace.tupleStructuralEqualer">tupleStructuralEqualer</h4>
-  <div class="markdown level1 summary"><p>An <code>Equaler</code> that compares array values that may be <code>StructuralEquatable</code> rather than the arrays themselves.</p>
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Namespace_keys" data-uid="collection-core.ReadonlyKeyedMultiCollection_Namespace.keys">keys</h4>
+  <div class="markdown level1 summary"><p>A well-known symbol used to define the <code>ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.keys]</code> method.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">tupleStructuralEqualer: Equaler&lt;readonly unknown[]&gt;</code></pre>
+    <pre><code class="lang-typeScript hljs">keys: unique symbol</code></pre>
   </div>
   
   <h5 class="fieldValue">Type</h5>
   <div class="fieldValue">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;readonly unknown[]&gt;</span>
+  <span class="type">unique symbol</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Namespace_size" data-uid="collection-core.ReadonlyKeyedMultiCollection_Namespace.size">size</h4>
+  <div class="markdown level1 summary"><p>A well-known symbol used to define the <code>ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.size]</code> property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">size: unique symbol</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">unique symbol</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Namespace_values" data-uid="collection-core.ReadonlyKeyedMultiCollection_Namespace.values">values</h4>
+  <div class="markdown level1 summary"><p>A well-known symbol used to define the <code>ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.values]</code> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">values: unique symbol</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">unique symbol</span>
   <p class="description">
   </div>
 </article>

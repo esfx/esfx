@@ -81,7 +81,7 @@ const docPackages = publicPackages.filter(docPackage => fs.existsSync(path.resol
 
 gulp.task("docs", gulp.series(
     // build,
-    // gulp.parallel(docPackages.map(docPackage => fname(`api-extractor:${docPackage}`, () => apiExtractor(docPackage)))),
+    gulp.parallel(docPackages.map(docPackage => fname(`api-extractor:${docPackage}`, () => apiExtractor(docPackage)))),
     fname("api-documenter", () => apiDocumenter(docPackages)),
-    // fname("docfx", () => docfx(argv.serve || false))
+    fname("docfx", () => docfx(argv.serve || false))
 ));

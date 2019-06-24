@@ -55,6 +55,7 @@
         { "path": "./struct-type" },
         { "path": "./threading-spinwait" },
         { "path": "./threading" },
+        { "path": "./collections-multimap" },
         // hygen: add new project references above this line
     ]
 }

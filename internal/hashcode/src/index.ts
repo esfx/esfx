@@ -206,30 +206,41 @@ export function hashUnknown(x: unknown) {
 }
 
 // Test hooks
-hashUnknown.getState = () => ({
-    weakPrototypeCounters,
-    nullPrototypeCounter,
-    localSymbolCounter,
-    weakObjectHashes,
-    globalSymbolHashes,
-    localSymbolHashes,
-    objectSeed,
-    stringSeed,
-    bigIntSeed,
-    localSymbolSeed,
-    globalSymbolSeed
-});
+/*@internal*/
+export namespace hashUnknown {
+    /*@internal*/
+    export function getState() {
+        return {
+            weakPrototypeCounters,
+            nullPrototypeCounter,
+            localSymbolCounter,
+            weakObjectHashes,
+            globalSymbolHashes,
+            localSymbolHashes,
+            objectSeed,
+            stringSeed,
+            bigIntSeed,
+            localSymbolSeed,
+            globalSymbolSeed
+        };
+    }
 
-hashUnknown.setState = (state: Partial<ReturnType<typeof hashUnknown["getState"]>>) => ({
-    weakPrototypeCounters,
-    nullPrototypeCounter,
-    localSymbolCounter,
-    weakObjectHashes,
-    globalSymbolHashes,
-    localSymbolHashes,
-    objectSeed = defaultObjectSeed,
-    stringSeed = defaultStringSeed,
-    bigIntSeed = defaultBigIntSeed,
-    localSymbolSeed = defaultLocalSymbolSeed,
-    globalSymbolSeed = defaultGlobalSymbolSeed
-} = state);
+    /*@internal*/
+    export function setState(state: Partial<ReturnType<typeof hashUnknown["getState"]>>) {
+        ({
+            weakPrototypeCounters,
+            nullPrototypeCounter,
+            localSymbolCounter,
+            weakObjectHashes,
+            globalSymbolHashes,
+            localSymbolHashes,
+            objectSeed = defaultObjectSeed,
+            stringSeed = defaultStringSeed,
+            bigIntSeed = defaultBigIntSeed,
+            localSymbolSeed = defaultLocalSymbolSeed,
+            globalSymbolSeed = defaultGlobalSymbolSeed
+        } = state);
+    }
+}
+
+

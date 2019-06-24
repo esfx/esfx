@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import { KeyedCollection } from "@esfx/collection-core";
+import { KeyedCollection, ReadonlyKeyedCollection } from "@esfx/collection-core";
 import { Comparison, Comparer } from "@esfx/equatable";
 import { binarySearch } from '@esfx/internal-binarysearch';
 import { isIterable } from '@esfx/internal-guards';
@@ -46,6 +46,10 @@ export class SortedMap<K, V> implements KeyedCollection<K, V> {
                 this.set(key, value);
             }
         }
+    }
+
+    get comparer() {
+        return this._comparer;
     }
 
     get size() {
@@ -130,3 +134,8 @@ Object.defineProperty(SortedMap, Symbol.toStringTag, {
     writable: true,
     value: "SortedMap"
 });
+
+export interface ReadonlySortedMap<K, V> extends ReadonlyMap<K, V>, ReadonlyKeyedCollection<K, V> {
+    readonly comparer: Comparer<K>;
+    [Symbol.iterator](): IterableIterator<[K, V]>;
+}

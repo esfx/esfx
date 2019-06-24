@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import { Collection } from "@esfx/collection-core";
+import { Collection, ReadonlyCollection } from "@esfx/collection-core";
 import { Comparison, Comparer } from "@esfx/equatable";
 import { binarySearch } from '@esfx/internal-binarysearch';
 import { isIterable } from '@esfx/internal-guards';
@@ -45,6 +45,10 @@ export class SortedSet<T> implements Collection<T> {
                 this.add(value);
             }
         }
+    }
+
+    get comparer() {
+        return this._comparer;
     }
 
     get size() {
@@ -118,3 +122,8 @@ Object.defineProperty(SortedSet, Symbol.toStringTag, {
     writable: true,
     value: "SortedSet"
 });
+
+export interface ReadonlySortedSet<T> extends ReadonlySet<T>, ReadonlyCollection<T> {
+    readonly comparer: Comparer<T>;
+    [Symbol.iterator](): IterableIterator<T>;
+}

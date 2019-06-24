@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Namespace Equaler
+    <title>Interface ReadonlyKeyedMultiCollection
    | @esfx API Reference </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Namespace Equaler
+    <meta name="title" content="Interface ReadonlyKeyedMultiCollection
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.42.4.0">
     
@@ -78,49 +78,65 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="equatable.Equaler_Namespace">
-  <h1 id="equatable_Equaler_Namespace" data-uid="equatable.Equaler_Namespace" class="text-break">Namespace Equaler
+            <article class="content wrap" id="_content" data-uid="collection-core.ReadonlyKeyedMultiCollection_Interface">
+  
+  <h1 id="collection_core_ReadonlyKeyedMultiCollection_Interface" data-uid="collection-core.ReadonlyKeyedMultiCollection_Interface">Interface ReadonlyKeyedMultiCollection
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-  <h3 id="functions">
+  <h3 id="properties">
+  
+  Properties
   
   
   
   
   
-  
-  
-  
-  
-  
-  
-  Functions
   
   
   </h3>
   
   
-  <h4 id="equatable_Equaler_Namespace_create" data-uid="equatable.Equaler_Namespace.create">create(equalityComparison, hashGenerator)</h4>
-  <div class="markdown level1 summary"><p>Creates an <code>Equaler</code> from a comparison function and an optional hash generator.</p>
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Interface__ReadonlyKeyedMultiCollection_size_" data-uid="collection-core.ReadonlyKeyedMultiCollection_Interface.[ReadonlyKeyedMultiCollection.size]">[ReadonlyKeyedMultiCollection.size]</h4>
+  <div class="markdown level1 summary"><p>Gets the number of elements in the collection.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function create&lt;T&gt;(equalityComparison: EqualityComparison&lt;T&gt;, hashGenerator?: HashGenerator&lt;T&gt;): Equaler&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">readonly [ReadonlyKeyedMultiCollection.size]: number;</code></pre>
+  </div>
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <div class="propertyValue">
+  <span class="type">number</span>
+  <p class="description">
+  </div>
+  <h3 id="methods">
+  
+  
+  Methods
+  
+  
+  
+  
+  
+  
+  </h3>
+  
+  
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Interface__ReadonlyKeyedMultiCollection_get_" data-uid="collection-core.ReadonlyKeyedMultiCollection_Interface.[ReadonlyKeyedMultiCollection.get]">[ReadonlyKeyedMultiCollection.get](key)</h4>
+  <div class="markdown level1 summary"><p>Gets the value in the collection associated with the provided key, if it exists.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[ReadonlyKeyedMultiCollection.get](key: K): Iterable&lt;V&gt; | undefined;</code></pre>
   </div>
   
   <h5 class="parameters">Parameters</h5>
   <dl class="parameterList">
-    <dt>equalityComparison</dt>
-    <dd class="type"><a class="xref" href="../equatable.html#equatable_EqualityComparison">EqualityComparison</a>&lt;<span class="xref">T</span>&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>hashGenerator</dt>
-    <dd class="type"><a class="xref" href="../equatable.html#equatable_HashGenerator">HashGenerator</a>&lt;<span class="xref">T</span>&gt;</dd>
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
     <dd class="description">
       
       
@@ -128,89 +144,98 @@
   </dl>
   <h5 class="returns">Returns</h5>
   <div class="return">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;<span class="xref">T</span>&gt;</span>
+  <span class="type"><span class="xref">Iterable</span>&lt;<span class="xref">V</span>&gt; | undefined</span>
   <p class="description">
   </div>
-  <h3 id="variables">
   
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  Variables</h3>
-  
-  
-  <h4 id="equatable_Equaler_Namespace_defaultEqualer" data-uid="equatable.Equaler_Namespace.defaultEqualer">defaultEqualer</h4>
-  <div class="markdown level1 summary"><p>Gets the default <code>Equaler</code><!-- -->.</p>
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Interface__ReadonlyKeyedMultiCollection_hasKey_" data-uid="collection-core.ReadonlyKeyedMultiCollection_Interface.[ReadonlyKeyedMultiCollection.hasKey]">[ReadonlyKeyedMultiCollection.hasKey](key)</h4>
+  <div class="markdown level1 summary"><p>Tests whether a key is present in the collection.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">defaultEqualer: Equaler&lt;unknown&gt;</code></pre>
+    <pre><code class="lang-typeScript hljs">[ReadonlyKeyedMultiCollection.hasKey](key: K): boolean;</code></pre>
   </div>
   
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;unknown&gt;</span>
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type">boolean</span>
   <p class="description">
   </div>
   
   
-  <h4 id="equatable_Equaler_Namespace_structuralEqualer" data-uid="equatable.Equaler_Namespace.structuralEqualer">structuralEqualer</h4>
-  <div class="markdown level1 summary"><p>Gets a default <code>Equaler</code> that supports <code>StructuralEquatable</code> values.</p>
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Interface__ReadonlyKeyedMultiCollection_hasKeyValue_" data-uid="collection-core.ReadonlyKeyedMultiCollection_Interface.[ReadonlyKeyedMultiCollection.hasKeyValue]">[ReadonlyKeyedMultiCollection.hasKeyValue](key, value)</h4>
+  <div class="markdown level1 summary"><p>Tests whether a key and value is present in the collection.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">structuralEqualer: Equaler&lt;unknown&gt;</code></pre>
+    <pre><code class="lang-typeScript hljs">[ReadonlyKeyedMultiCollection.hasKeyValue](key: K, value: V): boolean;</code></pre>
   </div>
   
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;unknown&gt;</span>
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+    <dt>value</dt>
+    <dd class="type"><span class="xref">V</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type">boolean</span>
   <p class="description">
   </div>
   
   
-  <h4 id="equatable_Equaler_Namespace_tupleEqualer" data-uid="equatable.Equaler_Namespace.tupleEqualer">tupleEqualer</h4>
-  <div class="markdown level1 summary"><p>An <code>Equaler</code> that compares array values rather than the arrays themselves.</p>
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Interface__ReadonlyKeyedMultiCollection_keys_" data-uid="collection-core.ReadonlyKeyedMultiCollection_Interface.[ReadonlyKeyedMultiCollection.keys]">[ReadonlyKeyedMultiCollection.keys]()</h4>
+  <div class="markdown level1 summary"><p>Gets an <code>IterableIterator</code> for the keys present in the collection.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">tupleEqualer: Equaler&lt;readonly unknown[]&gt;</code></pre>
+    <pre><code class="lang-typeScript hljs">[ReadonlyKeyedMultiCollection.keys](): IterableIterator&lt;K&gt;;</code></pre>
   </div>
   
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;readonly unknown[]&gt;</span>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><span class="xref">IterableIterator</span>&lt;<span class="xref">K</span>&gt;</span>
   <p class="description">
   </div>
   
   
-  <h4 id="equatable_Equaler_Namespace_tupleStructuralEqualer" data-uid="equatable.Equaler_Namespace.tupleStructuralEqualer">tupleStructuralEqualer</h4>
-  <div class="markdown level1 summary"><p>An <code>Equaler</code> that compares array values that may be <code>StructuralEquatable</code> rather than the arrays themselves.</p>
+  <h4 id="collection_core_ReadonlyKeyedMultiCollection_Interface__ReadonlyKeyedMultiCollection_values_" data-uid="collection-core.ReadonlyKeyedMultiCollection_Interface.[ReadonlyKeyedMultiCollection.values]">[ReadonlyKeyedMultiCollection.values]()</h4>
+  <div class="markdown level1 summary"><p>Gets an <code>IterableIterator</code> for the values present in the collection.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">tupleStructuralEqualer: Equaler&lt;readonly unknown[]&gt;</code></pre>
+    <pre><code class="lang-typeScript hljs">[ReadonlyKeyedMultiCollection.values](): IterableIterator&lt;V&gt;;</code></pre>
   </div>
   
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;readonly unknown[]&gt;</span>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><span class="xref">IterableIterator</span>&lt;<span class="xref">V</span>&gt;</span>
   <p class="description">
   </div>
+  
 </article>
           </div>
           

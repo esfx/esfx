@@ -4,6 +4,7 @@
         "module": "commonjs",
         "lib": ["esnext"],
         "composite": true,
+        "incremental": true,
         "declaration": true,
         "declarationMap": true,
         "sourceMap": true,

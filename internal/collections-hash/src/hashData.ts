@@ -274,8 +274,7 @@ export function ensureCapacity<K, V>(hashData: HashData<K, V>, capacity: number)
     const existingCapacity = hashData.entries ? hashData.entries.length : 0;
     if (existingCapacity >= capacity) return existingCapacity;
     if (!hashData.buckets) {
-        initializeHashData(hashData, capacity);
-        return;
+        return initializeHashData(hashData, capacity);
     }
     const newCapacity = getPrime(capacity);
     resizeHashData(hashData, getPrime(capacity));

@@ -418,3 +418,164 @@ export declare namespace KeyedCollection {
     const _delete: unique symbol;
     export { _delete as delete };
 }
+
+export interface ReadonlyKeyedMultiCollection<K, V> extends Iterable<[K, V]> {
+    /**
+     * Gets the number of elements in the collection.
+     */
+    readonly [ReadonlyKeyedMultiCollection.size]: number;
+
+    /**
+     * Tests whether a key is present in the collection.
+     */
+    [ReadonlyKeyedMultiCollection.hasKey](key: K): boolean;
+
+    /**
+     * Tests whether a key and value is present in the collection.
+     */
+    [ReadonlyKeyedMultiCollection.hasKeyValue](key: K, value: V): boolean;
+
+    /**
+     * Gets the value in the collection associated with the provided key, if it exists.
+     */
+    [ReadonlyKeyedMultiCollection.get](key: K): Iterable<V> | undefined;
+
+    /**
+     * Gets an `IterableIterator` for the keys present in the collection.
+     */
+    [ReadonlyKeyedMultiCollection.keys](): IterableIterator<K>;
+
+    /**
+     * Gets an `IterableIterator` for the values present in the collection.
+     */
+    [ReadonlyKeyedMultiCollection.values](): IterableIterator<V>;
+}
+
+export namespace ReadonlyKeyedMultiCollection {
+    // ReadonlyKeyedMultiCollection<K, V>
+    /**
+     * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.size]` property.
+     */
+    export const size = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.size");
+
+    /**
+     * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.hasKey]` method.
+     */
+    export const hasKey = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.hasKey");
+
+    /**
+     * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.hasKeyValue]` method.
+     */
+    export const hasKeyValue = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.hasKeyValue");
+
+    /**
+     * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.get]` method.
+     */
+    export const get = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.get");
+
+    /**
+     * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.keys]` method.
+     */
+    export const keys = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.keys");
+
+    /**
+     * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.values]` method.
+     */
+    export const values = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.values");
+
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyKeyedMultiCollection`.
+     */
+    export function isReadonlyKeyedMultiCollection<K, V>(value: Iterable<[K, V]>): value is ReadonlyKeyedMultiCollection<K, V>;
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyKeyedMultiCollection`.
+     */
+    export function isReadonlyKeyedMultiCollection(value: unknown): value is ReadonlyKeyedMultiCollection<unknown, unknown>;
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyKeyedMultiCollection`.
+     */
+    export function isReadonlyKeyedMultiCollection(value: unknown): value is ReadonlyKeyedMultiCollection<unknown, unknown> {
+        return isIterable(value)
+            && ReadonlyKeyedMultiCollection.size in value
+            && ReadonlyKeyedMultiCollection.hasKey in value
+            && ReadonlyKeyedMultiCollection.hasKeyValue in value
+            && ReadonlyKeyedMultiCollection.get in value
+            && ReadonlyKeyedMultiCollection.keys in value
+            && ReadonlyKeyedMultiCollection.values in value;
+    }
+}
+
+export interface KeyedMultiCollection<K, V> extends ReadonlyKeyedMultiCollection<K, V> {
+    /**
+     * Adds a value to the collection for the provided key.
+     */
+    [KeyedMultiCollection.add](key: K, value: V): void;
+
+    /**
+     * Deletes a key and its associated values from the collection.
+     * @returns The number of values removed when the key was deleted.
+     */
+    [KeyedMultiCollection.deleteKey](key: K): number;
+
+    /**
+     * Deletes a key and its associated value from the collection.
+     * @returns `true` if the key and value were found and removed; otherwise, `false`.
+     */
+    [KeyedMultiCollection.deleteKeyValue](key: K, value: V): boolean;
+
+    /**
+     * Clears the collection.
+     */
+    [KeyedMultiCollection.clear](): void;
+}
+
+export namespace KeyedMultiCollection {
+    // ReadonlyKeyedMultiCollection<K, V>
+    export import size = ReadonlyKeyedMultiCollection.size;
+    export import hasKey = ReadonlyKeyedMultiCollection.hasKey;
+    export import hasKeyValue = ReadonlyKeyedMultiCollection.hasKeyValue;
+    export import get = ReadonlyKeyedMultiCollection.get;
+    export import keys = ReadonlyKeyedMultiCollection.keys;
+    export import values = ReadonlyKeyedMultiCollection.values;
+    export import isReadonlyKeyedMultiCollection = ReadonlyKeyedMultiCollection.isReadonlyKeyedMultiCollection;
+
+    // KeyedMultiCollection<K, V>
+    /**
+     * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.add]` method.
+     */
+    export const add = Symbol.for("@esfx/collection-core:KeyedMultiCollection.add");
+
+    /**
+     * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.deleteKey]` method.
+     */
+    export const deleteKey = Symbol.for("@esfx/collection-core:KeyedMultiCollection.deleteKey");
+
+    /**
+     * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.deleteKeyValue]` method.
+     */
+    export const deleteKeyValue = Symbol.for("@esfx/collection-core:KeyedMultiCollection.deleteKeyValue");
+
+    /**
+     * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.clear]` method.
+     */
+    export const clear = Symbol.for("@esfx/collection-core:KeyedMultiCollection.clear");
+
+    /**
+     * Tests whether a value supports the minimal representation of a `KeyedMultiCollection`.
+     */
+    export function isKeyedMultiCollection<K, V>(value: Iterable<[K, V]>): value is KeyedMultiCollection<K, V>;
+    /**
+     * Tests whether a value supports the minimal representation of a `KeyedMultiCollection`.
+     */
+    export function isKeyedMultiCollection(value: unknown): value is KeyedMultiCollection<unknown, unknown>;
+    /**
+     * Tests whether a value supports the minimal representation of a `KeyedMultiCollection`.
+     */
+    export function isKeyedMultiCollection(value: unknown): value is KeyedMultiCollection<unknown, unknown> {
+        return isReadonlyKeyedMultiCollection(value)
+            && KeyedMultiCollection.add in value
+            && KeyedMultiCollection.deleteKey in value
+            && KeyedMultiCollection.deleteKeyValue in value
+            && KeyedMultiCollection.clear in value;
+    }
+}

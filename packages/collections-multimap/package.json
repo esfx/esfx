@@ -1,9 +1,9 @@
 {
-    "name": "@esfx/collections",
+    "name": "@esfx/collections-multimap",
     "version": "1.0.0-pre.8",
-    "description": "Common collections API.",
-    "main": "index.js",
-    "types": "index.d.ts",
+    "description": "A HashMap that maps a single key to multiple values",
+    "main": "dist",
+    "types": "dist",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {
@@ -14,16 +14,14 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
+        "@esfx/collection-core": "^1.0.0-pre.8",
         "@esfx/collections-hashmap": "^1.0.0-pre.8",
         "@esfx/collections-hashset": "^1.0.0-pre.8",
-        "@esfx/collections-linkedlist": "^1.0.0-pre.8",
-        "@esfx/collections-multimap": "^1.0.0-pre.8",
-        "@esfx/collections-sortedmap": "^1.0.0-pre.8",
-        "@esfx/collections-sortedset": "^1.0.0-pre.8",
+        "@esfx/equatable": "^1.0.0-pre.8",
+        "@esfx/internal-guards": "^1.0.0-pre.6",
         "tslib": "^1.9.3"
     },
     "publishConfig": {
         "access": "public"
-    },
-    "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b"
+    }
 }
