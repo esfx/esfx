@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-semaphore",
-    "version": "1.0.0-pre.8",
+    "version": "1.0.0-pre.9",
     "description": "Provides 'Semaphore', a thread synchronization primitive for use with Workers",
     "main": "dist",
     "types": "dist",
@@ -14,7 +14,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.0.0-pre.8",
+        "@esfx/disposable": "^1.0.0-pre.9",
         "@esfx/internal-threading": "^1.0.0-pre.8",
         "tslib": "^1.9.3"
     },

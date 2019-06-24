@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-pre.8",
+  "version": "1.0.0-pre.9",
   "packages": [
     "internal/*",
     "packages/*",
