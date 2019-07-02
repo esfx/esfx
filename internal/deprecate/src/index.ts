@@ -19,7 +19,7 @@ try {
     const util = require('util') as typeof import('util');
     deprecateCore = util.deprecate;
 }
-catch {
+catch (_) {
     const emitWarning: typeof process["emitWarning"] = 
         typeof process === "object" && typeof process.emitWarning === "function" ? function emitWarning(msg, name?, ctor = emitWarning) {
             process.emitWarning(msg, name, ctor);
