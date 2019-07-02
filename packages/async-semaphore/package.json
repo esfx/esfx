@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-semaphore",
-    "version": "1.0.0-pre.12",
+    "version": "1.0.0-pre.13",
     "description": "Provides 'AsyncSemaphore', an async coordination primitive.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,8 +14,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-waitqueue": "^1.0.0-pre.12",
-        "@esfx/cancelable": "^1.0.0-pre.12",
+        "@esfx/async-waitqueue": "^1.0.0-pre.13",
+        "@esfx/cancelable": "^1.0.0-pre.13",
         "@esfx/internal-guards": "^1.0.0-pre.11",
         "@esfx/internal-integers": "^1.0.0-pre.5",
         "@esfx/internal-tag": "^1.0.0-pre.6",

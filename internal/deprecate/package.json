@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-deprecate",
-    "version": "1.0.0-pre.12",
+    "version": "1.0.0-pre.13",
     "description": "This package provides internal utilities for '@esfx' and is not intended for use in user-code.",
     "main": "dist",
     "types": "dist",

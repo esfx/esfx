@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-conditionvariable",
-    "version": "1.0.0-pre.12",
+    "version": "1.0.0-pre.13",
     "description": "Provides 'ConditionVariable', a thread synchronization primitive for use with Workers",
     "main": "dist",
     "types": "dist",
@@ -14,7 +14,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.0.0-pre.12",
+        "@esfx/disposable": "^1.0.0-pre.13",
         "@esfx/internal-threading": "^1.0.0-pre.8",
         "@esfx/threading-lockable": "^1.0.0-pre.12",
         "tslib": "^1.9.3"
@@ -22,7 +22,7 @@
     "devDependencies": {
         "@esfx/internal-ts-worker": "^1.0.0-pre.8",
         "@esfx/struct-type": "^1.0.0-pre.11",
-        "@esfx/threading-mutex": "^1.0.0-pre.12"
+        "@esfx/threading-mutex": "^1.0.0-pre.13"
     },
     "publishConfig": {
         "access": "public"

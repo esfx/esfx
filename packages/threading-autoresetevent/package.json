@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-autoresetevent",
-    "version": "1.0.0-pre.12",
+    "version": "1.0.0-pre.13",
     "description": "Provides 'AutoResetEvent', a thread synchronization primitive for use with Workers",
     "main": "dist",
     "types": "dist",
@@ -14,7 +14,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.0.0-pre.12",
+        "@esfx/disposable": "^1.0.0-pre.13",
         "@esfx/internal-threading": "^1.0.0-pre.8",
         "tslib": "^1.9.3"
     },
