@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-waitqueue",
-    "version": "1.0.0-pre.11",
+    "version": "1.0.0-pre.12",
     "description": "Provides 'WaitQueue', an async coordination primitive used to queue and resolve promises.",
     "main": "dist",
     "types": "dist",
@@ -14,8 +14,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/cancelable": "^1.0.0-pre.11",
-        "@esfx/collections-linkedlist": "^1.0.0-pre.11",
+        "@esfx/cancelable": "^1.0.0-pre.12",
+        "@esfx/collections-linkedlist": "^1.0.0-pre.12",
         "@esfx/internal-guards": "^1.0.0-pre.11",
         "@esfx/internal-tag": "^1.0.0-pre.6",
         "tslib": "^1.9.3"

@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-lockable",
-    "version": "1.0.0-pre.9",
+    "version": "1.0.0-pre.12",
     "description": "A low-level Symbol-based API for defining locking semantics for thread synchronization primitives for Workers",
     "main": "dist",
     "types": "dist",
