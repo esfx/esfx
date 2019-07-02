@@ -14,9 +14,10 @@
    limitations under the License.
 */
 
-import { isObject } from "@esfx/internal-guards";
 import { Cancelable } from "@esfx/cancelable";
 import { Disposable } from "@esfx/disposable";
+import { deprecateProperty } from "@esfx/internal-deprecate";
+import { isObject } from "@esfx/internal-guards";
 
 /**
  * Represents a value that can be used to synchronize access to a resource.
@@ -34,20 +35,42 @@ export interface AsyncLockable {
 }
 
 export namespace AsyncLockable {
+    // #region AsyncLockable
     /**
      * A well-known symbol used to define an locking method on an object.
      */
     export const lock = Symbol.for("@esfx/async-lockable:AsyncLockable.lock");
-
+    
     /**
      * A well-known symbol used to define an unlocking method on an object.
      */
     export const unlock = Symbol.for("@esfx/async-lockable:AsyncLockable.unlock");
+    // #endregion AsyncLockable
+
+    let warned = false;
+    /**
+     * Determines whether a value is `AsyncLockable`.
+     * @deprecated Use `AsyncLockable.hasInstance` instead.
+     */
+    export function isAsyncLockable(value: unknown): value is AsyncLockable {
+        if (!warned) {
+            warned = true;
+            if (typeof process !== "undefined") {
+                process.emitWarning("Use 'AsyncLockable.hasInstance' instead.", "DeprecationWarning");
+            }
+            else {
+                console.warn("DeprecationWarning: Use 'AsyncLockable.hasInstance' instead.");
+            }
+        }
+        return AsyncLockable.hasInstance(value);
+    }
+
+    export const name = "AsyncLockable";
 
     /**
      * Determines whether a value is `AsyncLockable`.
      */
-    export function isAsyncLockable(value: unknown): value is AsyncLockable {
+    export function hasInstance(value: unknown): value is AsyncLockable {
         return isObject(value)
             && AsyncLockable.lock in value
             && AsyncLockable.unlock in value;
@@ -87,3 +110,5 @@ export interface UpgradeableLockHandle<TMutex extends AsyncLockable = AsyncLocka
      */
     upgrade(cancelable?: Cancelable): Promise<LockHandle<TUpgradedMutex>>;
 }
+
+deprecateProperty(AsyncLockable, "isAsyncLockable", "Use 'AsyncLockable.hasInstance' instead.");

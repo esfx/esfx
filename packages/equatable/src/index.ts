@@ -14,7 +14,8 @@
    limitations under the License.
 */
 
-import { hashUnknown, combineHashes } from '@esfx/internal-hashcode';
+import { deprecateProperty } from "@esfx/internal-deprecate";
+import { combineHashes, hashUnknown } from '@esfx/internal-hashcode';
 
 /**
  * Represents a value that can compare its equality with another value.
@@ -33,23 +34,35 @@ export interface Equatable {
 }
 
 export namespace Equatable {
+    // #region Equatable
     /**
      * A well-known symbol used to define an equality test method on a value.
      */
     export const equals = Symbol.for("@esfx/equatable:Equatable.equals");
-
+    
     /**
      * A well-known symbol used to define a hashing method on a value.
      */
     export const hash = Symbol.for("@esfx/equatable:Equatable.hash");
+    // #endregion Equatable
+
+    /**
+     * Determines whether a value is Equatable.
+     * @deprecated Use `Equatable.hasInstance` instead.
+     */
+    export function isEquatable(value: unknown): value is Equatable {
+        return Equatable.hasInstance(value);
+    }
+
+    export const name = "Equatable";
 
     /**
      * Determines whether a value is Equatable.
      */
-    export function isEquatable(value: unknown): value is Equatable {
+    export function hasInstance(value: unknown): value is Equatable {
         const obj = Object(value);
-        return equals in obj && typeof obj[equals] === "function"
-            && hash in obj && typeof obj[hash] === "function";
+        return Equatable.equals in obj
+            && Equatable.hash in obj;
     }
 }
 
@@ -67,17 +80,28 @@ export interface Comparable {
 }
 
 export namespace Comparable {
+    // #region Comparable
     /**
      * A well-known symbol used to define a relational comparison method on a value.
      */
     export const compareTo = Symbol.for("@esfx/equatable:Comparable.compareTo");
+    // #endregion Comparable
+
+    /**
+     * Determines whether a value is Comparable.
+     * @deprecated Use `Comparable.hasInstance` instead.
+     */
+    export function isComparable(value: unknown): value is Comparable {
+        return Comparable.hasInstance(value);
+    }
+
+    export const name = "Comparable";
 
     /**
      * Determines whether a value is Comparable.
      */
-    export function isComparable(value: unknown): value is Comparable {
-        const obj = Object(value);
-        return compareTo in obj && typeof obj[compareTo] === "function";
+    export function hasInstance(value: unknown): value is Comparable {
+        return Comparable.compareTo in Object(value);
     }
 }
 
@@ -100,23 +124,35 @@ export interface StructuralEquatable {
 }
 
 export namespace StructuralEquatable {
+    // #region StructuralEquatable
     /**
      * A well-known symbol used to define a structural equality test method on a value.
      */
     export const structuralEquals = Symbol.for("@esfx/equatable:StructualEquatable.structuralEquals");
-
+    
     /**
      * A well-known symbol used to define a structural hashing method on a value.
      */
     export const structuralHash = Symbol.for("@esfx/equatable:StructuralEquatable.structuralHash");
+    // #endregion StructuralEquatable
+
+    /**
+     * Determines whether a value is StructuralEquatable.
+     * @deprecated Use `StructuralEquatable.hasInstance` instead.
+     */
+    export function isStructuralEquatable(value: unknown): value is StructuralEquatable {
+        return StructuralEquatable.hasInstance(value);
+    }
+
+    export const name = "StructuralEquatable";
 
     /**
      * Determines whether a value is StructuralEquatable.
      */
-    export function isStructuralEquatable(value: unknown): value is StructuralEquatable {
+    export function hasInstance(value: unknown): value is StructuralEquatable {
         const obj = Object(value);
-        return structuralEquals in obj && typeof obj[structuralEquals] === "function"
-            && structuralHash in obj && typeof obj[structuralHash] === "function";
+        return structuralEquals in obj
+            && structuralHash in obj;
     }
 }
 
@@ -134,19 +170,33 @@ export interface StructuralComparable {
 }
 
 export namespace StructuralComparable {
+    // #region StructuralComparable
     /**
      * A well-known symbol used to define a structural comparison method on a value.
      */
     export const structuralCompareTo = Symbol.for("@esfx/equatable:StructuralComparable.structuralCompareTo");
+    // #endregion StructuralComparable
+
+    /**
+     * Determines whether a value is StructuralComparable.
+     * @deprecated Use `StructuralComparable.hasInstance` instead.
+     */
+    export function isStructuralComparable(value: unknown): value is StructuralComparable {
+        return StructuralComparable.hasInstance(value);
+    }
+
+    export const name = "StructuralComparable";
 
     /**
      * Determines whether a value is StructuralComparable.
      */
-    export function isStructuralComparable(value: unknown): value is StructuralComparable {
-        const obj = Object(value);
-        return structuralCompareTo in obj && typeof obj[structuralCompareTo] === "function";
+    export function hasInstance(value: unknown): value is StructuralComparable {
+        return StructuralComparable.structuralCompareTo in Object(value);
     }
 }
+
+export type EqualityComparison<T> = (x: T, y: T) => boolean;
+export type HashGenerator<T> = (x: T) => number;
 
 /**
  * Represents an object that can be used to compare the equality of two objects.
@@ -165,21 +215,18 @@ export interface Equaler<T> {
     hash(x: T): number;
 }
 
-export type EqualityComparison<T> = (x: T, y: T) => boolean;
-export type HashGenerator<T> = (x: T) => number;
-
 export namespace Equaler {
     /**
      * Gets the default `Equaler`.
      */
     export const defaultEqualer: Equaler<unknown> = {
         equals(x, y) {
-            if (Equatable.isEquatable(x)) return x[Equatable.equals](y);
-            if (Equatable.isEquatable(y)) return y[Equatable.equals](x);
+            if (Equatable.hasInstance(x)) return x[Equatable.equals](y);
+            if (Equatable.hasInstance(y)) return y[Equatable.equals](x);
             return Object.is(x, y);
         },
         hash(x) {
-            if (Equatable.isEquatable(x)) return x[Equatable.hash]();
+            if (Equatable.hasInstance(x)) return x[Equatable.hash]();
             return hashUnknown(x);
         }
     };
@@ -189,12 +236,12 @@ export namespace Equaler {
      */
     export const structuralEqualer: Equaler<unknown> = {
         equals(x, y) {
-            if (StructuralEquatable.isStructuralEquatable(x)) return x[StructuralEquatable.structuralEquals](y, structuralEqualer);
-            if (StructuralEquatable.isStructuralEquatable(y)) return y[StructuralEquatable.structuralEquals](x, structuralEqualer);
+            if (StructuralEquatable.hasInstance(x)) return x[StructuralEquatable.structuralEquals](y, structuralEqualer);
+            if (StructuralEquatable.hasInstance(y)) return y[StructuralEquatable.structuralEquals](x, structuralEqualer);
             return defaultEqualer.equals(x, y);
         },
         hash(x) {
-            if (StructuralEquatable.isStructuralEquatable(x)) return x[StructuralEquatable.structuralHash](structuralEqualer);
+            if (StructuralEquatable.hasInstance(x)) return x[StructuralEquatable.structuralHash](structuralEqualer);
             return defaultEqualer.hash(x);
         }
     };
@@ -280,8 +327,8 @@ export namespace Comparer {
      */
     export const defaultComparer: Comparer<unknown> = {
         compare(x, y) {
-            if (Comparable.isComparable(x)) return x[Comparable.compareTo](y);
-            if (Comparable.isComparable(y)) return -y[Comparable.compareTo](x);
+            if (Comparable.hasInstance(x)) return x[Comparable.compareTo](y);
+            if (Comparable.hasInstance(y)) return -y[Comparable.compareTo](x);
             if ((x as any) < (y as any)) return -1;
             if ((x as any) > (y as any)) return 1;
             return 0;
@@ -293,8 +340,8 @@ export namespace Comparer {
      */
     export const structuralComparer: Comparer<unknown> = {
         compare(x, y) {
-            if (StructuralComparable.isStructuralComparable(x)) return x[StructuralComparable.structuralCompareTo](y, structuralComparer);
-            if (StructuralComparable.isStructuralComparable(y)) return -y[StructuralComparable.structuralCompareTo](x, structuralComparer);
+            if (StructuralComparable.hasInstance(x)) return x[StructuralComparable.structuralCompareTo](y, structuralComparer);
+            if (StructuralComparable.hasInstance(y)) return -y[StructuralComparable.structuralCompareTo](x, structuralComparer);
             return defaultComparer.compare(x, y);
         }
     };
@@ -350,3 +397,8 @@ export namespace Comparer {
         return { compare: comparison };
     }
 }
+
+deprecateProperty(Equatable, "isEquatable", "Use 'Equatable.hasInstance' instead.");
+deprecateProperty(Comparable, "isComparable", "Use 'Comparable.hasInstance' instead.");
+deprecateProperty(StructuralEquatable, "isStructuralEquatable", "Use 'StructuralEquatable.hasInstance' instead.");
+deprecateProperty(StructuralComparable, "isStructuralComparable", "Use 'StructuralComparable.hasInstance' instead.");

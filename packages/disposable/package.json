@@ -18,6 +18,7 @@
     },
     "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b",
     "dependencies": {
+        "@esfx/internal-deprecate": "^1.0.0-pre.11",
         "@esfx/internal-guards": "^1.0.0-pre.11",
         "@esfx/internal-tag": "^1.0.0-pre.6",
         "tslib": "^1.9.3"

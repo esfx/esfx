@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import { deprecateProperty } from "@esfx/internal-deprecate";
 import { isMissing, isObject } from "@esfx/internal-guards";
 import { defineTag } from "@esfx/internal-tag";
 
@@ -28,18 +29,19 @@ export interface Disposable {
 }
 
 export namespace Disposable {
+    // #region Disposable
     /**
      * A well-known symbol used to define an explicit resource disposal method on an object.
      */
     export const dispose = Symbol.for("@esfx/disposable:Disposable.dispose");
+    // #endregion Disposable
 
     /**
-     * Determines whether a value is [[Disposable]].
+     * Determines whether a value is Disposable.
+     * @deprecated Use `Disposable.hasInstance` instead.
      */
     export function isDisposable(value: unknown): value is Disposable {
-        return typeof value === "object"
-            && value !== null
-            && dispose in value;
+        return Disposable.hasInstance(value);
     }
 
     const disposablePrototype: object = defineTag({ }, "Disposable");
@@ -87,6 +89,17 @@ export namespace Disposable {
             }
         }
     }
+
+    export const name = "Disposable";
+
+    /**
+     * Determines whether a value is Disposable.
+     */
+    export function hasInstance(value: unknown): value is Disposable {
+        return isObject(value)
+            && dispose in value;
+    }
+
 }
 
 /**
@@ -107,10 +120,10 @@ export namespace AsyncDisposable {
 
     /**
      * Determines whether a value is [[AsyncDisposable]].
+     * @deprecated Use `AsyncDisposable.hasInstance` instead.
      */
     export function isAsyncDisposable(value: unknown): value is AsyncDisposable {
-        return isObject(value)
-            && AsyncDisposable.asyncDispose in value;
+        return AsyncDisposable.hasInstance(value);
     }
 
     const asyncDisposablePrototype: object = defineTag({ }, "AsyncDisposable");
@@ -133,8 +146,8 @@ export namespace AsyncDisposable {
     function toAsyncDisposable(resource: AsyncDisposable | Disposable): AsyncDisposable;
     function toAsyncDisposable(resource: AsyncDisposable | Disposable | null | undefined): AsyncDisposable | undefined;
     function toAsyncDisposable(resource: AsyncDisposable | Disposable | null | undefined) {
-        return AsyncDisposable.isAsyncDisposable(resource) ? resource :
-            Disposable.isDisposable(resource) ? asyncFromSyncDisposable(resource) :
+        return AsyncDisposable.hasInstance(resource) ? resource :
+            Disposable.hasInstance(resource) ? asyncFromSyncDisposable(resource) :
             undefined;
     }
 
@@ -145,7 +158,7 @@ export namespace AsyncDisposable {
     export function from(resources: Iterable<AsyncDisposable | Disposable | null | undefined>) {
         const disposablesArray: AsyncDisposable[] = [];
         for (const resource of resources) {
-            if (!isMissing(resource) && !AsyncDisposable.isAsyncDisposable(resource) && !Disposable.isDisposable(resource)) {
+            if (!isMissing(resource) && !AsyncDisposable.hasInstance(resource) && !Disposable.hasInstance(resource)) {
                 throw new TypeError("AsyncDisposable element expected: resources");
             }
             if (isMissing(resource)) continue;
@@ -162,7 +175,7 @@ export namespace AsyncDisposable {
      * Executes a callback with the provided `AsyncDisposable` resource, disposing the resource when the callback completes asynchronously.
      */
     export async function use<T extends AsyncDisposable | Disposable | null | undefined, U>(resource: T, callback: (resource: T) => U | PromiseLike<U>) {
-        if (!isMissing(resource) && !Disposable.isDisposable(resource) && !AsyncDisposable.isAsyncDisposable(resource)) {
+        if (!isMissing(resource) && !Disposable.hasInstance(resource) && !AsyncDisposable.hasInstance(resource)) {
             throw new TypeError("AsyncDisposable expected: resource");
         }
         const disposable = toAsyncDisposable(resource);
@@ -175,4 +188,17 @@ export namespace AsyncDisposable {
             }
         }
     }
+
+    export const name = "AsyncDisposable";
+
+    /**
+     * Determines whether a value is [[AsyncDisposable]].
+     */
+    export function hasInstance(value: unknown): value is AsyncDisposable {
+        return isObject(value)
+            && AsyncDisposable.asyncDispose in value;
+    }
 }
+
+deprecateProperty(Disposable, "isDisposable", "Use 'Disposable.hasInstance' instead.");
+deprecateProperty(AsyncDisposable, "isAsyncDisposable", "Use 'AsyncDisposable.hasInstance' instead.");

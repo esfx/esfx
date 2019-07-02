@@ -3,8 +3,8 @@ import { ReadonlyCollection, Collection, ReadonlyIndexedCollection, FixedSizeInd
 
 describe("Array", () => {
     describe("ReadonlyCollection", () => {
-        it("isReadonlyCollection", () => {
-            expect(ReadonlyCollection.isReadonlyCollection([])).toBe(true);
+        it("hasInstance", () => {
+            expect(ReadonlyCollection.hasInstance([])).toBe(true);
         });
         it("size", () => {
             expect([][ReadonlyCollection.size]).toBe(0);
@@ -16,8 +16,8 @@ describe("Array", () => {
         });
     });
     describe("Collection", () => {
-        it("isCollection", () => {
-            expect(Collection.isCollection([])).toBe(true);
+        it("hasInstance", () => {
+            expect(Collection.hasInstance([])).toBe(true);
         });
         it("add", () => {
             const obj = ["a"];
@@ -36,8 +36,8 @@ describe("Array", () => {
         });
     });
     describe("ReadonlyIndexedCollection", () => {
-        it("isReadonlyIndexedCollection", () => {
-            expect(ReadonlyIndexedCollection.isReadonlyIndexedCollection([])).toBe(true);
+        it("hasInstance", () => {
+            expect(ReadonlyIndexedCollection.hasInstance([])).toBe(true);
         });
         it("indexOf", () => {
             expect(["a", "b", "c", "b"][ReadonlyIndexedCollection.indexOf]("b")).toBe(1);
@@ -50,8 +50,8 @@ describe("Array", () => {
         });
     });
     describe("FixedSizeIndexedCollection", () => {
-        it("isFixedSizeIndexedCollection", () => {
-            expect(FixedSizeIndexedCollection.isFixedSizeIndexedCollection([])).toBe(true);
+        it("hasInstance", () => {
+            expect(FixedSizeIndexedCollection.hasInstance([])).toBe(true);
         });
         it("setAt", () => {
             const obj = ["a", "b"];
@@ -62,8 +62,8 @@ describe("Array", () => {
         });
     });
     describe("IndexedCollection", () => {
-        it("IndexedCollection", () => {
-            expect(IndexedCollection.isIndexedCollection([])).toBe(true);
+        it("hasInstance", () => {
+            expect(IndexedCollection.hasInstance([])).toBe(true);
         });
         it("insertAt", () => {
             const obj = ["a", "b"];
@@ -83,8 +83,8 @@ const typedArrays = [Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, In
 for (const TypedArray of typedArrays) {
     describe(TypedArray.name, () => {
         describe("ReadonlyCollection", () => {
-            it("isReadonlyCollection", () => {
-                expect(ReadonlyCollection.isReadonlyCollection(new TypedArray())).toBe(true);
+            it("hasInstance", () => {
+                expect(ReadonlyCollection.hasInstance(new TypedArray())).toBe(true);
             });
             it("size", () => {
                 expect(new TypedArray([])[ReadonlyCollection.size]).toBe(0);
@@ -96,8 +96,8 @@ for (const TypedArray of typedArrays) {
             });
         });
         describe("ReadonlyIndexedCollection", () => {
-            it("isReadonlyIndexedCollection", () => {
-                expect(ReadonlyIndexedCollection.isReadonlyIndexedCollection(new TypedArray())).toBe(true);
+            it("hasInstance", () => {
+                expect(ReadonlyIndexedCollection.hasInstance(new TypedArray())).toBe(true);
             });
             it("indexOf", () => {
                 expect(new TypedArray([1, 2, 3, 2])[ReadonlyIndexedCollection.indexOf](2)).toBe(1);
@@ -110,8 +110,8 @@ for (const TypedArray of typedArrays) {
             });
         });
         describe("FixedSizeIndexedCollection", () => {
-            it("isFixedSizeIndexedCollection", () => {
-                expect(FixedSizeIndexedCollection.isFixedSizeIndexedCollection(new TypedArray())).toBe(true);
+            it("hasInstance", () => {
+                expect(FixedSizeIndexedCollection.hasInstance(new TypedArray())).toBe(true);
             });
             it("setAt", () => {
                 const ar = new TypedArray([1, 2]);
@@ -129,8 +129,8 @@ if (typeof BigInt64Array === "function" && typeof BigUint64Array === "function" 
     for (const TypedArray of typedArrays) {
         describe(TypedArray.name, () => {
             describe("ReadonlyCollection", () => {
-                it("isReadonlyCollection", () => {
-                    expect(ReadonlyCollection.isReadonlyCollection(new TypedArray())).toBe(true);
+                it("hasInstance", () => {
+                    expect(ReadonlyCollection.hasInstance(new TypedArray())).toBe(true);
                 });
                 it("size", () => {
                     expect(new TypedArray([])[ReadonlyCollection.size]).toBe(0);
@@ -142,8 +142,8 @@ if (typeof BigInt64Array === "function" && typeof BigUint64Array === "function" 
                 });
             });
             describe("ReadonlyIndexedCollection", () => {
-                it("isReadonlyIndexedCollection", () => {
-                    expect(ReadonlyIndexedCollection.isReadonlyIndexedCollection(new TypedArray())).toBe(true);
+                it("hasInstance", () => {
+                    expect(ReadonlyIndexedCollection.hasInstance(new TypedArray())).toBe(true);
                 });
                 it("indexOf", () => {
                     expect(new TypedArray([BigInt(1), BigInt(2), BigInt(3), BigInt(2)])[ReadonlyIndexedCollection.indexOf](BigInt(2))).toBe(1);
@@ -156,8 +156,8 @@ if (typeof BigInt64Array === "function" && typeof BigUint64Array === "function" 
                 });
             });
             describe("FixedSizeIndexedCollection", () => {
-                it("isFixedSizeIndexedCollection", () => {
-                    expect(FixedSizeIndexedCollection.isFixedSizeIndexedCollection(new TypedArray())).toBe(true);
+                it("hasInstance", () => {
+                    expect(FixedSizeIndexedCollection.hasInstance(new TypedArray())).toBe(true);
                 });
                 it("setAt", () => {
                     const ar = new TypedArray([BigInt(1), BigInt(2)]);
@@ -173,8 +173,8 @@ if (typeof BigInt64Array === "function" && typeof BigUint64Array === "function" 
 
 describe("Set", () => {
     describe("ReadonlyCollection", () => {
-        it("isReadonlyCollection", () => {
-            expect(ReadonlyCollection.isReadonlyCollection(new Set())).toBe(true);
+        it("hasInstance", () => {
+            expect(ReadonlyCollection.hasInstance(new Set())).toBe(true);
         });
         it("size", () => {
             expect(new Set([])[ReadonlyCollection.size]).toBe(0);
@@ -186,8 +186,8 @@ describe("Set", () => {
         });
     });
     describe("Collection", () => {
-        it("isCollection", () => {
-            expect(Collection.isCollection(new Set([]))).toBe(true);
+        it("hasInstance", () => {
+            expect(Collection.hasInstance(new Set([]))).toBe(true);
         });
         it("add", () => {
             const obj = new Set(["a"]);
@@ -209,8 +209,8 @@ describe("Set", () => {
 
 describe("Map", () => {
     describe("ReadonlyKeyedCollection", () => {
-        it("isReadonlyKeyedCollection", () => {
-            expect(ReadonlyKeyedCollection.isReadonlyKeyedCollection(new Map())).toBe(true);
+        it("hasInstance", () => {
+            expect(ReadonlyKeyedCollection.hasInstance(new Map())).toBe(true);
         });
         it("size", () => {
             expect(new Map([])[ReadonlyKeyedCollection.size]).toBe(0);
@@ -232,8 +232,8 @@ describe("Map", () => {
         });
     });
     describe("KeyedCollection", () => {
-        it("isKeyedCollection", () => {
-            expect(KeyedCollection.isKeyedCollection(new Map([]))).toBe(true);
+        it("hasInstance", () => {
+            expect(KeyedCollection.hasInstance(new Map([]))).toBe(true);
         });
         it("set", () => {
             const obj = new Map([["a", 1]]);

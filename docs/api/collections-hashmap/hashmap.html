@@ -180,12 +180,12 @@
   </h3>
   
   
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_size_" data-uid="collections-hashmap.HashMap.[KeyedCollection.size]">[KeyedCollection.size]</h4>
+  <h4 id="collections_hashmap_HashMap__ReadonlyKeyedCollection_size_" data-uid="collections-hashmap.HashMap.[ReadonlyKeyedCollection.size]">[ReadonlyKeyedCollection.size]</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">readonly [KeyedCollection.size]: number;</code></pre>
+    <pre><code class="lang-typeScript hljs">readonly [ReadonlyKeyedCollection.size]: number;</code></pre>
   </div>
   
   <h5 class="propertyValue">Property Value</h5>
@@ -290,69 +290,6 @@
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_get_" data-uid="collections-hashmap.HashMap.[KeyedCollection.get]">[KeyedCollection.get](key)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[KeyedCollection.get](key: K): V | undefined;</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">V</span> | undefined</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_has_" data-uid="collections-hashmap.HashMap.[KeyedCollection.has]">[KeyedCollection.has](key)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[KeyedCollection.has](key: K): boolean;</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type">boolean</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_keys_" data-uid="collections-hashmap.HashMap.[KeyedCollection.keys]">[KeyedCollection.keys]()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[KeyedCollection.keys](): IterableIterator&lt;K&gt;;</code></pre>
-  </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">IterableIterator</span>&lt;<span class="xref">K</span>&gt;</span>
-  <p class="description">
-  </div>
-  
-  
   <h4 id="collections_hashmap_HashMap__KeyedCollection_set_" data-uid="collections-hashmap.HashMap.[KeyedCollection.set]">[KeyedCollection.set](key, value)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -383,12 +320,75 @@
   </div>
   
   
-  <h4 id="collections_hashmap_HashMap__KeyedCollection_values_" data-uid="collections-hashmap.HashMap.[KeyedCollection.values]">[KeyedCollection.values]()</h4>
+  <h4 id="collections_hashmap_HashMap__ReadonlyKeyedCollection_get_" data-uid="collections-hashmap.HashMap.[ReadonlyKeyedCollection.get]">[ReadonlyKeyedCollection.get](key)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[KeyedCollection.values](): IterableIterator&lt;V&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">[ReadonlyKeyedCollection.get](key: K): V | undefined;</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><span class="xref">V</span> | undefined</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_hashmap_HashMap__ReadonlyKeyedCollection_has_" data-uid="collections-hashmap.HashMap.[ReadonlyKeyedCollection.has]">[ReadonlyKeyedCollection.has](key)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[ReadonlyKeyedCollection.has](key: K): boolean;</code></pre>
+  </div>
+  
+  <h5 class="parameters">Parameters</h5>
+  <dl class="parameterList">
+    <dt>key</dt>
+    <dd class="type"><span class="xref">K</span></dd>
+    <dd class="description">
+      
+      
+    </dd>
+  </dl>
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type">boolean</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_hashmap_HashMap__ReadonlyKeyedCollection_keys_" data-uid="collections-hashmap.HashMap.[ReadonlyKeyedCollection.keys]">[ReadonlyKeyedCollection.keys]()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[ReadonlyKeyedCollection.keys](): IterableIterator&lt;K&gt;;</code></pre>
+  </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="return">
+  <span class="type"><span class="xref">IterableIterator</span>&lt;<span class="xref">K</span>&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="collections_hashmap_HashMap__ReadonlyKeyedCollection_values_" data-uid="collections-hashmap.HashMap.[ReadonlyKeyedCollection.values]">[ReadonlyKeyedCollection.values]()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[ReadonlyKeyedCollection.values](): IterableIterator&lt;V&gt;;</code></pre>
   </div>
   
   <h5 class="returns">Returns</h5>

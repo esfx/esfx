@@ -14,9 +14,10 @@
    limitations under the License.
 */
 
-import { isObject, isMissing, isFunction } from "@esfx/internal-guards";
-import { defineTag } from "@esfx/internal-tag";
 import { Disposable } from "@esfx/disposable";
+import { isFunction, isMissing, isObject } from "@esfx/internal-guards";
+import { defineTag } from "@esfx/internal-tag";
+import { deprecateProperty } from "@esfx/internal-deprecate";
 
 const disposablePrototype = Object.getPrototypeOf(Disposable.create(() => {}));
 
@@ -45,11 +46,12 @@ export interface Cancelable {
 }
 
 export namespace Cancelable {
-    // Cancelable
+    // #region Cancelable
     /**
      * A well-known symbol used to define a method to retrieve the `CancelSignal` for an object.
      */
     export const cancelSignal = Symbol.for("@esfx/cancelable:Cancelable.cancelSignal");
+    // #endregion Cancelable
 
     const cancelSignalPrototype: Cancelable = defineTag({
         [Cancelable.cancelSignal](this: CancelableCancelSignal) {
@@ -91,10 +93,10 @@ export namespace Cancelable {
 
     /**
      * Determines whether a value is a `Cancelable` object.
+     * @deprecated Use `Cancelable.hasInstance` instead.
      */
     export function isCancelable(value: unknown): value is Cancelable {
-        return isObject(value)
-            && cancelSignal in value;
+        return Cancelable.hasInstance(value);
     }
 
     /**
@@ -124,6 +126,16 @@ export namespace Cancelable {
         if (cancelable === Cancelable.canceled) return Cancelable.canceled.subscribe(onSignaled);
         if (cancelable === Cancelable.none || isMissing(cancelable)) return Cancelable.none.subscribe(onSignaled);
         return cancelable[Cancelable.cancelSignal]().subscribe(onSignaled);
+    }
+
+    export const name = "Cancelable";
+
+    /**
+     * Determines whether a value is a `Cancelable` object.
+     */
+    export function hasInstance(value: unknown): value is Cancelable {
+        return isObject(value)
+            && Cancelable.cancelSignal in value;
     }
 }
 
@@ -178,19 +190,31 @@ export interface CancelableSource extends Cancelable {
 }
 
 export namespace CancelableSource {
-    // Cancelable
+    // #region Cancelable
     export import cancelSignal = Cancelable.cancelSignal;
     export import isCancelable = Cancelable.isCancelable;
-
-    // CancelableSource
+    // #endregion Cancelable
+    
+    // #region CancelableSource
     export const cancel = Symbol.for("@esfx/cancelable:CancelableSource.cancel");
+    // #endregion CancelableSource
+
+    /**
+     * Determines whether a value is a `CancelableSource` object.
+     * @deprecated Use `CancelableSource.hasInstance` instead.
+     */
+    export function isCancelableSource(value: unknown): value is CancelableSource {
+        return CancelableSource.hasInstance(value);
+    }
+
+    export const name = "CancelableSource";
 
     /**
      * Determines whether a value is a `CancelableSource` object.
      */
-    export function isCancelableSource(value: unknown): value is CancelableSource {
+    export function hasInstance(value: unknown): value is CancelableSource {
         return isCancelable(value)
-            && cancel in value;
+            && CancelableSource.cancel in value;
     }
 }
 
@@ -206,3 +230,7 @@ Object.defineProperty(CancelError.prototype, "name", {
     writable: true,
     value: "CancelError",
 });
+
+deprecateProperty(Cancelable, 'isCancelable', "Use 'Cancelable.hasInstance' instead.");
+deprecateProperty(CancelableSource, 'isCancelable', "Use 'Cancelable.hasInstance' instead.");
+deprecateProperty(CancelableSource, 'isCancelableSource', "Use 'CancelableSource.hasInstance' instead.");

@@ -16,6 +16,7 @@
     "dependencies": {
         "@esfx/cancelable": "^1.0.0-pre.11",
         "@esfx/disposable": "^1.0.0-pre.11",
+        "@esfx/internal-deprecate": "^1.0.0-pre.11",
         "@esfx/internal-guards": "^1.0.0-pre.11",
         "@esfx/internal-tag": "^1.0.0-pre.6",
         "tslib": "^1.9.3"

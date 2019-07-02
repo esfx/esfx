@@ -60,7 +60,7 @@ gulp.task("test", gulp.series(build, test));
 // const watch = () => spawn('node', [require.resolve("jest/bin/jest"), "--watch"], { stdio: "inherit" });
 // gulp.task("watch", watch);
 
-gulp.task("default", build);
+gulp.task("default", gulp.series(build, test));
 
 function makeProjects(projects) {
     const builders = [];

@@ -49,7 +49,7 @@ import { Equaler } from "@esfx/equatable";
 import { isIterable } from '@esfx/internal-guards';
 import { HashData, createHashData, findEntryIndex, findEntryValue, insertEntry, deleteEntry, clearEntries, ensureCapacity, trimExcessEntries, iterateEntries, selectEntryKey, selectEntryValue, selectEntryEntry, forEachEntry } from '@esfx/internal-collections-hash/dist/hashData';
 
-export class HashMap<K, V> implements KeyedCollection<K, V> {
+export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, V> {
     private _hashData: HashData<K, V>;
 
     constructor(equaler?: Equaler<K>);
@@ -144,14 +144,15 @@ export class HashMap<K, V> implements KeyedCollection<K, V> {
 
     [Symbol.toStringTag]: string;
 
-    get [KeyedCollection.size]() { return this.size; }
-    [KeyedCollection.has](key: K) { return this.has(key); }
-    [KeyedCollection.get](key: K) { return this.get(key); }
+    get [ReadonlyKeyedCollection.size]() { return this.size; }
+    [ReadonlyKeyedCollection.has](key: K) { return this.has(key); }
+    [ReadonlyKeyedCollection.get](key: K) { return this.get(key); }
+    [ReadonlyKeyedCollection.keys]() { return this.keys(); }
+    [ReadonlyKeyedCollection.values]() { return this.values(); }
+
     [KeyedCollection.set](key: K, value: V) { this.set(key, value); }
     [KeyedCollection.delete](key: K) { return this.delete(key); }
     [KeyedCollection.clear]() { this.clear(); }
-    [KeyedCollection.keys]() { return this.keys(); }
-    [KeyedCollection.values]() { return this.values(); }
 }
 
 Object.defineProperty(HashMap, Symbol.toStringTag, {

@@ -14,6 +14,8 @@
    limitations under the License.
 */
 
+import { isObject, isFunction, isDefined } from "@esfx/internal-guards";
+
 export interface Lockable {
     [Lockable.lock](ms?: number): boolean;
     [Lockable.tryLock]?(): boolean;
@@ -24,4 +26,13 @@ export namespace Lockable {
     export const lock = Symbol.for("@esfx/thread-lockable:Lockable.lock");
     export const tryLock = Symbol.for("@esfx/thread-lockable:Lockable.tryLock");
     export const unlock = Symbol.for("@esfx/thread-lockable:Lockable.unlock");
+
+    export const name = "Lockable";
+
+    export function hasInstance(value: unknown): value is Lockable {
+        return isObject(value)
+            && Lockable.lock in value
+            && Lockable.unlock in value
+            && (!(Lockable.tryLock in value) || !isDefined(Lockable.tryLock) || isFunction(Lockable.tryLock));
+    }
 }

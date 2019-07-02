@@ -235,7 +235,7 @@ export class CancelToken implements Cancelable, CancelSignal {
      * Gets a CancelToken from a cancelable.
      */
     static from(cancelable: Cancelable | null | undefined) {
-        if (!isMissing(cancelable) && !Cancelable.isCancelable(cancelable)) {
+        if (!isMissing(cancelable) && !Cancelable.hasInstance(cancelable)) {
             throw new TypeError("Cancelable exepected: cancelable");
         }
         if (cancelable === Cancelable.none || isMissing(cancelable)) {
@@ -285,7 +285,7 @@ export class CancelToken implements Cancelable, CancelSignal {
         }
         const signals: CancelSignal[] = [];
         for (const cancelable of cancelables) {
-            if (!Cancelable.isCancelable(cancelable)) throw new TypeError("Cancelable element expected: cancelables");
+            if (!Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable element expected: cancelables");
             signals.push(cancelable[Cancelable.cancelSignal]());
         }
         if (!signals.some(canBeSignaled)) {
@@ -325,7 +325,7 @@ export class CancelToken implements Cancelable, CancelSignal {
         }
         const signals: CancelSignal[] = [];
         for (const cancelable of cancelables) {
-            if (!Cancelable.isCancelable(cancelable)) throw new TypeError("Cancelable element expected: cancelables");
+            if (!Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable element expected: cancelables");
             signals.push(cancelable[Cancelable.cancelSignal]());
         }
         if (!signals.some(canBeSignaled)) {

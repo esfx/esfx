@@ -15,6 +15,7 @@
 */
 
 import { isIterable } from "@esfx/internal-guards";
+import { deprecateProperty } from "@esfx/internal-deprecate";
 
 export interface ReadonlyCollection<T> extends Iterable<T> {
     /**
@@ -29,29 +30,52 @@ export interface ReadonlyCollection<T> extends Iterable<T> {
 }
 
 export namespace ReadonlyCollection {
-    // ReadonlyCollection<T>
+    // #region ReadonlyCollection<T>
     /**
      * A well-known symbol used to define the `ReadonlyCollection#[ReadonlyCollection.size]` property.
      */
-    export const size = Symbol.for("@esfx/collection-core:ReadonlyCollection.size");
+    export const size = Symbol.for("@esfx/collection-core!ReadonlyCollection.size");
 
     /**
      * A well-known symbol used to define the `ReadonlyCollection#[ReadonlyCollection.has]` method.
      */
-    export const has = Symbol.for("@esfx/collection-core:ReadonlyCollection.has");
+    export const has = Symbol.for("@esfx/collection-core!ReadonlyCollection.has");
+    // #endregion ReadonlyCollection<T>
 
     /**
      * Tests whether a value supports the minimal representation of a `ReadonlyCollection`.
+     * @deprecated Use `ReadonlyCollection.hasInstance` instead.
      */
     export function isReadonlyCollection<T>(value: Iterable<T>): value is ReadonlyCollection<T>;
     /**
      * Tests whether a value supports the minimal representation of a `ReadonlyCollection`.
+     * @deprecated Use `ReadonlyCollection.hasInstance` instead.
      */
     export function isReadonlyCollection(value: any): value is ReadonlyCollection<unknown>;
     /**
      * Tests whether a value supports the minimal representation of a `ReadonlyCollection`.
+     * @deprecated Use `ReadonlyCollection.hasInstance` instead.
      */
     export function isReadonlyCollection(value: any): value is ReadonlyCollection<unknown> {
+        return isIterable(value)
+            && ReadonlyCollection.size in value
+            && ReadonlyCollection.has in value;
+    }
+
+    export const name = "ReadonlyCollection";
+
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyCollection`.
+     */
+    export function hasInstance<T>(value: Iterable<T>): value is ReadonlyCollection<T>;
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyCollection`.
+     */
+    export function hasInstance(value: any): value is ReadonlyCollection<unknown>;
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyCollection`.
+     */
+    export function hasInstance(value: any): value is ReadonlyCollection<unknown> {
         return isIterable(value)
             && ReadonlyCollection.size in value
             && ReadonlyCollection.has in value;
@@ -76,37 +100,59 @@ export interface Collection<T> extends ReadonlyCollection<T> {
 }
 
 export namespace Collection {
-    // ReadonlyIndexedCollection<T>
+    // #region ReadonlyCollection<T>
     export import size = ReadonlyCollection.size;
     export import has = ReadonlyCollection.has;
     export import isReadonlyCollection = ReadonlyCollection.isReadonlyCollection;
+    // #endregion ReadonlyCollection<T>
 
-    // Collection<T>
+    // #region Collection<T>
     /**
      * A well-known symbol used to define the `Collection#[Collection.add]` method.
      */
-    export const add = Symbol.for("@esfx/collection-core:Collection.add");
+    export const add = Symbol.for("@esfx/collection-core!Collection.add");
 
-    Collection.delete = Symbol.for("@esfx/collection-core:Collection.delete") as typeof Collection.delete;
+    Collection.delete = Symbol.for("@esfx/collection-core!Collection.delete") as typeof Collection.delete;
 
     /**
      * A well-known symbol used to define the `Collection#[Collection.clear]` method.
      */
-    export const clear = Symbol.for("@esfx/collection-core:Collection.clear");
+    export const clear = Symbol.for("@esfx/collection-core!Collection.clear");
+    // #endregion Collection<T>
 
     /**
      * Tests whether a value supports the minimal representation of a `Collection`.
+     * @deprecated Use `Collection.hasInstance` instead.
      */
     export function isCollection<T>(value: Iterable<T>): value is Collection<T>;
     /**
      * Tests whether a value supports the minimal representation of a `Collection`.
+     * @deprecated Use `Collection.hasInstance` instead.
      */
     export function isCollection(value: any): value is Collection<unknown>;
     /**
      * Tests whether a value supports the minimal representation of a `Collection`.
+     * @deprecated Use `Collection.hasInstance` instead.
      */
     export function isCollection(value: any): value is Collection<unknown> {
-        return isReadonlyCollection(value)
+        return Collection.hasInstance(value);
+    }
+
+    export const name = "Collection";
+
+    /**
+     * Tests whether a value supports the minimal representation of a `Collection`.
+     */
+    export function hasInstance<T>(value: Iterable<T>): value is Collection<T>;
+    /**
+     * Tests whether a value supports the minimal representation of a `Collection`.
+     */
+    export function hasInstance(value: any): value is Collection<unknown>;
+    /**
+     * Tests whether a value supports the minimal representation of a `Collection`.
+     */
+    export function hasInstance(value: any): value is Collection<unknown> {
+        return ReadonlyCollection.hasInstance(value)
             && Collection.add in value
             && Collection.delete in value
             && Collection.clear in value;
@@ -134,35 +180,57 @@ export interface ReadonlyIndexedCollection<T> extends ReadonlyCollection<T> {
 }
 
 export namespace ReadonlyIndexedCollection {
-    // ReadonlyCollection<T>
+    // #region ReadonlyCollection<T>
     export import size = ReadonlyCollection.size;
     export import has = ReadonlyCollection.has;
     export import isReadonlyCollection = ReadonlyCollection.isReadonlyCollection;
+    // #endregion ReadonlyCollection<T>
 
-    // ReadonlyIndexedCollection<T>
+    // #region ReadonlyIndexedCollection<T>
     /**
      * A well-known symbol used to define the `ReadonlyIndexedCollection#[ReadonlyIndexedCollection.indexOf]` method.
      */
-    export const indexOf = Symbol.for("@esfx/collection-core:ReadonlyIndexedCollection.indexOf");
+    export const indexOf = Symbol.for("@esfx/collection-core!ReadonlyIndexedCollection.indexOf");
 
     /**
      * A well-known symbol used to define the `ReadonlyIndexedCollection#[ReadonlyIndexedCollection.getAt]` method.
      */
-    export const getAt = Symbol.for("@esfx/collection-core:ReadonlyIndexedCollection.getAt");
+    export const getAt = Symbol.for("@esfx/collection-core!ReadonlyIndexedCollection.getAt");
+    // #endregion ReadonlyIndexedCollection<T>
 
     /**
      * Tests whether a value supports the minimal representation of a `ReadonlyIndexedCollection`.
+     * @deprecated Use `ReadonlyIndexedCollection.hasInstance` instead.
      */
     export function isReadonlyIndexedCollection<T>(value: Iterable<T>): value is ReadonlyIndexedCollection<T>;
     /**
      * Tests whether a value supports the minimal representation of a `ReadonlyIndexedCollection`.
+     * @deprecated Use `ReadonlyIndexedCollection.hasInstance` instead.
      */
     export function isReadonlyIndexedCollection(value: unknown): value is ReadonlyIndexedCollection<unknown>;
     /**
      * Tests whether a value supports the minimal representation of a `ReadonlyIndexedCollection`.
+     * @deprecated Use `ReadonlyIndexedCollection.hasInstance` instead.
      */
     export function isReadonlyIndexedCollection(value: unknown): value is ReadonlyIndexedCollection<unknown> {
-        return isReadonlyCollection(value)
+        return ReadonlyIndexedCollection.hasInstance(value);
+    }
+
+    export const name = "ReadonlyIndexedCollection";
+
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyIndexedCollection`.
+     */
+    export function hasInstance<T>(value: Iterable<T>): value is ReadonlyIndexedCollection<T>;
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyIndexedCollection`.
+     */
+    export function hasInstance(value: unknown): value is ReadonlyIndexedCollection<unknown>;
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyIndexedCollection`.
+     */
+    export function hasInstance(value: unknown): value is ReadonlyIndexedCollection<unknown> {
+        return ReadonlyCollection.hasInstance(value)
             && ReadonlyIndexedCollection.indexOf in value
             && ReadonlyIndexedCollection.getAt in value;
     }
@@ -177,35 +245,58 @@ export interface FixedSizeIndexedCollection<T> extends ReadonlyIndexedCollection
 }
 
 export namespace FixedSizeIndexedCollection {
-    // ReadonlyCollection<T>
+    // #region ReadonlyCollection<T>
     export import size = ReadonlyCollection.size;
     export import has = ReadonlyCollection.has;
     export import isReadonlyCollection = ReadonlyCollection.isReadonlyCollection;
+    // #endregion ReadonlyCollection<T>
 
-    // ReadonlyIndexedCollection<T>
+    // #region ReadonlyIndexedCollection<T>
     export import indexOf = ReadonlyIndexedCollection.indexOf;
     export import getAt = ReadonlyIndexedCollection.getAt;
     export import isReadonlyIndexedCollection = ReadonlyIndexedCollection.isReadonlyIndexedCollection;
+    // #endregion ReadonlyIndexedCollection<T>
 
-    // FixedSizeIndexedCollection<T>
+    // #region FixedSizeIndexedCollection<T>
     /**
      * A well-known symbol used to define the `FixedSizeIndexedCollection#[FixedSizeIndexedCollection.setAt]` method.
      */
-    export const setAt = Symbol.for("@esfx/collection-core:FixedSizeIndexedCollection.setAt");
+    export const setAt = Symbol.for("@esfx/collection-core!FixedSizeIndexedCollection.setAt");
+    // #endregion FixedSizeIndexedCollection<T>
 
     /**
      * Tests whether a value supports the minimal representation of a `FixedSizeIndexedCollection`.
+     * @deprecated Use `FixedSizeIndexedCollection.hasInstance` instead.
      */
     export function isFixedSizeIndexedCollection<T>(value: Iterable<T>): value is FixedSizeIndexedCollection<T>;
     /**
      * Tests whether a value supports the minimal representation of a `FixedSizeIndexedCollection`.
+     * @deprecated Use `FixedSizeIndexedCollection.hasInstance` instead.
      */
     export function isFixedSizeIndexedCollection(value: unknown): value is FixedSizeIndexedCollection<unknown>;
     /**
      * Tests whether a value supports the minimal representation of a `FixedSizeIndexedCollection`.
+     * @deprecated Use `FixedSizeIndexedCollection.hasInstance` instead.
      */
     export function isFixedSizeIndexedCollection(value: unknown): value is FixedSizeIndexedCollection<unknown> {
-        return isReadonlyIndexedCollection(value)
+        return FixedSizeIndexedCollection.hasInstance(value);
+    }
+
+    export const name = "FixedSizeIndexedCollection";
+
+    /**
+     * Tests whether a value supports the minimal representation of a `FixedSizeIndexedCollection`.
+     */
+    export function hasInstance<T>(value: Iterable<T>): value is FixedSizeIndexedCollection<T>;
+    /**
+     * Tests whether a value supports the minimal representation of a `FixedSizeIndexedCollection`.
+     */
+    export function hasInstance(value: unknown): value is FixedSizeIndexedCollection<unknown>;
+    /**
+     * Tests whether a value supports the minimal representation of a `FixedSizeIndexedCollection`.
+     */
+    export function hasInstance(value: unknown): value is FixedSizeIndexedCollection<unknown> {
+        return ReadonlyIndexedCollection.hasInstance(value)
             && FixedSizeIndexedCollection.setAt in value;
     }
 }
@@ -223,50 +314,75 @@ export interface IndexedCollection<T> extends FixedSizeIndexedCollection<T>, Col
 }
 
 export namespace IndexedCollection {
-    // ReadonlyCollection<T>
+    // #region ReadonlyCollection<T>
     export import size = ReadonlyCollection.size;
     export import has = ReadonlyCollection.has;
     export import isReadonlyCollection = ReadonlyCollection.isReadonlyCollection;
+    // #endregion ReadonlyCollection<T>
 
-    // ReadonlyIndexedCollection<T>
+    // #region ReadonlyIndexedCollection<T>
     export import indexOf = ReadonlyIndexedCollection.indexOf;
     export import getAt = ReadonlyIndexedCollection.getAt;
     export import isReadonlyIndexedCollection = ReadonlyIndexedCollection.isReadonlyIndexedCollection;
+    // #endregion ReadonlyIndexedCollection<T>
 
-    // FixedSizeIndexedCollection<T>
+    // #region FixedSizeIndexedCollection<T>
     export import setAt = FixedSizeIndexedCollection.setAt;
     export import isFixedSizeIndexedCollection = FixedSizeIndexedCollection.isFixedSizeIndexedCollection;
+    // #endregion FixedSizeIndexedCollection<T>
 
-    // Collection<T>
+    // #region Collection<T>
     export import add = Collection.add;
     IndexedCollection.delete = Collection.delete;
     export import clear = Collection.clear;
     export import isCollection = Collection.isCollection;
+    // #endregion Collection<T>
 
-    // IndexedCollection<T>
+    // #region IndexedCollection<T>
     /**
      * A well-known symbol used to define the `IndexedCollection#[IndexedCollection.insertAt]` method.
      */
-    export const insertAt = Symbol.for("@esfx/collection-core:IndexedCollection.insertAt");
-
+    export const insertAt = Symbol.for("@esfx/collection-core!IndexedCollection.insertAt");
+    
     /**
      * A well-known symbol used to define the `IndexedCollection#[IndexedCollection.removeAt]` method.
      */
-    export const removeAt = Symbol.for("@esfx/collection-core:IndexedCollection.removeAt");
+    export const removeAt = Symbol.for("@esfx/collection-core!IndexedCollection.removeAt");
+    // #endregion IndexedCollection<T>
 
     /**
      * Tests whether a value supports the minimal representation of an `IndexedCollection`.
+     * @deprecated Use `IndexedCollection.hasInstance` instead.
      */
     export function isIndexedCollection<T>(value: Iterable<T>): value is IndexedCollection<T>;
     /**
      * Tests whether a value supports the minimal representation of an `IndexedCollection`.
+     * @deprecated Use `IndexedCollection.hasInstance` instead.
      */
     export function isIndexedCollection(value: unknown): value is IndexedCollection<unknown>;
     /**
      * Tests whether a value supports the minimal representation of an `IndexedCollection`.
+     * @deprecated Use `IndexedCollection.hasInstance` instead.
      */
     export function isIndexedCollection(value: unknown): value is IndexedCollection<unknown> {
-        return isFixedSizeIndexedCollection(value)
+        return IndexedCollection.hasInstance(value);
+    }
+
+    export const name = "IndexedCollection";
+
+    /**
+     * Tests whether a value supports the minimal representation of an `IndexedCollection`.
+     */
+    export function hasInstance<T>(value: Iterable<T>): value is IndexedCollection<T>;
+    /**
+     * Tests whether a value supports the minimal representation of an `IndexedCollection`.
+     */
+    export function hasInstance(value: unknown): value is IndexedCollection<unknown>;
+    /**
+     * Tests whether a value supports the minimal representation of an `IndexedCollection`.
+     */
+    export function hasInstance(value: unknown): value is IndexedCollection<unknown> {
+        return FixedSizeIndexedCollection.hasInstance(value)
             && IndexedCollection.insertAt in value
             && IndexedCollection.removeAt in value;
     }
@@ -305,44 +421,65 @@ export interface ReadonlyKeyedCollection<K, V> extends Iterable<[K, V]> {
 }
 
 export namespace ReadonlyKeyedCollection {
-    // ReadonlyKeyedCollection<K, V>
+    // #region ReadonlyKeyedCollection<K, V>
     /**
      * A well-known symbol used to define the `ReadonlyKeyedCollection#[ReadonlyKeyedCollection.size]` property.
      */
-    export const size = Symbol.for("@esfx/collection-core:ReadonlyKeyedCollection.size");
+    export const size = Symbol.for("@esfx/collection-core!ReadonlyKeyedCollection.size");
 
     /**
      * A well-known symbol used to define the `ReadonlyKeyedCollection#[ReadonlyKeyedCollection.has]` method.
      */
-    export const has = Symbol.for("@esfx/collection-core:ReadonlyKeyedCollection.has");
+    export const has = Symbol.for("@esfx/collection-core!ReadonlyKeyedCollection.has");
 
     /**
      * A well-known symbol used to define the `ReadonlyKeyedCollection#[ReadonlyKeyedCollection.get]` method.
      */
-    export const get = Symbol.for("@esfx/collection-core:ReadonlyKeyedCollection.get");
+    export const get = Symbol.for("@esfx/collection-core!ReadonlyKeyedCollection.get");
 
     /**
      * A well-known symbol used to define the `ReadonlyKeyedCollection#[ReadonlyKeyedCollection.keys]` method.
      */
-    export const keys = Symbol.for("@esfx/collection-core:ReadonlyKeyedCollection.keys");
+    export const keys = Symbol.for("@esfx/collection-core!ReadonlyKeyedCollection.keys");
 
     /**
      * A well-known symbol used to define the `ReadonlyKeyedCollection#[ReadonlyKeyedCollection.values]` method.
      */
-    export const values = Symbol.for("@esfx/collection-core:ReadonlyKeyedCollection.values");
+    export const values = Symbol.for("@esfx/collection-core!ReadonlyKeyedCollection.values");
+    // #endregion ReadonlyKeyedCollection<K, V>
 
     /**
      * Tests whether a value supports the minimal representation of a `ReadonlyKeyedCollection`.
+     * @deprecated Use `ReadonlyKeyedCollection.hasInstance` instead.
      */
     export function isReadonlyKeyedCollection<K, V>(value: Iterable<[K, V]>): value is ReadonlyKeyedCollection<K, V>;
     /**
      * Tests whether a value supports the minimal representation of a `ReadonlyKeyedCollection`.
+     * @deprecated Use `ReadonlyKeyedCollection.hasInstance` instead.
      */
     export function isReadonlyKeyedCollection(value: unknown): value is ReadonlyKeyedCollection<unknown, unknown>;
     /**
      * Tests whether a value supports the minimal representation of a `ReadonlyKeyedCollection`.
+     * @deprecated Use `ReadonlyKeyedCollection.hasInstance` instead.
      */
     export function isReadonlyKeyedCollection(value: unknown): value is ReadonlyKeyedCollection<unknown, unknown> {
+        return ReadonlyKeyedCollection.hasInstance(value);
+    }
+
+    export const name = "ReadonlyKeyedCollection";
+
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyKeyedCollection`.
+     */
+    export function hasInstance<K, V>(value: Iterable<[K, V]>): value is ReadonlyKeyedCollection<K, V>;
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyKeyedCollection`.
+     */
+    export function hasInstance(value: unknown): value is ReadonlyKeyedCollection<unknown, unknown>;
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyKeyedCollection`.
+     */
+    export function hasInstance(value: unknown): value is ReadonlyKeyedCollection<unknown, unknown> {
         return isIterable(value)
             && ReadonlyKeyedCollection.size in value
             && ReadonlyKeyedCollection.has in value
@@ -371,40 +508,62 @@ export interface KeyedCollection<K, V> extends ReadonlyKeyedCollection<K, V> {
 }
 
 export namespace KeyedCollection {
-    // ReadonlyKeyedCollection<K, V>
+    // #region ReadonlyKeyedCollection<K, V>
     export import size = ReadonlyKeyedCollection.size;
     export import has = ReadonlyKeyedCollection.has;
     export import get = ReadonlyKeyedCollection.get;
     export import keys = ReadonlyKeyedCollection.keys;
     export import values = ReadonlyKeyedCollection.values;
     export import isReadonlyKeyedCollection = ReadonlyKeyedCollection.isReadonlyKeyedCollection;
+    // #endregion ReadonlyKeyedCollection<K, V>
 
-    // KeyedCollection<K, V>
+    // #region KeyedCollection<K, V>
     /**
      * A well-known symbol used to define the `KeyedCollection#[KeyedCollection.set]` method.
      */
-    export const set = Symbol.for("@esfx/collection-core:KeyedCollection.set");
-
-    KeyedCollection.delete = Symbol.for("@esfx/collection-core:KeyedCollection.delete") as typeof KeyedCollection.delete;
-
+    export const set = Symbol.for("@esfx/collection-core!KeyedCollection.set");
+    
+    KeyedCollection.delete = Symbol.for("@esfx/collection-core!KeyedCollection.delete") as typeof KeyedCollection.delete;
+    
     /**
      * A well-known symbol used to define the `KeyedCollection#[KeyedCollection.clear]` method.
      */
-    export const clear = Symbol.for("@esfx/collection-core:KeyedCollection.clear");
+    export const clear = Symbol.for("@esfx/collection-core!KeyedCollection.clear");
+    // #endregion KeyedCollection<K, V>
 
     /**
      * Tests whether a value supports the minimal representation of a `KeyedCollection`.
+     * @deprecated Use `KeyedCollection.hasInstance` instead.
      */
     export function isKeyedCollection<K, V>(value: Iterable<[K, V]>): value is KeyedCollection<K, V>;
     /**
      * Tests whether a value supports the minimal representation of a `KeyedCollection`.
+     * @deprecated Use `KeyedCollection.hasInstance` instead.
      */
     export function isKeyedCollection(value: unknown): value is KeyedCollection<unknown, unknown>;
     /**
      * Tests whether a value supports the minimal representation of a `KeyedCollection`.
+     * @deprecated Use `KeyedCollection.hasInstance` instead.
      */
     export function isKeyedCollection(value: unknown): value is KeyedCollection<unknown, unknown> {
-        return isReadonlyKeyedCollection(value)
+        return KeyedCollection.hasInstance(value);
+    }
+    
+    export const name = "KeyedCollection";
+
+    /**
+     * Tests whether a value supports the minimal representation of a `KeyedCollection`.
+     */
+    export function hasInstance<K, V>(value: Iterable<[K, V]>): value is KeyedCollection<K, V>;
+    /**
+     * Tests whether a value supports the minimal representation of a `KeyedCollection`.
+     */
+    export function hasInstance(value: unknown): value is KeyedCollection<unknown, unknown>;
+    /**
+     * Tests whether a value supports the minimal representation of a `KeyedCollection`.
+     */
+    export function hasInstance(value: unknown): value is KeyedCollection<unknown, unknown> {
+        return ReadonlyKeyedCollection.hasInstance(value)
             && KeyedCollection.set in value
             && KeyedCollection.delete in value
             && KeyedCollection.clear in value;
@@ -452,49 +611,70 @@ export interface ReadonlyKeyedMultiCollection<K, V> extends Iterable<[K, V]> {
 }
 
 export namespace ReadonlyKeyedMultiCollection {
-    // ReadonlyKeyedMultiCollection<K, V>
+    // #region ReadonlyKeyedMultiCollection<K, V>
     /**
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.size]` property.
      */
-    export const size = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.size");
-
+    export const size = Symbol.for("@esfx/collection-core!ReadonlyKeyedMultiCollection.size");
+    
     /**
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.has]` method.
      */
-    export const has = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.has");
-
+    export const has = Symbol.for("@esfx/collection-core!ReadonlyKeyedMultiCollection.has");
+    
     /**
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.hasValue]` method.
      */
-    export const hasValue = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.hasValue");
-
+    export const hasValue = Symbol.for("@esfx/collection-core!ReadonlyKeyedMultiCollection.hasValue");
+    
     /**
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.get]` method.
      */
-    export const get = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.get");
-
+    export const get = Symbol.for("@esfx/collection-core!ReadonlyKeyedMultiCollection.get");
+    
     /**
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.keys]` method.
      */
-    export const keys = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.keys");
-
+    export const keys = Symbol.for("@esfx/collection-core!ReadonlyKeyedMultiCollection.keys");
+    
     /**
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.values]` method.
      */
-    export const values = Symbol.for("@esfx/collection-core:ReadonlyKeyedMultiCollection.values");
+    export const values = Symbol.for("@esfx/collection-core!ReadonlyKeyedMultiCollection.values");
+    // #endregion ReadonlyKeyedMultiCollection<K, V>
 
     /**
      * Tests whether a value supports the minimal representation of a `ReadonlyKeyedMultiCollection`.
+     * @deprecated Use `ReadonlyKeyedMultiCollection.hasInstance` instead.
      */
     export function isReadonlyKeyedMultiCollection<K, V>(value: Iterable<[K, V]>): value is ReadonlyKeyedMultiCollection<K, V>;
     /**
      * Tests whether a value supports the minimal representation of a `ReadonlyKeyedMultiCollection`.
+     * @deprecated Use `ReadonlyKeyedMultiCollection.hasInstance` instead.
      */
     export function isReadonlyKeyedMultiCollection(value: unknown): value is ReadonlyKeyedMultiCollection<unknown, unknown>;
     /**
      * Tests whether a value supports the minimal representation of a `ReadonlyKeyedMultiCollection`.
+     * @deprecated Use `ReadonlyKeyedMultiCollection.hasInstance` instead.
      */
     export function isReadonlyKeyedMultiCollection(value: unknown): value is ReadonlyKeyedMultiCollection<unknown, unknown> {
+        return ReadonlyKeyedMultiCollection.hasInstance(value);
+    }
+
+    export const name = "ReadonlyKeyedMultiCollection";
+
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyKeyedMultiCollection`.
+     */
+    export function hasInstance<K, V>(value: Iterable<[K, V]>): value is ReadonlyKeyedMultiCollection<K, V>;
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyKeyedMultiCollection`.
+     */
+    export function hasInstance(value: unknown): value is ReadonlyKeyedMultiCollection<unknown, unknown>;
+    /**
+     * Tests whether a value supports the minimal representation of a `ReadonlyKeyedMultiCollection`.
+     */
+    export function hasInstance(value: unknown): value is ReadonlyKeyedMultiCollection<unknown, unknown> {
         return isIterable(value)
             && ReadonlyKeyedMultiCollection.size in value
             && ReadonlyKeyedMultiCollection.has in value
@@ -530,7 +710,7 @@ export interface KeyedMultiCollection<K, V> extends ReadonlyKeyedMultiCollection
 }
 
 export namespace KeyedMultiCollection {
-    // ReadonlyKeyedMultiCollection<K, V>
+    // #region ReadonlyKeyedMultiCollection<K, V>
     export import size = ReadonlyKeyedMultiCollection.size;
     export import has = ReadonlyKeyedMultiCollection.has;
     export import hasValue = ReadonlyKeyedMultiCollection.hasValue;
@@ -538,38 +718,60 @@ export namespace KeyedMultiCollection {
     export import keys = ReadonlyKeyedMultiCollection.keys;
     export import values = ReadonlyKeyedMultiCollection.values;
     export import isReadonlyKeyedMultiCollection = ReadonlyKeyedMultiCollection.isReadonlyKeyedMultiCollection;
+    // #endregion ReadonlyKeyedMultiCollection<K, V>
 
-    // KeyedMultiCollection<K, V>
+    // #region KeyedMultiCollection<K, V>
     /**
      * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.add]` method.
      */
-    export const add = Symbol.for("@esfx/collection-core:KeyedMultiCollection.add");
-
-    KeyedMultiCollection.delete = Symbol.for("@esfx/collection-core:KeyedMultiCollection.delete") as typeof KeyedMultiCollection.delete;
-
+    export const add = Symbol.for("@esfx/collection-core!KeyedMultiCollection.add");
+    
+    KeyedMultiCollection.delete = Symbol.for("@esfx/collection-core!KeyedMultiCollection.delete") as typeof KeyedMultiCollection.delete;
+    
     /**
      * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.deleteValue]` method.
      */
-    export const deleteValue = Symbol.for("@esfx/collection-core:KeyedMultiCollection.deleteValue");
-
+    export const deleteValue = Symbol.for("@esfx/collection-core!KeyedMultiCollection.deleteValue");
+    
     /**
      * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.clear]` method.
      */
-    export const clear = Symbol.for("@esfx/collection-core:KeyedMultiCollection.clear");
+    export const clear = Symbol.for("@esfx/collection-core!KeyedMultiCollection.clear");
+    // #endregion KeyedMultiCollection<K, V>
 
     /**
      * Tests whether a value supports the minimal representation of a `KeyedMultiCollection`.
+     * @deprecated Use `KeyedMultiCollection.hasInstance` instead.
      */
     export function isKeyedMultiCollection<K, V>(value: Iterable<[K, V]>): value is KeyedMultiCollection<K, V>;
     /**
      * Tests whether a value supports the minimal representation of a `KeyedMultiCollection`.
+     * @deprecated Use `KeyedMultiCollection.hasInstance` instead.
      */
     export function isKeyedMultiCollection(value: unknown): value is KeyedMultiCollection<unknown, unknown>;
     /**
      * Tests whether a value supports the minimal representation of a `KeyedMultiCollection`.
+     * @deprecated Use `KeyedMultiCollection.hasInstance` instead.
      */
     export function isKeyedMultiCollection(value: unknown): value is KeyedMultiCollection<unknown, unknown> {
-        return isReadonlyKeyedMultiCollection(value)
+        return KeyedMultiCollection.hasInstance(value);
+    }
+
+    export const name = "KeyedMultiCollection";
+
+    /**
+     * Tests whether a value supports the minimal representation of a `KeyedMultiCollection`.
+     */
+    export function hasInstance<K, V>(value: Iterable<[K, V]>): value is KeyedMultiCollection<K, V>;
+    /**
+     * Tests whether a value supports the minimal representation of a `KeyedMultiCollection`.
+     */
+    export function hasInstance(value: unknown): value is KeyedMultiCollection<unknown, unknown>;
+    /**
+     * Tests whether a value supports the minimal representation of a `KeyedMultiCollection`.
+     */
+    export function hasInstance(value: unknown): value is KeyedMultiCollection<unknown, unknown> {
+        return ReadonlyKeyedMultiCollection.hasInstance(value)
             && KeyedMultiCollection.add in value
             && KeyedMultiCollection.delete in value
             && KeyedMultiCollection.deleteValue in value
@@ -584,3 +786,23 @@ export declare namespace KeyedMultiCollection {
     const _delete: unique symbol;
     export { _delete as delete };
 }
+
+deprecateProperty(ReadonlyCollection, "isReadonlyCollection", "Use 'ReadonlyCollection.hasInstance' instead.");
+deprecateProperty(Collection, "isReadonlyCollection", "Use 'ReadonlyCollection.hasInstance' instead.");
+deprecateProperty(Collection, "isCollection", "Use 'Collection.hasInstance' instead.");
+deprecateProperty(ReadonlyIndexedCollection, "isReadonlyCollection", "Use 'ReadonlyCollection.hasInstance' instead.");
+deprecateProperty(ReadonlyIndexedCollection, "isReadonlyIndexedCollection", "Use 'ReadonlyIndexedCollection.hasInstance' instead.");
+deprecateProperty(FixedSizeIndexedCollection, "isReadonlyCollection", "Use 'ReadonlyCollection.hasInstance' instead.");
+deprecateProperty(FixedSizeIndexedCollection, "isReadonlyIndexedCollection", "Use 'ReadonlyIndexedCollection.hasInstance' instead.");
+deprecateProperty(FixedSizeIndexedCollection, "isFixedSizeIndexedCollection", "Use 'FixedSizeIndexedCollection.hasInstance' instead.");
+deprecateProperty(IndexedCollection, "isReadonlyCollection", "Use 'ReadonlyCollection.hasInstance' instead.");
+deprecateProperty(IndexedCollection, "isReadonlyIndexedCollection", "Use 'ReadonlyIndexedCollection.hasInstance' instead.");
+deprecateProperty(IndexedCollection, "isFixedSizeIndexedCollection", "Use 'FixedSizeIndexedCollection.hasInstance' instead.");
+deprecateProperty(IndexedCollection, "isCollection", "Use 'Collection.hasInstance' instead.");
+deprecateProperty(IndexedCollection, "isIndexedCollection", "Use 'IndexedCollection.hasInstance' instead.");
+deprecateProperty(ReadonlyKeyedCollection, "isReadonlyKeyedCollection", "Use 'ReadonlyKeyedCollection.hasInstance' instead.");
+deprecateProperty(KeyedCollection, "isReadonlyKeyedCollection", "Use 'ReadonlyKeyedCollection.hasInstance' instead.");
+deprecateProperty(KeyedCollection, "isKeyedCollection", "Use 'KeyedCollection.hasInstance' instead.");
+deprecateProperty(ReadonlyKeyedMultiCollection, "isReadonlyKeyedMultiCollection", "Use 'ReadonlyKeyedMultiCollection.hasInstance' instead.");
+deprecateProperty(KeyedMultiCollection, "isReadonlyKeyedMultiCollection", "Use 'ReadonlyKeyedMultiCollection.hasInstance' instead.");
+deprecateProperty(KeyedMultiCollection, "isKeyedMultiCollection", "Use 'KeyedMultiCollection.hasInstance' instead.");

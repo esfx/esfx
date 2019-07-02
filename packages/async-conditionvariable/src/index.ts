@@ -46,10 +46,10 @@ export class AsyncConditionVariable {
      */
     async wait(lock: AsyncLockable, condition?: () => boolean, cancelable?: Cancelable): Promise<void>;
     async wait(lock: AsyncLockable, condition?: (() => boolean) | Cancelable, cancelable?: Cancelable) {
-        if (Cancelable.isCancelable(condition)) cancelable = condition, condition = undefined;
-        if (!AsyncLockable.isAsyncLockable(lock)) throw new TypeError("AsyncLockable expected: lock");
+        if (Cancelable.hasInstance(condition)) cancelable = condition, condition = undefined;
+        if (!AsyncLockable.hasInstance(lock)) throw new TypeError("AsyncLockable expected: lock");
         if (!isMissing(condition) && !isFunction(condition)) throw new TypeError("Function expected: condition");
-        if (!isMissing(cancelable) && !Cancelable.isCancelable(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+        if (!isMissing(cancelable) && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
         Cancelable.throwIfSignaled(cancelable);
         if (condition) {
             while (!condition()) {

@@ -85,6 +85,10 @@ export namespace ref {
         return ref<T>(() => value, _ => value = _);
     };
 
+    export function deref<T>(value: T | Reference<T>): T {
+        return ref.is(value) ? value.value : value;
+    };
+
     /**
      * Creates a `ref` to a property of an object.
      */

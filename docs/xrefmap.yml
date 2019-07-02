@@ -293,6 +293,10 @@ references:
   name: AsyncLockable
   href: api/async-lockable/asynclockable_namespace.html#async_lockable_AsyncLockable_Namespace
   fullName: AsyncLockable
+- uid: async-lockable.AsyncLockable_Namespace.hasInstance
+  name: hasInstance(value)
+  href: api/async-lockable/asynclockable_namespace.html
+  fullName: hasInstance(value)
 - uid: async-lockable.AsyncLockable_Namespace.isAsyncLockable
   name: isAsyncLockable(value)
   href: api/async-lockable/asynclockable_namespace.html
@@ -301,6 +305,10 @@ references:
   name: lock
   href: api/async-lockable/asynclockable_namespace.html
   fullName: lock
+- uid: async-lockable.AsyncLockable_Namespace.name
+  name: name
+  href: api/async-lockable/asynclockable_namespace.html
+  fullName: name
 - uid: async-lockable.AsyncLockable_Namespace.unlock
   name: unlock
   href: api/async-lockable/asynclockable_namespace.html
@@ -665,6 +673,10 @@ references:
   name: cancelSignal
   href: api/cancelable/cancelable_namespace.html
   fullName: cancelSignal
+- uid: cancelable.Cancelable_Namespace.hasInstance
+  name: hasInstance(value)
+  href: api/cancelable/cancelable_namespace.html
+  fullName: hasInstance(value)
 - uid: cancelable.Cancelable_Namespace.isCancelable
   name: isCancelable(value)
   href: api/cancelable/cancelable_namespace.html
@@ -673,6 +685,10 @@ references:
   name: isSignaled(cancelable)
   href: api/cancelable/cancelable_namespace.html
   fullName: isSignaled(cancelable)
+- uid: cancelable.Cancelable_Namespace.name
+  name: name
+  href: api/cancelable/cancelable_namespace.html
+  fullName: name
 - uid: cancelable.Cancelable_Namespace.none
   name: none
   href: api/cancelable/cancelable_namespace.html
@@ -709,10 +725,18 @@ references:
   name: cancel
   href: api/cancelable/cancelablesource_namespace.html
   fullName: cancel
+- uid: cancelable.CancelableSource_Namespace.hasInstance
+  name: hasInstance(value)
+  href: api/cancelable/cancelablesource_namespace.html
+  fullName: hasInstance(value)
 - uid: cancelable.CancelableSource_Namespace.isCancelableSource
   name: isCancelableSource(value)
   href: api/cancelable/cancelablesource_namespace.html
   fullName: isCancelableSource(value)
+- uid: cancelable.CancelableSource_Namespace.name
+  name: name
+  href: api/cancelable/cancelablesource_namespace.html
+  fullName: name
 - uid: cancelable.CancelError
   name: CancelError
   href: api/cancelable/cancelerror.html#cancelable_CancelError
@@ -797,6 +821,14 @@ references:
   name: clear
   href: api/collection-core/collection_namespace.html
   fullName: clear
+- uid: collection-core.Collection_Namespace.hasInstance_Function
+  name: hasInstance(value)
+  href: api/collection-core/collection_namespace.html
+  fullName: hasInstance(value)
+- uid: collection-core.Collection_Namespace.hasInstance_Function_1
+  name: hasInstance(value)
+  href: api/collection-core/collection_namespace.html
+  fullName: hasInstance(value)
 - uid: collection-core.Collection_Namespace.isCollection_Function
   name: isCollection(value)
   href: api/collection-core/collection_namespace.html
@@ -805,6 +837,10 @@ references:
   name: isCollection(value)
   href: api/collection-core/collection_namespace.html
   fullName: isCollection(value)
+- uid: collection-core.Collection_Namespace.name
+  name: name
+  href: api/collection-core/collection_namespace.html
+  fullName: name
 - uid: collection-core.FixedSizeIndexedCollection_Interface
   name: FixedSizeIndexedCollection
   href: api/collection-core/fixedsizeindexedcollection_interface.html#collection_core_FixedSizeIndexedCollection_Interface
@@ -817,6 +853,14 @@ references:
   name: FixedSizeIndexedCollection
   href: api/collection-core/fixedsizeindexedcollection_namespace.html#collection_core_FixedSizeIndexedCollection_Namespace
   fullName: FixedSizeIndexedCollection
+- uid: collection-core.FixedSizeIndexedCollection_Namespace.hasInstance_Function
+  name: hasInstance(value)
+  href: api/collection-core/fixedsizeindexedcollection_namespace.html
+  fullName: hasInstance(value)
+- uid: collection-core.FixedSizeIndexedCollection_Namespace.hasInstance_Function_1
+  name: hasInstance(value)
+  href: api/collection-core/fixedsizeindexedcollection_namespace.html
+  fullName: hasInstance(value)
 - uid: collection-core.FixedSizeIndexedCollection_Namespace.isFixedSizeIndexedCollection_Function
   name: isFixedSizeIndexedCollection(value)
   href: api/collection-core/fixedsizeindexedcollection_namespace.html
@@ -825,6 +869,10 @@ references:
   name: isFixedSizeIndexedCollection(value)
   href: api/collection-core/fixedsizeindexedcollection_namespace.html
   fullName: isFixedSizeIndexedCollection(value)
+- uid: collection-core.FixedSizeIndexedCollection_Namespace.name
+  name: name
+  href: api/collection-core/fixedsizeindexedcollection_namespace.html
+  fullName: name
 - uid: collection-core.FixedSizeIndexedCollection_Namespace.setAt
   name: setAt
   href: api/collection-core/fixedsizeindexedcollection_namespace.html
@@ -849,6 +897,14 @@ references:
   name: delete
   href: api/collection-core/indexedcollection_namespace.html
   fullName: delete
+- uid: collection-core.IndexedCollection_Namespace.hasInstance_Function
+  name: hasInstance(value)
+  href: api/collection-core/indexedcollection_namespace.html
+  fullName: hasInstance(value)
+- uid: collection-core.IndexedCollection_Namespace.hasInstance_Function_1
+  name: hasInstance(value)
+  href: api/collection-core/indexedcollection_namespace.html
+  fullName: hasInstance(value)
 - uid: collection-core.IndexedCollection_Namespace.insertAt
   name: insertAt
   href: api/collection-core/indexedcollection_namespace.html
@@ -861,6 +917,10 @@ references:
   name: isIndexedCollection(value)
   href: api/collection-core/indexedcollection_namespace.html
   fullName: isIndexedCollection(value)
+- uid: collection-core.IndexedCollection_Namespace.name
+  name: name
+  href: api/collection-core/indexedcollection_namespace.html
+  fullName: name
 - uid: collection-core.IndexedCollection_Namespace.removeAt
   name: removeAt
   href: api/collection-core/indexedcollection_namespace.html
@@ -893,6 +953,14 @@ references:
   name: clear
   href: api/collection-core/keyedcollection_namespace.html
   fullName: clear
+- uid: collection-core.KeyedCollection_Namespace.hasInstance_Function
+  name: hasInstance(value)
+  href: api/collection-core/keyedcollection_namespace.html
+  fullName: hasInstance(value)
+- uid: collection-core.KeyedCollection_Namespace.hasInstance_Function_1
+  name: hasInstance(value)
+  href: api/collection-core/keyedcollection_namespace.html
+  fullName: hasInstance(value)
 - uid: collection-core.KeyedCollection_Namespace.isKeyedCollection_Function
   name: isKeyedCollection(value)
   href: api/collection-core/keyedcollection_namespace.html
@@ -901,6 +969,10 @@ references:
   name: isKeyedCollection(value)
   href: api/collection-core/keyedcollection_namespace.html
   fullName: isKeyedCollection(value)
+- uid: collection-core.KeyedCollection_Namespace.name
+  name: name
+  href: api/collection-core/keyedcollection_namespace.html
+  fullName: name
 - uid: collection-core.KeyedCollection_Namespace.set
   name: set
   href: api/collection-core/keyedcollection_namespace.html
@@ -945,6 +1017,14 @@ references:
   name: deleteValue
   href: api/collection-core/keyedmulticollection_namespace.html
   fullName: deleteValue
+- uid: collection-core.KeyedMultiCollection_Namespace.hasInstance_Function
+  name: hasInstance(value)
+  href: api/collection-core/keyedmulticollection_namespace.html
+  fullName: hasInstance(value)
+- uid: collection-core.KeyedMultiCollection_Namespace.hasInstance_Function_1
+  name: hasInstance(value)
+  href: api/collection-core/keyedmulticollection_namespace.html
+  fullName: hasInstance(value)
 - uid: collection-core.KeyedMultiCollection_Namespace.isKeyedMultiCollection_Function
   name: isKeyedMultiCollection(value)
   href: api/collection-core/keyedmulticollection_namespace.html
@@ -953,6 +1033,10 @@ references:
   name: isKeyedMultiCollection(value)
   href: api/collection-core/keyedmulticollection_namespace.html
   fullName: isKeyedMultiCollection(value)
+- uid: collection-core.KeyedMultiCollection_Namespace.name
+  name: name
+  href: api/collection-core/keyedmulticollection_namespace.html
+  fullName: name
 - uid: collection-core.ReadonlyCollection_Interface
   name: ReadonlyCollection
   href: api/collection-core/readonlycollection_interface.html#collection_core_ReadonlyCollection_Interface
@@ -973,6 +1057,14 @@ references:
   name: has
   href: api/collection-core/readonlycollection_namespace.html
   fullName: has
+- uid: collection-core.ReadonlyCollection_Namespace.hasInstance_Function
+  name: hasInstance(value)
+  href: api/collection-core/readonlycollection_namespace.html
+  fullName: hasInstance(value)
+- uid: collection-core.ReadonlyCollection_Namespace.hasInstance_Function_1
+  name: hasInstance(value)
+  href: api/collection-core/readonlycollection_namespace.html
+  fullName: hasInstance(value)
 - uid: collection-core.ReadonlyCollection_Namespace.isReadonlyCollection_Function
   name: isReadonlyCollection(value)
   href: api/collection-core/readonlycollection_namespace.html
@@ -981,6 +1073,10 @@ references:
   name: isReadonlyCollection(value)
   href: api/collection-core/readonlycollection_namespace.html
   fullName: isReadonlyCollection(value)
+- uid: collection-core.ReadonlyCollection_Namespace.name
+  name: name
+  href: api/collection-core/readonlycollection_namespace.html
+  fullName: name
 - uid: collection-core.ReadonlyCollection_Namespace.size
   name: size
   href: api/collection-core/readonlycollection_namespace.html
@@ -1005,6 +1101,14 @@ references:
   name: getAt
   href: api/collection-core/readonlyindexedcollection_namespace.html
   fullName: getAt
+- uid: collection-core.ReadonlyIndexedCollection_Namespace.hasInstance_Function
+  name: hasInstance(value)
+  href: api/collection-core/readonlyindexedcollection_namespace.html
+  fullName: hasInstance(value)
+- uid: collection-core.ReadonlyIndexedCollection_Namespace.hasInstance_Function_1
+  name: hasInstance(value)
+  href: api/collection-core/readonlyindexedcollection_namespace.html
+  fullName: hasInstance(value)
 - uid: collection-core.ReadonlyIndexedCollection_Namespace.indexOf
   name: indexOf
   href: api/collection-core/readonlyindexedcollection_namespace.html
@@ -1017,6 +1121,10 @@ references:
   name: isReadonlyIndexedCollection(value)
   href: api/collection-core/readonlyindexedcollection_namespace.html
   fullName: isReadonlyIndexedCollection(value)
+- uid: collection-core.ReadonlyIndexedCollection_Namespace.name
+  name: name
+  href: api/collection-core/readonlyindexedcollection_namespace.html
+  fullName: name
 - uid: collection-core.ReadonlyKeyedCollection_Interface
   name: ReadonlyKeyedCollection
   href: api/collection-core/readonlykeyedcollection_interface.html#collection_core_ReadonlyKeyedCollection_Interface
@@ -1053,6 +1161,14 @@ references:
   name: has
   href: api/collection-core/readonlykeyedcollection_namespace.html
   fullName: has
+- uid: collection-core.ReadonlyKeyedCollection_Namespace.hasInstance_Function
+  name: hasInstance(value)
+  href: api/collection-core/readonlykeyedcollection_namespace.html
+  fullName: hasInstance(value)
+- uid: collection-core.ReadonlyKeyedCollection_Namespace.hasInstance_Function_1
+  name: hasInstance(value)
+  href: api/collection-core/readonlykeyedcollection_namespace.html
+  fullName: hasInstance(value)
 - uid: collection-core.ReadonlyKeyedCollection_Namespace.isReadonlyKeyedCollection_Function
   name: isReadonlyKeyedCollection(value)
   href: api/collection-core/readonlykeyedcollection_namespace.html
@@ -1065,6 +1181,10 @@ references:
   name: keys
   href: api/collection-core/readonlykeyedcollection_namespace.html
   fullName: keys
+- uid: collection-core.ReadonlyKeyedCollection_Namespace.name
+  name: name
+  href: api/collection-core/readonlykeyedcollection_namespace.html
+  fullName: name
 - uid: collection-core.ReadonlyKeyedCollection_Namespace.size
   name: size
   href: api/collection-core/readonlykeyedcollection_namespace.html
@@ -1113,6 +1233,14 @@ references:
   name: has
   href: api/collection-core/readonlykeyedmulticollection_namespace.html
   fullName: has
+- uid: collection-core.ReadonlyKeyedMultiCollection_Namespace.hasInstance_Function
+  name: hasInstance(value)
+  href: api/collection-core/readonlykeyedmulticollection_namespace.html
+  fullName: hasInstance(value)
+- uid: collection-core.ReadonlyKeyedMultiCollection_Namespace.hasInstance_Function_1
+  name: hasInstance(value)
+  href: api/collection-core/readonlykeyedmulticollection_namespace.html
+  fullName: hasInstance(value)
 - uid: collection-core.ReadonlyKeyedMultiCollection_Namespace.hasValue
   name: hasValue
   href: api/collection-core/readonlykeyedmulticollection_namespace.html
@@ -1129,6 +1257,10 @@ references:
   name: keys
   href: api/collection-core/readonlykeyedmulticollection_namespace.html
   fullName: keys
+- uid: collection-core.ReadonlyKeyedMultiCollection_Namespace.name
+  name: name
+  href: api/collection-core/readonlykeyedmulticollection_namespace.html
+  fullName: name
 - uid: collection-core.ReadonlyKeyedMultiCollection_Namespace.size
   name: size
   href: api/collection-core/readonlykeyedmulticollection_namespace.html
@@ -1177,30 +1309,30 @@ references:
   name: '[KeyedCollection.delete](key)'
   href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_delete_
   fullName: '[KeyedCollection.delete](key)'
-- uid: collections-hashmap.HashMap.[KeyedCollection.get]
-  name: '[KeyedCollection.get](key)'
-  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_get_
-  fullName: '[KeyedCollection.get](key)'
-- uid: collections-hashmap.HashMap.[KeyedCollection.has]
-  name: '[KeyedCollection.has](key)'
-  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_has_
-  fullName: '[KeyedCollection.has](key)'
-- uid: collections-hashmap.HashMap.[KeyedCollection.keys]
-  name: '[KeyedCollection.keys]()'
-  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_keys_
-  fullName: '[KeyedCollection.keys]()'
 - uid: collections-hashmap.HashMap.[KeyedCollection.set]
   name: '[KeyedCollection.set](key, value)'
   href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_set_
   fullName: '[KeyedCollection.set](key, value)'
-- uid: collections-hashmap.HashMap.[KeyedCollection.size]
-  name: '[KeyedCollection.size]'
-  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_size_
-  fullName: '[KeyedCollection.size]'
-- uid: collections-hashmap.HashMap.[KeyedCollection.values]
-  name: '[KeyedCollection.values]()'
-  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__KeyedCollection_values_
-  fullName: '[KeyedCollection.values]()'
+- uid: collections-hashmap.HashMap.[ReadonlyKeyedCollection.get]
+  name: '[ReadonlyKeyedCollection.get](key)'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__ReadonlyKeyedCollection_get_
+  fullName: '[ReadonlyKeyedCollection.get](key)'
+- uid: collections-hashmap.HashMap.[ReadonlyKeyedCollection.has]
+  name: '[ReadonlyKeyedCollection.has](key)'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__ReadonlyKeyedCollection_has_
+  fullName: '[ReadonlyKeyedCollection.has](key)'
+- uid: collections-hashmap.HashMap.[ReadonlyKeyedCollection.keys]
+  name: '[ReadonlyKeyedCollection.keys]()'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__ReadonlyKeyedCollection_keys_
+  fullName: '[ReadonlyKeyedCollection.keys]()'
+- uid: collections-hashmap.HashMap.[ReadonlyKeyedCollection.size]
+  name: '[ReadonlyKeyedCollection.size]'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__ReadonlyKeyedCollection_size_
+  fullName: '[ReadonlyKeyedCollection.size]'
+- uid: collections-hashmap.HashMap.[ReadonlyKeyedCollection.values]
+  name: '[ReadonlyKeyedCollection.values]()'
+  href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__ReadonlyKeyedCollection_values_
+  fullName: '[ReadonlyKeyedCollection.values]()'
 - uid: collections-hashmap.HashMap.[Symbol.iterator]
   name: '[Symbol.iterator]()'
   href: api/collections-hashmap/hashmap.html#collections_hashmap_HashMap__Symbol_iterator_
@@ -2345,10 +2477,18 @@ references:
   name: from(resources)
   href: api/disposable/asyncdisposable_namespace.html
   fullName: from(resources)
+- uid: disposable.AsyncDisposable_Namespace.hasInstance
+  name: hasInstance(value)
+  href: api/disposable/asyncdisposable_namespace.html
+  fullName: hasInstance(value)
 - uid: disposable.AsyncDisposable_Namespace.isAsyncDisposable
   name: isAsyncDisposable(value)
   href: api/disposable/asyncdisposable_namespace.html
   fullName: isAsyncDisposable(value)
+- uid: disposable.AsyncDisposable_Namespace.name
+  name: name
+  href: api/disposable/asyncdisposable_namespace.html
+  fullName: name
 - uid: disposable.AsyncDisposable_Namespace.use
   name: use(resource, callback)
   href: api/disposable/asyncdisposable_namespace.html
@@ -2377,10 +2517,18 @@ references:
   name: from(disposables)
   href: api/disposable/disposable_namespace.html
   fullName: from(disposables)
+- uid: disposable.Disposable_Namespace.hasInstance
+  name: hasInstance(value)
+  href: api/disposable/disposable_namespace.html
+  fullName: hasInstance(value)
 - uid: disposable.Disposable_Namespace.isDisposable
   name: isDisposable(value)
   href: api/disposable/disposable_namespace.html
   fullName: isDisposable(value)
+- uid: disposable.Disposable_Namespace.name
+  name: name
+  href: api/disposable/disposable_namespace.html
+  fullName: name
 - uid: disposable.Disposable_Namespace.use
   name: use(resource, callback)
   href: api/disposable/disposable_namespace.html
@@ -2405,10 +2553,18 @@ references:
   name: compareTo
   href: api/equatable/comparable_namespace.html
   fullName: compareTo
+- uid: equatable.Comparable_Namespace.hasInstance
+  name: hasInstance(value)
+  href: api/equatable/comparable_namespace.html
+  fullName: hasInstance(value)
 - uid: equatable.Comparable_Namespace.isComparable
   name: isComparable(value)
   href: api/equatable/comparable_namespace.html
   fullName: isComparable(value)
+- uid: equatable.Comparable_Namespace.name
+  name: name
+  href: api/equatable/comparable_namespace.html
+  fullName: name
 - uid: equatable.Comparer_Interface
   name: Comparer
   href: api/equatable/comparer_interface.html#equatable_Comparer_Interface
@@ -2509,10 +2665,18 @@ references:
   name: hash
   href: api/equatable/equatable_namespace.html
   fullName: hash
+- uid: equatable.Equatable_Namespace.hasInstance
+  name: hasInstance(value)
+  href: api/equatable/equatable_namespace.html
+  fullName: hasInstance(value)
 - uid: equatable.Equatable_Namespace.isEquatable
   name: isEquatable(value)
   href: api/equatable/equatable_namespace.html
   fullName: isEquatable(value)
+- uid: equatable.Equatable_Namespace.name
+  name: name
+  href: api/equatable/equatable_namespace.html
+  fullName: name
 - uid: equatable.HashGenerator
   name: HashGenerator
   href: api/equatable.html#equatable_HashGenerator
@@ -2529,10 +2693,18 @@ references:
   name: StructuralComparable
   href: api/equatable/structuralcomparable_namespace.html#equatable_StructuralComparable_Namespace
   fullName: StructuralComparable
+- uid: equatable.StructuralComparable_Namespace.hasInstance
+  name: hasInstance(value)
+  href: api/equatable/structuralcomparable_namespace.html
+  fullName: hasInstance(value)
 - uid: equatable.StructuralComparable_Namespace.isStructuralComparable
   name: isStructuralComparable(value)
   href: api/equatable/structuralcomparable_namespace.html
   fullName: isStructuralComparable(value)
+- uid: equatable.StructuralComparable_Namespace.name
+  name: name
+  href: api/equatable/structuralcomparable_namespace.html
+  fullName: name
 - uid: equatable.StructuralComparable_Namespace.structuralCompareTo
   name: structuralCompareTo
   href: api/equatable/structuralcomparable_namespace.html
@@ -2553,10 +2725,18 @@ references:
   name: StructuralEquatable
   href: api/equatable/structuralequatable_namespace.html#equatable_StructuralEquatable_Namespace
   fullName: StructuralEquatable
+- uid: equatable.StructuralEquatable_Namespace.hasInstance
+  name: hasInstance(value)
+  href: api/equatable/structuralequatable_namespace.html
+  fullName: hasInstance(value)
 - uid: equatable.StructuralEquatable_Namespace.isStructuralEquatable
   name: isStructuralEquatable(value)
   href: api/equatable/structuralequatable_namespace.html
   fullName: isStructuralEquatable(value)
+- uid: equatable.StructuralEquatable_Namespace.name
+  name: name
+  href: api/equatable/structuralequatable_namespace.html
+  fullName: name
 - uid: equatable.StructuralEquatable_Namespace.structuralEquals
   name: structuralEquals
   href: api/equatable/structuralequatable_namespace.html
@@ -2872,6 +3052,10 @@ references:
   name: at(object, key, readonly)
   href: api/ref/ref_namespace.html
   fullName: at(object, key, readonly)
+- uid: ref.ref_Namespace.deref
+  name: deref(value)
+  href: api/ref/ref_namespace.html
+  fullName: deref(value)
 - uid: ref.ref_Namespace.out_Function
   name: out()
   href: api/ref/ref_namespace.html
@@ -3304,10 +3488,18 @@ references:
   name: Lockable
   href: api/threading-lockable/lockable_namespace.html#threading_lockable_Lockable_Namespace
   fullName: Lockable
+- uid: threading-lockable.Lockable_Namespace.hasInstance
+  name: hasInstance(value)
+  href: api/threading-lockable/lockable_namespace.html
+  fullName: hasInstance(value)
 - uid: threading-lockable.Lockable_Namespace.lock
   name: lock
   href: api/threading-lockable/lockable_namespace.html
   fullName: lock
+- uid: threading-lockable.Lockable_Namespace.name
+  name: name
+  href: api/threading-lockable/lockable_namespace.html
+  fullName: name
 - uid: threading-lockable.Lockable_Namespace.tryLock
   name: tryLock
   href: api/threading-lockable/lockable_namespace.html
