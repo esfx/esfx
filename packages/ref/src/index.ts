@@ -16,7 +16,7 @@
 
 import { isObject, isFunction, isDefined } from '@esfx/internal-guards';
 
-const refData = Symbol("@esfx/ref:refData");
+const refData = Symbol.for("@esfx/ref:refData");
 
 /**
  * A reference to a lexical value.
