@@ -10,25 +10,37 @@
 const fs = require("fs");
 const path = require("path");
 const del = require("del");
-require("./docs/patchApiExtractor");
-const { Extractor } = require("@microsoft/api-extractor");
+// require("./docs/patchApiExtractor");
+const { Extractor, ExtractorConfig } = require("@microsoft/api-extractor");
 const { ApiModel, ApiDocumentedItem, ApiDeclaredItem, ApiItemContainerMixin, ApiParameterListMixin } = require("@microsoft/api-extractor-model");
 const { CustomYamlDocumenter } = require("./docs/yamlDocumenter");
 const { exec } = require("./exec");
+const { newer } = require("./newer");
+const log = require("fancy-log");
+const glob = require("glob");
 
 /**
  * @param {string} docPackage
+ * @param {object} [options]
+ * @param {boolean} [options.verbose]
+ * @param {boolean} [options.force]
  */
-async function apiExtractor(docPackage) {
-    const result = Extractor.loadConfigAndInvoke(path.resolve(docPackage, "api-extractor.json"), {
-        localBuild: true,
-    });
+async function apiExtractor(docPackage, options = {}) {
+    const { verbose, force } = options
+    const config = ExtractorConfig.loadFileAndPrepare(path.resolve(docPackage, "api-extractor.json"));
+    const inputs = glob.sync(`@(${docPackage}/index.d.ts|${docPackage}/dist/**/*.d.ts)`);
+    if (!force && !newer(inputs, config.apiJsonFilePath)) {
+        if (verbose) {
+            log(`API for '${docPackage}' is unchanged, skipping.`);
+        }
+        return;
+    }
+    const result = Extractor.invoke(config, { localBuild: true });
     if (!result.succeeded) {
         throw new Error(`api-extractor failed for ${docPackage}`);
     }
 }
 exports.apiExtractor = apiExtractor;
-
 
 function replaceVars(file, vars) {
     return file.replace(/<([^>]+)>/g, (_, varName) => {
@@ -39,7 +51,7 @@ function replaceVars(file, vars) {
 /**
  * @param {string[]} projectFolders
  */
-async function apiDocumenter(projectFolders, apiDir = "<projectFolder>/.docs/api", yamlDir = ".docs/yml") {
+async function apiDocumenter(projectFolders, apiDir = "<projectFolder>/obj/api", yamlDir = "obj/yml") {
     const outputDirs = [...new Set(projectFolders.map(projectFolder => path.resolve(replaceVars(yamlDir, { projectFolder }))))];
     await del(outputDirs);
 
@@ -65,15 +77,15 @@ async function apiDocumenter(projectFolders, apiDir = "<projectFolder>/.docs/api
 }
 exports.apiDocumenter = apiDocumenter;
 
-let nameSymbol;
+// let nameSymbol;
 
-function getNameSymbol(apiItem) {
-    if (nameSymbol === undefined) {
-        const symbols = Object.getOwnPropertySymbols(apiItem);
-        nameSymbol = symbols.find(sym => sym.toString() === "Symbol(ApiNameMixin._name)");
-    }
-    return nameSymbol;
-}
+// function getNameSymbol(apiItem) {
+//     if (nameSymbol === undefined) {
+//         const symbols = Object.getOwnPropertySymbols(apiItem);
+//         nameSymbol = symbols.find(sym => sym.toString() === "Symbol(ApiNameMixin._name)");
+//     }
+//     return nameSymbol;
+// }
 
 /**
  * @param {import("@microsoft/api-extractor-model").ApiItem} apiItem
@@ -99,15 +111,15 @@ function fixupModel(apiItem, apiModel) {
         }
     }
 
-    if (apiItem.displayName === "__computed" && apiItem instanceof ApiDeclaredItem) {
-        const match = /\[[^\[\]]+\]/.exec(apiItem.excerpt.text);
-        if (match) {
-            const nameSymbol = getNameSymbol(apiItem);
-            if (nameSymbol) {
-                apiItem[nameSymbol] = match[0];
-            }
-        }
-    }
+    // if (apiItem.displayName === "__computed" && apiItem instanceof ApiDeclaredItem) {
+    //     const match = /\[[^\[\]]+\]/.exec(apiItem.excerpt.text);
+    //     if (match) {
+    //         const nameSymbol = getNameSymbol(apiItem);
+    //         if (nameSymbol) {
+    //             apiItem[nameSymbol] = match[0];
+    //         }
+    //     }
+    // }
 
     // Recurse members
     if (ApiItemContainerMixin.isBaseClassOf(apiItem)) {

@@ -78,75 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="disposable">
+            <article class="content wrap" id="_content" data-uid="@esfx/disposable!">
   
-  <h1 id="disposable" data-uid="disposable">Package @esfx/disposable
+  <h1 id="_esfx_disposable_" data-uid="@esfx/disposable!">Package @esfx/disposable
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>Provides a low-level API for defining explicit resource management that third-party libraries can use to interoperate.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/disposable
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_EaLRocg437">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_EaLRocg437_ts" role="tab" aria-controls="tabpanel_EaLRocg437_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_EaLRocg437_js" role="tab" aria-controls="tabpanel_EaLRocg437_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_EaLRocg437_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Disposable } from &quot;@esfx/disposable&quot;;
-
-class MyFileResouce {
-    private _handle?: number;
-
-    constructor() {
-        this._handle = fs.openSync(&quot;path/to/file&quot;);
-    }
-
-    close() {
-        if (this._handle !== undefined) {
-            fs.closeSync(this._handle);
-            this._handle = undefined;
-        }
-    }
-
-    // provide low-level &#39;dispose&#39; primitive for interop
-    [Disposable.dispose]() {
-        this.close();
-    }
-}
-</code></pre></section>
-<section id="tabpanel_EaLRocg437_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Disposable } = require(&quot;@esfx/disposable&quot;);
-
-class MyFileResouce {
-    constructor() {
-        this._handle = fs.openSync(&quot;path/to/file&quot;);
-    }
-
-    close() {
-        if (this._handle !== undefined) {
-            fs.closeSync(this._handle);
-            this._handle = undefined;
-        }
-    }
-
-    // provide low-level &#39;dispose&#39; primitive for interop
-    [Disposable.dispose]() {
-        this.close();
-    }
-}
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -155,9 +92,6 @@ class MyFileResouce {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/disposable.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

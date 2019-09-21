@@ -78,58 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="cancelable-dom-shim">
+            <article class="content wrap" id="_content" data-uid="@esfx/cancelable-dom-shim!">
   
-  <h1 id="cancelable_dom_shim" data-uid="cancelable-dom-shim">Package @esfx/cancelable-dom-shim
+  <h1 id="_esfx_cancelable_dom_shim_" data-uid="@esfx/cancelable-dom-shim!">Package @esfx/cancelable-dom-shim
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>The <code>@esfx/cancelable-dom-shim</code> package provides a global shim to make the DOM <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">AbortController</a> and <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">AbortSignal</a> classes compatible with <a class="xref" href="cancelable.html">@esfx/cancelable</a>.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/cancelable-dom-shim
-</code></pre><h1 id="usage">Usage</h1>
-<p>The global shim adds a default implementation the collection interfaces to the following global DOM objects:</p>
-<ul>
-<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">AbortController</a> implements:<ul>
-<li>@&quot;cancelable.CancelableSource&quot;</li>
-<li>@&quot;cancelable.Cancelable&quot;</li>
-</ul>
-</li>
-<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">AbortSignal</a> implements:<ul>
-<li>@&quot;cancelable.Cancelable&quot;</li>
-</ul>
-</li>
-</ul>
-<p>To install the global shim, import <code>@esfx/cancelable/global</code>:</p>
-<div class="tabGroup" id="tabgroup_G6SwYsjPgj">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_G6SwYsjPgj_ts" role="tab" aria-controls="tabpanel_G6SwYsjPgj_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_G6SwYsjPgj_js" role="tab" aria-controls="tabpanel_G6SwYsjPgj_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_G6SwYsjPgj_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import &quot;@esfx/cancelable-dom-shim&quot;; // triggers global-scope side effects
-import { Cancelable } from &quot;@esfx/cancelable&quot;;
-
-const abortController = new AbortController();
-const signal = abortController[Cancelable.cancelSignal]();
-</code></pre></section>
-<section id="tabpanel_G6SwYsjPgj_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">require(&quot;@esfx/cancelable-dom-shim&quot;); // triggers global-scope side effects
-const { Cancelable } = require(&quot;@esfx/cancelable&quot;);
-
-const abortController = new AbortController();
-const signal = abortController[Cancelable.cancelSignal]();
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -138,9 +92,6 @@ const signal = abortController[Cancelable.cancelSignal]();
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/cancelable-dom-shim.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

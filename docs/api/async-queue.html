@@ -78,83 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="async-queue">
+            <article class="content wrap" id="_content" data-uid="@esfx/async-queue!">
   
-  <h1 id="async_queue" data-uid="async-queue">Package @esfx/async-queue
+  <h1 id="_esfx_async_queue_" data-uid="@esfx/async-queue!">Package @esfx/async-queue
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>The <code>@esfx/async-queue</code> package provides the <a class="xref" href="async-queue/asyncqueue.html#async_queue_AsyncQueue">AsyncQueue</a> class, an async coordination primitive.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/async-queue
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_BFPvczaw6y">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_BFPvczaw6y_ts" role="tab" aria-controls="tabpanel_BFPvczaw6y_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_BFPvczaw6y_js" role="tab" aria-controls="tabpanel_BFPvczaw6y_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_BFPvczaw6y_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { AsyncQueue } from &quot;@esfx/async-queue&quot;;
-
-async function main() {
-    const queue = new AsyncQueue&lt;number&gt;();
-
-    // put two items on the queue
-    queue.put(1);
-    queue.put(Promise.resolve(2));
-
-    // take two items from the queue
-    await queue.get(); // 1
-    await queue.get(); // 2
-
-    // take two more pending items from the queue
-    const p3 = queue.get();
-    const p4 = queue.get();
-
-    // put two more items on the queue
-    queue.put(3);
-    queue.put(4);
-
-    await p3; // 3
-    await p4; // 4
-}
-</code></pre></section>
-<section id="tabpanel_BFPvczaw6y_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { AsyncQueue } = require(&quot;@esfx/async-queue&quot;);
-
-async function main() {
-    const queue = new AsyncQueue();
-
-    // put two items on the queue
-    queue.put(1);
-    queue.put(Promise.resolve(2));
-
-    // take two items from the queue
-    await queue.get(); // 1
-    await queue.get(); // 2
-
-    // take two more pending items from the queue
-    const p3 = queue.get();
-    const p4 = queue.get();
-
-    // put two more items on the queue
-    queue.put(3);
-    queue.put(4);
-
-    await p3; // 3
-    await p4; // 4
-}
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -163,9 +92,6 @@ async function main() {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/async-queue.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

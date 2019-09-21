@@ -78,135 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="threading-autoresetevent">
+            <article class="content wrap" id="_content" data-uid="@esfx/threading-autoresetevent!">
   
-  <h1 id="threading_autoresetevent" data-uid="threading-autoresetevent">Package @esfx/threading-autoresetevent
+  <h1 id="_esfx_threading_autoresetevent_" data-uid="@esfx/threading-autoresetevent!">Package @esfx/threading-autoresetevent
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="threading-autoresetevent/autoresetevent.html#threading_autoresetevent_AutoResetEvent">AutoResetEvent</a> class, a threading primitive for use with Workers.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/threading-autoresetevent
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_qsDEjkTB54">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_qsDEjkTB54_ts" role="tab" aria-controls="tabpanel_qsDEjkTB54_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_qsDEjkTB54_js" role="tab" aria-controls="tabpanel_qsDEjkTB54_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_qsDEjkTB54_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
-import { createInterface } from &quot;readline&quot;;
-import { AutoResetEvent } from &quot;@esfx/threading-autoresetevent&quot;;
-
-function worker_thread() {
-    const workerReadyEvent = new AutoResetEvent(workerData[0]);
-    const continueEvent = new AutoResetEvent(workerData[1]);
-
-    // signal the main thread we are ready
-    workerReadyEvent.set();
-
-    let count = 0;
-    while (true) {
-        // wait for the main thread to set &#39;continueEvent&#39;
-        continueEvent.wait();
-        parentPort.postMessage(`counter=${count++}`);
-    }
-}
-
-function main() {
-    // create two AutoResetEvents in the main thread
-    const workerReadyEvent = new AutoResetEvent();
-    const continueEvent = new AutoResetEvent();
-
-    // create a Worker, passing the buffers of the two events
-    const worker = new Worker(__filename, {
-        workerData: [workerReadyEvent.buffer, continueEvent.buffer]
-    });
-
-    // wait for the worker to tell us it is ready
-    workerReadyEvent.wait();
-
-    console.log(&quot;worker is ready. Press ENTER to continue the worker...&quot;);
-    worker.on(&quot;message&quot;, message =&gt; {
-        console.log(`worker says: ${message}`);
-    });
-
-    const rl = createInterface({ input: process.stdin, output: process.stdout });
-    rl.on(&quot;line&quot;, () =&gt; {
-        // event is automatically reset as soon as a single waiter is signaled
-        continueEvent.set();
-    });
-}
-
-if (isMainThread) {
-    main();
-}
-else {
-    worker_thread();
-}
-</code></pre></section>
-<section id="tabpanel_qsDEjkTB54_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
-const { createInterface } = require(&quot;readline&quot;);
-const { AutoResetEvent } = require(&quot;@esfx/threading-autoresetevent&quot;);
-
-function worker_thread() {
-    const workerReadyEvent = new AutoResetEvent(workerData[0]);
-    const continueEvent = new AutoResetEvent(workerData[1]);
-
-    // signal the main thread we are ready
-    workerReadyEvent.set();
-
-    let count = 0;
-    while (true) {
-        // wait for the main thread to set &#39;continueEvent&#39;
-        continueEvent.wait();
-        parentPort.postMessage(`counter=${count++}`);
-    }
-}
-
-function main() {
-    // create two AutoResetEvents in the main thread
-    const workerReadyEvent = new AutoResetEvent();
-    const continueEvent = new AutoResetEvent();
-
-    // create a Worker, passing the buffers of the two events
-    const worker = new Worker(__filename, {
-        workerData: [workerReadyEvent.buffer, continueEvent.buffer]
-    });
-
-    // wait for the worker to tell us it is ready
-    workerReadyEvent.wait();
-
-    console.log(&quot;worker is ready. Press ENTER to continue the worker...&quot;);
-    worker.on(&quot;message&quot;, message =&gt; {
-        console.log(`worker says: ${message}`);
-    });
-
-    const rl = createInterface({ input: process.stdin, output: process.stdout });
-    rl.on(&quot;line&quot;, () =&gt; {
-        // event is automatically reset as soon as a single waiter is signaled
-        continueEvent.set();
-    });
-}
-
-if (isMainThread) {
-    main();
-}
-else {
-    worker_thread();
-}
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -215,9 +92,6 @@ else {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/threading-autoresetevent.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

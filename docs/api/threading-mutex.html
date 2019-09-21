@@ -78,149 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="threading-mutex">
+            <article class="content wrap" id="_content" data-uid="@esfx/threading-mutex!">
   
-  <h1 id="threading_mutex" data-uid="threading-mutex">Package @esfx/threading-mutex
+  <h1 id="_esfx_threading_mutex_" data-uid="@esfx/threading-mutex!">Package @esfx/threading-mutex
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="threading-mutex/mutex.html#threading_mutex_Mutex">Mutex</a> class which can be used to protect shared resources across Workers using a <a class="xref" href="https://tc39.github.io/ecma262/#sec-sharedarraybuffer-objects">SharedArrayBuffer</a>.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/threading-mutex
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_Flwbpxdyi1">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_Flwbpxdyi1_ts" role="tab" aria-controls="tabpanel_Flwbpxdyi1_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_Flwbpxdyi1_js" role="tab" aria-controls="tabpanel_Flwbpxdyi1_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_Flwbpxdyi1_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
-import { Mutex } from &quot;@esfx/threading-mutex&quot;;
-import { StructType, int32 } from &quot;@esfx/struct-type&quot;;
-import { sleep } from &quot;@esfx/threading-sleep&quot;;
-
-const SharedData = StructType([
-    { name: &quot;x&quot;, type: int32 },
-    { name: &quot;y&quot;, type: int32 },
-] as const);
-
-function worker_thread() {
-    const m = new Mutex(workerData[0]);
-    const data = new SharedData(workerData[1]);
-
-    while (true) {
-        sleep(250);
-
-        m.lock();
-        try {
-            // inside of the lock we can mutate &#39;data&#39; without
-            // main() seeing a partial update.
-            data.x++;
-            data.y--;
-        }
-        finally {
-            m.unlock();
-        }
-    }
-}
-
-function main() {
-    const m = new Mutex();
-    const data = new SharedData(/*shared*/ true);
-    const worker = new Worker(__filename, { workerData: [m.buffer, data.buffer] });
-
-    while (true) {
-        sleep(500);
-
-        m.lock();
-        try {
-            // inside of the lock, we know that we can safely read
-            // both &#39;x&#39; and &#39;y&#39; and the worker will not modify
-            // either value until we unlock.
-            console.log(`x: ${data.x}, y: ${data.y}`);
-        }
-        finally {
-            m.unlock();
-        }
-    }
-}
-
-if (isMainThread) {
-    main();
-}
-else {
-    worker_thread();
-}
-</code></pre></section>
-<section id="tabpanel_Flwbpxdyi1_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
-const { Mutex } = require(&quot;@esfx/threading-mutex&quot;);
-const { StructType, int32 } = require(&quot;@esfx/struct-type&quot;);
-const { sleep } = require(&quot;@esfx/threading-sleep&quot;);
-
-const SharedData = StructType([
-    { name: &quot;x&quot;, type: int32 },
-    { name: &quot;y&quot;, type: int32 },
-]);
-
-function worker_thread() {
-    const m = new Mutex(workerData[0]);
-    const data = new SharedData(workerData[1]);
-
-    while (true) {
-        sleep(250);
-
-        m.lock();
-        try {
-            // inside of the lock we can mutate &#39;data&#39; without
-            // main() seeing a partial update.
-            data.x++;
-            data.y--;
-        }
-        finally {
-            m.unlock();
-        }
-    }
-}
-
-function main() {
-    const m = new Mutex();
-    const data = new SharedData(/*shared*/ true);
-    const worker = new Worker(__filename, { workerData: [m.buffer, data.buffer] });
-
-    while (true) {
-        sleep(500);
-
-        m.lock();
-        try {
-            // inside of the lock, we know that we can safely read
-            // both &#39;x&#39; and &#39;y&#39; and the worker will not modify
-            // either value until we unlock.
-            console.log(`x: ${data.x}, y: ${data.y}`);
-        }
-        finally {
-            m.unlock();
-        }
-    }
-}
-
-if (isMainThread) {
-    main();
-}
-else {
-    worker_thread();
-}
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -229,9 +92,6 @@ else {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/threading-mutex.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

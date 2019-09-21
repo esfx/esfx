@@ -78,95 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="async-mutex">
+            <article class="content wrap" id="_content" data-uid="@esfx/async-mutex!">
   
-  <h1 id="async_mutex" data-uid="async-mutex">Package @esfx/async-mutex
+  <h1 id="_esfx_async_mutex_" data-uid="@esfx/async-mutex!">Package @esfx/async-mutex
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="async-mutex/asyncmutex.html#async_mutex_AsyncMutex">AsyncMutex</a> class, an async coordination primitive.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/async-mutex
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_J5107uXyik">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_J5107uXyik_ts" role="tab" aria-controls="tabpanel_J5107uXyik_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_J5107uXyik_js" role="tab" aria-controls="tabpanel_J5107uXyik_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_J5107uXyik_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { AsyncMutex } from &quot;@esfx/async-mutex&quot;;
-
-const m = new AsyncMutex();
-let counter = 0;
-
-async function worker() {
-    for (let i = 0; i &lt; 3; i++) {
-        // get exclusive access to &#39;m&#39;, which protects &#39;counter&#39;.
-        const lk = await m.lock();
-        try {
-            const current = counter;
-
-            await doSomethingElse();
-
-            // we still have exclusive access to &#39;m&#39;, which protects &#39;counter&#39;.
-            counter = current + 1;
-        }
-        finally {
-            // release the lock
-            lk.unlock();
-        }
-    }
-}
-
-async function main() {
-    // start two workers that share a resource
-    await Promise.all([worker(), worker()]);
-
-    counter; // 6
-}
-</code></pre></section>
-<section id="tabpanel_J5107uXyik_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { AsyncMutex } = require(&quot;@esfx/async-mutex&quot;);
-
-const m = new AsyncMutex();
-let counter = 0;
-
-async function worker() {
-    for (let i = 0; i &lt; 3; i++) {
-        // get exclusive access to &#39;m&#39;, which protects &#39;counter&#39;.
-        const lk = await m.lock();
-        try {
-            const current = counter;
-
-            await doSomethingElse();
-
-            // we still have exclusive access to &#39;m&#39;, which protects &#39;counter&#39;.
-            counter = current + 1;
-        }
-        finally {
-            // release the lock
-            lk.unlock();
-        }
-    }
-}
-
-async function main() {
-    // start two workers that share a resource
-    await Promise.all([worker(), worker()]);
-
-    counter; // 6
-}
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -175,9 +92,6 @@ async function main() {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/async-mutex.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

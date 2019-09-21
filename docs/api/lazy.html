@@ -78,71 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="lazy">
+            <article class="content wrap" id="_content" data-uid="@esfx/lazy!">
   
-  <h1 id="lazy" data-uid="lazy">Package @esfx/lazy
+  <h1 id="_esfx_lazy_" data-uid="@esfx/lazy!">Package @esfx/lazy
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>Provides a class to simplify lazy-initialization logic.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/lazy
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_O4fQQslApo">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_O4fQQslApo_ts" role="tab" aria-controls="tabpanel_O4fQQslApo_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_O4fQQslApo_js" role="tab" aria-controls="tabpanel_O4fQQslApo_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_O4fQQslApo_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Lazy } from &quot;@esfx/lazy&quot;;
-
-// lazy initialize an object
-const lazy1 = new Lazy(() =&gt; new SomeObject());
-lazy1.hasValue; // false
-lazy1.value; // SomeObject {}
-lazy1.hasValue; // true
-
-// lazy initialize with arguments
-const lazy2 = Lazy.from((a, b) =&gt; a + b, 1, 2);
-lazy2.hasValue; // false
-lazy2.value; // 3
-lazy2.hasValue; // true
-
-// initialized &quot;lazy&quot;
-const lazy3 = Lazy.for(&quot;test&quot;);
-lazy3.hasValue; // true
-lazy3.value; // &quot;test&quot;
-</code></pre></section>
-<section id="tabpanel_O4fQQslApo_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Lazy } = require(&quot;@esfx/lazy&quot;);
-
-// lazy initialize an object
-const lazy1 = new Lazy(() =&gt; new SomeObject());
-lazy1.hasValue; // false
-lazy1.value; // SomeObject {}
-lazy1.hasValue; // true
-
-// lazy initialize with arguments
-const lazy2 = Lazy.from((a, b) =&gt; a + b, 1, 2);
-lazy2.hasValue; // false
-lazy2.value; // 3
-lazy2.hasValue; // true
-
-// initialized &quot;lazy&quot;
-const lazy3 = Lazy.for(&quot;test&quot;);
-lazy3.hasValue; // true
-lazy3.value; // &quot;test&quot;
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -151,9 +92,6 @@ lazy3.value; // &quot;test&quot;
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/lazy.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

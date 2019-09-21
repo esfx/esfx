@@ -165,10 +165,7 @@
 				"name": {
 					"type": "string"
 				},
-				"name.typeScript": {
-					"type": "string"
-				},
-				"fullName.typeScript": {
+				"fullName": {
 					"type": "string"
 				},
 				"spec.typeScript": {
@@ -247,6 +244,14 @@
 			"properties": {
 				"content": {
 					"type": "string"
+				},
+				"typeParameters": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/parameter"
+					},
+					"minItems": 1,
+					"uniqueItems": true
 				},
 				"parameters": {
 					"type": "array",

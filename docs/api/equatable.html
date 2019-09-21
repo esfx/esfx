@@ -78,175 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="equatable">
+            <article class="content wrap" id="_content" data-uid="@esfx/equatable!">
   
-  <h1 id="equatable" data-uid="equatable">Package @esfx/equatable
+  <h1 id="_esfx_equatable_" data-uid="@esfx/equatable!">Package @esfx/equatable
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>Provides a low level API for defining equality.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/equatable
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_UYDTHc1nGU">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_UYDTHc1nGU_ts" role="tab" aria-controls="tabpanel_UYDTHc1nGU_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_UYDTHc1nGU_js" role="tab" aria-controls="tabpanel_UYDTHc1nGU_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_UYDTHc1nGU_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Equatable, Equaler, Comparable, Comparer } from &quot;@esfx/equatable&quot;;
-
-class Person {
-    firstName: string;
-    lastName: string;
-    constructor(firstName: string, lastName: string) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    toString() {
-        return `${this.firstName} ${this.lastName}`;
-    }
-
-    [Equatable.equals](other: unknown) {
-        return other instanceof Person
-            &amp;&amp; this.lastName === other.lastName
-            &amp;&amp; this.firstName === other.firstName;
-    }
-
-    [Equatable.hash]() {
-        return Equaler.defaultEqualer.hash(this.lastName)
-            ^ Equaler.defaultEqualer.hash(this.firstName);
-    }
-
-    [Comparable.compareTo](other: unknown) {
-        if (!(other instanceof Person)) throw new TypeError();
-        return Comparer.defaultComparer.compare(this.lastName, other.lastName)
-            || Comparer.defaultComparer.compare(this.firstName, other.firstName);
-    }
-}
-
-const people = [
-    new Person(&quot;Alice&quot;, &quot;Johnson&quot;)
-    new Person(&quot;Bob&quot;, &quot;Clark&quot;),
-];
-people.sort(Comparer.defaultComparer.compare);
-console.log(people); // Bob Clark,Alice Johnson
-
-const obj1 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
-const obj2 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
-obj1 === obj2; // false
-Equaler.defaultEqualer.equals(obj1, obj2); // true
-</code></pre></section>
-<section id="tabpanel_UYDTHc1nGU_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Equatable, Equaler, Comparable, Comparer } = require(&quot;@esfx/equatable&quot;);
-
-class Person {
-    constructor(firstName, lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    toString() {
-        return `${this.firstName} ${this.lastName}`;
-    }
-
-    [Equatable.equals](other) {
-        return other instanceof Person
-            &amp;&amp; this.lastName === other.lastName
-            &amp;&amp; this.firstName === other.firstName;
-    }
-
-    [Equatable.hash]() {
-        return Equaler.defaultEqualer.hash(this.lastName)
-            ^ Equaler.defaultEqualer.hash(this.firstName);
-    }
-
-    [Comparable.compareTo](other) {
-        if (!(other instanceof Person)) throw new TypeError();
-        return Comparer.defaultComparer.compare(this.lastName, other.lastName)
-            || Comparer.defaultComparer.compare(this.firstName, other.firstName);
-    }
-}
-
-const people = [
-    new Person(&quot;Alice&quot;, &quot;Johnson&quot;)
-    new Person(&quot;Bob&quot;, &quot;Clark&quot;),
-];
-people.sort(Comparer.defaultComparer.compare);
-console.log(people); // Bob Clark,Alice Johnson
-
-const obj1 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
-const obj2 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
-obj1 === obj2; // false
-Equaler.defaultEqualer.equals(obj1, obj2); // true
-</code></pre></section>
-</div>
-</div>
-  <h3 id="typealiases">
-  
-  
-  
-  
-  
-  
-  
-  
-  Type Aliases
-  </h3>
-  
-  
-  <h4 id="equatable_Comparison" data-uid="equatable.Comparison">Comparison</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare type Comparison&lt;T&gt; = (x: T, y: T) =&gt; number;</code></pre>
-  </div>
-  
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type">(<span class="xref">x</span>: <span class="xref">T</span>, <span class="xref">y</span>: <span class="xref">T</span>) =&gt; number</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="equatable_EqualityComparison" data-uid="equatable.EqualityComparison">EqualityComparison</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare type EqualityComparison&lt;T&gt; = (x: T, y: T) =&gt; boolean;</code></pre>
-  </div>
-  
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type">(<span class="xref">x</span>: <span class="xref">T</span>, <span class="xref">y</span>: <span class="xref">T</span>) =&gt; boolean</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="equatable_HashGenerator" data-uid="equatable.HashGenerator">HashGenerator</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare type HashGenerator&lt;T&gt; = (x: T) =&gt; number;</code></pre>
-  </div>
-  
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type">(<span class="xref">x</span>: <span class="xref">T</span>) =&gt; number</span>
-  <p class="description">
-  </div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -255,9 +92,6 @@ Equaler.defaultEqualer.equals(obj1, obj2); // true
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/equatable.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
