@@ -1,6 +1,6 @@
 ### YamlMime:UniversalReference
 items:
-  - uid: type-model
+  - uid: '@esfx/type-model!'
     name: '@esfx/type-model'
     fullName: '@esfx/type-model'
     langs:

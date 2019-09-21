@@ -78,161 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="async-conditionvariable">
+            <article class="content wrap" id="_content" data-uid="@esfx/async-conditionvariable!">
   
-  <h1 id="async_conditionvariable" data-uid="async-conditionvariable">Package @esfx/async-conditionvariable
+  <h1 id="_esfx_async_conditionvariable_" data-uid="@esfx/async-conditionvariable!">Package @esfx/async-conditionvariable
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>Provides <a class="xref" href="async-conditionvariable/asyncconditionvariable.html#async_conditionvariable_AsyncConditionVariable">AsyncConditionVariable</a>, an async coordination primitive.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/async-conditionvariable
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_SnBMzd0dBY">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_SnBMzd0dBY_ts" role="tab" aria-controls="tabpanel_SnBMzd0dBY_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_SnBMzd0dBY_js" role="tab" aria-controls="tabpanel_SnBMzd0dBY_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_SnBMzd0dBY_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { AsyncConditionVariable } from &quot;@esfx/async-conditionvariable&quot;;
-import { AsyncMutex } from &quot;@esfx/async-mutex&quot;;
-
-// create a mutex used to lock a resource
-const m = new AsyncMutex();
-
-// create a condition variable to maintain a list of waiters for a resource
-const cv = new AsyncConditionVariable();
-
-let tasks = getTasksToPerform(); // get some array of tasks to perform.
-let ready = false;
-let currentTask!: () =&gt; Promise&lt;number&gt;;
-let taskResult!: number;
-
-async function worker() {
-    // pause worker until we can acquire a lock on &#39;m&#39;.
-    const lk = await m.lock();
-    try {
-        // pause execution and release the lock on &#39;m&#39; until we are ready.
-        await cv.wait(lk, () =&gt; ready);
-
-        while (ready) {
-            // pause execution and release the lock on &#39;m&#39; until we are notified
-            await cv.wait(lk);
-
-            // We should now have the lock again for &#39;m&#39;, so do more work...
-            taskResult = await currentTask();
-        }
-    }
-    finally {
-        lk.unlock();
-    }
-}
-
-async function main() {
-    const pWorker = worker(); // start the worker
-    let task;
-    // get the next task to perform
-    while (task = tasks.shift()) {
-        // pause main until we can acquire a lock on &#39;m&#39;.
-        let lk = await m.lock();
-        try {
-            currentTask = task;
-        }
-        finally {
-            lk.unlock();
-        }
-
-        cv.notifyOne();
-
-        // pause main until we can acquire a lock on &#39;m&#39;.
-        lk = await m.lock();
-        try {
-            // we should now have the lock again for &#39;m&#39;, so process the result...
-            console.log(taskResult);
-        }
-        finally {
-            lk.unlock();
-        }
-    }
-}
-
-main().catch(e =&gt; console.error(e));
-</code></pre></section>
-<section id="tabpanel_SnBMzd0dBY_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { AsyncConditionVariable } = require(&quot;@esfx/async-conditionvariable&quot;);
-const { AsyncMutex } = require(&quot;@esfx/async-mutex&quot;);
-
-// create a mutex used to lock a resource
-const m = new AsyncMutex();
-
-// create a condition variable to maintain a list of waiters for a resource
-const cv = new AsyncConditionVariable();
-
-let tasks = getTasksToPerform(); // get some array of tasks to perform.
-let ready = false;
-let currentTask;
-let taskResult;
-
-async function worker() {
-    // pause worker until we can acquire a lock on &#39;m&#39;.
-    const lk = await m.lock();
-    try {
-        // pause execution and release the lock on &#39;m&#39; until we are ready.
-        await cv.wait(lk, () =&gt; ready);
-
-        while (ready) {
-            // pause execution and release the lock on &#39;m&#39; until we are notified
-            await cv.wait(lk);
-
-            // We should now have the lock again for &#39;m&#39;, so do more work...
-            taskResult = await currentTask();
-        }
-    }
-    finally {
-        lk.unlock();
-    }
-}
-
-async function main() {
-    const pWorker = worker(); // start the worker
-    let task;
-    // get the next task to perform
-    while (task = tasks.shift()) {
-        // pause main until we can acquire a lock on &#39;m&#39;.
-        let lk = await m.lock();
-        try {
-            currentTask = task;
-        }
-        finally {
-            lk.unlock();
-        }
-
-        cv.notifyOne();
-
-        // pause main until we can acquire a lock on &#39;m&#39;.
-        lk = await m.lock();
-        try {
-            // we should now have the lock again for &#39;m&#39;, so process the result...
-            console.log(taskResult);
-        }
-        finally {
-            lk.unlock();
-        }
-    }
-}
-
-main().catch(e =&gt; console.error(e));
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -241,9 +92,6 @@ main().catch(e =&gt; console.error(e));
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/async-conditionvariable.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

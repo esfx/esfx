@@ -78,47 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="async-delay">
+            <article class="content wrap" id="_content" data-uid="@esfx/async-delay!">
   
-  <h1 id="async_delay" data-uid="async-delay">Package @esfx/async-delay
+  <h1 id="_esfx_async_delay_" data-uid="@esfx/async-delay!">Package @esfx/async-delay
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>The <code>@esfx/async-delay</code> package provides the @&quot;async-delay.delay&quot; function.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/async-delay
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_JVkf1WDdLk">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_JVkf1WDdLk_ts" role="tab" aria-controls="tabpanel_JVkf1WDdLk_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_JVkf1WDdLk_js" role="tab" aria-controls="tabpanel_JVkf1WDdLk_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_JVkf1WDdLk_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { delay } from &quot;@esfx/async-delay&quot;;
-
-async function doSomeAction() {
-    // wait 10 seconds
-    await delay(10 * 1000);
-}
-</code></pre></section>
-<section id="tabpanel_JVkf1WDdLk_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { delay } = require(&quot;@esfx/async-delay&quot;);
-
-async function doSomeAction() {
-    // wait 10 seconds
-    await delay(10 * 1000);
-}
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   <h3 id="functions">
   
   
@@ -132,7 +97,7 @@ async function doSomeAction() {
   </h3>
   
   
-  <h4 id="async_delay_delay_Function" data-uid="async-delay.delay_Function">delay(msec)</h4>
+  <h4 id="_esfx_async_delay_delay_function_1_" data-uid="@esfx/async-delay!delay:function(1)">delay(msec)</h4>
   <div class="markdown level1 summary"><p>Waits the specified number of milliseconds before resolving.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -144,7 +109,7 @@ async function doSomeAction() {
   <h5 class="parameters">Parameters</h5>
   <dl class="parameterList">
     <dt>msec</dt>
-    <dd class="type">number</dd>
+    <dd class="type"><span class="xref">number</span></dd>
     <dd class="description">
       
       
@@ -157,7 +122,7 @@ async function doSomeAction() {
   </div>
   
   
-  <h4 id="async_delay_delay_Function_1" data-uid="async-delay.delay_Function_1">delay(msec, value)</h4>
+  <h4 id="_esfx_async_delay_delay_function_2_" data-uid="@esfx/async-delay!delay:function(2)">delay(msec, value)</h4>
   <div class="markdown level1 summary"><p>Waits the specified number of milliseconds before resolving with the provided value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -169,13 +134,13 @@ async function doSomeAction() {
   <h5 class="parameters">Parameters</h5>
   <dl class="parameterList">
     <dt>msec</dt>
-    <dd class="type">number</dd>
+    <dd class="type"><span class="xref">number</span></dd>
     <dd class="description">
       
       
     </dd>
     <dt>value</dt>
-    <dd class="type"><span class="xref">T</span> | <span class="xref">PromiseLike</span>&lt;<span class="xref">T</span>&gt;</dd>
+    <dd class="type">T | <span class="xref">PromiseLike</span>&lt;T&gt;</dd>
     <dd class="description">
       
       
@@ -183,12 +148,27 @@ async function doSomeAction() {
   </dl>
   <h5 class="returns">Returns</h5>
   <div class="return">
-  <span class="type"><span class="xref">Promise</span>&lt;<span class="xref">T</span>&gt;</span>
+  <span class="type"><span class="xref">Promise</span>&lt;T&gt;</span>
   <p class="description">
   </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
-  <h4 id="async_delay_delay_Function_2" data-uid="async-delay.delay_Function_2">delay(cancelable, msec)</h4>
+  <h4 id="_esfx_async_delay_delay_function_3_" data-uid="@esfx/async-delay!delay:function(3)">delay(cancelable, msec)</h4>
   <div class="markdown level1 summary"><p>Waits the specified number of milliseconds before resolving.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -200,13 +180,13 @@ async function doSomeAction() {
   <h5 class="parameters">Parameters</h5>
   <dl class="parameterList">
     <dt>cancelable</dt>
-    <dd class="type"><a class="xref" href="cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></dd>
+    <dd class="type"><a class="xref" href="cancelable/cancelable_interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></dd>
     <dd class="description">
       
       
     </dd>
     <dt>msec</dt>
-    <dd class="type">number</dd>
+    <dd class="type"><span class="xref">number</span></dd>
     <dd class="description">
       
       
@@ -219,7 +199,7 @@ async function doSomeAction() {
   </div>
   
   
-  <h4 id="async_delay_delay_Function_3" data-uid="async-delay.delay_Function_3">delay(cancelable, msec, value)</h4>
+  <h4 id="_esfx_async_delay_delay_function_4_" data-uid="@esfx/async-delay!delay:function(4)">delay(cancelable, msec, value)</h4>
   <div class="markdown level1 summary"><p>Waits the specified number of milliseconds before resolving with the provided value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -231,19 +211,19 @@ async function doSomeAction() {
   <h5 class="parameters">Parameters</h5>
   <dl class="parameterList">
     <dt>cancelable</dt>
-    <dd class="type"><a class="xref" href="cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></dd>
+    <dd class="type"><a class="xref" href="cancelable/cancelable_interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></dd>
     <dd class="description">
       
       
     </dd>
     <dt>msec</dt>
-    <dd class="type">number</dd>
+    <dd class="type"><span class="xref">number</span></dd>
     <dd class="description">
       
       
     </dd>
     <dt>value</dt>
-    <dd class="type"><span class="xref">T</span> | <span class="xref">PromiseLike</span>&lt;<span class="xref">T</span>&gt;</dd>
+    <dd class="type">T | <span class="xref">PromiseLike</span>&lt;T&gt;</dd>
     <dd class="description">
       
       
@@ -251,9 +231,24 @@ async function doSomeAction() {
   </dl>
   <h5 class="returns">Returns</h5>
   <div class="return">
-  <span class="type"><span class="xref">Promise</span>&lt;<span class="xref">T</span>&gt;</span>
+  <span class="type"><span class="xref">Promise</span>&lt;T&gt;</span>
   <p class="description">
   </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
 </article>
           </div>
@@ -262,9 +257,6 @@ async function doSomeAction() {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/async-delay.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

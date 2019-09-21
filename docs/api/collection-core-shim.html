@@ -78,131 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="collection-core-shim">
+            <article class="content wrap" id="_content" data-uid="@esfx/collection-core-shim!">
   
-  <h1 id="collection_core_shim" data-uid="collection-core-shim">Package @esfx/collection-core-shim
+  <h1 id="_esfx_collection_core_shim_" data-uid="@esfx/collection-core-shim!">Package @esfx/collection-core-shim
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>Provides a global shim to add default <a class="xref" href="collection-core.html">@esfx/collection-core</a> behaviors to global objects.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/collection-core-shim
-</code></pre><h1 id="usage">Usage</h1>
-<p>The global shim adds a default implementation the collection interfaces to the following global objects:</p>
-<ul>
-<li><code>Array</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.Collection&quot;</li>
-<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
-<li>@&quot;collection-core.FixedSizeIndexedCollection&quot;</li>
-<li>@&quot;collection-core.IndexedCollection&quot;</li>
-</ul>
-</li>
-<li><code>Uint8Array</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
-<li>@&quot;collection-core.FixedSizeIndexedCollection&quot;</li>
-</ul>
-</li>
-<li><code>Uint8ClampedArray</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
-<li>@&quot;collection-core.FixedSizeIndexedCollection&quot;</li>
-</ul>
-</li>
-<li><code>Uint16Array</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
-<li>@&quot;collection-core.FixedSizeIndexedCollection&quot;</li>
-</ul>
-</li>
-<li><code>Uint32Array</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
-<li>@&quot;collection-core.FixedSizeIndexedCollection&quot;</li>
-</ul>
-</li>
-<li><code>Int8Array</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
-<li>@&quot;collection-core.FixedSizeIndexedCollection&quot;</li>
-</ul>
-</li>
-<li><code>Int16Array</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
-<li>@&quot;collection-core.FixedSizeIndexedCollection&quot;</li>
-</ul>
-</li>
-<li><code>Int32Array</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
-<li>@&quot;collection-core.FixedSizeIndexedCollection&quot;</li>
-</ul>
-</li>
-<li><code>Float32Array</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
-<li>@&quot;collection-core.FixedSizeIndexedCollection&quot;</li>
-</ul>
-</li>
-<li><code>Float64Array</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
-<li>@&quot;collection-core.FixedSizeIndexedCollection&quot;</li>
-</ul>
-</li>
-<li><code>BigUint64Array</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
-<li>@&quot;collection-core.FixedSizeIndexedCollection&quot;</li>
-</ul>
-</li>
-<li><code>BigInt64Array</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.ReadonlyIndexedCollection&quot;</li>
-<li>@&quot;collection-core.FixedSizeIndexedCollection&quot;</li>
-</ul>
-</li>
-<li><code>Set</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyCollection&quot;</li>
-<li>@&quot;collection-core.Collection&quot;</li>
-</ul>
-</li>
-<li><code>Map</code> implements:<ul>
-<li>@&quot;collection-core.ReadonlyKeyedCollection&quot;</li>
-<li>@&quot;collection-core.KeyedCollection&quot;</li>
-</ul>
-</li>
-</ul>
-<p>To install the global shim, import <a class="xref" href="collection-core-shim.html">@esfx/collection-core-shim</a>:</p>
-<div class="tabGroup" id="tabgroup_2MY8HytR2s">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_2MY8HytR2s_ts" role="tab" aria-controls="tabpanel_2MY8HytR2s_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_2MY8HytR2s_js" role="tab" aria-controls="tabpanel_2MY8HytR2s_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_2MY8HytR2s_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import &quot;@esfx/collection-core-shim&quot;; // triggers global-scope side effects
-import { Collection } from &quot;@esfx/collection-core&quot;;
-
-[1, 2, 3][Collection.size]; // 3
-</code></pre></section>
-<section id="tabpanel_2MY8HytR2s_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">require(&quot;@esfx/collection-core-shim&quot;); // triggers global-scope side effects
-const { Collection } = require(&quot;@esfx/collection-core&quot;);
-
-[1, 2, 3][Collection.size]; // 3
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -211,9 +92,6 @@ const { Collection } = require(&quot;@esfx/collection-core&quot;);
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/collection-core-shim.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

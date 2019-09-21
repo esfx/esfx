@@ -78,47 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="cancelable-dom">
+            <article class="content wrap" id="_content" data-uid="@esfx/cancelable-dom!">
   
-  <h1 id="cancelable_dom" data-uid="cancelable-dom">Package @esfx/cancelable-dom
+  <h1 id="_esfx_cancelable_dom_" data-uid="@esfx/cancelable-dom!">Package @esfx/cancelable-dom
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>The <code>@esfx/cancelable-dom</code> package provides a DOM interop library for <a class="xref" href="cancelable.html">@esfx/cancelable</a>.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/cancelable-dom
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_PgXNZ0-ivZ">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_PgXNZ0-ivZ_ts" role="tab" aria-controls="tabpanel_PgXNZ0-ivZ_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_PgXNZ0-ivZ_js" role="tab" aria-controls="tabpanel_PgXNZ0-ivZ_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_PgXNZ0-ivZ_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Cancelable } from &quot;@esfx/cancelable&quot;;
-import { toAbortSignal } from &quot;@esfx/cancelable-dom&quot;;
-
-async function doSomeWork(cancelable: Cancelable) {
-    await fetch(&quot;some/uri&quot;, { signal: toAbortSignal(cancelable) });
-}
-</code></pre></section>
-<section id="tabpanel_PgXNZ0-ivZ_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Cancelable } = require(&quot;@esfx/cancelable&quot;);
-const { toAbortSignal } = require(&quot;@esfx/cancelable-dom&quot;);
-
-async function doSomeWork(cancelable) {
-    await fetch(&quot;some/uri&quot;, { signal: toAbortSignal(cancelable) });
-}
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   <h3 id="functions">
   
   
@@ -132,7 +97,7 @@ async function doSomeWork(cancelable) {
   </h3>
   
   
-  <h4 id="cancelable_dom_toAbortSignal" data-uid="cancelable-dom.toAbortSignal">toAbortSignal(cancelable)</h4>
+  <h4 id="_esfx_cancelable_dom_toAbortSignal_function_1_" data-uid="@esfx/cancelable-dom!toAbortSignal:function(1)">toAbortSignal(cancelable)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -143,7 +108,7 @@ async function doSomeWork(cancelable) {
   <h5 class="parameters">Parameters</h5>
   <dl class="parameterList">
     <dt>cancelable</dt>
-    <dd class="type"><a class="xref" href="cancelable/cancelable_interface.html#cancelable_Cancelable_Interface">Cancelable</a></dd>
+    <dd class="type"><a class="xref" href="cancelable/cancelable_interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></dd>
     <dd class="description">
       
       
@@ -151,7 +116,7 @@ async function doSomeWork(cancelable) {
   </dl>
   <h5 class="returns">Returns</h5>
   <div class="return">
-  <span class="type"><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">AbortSignal</a></span>
+  <span class="type"><span class="xref">AbortSignal</span></span>
   <p class="description">
   </div>
   
@@ -162,9 +127,6 @@ async function doSomeWork(cancelable) {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/cancelable-dom.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

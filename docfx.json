@@ -3,7 +3,7 @@
     "template": ["default", "docs-sources/templates/esfx"],
     "content": [
       { "files": ["**/*.yml", "**/*.md"], "src": "docs-sources/content" },
-      { "files": ["**/*.yml", "**/*.md"], "src": ".docs/yml", "dest": "api" }
+      { "files": ["**/*.yml", "**/*.md"], "src": "obj/yml", "dest": "api" }
     ],
     "resource": [
       { "files": ["**"], "src": "docs-sources/resources" }
@@ -16,9 +16,9 @@
       "docs-sources/xrefmap-ecma262.yml"
     ],
     "exportRawModel": true,
-    "rawModelOutputFolder": ".docs/raw",
+    "rawModelOutputFolder": "obj/raw",
     "exportViewModel": true,
-    "viewModelOutputFolder": ".docs/view",
+    "viewModelOutputFolder": "obj/view",
     "globalMetadata": {
       "_appTitle": "@esfx API Reference",
       "_appLogoPath": "images/esfx-logo-white-38x38.svg",

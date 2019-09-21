@@ -78,127 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="collections-sortedset">
+            <article class="content wrap" id="_content" data-uid="@esfx/collections-sortedset!">
   
-  <h1 id="collections_sortedset" data-uid="collections-sortedset">Package @esfx/collections-sortedset
+  <h1 id="_esfx_collections_sortedset_" data-uid="@esfx/collections-sortedset!">Package @esfx/collections-sortedset
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="collections-sortedset/sortedset.html#collections_sortedset_SortedSet">SortedSet</a> class, a collection class that utilizes <a class="xref" href="collection-core.html">@esfx/collection-core</a> and <a class="xref" href="equatable.html">@esfx/equatable</a>.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/collections-sortedset
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_JB+6qcLO+u">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_JB+6qcLO+u_ts" role="tab" aria-controls="tabpanel_JB+6qcLO+u_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_JB+6qcLO+u_js" role="tab" aria-controls="tabpanel_JB+6qcLO+u_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_JB+6qcLO+u_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { SortedSet } from &quot;@esfx/collections-sortedset&quot;;
-import { Equatable, Equaler, Comparable, Comparer } from &quot;@esfx/equatable&quot;;
-
-class Person {
-    firstName: string;
-    lastName: string;
-    constructor(firstName: string, lastName: string) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    toString() {
-        return `${this.firstName} ${this.lastName}`;
-    }
-
-    [Equatable.equals](other: unknown) {
-        return other instanceof Person
-            &amp;&amp; this.lastName === other.lastName
-            &amp;&amp; this.firstName === other.firstName;
-    }
-
-    [Equatable.hash]() {
-        return Equaler.defaultEqualer.hash(this.lastName)
-            ^ Equaler.defaultEqualer.hash(this.firstName);
-    }
-
-    [Comparable.compareTo](other: unknown) {
-        if (!(other instanceof Person)) throw new TypeError();
-        return Comparer.defaultComparer.compare(this.lastName, other.lastName)
-            || Comparer.defaultComparer.compare(this.firstName, other.firstName);
-    }
-}
-
-const obj1 = new Person(&quot;Alice&quot;, &quot;Johnson&quot;);
-const obj2 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
-
-// ECMAScript native set iterates in insertion order
-const set = new Set&lt;Person&gt;(); // native ECMAScript Set
-set.add(obj1);
-set.add(obj2);
-[...set]; // Alice Johnson,Bob Clark
-
-// SortedSet uses Comparable.compareTo if available
-const sortedSet = new SortedSet&lt;Person&gt;();
-sortedSet.add(obj1);
-sortedSet.add(obj2);
-[...sortedSet]; // Bob Clark,Alice Johnson
-</code></pre></section>
-<section id="tabpanel_JB+6qcLO+u_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { SortedSet } = require(&quot;@esfx/collections-sortedset&quot;);
-const { Equatable, Equaler, Comparable, Comparer } = require(&quot;@esfx/equatable&quot;);
-
-class Person {
-    constructor(firstName, lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
-    toString() {
-        return `${this.firstName} ${this.lastName}`;
-    }
-
-    [Equatable.equals](other) {
-        return other instanceof Person
-            &amp;&amp; this.lastName === other.lastName
-            &amp;&amp; this.firstName === other.firstName;
-    }
-
-    [Equatable.hash]() {
-        return Equaler.defaultEqualer.hash(this.lastName)
-            ^ Equaler.defaultEqualer.hash(this.firstName);
-    }
-
-    [Comparable.compareTo](other) {
-        if (!(other instanceof Person)) throw new TypeError();
-        return Comparer.defaultComparer.compare(this.lastName, other.lastName)
-            || Comparer.defaultComparer.compare(this.firstName, other.firstName);
-    }
-}
-
-const obj1 = new Person(&quot;Alice&quot;, &quot;Johnson&quot;);
-const obj2 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
-
-// ECMAScript native set iterates in insertion order
-const set = new Set(); // native ECMAScript Set
-set.add(obj1);
-set.add(obj2);
-[...set]; // Alice Johnson,Bob Clark
-
-// SortedSet uses Comparable.compareTo if available
-const sortedSet = new SortedSet();
-sortedSet.add(obj1);
-sortedSet.add(obj2);
-[...sortedSet]; // Bob Clark,Alice Johnson
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -207,9 +92,6 @@ sortedSet.add(obj2);
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/collections-sortedset.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

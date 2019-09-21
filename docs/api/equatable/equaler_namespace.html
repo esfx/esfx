@@ -78,8 +78,8 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="equatable.Equaler_Namespace">
-  <h1 id="equatable_Equaler_Namespace" data-uid="equatable.Equaler_Namespace" class="text-break">Namespace Equaler
+            <article class="content wrap" id="_content" data-uid="@esfx/equatable!Equaler:namespace">
+  <h1 id="_esfx_equatable_Equaler_namespace" data-uid="@esfx/equatable!Equaler:namespace" class="text-break">Namespace Equaler
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
@@ -102,7 +102,7 @@
   </h3>
   
   
-  <h4 id="equatable_Equaler_Namespace_create" data-uid="equatable.Equaler_Namespace.create">create(equalityComparison, hashGenerator)</h4>
+  <h4 id="_esfx_equatable_Equaler_create_function_1_" data-uid="@esfx/equatable!Equaler.create:function(1)">Equaler.create(equalityComparison, hashGenerator)</h4>
   <div class="markdown level1 summary"><p>Creates an <code>Equaler</code> from a comparison function and an optional hash generator.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -114,13 +114,13 @@
   <h5 class="parameters">Parameters</h5>
   <dl class="parameterList">
     <dt>equalityComparison</dt>
-    <dd class="type"><a class="xref" href="../equatable.html#equatable_EqualityComparison">EqualityComparison</a>&lt;<span class="xref">T</span>&gt;</dd>
+    <dd class="type"><span class="xref">EqualityComparison</span>&lt;T&gt;</dd>
     <dd class="description">
       
       
     </dd>
     <dt>hashGenerator</dt>
-    <dd class="type"><a class="xref" href="../equatable.html#equatable_HashGenerator">HashGenerator</a>&lt;<span class="xref">T</span>&gt;</dd>
+    <dd class="type"><span class="xref">HashGenerator</span>&lt;T&gt;</dd>
     <dd class="description">
       
       
@@ -128,89 +128,24 @@
   </dl>
   <h5 class="returns">Returns</h5>
   <div class="return">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;<span class="xref">T</span>&gt;</span>
+  <span class="type"><a class="xref" href="equaler_interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</span>
   <p class="description">
   </div>
-  <h3 id="variables">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  Variables</h3>
-  
-  
-  <h4 id="equatable_Equaler_Namespace_defaultEqualer" data-uid="equatable.Equaler_Namespace.defaultEqualer">defaultEqualer</h4>
-  <div class="markdown level1 summary"><p>Gets the default <code>Equaler</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">defaultEqualer: Equaler&lt;unknown&gt;</code></pre>
-  </div>
-  
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;unknown&gt;</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="equatable_Equaler_Namespace_structuralEqualer" data-uid="equatable.Equaler_Namespace.structuralEqualer">structuralEqualer</h4>
-  <div class="markdown level1 summary"><p>Gets a default <code>Equaler</code> that supports <code>StructuralEquatable</code> values.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">structuralEqualer: Equaler&lt;unknown&gt;</code></pre>
-  </div>
-  
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;unknown&gt;</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="equatable_Equaler_Namespace_tupleEqualer" data-uid="equatable.Equaler_Namespace.tupleEqualer">tupleEqualer</h4>
-  <div class="markdown level1 summary"><p>An <code>Equaler</code> that compares array values rather than the arrays themselves.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">tupleEqualer: Equaler&lt;readonly unknown[]&gt;</code></pre>
-  </div>
-  
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;readonly unknown[]&gt;</span>
-  <p class="description">
-  </div>
-  
-  
-  <h4 id="equatable_Equaler_Namespace_tupleStructuralEqualer" data-uid="equatable.Equaler_Namespace.tupleStructuralEqualer">tupleStructuralEqualer</h4>
-  <div class="markdown level1 summary"><p>An <code>Equaler</code> that compares array values that may be <code>StructuralEquatable</code> rather than the arrays themselves.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">tupleStructuralEqualer: Equaler&lt;readonly unknown[]&gt;</code></pre>
-  </div>
-  
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equaler_interface.html#equatable_Equaler_Interface">Equaler</a>&lt;readonly unknown[]&gt;</span>
-  <p class="description">
-  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           

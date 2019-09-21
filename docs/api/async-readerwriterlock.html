@@ -78,163 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="async-readerwriterlock">
+            <article class="content wrap" id="_content" data-uid="@esfx/async-readerwriterlock!">
   
-  <h1 id="async_readerwriterlock" data-uid="async-readerwriterlock">Package @esfx/async-readerwriterlock
+  <h1 id="_esfx_async_readerwriterlock_" data-uid="@esfx/async-readerwriterlock!">Package @esfx/async-readerwriterlock
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>The <code>@esfx/async-readerwriterlock</code> package provides the <a class="xref" href="async-readerwriterlock/asyncreaderwriterlock.html#async_readerwriterlock_AsyncReaderWriterLock">AsyncReaderWriterLock</a> class, an async coordination primitive.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/async-readerwriterlock
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_0nIoBFDGN4">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_0nIoBFDGN4_ts" role="tab" aria-controls="tabpanel_0nIoBFDGN4_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_0nIoBFDGN4_js" role="tab" aria-controls="tabpanel_0nIoBFDGN4_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_0nIoBFDGN4_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { AsyncReaderWriterLock } from &quot;@esfx/async-readerwriterlock&quot;;
-
-interface User { id: string, name: string, email: string }
-
-// &#39;rwlock&#39; protects access to &#39;userCache&#39; and data stored on disk
-const rwlock = new AsyncReaderWriterLock();
-const userCache = new Map&lt;string, User&gt;();
-
-async function getUser(id: string) {
-    // get read access
-    const lk = await rwlock.read();
-    try {
-        let user = userCache.get(id);
-        if (!user) {
-            user = await readUserFromDisk(id);
-            userCache.set(id, user);
-        }
-        return user;
-    }
-    finally {
-        // release read access
-        lk.unlock();
-    }
-}
-
-async function addUser(user: User) {
-    // get write access
-    const lk = await rwlock.write();
-    try {
-        userCache.set(user.id, user);
-        await writeUserToDisk(user.id, user);
-    }
-    finally {
-        // release write access
-        lk.unlock();
-    }
-}
-
-async function updateUser(id: string, oldData: User, newData: User) {
-    // get upgradeable read access
-    const lk = await rwlock.upgradeableRead();
-    try {
-        // verify that we are ok to make changes...
-        let user = userCache.get(id);
-        if (!user || user.name === oldData.name &amp;&amp; user.email === oldData.email) {
-            // looks safe, so upgrade to a write lock
-            const updlk = await lk.upgrade();
-            try {
-                if (!user) {
-                    user = { id } as User;
-                    userCache.set(id, user);
-                }
-                user.name = newData.name;
-                user.email = newData.email;
-                await writeUserToDisk(user.id, user);
-            }
-            finally {
-                updlk.unlock(); // release the write lock
-            }
-        }
-    }
-    finally {
-        lk.unlock(); // release the read lock
-    }
-}
-</code></pre></section>
-<section id="tabpanel_0nIoBFDGN4_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { AsyncReaderWriterLock } = require(&quot;@esfx/async-readerwriterlock&quot;);
-
-// &#39;rwlock&#39; protects access to &#39;userCache&#39; and data stored on disk
-const rwlock = new AsyncReaderWriterLock();
-const userCache = new Map();
-
-async function getUser(id) {
-    // get read access
-    const lk = await rwlock.read();
-    try {
-        let user = userCache.get(id);
-        if (!user) {
-            user = await readUserFromDisk(id);
-            userCache.set(id, user);
-        }
-        return user;
-    }
-    finally {
-        // release read access
-        lk.unlock();
-    }
-}
-
-async function addUser(user) {
-    // get write access
-    const lk = await rwlock.write();
-    try {
-        userCache.set(user.id, user);
-        await writeUserToDisk(user.id, user);
-    }
-    finally {
-        // release write access
-        lk.unlock();
-    }
-}
-
-async function updateUser(id, oldData, newData) {
-    // get upgradeable read access
-    const lk = await rwlock.upgradeableRead();
-    try {
-        // verify that we are ok to make changes...
-        let user = userCache.get(id);
-        if (!user || user.name === oldData.name &amp;&amp; user.email === oldData.email) {
-            // looks safe, so upgrade to a write lock
-            const updlk = await lk.upgrade();
-            try {
-                if (!user) {
-                    user = { id };
-                    userCache.set(id, user);
-                }
-                user.name = newData.name;
-                user.email = newData.email;
-                await writeUserToDisk(user.id, user);
-            }
-            finally {
-                updlk.unlock(); // release the write lock
-            }
-        }
-    }
-    finally {
-        lk.unlock(); // release the read lock
-    }
-}
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -243,9 +92,6 @@ async function updateUser(id, oldData, newData) {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/async-readerwriterlock.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

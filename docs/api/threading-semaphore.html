@@ -78,117 +78,12 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="threading-semaphore">
+            <article class="content wrap" id="_content" data-uid="@esfx/threading-semaphore!">
   
-  <h1 id="threading_semaphore" data-uid="threading-semaphore">Package @esfx/threading-semaphore
+  <h1 id="_esfx_threading_semaphore_" data-uid="@esfx/threading-semaphore!">Package @esfx/threading-semaphore
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="threading-semaphore/semaphore.html#threading_semaphore_Semaphore">Semaphore</a> class, a thread synchronization primitive for use with Workers.</p>
-<h1 id="overview">Overview</h1>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h1 id="installation">Installation</h1>
-<pre><code class="lang-sh">npm i @esfx/threading-semaphore
-</code></pre><h1 id="usage">Usage</h1>
-<div class="tabGroup" id="tabgroup_2E8jZ4UGZD">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_2E8jZ4UGZD_ts" role="tab" aria-controls="tabpanel_2E8jZ4UGZD_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_2E8jZ4UGZD_js" role="tab" aria-controls="tabpanel_2E8jZ4UGZD_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_2E8jZ4UGZD_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
-import { Semaphore } from &quot;@esfx/threading-semaphore&quot;;
-import { StructType, int32 } from &quot;@esfx/struct-type&quot;;
-import { sleep } from &quot;@esfx/threading-sleep&quot;;
-
-const SharedData = StructType([
-    { name: &quot;running&quot;, type: int32 },
-] as const);
-
-function worker_thread() {
-    const sem = new Semaphore(workerData[0]);
-
-    while (true) {
-        // wait until the thread can enter the semaphore
-        sem.wait();
-
-        // do work inside the semaphore...
-
-        // release this worker&#39;s spot
-        sem.release();
-
-        // do work outside the semaphore...
-    }
-}
-
-function main() {
-    // create a semaphore that allows 5 workers to enter at once
-    const sem = new Semaphore(5);
-
-    // start 10 workers
-    for (let i = 0; i &lt; 10; i++) {
-        new Worker(__filename, { workerData: [sem.buffer] });
-    }
-}
-
-if (isMainThread) {
-    main();
-}
-else {
-    worker_thread();
-}
-</code></pre></section>
-<section id="tabpanel_2E8jZ4UGZD_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
-const { Semaphore } = require(&quot;@esfx/threading-semaphore&quot;);
-const { StructType, int32 } = require(&quot;@esfx/struct-type&quot;);
-const { sleep } = require(&quot;@esfx/threading-sleep&quot;);
-
-const SharedData = StructType([
-    { name: &quot;running&quot;, type: int32 },
-]);
-
-function worker_thread() {
-    const sem = new Semaphore(workerData[0]);
-
-    while (true) {
-        // wait until the thread can enter the semaphore
-        sem.wait();
-
-        // do work inside the semaphore...
-
-        // release this worker&#39;s spot
-        sem.release();
-
-        // do work outside the semaphore...
-    }
-}
-
-function main() {
-    // create a semaphore that allows 5 workers to enter at once
-    const sem = new Semaphore(5);
-
-    // start 10 workers
-    for (let i = 0; i &lt; 10; i++) {
-        new Worker(__filename, { workerData: [sem.buffer] });
-    }
-}
-
-if (isMainThread) {
-    main();
-}
-else {
-    worker_thread();
-}
-</code></pre></section>
-</div>
-</div>
+  <div class="markdown level0 conceptual"></div>
   
 </article>
           </div>
@@ -197,9 +92,6 @@ else {
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
-                  <li>
-                    <a href="https://github.com/esfx/esfx/blob/master/docs-sources/overwrite/threading-semaphore.md/#L2" class="contribution-link">Improve this Doc</a>
-                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
