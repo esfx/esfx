@@ -9,7 +9,7 @@ to: <%=packagePath%>/tsconfig.json
     },
     "include": ["src/**/*.ts"],
     "references": [
-<% dependencies.forEach((pkg, i) => { -%>
+<% dependencies.filter(pkg => !!pkg.path).forEach((pkg, i) => { -%>
         { "path": <%-JSON.stringify(pkg.path)%> },
 <% }); -%>
     ]

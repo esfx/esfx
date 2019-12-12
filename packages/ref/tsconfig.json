@@ -4,5 +4,8 @@
         "rootDir": "src",
         "outDir": "dist"
     },
-    "include": ["src/**/*.ts"]
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../../internal/guards" },
+    ]
 }

@@ -1,5 +1,6 @@
 ---
 to: <%=packagePath%>/package.json
+sh: cd <%= cwd %> && lerna bootstrap
 ---
 {
     "name": "<%=packageName%>",
@@ -17,7 +18,7 @@ to: <%=packagePath%>/package.json
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-<% [{ name: "tslib", version: "1.9.3" }].concat(dependencies).forEach((pkg, i, dependencies) => { -%>
+<% dependencies.forEach((pkg, i, dependencies) => { -%>
         <%-JSON.stringify(pkg.name)%>: <%-JSON.stringify("^" + pkg.version)%><% if (i !== dependencies.length - 1) {%>,<%}%>
 <% }); -%>
     },

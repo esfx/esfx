@@ -14,10 +14,10 @@
    limitations under the License.
 */
 
+import { isIterable } from '@esfx/internal-guards';
+import { binarySearch } from '@esfx/internal-binarysearch';
 import { KeyedCollection, ReadonlyKeyedCollection } from "@esfx/collection-core";
 import { Comparison, Comparer } from "@esfx/equatable";
-import { binarySearch } from '@esfx/internal-binarysearch';
-import { isIterable } from '@esfx/internal-guards';
 
 export class SortedMap<K, V> implements KeyedCollection<K, V> {
     private _keys: K[] = [];

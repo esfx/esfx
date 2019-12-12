@@ -55,28 +55,41 @@ it("type-model", () => {
 // #region IteratedType tests
 {
     type _ = [
-        __Verify<__ExactType<IteratedType<Iterable<number>>, number>>,
-        __Verify<__ExactType<IteratedType<{ [Symbol.iterator](): { next(): { done: false, value: number } } }>, number>>,
+        __Test<__ExpectType<IteratedType<Iterable<number>>, number>>,
+        __Test<__ExpectType<IteratedType<Generator<number>>, number>>,
+        // post TS 3.6 behavior
+        __Test<__ExpectType<IteratedType<{ [Symbol.iterator](): { next(): { done: false, value: number } } }>, number>>, 
+        __Test<__ExpectType<IteratedType<{ [Symbol.iterator](): { next(): { done?: false, value: number } } }>, number>>,
+        __Test<__ExpectType<IteratedType<{ [Symbol.iterator](): { next(): { value: number } } }>, number>>,
+        __Test<__ExpectType<IteratedType<{ [Symbol.iterator](): { next(): { done: true, value: number } } }>, never>>,
+        // pre TS 3.6 behavior
+        __Test<__ExpectType<IteratedType<{ [Symbol.iterator](): { next(): { done: boolean, value: number } } }>, number>>,
     ];
 }
 // #endregion IteratedType tests
 
-// #region GeneratorNextType tests
-{
-    type _ = [
-        __Verify<__ExactType<GeneratorNextType<{ [Symbol.iterator](): { next(value?: number): any } }>, number>>,
-    ];
-}
-// #endregion GeneratorNextType tests
-
 // #region GeneratorReturnType tests
 {
     type _ = [
-        __Verify<__ExactType<GeneratorReturnType<Iterable<number>>, any>>,
-        __Verify<__ExactType<GeneratorReturnType<{ [Symbol.iterator](): { next(): { done: true, value: number } } }>, number>>,
+        __Test<__ExpectType<GeneratorReturnType<Iterable<number>>, any>>,
+        __Test<__ExpectType<GeneratorReturnType<Generator<number, string, boolean>>, string>>,
+        __Test<__ExpectType<GeneratorReturnType<{ [Symbol.iterator](): { next(): { done: true, value: number } } }>, number>>,
+        __Test<__ExpectType<GeneratorReturnType<{ [Symbol.iterator](): { next(): { done: false, value: number } } }>, never>>,
+        __Test<__ExpectType<GeneratorReturnType<{ [Symbol.iterator](): { next(): { done: boolean, value: number } } }>, number>>,
+        __Test<__ExpectType<GeneratorReturnType<{ [Symbol.iterator](): { next(): { done?: false, value: number } } }>, never>>,
     ];
 }
 // #endregion GeneratorReturnType tests
+
+// #region GeneratorNextType tests
+{
+    type _ = [
+        __Test<__ExpectType<GeneratorNextType<Iterable<number>>, undefined>>,
+        __Test<__ExpectType<GeneratorNextType<Generator<"a", "b", number>>, number>>,
+        __Test<__ExpectType<GeneratorNextType<{ [Symbol.iterator](): { next(value?: number): any } }>, number>>,
+    ];
+}
+// #endregion GeneratorNextType tests
 
 // TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
 // // #region AsyncIteratedType tests
@@ -110,10 +123,10 @@ it("type-model", () => {
 // #region PromisedType tests
 {
     type _ = [
-        __Verify<__ExactType<PromisedType<number>, never>>,
-        __Verify<__ExactType<PromisedType<{ then(): any }>, never>>,
-        __Verify<__ExactType<PromisedType<{ then(cb: (x: number) => void): any }>, number>>,
-        __Verify<__ExactType<PromisedType<Promise<Promise<number>>>, Promise<number>>>,
+        __Test<__ExpectType<PromisedType<number>, never>>,
+        __Test<__ExpectType<PromisedType<{ then(): any }>, never>>,
+        __Test<__ExpectType<PromisedType<{ then(cb: (x: number) => void): any }>, number>>,
+        __Test<__ExpectType<PromisedType<Promise<Promise<number>>>, Promise<number>>>,
     ];
 }
 // #endregion
@@ -131,10 +144,10 @@ it("type-model", () => {
 // #region IsAny tests
 {
     type _ = [
-        __Verify<__ExactType<IsAny<any>,        true>>,
-        __Verify<__ExactType<IsAny<never>,      false>>,
-        __Verify<__ExactType<IsAny<unknown>,    false>>,
-        __Verify<__ExactType<IsAny<number>,     false>>,
+        __Test<__ExpectType<IsAny<any>,        true>>,
+        __Test<__ExpectType<IsAny<never>,      false>>,
+        __Test<__ExpectType<IsAny<unknown>,    false>>,
+        __Test<__ExpectType<IsAny<number>,     false>>,
     ];
 }
 // #endregion IsAny tests
@@ -142,10 +155,10 @@ it("type-model", () => {
 // #region IsNever tests
 {
     type _ = [
-        __Verify<__ExactType<IsNever<never>,    true>>,
-        __Verify<__ExactType<IsNever<any>,      false>>,
-        __Verify<__ExactType<IsNever<unknown>,  false>>,
-        __Verify<__ExactType<IsNever<number>,   false>>,
+        __Test<__ExpectType<IsNever<never>,    true>>,
+        __Test<__ExpectType<IsNever<any>,      false>>,
+        __Test<__ExpectType<IsNever<unknown>,  false>>,
+        __Test<__ExpectType<IsNever<number>,   false>>,
     ];
 }
 // #endregion IsNever tests
@@ -154,13 +167,13 @@ it("type-model", () => {
 {
     const enum E { One, Two }
     type _ = [
-        __Verify<__ExactType<IsUnion<never>,    false>>,
-        __Verify<__ExactType<IsUnion<any>,      false>>,
-        __Verify<__ExactType<IsUnion<1>,        false>>,
-        __Verify<__ExactType<IsUnion<1 | 2>,    true>>,
-        __Verify<__ExactType<IsUnion<number>,   false>>,
-        __Verify<__ExactType<IsUnion<boolean>,  true>>,
-        __Verify<__ExactType<IsUnion<E>,        true>>,
+        __Test<__ExpectType<IsUnion<never>,    false>>,
+        __Test<__ExpectType<IsUnion<any>,      false>>,
+        __Test<__ExpectType<IsUnion<1>,        false>>,
+        __Test<__ExpectType<IsUnion<1 | 2>,    true>>,
+        __Test<__ExpectType<IsUnion<number>,   false>>,
+        __Test<__ExpectType<IsUnion<boolean>,  true>>,
+        __Test<__ExpectType<IsUnion<E>,        true>>,
     ];
 }
 // #endregion IsUnion tests
@@ -170,14 +183,14 @@ it("type-model", () => {
 {
     type A = { (): void, new (): void };
     type _ = [
-        __Verify<__ExactType<IsCallable<any>,               boolean>>,
-        __Verify<__ExactType<IsCallable<never>,             never>>,
-        __Verify<__ExactType<IsCallable<string>,            false>>,
-        __Verify<__ExactType<IsCallable<{}>,                false>>,
-        __Verify<__ExactType<IsCallable<Function>,          true>>,
-        __Verify<__ExactType<IsCallable<() => void>,        true>>,
-        __Verify<__ExactType<IsCallable<new () => void>,    false>>,
-        __Verify<__ExactType<IsCallable<A>,                 true>>,
+        __Test<__ExpectType<IsCallable<any>,               boolean>>,
+        __Test<__ExpectType<IsCallable<never>,             never>>,
+        __Test<__ExpectType<IsCallable<string>,            false>>,
+        __Test<__ExpectType<IsCallable<{}>,                false>>,
+        __Test<__ExpectType<IsCallable<Function>,          true>>,
+        __Test<__ExpectType<IsCallable<() => void>,        true>>,
+        __Test<__ExpectType<IsCallable<new () => void>,    false>>,
+        __Test<__ExpectType<IsCallable<A>,                 true>>,
     ];
 }
 // #endregion IsCallable tests
@@ -186,14 +199,14 @@ it("type-model", () => {
 {
     type A = { (): void, new (): void };
     type _ = [
-        __Verify<__ExactType<IsConstructable<any>,              boolean>>,
-        __Verify<__ExactType<IsConstructable<never>,            never>>,
-        __Verify<__ExactType<IsConstructable<string>,           false>>,
-        __Verify<__ExactType<IsConstructable<{}>,               false>>,
-        __Verify<__ExactType<IsConstructable<Function>,         true>>,
-        __Verify<__ExactType<IsConstructable<new () => void>,   true>>,
-        __Verify<__ExactType<IsConstructable<() => void>,       false>>,
-        __Verify<__ExactType<IsConstructable<A>,                true>>,
+        __Test<__ExpectType<IsConstructable<any>,              boolean>>,
+        __Test<__ExpectType<IsConstructable<never>,            never>>,
+        __Test<__ExpectType<IsConstructable<string>,           false>>,
+        __Test<__ExpectType<IsConstructable<{}>,               false>>,
+        __Test<__ExpectType<IsConstructable<Function>,         true>>,
+        __Test<__ExpectType<IsConstructable<new () => void>,   true>>,
+        __Test<__ExpectType<IsConstructable<() => void>,       false>>,
+        __Test<__ExpectType<IsConstructable<A>,                true>>,
     ];
 }
 // #endregion IsConstructable tests
@@ -201,10 +214,10 @@ it("type-model", () => {
 // #region IsUnknown tests
 {
     type _ = [
-        __Verify<__ExactType<IsUnknown<unknown>, true>>,
-        __Verify<__ExactType<IsUnknown<never>,   false>>,
-        __Verify<__ExactType<IsUnknown<any>,     false>>,
-        __Verify<__ExactType<IsUnknown<1>,       false>>,
+        __Test<__ExpectType<IsUnknown<unknown>, true>>,
+        __Test<__ExpectType<IsUnknown<never>,   false>>,
+        __Test<__ExpectType<IsUnknown<any>,     false>>,
+        __Test<__ExpectType<IsUnknown<1>,       false>>,
     ];
 }
 // #endregion IsUnknown tests
@@ -212,15 +225,15 @@ it("type-model", () => {
 // #region IsSubtypeOf tests
 {
     type _ = [
-        __Verify<__ExactType<IsSubtypeOf<never, never>,     true>>,
-        __Verify<__ExactType<IsSubtypeOf<never, 1>,         true>>,
-        __Verify<__ExactType<IsSubtypeOf<1, never>,         false>>,
-        __Verify<__ExactType<IsSubtypeOf<any, any>,         true>>,
-        __Verify<__ExactType<IsSubtypeOf<any, 1>,           true>>,
-        __Verify<__ExactType<IsSubtypeOf<1, any>,           true>>,
-        __Verify<__ExactType<IsSubtypeOf<unknown, unknown>, true>>,
-        __Verify<__ExactType<IsSubtypeOf<unknown, 1>,       false>>,
-        __Verify<__ExactType<IsSubtypeOf<1, unknown>,       true>>,
+        __Test<__ExpectType<IsSubtypeOf<never, never>,     true>>,
+        __Test<__ExpectType<IsSubtypeOf<never, 1>,         true>>,
+        __Test<__ExpectType<IsSubtypeOf<1, never>,         false>>,
+        __Test<__ExpectType<IsSubtypeOf<any, any>,         true>>,
+        __Test<__ExpectType<IsSubtypeOf<any, 1>,           true>>,
+        __Test<__ExpectType<IsSubtypeOf<1, any>,           true>>,
+        __Test<__ExpectType<IsSubtypeOf<unknown, unknown>, true>>,
+        __Test<__ExpectType<IsSubtypeOf<unknown, 1>,       false>>,
+        __Test<__ExpectType<IsSubtypeOf<1, unknown>,       true>>,
     ];
 }
 // #endregion IsSubtypeOf tests
@@ -228,11 +241,11 @@ it("type-model", () => {
 // #region Not tests
 {
     type _ = [
-        __Verify<__ExactType<Not<true>,     false>>,
-        __Verify<__ExactType<Not<false>,    true>>,
-        __Verify<__ExactType<Not<boolean>,  boolean>>,
-        __Verify<__ExactType<Not<any>,      boolean>>,
-        __Verify<__ExactType<Not<never>,    never>>,
+        __Test<__ExpectType<Not<true>,     false>>,
+        __Test<__ExpectType<Not<false>,    true>>,
+        __Test<__ExpectType<Not<boolean>,  boolean>>,
+        __Test<__ExpectType<Not<any>,      boolean>>,
+        __Test<__ExpectType<Not<never>,    never>>,
     ];
 }
 // #endregion Not tests
@@ -240,25 +253,25 @@ it("type-model", () => {
 // #region And tests
 {
     type _ = [
-        __Verify<__ExactType<And<true, true>,       true>>,
-        __Verify<__ExactType<And<false, false>,     false>>,
-        __Verify<__ExactType<And<true, false>,      false>>,
-        __Verify<__ExactType<And<false, true>,      false>>,
-        __Verify<__ExactType<And<boolean, true>,    boolean>>,
-        __Verify<__ExactType<And<boolean, false>,   false>>,
-        __Verify<__ExactType<And<true, boolean>,    boolean>>,
-        __Verify<__ExactType<And<false, boolean>,   false>>,
-        __Verify<__ExactType<And<boolean, boolean>, boolean>>,
-        __Verify<__ExactType<And<any, true>,        boolean>>,
-        __Verify<__ExactType<And<any, false>,       false>>,
-        __Verify<__ExactType<And<true, any>,        boolean>>,
-        __Verify<__ExactType<And<false, any>,       false>>,
-        __Verify<__ExactType<And<any, any>,         boolean>>,
-        __Verify<__ExactType<And<never, true>,      never>>,
-        __Verify<__ExactType<And<never, false>,     never>>,
-        __Verify<__ExactType<And<true, never>,      never>>,
-        __Verify<__ExactType<And<false, never>,     never>>,
-        __Verify<__ExactType<And<never, never>,     never>>,
+        __Test<__ExpectType<And<true, true>,       true>>,
+        __Test<__ExpectType<And<false, false>,     false>>,
+        __Test<__ExpectType<And<true, false>,      false>>,
+        __Test<__ExpectType<And<false, true>,      false>>,
+        __Test<__ExpectType<And<boolean, true>,    boolean>>,
+        __Test<__ExpectType<And<boolean, false>,   false>>,
+        __Test<__ExpectType<And<true, boolean>,    boolean>>,
+        __Test<__ExpectType<And<false, boolean>,   false>>,
+        __Test<__ExpectType<And<boolean, boolean>, boolean>>,
+        __Test<__ExpectType<And<any, true>,        boolean>>,
+        __Test<__ExpectType<And<any, false>,       false>>,
+        __Test<__ExpectType<And<true, any>,        boolean>>,
+        __Test<__ExpectType<And<false, any>,       false>>,
+        __Test<__ExpectType<And<any, any>,         boolean>>,
+        __Test<__ExpectType<And<never, true>,      never>>,
+        __Test<__ExpectType<And<never, false>,     never>>,
+        __Test<__ExpectType<And<true, never>,      never>>,
+        __Test<__ExpectType<And<false, never>,     never>>,
+        __Test<__ExpectType<And<never, never>,     never>>,
     ];
 }
 // #endregion And tests
@@ -266,25 +279,25 @@ it("type-model", () => {
 // #region Or tests
 {
     type _ = [
-        __Verify<__ExactType<Or<true, true>,        true>>,
-        __Verify<__ExactType<Or<false, false>,      false>>,
-        __Verify<__ExactType<Or<true, false>,       true>>,
-        __Verify<__ExactType<Or<false, true>,       true>>,
-        __Verify<__ExactType<Or<boolean, true>,     true>>,
-        __Verify<__ExactType<Or<boolean, false>,    boolean>>,
-        __Verify<__ExactType<Or<true, boolean>,     true>>,
-        __Verify<__ExactType<Or<false, boolean>,    boolean>>,
-        __Verify<__ExactType<Or<boolean, boolean>,  boolean>>,
-        __Verify<__ExactType<Or<any, true>,         true>>,
-        __Verify<__ExactType<Or<any, false>,        boolean>>,
-        __Verify<__ExactType<Or<true, any>,         true>>,
-        __Verify<__ExactType<Or<false, any>,        boolean>>,
-        __Verify<__ExactType<Or<any, any>,          boolean>>,
-        __Verify<__ExactType<Or<never, true>,       never>>,
-        __Verify<__ExactType<Or<never, false>,      never>>,
-        __Verify<__ExactType<Or<true, never>,       never>>,
-        __Verify<__ExactType<Or<false, never>,      never>>,
-        __Verify<__ExactType<Or<never, never>,      never>>,
+        __Test<__ExpectType<Or<true, true>,        true>>,
+        __Test<__ExpectType<Or<false, false>,      false>>,
+        __Test<__ExpectType<Or<true, false>,       true>>,
+        __Test<__ExpectType<Or<false, true>,       true>>,
+        __Test<__ExpectType<Or<boolean, true>,     true>>,
+        __Test<__ExpectType<Or<boolean, false>,    boolean>>,
+        __Test<__ExpectType<Or<true, boolean>,     true>>,
+        __Test<__ExpectType<Or<false, boolean>,    boolean>>,
+        __Test<__ExpectType<Or<boolean, boolean>,  boolean>>,
+        __Test<__ExpectType<Or<any, true>,         true>>,
+        __Test<__ExpectType<Or<any, false>,        boolean>>,
+        __Test<__ExpectType<Or<true, any>,         true>>,
+        __Test<__ExpectType<Or<false, any>,        boolean>>,
+        __Test<__ExpectType<Or<any, any>,          boolean>>,
+        __Test<__ExpectType<Or<never, true>,       never>>,
+        __Test<__ExpectType<Or<never, false>,      never>>,
+        __Test<__ExpectType<Or<true, never>,       never>>,
+        __Test<__ExpectType<Or<false, never>,      never>>,
+        __Test<__ExpectType<Or<never, never>,      never>>,
     ];
 }
 // #endregion Or tests
@@ -292,25 +305,25 @@ it("type-model", () => {
 // #region XOr tests
 {
     type _ = [
-        __Verify<__ExactType<XOr<true, true>,       false>>,
-        __Verify<__ExactType<XOr<false, false>,     false>>,
-        __Verify<__ExactType<XOr<true, false>,      true>>,
-        __Verify<__ExactType<XOr<false, true>,      true>>,
-        __Verify<__ExactType<XOr<boolean, true>,    boolean>>,
-        __Verify<__ExactType<XOr<boolean, false>,   boolean>>,
-        __Verify<__ExactType<XOr<true, boolean>,    boolean>>,
-        __Verify<__ExactType<XOr<false, boolean>,   boolean>>,
-        __Verify<__ExactType<XOr<boolean, boolean>, boolean>>,
-        __Verify<__ExactType<XOr<any, true>,        boolean>>,
-        __Verify<__ExactType<XOr<any, false>,       boolean>>,
-        __Verify<__ExactType<XOr<true, any>,        boolean>>,
-        __Verify<__ExactType<XOr<false, any>,       boolean>>,
-        __Verify<__ExactType<XOr<any, any>,         boolean>>,
-        __Verify<__ExactType<XOr<never, true>,      never>>,
-        __Verify<__ExactType<XOr<never, false>,     never>>,
-        __Verify<__ExactType<XOr<true, never>,      never>>,
-        __Verify<__ExactType<XOr<false, never>,     never>>,
-        __Verify<__ExactType<XOr<never, never>,     never>>,
+        __Test<__ExpectType<XOr<true, true>,       false>>,
+        __Test<__ExpectType<XOr<false, false>,     false>>,
+        __Test<__ExpectType<XOr<true, false>,      true>>,
+        __Test<__ExpectType<XOr<false, true>,      true>>,
+        __Test<__ExpectType<XOr<boolean, true>,    boolean>>,
+        __Test<__ExpectType<XOr<boolean, false>,   boolean>>,
+        __Test<__ExpectType<XOr<true, boolean>,    boolean>>,
+        __Test<__ExpectType<XOr<false, boolean>,   boolean>>,
+        __Test<__ExpectType<XOr<boolean, boolean>, boolean>>,
+        __Test<__ExpectType<XOr<any, true>,        boolean>>,
+        __Test<__ExpectType<XOr<any, false>,       boolean>>,
+        __Test<__ExpectType<XOr<true, any>,        boolean>>,
+        __Test<__ExpectType<XOr<false, any>,       boolean>>,
+        __Test<__ExpectType<XOr<any, any>,         boolean>>,
+        __Test<__ExpectType<XOr<never, true>,      never>>,
+        __Test<__ExpectType<XOr<never, false>,     never>>,
+        __Test<__ExpectType<XOr<true, never>,      never>>,
+        __Test<__ExpectType<XOr<false, never>,     never>>,
+        __Test<__ExpectType<XOr<never, never>,     never>>,
     ];
 }
 // #endregion XOr tests
@@ -318,28 +331,28 @@ it("type-model", () => {
 // #region Every tests
 {
     type _ = [
-        __Verify<__ExactType<Every<[true, true]>,           true>>,
-        __Verify<__ExactType<Every<[true, true, true]>,     true>>,
-        __Verify<__ExactType<Every<[true, true, false]>,    false>>,
-        __Verify<__ExactType<Every<[false, false]>,         false>>,
-        __Verify<__ExactType<Every<[true, false]>,          false>>,
-        __Verify<__ExactType<Every<[false, true]>,          false>>,
-        __Verify<__ExactType<Every<[boolean, true]>,        boolean>>,
-        __Verify<__ExactType<Every<[boolean, false]>,       false>>,
-        __Verify<__ExactType<Every<[true, boolean]>,        boolean>>,
-        __Verify<__ExactType<Every<[false, boolean]>,       false>>,
-        __Verify<__ExactType<Every<[boolean, boolean]>,     boolean>>,
-        __Verify<__ExactType<Every<[any, true]>,            boolean>>,
-        __Verify<__ExactType<Every<[any, false]>,           false>>,
-        __Verify<__ExactType<Every<[true, any]>,            boolean>>,
-        __Verify<__ExactType<Every<[false, any]>,           false>>,
-        __Verify<__ExactType<Every<[any, any]>,             boolean>>,
-        __Verify<__ExactType<Every<[never, true]>,          never>>,
-        __Verify<__ExactType<Every<[never, false]>,         never>>,
-        __Verify<__ExactType<Every<[true, never]>,          never>>,
-        __Verify<__ExactType<Every<[false, never]>,         never>>,
-        __Verify<__ExactType<Every<[never, never]>,         never>>,
-        __Verify<__ExactType<Every<[]>,                     never>>,
+        __Test<__ExpectType<Every<[true, true]>,           true>>,
+        __Test<__ExpectType<Every<[true, true, true]>,     true>>,
+        __Test<__ExpectType<Every<[true, true, false]>,    false>>,
+        __Test<__ExpectType<Every<[false, false]>,         false>>,
+        __Test<__ExpectType<Every<[true, false]>,          false>>,
+        __Test<__ExpectType<Every<[false, true]>,          false>>,
+        __Test<__ExpectType<Every<[boolean, true]>,        boolean>>,
+        __Test<__ExpectType<Every<[boolean, false]>,       false>>,
+        __Test<__ExpectType<Every<[true, boolean]>,        boolean>>,
+        __Test<__ExpectType<Every<[false, boolean]>,       false>>,
+        __Test<__ExpectType<Every<[boolean, boolean]>,     boolean>>,
+        __Test<__ExpectType<Every<[any, true]>,            boolean>>,
+        __Test<__ExpectType<Every<[any, false]>,           false>>,
+        __Test<__ExpectType<Every<[true, any]>,            boolean>>,
+        __Test<__ExpectType<Every<[false, any]>,           false>>,
+        __Test<__ExpectType<Every<[any, any]>,             boolean>>,
+        __Test<__ExpectType<Every<[never, true]>,          never>>,
+        __Test<__ExpectType<Every<[never, false]>,         never>>,
+        __Test<__ExpectType<Every<[true, never]>,          never>>,
+        __Test<__ExpectType<Every<[false, never]>,         never>>,
+        __Test<__ExpectType<Every<[never, never]>,         never>>,
+        __Test<__ExpectType<Every<[]>,                     never>>,
     ]
 }
 // #endregion Every tests
@@ -347,26 +360,26 @@ it("type-model", () => {
 // #region Some tests
 {
     type _ = [
-        __Verify<__ExactType<Some<[true, true]>,        true>>,
-        __Verify<__ExactType<Some<[false, false]>,      false>>,
-        __Verify<__ExactType<Some<[true, false]>,       true>>,
-        __Verify<__ExactType<Some<[false, true]>,       true>>,
-        __Verify<__ExactType<Some<[boolean, true]>,     true>>,
-        __Verify<__ExactType<Some<[boolean, false]>,    boolean>>,
-        __Verify<__ExactType<Some<[true, boolean]>,     true>>,
-        __Verify<__ExactType<Some<[false, boolean]>,    boolean>>,
-        __Verify<__ExactType<Some<[boolean, boolean]>,  boolean>>,
-        __Verify<__ExactType<Some<[any, true]>,         true>>,
-        __Verify<__ExactType<Some<[any, false]>,        boolean>>,
-        __Verify<__ExactType<Some<[true, any]>,         true>>,
-        __Verify<__ExactType<Some<[false, any]>,        boolean>>,
-        __Verify<__ExactType<Some<[any, any]>,          boolean>>,
-        __Verify<__ExactType<Some<[never, true]>,       never>>,
-        __Verify<__ExactType<Some<[never, false]>,      never>>,
-        __Verify<__ExactType<Some<[true, never]>,       never>>,
-        __Verify<__ExactType<Some<[false, never]>,      never>>,
-        __Verify<__ExactType<Some<[never, never]>,      never>>,
-        __Verify<__ExactType<Some<[]>,                  never>>,
+        __Test<__ExpectType<Some<[true, true]>,        true>>,
+        __Test<__ExpectType<Some<[false, false]>,      false>>,
+        __Test<__ExpectType<Some<[true, false]>,       true>>,
+        __Test<__ExpectType<Some<[false, true]>,       true>>,
+        __Test<__ExpectType<Some<[boolean, true]>,     true>>,
+        __Test<__ExpectType<Some<[boolean, false]>,    boolean>>,
+        __Test<__ExpectType<Some<[true, boolean]>,     true>>,
+        __Test<__ExpectType<Some<[false, boolean]>,    boolean>>,
+        __Test<__ExpectType<Some<[boolean, boolean]>,  boolean>>,
+        __Test<__ExpectType<Some<[any, true]>,         true>>,
+        __Test<__ExpectType<Some<[any, false]>,        boolean>>,
+        __Test<__ExpectType<Some<[true, any]>,         true>>,
+        __Test<__ExpectType<Some<[false, any]>,        boolean>>,
+        __Test<__ExpectType<Some<[any, any]>,          boolean>>,
+        __Test<__ExpectType<Some<[never, true]>,       never>>,
+        __Test<__ExpectType<Some<[never, false]>,      never>>,
+        __Test<__ExpectType<Some<[true, never]>,       never>>,
+        __Test<__ExpectType<Some<[false, never]>,      never>>,
+        __Test<__ExpectType<Some<[never, never]>,      never>>,
+        __Test<__ExpectType<Some<[]>,                  never>>,
     ]
 }
 // #endregion Some tests
@@ -374,26 +387,26 @@ it("type-model", () => {
 // #region One tests
 {
     type _ = [
-        __Verify<__ExactType<One<[true, true]>,       false>>,
-        __Verify<__ExactType<One<[false, false]>,     false>>,
-        __Verify<__ExactType<One<[true, false]>,      true>>,
-        __Verify<__ExactType<One<[false, true]>,      true>>,
-        __Verify<__ExactType<One<[boolean, true]>,    boolean>>,
-        __Verify<__ExactType<One<[boolean, false]>,   boolean>>,
-        __Verify<__ExactType<One<[true, boolean]>,    boolean>>,
-        __Verify<__ExactType<One<[false, boolean]>,   boolean>>,
-        __Verify<__ExactType<One<[boolean, boolean]>, boolean>>,
-        __Verify<__ExactType<One<[any, true]>,        boolean>>,
-        __Verify<__ExactType<One<[any, false]>,       boolean>>,
-        __Verify<__ExactType<One<[true, any]>,        boolean>>,
-        __Verify<__ExactType<One<[false, any]>,       boolean>>,
-        __Verify<__ExactType<One<[any, any]>,         boolean>>,
-        __Verify<__ExactType<One<[never, true]>,      never>>,
-        __Verify<__ExactType<One<[never, false]>,     never>>,
-        __Verify<__ExactType<One<[true, never]>,      never>>,
-        __Verify<__ExactType<One<[false, never]>,     never>>,
-        __Verify<__ExactType<One<[never, never]>,     never>>,
-        __Verify<__ExactType<One<[]>,                 never>>,
+        __Test<__ExpectType<One<[true, true]>,       false>>,
+        __Test<__ExpectType<One<[false, false]>,     false>>,
+        __Test<__ExpectType<One<[true, false]>,      true>>,
+        __Test<__ExpectType<One<[false, true]>,      true>>,
+        __Test<__ExpectType<One<[boolean, true]>,    boolean>>,
+        __Test<__ExpectType<One<[boolean, false]>,   boolean>>,
+        __Test<__ExpectType<One<[true, boolean]>,    boolean>>,
+        __Test<__ExpectType<One<[false, boolean]>,   boolean>>,
+        __Test<__ExpectType<One<[boolean, boolean]>, boolean>>,
+        __Test<__ExpectType<One<[any, true]>,        boolean>>,
+        __Test<__ExpectType<One<[any, false]>,       boolean>>,
+        __Test<__ExpectType<One<[true, any]>,        boolean>>,
+        __Test<__ExpectType<One<[false, any]>,       boolean>>,
+        __Test<__ExpectType<One<[any, any]>,         boolean>>,
+        __Test<__ExpectType<One<[never, true]>,      never>>,
+        __Test<__ExpectType<One<[never, false]>,     never>>,
+        __Test<__ExpectType<One<[true, never]>,      never>>,
+        __Test<__ExpectType<One<[false, never]>,     never>>,
+        __Test<__ExpectType<One<[never, never]>,     never>>,
+        __Test<__ExpectType<One<[]>,                 never>>,
     ]
 }
 // #endregion One tests
@@ -406,21 +419,21 @@ it("type-model", () => {
     type Ac = { a: number, c?: number };
     type Ba = { b: number, a?: number };
     type _ = [
-        __Verify<__ExactType<SameType<any, any>,            true>>,
-        __Verify<__ExactType<SameType<never, never>,        true>>,
-        __Verify<__ExactType<SameType<unknown, unknown>,    true>>,
-        __Verify<__ExactType<SameType<any, true>,           true>>,
-        __Verify<__ExactType<SameType<never, true>,         false>>,
-        __Verify<__ExactType<SameType<unknown, true>,       false>>,
-        __Verify<__ExactType<SameType<true, true>,          true>>,
-        __Verify<__ExactType<SameType<false, true>,         false>>,
-        __Verify<__ExactType<SameType<A, A>,                true>>,
-        __Verify<__ExactType<SameType<A, B>,                false>>,
-        __Verify<__ExactType<SameType<Ab, Ba>,              false>>,
-        __Verify<__ExactType<SameType<Ab, Ac>,              true>>,
-        __Verify<__ExactType<SameType<true, any>,           true>>,
-        __Verify<__ExactType<SameType<true, never>,         false>>,
-        __Verify<__ExactType<SameType<true, unknown>,       false>>,
+        __Test<__ExpectType<SameType<any, any>,            true>>,
+        __Test<__ExpectType<SameType<never, never>,        true>>,
+        __Test<__ExpectType<SameType<unknown, unknown>,    true>>,
+        __Test<__ExpectType<SameType<any, true>,           true>>,
+        __Test<__ExpectType<SameType<never, true>,         false>>,
+        __Test<__ExpectType<SameType<unknown, true>,       false>>,
+        __Test<__ExpectType<SameType<true, true>,          true>>,
+        __Test<__ExpectType<SameType<false, true>,         false>>,
+        __Test<__ExpectType<SameType<A, A>,                true>>,
+        __Test<__ExpectType<SameType<A, B>,                false>>,
+        __Test<__ExpectType<SameType<Ab, Ba>,              false>>,
+        __Test<__ExpectType<SameType<Ab, Ac>,              true>>,
+        __Test<__ExpectType<SameType<true, any>,           true>>,
+        __Test<__ExpectType<SameType<true, never>,         false>>,
+        __Test<__ExpectType<SameType<true, unknown>,       false>>,
     ];
 }
 // #endregion SameType tests
@@ -434,23 +447,23 @@ it("type-model", () => {
     type Ac = { a: number, c?: number };
     type Ba = { b: number, a?: number };
     type _ = [
-        __Verify<__ExactType<SameTypes<never>,              never>>,
-        __Verify<__ExactType<SameTypes<[]>,                 never>>,
-        __Verify<__ExactType<SameTypes<[any, any]>,         true>>,
-        __Verify<__ExactType<SameTypes<[never, never]>,     true>>,
-        __Verify<__ExactType<SameTypes<[unknown, unknown]>, true>>,
-        __Verify<__ExactType<SameTypes<[any, true]>,        true>>,
-        __Verify<__ExactType<SameTypes<[never, true]>,      false>>,
-        __Verify<__ExactType<SameTypes<[unknown, true]>,    false>>,
-        __Verify<__ExactType<SameTypes<[true, true]>,       true>>,
-        __Verify<__ExactType<SameTypes<[false, true]>,      false>>,
-        __Verify<__ExactType<SameTypes<[A, A]>,             true>>,
-        __Verify<__ExactType<SameTypes<[A, B]>,             false>>,
-        __Verify<__ExactType<SameTypes<[Ab, Ba]>,           false>>,
-        __Verify<__ExactType<SameTypes<[Ab, Ac]>,           true>>,
-        __Verify<__ExactType<SameTypes<[true, any]>,        true>>,
-        __Verify<__ExactType<SameTypes<[true, never]>,      false>>,
-        __Verify<__ExactType<SameTypes<[true, unknown]>,    false>>,
+        __Test<__ExpectType<SameTypes<never>,              never>>,
+        __Test<__ExpectType<SameTypes<[]>,                 never>>,
+        __Test<__ExpectType<SameTypes<[any, any]>,         true>>,
+        __Test<__ExpectType<SameTypes<[never, never]>,     true>>,
+        __Test<__ExpectType<SameTypes<[unknown, unknown]>, true>>,
+        __Test<__ExpectType<SameTypes<[any, true]>,        true>>,
+        __Test<__ExpectType<SameTypes<[never, true]>,      false>>,
+        __Test<__ExpectType<SameTypes<[unknown, true]>,    false>>,
+        __Test<__ExpectType<SameTypes<[true, true]>,       true>>,
+        __Test<__ExpectType<SameTypes<[false, true]>,      false>>,
+        __Test<__ExpectType<SameTypes<[A, A]>,             true>>,
+        __Test<__ExpectType<SameTypes<[A, B]>,             false>>,
+        __Test<__ExpectType<SameTypes<[Ab, Ba]>,           false>>,
+        __Test<__ExpectType<SameTypes<[Ab, Ac]>,           true>>,
+        __Test<__ExpectType<SameTypes<[true, any]>,        true>>,
+        __Test<__ExpectType<SameTypes<[true, never]>,      false>>,
+        __Test<__ExpectType<SameTypes<[true, unknown]>,    false>>,
     ];
 }
 // #endregion SameTypes tests
@@ -458,19 +471,19 @@ it("type-model", () => {
 // #region Relatable tests
 {
     type _ = [
-        __Verify<__ExactType<Relatable<any, any>,        true>>,
-        __Verify<__ExactType<Relatable<any, any>,        true>>,
-        __Verify<__ExactType<Relatable<any, number>,     true>>,
-        __Verify<__ExactType<Relatable<number, any>,     true>>,
-        __Verify<__ExactType<Relatable<number, number>,  true>>,
-        __Verify<__ExactType<Relatable<number, 1>,       true>>,
-        __Verify<__ExactType<Relatable<1, number>,       true>>,
-        __Verify<__ExactType<Relatable<1, 2>,            false>>,
-        __Verify<__ExactType<Relatable<1 | 2, 3 | 4>,    false>>,
-        __Verify<__ExactType<Relatable<1 | 2, 2 | 3>,    false>>,
-        __Verify<__ExactType<Relatable<never, any>,      false>>,
-        __Verify<__ExactType<Relatable<any, never>,      false>>,
-        __Verify<__ExactType<Relatable<never, never>,    false>>,
+        __Test<__ExpectType<Relatable<any, any>,        true>>,
+        __Test<__ExpectType<Relatable<any, any>,        true>>,
+        __Test<__ExpectType<Relatable<any, number>,     true>>,
+        __Test<__ExpectType<Relatable<number, any>,     true>>,
+        __Test<__ExpectType<Relatable<number, number>,  true>>,
+        __Test<__ExpectType<Relatable<number, 1>,       true>>,
+        __Test<__ExpectType<Relatable<1, number>,       true>>,
+        __Test<__ExpectType<Relatable<1, 2>,            false>>,
+        __Test<__ExpectType<Relatable<1 | 2, 3 | 4>,    false>>,
+        __Test<__ExpectType<Relatable<1 | 2, 2 | 3>,    false>>,
+        __Test<__ExpectType<Relatable<never, any>,      false>>,
+        __Test<__ExpectType<Relatable<any, never>,      false>>,
+        __Test<__ExpectType<Relatable<never, never>,    false>>,
     ];
 }
 // #endregion Relatable tests
@@ -478,19 +491,19 @@ it("type-model", () => {
 // #region Overlaps tests
 {
     type _ = [
-        __Verify<__ExactType<Overlaps<any, any>,        true>>,
-        __Verify<__ExactType<Overlaps<any, any>,        true>>,
-        __Verify<__ExactType<Overlaps<any, number>,     true>>,
-        __Verify<__ExactType<Overlaps<number, any>,     true>>,
-        __Verify<__ExactType<Overlaps<number, number>,  true>>,
-        __Verify<__ExactType<Overlaps<number, 1>,       true>>,
-        __Verify<__ExactType<Overlaps<1, number>,       true>>,
-        __Verify<__ExactType<Overlaps<1, 2>,            false>>,
-        __Verify<__ExactType<Overlaps<1 | 2, 3 | 4>,    false>>,
-        __Verify<__ExactType<Overlaps<1 | 2, 2 | 3>,    true>>,
-        __Verify<__ExactType<Overlaps<never, any>,      false>>,
-        __Verify<__ExactType<Overlaps<any, never>,      false>>,
-        __Verify<__ExactType<Overlaps<never, never>,    false>>,
+        __Test<__ExpectType<Overlaps<any, any>,        true>>,
+        __Test<__ExpectType<Overlaps<any, any>,        true>>,
+        __Test<__ExpectType<Overlaps<any, number>,     true>>,
+        __Test<__ExpectType<Overlaps<number, any>,     true>>,
+        __Test<__ExpectType<Overlaps<number, number>,  true>>,
+        __Test<__ExpectType<Overlaps<number, 1>,       true>>,
+        __Test<__ExpectType<Overlaps<1, number>,       true>>,
+        __Test<__ExpectType<Overlaps<1, 2>,            false>>,
+        __Test<__ExpectType<Overlaps<1 | 2, 3 | 4>,    false>>,
+        __Test<__ExpectType<Overlaps<1 | 2, 2 | 3>,    true>>,
+        __Test<__ExpectType<Overlaps<never, any>,      false>>,
+        __Test<__ExpectType<Overlaps<any, never>,      false>>,
+        __Test<__ExpectType<Overlaps<never, never>,    false>>,
     ];
 }
 // #endregion Overlaps tests
@@ -498,21 +511,21 @@ it("type-model", () => {
 // #region IsSubsetOf tests
 {
     type _ = [
-        __Verify<__ExactType<IsSubsetOf<any, any>,            boolean>>,
-        __Verify<__ExactType<IsSubsetOf<any, 1>,              boolean>>,
-        __Verify<__ExactType<IsSubsetOf<1, any>,              boolean>>,
-        __Verify<__ExactType<IsSubsetOf<never, never>,        true>>,
-        __Verify<__ExactType<IsSubsetOf<never, 1>,            true>>,
-        __Verify<__ExactType<IsSubsetOf<1, never>,            false>>,
-        __Verify<__ExactType<IsSubsetOf<unknown, unknown>,    false>>,
-        __Verify<__ExactType<IsSubsetOf<unknown, 1>,          false>>,
-        __Verify<__ExactType<IsSubsetOf<1, unknown>,          true>>,
-        __Verify<__ExactType<IsSubsetOf<number, number>,      true>>,
-        __Verify<__ExactType<IsSubsetOf<1, 1>,                true>>,
-        __Verify<__ExactType<IsSubsetOf<1, number>,           true>>,
-        __Verify<__ExactType<IsSubsetOf<1, 1 | 2>,            true>>,
-        __Verify<__ExactType<IsSubsetOf<number, 1>,           false>>,
-        __Verify<__ExactType<IsSubsetOf<1 | 2, 1>,            false>>,
+        __Test<__ExpectType<IsSubsetOf<any, any>,            boolean>>,
+        __Test<__ExpectType<IsSubsetOf<any, 1>,              boolean>>,
+        __Test<__ExpectType<IsSubsetOf<1, any>,              boolean>>,
+        __Test<__ExpectType<IsSubsetOf<never, never>,        true>>,
+        __Test<__ExpectType<IsSubsetOf<never, 1>,            true>>,
+        __Test<__ExpectType<IsSubsetOf<1, never>,            false>>,
+        __Test<__ExpectType<IsSubsetOf<unknown, unknown>,    false>>,
+        __Test<__ExpectType<IsSubsetOf<unknown, 1>,          false>>,
+        __Test<__ExpectType<IsSubsetOf<1, unknown>,          true>>,
+        __Test<__ExpectType<IsSubsetOf<number, number>,      true>>,
+        __Test<__ExpectType<IsSubsetOf<1, 1>,                true>>,
+        __Test<__ExpectType<IsSubsetOf<1, number>,           true>>,
+        __Test<__ExpectType<IsSubsetOf<1, 1 | 2>,            true>>,
+        __Test<__ExpectType<IsSubsetOf<number, 1>,           false>>,
+        __Test<__ExpectType<IsSubsetOf<1 | 2, 1>,            false>>,
     ];
 }
 // #endregion IsSubsetOf tests
@@ -520,21 +533,21 @@ it("type-model", () => {
 // #region IsSupersetOf tests
 {
     type _ = [
-        __Verify<__ExactType<IsSupersetOf<any, any>,            boolean>>,
-        __Verify<__ExactType<IsSupersetOf<any, 1>,              boolean>>,
-        __Verify<__ExactType<IsSupersetOf<1, any>,              boolean>>,
-        __Verify<__ExactType<IsSupersetOf<never, never>,        true>>,
-        __Verify<__ExactType<IsSupersetOf<never, 1>,            false>>,
-        __Verify<__ExactType<IsSupersetOf<1, never>,            true>>,
-        __Verify<__ExactType<IsSupersetOf<unknown, unknown>,    false>>,
-        __Verify<__ExactType<IsSupersetOf<unknown, 1>,          true>>,
-        __Verify<__ExactType<IsSupersetOf<1, unknown>,          false>>,
-        __Verify<__ExactType<IsSupersetOf<number, number>,      true>>,
-        __Verify<__ExactType<IsSupersetOf<1, 1>,                true>>,
-        __Verify<__ExactType<IsSupersetOf<1, number>,           false>>,
-        __Verify<__ExactType<IsSupersetOf<1, 1 | 2>,            false>>,
-        __Verify<__ExactType<IsSupersetOf<number, 1>,           true>>,
-        __Verify<__ExactType<IsSupersetOf<1 | 2, 1>,            true>>,
+        __Test<__ExpectType<IsSupersetOf<any, any>,            boolean>>,
+        __Test<__ExpectType<IsSupersetOf<any, 1>,              boolean>>,
+        __Test<__ExpectType<IsSupersetOf<1, any>,              boolean>>,
+        __Test<__ExpectType<IsSupersetOf<never, never>,        true>>,
+        __Test<__ExpectType<IsSupersetOf<never, 1>,            false>>,
+        __Test<__ExpectType<IsSupersetOf<1, never>,            true>>,
+        __Test<__ExpectType<IsSupersetOf<unknown, unknown>,    false>>,
+        __Test<__ExpectType<IsSupersetOf<unknown, 1>,          true>>,
+        __Test<__ExpectType<IsSupersetOf<1, unknown>,          false>>,
+        __Test<__ExpectType<IsSupersetOf<number, number>,      true>>,
+        __Test<__ExpectType<IsSupersetOf<1, 1>,                true>>,
+        __Test<__ExpectType<IsSupersetOf<1, number>,           false>>,
+        __Test<__ExpectType<IsSupersetOf<1, 1 | 2>,            false>>,
+        __Test<__ExpectType<IsSupersetOf<number, 1>,           true>>,
+        __Test<__ExpectType<IsSupersetOf<1 | 2, 1>,            true>>,
     ];
 }
 // #endregion IsSubsetOf tests
@@ -542,21 +555,21 @@ it("type-model", () => {
 // #region IsProperSubsetOf tests
 {
     type _ = [
-        __Verify<__ExactType<IsProperSubsetOf<any, any>,            boolean>>,
-        __Verify<__ExactType<IsProperSubsetOf<any, 1>,              boolean>>,
-        __Verify<__ExactType<IsProperSubsetOf<1, any>,              boolean>>,
-        __Verify<__ExactType<IsProperSubsetOf<never, never>,        false>>,
-        __Verify<__ExactType<IsProperSubsetOf<never, 1>,            true>>,
-        __Verify<__ExactType<IsProperSubsetOf<1, never>,            false>>,
-        __Verify<__ExactType<IsProperSubsetOf<unknown, unknown>,    false>>,
-        __Verify<__ExactType<IsProperSubsetOf<unknown, 1>,          false>>,
-        __Verify<__ExactType<IsProperSubsetOf<1, unknown>,          true>>,
-        __Verify<__ExactType<IsProperSubsetOf<number, number>,      false>>,
-        __Verify<__ExactType<IsProperSubsetOf<1, 1>,                false>>,
-        __Verify<__ExactType<IsProperSubsetOf<1, number>,           true>>,
-        __Verify<__ExactType<IsProperSubsetOf<1, 1 | 2>,            true>>,
-        __Verify<__ExactType<IsProperSubsetOf<number, 1>,           false>>,
-        __Verify<__ExactType<IsProperSubsetOf<1 | 2, 1>,            false>>,
+        __Test<__ExpectType<IsProperSubsetOf<any, any>,            boolean>>,
+        __Test<__ExpectType<IsProperSubsetOf<any, 1>,              boolean>>,
+        __Test<__ExpectType<IsProperSubsetOf<1, any>,              boolean>>,
+        __Test<__ExpectType<IsProperSubsetOf<never, never>,        false>>,
+        __Test<__ExpectType<IsProperSubsetOf<never, 1>,            true>>,
+        __Test<__ExpectType<IsProperSubsetOf<1, never>,            false>>,
+        __Test<__ExpectType<IsProperSubsetOf<unknown, unknown>,    false>>,
+        __Test<__ExpectType<IsProperSubsetOf<unknown, 1>,          false>>,
+        __Test<__ExpectType<IsProperSubsetOf<1, unknown>,          true>>,
+        __Test<__ExpectType<IsProperSubsetOf<number, number>,      false>>,
+        __Test<__ExpectType<IsProperSubsetOf<1, 1>,                false>>,
+        __Test<__ExpectType<IsProperSubsetOf<1, number>,           true>>,
+        __Test<__ExpectType<IsProperSubsetOf<1, 1 | 2>,            true>>,
+        __Test<__ExpectType<IsProperSubsetOf<number, 1>,           false>>,
+        __Test<__ExpectType<IsProperSubsetOf<1 | 2, 1>,            false>>,
     ];
 }
 // #endregion IsProperSubsetOf tests
@@ -564,21 +577,21 @@ it("type-model", () => {
 // #region IsProperSupersetOf tests
 {
     type _ = [
-        __Verify<__ExactType<IsProperSupersetOf<any, any>,            boolean>>,
-        __Verify<__ExactType<IsProperSupersetOf<any, 1>,              boolean>>,
-        __Verify<__ExactType<IsProperSupersetOf<1, any>,              boolean>>,
-        __Verify<__ExactType<IsProperSupersetOf<never, never>,        false>>,
-        __Verify<__ExactType<IsProperSupersetOf<never, 1>,            false>>,
-        __Verify<__ExactType<IsProperSupersetOf<1, never>,            true>>,
-        __Verify<__ExactType<IsProperSupersetOf<unknown, unknown>,    false>>,
-        __Verify<__ExactType<IsProperSupersetOf<unknown, 1>,          true>>,
-        __Verify<__ExactType<IsProperSupersetOf<1, unknown>,          false>>,
-        __Verify<__ExactType<IsProperSupersetOf<number, number>,      false>>,
-        __Verify<__ExactType<IsProperSupersetOf<1, 1>,                false>>,
-        __Verify<__ExactType<IsProperSupersetOf<1, number>,           false>>,
-        __Verify<__ExactType<IsProperSupersetOf<1, 1 | 2>,            false>>,
-        __Verify<__ExactType<IsProperSupersetOf<number, 1>,           true>>,
-        __Verify<__ExactType<IsProperSupersetOf<1 | 2, 1>,            true>>,
+        __Test<__ExpectType<IsProperSupersetOf<any, any>,            boolean>>,
+        __Test<__ExpectType<IsProperSupersetOf<any, 1>,              boolean>>,
+        __Test<__ExpectType<IsProperSupersetOf<1, any>,              boolean>>,
+        __Test<__ExpectType<IsProperSupersetOf<never, never>,        false>>,
+        __Test<__ExpectType<IsProperSupersetOf<never, 1>,            false>>,
+        __Test<__ExpectType<IsProperSupersetOf<1, never>,            true>>,
+        __Test<__ExpectType<IsProperSupersetOf<unknown, unknown>,    false>>,
+        __Test<__ExpectType<IsProperSupersetOf<unknown, 1>,          true>>,
+        __Test<__ExpectType<IsProperSupersetOf<1, unknown>,          false>>,
+        __Test<__ExpectType<IsProperSupersetOf<number, number>,      false>>,
+        __Test<__ExpectType<IsProperSupersetOf<1, 1>,                false>>,
+        __Test<__ExpectType<IsProperSupersetOf<1, number>,           false>>,
+        __Test<__ExpectType<IsProperSupersetOf<1, 1 | 2>,            false>>,
+        __Test<__ExpectType<IsProperSupersetOf<number, 1>,           true>>,
+        __Test<__ExpectType<IsProperSupersetOf<1 | 2, 1>,            true>>,
     ];
 }
 // #endregion IsProperSupersetOf tests
@@ -587,9 +600,9 @@ it("type-model", () => {
 {
     type A = { a: number, b: string, c: number };
     type _ = [
-        __Verify<__ExactType<MatchingKeys<A, number>, "a" | "c">>,
-        __Verify<__ExactType<MatchingKeys<A, string>, "b">>,
-        __Verify<__ExactType<MatchingKeys<A, boolean>, never>>,
+        __Test<__ExpectType<MatchingKeys<A, number>, "a" | "c">>,
+        __Test<__ExpectType<MatchingKeys<A, string>, "b">>,
+        __Test<__ExpectType<MatchingKeys<A, boolean>, never>>,
     ];
 }
 // #endregion MatchingKeys tests
@@ -598,11 +611,11 @@ it("type-model", () => {
 {
     type A = { a(x: string): void, b(x: number): void, c(): void, d: new () => any };
     type _ = [
-        __Verify<__ExactType<FunctionKeys<A>,                       "a" | "b" | "c" | "d">>,
-        __Verify<__ExactType<FunctionKeys<A, () => void>,           "c">>,
-        __Verify<__ExactType<FunctionKeys<A, (x: string) => void>,  "a" | "c">>,
-        __Verify<__ExactType<FunctionKeys<A, (x: number) => void>,  "b" | "c">>,
-        __Verify<__ExactType<FunctionKeys<A, Constructor>,          "d">>,
+        __Test<__ExpectType<FunctionKeys<A>,                       "a" | "b" | "c" | "d">>,
+        __Test<__ExpectType<FunctionKeys<A, () => void>,           "c">>,
+        __Test<__ExpectType<FunctionKeys<A, (x: string) => void>,  "a" | "c">>,
+        __Test<__ExpectType<FunctionKeys<A, (x: number) => void>,  "b" | "c">>,
+        __Test<__ExpectType<FunctionKeys<A, Constructor>,          "d">>,
     ];
 }
 // #endregion FunctionKeys tests
@@ -700,12 +713,12 @@ it("type-model", () => {
     type AandB = A & B;
     type AorB = A | B;
     type _ = [
-        __Verify<__ExactType<Disjoin<AB>,       AorB>>,
-        __Verify<__ExactType<Disjoin<AandB>,    AorB>>,
-        __Verify<__ExactType<Disjoin<A>,        A>>,
-        __Verify<__ExactType<Disjoin<{}>,       {}>>,
-        __Verify<__ExactType<Disjoin<never>,    never>>,
-        __Verify<__ExactType<Disjoin<any>,      any>>,
+        __Test<__ExpectType<Disjoin<AB>,       AorB>>,
+        __Test<__ExpectType<Disjoin<AandB>,    AorB>>,
+        __Test<__ExpectType<Disjoin<A>,        A>>,
+        __Test<__ExpectType<Disjoin<{}>,       {}>>,
+        __Test<__ExpectType<Disjoin<never>,    never>>,
+        __Test<__ExpectType<Disjoin<any>,      any>>,
     ];
 }
 // #endregion Disjoin tests
@@ -720,7 +733,7 @@ it("type-model", () => {
     type _ = [
         // NOTE: There is no way in typespace to differentiate between `{ a: number, b: number }` and
         //       `{ a: number } & { b: number }`, so this needs to be manually verified above.
-        __Verify<__ExactType<T1, AB>>,
+        __Test<__ExpectType<T1, AB>>,
     ];
 }
 // #endregion Conjoin tests
@@ -731,22 +744,22 @@ it("type-model", () => {
     type B = { b: number };
     type AB = { a: number, b: number };
     type _ = [
-        __Verify<__ExactType<DisjoinOverlaps<any, any>,         true>>,
-        __Verify<__ExactType<DisjoinOverlaps<any, any>,         true>>,
-        __Verify<__ExactType<DisjoinOverlaps<any, number>,      true>>,
-        __Verify<__ExactType<DisjoinOverlaps<number, any>,      true>>,
-        __Verify<__ExactType<DisjoinOverlaps<number, number>,   true>>,
-        __Verify<__ExactType<DisjoinOverlaps<number, 1>,        true>>,
-        __Verify<__ExactType<DisjoinOverlaps<1, number>,        true>>,
-        __Verify<__ExactType<DisjoinOverlaps<1, 2>,             false>>,
-        __Verify<__ExactType<DisjoinOverlaps<1 | 2, 3 | 4>,     false>>,
-        __Verify<__ExactType<DisjoinOverlaps<1 | 2, 2 | 3>,     true>>,
-        __Verify<__ExactType<DisjoinOverlaps<A, B>,             false>>,
-        __Verify<__ExactType<DisjoinOverlaps<A, AB>,            true>>,
-        __Verify<__ExactType<DisjoinOverlaps<AB, B>,            true>>,
-        __Verify<__ExactType<DisjoinOverlaps<never, any>,       false>>,
-        __Verify<__ExactType<DisjoinOverlaps<any, never>,       false>>,
-        __Verify<__ExactType<DisjoinOverlaps<never, never>,     false>>,
+        __Test<__ExpectType<DisjoinOverlaps<any, any>,         true>>,
+        __Test<__ExpectType<DisjoinOverlaps<any, any>,         true>>,
+        __Test<__ExpectType<DisjoinOverlaps<any, number>,      true>>,
+        __Test<__ExpectType<DisjoinOverlaps<number, any>,      true>>,
+        __Test<__ExpectType<DisjoinOverlaps<number, number>,   true>>,
+        __Test<__ExpectType<DisjoinOverlaps<number, 1>,        true>>,
+        __Test<__ExpectType<DisjoinOverlaps<1, number>,        true>>,
+        __Test<__ExpectType<DisjoinOverlaps<1, 2>,             false>>,
+        __Test<__ExpectType<DisjoinOverlaps<1 | 2, 3 | 4>,     false>>,
+        __Test<__ExpectType<DisjoinOverlaps<1 | 2, 2 | 3>,     true>>,
+        __Test<__ExpectType<DisjoinOverlaps<A, B>,             false>>,
+        __Test<__ExpectType<DisjoinOverlaps<A, AB>,            true>>,
+        __Test<__ExpectType<DisjoinOverlaps<AB, B>,            true>>,
+        __Test<__ExpectType<DisjoinOverlaps<never, any>,       false>>,
+        __Test<__ExpectType<DisjoinOverlaps<any, never>,       false>>,
+        __Test<__ExpectType<DisjoinOverlaps<never, never>,     false>>,
     ];
 }
 // #endregion DisjoinOverlaps tests
@@ -755,10 +768,10 @@ it("type-model", () => {
 declare const testSymbol: unique symbol;
 {
     type _ = [
-        __Verify<__ExactType<IsEmpty<{}>, true>>,
-        __Verify<__ExactType<IsEmpty<{ a: number }>, false>>,
-        __Verify<__ExactType<IsEmpty<{ [a: number]: any }>, false>>,
-        __Verify<__ExactType<IsEmpty<{ [testSymbol]: any }>, false>>,
+        __Test<__ExpectType<IsEmpty<{}>, true>>,
+        __Test<__ExpectType<IsEmpty<{ a: number }>, false>>,
+        __Test<__ExpectType<IsEmpty<{ [a: number]: any }>, false>>,
+        __Test<__ExpectType<IsEmpty<{ [testSymbol]: any }>, false>>,
     ];
 }
 // #endregion IsEmpty tests
@@ -772,9 +785,9 @@ declare const testSymbol: unique symbol;
     type ABC = { a: number, b: number, c: number };
     type AC = { a: number, c: number };
     type _ = [
-        __Verify<__ExactType<Diff<AB, B>, A>>,
-        __Verify<__ExactType<Diff<AB, B2>, A>>,
-        __Verify<__ExactType<Diff<ABC, B>, AC>>,
+        __Test<__ExpectType<Diff<AB, B>, A>>,
+        __Test<__ExpectType<Diff<AB, B2>, A>>,
+        __Test<__ExpectType<Diff<ABC, B>, AC>>,
     ];
 }
 // #endregion Diff tests
@@ -788,9 +801,9 @@ declare const testSymbol: unique symbol;
     type AB1and2 = { a: number, b: number & string };
     type AC = { a: number, c: number };
     type _ = [
-        __Verify<__ExactType<Intersect<AB1, AC>,    A>>,
-        __Verify<__ExactType<Intersect<AB1, AB2>,   AB1and2>>,
-        __Verify<__ExactType<Intersect<A, B>,       {}>>,
+        __Test<__ExpectType<Intersect<AB1, AC>,    A>>,
+        __Test<__ExpectType<Intersect<AB1, AB2>,   AB1and2>>,
+        __Test<__ExpectType<Intersect<A, B>,       {}>>,
     ];
 }
 // #endregion Intersect tests
@@ -809,24 +822,24 @@ declare const testSymbol: unique symbol;
 
     type T = Assign<AB, B2>;
     type _ = [
-        __Verify<__ExactType<Assign<A, B>,      AB>>,
-        __Verify<__ExactType<Assign<AB, AC>,    ABC>>,
-        __Verify<__ExactType<Assign<AB, C>,     ABC>>,
-        __Verify<__ExactType<Assign<A, BC>,     ABC>>,
-        __Verify<__ExactType<Assign<B, ABC>,    ABC>>,
-        __Verify<__ExactType<Assign<AB, B2>,    AB2>>,
+        __Test<__ExpectType<Assign<A, B>,      AB>>,
+        __Test<__ExpectType<Assign<AB, AC>,    ABC>>,
+        __Test<__ExpectType<Assign<AB, C>,     ABC>>,
+        __Test<__ExpectType<Assign<A, BC>,     ABC>>,
+        __Test<__ExpectType<Assign<B, ABC>,    ABC>>,
+        __Test<__ExpectType<Assign<AB, B2>,    AB2>>,
     ];
 }
 // #endregion Assign tests
 
 
 // #region Test helper types
-type __Verify<T extends { ok: true }> = T;
-type __ExactType<Actual, Expected> =
-    IsNever<Expected> extends true ? { ok: IsNever<Actual>, actual: Actual, expected: Expected } :
-    IsNever<Actual> extends true ? { ok: IsNever<Expected>, actual: Actual, expected: Expected } :
-    IsAny<Expected> extends true ? { ok: IsAny<Actual>, actual: Actual, expected: Expected } :
-    IsAny<Actual> extends true ? { ok: IsAny<Expected>, actual: Actual, expected: Expected } :
-    [Expected, Actual] extends [Actual, Expected] ? { ok: true, actual: Actual, expected: Expected } :
-    { ok: false, actual: Actual, expected: Expected };
+type __Test<T extends { pass: true }> = T;
+type __ExpectType<Actual, Expected> =
+    IsNever<Expected> extends true ? IsNever<Actual> extends true ? { pass: true } : { pass: false, Expected: Expected, Actual: Actual } :
+    IsNever<Actual> extends true ? { pass: false, Expected: Expected, Actual: Actual } :
+    IsAny<Expected> extends true ? IsAny<Actual> extends true ? { pass: true } : { pass: false, Expected: Expected, Actual: Actual } :
+    IsAny<Actual> extends true ? { pass: false, Expected: Expected, Actual: Actual } :
+    [Expected, Actual] extends [Actual, Expected] ? { pass: true } :
+    { pass: false, Expected: Expected, Actual: Actual };
 // #endregion Test helper types

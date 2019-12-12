@@ -14,10 +14,10 @@
    limitations under the License.
 */
 
-import { Collection, ReadonlyCollection } from "@esfx/collection-core";
-import { Comparison, Comparer } from "@esfx/equatable";
 import { binarySearch } from '@esfx/internal-binarysearch';
 import { isIterable } from '@esfx/internal-guards';
+import { Collection, ReadonlyCollection } from "@esfx/collection-core";
+import { Comparison, Comparer } from "@esfx/equatable";
 
 export class SortedSet<T> implements Collection<T> {
     private _values: T[] = [];

@@ -124,7 +124,9 @@ declare global {
     interface BigInt64Array extends FixedSizeIndexedCollection<bigint> {}
 }
 
-const typedArrays = typeof Uint8Array !== "function" ? [] : [Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, Int8Array, Int16Array, Int32Array, Float32Array, Float64Array];
+const typedArrays =
+    typeof Uint8Array !== "function" ? [] :
+    [Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, Int8Array, Int16Array, Int32Array, Float32Array, Float64Array];
 
 for (const TypedArray of typedArrays) {
     Object.defineProperties(TypedArray.prototype, {
@@ -168,7 +170,9 @@ for (const TypedArray of typedArrays) {
     });
 }
 
-const bigIntTypedArrays = typeof BigInt64Array !== "function" ? [] : [BigUint64Array, BigInt64Array];
+const bigIntTypedArrays =
+    typeof BigInt64Array !== "function" ? [] :
+    [BigUint64Array, BigInt64Array];
 
 for (const TypedArray of bigIntTypedArrays) {
     Object.defineProperties(TypedArray.prototype, {

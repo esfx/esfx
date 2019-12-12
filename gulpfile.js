@@ -4,7 +4,20 @@ const del = require("del");
 const path = require("path");
 const { buildProject, cleanProject } = require("./scripts/build");
 const { exec, ArgsBuilder } = require("./scripts/exec");
-const { argv } = require("yargs");
+const yargs = require("yargs")
+    .option("testNamePattern", { type: "string", alias: ["tests", "test", "T", "t"] })
+    .option("testPathPattern", { type: "string", alias: ["files", "file", "F"] })
+    .option("testPathIgnorePatterns", { type: "string", alias: ["ignore", "I"] })
+    .option("maxWorkers", { type: "string", alias: ["w"] })
+    .option("onlyChanged", { type: "boolean", alias: ["changed", "o"], default: false })
+    .option("runInBand", { type: "boolean", alias: "i", default: false })
+    .option("watch", { type: "boolean", default: false })
+    .option("watchAll", { type: "boolean", default: false })
+    .option("fix", { type: "boolean", default: false })
+    .option("interactive", { type: "boolean", default: true })
+    ;
+
+const { argv } = yargs;
 const { apiExtractor, apiDocumenter, docfx } = require("./scripts/docs");
 const { fname } = require("./scripts/fname");
 
@@ -44,23 +57,32 @@ gulp.task("ci", ci);
 
 const test = () => {
     const args = new ArgsBuilder();
-    args.addSwitch("--testNamePattern", argv.testNamePattern || argv.tests || argv.test || argv.T || argv.t);
-    args.addSwitch("--testPathPattern", argv.testPathPattern || argv.files || argv.file || argv.F);
-    args.addSwitch("--testPathIgnorePatterns", argv.testPathIgnorePatterns || argv.ignore || argv.I);
-    args.addSwitch("--maxWorkers", argv.maxWorkers || argv.w);
-    args.addSwitch("--onlyChanged", Boolean(argv.onlyChanged || argv.changed || argv.o || false), false);
-    args.addSwitch("--onlyFailures", Boolean(argv.onlyFailures || argv.failed || argv.f || false), false);
-    args.addSwitch("--runInBand", Boolean(argv.runInBand || argv.i || false), false);
-    args.addSwitch("--watch", Boolean(argv.watch || false), false);
-    args.addSwitch("--watchAll", Boolean(argv.watchAll || false), false);
+    args.addSwitch("--testNamePattern", argv.testNamePattern);
+    args.addSwitch("--testPathPattern", argv.testPathPattern);
+    args.addSwitch("--testPathIgnorePatterns", argv.testPathIgnorePatterns);
+    args.addSwitch("--maxWorkers", argv.maxWorkers);
+    args.addSwitch("--onlyChanged", argv.onlyChanged, false);
+    args.addSwitch("--onlyFailures", argv.onlyFailures, false);
+    args.addSwitch("--runInBand", argv.runInBand, false);
+    args.addSwitch("--watch", argv.watch, false);
+    args.addSwitch("--watchAll", argv.watchAll, false);
     return exec(process.execPath, [require.resolve("jest/bin/jest"), ...args], { verbose: true });
 };
-gulp.task("test", gulp.series(build, test));
+// gulp.task("test", gulp.series(build, test));
+gulp.task("test", gulp.series(gulp.task("internal/jest-sequence"), test));
 
 // const watch = () => spawn('node', [require.resolve("jest/bin/jest"), "--watch"], { stdio: "inherit" });
 // gulp.task("watch", watch);
 
-gulp.task("default", gulp.series(build, test));
+const verify = () => {
+    const args = new ArgsBuilder();
+    args.addSwitch("--fix", argv.fix, false);
+    args.addSwitch("--interactive", argv.interactive, true);
+    return exec(process.execPath, [require.resolve("./scripts/verify.js"), ...args], { verbose: true });
+};
+gulp.task("verify", verify);
+
+gulp.task("default", gulp.series(verify, build, test));
 
 function makeProjects(projects) {
     const builders = [];

@@ -6,6 +6,8 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
+        { "path": "../../internal/guards" },
+        { "path": "../equatable" },
         { "path": "../collection-core" },
         { "path": "../collections-hashmap" },
         { "path": "../collections-hashset" },

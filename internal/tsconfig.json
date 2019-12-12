@@ -14,6 +14,8 @@
         { "path": "./threading" },
         { "path": "./ts-worker" },
         { "path": "./deprecate" },
+        { "path": "./assert" },
+        { "path": "./jest-sequence" },
         // hygen: add new project references above this line
     ]
 }

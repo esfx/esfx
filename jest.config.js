@@ -1,6 +1,7 @@
 module.exports = {
     preset: 'ts-jest',
     testEnvironment: 'node',
+    setupFilesAfterEnv: ["./internal/jest-sequence"],
     roots: [
         '<rootDir>/internal/',
         '<rootDir>/packages/',
@@ -11,10 +12,12 @@ module.exports = {
     testPathIgnorePatterns: [
         '/dist/',
         '/workers/',
+        '/data/',
     ],
     globals: {
         'ts-jest': {
             tsConfig: 'tsconfig-base.json',
+            compiler: require.resolve('typescript')
         },
     }
 };

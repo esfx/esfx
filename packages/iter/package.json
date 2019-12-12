@@ -1,0 +1,31 @@
+{
+    "name": "@esfx/iter",
+    "version": "1.0.0-pre.15",
+    "description": "An iteration and query API for ECMAScript iterables.",
+    "main": "dist",
+    "types": "dist",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "devDependencies": {
+        "@esfx/internal-jest-sequence": "^1.0.0-pre.15"
+    },
+    "dependencies": {
+        "@esfx/collection-core": "^1.0.0-pre.13",
+        "@esfx/collections-hashmap": "^1.0.0-pre.13",
+        "@esfx/collections-hashset": "^1.0.0-pre.13",
+        "@esfx/equatable": "^1.0.0-pre.13",
+        "@esfx/internal-assert": "^1.0.0-pre.15",
+        "@esfx/internal-binarysearch": "^1.0.0-pre.13",
+        "@esfx/internal-guards": "^1.0.0-pre.11"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

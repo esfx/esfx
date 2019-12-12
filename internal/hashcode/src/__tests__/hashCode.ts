@@ -25,6 +25,7 @@ it("1", () => expect(hashUnknown(1)).toBe(1));
 it("1.2", () => expect(hashUnknown(1.2)).toBe(49164));
 it('""', () => expect(hashUnknown("")).toBe(-293397629));
 it('"abc"', () => expect(hashUnknown("abc")).toBe(38704718));
+// @ts-ignore
 it("123n", () => expect(hashUnknown(123n)).toBe(251));
 it("{}", () => expect(hashUnknown({})).toBe(-467054833));
 it("same {}", () => (obj => expect(hashUnknown(obj)).toBe(hashUnknown(obj)))({}));

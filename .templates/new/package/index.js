@@ -3,6 +3,8 @@ const path = require("path");
 const yargs = require('yargs-parser');
 const Project = require("@lerna/project");
 
+const TSLIB_VERSION = "1.9.3";
+
 module.exports = {
     prompt: async ({ prompter, args }) => {
         const project = new Project(".");
@@ -50,6 +52,7 @@ module.exports = {
 
         const packages = await project.getPackages();
         const dependenciesMap = new Map(packages.map(pkg => [pkg.name, pkg]));
+        dependenciesMap.set("tslib", { name: "tslib", version: TSLIB_VERSION });
 
         const { packageName } = await prompter.prompt({
             type: "input",
@@ -116,7 +119,9 @@ function cleanPath(s) {
 }
 
 function packageWeight(pkg) {
-    return -Number(pkg.name.startsWith("@esfx/internal-"));
+    return pkg.name === "tslib" ? 0 :
+        pkg.name.startsWith("@esfx/internal-") ? 1 :
+        2;
 }
 
 function compare(a, b) {

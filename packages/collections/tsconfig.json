@@ -11,5 +11,6 @@
         { "path": "../collections-sortedmap" },
         { "path": "../collections-sortedset" },
         { "path": "../collections-linkedlist" },
+        { "path": "../collections-multimap" },
     ]
 }

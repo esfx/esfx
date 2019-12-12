@@ -6,6 +6,7 @@
     },
     "include": ["src/**/*.ts"], 
     "references": [
+        { "path": "../../internal/deprecate" },
         { "path": "../../internal/tag" },
         { "path": "../../internal/guards" },
     ]

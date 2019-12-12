@@ -44,21 +44,35 @@ const kList = Symbol("LinkedListNode.list");
 const kPrevious = Symbol("LinkedListNode.previous");
 const kNext = Symbol("LinkedListNode.next");
 
+/**
+ * A node in a [doubly-linked list](https://en.wikipedia.org/wiki/Doubly_linked_list).
+ */
 export class LinkedListNode<T> {
     [kList]: LinkedList<T> | undefined = undefined;
     [kPrevious]: LinkedListNode<T> | undefined = undefined;
     [kNext]: LinkedListNode<T> | undefined = undefined;
 
+    /**
+     * The value for the node.
+     */
     value: T;
 
     constructor(value: T) {
         this.value = value;
     }
 
+    /**
+     * Gets the list associated with this node. If the node is not attached to a {@link LinkedList}, then this returns
+     * `undefined`.
+     */
     get list(): LinkedList<T> | undefined {
         return this[kList];
     }
 
+    /**
+     * Gets the {@link LinkedListNode} preceding this node in the list. If this is the first node in the list, or the
+     * node is not attached to a {@link LinkedList}, then this returns `undefined`.
+     */
     get previous(): LinkedListNode<T> | undefined {
         if (this[kPrevious] && this.list && this !== this.list.first) {
             return this[kPrevious];
@@ -67,6 +81,10 @@ export class LinkedListNode<T> {
         return undefined;
     }
 
+    /**
+     * Gets the {@link LinkedListNode} following this node in the list. If this is the last node in the list, or the
+     * node is not attached to a {@link LinkedList}, then this returns `undefined`.
+     */
     get next(): LinkedListNode<T> | undefined {
         if (this[kNext] && this.list && this[kNext] !== this.list.first) {
             return this[kNext];
@@ -75,6 +93,10 @@ export class LinkedListNode<T> {
         return undefined;
     }
 
+    /**
+     * Removes this node from its associated list.
+     * @returns `true` if the node was successfully removed from the list; otherwise, `false`.
+     */
     detachSelf() {
         return this.list ? this.list.deleteNode(this) : false;
     }
@@ -94,6 +116,9 @@ const enum Position {
     after
 }
 
+/**
+ * A collection representing a [doubly-linked list](https://en.wikipedia.org/wiki/Doubly_linked_list).
+ */
 export class LinkedList<T> implements Collection<T> {
     private _size: number = 0;
     private _head: LinkedListNode<T> | undefined = undefined;
@@ -105,16 +130,17 @@ export class LinkedList<T> implements Collection<T> {
         let iterable: Iterable<T> | undefined;
         let equaler: EqualityComparison<T> | Equaler<T> | undefined;
         if (args.length > 0) {
-            const arg0 = args[0];
-            if (isIterable(arg0) || isMissing(arg0)) {
-                iterable = arg0;
+            if (isIterable(args[0]) || isMissing(args[0])) {
+                iterable = args[0];
                 if (args.length > 1) equaler = args[1];
             }
             else {
-                equaler = arg0;
+                equaler = args[0];
             }
         }
-        if (isMissing(equaler)) equaler = Equaler.defaultEqualer;
+        if (isMissing(equaler)) {
+            equaler = Equaler.defaultEqualer;
+        }
         this._equaler = typeof equaler === "function" ? Equaler.create(equaler) : equaler;
 
         if (iterable) {
@@ -124,14 +150,23 @@ export class LinkedList<T> implements Collection<T> {
         }
     }
 
+    /**
+     * Gets the {@link Equaler} used for equality comparisons in this list.
+     */
     get equaler(): Equaler<T> {
         return this._equaler;
     }
 
+    /**
+     * Gets the first node in the list. If the list is empty, this returns `undefined`.
+     */
     get first(): LinkedListNode<T> | undefined {
         return this._head;
     }
 
+    /**
+     * Gets the last node in the list. If the list is empty, this returns `undefined`.
+     */
     get last(): LinkedListNode<T> | undefined {
         if (this._head) {
             return this._head[kPrevious];
@@ -140,6 +175,9 @@ export class LinkedList<T> implements Collection<T> {
         return undefined;
     }
 
+    /**
+     * Gets the number of elements in the list.
+     */
     get size(): number {
         return this._size;
     }
@@ -148,13 +186,13 @@ export class LinkedList<T> implements Collection<T> {
         return this.values();
     }
 
-    * values() {
+    * values(): IterableIterator<T> {
         for (const node of this.nodes()) {
             yield node.value;
         }
     }
 
-    * nodes() {
+    * nodes(): IterableIterator<LinkedListNode<T>> {
         let node: LinkedListNode<T>;
         let next = this.first;
         while (next !== undefined) {
@@ -164,13 +202,21 @@ export class LinkedList<T> implements Collection<T> {
         }
     }
 
-    * drain() {
+    /**
+     * Returns an iterator that removes each node from the list before yielding the node's value.
+     */
+    * drain(): IterableIterator<T> {
         for (const node of this.nodes()) {
             this.deleteNode(node);
             yield node.value;
         }
     }
 
+    /**
+     * Finds the first node in the list with the provided value.
+     * @param value The value to find.
+     * @param fromNode When provided, starts looking for `value` starting at this node.
+     */
     nodeOf(value: T, fromNode?: LinkedListNode<T>): LinkedListNode<T> | undefined {
         if (!isMissing(fromNode) && !isInstance(fromNode, LinkedListNode)) throw new TypeError("LinkedListNode expected: fromNode");
         if (!isMissing(fromNode) && fromNode.list !== this) throw new TypeError("Wrong list.");
@@ -183,6 +229,11 @@ export class LinkedList<T> implements Collection<T> {
         return undefined;
     }
 
+    /**
+     * Finds the last node in the list with the provided value, starting from the end of the list.
+     * @param value The value to find.
+     * @param fromNode When provided, starts looking for `value` starting at this node and working backwards towards the front of the list.
+     */
     lastNodeOf(value: T, fromNode?: LinkedListNode<T>): LinkedListNode<T> | undefined {
         if (!isMissing(fromNode) && !isInstance(fromNode, LinkedListNode)) throw new TypeError("LinkedListNode expected: fromNode");
         if (!isMissing(fromNode) && fromNode.list !== this) throw new TypeError("Wrong list.");
@@ -195,7 +246,17 @@ export class LinkedList<T> implements Collection<T> {
         return undefined;
     }
 
+    /**
+     * Finds the first value in the list that matches the provided callback.
+     * @param callback The callback used to test each value and node.
+     * @param thisArg The `this` value to use when executing `callback`.
+     */
     find<S extends T>(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => value is S, thisArg?: any): S | undefined;
+    /**
+     * Finds the first value in the list that matches the provided callback.
+     * @param callback The callback used to test each value and node.
+     * @param thisArg The `this` value to use when executing `callback`.
+     */
     find(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): T | undefined;
     find(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): T | undefined {
         if (!isFunction(callback)) throw new TypeError("Function expected: callback");
@@ -210,7 +271,17 @@ export class LinkedList<T> implements Collection<T> {
         return undefined;
     }
 
+    /**
+     * Finds the last value in the list that matches the provided callback, starting from the end of the list.
+     * @param callback The callback used to test each value and node.
+     * @param thisArg The `this` value to use when executing `callback`.
+     */
     findLast<S extends T>(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => value is S, thisArg?: any): S | undefined;
+    /**
+     * Finds the last value in the list that matches the provided callback, starting from the end of the list.
+     * @param callback The callback used to test each value and node.
+     * @param thisArg The `this` value to use when executing `callback`.
+     */
     findLast(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): T | undefined;
     findLast(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): T | undefined {
         if (!isFunction(callback)) throw new TypeError("Function expected: callback");
@@ -225,7 +296,17 @@ export class LinkedList<T> implements Collection<T> {
         return undefined;
     }
 
+    /**
+     * Finds the first {@link LinkedListNode} in the list that matches the provided callback.
+     * @param callback The callback used to test each value and node.
+     * @param thisArg The `this` value to use when executing `callback`.
+     */
     findNode<S extends T>(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => value is S, thisArg?: any): LinkedListNode<S> | undefined;
+    /**
+     * Finds the first {@link LinkedListNode} in the list that matches the provided callback.
+     * @param callback The callback used to test each value and node.
+     * @param thisArg The `this` value to use when executing `callback`.
+     */
     findNode(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): LinkedListNode<T> | undefined;
     findNode(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): LinkedListNode<T> | undefined {
         if (!isFunction(callback)) throw new TypeError("Function expected: callback");
@@ -239,7 +320,17 @@ export class LinkedList<T> implements Collection<T> {
         return undefined;
     }
 
+    /**
+     * Finds the last {@link LinkedListNode} in the list that matches the provided callback, starting from the end of the list.
+     * @param callback The callback used to test each value and node.
+     * @param thisArg The `this` value to use when executing `callback`.
+     */
     findLastNode<S extends T>(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => value is S, thisArg?: any): LinkedListNode<S> | undefined;
+    /**
+     * Finds the last {@link LinkedListNode} in the list that matches the provided callback, starting from the end of the list.
+     * @param callback The callback used to test each value and node.
+     * @param thisArg The `this` value to use when executing `callback`.
+     */
     findLastNode(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): LinkedListNode<T> | undefined;
     findLastNode(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): LinkedListNode<T> | undefined {
         if (!isFunction(callback)) throw new TypeError("Function expected: callback");
@@ -253,16 +344,32 @@ export class LinkedList<T> implements Collection<T> {
         return undefined;
     }
 
+    /**
+     * Returns a value indicating whether `value` exists within the list.
+     */
     has(value: T): boolean {
         return this.nodeOf(value) !== undefined;
     }
 
+    /**
+     * Inserts a new {@link LinkedListNode} containing `value` into the list before the provided `node`.
+     * If `node` is either `null` or `undefined`, the new node is inserted at the beginning of the list.
+     * @param node The node before which `value` will be inserted.
+     * @param value The value to insert.
+     * @returns The new {@link LinkedListNode} for `value`.
+     */
     insertBefore(node: LinkedListNode<T> | null | undefined, value: T): LinkedListNode<T> {
         if (!isMissing(node) && !isInstance(node, LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
         if (!isMissing(node) && node.list !== this) throw new Error("Wrong list.");
         return this._insertNode(node || undefined, new LinkedListNode(value), Position.before);
     }
 
+    /**
+     * Inserts `newNode` into the list before the provided `node`. If `node` is either `null` or `undefined`, `newNode`
+     * is inserted at the beginning of the list.
+     * @param node The node before which `newNode` will be inserted.
+     * @param newNode The new node to insert.
+     */
     insertNodeBefore(node: LinkedListNode<T> | null | undefined, newNode: LinkedListNode<T>): void {
         if (!isMissing(node) && !isInstance(node, LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
         if (!isInstance(newNode, LinkedListNode)) throw new TypeError("LinkedListNode expected: newNode");
@@ -271,12 +378,25 @@ export class LinkedList<T> implements Collection<T> {
         this._insertNode(node || undefined, newNode, Position.before);
     }
 
+    /**
+     * Inserts a new {@link LinkedListNode} containing `value` into the list after the provided `node`.
+     * If `node` is either `null` or `undefined`, the new node is inserted at the end of the list.
+     * @param node The node after which `value` will be inserted.
+     * @param value The value to insert.
+     * @returns The new {@link LinkedListNode} for `value`.
+     */
     insertAfter(node: LinkedListNode<T> | null | undefined, value: T): LinkedListNode<T> {
         if (!isMissing(node) && !isInstance(node, LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
         if (!isMissing(node) && node.list !== this) throw new Error("Wrong list.");
         return this._insertNode(node || undefined, new LinkedListNode(value), Position.after);
     }
 
+    /**
+     * Inserts `newNode` into the list after the provided `node`. If `node` is either `null` or `undefined`, `newNode`
+     * is inserted at the end of the list.
+     * @param node The node after which `newNode` will be inserted.
+     * @param newNode The new node to insert.
+     */
     insertNodeAfter(node: LinkedListNode<T> | null | undefined, newNode: LinkedListNode<T>): void {
         if (!isMissing(node) && !isInstance(node, LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
         if (!isInstance(newNode, LinkedListNode)) throw new TypeError("LinkedListNode expected: newNode");
@@ -285,21 +405,36 @@ export class LinkedList<T> implements Collection<T> {
         this._insertNode(node || undefined, newNode, Position.after);
     }
 
+    /**
+     * Inserts a new {@link LinkedListNode} containing `value` at the end of the list.
+     * @param value The value to insert.
+     * @returns The new {@link LinkedListNode} for `value`.
+     */
     push(value: T): LinkedListNode<T> {
         return this._insertNode(undefined, new LinkedListNode(value), Position.after);
     }
 
+    /**
+     * Inserts `newNode` at the end of the list.
+     * @param newNode The node to insert.
+     */
     pushNode(newNode: LinkedListNode<T>): void {
         if (!isInstance(newNode, LinkedListNode)) throw new TypeError("LinkedListNode expected: newNode");
         if (!isMissing(newNode.list)) throw new Error("Node is already attached to a list.");
         this._insertNode(undefined, newNode, Position.after);
     }
 
+    /**
+     * Removes the last node from the list and returns its value. If the list is empty, `undefined` is returned instead.
+     */
     pop(): T | undefined {
         const node = this.popNode();
         return node ? node.value : undefined;
     }
 
+    /**
+     * Removes the last node from the list and returns it. If the lsit is empty, `undefined` is returned instead.
+     */
     popNode(): LinkedListNode<T> | undefined {
         const node = this.last;
         if (this.deleteNode(node)) {
@@ -307,11 +442,17 @@ export class LinkedList<T> implements Collection<T> {
         }
     }
 
+    /**
+     * Removes the first node from the list and returns its value. If the list is empty, `undefined` is returned instead.
+     */
     shift(): T | undefined {
         const node = this.shiftNode();
         return node ? node.value : undefined;
     }
 
+    /**
+     * Removes the first node from the list and returns it. If the list is empty, `undefined` is returned instead.
+     */
     shiftNode(): LinkedListNode<T> | undefined {
         const node = this.first;
         if (this.deleteNode(node)) {
@@ -319,16 +460,29 @@ export class LinkedList<T> implements Collection<T> {
         }
     }
 
+    /**
+     * Inserts a new {@link LinkedListNode} containing `value` at the beginning of the list.
+     * @param value The value to insert.
+     * @returns The new {@link LinkedListNode} for `value`.
+     */
     unshift(value: T): LinkedListNode<T> {
         return this._insertNode(undefined, new LinkedListNode(value), Position.before);
     }
 
+    /**
+     * Inserts `newNode` at the beginning of the list.
+     * @param newNode The node to insert.
+     */
     unshiftNode(newNode: LinkedListNode<T>): void {
         if (!isInstance(newNode, LinkedListNode)) throw new TypeError("LinkedListNode expected: newNode");
         if (!isMissing(newNode.list)) throw new Error("Node is already attached to a list.");
         this._insertNode(undefined, newNode, Position.before);
     }
 
+    /**
+     * Finds the first node in the list containing `value`, removes it from the list, and returns it. If a node
+     * containing `value` could not be found, `undefined` is returned instead.
+     */
     delete(value: T): LinkedListNode<T> | undefined {
         const node = this.nodeOf(value);
         if (node && this.deleteNode(node)) {
@@ -337,6 +491,10 @@ export class LinkedList<T> implements Collection<T> {
         return undefined;
     }
 
+    /**
+     * Removes the provided node from the list.
+     * @returns `true` if the node was successfully removed from the list; otherwise, `false`.
+     */
     deleteNode(node: LinkedListNode<T> | null | undefined): boolean {
         if (!isMissing(node) && !isInstance(node, LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
         if (!isMissing(node) && !isMissing(node.list) && node.list !== this) throw new TypeError("Wrong list.");
@@ -344,6 +502,11 @@ export class LinkedList<T> implements Collection<T> {
         return this._deleteNode(node);
     }
 
+    /**
+     * Removes all nodes from the list matching the supplied `predicate`.
+     * @param predicate A callback function used to test each value and node in the list.
+     * @param thisArg The `this` value to use when executing `predicate`.
+     */
     deleteAll(predicate: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any) {
         if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
         let count = 0;
@@ -361,6 +524,9 @@ export class LinkedList<T> implements Collection<T> {
         return count;
     }
 
+    /**
+     * Removes all nodes from the list.
+     */
     clear(): void {
         while (this.size > 0) {
             this.deleteNode(this.last);
@@ -378,8 +544,14 @@ export class LinkedList<T> implements Collection<T> {
         }
     }
 
+    /**
+     * Calls the provided `callback` function on each element of the list, and returns a new {@link LinkedList} that contains the results.
+     * @param callback The callback to call for each value and node.
+     * @param thisArg The `this` value to use when executing `callback`.
+     */
     map<U>(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => U, thisArg?: any) {
         if (!isFunction(callback)) throw new TypeError("Function expected: callback");
+        [].map
         const mappedList = new LinkedList<U>();
         let node: LinkedListNode<T>;
         let next = this.first;
@@ -392,7 +564,17 @@ export class LinkedList<T> implements Collection<T> {
         return mappedList;
     }
 
+    /**
+     * Returns the elements of a the list that meet the condition specified in the provided `callback` function.
+     * @param callback The `callback` to call for each value and node.
+     * @param thisArg The `this` value to use when executing `callback`.
+     */
     filter<S extends T>(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => value is S, thisArg?: any): LinkedList<S>;
+    /**
+     * Returns the elements of a the list that meet the condition specified in the provided `callback` function.
+     * @param callback The `callback` to call for each value and node.
+     * @param thisArg The `this` value to use when executing `callback`.
+     */
     filter(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): LinkedList<T>;
     filter(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any) {
         if (!isFunction(callback)) throw new TypeError("Function expected: callback");
@@ -410,8 +592,25 @@ export class LinkedList<T> implements Collection<T> {
         return mappedList;
     }
 
+    /**
+     * Calls the specified `callback` function for all the nodes in the list. The return value of the callback function is the accumulated result,
+     * and is provided as an argument in the next call to the callback function.
+     * @param callback A function that accepts up to four arguments. The reduce method calls the callback function one time for each element in the list.
+     */
     reduce(callback: (previousValue: T, value: T, node: LinkedListNode<T>, list: LinkedList<T>) => T): T;
+    /**
+     * Calls the specified `callback` function for all the nodes in the list. The return value of the callback function is the accumulated result,
+     * and is provided as an argument in the next call to the callback function.
+     * @param callback A function that accepts up to four arguments. The reduce method calls the callback function one time for each element in the list.
+     * @param initialValue  If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the `callback` function provides this value as an argument instead of a list value.
+     */
     reduce(callback: (previousValue: T, value: T, node: LinkedListNode<T>, list: LinkedList<T>) => T, initialValue: T): T;
+    /**
+     * Calls the specified `callback` function for all the nodes in the list. The return value of the callback function is the accumulated result,
+     * and is provided as an argument in the next call to the callback function.
+     * @param callback A function that accepts up to four arguments. The reduce method calls the callback function one time for each element in the list.
+     * @param initialValue If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the `callback` function provides this value as an argument instead of a list value.
+     */
     reduce<U>(callback: (previousValue: U, value: T, node: LinkedListNode<T>, list: LinkedList<T>) => U, initialValue: U): U;
     reduce(callback: (previousValue: T, value: T, node: LinkedListNode<T>, list: LinkedList<T>) => T, initialValue?: T) {
         if (!isFunction(callback)) throw new TypeError("Function expected: callback");
@@ -434,8 +633,25 @@ export class LinkedList<T> implements Collection<T> {
         return result;
     }
 
+    /**
+     * Calls the specified `callback` function for all the nodes in the list, in reverse. The return value of the callback function is the accumulated result,
+     * and is provided as an argument in the next call to the callback function.
+     * @param callback A function that accepts up to four arguments. The reduce method calls the callback function one time for each element in the list.
+     */
     reduceRight(callback: (previousValue: T, value: T, node: LinkedListNode<T>, list: LinkedList<T>) => T): T;
+    /**
+     * Calls the specified `callback` function for all the nodes in the list, in reverse. The return value of the callback function is the accumulated result,
+     * and is provided as an argument in the next call to the callback function.
+     * @param callback A function that accepts up to four arguments. The reduce method calls the callback function one time for each element in the list.
+     * @param initialValue  If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the `callback` function provides this value as an argument instead of a list value.
+     */
     reduceRight(callback: (previousValue: T, value: T, node: LinkedListNode<T>, list: LinkedList<T>) => T, initialValue: T): T;
+    /**
+     * Calls the specified `callback` function for all the nodes in the list, in reverse. The return value of the callback function is the accumulated result,
+     * and is provided as an argument in the next call to the callback function.
+     * @param callback A function that accepts up to four arguments. The reduce method calls the callback function one time for each element in the list.
+     * @param initialValue  If initialValue is specified, it is used as the initial value to start the accumulation. The first call to the `callback` function provides this value as an argument instead of a list value.
+     */
     reduceRight<U>(callback: (previousValue: U, value: T, node: LinkedListNode<T>, list: LinkedList<T>) => U, initialValue: U): U;
     reduceRight(callback: (previousValue: T, value: T, node: LinkedListNode<T>, list: LinkedList<T>) => T, initialValue?: T) {
         if (!isFunction(callback)) throw new TypeError("Function expected: callback");
