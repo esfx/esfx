@@ -399,9 +399,7 @@ export type IsProperSupersetOf<Super, Sub> = IsProperSubsetOf<Sub, Super>;
 /**
  * Maps to the keys of `T` whose values match `TMatch`.
  */
-export type MatchingKeys<T, TMatch> = __MatchingKeys<T, TMatch, keyof T>;
-
-type __MatchingKeys<T, TSuper, K extends keyof T> = K extends (T[K] extends TSuper ? K : never) ? K : never;
+export type MatchingKeys<T, TMatch> = { [P in keyof T]: T[P] extends TMatch ? P : never }[keyof T];
 
 /**
  * Maps to the keys of `T` whose values do not match `TMatch`.
