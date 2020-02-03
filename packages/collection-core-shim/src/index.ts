@@ -124,12 +124,53 @@ declare global {
     interface BigInt64Array extends FixedSizeIndexedCollection<bigint> {}
 }
 
-const typedArrays =
-    typeof Uint8Array !== "function" ? [] :
-    typeof BigInt64Array !== "function" ? [Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, Int8Array, Int16Array, Int32Array, Float32Array, Float64Array] :
-    [Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, Int8Array, Int16Array, Int32Array, Float32Array, Float64Array, BigUint64Array, BigInt64Array];
+const typedArrays = typeof Uint8Array !== "function" ? [] : [Uint8Array, Uint8ClampedArray, Uint16Array, Uint32Array, Int8Array, Int16Array, Int32Array, Float32Array, Float64Array];
 
 for (const TypedArray of typedArrays) {
+    Object.defineProperties(TypedArray.prototype, {
+        // ReadonlyCollection<T>
+        [Collection.size]: {
+            ...accessorBase,
+            get(this: InstanceType<typeof TypedArray>) { return this.length; }
+        },
+        [Collection.has]: {
+            ...methodBase,
+            value(this: InstanceType<typeof TypedArray>, value: any) {
+                return this.includes(value);
+            }
+        },
+
+        // ReadonlyIndexedCollection<T>
+        [IndexedCollection.indexOf]: {
+            ...methodBase,
+            value(this: InstanceType<typeof TypedArray>, value: any, fromIndex?: number) {
+                return this.indexOf(value, fromIndex);
+            }
+        },
+        [IndexedCollection.getAt]: {
+            ...methodBase,
+            value(this: InstanceType<typeof TypedArray>, index: number) {
+                return this[index];
+            }
+        },
+
+        // FixedSizeIndexedCollection<T>
+        [IndexedCollection.setAt]: {
+            ...methodBase,
+            value(this: InstanceType<typeof TypedArray>, index: number, value: any) {
+                if (index >= 0 && index < this.length) {
+                    this[index] = value;
+                    return true;
+                }
+                return false;
+            }
+        },
+    });
+}
+
+const bigIntTypedArrays = typeof BigInt64Array !== "function" ? [] : [BigUint64Array, BigInt64Array];
+
+for (const TypedArray of bigIntTypedArrays) {
     Object.defineProperties(TypedArray.prototype, {
         // ReadonlyCollection<T>
         [Collection.size]: {

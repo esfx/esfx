@@ -72,7 +72,7 @@ it("type-model", () => {
 // #region GeneratorReturnType tests
 {
     type _ = [
-        __Verify<__ExactType<GeneratorReturnType<Iterable<number>>, number>>,
+        __Verify<__ExactType<GeneratorReturnType<Iterable<number>>, any>>,
         __Verify<__ExactType<GeneratorReturnType<{ [Symbol.iterator](): { next(): { done: true, value: number } } }>, number>>,
     ];
 }
@@ -821,12 +821,12 @@ declare const testSymbol: unique symbol;
 
 
 // #region Test helper types
-type __Verify<T extends true> = T;
+type __Verify<T extends { ok: true }> = T;
 type __ExactType<Actual, Expected> =
-    IsNever<Expected> extends true ? IsNever<Actual> :
-    IsNever<Actual> extends true ? IsNever<Expected> :
-    IsAny<Expected> extends true ? IsAny<Actual> :
-    IsAny<Actual> extends true ? IsAny<Expected> :
-    [Expected, Actual] extends [Actual, Expected] ? true :
-    false;
+    IsNever<Expected> extends true ? { ok: IsNever<Actual>, actual: Actual, expected: Expected } :
+    IsNever<Actual> extends true ? { ok: IsNever<Expected>, actual: Actual, expected: Expected } :
+    IsAny<Expected> extends true ? { ok: IsAny<Actual>, actual: Actual, expected: Expected } :
+    IsAny<Actual> extends true ? { ok: IsAny<Expected>, actual: Actual, expected: Expected } :
+    [Expected, Actual] extends [Actual, Expected] ? { ok: true, actual: Actual, expected: Expected } :
+    { ok: false, actual: Actual, expected: Expected };
 // #endregion Test helper types

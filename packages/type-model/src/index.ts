@@ -91,32 +91,32 @@ export type Constructor<T = {}, A extends any[] = any[]> = new (...args: A) => T
  */
 export type AbstractConstructor<T = {}> = Function & { prototype: T };
 
+type IteratorResultYieldType<TIteratorResult> = TIteratorResult extends IteratorYieldResult<infer TYield> ? TYield : never;
+type IteratorResultReturnType<TIteratorResult> = TIteratorResult extends IteratorReturnResult<infer TReturn> ? TReturn : never;
+type IteratorYieldType<TIterator> =
+    ([TIterator] extends [{ next(): infer IteratorResult }] ? IteratorResultYieldType<IteratorResult> : unknown) &
+    ([TIterator] extends [{ return(): infer IteratorResult }] ? IteratorResultYieldType<IteratorResult> : unknown);
+type IteratorReturnType<TIterator> =
+    ([TIterator] extends [{ next(): infer IteratorResult }] ? IteratorResultReturnType<IteratorResult> : unknown) &
+    ([TIterator] extends [{ return(): infer IteratorResult }] ? IteratorResultReturnType<IteratorResult> : unknown) &
+    ([TIterator] extends [{ return(value?: infer TReturn): any }] ? TReturn : unknown);
+type IteratorNextType<TIterator> =
+    ([TIterator] extends [{ next(value?: infer TNext): any }] ? TNext : unknown);
+
 /**
  * Gets the type yielded by an Iterable.
  */
-export type IteratedType<T> =
-    T extends { [Symbol.iterator](): { next(): { done: false, value: infer U } } } ? U :
-    T extends { [Symbol.iterator](): { next(): { done: true } } } ? never :
-    T extends { [Symbol.iterator](): { next(): { done: boolean, value: infer U } } } ? U :
-    T extends { [Symbol.iterator](): any } ? unknown :
-    never;
-
-/**
- * Gets the type that can be sent to a generator via its `next` method.
- */
-export type GeneratorNextType<T> =
-    T extends { [Symbol.iterator](): { next(value?: infer U): any } } ? U :
-    never;
+export type IteratedType<T> = [T] extends [{ [Symbol.iterator](): infer TIterator }] ? IteratorYieldType<TIterator> : never;
 
 /**
  * Gets the type that can be returned from a generator when it has finished executing.
  */
-export type GeneratorReturnType<T> =
-    T extends { [Symbol.iterator](): { next(): { done: true, value?: infer U } } } ? U :
-    T extends { [Symbol.iterator](): { next(): { done: false } } } ? never :
-    T extends { [Symbol.iterator](): { next(): { done: boolean, value?: infer U } } } ? U :
-    T extends { [Symbol.iterator](): any } ? void :
-    never;
+export type GeneratorReturnType<T> = [T] extends [{ [Symbol.iterator](): infer TIterator }] ? IteratorReturnType<TIterator> : never;
+
+/**
+ * Gets the type that can be sent to a generator via its `next` method.
+ */
+export type GeneratorNextType<T> = [T] extends [{ [Symbol.iterator](): infer TIterator }] ? IteratorNextType<TIterator> : never;
 
 // TODO(rbuckton): Depends on `Await<T>`, which is currently unsafe.
 // /**
