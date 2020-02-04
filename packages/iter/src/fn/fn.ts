@@ -14,14 +14,5 @@
    limitations under the License.
 */
 
-export * from "./common";
-export * from "./partial";
-import * as Op from "./operators";
-export { Op };
-export * from "./queries";
-export * from "./subqueries";
-export * from "./grouping";
-export * from "./ordering";
-export * from "./joins";
-export * from "./scalars";
-export * from "./hierarchy";
+export * from "./index";
+export { placeholder as _, thisPlaceholder as _this, restPlaceholder as _rest } from "./partial";

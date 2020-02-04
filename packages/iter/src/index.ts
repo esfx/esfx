@@ -16,7 +16,7 @@
 
 export * from "./types";
 
-import * as fn from "./fn";
+import * as fn from "./fn/fn";
 export { fn };
 
 export * from "./grouping";

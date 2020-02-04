@@ -38,24 +38,6 @@ export function identity<T>(value: T) {
 }
 
 /**
- * Returns a function that returns the provided value.
- */
-export function always<T>(value: T) {
-    return () => value;
-}
-
-export declare namespace always {
-    export { alwaysTrue as true, alwaysFalse as false, alwaysFail as fail };
-}
-
-/** @internal */
-export namespace always {
-    always.true = alwaysTrue;
-    always.false = alwaysFalse;
-    always.fail = alwaysFail;
-}
-
-/**
  * A function that always returns `true`.
  */
 export function alwaysTrue(): true {
@@ -79,6 +61,24 @@ export { alwaysFalse as F };
  */
 export function alwaysFail(error: unknown) {
     return () => fail(error);
+}
+
+/**
+ * Returns a function that returns the provided value.
+ */
+export function always<T>(value: T) {
+    return () => value;
+}
+
+export declare namespace always {
+    export { alwaysTrue as true, alwaysFalse as false, alwaysFail as fail };
+}
+
+/** @internal */
+export namespace always {
+    always.true = alwaysTrue;
+    always.false = alwaysFalse;
+    always.fail = alwaysFail;
 }
 
 /**
@@ -172,7 +172,7 @@ export function propertyWriter<K extends PropertyKey>(key: K): <T extends Record
 }
 
 /**
- * Returns a function that invokes a method on an object provided as the function's first argument.
+ * Returns a function that invokes a method on the object provided as the function's first argument.
  *
  * ```ts
  * const fn = invoker("sayHello", "Bob");
@@ -191,7 +191,7 @@ export function invoker<K extends PropertyKey, AX>(key: K, ...args: AX[]): <T ex
 }
 
 /**
- * Returns a function that calls a function provided as its first argument.
+ * Returns a function that calls the function provided as its first argument.
  *
  * ```ts
  * const fn = caller(1, 2);
@@ -274,6 +274,10 @@ export function flip<A, B, C extends unknown[], R>(f: (a: A, b: B, ...c: C) => R
     return (b, a, ...c) => f(a, b, ...c);
 }
 
+function recursiveLazy(): never {
+    throw new Error("Lazy factory recursively references itself during its own evaluation.");
+}
+
 /**
  * Returns a function that will evaluate once when called will subsequently always return the same result.
  *
@@ -287,12 +291,14 @@ export function flip<A, B, C extends unknown[], R>(f: (a: A, b: B, ...c: C) => R
  */
 export function lazy<T, A extends unknown[]>(factory: (...args: A) => T, ...args: A) {
     let f = (): T => {
+        f = recursiveLazy;
         try {
-            return (f = always(factory(...args)))();
+            f = always(factory(...args));
         }
         catch (e) {
-            return (f = alwaysFail(e))();
+            f = alwaysFail(e);
         }
+        return f();
     };
     return () => f();
 }
@@ -384,7 +390,7 @@ export function complement<A extends unknown[]>(f: (...args: A) => boolean): (..
 }
 
 /**
- * Returns a function that returns the result of calling its first argument if that result is "falsey", otherwise returning the result of calling its second argument.
+ * Returns a function that returns the result of calling its first argument if that result is "falsy", otherwise returning the result of calling its second argument.
  * NOTE: This performs the same shortcutting as a logical AND (i.e. `a() && b()`)
  */
 export function both<T, U extends T, V extends T>(a: (t: T) => t is U, b: (t: T) => t is V): (t: T) => t is U & V;
@@ -404,11 +410,10 @@ export function either<A extends unknown[], R1, R2>(a: (...args: A) => R1, b: (.
 }
 
 /**
- * Returns a function that returns the result of calling its first argument if that result is neither `null` nor `undefined`, otherwise returning the result of calling its second argument.
+ * Returns a function that returns the result of calling the first callback, if that result is neither `null` nor `undefined`; otherwise, returns the result of calling the second callback with the same arguments.
  * NOTE: This performs the same shortcutting as nullish-coalesce (i.e. `a() ?? b()`).
  */
 export function fallback<A extends unknown[], T, U>(a: (...args: A) => T, b: (...args: A) => U): (...args: A) => NonNullable<T> | U {
-    // return (...args) => a(...args) ?? b(...args);
     return (...args) => {
         const result = a(...args);
         return result !== null && result !== undefined ? result! : b(...args);
@@ -421,3 +426,4 @@ export function fallback<A extends unknown[], T, U>(a: (...args: A) => T, b: (..
 export function isDefined<T>(value: T): value is NonNullable<T> {
     return value !== null && value !== undefined;
 }
+
