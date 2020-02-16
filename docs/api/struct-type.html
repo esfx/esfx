@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Package @esfx/struct-type
    | @esfx API Reference ">
-    <meta name="generator" content="docfx 2.42.4.0">
+    <meta name="generator" content="docfx 2.46.0.0">
     
     <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -84,6 +84,457 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
+  <h3 id="typealiases">
+  
+  
+  
+  
+  
+  
+  
+  
+  Type Aliases
+  </h3>
+  
+  
+  <h4 id="_esfx_struct_type_StructDefinition_type" data-uid="@esfx/struct-type!StructDefinition:type">StructDefinition</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructDefinition = readonly StructFieldDefinition[];</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">readonly <a class="xref" href="struct-type/structfielddefinition.html#_esfx_struct_type_StructFieldDefinition_interface">StructFieldDefinition</a>[]</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_StructElements_type" data-uid="@esfx/struct-type!StructElements:type">StructElements</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructElements&lt;TDef extends StructDefinition&gt; = {
+    [I in Extract&lt;keyof TDef, number&gt;]: StructFieldRuntimeType&lt;TDef[I][&quot;type&quot;]&gt;;
+};</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TDef</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">{
+    [I in <span class="xref">Extract</span>&lt;keyof TDef, number&gt;]: <a class="xref" href="struct-type.html#_esfx_struct_type_StructFieldRuntimeType_type">StructFieldRuntimeType</a>&lt;TDef[I][&quot;type&quot;]&gt;;
+}</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_StructFieldRuntimeType_type" data-uid="@esfx/struct-type!StructFieldRuntimeType:type">StructFieldRuntimeType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructFieldRuntimeType&lt;T extends StructFieldType&gt; = T extends StructPrimitiveType ? ReturnType&lt;T&gt; : T extends StructType ? InstanceType&lt;T&gt; : never;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">T extends <a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType</a> ? <span class="xref">ReturnType</span>&lt;T&gt; : T extends <a class="xref" href="struct-type/structtype-interface.html#_esfx_struct_type_StructType_interface">StructType</a> ? <span class="xref">InstanceType</span>&lt;T&gt; : never</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_StructFieldType_type" data-uid="@esfx/struct-type!StructFieldType:type">StructFieldType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructFieldType = typeof int8 | typeof int16 | typeof int32 | typeof uint8 | typeof uint16 | typeof uint32 | typeof bigint64 | typeof biguint64 | typeof float32 | typeof float64 | StructType;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">typeof <a class="xref" href="struct-type.html#_esfx_struct_type_int8_var">int8</a> | typeof <a class="xref" href="struct-type.html#_esfx_struct_type_int16_var">int16</a> | typeof <a class="xref" href="struct-type.html#_esfx_struct_type_int32_var">int32</a> | typeof <a class="xref" href="struct-type.html#_esfx_struct_type_uint8_var">uint8</a> | typeof <a class="xref" href="struct-type.html#_esfx_struct_type_uint16_var">uint16</a> | typeof <a class="xref" href="struct-type.html#_esfx_struct_type_uint32_var">uint32</a> | typeof <a class="xref" href="struct-type.html#_esfx_struct_type_bigint64_var">bigint64</a> | typeof <a class="xref" href="struct-type.html#_esfx_struct_type_biguint64_var">biguint64</a> | typeof <a class="xref" href="struct-type.html#_esfx_struct_type_float32_var">float32</a> | typeof <a class="xref" href="struct-type.html#_esfx_struct_type_float64_var">float64</a> | <a class="xref" href="struct-type/structtype-interface.html#_esfx_struct_type_StructType_interface">StructType</a></span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_StructInitElements_type" data-uid="@esfx/struct-type!StructInitElements:type">StructInitElements</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructInitElements&lt;TDef extends StructDefinition&gt; = {
+    [I in keyof TDef]: TDef[I] extends StructFieldDefinition ? StructInitFieldType&lt;TDef[I][&quot;type&quot;]&gt; : never;
+};</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TDef</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">{
+    [I in keyof TDef]: TDef[I] extends <a class="xref" href="struct-type/structfielddefinition.html#_esfx_struct_type_StructFieldDefinition_interface">StructFieldDefinition</a> ? <a class="xref" href="struct-type.html#_esfx_struct_type_StructInitFieldType_type">StructInitFieldType</a>&lt;TDef[I][&quot;type&quot;]&gt; : never;
+}</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_StructInitFieldType_type" data-uid="@esfx/struct-type!StructInitFieldType:type">StructInitFieldType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructInitFieldType&lt;T extends StructFieldType&gt; = T extends StructPrimitiveType ? ReturnType&lt;T&gt; : T extends StructType&lt;infer TDef&gt; ? InstanceType&lt;T&gt; | StructInitProperties&lt;TDef&gt; | StructInitElements&lt;TDef&gt; : never;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">T extends <a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType</a> ? <span class="xref">ReturnType</span>&lt;T&gt; : T extends <a class="xref" href="struct-type/structtype-interface.html#_esfx_struct_type_StructType_interface">StructType</a>&lt;infer TDef&gt; ? <span class="xref">InstanceType</span>&lt;T&gt; | <a class="xref" href="struct-type.html#_esfx_struct_type_StructInitProperties_type">StructInitProperties</a>&lt;TDef&gt; | <a class="xref" href="struct-type.html#_esfx_struct_type_StructInitElements_type">StructInitElements</a>&lt;TDef&gt; : never</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_StructInitProperties_type" data-uid="@esfx/struct-type!StructInitProperties:type">StructInitProperties</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructInitProperties&lt;TDef extends StructDefinition&gt; = {
+    [P in TDef[number][&quot;name&quot;]]: StructInitFieldType&lt;Extract&lt;TDef[number], {
+        readonly name: P;
+    }&gt;[&quot;type&quot;]&gt;;
+};</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TDef</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">{
+    [P in TDef[number][&quot;name&quot;]]: <a class="xref" href="struct-type.html#_esfx_struct_type_StructInitFieldType_type">StructInitFieldType</a>&lt;<span class="xref">Extract</span>&lt;TDef[number], {
+        readonly name: P;
+    }&gt;[&quot;type&quot;]&gt;;
+}</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_StructProperties_type" data-uid="@esfx/struct-type!StructProperties:type">StructProperties</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type StructProperties&lt;TDef extends StructDefinition&gt; = {
+    [P in TDef[number][&quot;name&quot;]]: StructFieldRuntimeType&lt;Extract&lt;TDef[number], {
+        readonly name: P;
+    }&gt;[&quot;type&quot;]&gt;;
+};</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TDef</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">{
+    [P in TDef[number][&quot;name&quot;]]: <a class="xref" href="struct-type.html#_esfx_struct_type_StructFieldRuntimeType_type">StructFieldRuntimeType</a>&lt;<span class="xref">Extract</span>&lt;TDef[number], {
+        readonly name: P;
+    }&gt;[&quot;type&quot;]&gt;;
+}</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_TypedStruct_type" data-uid="@esfx/struct-type!TypedStruct:type">TypedStruct</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare type TypedStruct&lt;TDef extends StructDefinition&gt; = Struct&lt;TDef&gt; &amp; StructProperties&lt;TDef&gt; &amp; StructElements&lt;TDef&gt;;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TDef</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/struct.html#_esfx_struct_type_Struct_class">Struct</a>&lt;TDef&gt; &amp; <a class="xref" href="struct-type.html#_esfx_struct_type_StructProperties_type">StructProperties</a>&lt;TDef&gt; &amp; <a class="xref" href="struct-type.html#_esfx_struct_type_StructElements_type">StructElements</a>&lt;TDef&gt;</span>
+  <p class="description">
+  </div>
+  <h3 id="variables">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  Variables</h3>
+  
+  
+  <h4 id="_esfx_struct_type_bigint64_var" data-uid="@esfx/struct-type!bigint64:var">bigint64</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">bigint64: StructPrimitiveType&lt;&quot;bigint64&quot;, bigint&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType</a>&lt;&quot;bigint64&quot;, bigint&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_biguint64_var" data-uid="@esfx/struct-type!biguint64:var">biguint64</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">biguint64: StructPrimitiveType&lt;&quot;biguint64&quot;, bigint&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType</a>&lt;&quot;biguint64&quot;, bigint&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_float32_var" data-uid="@esfx/struct-type!float32:var">float32</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">float32: StructPrimitiveType&lt;&quot;float32&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType</a>&lt;&quot;float32&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_float64_var" data-uid="@esfx/struct-type!float64:var">float64</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">float64: StructPrimitiveType&lt;&quot;float64&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType</a>&lt;&quot;float64&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_int16_var" data-uid="@esfx/struct-type!int16:var">int16</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">int16: StructPrimitiveType&lt;&quot;int16&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType</a>&lt;&quot;int16&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_int32_var" data-uid="@esfx/struct-type!int32:var">int32</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">int32: StructPrimitiveType&lt;&quot;int32&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType</a>&lt;&quot;int32&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_int8_var" data-uid="@esfx/struct-type!int8:var">int8</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">int8: StructPrimitiveType&lt;&quot;int8&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType</a>&lt;&quot;int8&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_StructType_var" data-uid="@esfx/struct-type!StructType:var">StructType</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">StructType: StructTypeConstructor</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structtypeconstructor.html#_esfx_struct_type_StructTypeConstructor_interface">StructTypeConstructor</a></span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_uint16_var" data-uid="@esfx/struct-type!uint16:var">uint16</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">uint16: StructPrimitiveType&lt;&quot;uint16&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType</a>&lt;&quot;uint16&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_uint32_var" data-uid="@esfx/struct-type!uint32:var">uint32</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">uint32: StructPrimitiveType&lt;&quot;uint32&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType</a>&lt;&quot;uint32&quot;, number&gt;</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_struct_type_uint8_var" data-uid="@esfx/struct-type!uint8:var">uint8</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">uint8: StructPrimitiveType&lt;&quot;uint8&quot;, number&gt;</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type"><a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType</a>&lt;&quot;uint8&quot;, number&gt;</span>
+  <p class="description">
+  </div>
   
 </article>
           </div>

@@ -119,7 +119,7 @@ gulp.task("clean:docs", gulp.parallel(
 ));
 
 gulp.task("docs", gulp.series(
-    // build,
+    build,
     gulp.parallel(docPackages.map(docPackage => fname(`api-extractor:${docPackage}`, () => apiExtractor(docPackage)))),
     fname("api-documenter", () => apiDocumenter(docPackages)),
     fname("docfx", () => docfx(argv.serve || false))

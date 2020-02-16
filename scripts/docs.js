@@ -10,14 +10,68 @@
 const fs = require("fs");
 const path = require("path");
 const del = require("del");
-// require("./docs/patchApiExtractor");
-const { Extractor, ExtractorConfig } = require("@microsoft/api-extractor");
+const { default: chalk } = require("chalk");
+require("./docs/patches/tsdoc");
+require("./docs/patches/api-extractor");
+require("./docs/patches/api-documenter");
+const { Extractor, ExtractorConfig, ExtractorMessageCategory, ExtractorLogLevel } = require("@microsoft/api-extractor");
 const { ApiModel, ApiDocumentedItem, ApiDeclaredItem, ApiItemContainerMixin, ApiParameterListMixin } = require("@microsoft/api-extractor-model");
 const { CustomYamlDocumenter } = require("./docs/yamlDocumenter");
 const { exec } = require("./exec");
 const { newer } = require("./newer");
 const log = require("fancy-log");
 const glob = require("glob");
+
+const { TSDocTagDefinition, TSDocTagSyntaxKind, StandardTags } = require("@microsoft/tsdoc");
+const { AedocDefinitions } = require("@microsoft/api-extractor-model/lib/aedoc/AedocDefinitions");
+
+const categoryTag = new TSDocTagDefinition({
+    tagName: "@category",
+    syntaxKind: TSDocTagSyntaxKind.ModifierTag
+});
+
+const seeTag = new TSDocTagDefinition({
+    tagName: "@see",
+    syntaxKind: TSDocTagSyntaxKind.ModifierTag
+});
+
+const typeParamTag = StandardTags.typeParam || new TSDocTagDefinition({
+    tagName: "@typeParam",
+    syntaxKind: TSDocTagSyntaxKind.BlockTag,
+    allowMultiple: true
+});
+
+let isTsDocConfigured = false;
+
+function configureTsDoc() {
+    if (!isTsDocConfigured) {
+        const foundCategoryTag = AedocDefinitions.tsdocConfiguration.tryGetTagDefinition("@category");
+        if (!foundCategoryTag) {
+            AedocDefinitions.tsdocConfiguration.addTagDefinitions([categoryTag], true);
+        }
+        else {
+            AedocDefinitions.tsdocConfiguration.setSupportForTags([foundCategoryTag], true);
+        }
+
+        const foundSeeTag = AedocDefinitions.tsdocConfiguration.tryGetTagDefinition("@see");
+        if (!foundSeeTag) {
+            AedocDefinitions.tsdocConfiguration.addTagDefinitions([seeTag], true);
+        }
+        else {
+            AedocDefinitions.tsdocConfiguration.setSupportForTags([foundSeeTag], true);
+        }
+
+        const foundTypeParamTag = AedocDefinitions.tsdocConfiguration.tryGetTagDefinition("@typeParam");
+        if (!foundTypeParamTag) {
+            AedocDefinitions.tsdocConfiguration.addTagDefinitions([typeParamTag], true);
+        }
+        else {
+            AedocDefinitions.tsdocConfiguration.setSupportForTags([foundTypeParamTag], true);
+        }
+
+        isTsDocConfigured = true;
+    }
+}
 
 /**
  * @param {string} docPackage
@@ -26,16 +80,45 @@ const glob = require("glob");
  * @param {boolean} [options.force]
  */
 async function apiExtractor(docPackage, options = {}) {
+    configureTsDoc();
     const { verbose, force } = options
     const config = ExtractorConfig.loadFileAndPrepare(path.resolve(docPackage, "api-extractor.json"));
-    const inputs = glob.sync(`@(${docPackage}/index.d.ts|${docPackage}/dist/**/*.d.ts)`);
-    if (!force && !newer(inputs, config.apiJsonFilePath)) {
+    const inputs = [...glob.sync(`${docPackage}/index.d.ts`), ...glob.sync(`${docPackage}/dist/**/*.d.ts`)];
+    if (!force && inputs.length > 0 && !newer(inputs, config.apiJsonFilePath)) {
         if (verbose) {
             log(`API for '${docPackage}' is unchanged, skipping.`);
         }
         return;
     }
-    const result = Extractor.invoke(config, { localBuild: true });
+    const result = Extractor.invoke(config, {
+        localBuild: true,
+        messageCallback: message => {
+            message.handled = true;
+            let messageText;
+            if (message.category === "console") {
+                messageText = message.text;
+            }
+            else {
+                messageText = message.formatMessageWithLocation(process.cwd());
+            }
+            switch (message.logLevel) {
+                case "error":
+                    log.error(chalk.red(messageText));
+                    break;
+                case "warning":
+                    log.warn(chalk.yellow(messageText));
+                    break;
+                case "info":
+                    log(messageText);
+                    break;
+                case "verbose":
+                    if (options.verbose) {
+                        log.info(chalk.cyan(messageText));
+                    }
+                    break;
+            }
+        }
+    });
     if (!result.succeeded) {
         throw new Error(`api-extractor failed for ${docPackage}`);
     }
@@ -71,7 +154,7 @@ async function apiDocumenter(projectFolders, apiDir = "<projectFolder>/obj/api",
     }
 
     for (const [outputDir, apiModel] of apiModels) {
-        const documenter = new CustomYamlDocumenter(apiModel);
+        const documenter = new CustomYamlDocumenter(apiModel, /*newDocfxNamespaces*/ true);
         documenter.generateFiles(outputDir);
     }
 }
@@ -104,6 +187,7 @@ function fixupModel(apiItem, apiModel) {
                     if (result.resolvedApiItem instanceof ApiDocumentedItem
                         && result.resolvedApiItem.tsdocComment
                         && result.resolvedApiItem !== apiItem) {
+                        // @ts-ignore
                         copyInheritedDocs(apiItem.tsdocComment, result.resolvedApiItem.tsdocComment);
                     }
                 }

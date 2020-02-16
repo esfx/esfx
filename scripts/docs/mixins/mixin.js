@@ -23,3 +23,16 @@ function defineMixin(mixinFunction) {
 }
 
 exports.defineMixin = defineMixin;
+
+function mixin(base, ...args) {
+    return args.reduceRight((c, f) => f(c), base);
+}
+
+/** @type {{
+ <T extends YamlDocumenterConstructor, A extends YamlDocumenterConstructor, B extends YamlDocumenterConstructor, C extends YamlDocumenterConstructor, D extends YamlDocumenterConstructor>(base: T, ...args: [(t: T) => A, (a: A) => B, (b: B) => C, (c: C) => D]): D;
+ <T extends YamlDocumenterConstructor, A extends YamlDocumenterConstructor, B extends YamlDocumenterConstructor, C extends YamlDocumenterConstructor>(base: T, ...args: [(t: T) => A, (a: A) => B, (b: B) => C]): C;
+ <T extends YamlDocumenterConstructor, A extends YamlDocumenterConstructor, B extends YamlDocumenterConstructor>(base: T, ...args: [(t: T) => A, (a: A) => B]): B;
+ <T extends YamlDocumenterConstructor, A extends YamlDocumenterConstructor>(base: T, ...args: [(t: T) => A]): A;
+ <T extends YamlDocumenterConstructor, A extends ((t: T) => T)[]>(base: T, ...args: A): T;
+}} */
+exports.mixin = mixin;

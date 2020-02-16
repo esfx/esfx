@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Package @esfx/decorators
    | @esfx API Reference ">
-    <meta name="generator" content="docfx 2.42.4.0">
+    <meta name="generator" content="docfx 2.46.0.0">
     
     <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -84,6 +84,216 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
+  <h3 id="variables">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  Variables</h3>
+  
+  
+  <h4 id="_esfx_decorators_autobind_var" data-uid="@esfx/decorators!autobind:var">autobind</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">autobind: {
+    (target: Function): void;
+    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
+}</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">{
+    (target: <span class="xref">Function</span>): void;
+    (target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined): void;
+}</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_decorators_autoproperty_var" data-uid="@esfx/decorators!autoproperty:var">autoproperty</h4>
+  <div class="markdown level1 summary"><p>Converts a field declaration into an accessor with a backing property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">autoproperty: ((readonly?: boolean | undefined) =&gt; (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void)</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">((readonly?: boolean | undefined) =&gt; (target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void)</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_decorators_configurable_var" data-uid="@esfx/decorators!configurable:var">configurable</h4>
+  <div class="markdown level1 summary"><p>Makes a method or accessor configurable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">configurable: (() =&gt; (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void)</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">(() =&gt; (target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void)</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_decorators_enumerable_var" data-uid="@esfx/decorators!enumerable:var">enumerable</h4>
+  <div class="markdown level1 summary"><p>Makes a method or accessor enumerable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">enumerable: (() =&gt; (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void)</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">(() =&gt; (target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void)</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_decorators_lazyinit_var" data-uid="@esfx/decorators!lazyinit:var">lazyinit</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">lazyinit: (initializer: () =&gt; unknown, attributes?: {
+    enumerable?: boolean | undefined;
+    configurable?: boolean | undefined;
+    writable?: boolean | undefined;
+} | undefined) =&gt; (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">(initializer: () =&gt; unknown, attributes?: {
+    enumerable?: boolean | undefined;
+    configurable?: boolean | undefined;
+    writable?: boolean | undefined;
+} | undefined) =&gt; (target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_decorators_mixin_var" data-uid="@esfx/decorators!mixin:var">mixin</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">mixin: (...args: object[]) =&gt; (target: Function) =&gt; void</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">(...args: object[]) =&gt; (target: <span class="xref">Function</span>) =&gt; void</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_decorators_nonconfigurable_var" data-uid="@esfx/decorators!nonconfigurable:var">nonconfigurable</h4>
+  <div class="markdown level1 summary"><p>Makes a method or accessor non-configurable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">nonconfigurable: (() =&gt; (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void)</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">(() =&gt; (target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void)</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_decorators_nonenumerable_var" data-uid="@esfx/decorators!nonenumerable:var">nonenumerable</h4>
+  <div class="markdown level1 summary"><p>Makes a method or accessor non-enumerable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">nonenumerable: (() =&gt; (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void)</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">(() =&gt; (target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void)</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_decorators_obsolete_var" data-uid="@esfx/decorators!obsolete:var">obsolete</h4>
+  <div class="markdown level1 summary"><p>Makes a member obsolete.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">obsolete: ((message?: string | undefined, error?: boolean | undefined) =&gt; {
+    (target: Function): void;
+    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
+}) &amp; {
+    &lt;T extends Function&gt;(target: T): void | T;
+    (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined): void;
+}</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">((message?: string | undefined, error?: boolean | undefined) =&gt; {
+    (target: <span class="xref">Function</span>): void;
+    (target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined): void;
+}) &amp; {
+    &lt;T extends <span class="xref">Function</span>&gt;(target: T): void | T;
+    (target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined): void;
+}</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_decorators_readonly_var" data-uid="@esfx/decorators!readonly:var">readonly</h4>
+  <div class="markdown level1 summary"><p>Makes a method non-writable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">readonly: (() =&gt; (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void)</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">(() =&gt; (target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void)</span>
+  <p class="description">
+  </div>
+  
+  
+  <h4 id="_esfx_decorators_writable_var" data-uid="@esfx/decorators!writable:var">writable</h4>
+  <div class="markdown level1 summary"><p>Makes a method writable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">writable: (() =&gt; (target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: PropertyDescriptor | undefined) =&gt; void)</code></pre>
+  </div>
+  
+  <h5 class="fieldValue">Type</h5>
+  <div class="fieldValue">
+  <span class="type">(() =&gt; (target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void) &amp; ((target: object, key: string | number | symbol, descriptor?: <span class="xref">PropertyDescriptor</span> | undefined) =&gt; void)</span>
+  <p class="description">
+  </div>
   
 </article>
           </div>
