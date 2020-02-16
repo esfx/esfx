@@ -12,10 +12,10 @@
     "url": "https://github.com/esfx/esfx/issues"
   },
   "devDependencies": {
-    "@microsoft/api-documenter": "^7.4.3",
-    "@microsoft/api-extractor": "^7.4.2",
-    "@microsoft/api-extractor-model": "^7.4.1",
-    "@strictsoftware/typedoc-plugin-monorepo": "^0.2.1",
+    "@microsoft/api-documenter": "^7.7.12",
+    "@microsoft/api-extractor": "^7.7.8",
+    "@microsoft/api-extractor-model": "^7.7.7",
+    "@microsoft/tsdoc": "^0.12.16",
     "@types/jest": "^23.3.11",
     "@types/node": "^10.12.12",
     "chalk": "^2.4.2",

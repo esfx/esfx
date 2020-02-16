@@ -80,26 +80,19 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="@esfx/iter-query!OrderedQuery:class">
   
+  
   <h1 id="_esfx_iter_query_OrderedQuery_class" data-uid="@esfx/iter-query!OrderedQuery:class">Class OrderedQuery
   </h1>
+  <h6><strong>Package</strong>: <a class="xref" href="../iter-query.html">@esfx/iter-query</a></h6>
   <div class="markdown level0 summary"><p>Represents an ordered sequence of elements.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-      <div class="level"></div>
-      <div class="level"><span class="xref"></span></div>
+      <div class="level0"><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt; </div>
+      <div class="level1"><span class="xref">OrderedQuery</span></div>
   </div>
   <h3 id="constructors">Constructors
-  
-  
-  
-  
-  
-  
-  
-  
-  
   </h3>
   
   
@@ -111,26 +104,27 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">constructor(source: OrderedIterable&lt;T&gt;);</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>source</dt>
-    <dd class="type"><a class="xref" href="../iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h3 id="methods">
-  
-  
-  Methods
-  
-  
-  
-  
-  
-  
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;T&gt;</td>
+        <td><em>source</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
   </h3>
   
   
@@ -141,33 +135,57 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">[OrderedIterable.thenBy]&lt;K&gt;(keySelector: (element: T) =&gt; K, comparer: Comparison&lt;K&gt; | Comparer&lt;K&gt;, descending: boolean): OrderedIterable&lt;T&gt;;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>keySelector</dt>
-    <dd class="type"><span class="xref">(element: T) =&gt; K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>comparer</dt>
-    <dd class="type"><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>descending</dt>
-    <dd class="type"><span class="xref">boolean</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">(element: T) =&gt; K</span></td>
+        <td><em>keySelector</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</td>
+        <td><em>comparer</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">boolean</span></td>
+        <td><em>descending</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="../iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;T&gt;</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -193,30 +211,49 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">thenBy&lt;K&gt;(keySelector: (element: T) =&gt; K, comparer?: Comparison&lt;K&gt; | Comparer&lt;K&gt;): OrderedQuery&lt;T&gt;;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>keySelector</dt>
-    <dd class="type"><span class="xref">(element: T) =&gt; K</span></dd>
-    <dd class="description">
-      <p>A callback used to select the key for an element.</p>
-
-      
-    </dd>
-    <dt>comparer</dt>
-    <dd class="type"><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
-    <dd class="description">
-      <p>An optional callback used to compare two keys.
- Order</p>
-
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">(element: T) =&gt; K</span></td>
+        <td><em>keySelector</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</td>
+        <td><em>comparer</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a>&lt;T&gt;</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -242,30 +279,49 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">thenByDescending&lt;K&gt;(keySelector: (element: T) =&gt; K, comparer?: Comparison&lt;K&gt; | Comparer&lt;K&gt;): OrderedQuery&lt;T&gt;;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>keySelector</dt>
-    <dd class="type"><span class="xref">(element: T) =&gt; K</span></dd>
-    <dd class="description">
-      <p>A callback used to select the key for an element.</p>
-
-      
-    </dd>
-    <dt>comparer</dt>
-    <dd class="type"><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
-    <dd class="description">
-      <p>An optional callback used to compare two keys.
- Order</p>
-
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">(element: T) =&gt; K</span></td>
+        <td><em>keySelector</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</td>
+        <td><em>comparer</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a>&lt;T&gt;</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -281,7 +337,6 @@
       </tr>
     </tbody>
   </table>
-  
 </article>
           </div>
           

@@ -1,0 +1,3 @@
+{{>partials/uref/class.header}}
+{{>partials/uref/class.members}}
+{{>partials/uref/class.footer}}

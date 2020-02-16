@@ -80,21 +80,14 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="@esfx/iter-grouping!Grouping:class">
   
+  
   <h1 id="_esfx_iter_grouping_Grouping_class" data-uid="@esfx/iter-grouping!Grouping:class">Class Grouping
   </h1>
+  <h6><strong>Package</strong>: <a class="xref" href="../iter-grouping.html">@esfx/iter-grouping</a></h6>
   <div class="markdown level0 summary"><p>Represents a group of values associated with the same key.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h3 id="constructors">Constructors
-  
-  
-  
-  
-  
-  
-  
-  
-  
   </h3>
   
   
@@ -106,32 +99,35 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">constructor(key: K, values: Iterable&lt;V&gt;);</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>values</dt>
-    <dd class="type"><span class="xref">Iterable</span>&lt;V&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h3 id="properties">
-  
-  Properties
-  
-  
-  
-  
-  
-  
-  
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">K</span></td>
+        <td><em>key</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">Iterable</span>&lt;V&gt;</td>
+        <td><em>values</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
   </h3>
   
   
@@ -143,12 +139,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly key: K;</code></pre>
   </div>
-  
   <h5 class="propertyValue">Property Value</h5>
-  <div class="propertyValue">
-  <span class="type"><span class="xref">K</span></span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">K</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_iter_grouping_Grouping_values_member" data-uid="@esfx/iter-grouping!Grouping#values:member">values</h4>
@@ -159,22 +164,22 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly values: Iterable&lt;V&gt;;</code></pre>
   </div>
-  
   <h5 class="propertyValue">Property Value</h5>
-  <div class="propertyValue">
-  <span class="type"><span class="xref">Iterable</span>&lt;V&gt;</span>
-  <p class="description">
-  </div>
-  <h3 id="methods">
-  
-  
-  Methods
-  
-  
-  
-  
-  
-  
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Iterable</span>&lt;V&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
   </h3>
   
   
@@ -185,12 +190,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">[Symbol.iterator](): Iterator&lt;V, any, undefined&gt;;</code></pre>
   </div>
-  
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">Iterator</span>&lt;V, any, undefined&gt;</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Iterator</span>&lt;V, any, undefined&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_iter_grouping_Grouping_from_member_1_" data-uid="@esfx/iter-grouping!Grouping.from:member(1)">from(key, values, provider)</h4>
@@ -200,33 +214,57 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">static from&lt;K, VNode, V extends VNode&gt;(key: K, values: Iterable&lt;V&gt;, provider: HierarchyProvider&lt;VNode&gt;): HierarchyGrouping&lt;K, VNode, V&gt;;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>values</dt>
-    <dd class="type"><span class="xref">Iterable</span>&lt;V&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>provider</dt>
-    <dd class="type"><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;VNode&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">K</span></td>
+        <td><em>key</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">Iterable</span>&lt;V&gt;</td>
+        <td><em>values</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;VNode&gt;</td>
+        <td><em>provider</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="hierarchygrouping.html#_esfx_iter_grouping_HierarchyGrouping_class">HierarchyGrouping</a>&lt;K, VNode, V&gt;</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="hierarchygrouping.html#_esfx_iter_grouping_HierarchyGrouping_class">HierarchyGrouping</a>&lt;K, VNode, V&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -259,27 +297,49 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">static from&lt;K, VNode, V extends VNode&gt;(key: K, values: HierarchyIterable&lt;VNode, V&gt;): HierarchyGrouping&lt;K, VNode, V&gt;;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>values</dt>
-    <dd class="type"><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;VNode, V&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">K</span></td>
+        <td><em>key</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;VNode, V&gt;</td>
+        <td><em>values</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="hierarchygrouping.html#_esfx_iter_grouping_HierarchyGrouping_class">HierarchyGrouping</a>&lt;K, VNode, V&gt;</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="hierarchygrouping.html#_esfx_iter_grouping_HierarchyGrouping_class">HierarchyGrouping</a>&lt;K, VNode, V&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -312,27 +372,49 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">static from&lt;K, V&gt;(key: K, values: Iterable&lt;V&gt;): Grouping&lt;K, V&gt;;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>values</dt>
-    <dd class="type"><span class="xref">Iterable</span>&lt;V&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">K</span></td>
+        <td><em>key</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">Iterable</span>&lt;V&gt;</td>
+        <td><em>values</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="grouping.html#_esfx_iter_grouping_Grouping_class">Grouping</a>&lt;K, V&gt;</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="grouping.html#_esfx_iter_grouping_Grouping_class">Grouping</a>&lt;K, V&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -352,7 +434,6 @@
       </tr>
     </tbody>
   </table>
-  
 </article>
           </div>
           

@@ -80,21 +80,14 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="@esfx/async-lazy!AsyncLazy:class">
   
+  
   <h1 id="_esfx_async_lazy_AsyncLazy_class" data-uid="@esfx/async-lazy!AsyncLazy:class">Class AsyncLazy
   </h1>
+  <h6><strong>Package</strong>: <a class="xref" href="../async-lazy.html">@esfx/async-lazy</a></h6>
   <div class="markdown level0 summary"><p>A lazy-initialized asynchronous value.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h3 id="constructors">Constructors
-  
-  
-  
-  
-  
-  
-  
-  
-  
   </h3>
   
   
@@ -106,26 +99,27 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">constructor(factory: () =&gt; T | PromiseLike&lt;T&gt;);</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>factory</dt>
-    <dd class="type">() =&gt; T | <span class="xref">PromiseLike</span>&lt;T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h3 id="properties">
-  
-  Properties
-  
-  
-  
-  
-  
-  
-  
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>() =&gt; T | <span class="xref">PromiseLike</span>&lt;T&gt;</td>
+        <td><em>factory</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
   </h3>
   
   
@@ -136,12 +130,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get isStarted(): boolean;</code></pre>
   </div>
-  
   <h5 class="propertyValue">Property Value</h5>
-  <div class="propertyValue">
-  <span class="type"><span class="xref">boolean</span></span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_lazy_AsyncLazy_value_member" data-uid="@esfx/async-lazy!AsyncLazy#value:member">value</h4>
@@ -151,22 +154,22 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get value(): Promise&lt;T&gt;;</code></pre>
   </div>
-  
   <h5 class="propertyValue">Property Value</h5>
-  <div class="propertyValue">
-  <span class="type"><span class="xref">Promise</span>&lt;T&gt;</span>
-  <p class="description">
-  </div>
-  <h3 id="methods">
-  
-  
-  Methods
-  
-  
-  
-  
-  
-  
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Promise</span>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
   </h3>
   
   
@@ -177,21 +180,41 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">static for&lt;T&gt;(value: T | PromiseLike&lt;T&gt;): AsyncLazy&lt;T&gt;;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>value</dt>
-    <dd class="type">T | <span class="xref">PromiseLike</span>&lt;T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T | <span class="xref">PromiseLike</span>&lt;T&gt;</td>
+        <td><em>value</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="asynclazy.html#_esfx_async_lazy_AsyncLazy_class">AsyncLazy</a>&lt;T&gt;</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="asynclazy.html#_esfx_async_lazy_AsyncLazy_class">AsyncLazy</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -216,27 +239,49 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">static from&lt;T, A extends any[]&gt;(factory: (...args: A) =&gt; T | PromiseLike&lt;T&gt;, ...args: A): AsyncLazy&lt;T&gt;;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>factory</dt>
-    <dd class="type">(...args: A) =&gt; T | <span class="xref">PromiseLike</span>&lt;T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>args</dt>
-    <dd class="type"><span class="xref">A</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>(...args: A) =&gt; T | <span class="xref">PromiseLike</span>&lt;T&gt;</td>
+        <td><em>factory</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">A</span></td>
+        <td><em>args</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="asynclazy.html#_esfx_async_lazy_AsyncLazy_class">AsyncLazy</a>&lt;T&gt;</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="asynclazy.html#_esfx_async_lazy_AsyncLazy_class">AsyncLazy</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
@@ -256,7 +301,6 @@
       </tr>
     </tbody>
   </table>
-  
 </article>
           </div>
           

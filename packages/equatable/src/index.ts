@@ -86,9 +86,13 @@ export namespace Equatable {
 export interface Comparable {
     /**
      * Compares this value with another value, returning a value indicating one of the following conditions:
+     *
      * - A negative value indicates this value is lesser.
+     *
      * - A positive value indicates this value is greater.
+     *
      * - A zero value indicates this value is the same.
+     *
      * @param other The other value to compare against.
      * @returns A number indicating the relational comparison result.
      */
@@ -204,7 +208,7 @@ export namespace StructuralEquatable {
  */
 export interface StructuralComparable {
     /**
-     * Compares the structure of this value with another value using the supplied comparer, 
+     * Compares the structure of this value with another value using the supplied comparer,
      * returning a value indicating one of the following conditions:
      * - A negative value indicates this value is lesser.
      * - A positive value indicates this value is greater.
@@ -439,7 +443,7 @@ export import tupleStructuralEqualer = Equaler.tupleEqualer;
 export import combineHashes = Equaler.combineHashes;
 
 /**
- * Describes a function that can be used to compare the relational equality of two values, returning a 
+ * Describes a function that can be used to compare the relational equality of two values, returning a
  * value indicating one of the following conditions:
  * - A negative value indicates `x` is lesser than `y`.
  * - A positive value indicates `x` is greater than `y`.

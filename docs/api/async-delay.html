@@ -80,176 +80,255 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="@esfx/async-delay!">
   
-  <h1 id="_esfx_async_delay_" data-uid="@esfx/async-delay!">Package @esfx/async-delay
+  <h1 id="_esfx_async_delay_" data-uid="@esfx/async-delay!" class="text-break">Package @esfx/async-delay
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <h3 id="functions">
-  
-  
-  
-  
-  
-  
-  Functions
-  
-  
+  <div class="markdown level0 remarks"></div>
+    <h3 id="functions">Functions
   </h3>
   
   
-  <h4 id="_esfx_async_delay_delay_function_1_" data-uid="@esfx/async-delay!delay:function(1)">delay(msec)</h4>
-  <div class="markdown level1 summary"><p>Waits the specified number of milliseconds before resolving.</p>
+        <h4 id="_esfx_async_delay_delay_function_1_" data-uid="@esfx/async-delay!delay:function(1)">delay(msec)</h4>
+              <div class="markdown level1 summary"><p>Waits the specified number of milliseconds before resolving.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare function delay(msec: number): Promise&lt;void&gt;;</code></pre>
-  </div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function delay(msec: number): Promise&lt;void&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">number</span></td>
+              <td><em>msec</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">Promise</span>&lt;void&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
   
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>msec</dt>
-    <dd class="type"><span class="xref">number</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">Promise</span>&lt;void&gt;</span>
-  <p class="description">
-  </div>
   
-  
-  <h4 id="_esfx_async_delay_delay_function_2_" data-uid="@esfx/async-delay!delay:function(2)">delay(msec, value)</h4>
-  <div class="markdown level1 summary"><p>Waits the specified number of milliseconds before resolving with the provided value.</p>
+        <h4 id="_esfx_async_delay_delay_function_2_" data-uid="@esfx/async-delay!delay:function(2)">delay(msec, value)</h4>
+              <div class="markdown level1 summary"><p>Waits the specified number of milliseconds before resolving with the provided value.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare function delay&lt;T&gt;(msec: number, value: T | PromiseLike&lt;T&gt;): Promise&lt;T&gt;;</code></pre>
-  </div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function delay&lt;T&gt;(msec: number, value: T | PromiseLike&lt;T&gt;): Promise&lt;T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">number</span></td>
+              <td><em>msec</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+            <tr>
+              <td>T | <span class="xref">PromiseLike</span>&lt;T&gt;</td>
+              <td><em>value</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">Promise</span>&lt;T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
   
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>msec</dt>
-    <dd class="type"><span class="xref">number</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>value</dt>
-    <dd class="type">T | <span class="xref">PromiseLike</span>&lt;T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">Promise</span>&lt;T&gt;</span>
-  <p class="description">
-  </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>T</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   
-  
-  <h4 id="_esfx_async_delay_delay_function_3_" data-uid="@esfx/async-delay!delay:function(3)">delay(cancelable, msec)</h4>
-  <div class="markdown level1 summary"><p>Waits the specified number of milliseconds before resolving.</p>
+        <h4 id="_esfx_async_delay_delay_function_3_" data-uid="@esfx/async-delay!delay:function(3)">delay(cancelable, msec)</h4>
+              <div class="markdown level1 summary"><p>Waits the specified number of milliseconds before resolving.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare function delay(cancelable: Cancelable, msec: number): Promise&lt;void&gt;;</code></pre>
-  </div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function delay(cancelable: Cancelable, msec: number): Promise&lt;void&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></td>
+              <td><em>cancelable</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+            <tr>
+              <td><span class="xref">number</span></td>
+              <td><em>msec</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">Promise</span>&lt;void&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
   
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>cancelable</dt>
-    <dd class="type"><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>msec</dt>
-    <dd class="type"><span class="xref">number</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">Promise</span>&lt;void&gt;</span>
-  <p class="description">
-  </div>
   
-  
-  <h4 id="_esfx_async_delay_delay_function_4_" data-uid="@esfx/async-delay!delay:function(4)">delay(cancelable, msec, value)</h4>
-  <div class="markdown level1 summary"><p>Waits the specified number of milliseconds before resolving with the provided value.</p>
+        <h4 id="_esfx_async_delay_delay_function_4_" data-uid="@esfx/async-delay!delay:function(4)">delay(cancelable, msec, value)</h4>
+              <div class="markdown level1 summary"><p>Waits the specified number of milliseconds before resolving with the provided value.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare function delay&lt;T&gt;(cancelable: Cancelable, msec: number, value: T | PromiseLike&lt;T&gt;): Promise&lt;T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>cancelable</dt>
-    <dd class="type"><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>msec</dt>
-    <dd class="type"><span class="xref">number</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>value</dt>
-    <dd class="type">T | <span class="xref">PromiseLike</span>&lt;T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">Promise</span>&lt;T&gt;</span>
-  <p class="description">
-  </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>T</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function delay&lt;T&gt;(cancelable: Cancelable, msec: number, value: T | PromiseLike&lt;T&gt;): Promise&lt;T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></td>
+              <td><em>cancelable</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+            <tr>
+              <td><span class="xref">number</span></td>
+              <td><em>msec</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+            <tr>
+              <td>T | <span class="xref">PromiseLike</span>&lt;T&gt;</td>
+              <td><em>value</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">Promise</span>&lt;T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
 </article>
           </div>
           

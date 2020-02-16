@@ -1,41 +1,20 @@
-    .tabGroup section[role="tabpanel"] > pre:first-child:last-child {
-      margin-top: -16px;
-      border-radius: 0px; }
-
-dl.parameterList > dt {
-  display: inline-block;
-  font-family: Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,sans-serif;
-  padding: 0 6px 2px;
-  background-color: #f9f9f9;
-  line-height: 160%;
-  margin-top: 12px;
-}
-dl.parameterList > dt:first-child {
-  margin-top: 0px;
-}
-dl.parameterList > dd.type {
-  display: inline-block;
-  margin-left: 12px;
-  line-height: 160%
-}
-dl.parameterList > dd.description {
-  display: block;
-  margin-top: 2px;
+.alert {
+    display: block;
+    position: relative;
+    border-radius: 6px;
+    font-size: 1rem;
+    padding: 1rem;
+    margin-top: 1rem;
+    background-color: hsla(0,0%,95%,1);
+    color: hsla(0,0%,9%,1);
+    -webkit-transition: height .5s ease-in,opacity .5s ease-in;
+    transition: height .5s ease-in,opacity .5s ease-in;
+    word-wrap: break-word;
+    word-break: break-word;
+    border: 1px solid hsla(0,0%,100%,0);
 }
 
-div.propertyValue > span.type,
-div.fieldValue > span.type,
-div.return > span.type {
-  line-height: 160%
-}
-
-div.propertyValue > p.description,
-div.fieldValue > p.description,
-div.return > p.description {
-  display: block;
-  margin-top: 2px;
-}
-
-h5 {
-  font-weight: 600;
+.alert.is-warning {
+    background: hsla(44,100%,90%,1) !important;
+    border: 1px solid hsla(44,100%,90%,.999);
 }

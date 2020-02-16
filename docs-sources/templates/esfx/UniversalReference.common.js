@@ -9,19 +9,20 @@ exports.transform = function (model) {
 
   handleItem(model, model._gitContribute, model._gitUrlPattern);
   if (model.children) {
-    normalizeChildren(model.children).forEach(function (item) {
+    normalizeLanguageValuePairs(model.children).forEach(function (item) {
       handleItem(item, model._gitContribute, model._gitUrlPattern);
     });
   };
 
   if (model.type) {
     switch (model.type.toLowerCase()) {
+      // packages and namespaces are both containers for other elements
+      case 'package':
       case 'namespace':
         model.isNamespace = true;
         if (model.children) groupChildren(model, namespaceCategory);
         model[getTypePropertyName(model.type)] = true;
         break;
-      case 'package':
       case 'class':
       case 'interface':
       case 'struct':
@@ -50,7 +51,7 @@ exports.getBookmarks = function (model, ignoreChildren)  {
 
   if (typeof ignoreChildren == 'undefined' || ignoreChildren === false) {
     if (model.children) {
-      normalizeChildren(model.children).forEach(function (item) {
+      normalizeLanguageValuePairs(model.children).forEach(function (item) {
         bookmarks[item.uid] = common.getHtmlId(item.uid);
         if (item.overload && item.overload.uid) {
           bookmarks[item.overload.uid] = common.getHtmlId(item.overload.uid);
@@ -62,6 +63,28 @@ exports.getBookmarks = function (model, ignoreChildren)  {
   // Reference's first level bookmark should have no anchor
   bookmarks[model.uid] = "";
   return bookmarks;
+}
+
+function handleItemType(vm) {
+  vm.inPackage = vm.inPackage || null;
+  vm.inNamespace = vm.inNamespace || null;
+  vm.inClass = vm.inClass || null;
+  vm.inStruct = vm.inStruct || null;
+  vm.inInterface = vm.inInterface || null;
+  vm.inEnum = vm.inEnum || null;
+  vm.inDelegate = vm.inDelegate || null;
+  vm.inFunction = vm.inFunction || null;
+  vm.inVariable = vm.inVariable || null;
+  vm.inTypeAlias = vm.inTypeAlias || null;
+  vm.inConstructor = vm.inConstructor || null;
+  vm.inField = vm.inField || null;
+  vm.inProperty = vm.inProperty || null;
+  vm.inMethod = vm.inMethod || null;
+  vm.inEvent = vm.inEvent || null;
+  vm.inOperator = vm.inOperator || null;
+  vm.inEii = vm.inEii || null;
+  vm.inMember = vm.inMember || null;
+  vm.inFunction = vm.inFunction || null;
 }
 
 function handleItem(vm, gitContribute, gitUrlPattern) {
@@ -76,6 +99,13 @@ function handleItem(vm, gitContribute, gitUrlPattern) {
   vm.syntax = vm.syntax || null;
   vm.implements = vm.implements || null;
   vm.example = vm.example || null;
+  vm.inheritance = vm.inheritance || null;
+  handleItemType(vm);
+
+  if (vm.inheritance) {
+    normalizeLanguageValuePairs(vm.inheritance).forEach(handleInheritance);
+  }
+  
   common.processSeeAlso(vm);
 
   // id is used as default template's bookmark
@@ -96,6 +126,14 @@ function handleItem(vm, gitContribute, gitUrlPattern) {
     if (syntax.return) {
       syntax.return = joinType(syntax.return);
     }
+  }
+}
+
+function handleInheritance(tree) {
+  tree.type = tree.type || null;
+  tree.inheritance = tree.inheritance || null;
+  if (tree.inheritance) {
+    tree.inheritance.forEach(handleInheritance);
   }
 }
 
@@ -166,7 +204,7 @@ function groupChildren(model, category, typeChildrenItems) {
   }
   var grouped = {};
 
-  normalizeChildren(model.children).forEach(function (c) {
+  normalizeLanguageValuePairs(model.children).forEach(function (c) {
     if (c.isEii) {
       var type = "eii";
     } else {
@@ -190,12 +228,12 @@ function groupChildren(model, category, typeChildrenItems) {
       c.syntax.eventType = c.syntax.return;
       c.syntax.return = undefined;
     }
-    if (type === "typealias" && c.syntax) {
-      c.syntax.aliasType = c.syntax.return;
+    if (type === "variable" && c.syntax) {
+      c.syntax.variableValue = c.syntax.return;
       c.syntax.return = undefined;
     }
-    if (type === "variable" && c.syntax) {
-      c.syntax.variableType = c.syntax.return;
+    if (type === "typealias" && c.syntax) {
+      c.syntax.typeAliasType = c.syntax.return;
       c.syntax.return = undefined;
     }
     grouped[type].push(c);
@@ -213,6 +251,7 @@ function groupChildren(model, category, typeChildrenItems) {
             item[itemKey] = typeChildrenItem[itemKey];
           }
         }
+        handleItemType(item);
         item.children = items;
         children.push(item);
       }
@@ -262,16 +301,16 @@ function getDefinition(type) {
 
 function getDefinitions(category) {
   var namespaceItems = {
+    "package":      { inPackage: true,      typePropertyName: "inPackage",      id: "packages" },
     "class":        { inClass: true,        typePropertyName: "inClass",        id: "classes" },
     "struct":       { inStruct: true,       typePropertyName: "inStruct",       id: "structs" },
     "interface":    { inInterface: true,    typePropertyName: "inInterface",    id: "interfaces" },
     "enum":         { inEnum: true,         typePropertyName: "inEnum",         id: "enums" },
     "delegate":     { inDelegate: true,     typePropertyName: "inDelegate",     id: "delegates" },
-    "function":     { inFunction: true,     typePropertyName: "inFunction",     id: "functions" },
-    "package":      { inPackage: true,      typePropertyName: "inPackage",      id: "packages" },
-    "typealias":    { inTypeAlias: true,    typePropertyName: "inTypeAlias",    id: "typealiases" },
-    "variable":     { inVariable: true,     typePropertyName: "inVariable",     id: "variables" },
-    // "namespace":    { isNamespace: true,    typePropertyName: "isNamespace",    id: "namespaces" },
+    "function":     { inFunction: true,     typePropertyName: "inFunction",     id: "functions",    isEmbedded: true },
+    "variable":     { inVariable: true,     typePropertyName: "inVariable",     id: "variables",    isEmbedded: true },
+    "typealias":    { inTypeAlias: true,    typePropertyName: "inTypeAlias",    id: "typealiases",  isEmbedded: true },
+    "namespace":    { inNamespace: true,    typePropertyName: "inNamespace",    id: "namespaces" },
   };
   var classItems = {
     "constructor":  { inConstructor: true,  typePropertyName: "inConstructor",  id: "constructors" },
@@ -281,10 +320,8 @@ function getDefinitions(category) {
     "event":        { inEvent: true,        typePropertyName: "inEvent",        id: "events" },
     "operator":     { inOperator: true,     typePropertyName: "inOperator",     id: "operators" },
     "eii":          { inEii: true,          typePropertyName: "inEii",          id: "eii" },
-    "function":     { inFunction: true,     typePropertyName: "inFunction",     id: "functions"},
     "member":       { inMember: true,       typePropertyName: "inMember",       id: "members"},
-    "typealias":    { inTypeAlias: true,    typePropertyName: "inTypeAlias",    id: "typealiases" },
-    "variable":     { inVariable: true,     typePropertyName: "inVariable",     id: "variables" },
+    "function":     { inFunction: true,     typePropertyName: "inFunction",     id: "functions" }
   };
   if (category === 'class') {
     return classItems;
@@ -296,9 +333,9 @@ function getDefinitions(category) {
   return undefined;
 }
 
-function normalizeChildren(children) {
-  if (children[0] && children[0].lang && children[0].value) {
-    return children[0].value;
+function normalizeLanguageValuePairs(list) {
+  if (list[0] && list[0].lang && list[0].value) {
+    return list[0].value;
   }
-  return children;
+  return list;
 }

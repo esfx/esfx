@@ -80,25 +80,18 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="@esfx/collections-multimap!ReadonlyMultiMap:interface">
   
+  
   <h1 id="_esfx_collections_multimap_ReadonlyMultiMap_interface" data-uid="@esfx/collections-multimap!ReadonlyMultiMap:interface">Interface ReadonlyMultiMap
   </h1>
+  <h6><strong>Package</strong>: <a class="xref" href="../collections-multimap.html">@esfx/collections-multimap</a></h6>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-      <div class="level"></div>
-      <div class="level"><span class="xref"></span></div>
+      <div class="level0"><a class="xref" href="../collection-core/keyedmulticollection-interface.html#_esfx_collection_core_KeyedMultiCollection_interface">KeyedMultiCollection</a>&lt;K, V&gt; </div>
+      <div class="level1"><span class="xref">ReadonlyMultiMap</span></div>
   </div>
-  <h3 id="properties">
-  
-  Properties
-  
-  
-  
-  
-  
-  
-  
+  <h3 id="properties">Properties
   </h3>
   
   
@@ -109,12 +102,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly keyEqualer: Equaler&lt;K&gt;;</code></pre>
   </div>
-  
   <h5 class="propertyValue">Property Value</h5>
-  <div class="propertyValue">
-  <span class="type"><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_collections_multimap_ReadonlyMultiMap_size_member" data-uid="@esfx/collections-multimap!ReadonlyMultiMap#size:member">size</h4>
@@ -124,12 +126,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly size: number;</code></pre>
   </div>
-  
   <h5 class="propertyValue">Property Value</h5>
-  <div class="propertyValue">
-  <span class="type"><span class="xref">number</span></span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_collections_multimap_ReadonlyMultiMap_valueEqualer_member" data-uid="@esfx/collections-multimap!ReadonlyMultiMap#valueEqualer:member">valueEqualer</h4>
@@ -139,22 +150,22 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">readonly valueEqualer: Equaler&lt;V&gt;;</code></pre>
   </div>
-  
   <h5 class="propertyValue">Property Value</h5>
-  <div class="propertyValue">
-  <span class="type"><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;V&gt;</span>
-  <p class="description">
-  </div>
-  <h3 id="methods">
-  
-  
-  Methods
-  
-  
-  
-  
-  
-  
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;V&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
   </h3>
   
   
@@ -165,12 +176,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">entries(): IterableIterator&lt;[K, V]&gt;;</code></pre>
   </div>
-  
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">IterableIterator</span>&lt;[K, V]&gt;</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IterableIterator</span>&lt;[K, V]&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_collections_multimap_ReadonlyMultiMap_forEach_member_1_" data-uid="@esfx/collections-multimap!ReadonlyMultiMap#forEach:member(1)">forEach(callback, thisArg)</h4>
@@ -180,27 +200,49 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">forEach(callback: (value: V, key: K, map: this) =&gt; void, thisArg?: any): void;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>callback</dt>
-    <dd class="type"><span class="xref">(value: V, key: K, map: this) =&gt; void</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>thisArg</dt>
-    <dd class="type"><span class="xref">any</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">(value: V, key: K, map: this) =&gt; void</span></td>
+        <td><em>callback</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">any</span></td>
+        <td><em>thisArg</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">void</span></span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">void</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_collections_multimap_ReadonlyMultiMap_get_member_1_" data-uid="@esfx/collections-multimap!ReadonlyMultiMap#get:member(1)">get(key)</h4>
@@ -210,21 +252,41 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get(key: K): ReadonlyHashSet&lt;V&gt; | undefined;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">K</span></td>
+        <td><em>key</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="../collections-hashset/readonlyhashset.html#_esfx_collections_hashset_ReadonlyHashSet_interface">ReadonlyHashSet</a>&lt;V&gt; | undefined</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../collections-hashset/readonlyhashset.html#_esfx_collections_hashset_ReadonlyHashSet_interface">ReadonlyHashSet</a>&lt;V&gt; | undefined</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_collections_multimap_ReadonlyMultiMap_has_member_1_" data-uid="@esfx/collections-multimap!ReadonlyMultiMap#has:member(1)">has(key, value)</h4>
@@ -234,27 +296,49 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">has(key: K, value: V): boolean;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>value</dt>
-    <dd class="type"><span class="xref">V</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">K</span></td>
+        <td><em>key</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">V</span></td>
+        <td><em>value</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">boolean</span></span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_collections_multimap_ReadonlyMultiMap_hasKey_member_1_" data-uid="@esfx/collections-multimap!ReadonlyMultiMap#hasKey:member(1)">hasKey(key)</h4>
@@ -264,21 +348,41 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">hasKey(key: K): boolean;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>key</dt>
-    <dd class="type"><span class="xref">K</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">K</span></td>
+        <td><em>key</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">boolean</span></span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_collections_multimap_ReadonlyMultiMap_keys_member_1_" data-uid="@esfx/collections-multimap!ReadonlyMultiMap#keys:member(1)">keys()</h4>
@@ -288,12 +392,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">keys(): IterableIterator&lt;K&gt;;</code></pre>
   </div>
-  
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">IterableIterator</span>&lt;K&gt;</span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IterableIterator</span>&lt;K&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_collections_multimap_ReadonlyMultiMap_values_member_1_" data-uid="@esfx/collections-multimap!ReadonlyMultiMap#values:member(1)">values()</h4>
@@ -303,13 +416,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">values(): IterableIterator&lt;V&gt;;</code></pre>
   </div>
-  
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">IterableIterator</span>&lt;V&gt;</span>
-  <p class="description">
-  </div>
-  
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IterableIterator</span>&lt;V&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           

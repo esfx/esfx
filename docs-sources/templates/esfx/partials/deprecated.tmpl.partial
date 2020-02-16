@@ -1,0 +1,9 @@
+{{#deprecated}}
+	<div class="alert is-warning">
+		{{{__global.warning}}}
+		<p>{{__global.deprecated}}</p>
+		{{#content}}
+			{{{content}}}
+		{{/content}}
+	</div>
+{{/deprecated}}

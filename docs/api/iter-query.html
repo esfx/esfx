@@ -80,285 +80,414 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="@esfx/iter-query!">
   
-  <h1 id="_esfx_iter_query_" data-uid="@esfx/iter-query!">Package @esfx/iter-query
+  <h1 id="_esfx_iter_query_" data-uid="@esfx/iter-query!" class="text-break">Package @esfx/iter-query
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <h3 id="functions">
-  
-  
-  
-  
-  
-  
-  Functions
-  
-  
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+        <h4><a class="xref" href="iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a></h4>
+        <section><p>Represents a sequence of hierarchically organized values.</p>
+</section>
+        <h4><a class="xref" href="iter-query/orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_class">OrderedHierarchyQuery</a></h4>
+        <section><p>Represents an ordered sequence of hierarchically organized values.</p>
+</section>
+        <h4><a class="xref" href="iter-query/orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a></h4>
+        <section><p>Represents an ordered sequence of elements.</p>
+</section>
+        <h4><a class="xref" href="iter-query/query.html#_esfx_iter_query_Query_class">Query</a></h4>
+        <section><p>A <code>Query</code> represents a series of operations that act upon an <code>Iterable</code> or ArrayLike. Evaluation of these operations is deferred until the either a scalar value is requested from the <code>Query</code> or the <code>Query</code> is iterated.</p>
+</section>
+    <h3 id="functions">Functions
   </h3>
   
   
-  <h4 id="_esfx_iter_query_from_function_1_" data-uid="@esfx/iter-query!from:function(1)">from(source)</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>Query</code> from a <code>Iterable</code> source.</p>
+        <h4 id="_esfx_iter_query_from_function_1_" data-uid="@esfx/iter-query!from:function(1)">from(source)</h4>
+              <div class="markdown level1 summary"><p>Creates a <code>Query</code> from a <code>Iterable</code> source.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare function from&lt;TNode, T extends TNode&gt;(source: OrderedHierarchyIterable&lt;TNode, T&gt;): OrderedHierarchyQuery&lt;TNode, T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>source</dt>
-    <dd class="type"><a class="xref" href="iter-hierarchy/orderedhierarchyiterable-interface.html#_esfx_iter_hierarchy_OrderedHierarchyIterable_interface">OrderedHierarchyIterable</a>&lt;TNode, T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="iter-query/orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_class">OrderedHierarchyQuery</a>&lt;TNode, T&gt;</span>
-  <p class="description">
-  </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>TNode</em></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><em>T</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="_esfx_iter_query_from_function_2_" data-uid="@esfx/iter-query!from:function(2)">from(source)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare function from&lt;TNode, T extends TNode&gt;(source: HierarchyIterable&lt;TNode, T&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>source</dt>
-    <dd class="type"><a class="xref" href="iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</span>
-  <p class="description">
-  </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>TNode</em></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><em>T</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function from&lt;TNode, T extends TNode&gt;(source: OrderedHierarchyIterable&lt;TNode, T&gt;): OrderedHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="iter-hierarchy/orderedhierarchyiterable-interface.html#_esfx_iter_hierarchy_OrderedHierarchyIterable_interface">OrderedHierarchyIterable</a>&lt;TNode, T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="iter-query/orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_class">OrderedHierarchyQuery</a>&lt;TNode, T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>TNode</em></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
   
   
-  <h4 id="_esfx_iter_query_from_function_3_" data-uid="@esfx/iter-query!from:function(3)">from(source, provider)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare function from&lt;TNode, T extends TNode&gt;(source: OrderedIterable&lt;T&gt;, provider: HierarchyProvider&lt;TNode&gt;): OrderedHierarchyQuery&lt;TNode, T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>source</dt>
-    <dd class="type"><a class="xref" href="iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>provider</dt>
-    <dd class="type"><a class="xref" href="iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="iter-query/orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_class">OrderedHierarchyQuery</a>&lt;TNode, T&gt;</span>
-  <p class="description">
-  </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>TNode</em></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><em>T</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="_esfx_iter_query_from_function_4_" data-uid="@esfx/iter-query!from:function(4)">from(source, provider)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare function from&lt;TNode, T extends TNode&gt;(source: Iterable&lt;T&gt;, provider: HierarchyProvider&lt;TNode&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>source</dt>
-    <dd class="type"><span class="xref">Iterable</span>&lt;T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>provider</dt>
-    <dd class="type"><a class="xref" href="iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</span>
-  <p class="description">
-  </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>TNode</em></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><em>T</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+        <h4 id="_esfx_iter_query_from_function_2_" data-uid="@esfx/iter-query!from:function(2)">from(source)</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function from&lt;TNode, T extends TNode&gt;(source: HierarchyIterable&lt;TNode, T&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>TNode</em></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
   
   
-  <h4 id="_esfx_iter_query_from_function_5_" data-uid="@esfx/iter-query!from:function(5)">from(source)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare function from&lt;T&gt;(source: OrderedIterable&lt;T&gt;): OrderedQuery&lt;T&gt;;</code></pre>
-  </div>
+        <h4 id="_esfx_iter_query_from_function_3_" data-uid="@esfx/iter-query!from:function(3)">from(source, provider)</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function from&lt;TNode, T extends TNode&gt;(source: OrderedIterable&lt;T&gt;, provider: HierarchyProvider&lt;TNode&gt;): OrderedHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+            <tr>
+              <td><a class="xref" href="iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</td>
+              <td><em>provider</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="iter-query/orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_class">OrderedHierarchyQuery</a>&lt;TNode, T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>TNode</em></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
   
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>source</dt>
-    <dd class="type"><a class="xref" href="iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="iter-query/orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a>&lt;T&gt;</span>
-  <p class="description">
-  </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>T</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  
+        <h4 id="_esfx_iter_query_from_function_4_" data-uid="@esfx/iter-query!from:function(4)">from(source, provider)</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function from&lt;TNode, T extends TNode&gt;(source: Iterable&lt;T&gt;, provider: HierarchyProvider&lt;TNode&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">Iterable</span>&lt;T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+            <tr>
+              <td><a class="xref" href="iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</td>
+              <td><em>provider</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>TNode</em></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
   
   
-  <h4 id="_esfx_iter_query_from_function_6_" data-uid="@esfx/iter-query!from:function(6)">from(source)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare function from&lt;T&gt;(source: Iterable&lt;T&gt;): Query&lt;T&gt;;</code></pre>
-  </div>
+        <h4 id="_esfx_iter_query_from_function_5_" data-uid="@esfx/iter-query!from:function(5)">from(source)</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function from&lt;T&gt;(source: OrderedIterable&lt;T&gt;): OrderedQuery&lt;T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="iter-query/orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a>&lt;T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
   
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>source</dt>
-    <dd class="type"><span class="xref">Iterable</span>&lt;T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><a class="xref" href="iter-query/query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</span>
-  <p class="description">
-  </div>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>T</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   
+        <h4 id="_esfx_iter_query_from_function_6_" data-uid="@esfx/iter-query!from:function(6)">from(source)</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function from&lt;T&gt;(source: Iterable&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">Iterable</span>&lt;T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="iter-query/query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
 </article>
           </div>
           

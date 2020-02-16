@@ -80,21 +80,14 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="@esfx/async-barrier!AsyncBarrier:class">
   
+  
   <h1 id="_esfx_async_barrier_AsyncBarrier_class" data-uid="@esfx/async-barrier!AsyncBarrier:class">Class AsyncBarrier
   </h1>
+  <h6><strong>Package</strong>: <a class="xref" href="../async-barrier.html">@esfx/async-barrier</a></h6>
   <div class="markdown level0 summary"><p>Enables multiple tasks to cooperatively work on an algorithm through multiple phases.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h3 id="constructors">Constructors
-  
-  
-  
-  
-  
-  
-  
-  
-  
   </h3>
   
   
@@ -106,32 +99,35 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">constructor(participantCount: number, postPhaseAction?: (barrier: AsyncBarrier) =&gt; void | PromiseLike&lt;void&gt;);</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>participantCount</dt>
-    <dd class="type"><span class="xref">number</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>postPhaseAction</dt>
-    <dd class="type">(barrier: <a class="xref" href="asyncbarrier.html#_esfx_async_barrier_AsyncBarrier_class">AsyncBarrier</a>) =&gt; void | <span class="xref">PromiseLike</span>&lt;void&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h3 id="properties">
-  
-  Properties
-  
-  
-  
-  
-  
-  
-  
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td><em>participantCount</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td>(barrier: <a class="xref" href="asyncbarrier.html#_esfx_async_barrier_AsyncBarrier_class">AsyncBarrier</a>) =&gt; void | <span class="xref">PromiseLike</span>&lt;void&gt;</td>
+        <td><em>postPhaseAction</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
   </h3>
   
   
@@ -143,12 +139,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get currentPhaseNumber(): number;</code></pre>
   </div>
-  
   <h5 class="propertyValue">Property Value</h5>
-  <div class="propertyValue">
-  <span class="type"><span class="xref">number</span></span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_barrier_AsyncBarrier_participantCount_member" data-uid="@esfx/async-barrier!AsyncBarrier#participantCount:member">participantCount</h4>
@@ -159,12 +164,21 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get participantCount(): number;</code></pre>
   </div>
-  
   <h5 class="propertyValue">Property Value</h5>
-  <div class="propertyValue">
-  <span class="type"><span class="xref">number</span></span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_barrier_AsyncBarrier_remainingParticipants_member" data-uid="@esfx/async-barrier!AsyncBarrier#remainingParticipants:member">remainingParticipants</h4>
@@ -175,22 +189,22 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get remainingParticipants(): number;</code></pre>
   </div>
-  
   <h5 class="propertyValue">Property Value</h5>
-  <div class="propertyValue">
-  <span class="type"><span class="xref">number</span></span>
-  <p class="description">
-  </div>
-  <h3 id="methods">
-  
-  
-  Methods
-  
-  
-  
-  
-  
-  
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
   </h3>
   
   
@@ -202,21 +216,41 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">add(participantCount?: number): void;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>participantCount</dt>
-    <dd class="type"><span class="xref">number</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td><em>participantCount</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">void</span></span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">void</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_barrier_AsyncBarrier_remove_member_1_" data-uid="@esfx/async-barrier!AsyncBarrier#remove:member(1)">remove(participantCount)</h4>
@@ -227,21 +261,41 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">remove(participantCount?: number): void;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>participantCount</dt>
-    <dd class="type"><span class="xref">number</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td><em>participantCount</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">void</span></span>
-  <p class="description">
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">void</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_barrier_AsyncBarrier_signalAndWait_member_1_" data-uid="@esfx/async-barrier!AsyncBarrier#signalAndWait:member(1)">signalAndWait(cancelable)</h4>
@@ -252,22 +306,41 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">signalAndWait(cancelable?: Cancelable): Promise&lt;void&gt;;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>cancelable</dt>
-    <dd class="type"><a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></td>
+        <td><em>cancelable</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">Promise</span>&lt;void&gt;</span>
-  <p class="description">
-  </div>
-  
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Promise</span>&lt;void&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           

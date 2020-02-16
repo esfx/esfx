@@ -1,0 +1,3 @@
+{{>partials/uref/namespace.header}}
+{{>partials/uref/namespace.members}}
+{{>partials/uref/namespace.footer}}

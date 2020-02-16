@@ -80,286 +80,263 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="@esfx/equatable!">
   
-  <h1 id="_esfx_equatable_" data-uid="@esfx/equatable!">Package @esfx/equatable
+  <h1 id="_esfx_equatable_" data-uid="@esfx/equatable!" class="text-break">Package @esfx/equatable
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <h3 id="functions">
-  
-  
-  
-  
-  
-  
-  Functions
-  
-  
+  <div class="markdown level0 remarks"></div>
+    <h3 id="interfaces">Interfaces
+  </h3>
+        <h4><a class="xref" href="equatable/comparable-interface.html#_esfx_equatable_Comparable_interface">Comparable</a></h4>
+        <section><p>Represents a value that can compare itself relationally with another value.</p>
+</section>
+        <h4><a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a></h4>
+        <section><p>Represents an object that can be used to perform a relational comparison between two values.</p>
+</section>
+        <h4><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a></h4>
+        <section><p>Represents an object that can be used to compare the equality of two values.</p>
+</section>
+        <h4><a class="xref" href="equatable/equatable-interface.html#_esfx_equatable_Equatable_interface">Equatable</a></h4>
+        <section><p>Represents a value that can compare its equality with another value.</p>
+</section>
+        <h4><a class="xref" href="equatable/structuralcomparable-interface.html#_esfx_equatable_StructuralComparable_interface">StructuralComparable</a></h4>
+        <section><p>Represents a value that can compare its structure relationally with another value.</p>
+</section>
+        <h4><a class="xref" href="equatable/structuralequatable-interface.html#_esfx_equatable_StructuralEquatable_interface">StructuralEquatable</a></h4>
+        <section><p>Represents a value that can compare its structural equality with another value.</p>
+</section>
+    <h3 id="functions">Functions
   </h3>
   
   
-  <h4 id="_esfx_equatable_combineHashes_function_1_" data-uid="@esfx/equatable!combineHashes:function(1)">combineHashes(x, y, rotate)</h4>
-  <div class="markdown level1 summary"><p>Combines two hash codes.</p>
+        <h4 id="_esfx_equatable_combineHashes_function_1_" data-uid="@esfx/equatable!combineHashes:function(1)">combineHashes(x, y, rotate)</h4>
+              <div class="markdown level1 summary"><p>Combines two hash codes.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">function combineHashes(x: number, y: number, rotate?: number): number;</code></pre>
-  </div>
-  
-  <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>x</dt>
-    <dd class="type"><span class="xref">number</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>y</dt>
-    <dd class="type"><span class="xref">number</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-    <dt>rotate</dt>
-    <dd class="type"><span class="xref">number</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
-  <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">number</span></span>
-  <p class="description">
-  </div>
-  <h3 id="typealiases">
-  
-  
-  
-  
-  
-  
-  
-  
-  Type Aliases
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">function combineHashes(x: number, y: number, rotate?: number): number;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">number</span></td>
+              <td><em>x</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+            <tr>
+              <td><span class="xref">number</span></td>
+              <td><em>y</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+            <tr>
+              <td><span class="xref">number</span></td>
+              <td><em>rotate</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">number</span></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+    <h3 id="variables">Variables
   </h3>
   
   
-  <h4 id="_esfx_equatable_Comparison_type" data-uid="@esfx/equatable!Comparison:type">Comparison</h4>
-  <div class="markdown level1 summary"><p>Describes a function that can be used to compare the relational equality of two values, returning a value indicating one of the following conditions: - A negative value indicates <code>x</code> is lesser than <code>y</code><!-- -->. - A positive value indicates <code>x</code> is greater than <code>y</code><!-- -->. - A zero value indicates <code>x</code> and <code>y</code> are equivalent.</p>
+        <h4 id="_esfx_equatable_defaultComparer_var" data-uid="@esfx/equatable!defaultComparer:var">defaultComparer</h4>
+              <div class="markdown level1 summary"><p>The default <code>Comparer</code><!-- -->.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare type Comparison&lt;T&gt; = (x: T, y: T) =&gt; number;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>T</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><span class="xref">(x: T, y: T) =&gt; number</span></span>
-  <p class="description">
-  </div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">defaultComparer: Comparer&lt;unknown&gt;</code></pre>
+        </div>
   
   
-  <h4 id="_esfx_equatable_EqualityComparison_type" data-uid="@esfx/equatable!EqualityComparison:type">EqualityComparison</h4>
-  <div class="markdown level1 summary"><p>Describes a function that can be used to compare the equality of two values.</p>
+        <h4 id="_esfx_equatable_defaultEqualer_var" data-uid="@esfx/equatable!defaultEqualer:var">defaultEqualer</h4>
+              <div class="markdown level1 summary"><p>Gets the default <code>Equaler</code><!-- -->.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare type EqualityComparison&lt;T&gt; = (x: T, y: T) =&gt; boolean;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>T</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><span class="xref">(x: T, y: T) =&gt; boolean</span></span>
-  <p class="description">
-  </div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">defaultEqualer: Equaler&lt;unknown&gt;</code></pre>
+        </div>
   
   
-  <h4 id="_esfx_equatable_HashGenerator_type" data-uid="@esfx/equatable!HashGenerator:type">HashGenerator</h4>
-  <div class="markdown level1 summary"><p>Describes a function that can be used to compute a hash code for a value.</p>
+        <h4 id="_esfx_equatable_structuralComparer_var" data-uid="@esfx/equatable!structuralComparer:var">structuralComparer</h4>
+              <div class="markdown level1 summary"><p>A default <code>Comparer</code> that supports <code>StructuralComparable</code> values.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare type HashGenerator&lt;T&gt; = (x: T) =&gt; number;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>T</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><span class="xref">(x: T) =&gt; number</span></span>
-  <p class="description">
-  </div>
-  <h3 id="variables">
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">structuralComparer: Comparer&lt;unknown&gt;</code></pre>
+        </div>
   
   
-  
-  
-  
-  
-  
-  
-  
-  Variables</h3>
-  
-  
-  <h4 id="_esfx_equatable_defaultComparer_var" data-uid="@esfx/equatable!defaultComparer:var">defaultComparer</h4>
-  <div class="markdown level1 summary"><p>The default <code>Comparer</code><!-- -->.</p>
+        <h4 id="_esfx_equatable_structuralEqualer_var" data-uid="@esfx/equatable!structuralEqualer:var">structuralEqualer</h4>
+              <div class="markdown level1 summary"><p>Gets a default <code>Equaler</code> that supports <code>StructuralEquatable</code> values.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">defaultComparer: Comparer&lt;unknown&gt;</code></pre>
-  </div>
-  
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;unknown&gt;</span>
-  <p class="description">
-  </div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">structuralEqualer: Equaler&lt;unknown&gt;</code></pre>
+        </div>
   
   
-  <h4 id="_esfx_equatable_defaultEqualer_var" data-uid="@esfx/equatable!defaultEqualer:var">defaultEqualer</h4>
-  <div class="markdown level1 summary"><p>Gets the default <code>Equaler</code><!-- -->.</p>
+        <h4 id="_esfx_equatable_tupleComparer_var" data-uid="@esfx/equatable!tupleComparer:var">tupleComparer</h4>
+              <div class="markdown level1 summary"><p>A default <code>Comparer</code> that compares array values rather than the arrays themselves.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">defaultEqualer: Equaler&lt;unknown&gt;</code></pre>
-  </div>
-  
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;unknown&gt;</span>
-  <p class="description">
-  </div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">tupleComparer: Comparer&lt;readonly unknown[]&gt;</code></pre>
+        </div>
   
   
-  <h4 id="_esfx_equatable_structuralComparer_var" data-uid="@esfx/equatable!structuralComparer:var">structuralComparer</h4>
-  <div class="markdown level1 summary"><p>A default <code>Comparer</code> that supports <code>StructuralComparable</code> values.</p>
+        <h4 id="_esfx_equatable_tupleEqualer_var" data-uid="@esfx/equatable!tupleEqualer:var">tupleEqualer</h4>
+              <div class="markdown level1 summary"><p>An <code>Equaler</code> that compares array values rather than the arrays themselves.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">structuralComparer: Comparer&lt;unknown&gt;</code></pre>
-  </div>
-  
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;unknown&gt;</span>
-  <p class="description">
-  </div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">tupleEqualer: Equaler&lt;readonly unknown[]&gt;</code></pre>
+        </div>
   
   
-  <h4 id="_esfx_equatable_structuralEqualer_var" data-uid="@esfx/equatable!structuralEqualer:var">structuralEqualer</h4>
-  <div class="markdown level1 summary"><p>Gets a default <code>Equaler</code> that supports <code>StructuralEquatable</code> values.</p>
+        <h4 id="_esfx_equatable_tupleStructuralComparer_var" data-uid="@esfx/equatable!tupleStructuralComparer:var">tupleStructuralComparer</h4>
+              <div class="markdown level1 summary"><p>A default <code>Comparer</code> that compares array values that may be <code>StructuralComparable</code> rather than the arrays themselves.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">structuralEqualer: Equaler&lt;unknown&gt;</code></pre>
-  </div>
-  
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;unknown&gt;</span>
-  <p class="description">
-  </div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">tupleStructuralComparer: Comparer&lt;readonly unknown[]&gt;</code></pre>
+        </div>
+    <h3 id="typealiases">Type Aliases
+  </h3>
   
   
-  <h4 id="_esfx_equatable_tupleComparer_var" data-uid="@esfx/equatable!tupleComparer:var">tupleComparer</h4>
-  <div class="markdown level1 summary"><p>A default <code>Comparer</code> that compares array values rather than the arrays themselves.</p>
+        <h4 id="_esfx_equatable_Comparison_type" data-uid="@esfx/equatable!Comparison:type">Comparison</h4>
+              <div class="markdown level1 summary"><p>Describes a function that can be used to compare the relational equality of two values, returning a value indicating one of the following conditions: - A negative value indicates <code>x</code> is lesser than <code>y</code><!-- -->. - A positive value indicates <code>x</code> is greater than <code>y</code><!-- -->. - A zero value indicates <code>x</code> and <code>y</code> are equivalent.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">tupleComparer: Comparer&lt;readonly unknown[]&gt;</code></pre>
-  </div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Comparison&lt;T&gt; = (x: T, y: T) =&gt; number;</code></pre>
+        </div>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
   
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;readonly unknown[]&gt;</span>
-  <p class="description">
-  </div>
   
-  
-  <h4 id="_esfx_equatable_tupleEqualer_var" data-uid="@esfx/equatable!tupleEqualer:var">tupleEqualer</h4>
-  <div class="markdown level1 summary"><p>An <code>Equaler</code> that compares array values rather than the arrays themselves.</p>
+        <h4 id="_esfx_equatable_EqualityComparison_type" data-uid="@esfx/equatable!EqualityComparison:type">EqualityComparison</h4>
+              <div class="markdown level1 summary"><p>Describes a function that can be used to compare the equality of two values.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">tupleEqualer: Equaler&lt;readonly unknown[]&gt;</code></pre>
-  </div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type EqualityComparison&lt;T&gt; = (x: T, y: T) =&gt; boolean;</code></pre>
+        </div>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
   
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;readonly unknown[]&gt;</span>
-  <p class="description">
-  </div>
   
-  
-  <h4 id="_esfx_equatable_tupleStructuralComparer_var" data-uid="@esfx/equatable!tupleStructuralComparer:var">tupleStructuralComparer</h4>
-  <div class="markdown level1 summary"><p>A default <code>Comparer</code> that compares array values that may be <code>StructuralComparable</code> rather than the arrays themselves.</p>
+        <h4 id="_esfx_equatable_HashGenerator_type" data-uid="@esfx/equatable!HashGenerator:type">HashGenerator</h4>
+              <div class="markdown level1 summary"><p>Describes a function that can be used to compute a hash code for a value.</p>
 </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">tupleStructuralComparer: Comparer&lt;readonly unknown[]&gt;</code></pre>
-  </div>
-  
-  <h5 class="fieldValue">Type</h5>
-  <div class="fieldValue">
-  <span class="type"><a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;readonly unknown[]&gt;</span>
-  <p class="description">
-  </div>
-  
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type HashGenerator&lt;T&gt; = (x: T) =&gt; number;</code></pre>
+        </div>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+    <h3 id="namespaces">Namespaces
+  </h3>
+        <h4><a class="xref" href="equatable/comparable-namespace.html#_esfx_equatable_Comparable_namespace">Comparable</a></h4>
+        <section><p>Utility functions and well-known symbols used to define a <code>Comparable</code><!-- -->.</p>
+</section>
+        <h4><a class="xref" href="equatable/comparer-namespace.html#_esfx_equatable_Comparer_namespace">Comparer</a></h4>
+        <section><p>Provides various implementations of <code>Comparer</code><!-- -->.</p>
+</section>
+        <h4><a class="xref" href="equatable/equaler-namespace.html#_esfx_equatable_Equaler_namespace">Equaler</a></h4>
+        <section><p>Provides various implementations of <code>Equaler</code><!-- -->.</p>
+</section>
+        <h4><a class="xref" href="equatable/equatable-namespace.html#_esfx_equatable_Equatable_namespace">Equatable</a></h4>
+        <section><p>Utility functions and well-known symbols used to define an <code>Equatable</code><!-- -->.</p>
+</section>
+        <h4><a class="xref" href="equatable/structuralcomparable-namespace.html#_esfx_equatable_StructuralComparable_namespace">StructuralComparable</a></h4>
+        <section><p>Utility functions and well-known symbols used to define a <code>StructuralComparable</code><!-- -->.</p>
+</section>
+        <h4><a class="xref" href="equatable/structuralequatable-namespace.html#_esfx_equatable_StructuralEquatable_namespace">StructuralEquatable</a></h4>
+        <section><p>Utility functions and well-known symbols used to define a <code>StructuralEquatable</code><!-- -->.</p>
+</section>
 </article>
           </div>
           

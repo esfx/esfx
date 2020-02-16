@@ -80,21 +80,14 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="@esfx/async-waitqueue!WaitQueue:class">
   
+  
   <h1 id="_esfx_async_waitqueue_WaitQueue_class" data-uid="@esfx/async-waitqueue!WaitQueue:class">Class WaitQueue
   </h1>
+  <h6><strong>Package</strong>: <a class="xref" href="../async-waitqueue.html">@esfx/async-waitqueue</a></h6>
   <div class="markdown level0 summary"><p>An async coordination primitive that provides a queue of Promises.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <h3 id="properties">
-  
-  Properties
-  
-  
-  
-  
-  
-  
-  
+  <h3 id="properties">Properties
   </h3>
   
   
@@ -106,22 +99,22 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get size(): number;</code></pre>
   </div>
-  
   <h5 class="propertyValue">Property Value</h5>
-  <div class="propertyValue">
-  <span class="type"><span class="xref">number</span></span>
-  <p class="description">
-  </div>
-  <h3 id="methods">
-  
-  
-  Methods
-  
-  
-  
-  
-  
-  
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
   </h3>
   
   
@@ -133,13 +126,22 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">cancelAll(): number;</code></pre>
   </div>
-  
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">number</span></span>
-  <p class="description"><p>The number of pending <code>wait()</code> operations that were rejected.</p>
-</p>
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td><p>The number of pending <code>wait()</code> operations that were rejected.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_waitqueue_WaitQueue_cancelOne_member_1_" data-uid="@esfx/async-waitqueue!WaitQueue#cancelOne:member(1)">cancelOne()</h4>
@@ -150,13 +152,22 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">cancelOne(): boolean;</code></pre>
   </div>
-  
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">boolean</span></span>
-  <p class="description"><p><code>true</code> if a pending <code>wait()</code> operation was rejected; otherwise, <code>false</code><!-- -->.</p>
-</p>
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">boolean</span></td>
+        <td><p><code>true</code> if a pending <code>wait()</code> operation was rejected; otherwise, <code>false</code><!-- -->.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_waitqueue_WaitQueue_rejectAll_member_1_" data-uid="@esfx/async-waitqueue!WaitQueue#rejectAll:member(1)">rejectAll(reason)</h4>
@@ -167,22 +178,42 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">rejectAll(reason: unknown): number;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>reason</dt>
-    <dd class="type"><span class="xref">unknown</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">unknown</span></td>
+        <td><em>reason</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">number</span></span>
-  <p class="description"><p>The number of pending <code>wait()</code> operations that were rejected.</p>
-</p>
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td><p>The number of pending <code>wait()</code> operations that were rejected.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_waitqueue_WaitQueue_rejectOne_member_1_" data-uid="@esfx/async-waitqueue!WaitQueue#rejectOne:member(1)">rejectOne(reason)</h4>
@@ -193,22 +224,42 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">rejectOne(reason: unknown): boolean;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>reason</dt>
-    <dd class="type"><span class="xref">unknown</span></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">unknown</span></td>
+        <td><em>reason</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">boolean</span></span>
-  <p class="description"><p><code>true</code> if a pending <code>wait()</code> operation was rejected; otherwise, <code>false</code><!-- -->.</p>
-</p>
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">boolean</span></td>
+        <td><p><code>true</code> if a pending <code>wait()</code> operation was rejected; otherwise, <code>false</code><!-- -->.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_waitqueue_WaitQueue_resolveAll_member_1_" data-uid="@esfx/async-waitqueue!WaitQueue#resolveAll:member(1)">resolveAll(this)</h4>
@@ -219,22 +270,42 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">resolveAll(this: WaitQueue&lt;void&gt;): number;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>this</dt>
-    <dd class="type"><a class="xref" href="waitqueue.html#_esfx_async_waitqueue_WaitQueue_class">WaitQueue</a>&lt;void&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="waitqueue.html#_esfx_async_waitqueue_WaitQueue_class">WaitQueue</a>&lt;void&gt;</td>
+        <td><em>this</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">number</span></span>
-  <p class="description"><p>The number of pending <code>wait()</code> operations that were resolved.</p>
-</p>
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td><p>The number of pending <code>wait()</code> operations that were resolved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_waitqueue_WaitQueue_resolveAll_member_2_" data-uid="@esfx/async-waitqueue!WaitQueue#resolveAll:member(2)">resolveAll(value)</h4>
@@ -245,22 +316,42 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">resolveAll(value: T | PromiseLike&lt;T&gt;): number;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>value</dt>
-    <dd class="type">T | <span class="xref">PromiseLike</span>&lt;T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T | <span class="xref">PromiseLike</span>&lt;T&gt;</td>
+        <td><em>value</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">number</span></span>
-  <p class="description"><p>The number of pending <code>wait()</code> operations that were resolved.</p>
-</p>
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td><p>The number of pending <code>wait()</code> operations that were resolved.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_waitqueue_WaitQueue_resolveOne_member_1_" data-uid="@esfx/async-waitqueue!WaitQueue#resolveOne:member(1)">resolveOne(this)</h4>
@@ -271,22 +362,42 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">resolveOne(this: WaitQueue&lt;void&gt;): boolean;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>this</dt>
-    <dd class="type"><a class="xref" href="waitqueue.html#_esfx_async_waitqueue_WaitQueue_class">WaitQueue</a>&lt;void&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="waitqueue.html#_esfx_async_waitqueue_WaitQueue_class">WaitQueue</a>&lt;void&gt;</td>
+        <td><em>this</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">boolean</span></span>
-  <p class="description"><p><code>true</code> if a pending <code>wait()</code> operation was resolved; otherwise, <code>false</code><!-- -->.</p>
-</p>
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">boolean</span></td>
+        <td><p><code>true</code> if a pending <code>wait()</code> operation was resolved; otherwise, <code>false</code><!-- -->.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_waitqueue_WaitQueue_resolveOne_member_2_" data-uid="@esfx/async-waitqueue!WaitQueue#resolveOne:member(2)">resolveOne(value)</h4>
@@ -297,22 +408,42 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">resolveOne(value: T | PromiseLike&lt;T&gt;): boolean;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>value</dt>
-    <dd class="type">T | <span class="xref">PromiseLike</span>&lt;T&gt;</dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>T | <span class="xref">PromiseLike</span>&lt;T&gt;</td>
+        <td><em>value</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">boolean</span></span>
-  <p class="description"><p><code>true</code> if a pending <code>wait()</code> operation was resolved; otherwise, <code>false</code><!-- -->.</p>
-</p>
-  </div>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">boolean</span></td>
+        <td><p><code>true</code> if a pending <code>wait()</code> operation was resolved; otherwise, <code>false</code><!-- -->.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_async_waitqueue_WaitQueue_wait_member_1_" data-uid="@esfx/async-waitqueue!WaitQueue#wait:member(1)">wait(cancelable)</h4>
@@ -323,22 +454,41 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">wait(cancelable?: Cancelable): Promise&lt;T&gt;;</code></pre>
   </div>
-  
   <h5 class="parameters">Parameters</h5>
-  <dl class="parameterList">
-    <dt>cancelable</dt>
-    <dd class="type"><a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></dd>
-    <dd class="description">
-      
-      
-    </dd>
-  </dl>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></td>
+        <td><em>cancelable</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
   <h5 class="returns">Returns</h5>
-  <div class="return">
-  <span class="type"><span class="xref">Promise</span>&lt;T&gt;</span>
-  <p class="description">
-  </div>
-  
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Promise</span>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           

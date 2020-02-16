@@ -7,6 +7,8 @@ const ts = require("typescript");
 const { AstSymbol } = require("@microsoft/api-extractor/lib/analyzer/AstSymbol");
 const { AstDeclaration } = require("@microsoft/api-extractor/lib/analyzer/AstDeclaration");
 const { ExportAnalyzer } = require("@microsoft/api-extractor/lib/analyzer/ExportAnalyzer");
+const { Collector } = require("@microsoft/api-extractor/lib/collector/Collector");
+const { InternalDeclarationMetadata } = require("@microsoft/api-extractor/lib/collector/DeclarationMetadata");
 
 // @ts-ignore
 const saved_tryMatchImportDeclaration = ExportAnalyzer.prototype._tryMatchImportDeclaration;
@@ -68,3 +70,32 @@ ExportAnalyzer.prototype._tryMatchImportDeclaration = function (declaration, dec
     return saved_tryMatchImportDeclaration.call(this, declaration, declarationSymbol);
 }
 
+// @ts-ignore
+Collector.prototype._calculateDeclarationMetadataForDeclarations = function(astSymbol) {
+    // Initialize DeclarationMetadata for each declaration
+    for (const astDeclaration of astSymbol.astDeclarations) {
+        const metadata = new InternalDeclarationMetadata();
+        // @ts-ignore
+        metadata.tsdocParserContext = this._parseTsdocForAstDeclaration(astDeclaration);
+        astDeclaration.declarationMetadata = metadata;
+    }
+    // Detect ancillary declarations
+    for (const astDeclaration of astSymbol.astDeclarations) {
+        // For a getter/setter pair, make the setter ancillary to the getter
+        if (astDeclaration.declaration.kind === ts.SyntaxKind.SetAccessor) {
+            let foundGetter = false;
+            for (const getterAstDeclaration of astDeclaration.astSymbol.astDeclarations) {
+                if (getterAstDeclaration.declaration.kind === ts.SyntaxKind.GetAccessor) {
+                    // Associate it with the getter
+                    // @ts-ignore
+                    this._addAncillaryDeclaration(getterAstDeclaration, astDeclaration);
+                    foundGetter = true;
+                }
+            }
+            if (!foundGetter) {
+                // @ts-ignore
+                this.messageRouter.addAnalyzerIssue("ae-missing-getter" /* MissingGetter */, `The property "${astDeclaration.astSymbol.localName}" has a setter but no getter.`, astDeclaration);
+            }
+        }
+    }
+};

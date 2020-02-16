@@ -15,6 +15,9 @@ const yargs = require("yargs")
     .option("watchAll", { type: "boolean", default: false })
     .option("fix", { type: "boolean", default: false })
     .option("interactive", { type: "boolean", default: true })
+    .option("docPackagePattern", { type: "string" })
+    .option("force", { type: "boolean", default: false })
+    .option("verbose", { type: "boolean", default: false })
     ;
 
 const { argv } = yargs;
@@ -100,7 +103,8 @@ function makeProjects(projects) {
     return { build, clean };
 }
 
-const docPackages = publicPackages.filter(docPackage => fs.existsSync(path.resolve(docPackage, "api-extractor.json")));
+const docPackagePattern = argv.docPackagePattern && new RegExp(argv.docPackagePattern, "i");
+const docPackages = publicPackages.filter(docPackage => fs.existsSync(path.resolve(docPackage, "api-extractor.json")) && (!docPackagePattern || docPackagePattern.test(docPackage)));
 
 const cleanDocsOutputs = () => del([
     "packages/*/obj",
@@ -118,9 +122,19 @@ gulp.task("clean:docs", gulp.parallel(
     cleanLegacyOutputs
 ));
 
+const docsApiExtractor = gulp.parallel(docPackages.map(docPackage => fname(`docs:api-extractor:${docPackage}`, () => apiExtractor(docPackage, { force: argv.force, verbose: argv.verbose }))));
+docsApiExtractor.name = "docs:api-extractor";
+
+const docsApiDocumenter = fname("docs:api-documenter", () => apiDocumenter(docPackages));
+
+const docsDocfx = fname("docs:docfx", () => docfx(argv.serve || false));
+
+gulp.task("docs:api-extractor", docsApiExtractor);
+gulp.task("docs:api-documenter", docsApiDocumenter);
+gulp.task("docs:docfx", docsDocfx)
 gulp.task("docs", gulp.series(
     build,
-    gulp.parallel(docPackages.map(docPackage => fname(`api-extractor:${docPackage}`, () => apiExtractor(docPackage)))),
-    fname("api-documenter", () => apiDocumenter(docPackages)),
-    fname("docfx", () => docfx(argv.serve || false))
+    docsApiExtractor,
+    docsApiDocumenter,
+    docsDocfx
 ));
