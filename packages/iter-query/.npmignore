@@ -1,0 +1,13 @@
+__tests__
+src
+tsconfig.json
+tsconfig.tsbuildinfo
+/fn/*.d.ts
+/fn/*.js
+/*.d.ts
+/*.js
+/.exportmap.json
+!/fn/index.d.ts
+!/fn/index.js
+!/index.d.ts
+!/index.js

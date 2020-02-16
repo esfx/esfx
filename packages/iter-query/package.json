@@ -1,0 +1,47 @@
+{
+    "name": "@esfx/iter-query",
+    "version": "1.0.0-pre.15",
+    "description": "An iteration and query API for ECMAScript iterables.",
+    "types": "index",
+    "main": "dist",
+    "type": "commonjs",
+    "exports": {
+        ".": "./dist/index.js",
+        "./": "./dist/"
+    },
+    "scripts": {
+        "postinstall": "generate-export-map"
+    },
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "devDependencies": {
+        "@esfx/internal-generate-export-map": "^1.0.0-pre.15",
+        "@esfx/internal-jest-sequence": "^1.0.0-pre.15"
+    },
+    "dependencies": {
+        "@esfx/collection-core": "^1.0.0-pre.13",
+        "@esfx/collections-hashmap": "^1.0.0-pre.13",
+        "@esfx/collections-hashset": "^1.0.0-pre.13",
+        "@esfx/equatable": "^1.0.0-pre.13",
+        "@esfx/fn": "^1.0.0-pre.15",
+        "@esfx/internal-assert": "^1.0.0-pre.15",
+        "@esfx/internal-binarysearch": "^1.0.0-pre.13",
+        "@esfx/internal-guards": "^1.0.0-pre.11",
+        "@esfx/iter-fn": "^1.0.0-pre.15",
+        "@esfx/iter-grouping": "^1.0.0-pre.15",
+        "@esfx/iter-hierarchy": "^1.0.0-pre.15",
+        "@esfx/iter-lookup": "^1.0.0-pre.15",
+        "@esfx/iter-ordered": "^1.0.0-pre.15",
+        "@esfx/iter-page": "^1.0.0-pre.15"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

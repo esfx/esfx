@@ -1,0 +1,11 @@
+{
+    "extends": "../../api-extractor-base.json",
+    "mainEntryPointFilePath": "index.d.ts",
+    "messages": {
+        "extractorMessageReporting": {
+            "ae-forgotten-export": {
+              "logLevel": "none"
+            }
+        }
+    }
+}

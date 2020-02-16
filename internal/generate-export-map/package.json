@@ -1,0 +1,23 @@
+{
+    "name": "@esfx/internal-generate-export-map",
+    "version": "1.0.0-pre.15",
+    "description": "This package provides internal utilities for '@esfx' and is not intended for use in user-code.",
+    "type": "commonjs",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "bin": {
+        "generate-export-map": "./index.js"
+    },
+    "dependencies": {
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

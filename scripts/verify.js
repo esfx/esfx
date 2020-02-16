@@ -206,7 +206,7 @@ for (const base of [internalPath, packagesPath]) {
 
         const referenceLocation = formatLocation(packageTsconfigJsonFile, references || packageTsconfigObject);
         for (const [expected, node] of expectedProjects) {
-            if (!actualProjects.has(expected)) {
+            if (!actualProjects.has(expected) && fs.existsSync(path.join(expected, "tsconfig.json"))) {
                 const relatedLocation = formatLocation(packageJsonFile, node);
                 const packageRelativeExpected = path.relative(packagePath, path.resolve(expected));
 
@@ -301,6 +301,23 @@ for (const base of [internalPath, packagesPath]) {
                         description: `Add development dependency '${packageDependencyName}' to '${baseRelativePackageJsonPath}'`
                     }]
                 });
+            }
+        }
+
+        const sourceFiles = collectSourceFiles(packageTsconfigJsonFile)
+            .filter(f => !f.isDeclarationFile && ts.isExternalModule(f));
+        for (const sourceFile of sourceFiles) {
+            const imports = sourceFile.statements.filter(ts.isImportDeclaration);
+            const exports = sourceFile.statements.filter(ts.isExportDeclaration);
+            for (const decl of [...imports, ...exports]) {
+                if (decl.moduleSpecifier && ts.isStringLiteral(decl.moduleSpecifier)) {
+                    if (/@esfx[\\/].*[\\/]src([\\/]|$)/.test(decl.moduleSpecifier.text)) {
+                        errorDiagnostics.push({
+                            message: `Invalid ${ts.isImportDeclaration(decl) ? "import" : "export"} for 'src': ${decl.moduleSpecifier.text}`,
+                            location: formatLocation(sourceFile, decl.moduleSpecifier)
+                        });
+                    }
+                }
             }
         }
     }
@@ -439,7 +456,8 @@ function collectPackageDependencies(file) {
                 }
                 const key = property.name.text;
                 if (key.startsWith("@esfx/internal-")) {
-                    packageDependencies.set(path.resolve(internalPath, key.slice("@esfx/internal-".length)).toLowerCase(), property.name);
+                    const packagePath = path.resolve(internalPath, key.slice("@esfx/internal-".length));
+                    packageDependencies.set(packagePath.toLowerCase(), property.name);
                 }
                 else if (key.startsWith("@esfx/")) {
                     packageDependencies.set(path.resolve(packagesPath, key.slice("@esfx/".length)).toLowerCase(), property.name);
@@ -473,6 +491,22 @@ function collectProjectReferences(file) {
     }
 
     return projectReferences;
+}
+
+/**
+ * @param {ts.JsonSourceFile} file 
+ */
+function collectSourceFiles(file) {
+    const commandLine = ts.parseJsonSourceFileConfigFileContent(file, ts.sys, path.dirname(file.fileName));
+    const host = ts.createCompilerHost(commandLine.options);
+    const program = ts.createProgram({
+        options: commandLine.options,
+        rootNames: commandLine.fileNames,
+        projectReferences: commandLine.projectReferences,
+        host,
+        configFileParsingDiagnostics: ts.getConfigFileParsingDiagnostics(commandLine)
+    });
+    return program.getSourceFiles();
 }
 
 /**

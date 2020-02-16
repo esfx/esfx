@@ -1,0 +1,14 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../../internal/assert" },
+        { "path": "../../internal/guards" },
+        { "path": "../equatable" },
+        { "path": "../iter-ordered" },
+    ]
+}

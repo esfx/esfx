@@ -73,13 +73,20 @@ module.exports = {
             initial: internal ? "This package provides internal utilities for '@esfx' and is not intended for use in user-code." : "",
         });
 
+        const { exportMap = false } = !internal ? await prompter.prompt({
+            type: "confirm",
+            name: "exportMap",
+            message: "will this package use a package.json 'exports' map?",
+            initial: true
+        }) : {};
+
         const { dependenciesSelection } = await prompter.prompt([{
             type: "multiselect",
             name: "dependenciesSelection",
             message: "dependencies",
             limit: 10,
             choices: packages
-                .filter(pkg => pkg.name !== "esfx")
+                .filter(pkg => pkg.name !== "esfx" && pkg.name !== "@esfx/internal-generate-export-map")
                 .map(pkg => ({ name: pkg.name, value: pkg.name }))
                 .sort((a, b) =>
                     compare(packageWeight(a), packageWeight(b)) ||
@@ -94,11 +101,16 @@ module.exports = {
                 path: cleanPath(path.relative(resolvedPackagePath, pkg.location))
             }));
 
+        const devDependencies = exportMap ?
+            packages.filter(pkg => pkg.name === "@esfx/internal-generate-export-map") :
+            undefined;
+
         return {
             ...args,
             name,
             version: project.version,
             internal,
+            exportMap,
             rootPath: cleanPath(relativeRootPath),
             prefix: cleanPath(relativePrefix),
             packagePath: cleanPath(relativePackagePath),
@@ -108,6 +120,7 @@ module.exports = {
             unscopedPackageName,
             description,
             dependencies,
+            devDependencies,
             injectGulpfileBefore: `add new ${internal ? "internal" : "public"} projects above this line`,
         };
     }

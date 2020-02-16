@@ -15,5 +15,13 @@
         { "path": "../collections-hashmap" },
         { "path": "../collections-hashset" },
         { "path": "../equatable" },
+        { "path": "../fn" },
+        { "path": "../iter-fn" },
+        { "path": "../iter-query" },
+        { "path": "../iter-grouping" },
+        { "path": "../iter-lookup" },
+        { "path": "../iter-page" },
+        { "path": "../iter-ordered" },
+        { "path": "../iter-hierarchy" },
     ]
 }

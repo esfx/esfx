@@ -424,6 +424,12 @@ export namespace Equaler {
         while (rotate >= 32) rotate -= 32;
         return ((x << rotate) | (x >>> (32 - rotate))) ^ y;
     }
+
+    export function hasInstance(value: unknown): value is Equaler<unknown> {
+        return Object(value) === value
+            && typeof (value as Equaler<unknown>).equals === "function"
+            && typeof (value as Equaler<unknown>).hash === "function";
+    }
 }
 
 export import defaultEqualer = Equaler.defaultEqualer;
@@ -539,6 +545,11 @@ export namespace Comparer {
      */
     export function create<T>(comparison: Comparison<T>): Comparer<T> {
         return { compare: comparison };
+    }
+
+    export function hasInstance(value: unknown): value is Comparer<unknown> {
+        return Object(value) === value
+            && typeof (value as Comparer<unknown>).compare === "function";
     }
 }
 

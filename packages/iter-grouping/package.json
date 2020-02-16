@@ -1,0 +1,34 @@
+{
+    "name": "@esfx/iter-grouping",
+    "version": "1.0.0-pre.15",
+    "description": "",
+    "main": "dist",
+    "types": "dist",
+    "type": "commonjs",
+    "exports": {
+        ".": "./dist/index.js",
+        "./": "./dist/"
+    },
+    "scripts": {
+        "postinstall": "generate-export-map"
+    },
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "dependencies": {
+        "@esfx/internal-assert": "^1.0.0-pre.15",
+        "@esfx/iter-hierarchy": "^1.0.0-pre.15"
+    },
+    "devDependencies": {
+        "@esfx/internal-generate-export-map": "^1.0.0-pre.15"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

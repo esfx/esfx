@@ -1,0 +1,26 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist",
+        "stripInternal": true
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../../internal/jest-sequence" },
+        { "path": "../../internal/assert" },
+        { "path": "../../internal/binarysearch" },
+        { "path": "../../internal/guards" },
+        { "path": "../collection-core" },
+        { "path": "../collections-hashmap" },
+        { "path": "../collections-hashset" },
+        { "path": "../equatable" },
+        { "path": "../fn" },
+        { "path": "../iter-fn" },
+        { "path": "../iter-grouping" },
+        { "path": "../iter-lookup" },
+        { "path": "../iter-page" },
+        { "path": "../iter-ordered" },
+        { "path": "../iter-hierarchy" },
+    ]
+}

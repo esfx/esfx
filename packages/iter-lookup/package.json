@@ -1,0 +1,28 @@
+{
+    "name": "@esfx/iter-lookup",
+    "version": "1.0.0-pre.15",
+    "description": "A collection class used to map and look up iterables related to a key.",
+    "main": "dist",
+    "types": "dist",
+    "type": "commonjs",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "dependencies": {
+        "@esfx/internal-jest-sequence": "^1.0.0-pre.15",
+        "@esfx/internal-assert": "^1.0.0-pre.15",
+        "@esfx/collections-hashmap": "^1.0.0-pre.13",
+        "@esfx/equatable": "^1.0.0-pre.13",
+        "@esfx/iter-grouping": "^1.0.0-pre.15"
+    },
+
+    "publishConfig": {
+        "access": "public"
+    }
+}

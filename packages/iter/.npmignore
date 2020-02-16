@@ -2,3 +2,8 @@ __tests__
 src
 tsconfig.json
 tsconfig.tsbuildinfo
+/*.d.ts
+/*.js
+/.exportmap.json
+!/index.d.ts
+!/index.js

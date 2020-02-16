@@ -14,15 +14,13 @@
    limitations under the License.
 */
 
-export * from "./types";
+export * from "@esfx/iter-grouping";
+export * from "@esfx/iter-hierarchy";
+export * from "@esfx/iter-lookup";
+export * from "@esfx/iter-ordered";
+export * from "@esfx/iter-page";
+export * from "@esfx/iter-query";
 
-import * as fn from "./fn/fn";
+// export * as fn from "@esfx/iter-fn";
+import * as fn from "@esfx/iter-fn";
 export { fn };
-
-export * from "./grouping";
-export * from "./hierarchy";
-export * from "./lookup";
-export * from "./ordered";
-export * from "./page";
-export * from "./query";
-export * from "./types";

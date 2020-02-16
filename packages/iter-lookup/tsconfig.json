@@ -1,0 +1,15 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../../internal/jest-sequence" },
+        { "path": "../../internal/assert" },
+        { "path": "../collections-hashmap" },
+        { "path": "../equatable" },
+        { "path": "../iter-grouping" },
+    ]
+}

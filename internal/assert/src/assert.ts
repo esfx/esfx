@@ -15,7 +15,7 @@
 */
 
 import * as Debug from "./debug";
-import { isObject, isIterable } from "@esfx/internal-guards";
+import { isBoolean, isNumber, isString, isObject, isFunction, isIterable, isIterator } from "@esfx/internal-guards";
 
 /* @internal */
 export function fail(ErrorType: new (message?: string) => Error, paramName: string | undefined, message: string | undefined, stackCrawlMark: Function = fail): never {
@@ -40,13 +40,34 @@ export function assertRange(condition: boolean, paramName?: string, message?: st
 }
 
 /* @internal */
+export function mustBeType<T>(test: (value: unknown) => value is T, value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeType): asserts value is T {
+    assertType(test(value), paramName, message, stackCrawlMark);
+}
+
+/* @internal */
+export function mustBeTypeOrUndefined<T>(test: (value: unknown) => value is T, value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeTypeOrUndefined): asserts value is T | undefined {
+    if (value !== undefined) mustBeType(test, value, paramName, message, stackCrawlMark);
+}
+
+/* @internal */
+export function mustBeTypeOrNull<T>(test: (value: unknown) => value is T, value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeTypeOrNull): asserts value is T | null {
+    if (value !== null) mustBeType(test, value, paramName, message, stackCrawlMark);
+}
+
+/* @internal */
+export function mustBeTypeInRange<T>(test: (value: unknown) => value is T, rangeTest: (value: T) => boolean, value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeTypeInRange): asserts value is T {
+    mustBeType(test, value, paramName, message, stackCrawlMark);
+    assertRange(rangeTest(value), paramName, message, stackCrawlMark);
+}
+
+/* @internal */
 export function mustBeBoolean(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeBoolean): asserts value is boolean {
-    assertType(typeof value === "boolean", paramName, message, stackCrawlMark);
+    mustBeType(isBoolean, value, paramName, message, stackCrawlMark);
 }
 
 /* @internal */
 export function mustBeNumber(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeNumber): asserts value is number {
-    assertType(typeof value === "number", paramName, message, stackCrawlMark);
+    mustBeType(isNumber, value, paramName, message, stackCrawlMark);
 }
 
 /* @internal */
@@ -63,67 +84,88 @@ export type tag_Integer = { tag_Integer: never };
 
 /* @internal */
 export function mustBeFiniteNumber<T>(value: T, paramName?: string, message?: string, stackCrawlMark: Function = mustBeFiniteNumber): asserts value is Extract<T, number> & tag_Finite {
-    mustBeNumber(value, paramName, message, stackCrawlMark);
-    assertRange(isFinite(value), paramName, message, stackCrawlMark);
+    mustBeTypeInRange(isNumber, isFinite, value, paramName, message, stackCrawlMark);
 }
+
+function isPositiveFinite(x: number) { return isFinite(x) && x >= 0; }
 
 /* @internal */
 export function mustBePositiveFiniteNumber<T>(value: T, paramName?: string, message?: string, stackCrawlMark: Function = mustBePositiveFiniteNumber): asserts value is Extract<T, number> & tag_Positive & tag_Finite {
-    mustBeNumber(value, paramName, message, stackCrawlMark);
-    assertRange(isFinite(value) && value >= 0, paramName, message, stackCrawlMark);
+    mustBeTypeInRange(isNumber, isPositiveFinite, value, paramName, message, stackCrawlMark);
 }
+
+function isPositiveNonZeroFinite(x: number) { return isFinite(x) && x > 0; }
 
 /* @internal */
 export function mustBePositiveNonZeroFiniteNumber<T>(value: T, paramName?: string, message?: string, stackCrawlMark: Function = mustBePositiveNonZeroFiniteNumber): asserts value is Exclude<Extract<T, number>, 0> & tag_Positive & tag_Finite & tag_NonZero {
-    mustBeNumber(value, paramName, message, stackCrawlMark);
-    assertRange(isFinite(value) && value > 0, paramName, message, stackCrawlMark);
+    mustBeTypeInRange(isNumber, isPositiveNonZeroFinite, value, paramName, message, stackCrawlMark);
 }
+
+function isInteger(x: number) { return Object.is(x, x | 0); }
 
 /* @internal */
 export function mustBeInteger<T>(value: T, paramName?: string, message?: string, stackCrawlMark: Function = mustBeInteger): asserts value is Extract<T, number> & tag_Integer {
-    mustBeNumber(value, paramName, message, stackCrawlMark);
-    assertRange(Object.is(value, value | 0), paramName, message, stackCrawlMark);
+    mustBeTypeInRange(isNumber, isInteger, value, paramName, message, stackCrawlMark);
 }
+
+function isPositiveInteger(x: number) { return isInteger(x) && x >= 0; }
 
 /* @internal */
 export function mustBePositiveInteger<T>(value: T, paramName?: string, message?: string, stackCrawlMark: Function = mustBePositiveInteger): asserts value is Extract<T, number> & tag_Integer & tag_Positive {
-    mustBeNumber(value, paramName, message, stackCrawlMark);
-    assertType(Object.is(value, value | 0), paramName, message, stackCrawlMark);
-    assertRange(value >= 0, paramName, message, stackCrawlMark);
+    mustBeTypeInRange(isNumber, isPositiveInteger, value, paramName, message, stackCrawlMark);
 }
 
 /* @internal */
 export function mustBeString(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeString): asserts value is string {
-    assertType(typeof value === "string", paramName, message, stackCrawlMark);
+    mustBeType(isString, value, paramName, message, stackCrawlMark);
 }
 
 /* @internal */
 export function mustBeObject(value: unknown, paramName?: string, message: string = "Object expected", stackCrawlMark: Function = mustBeObject): asserts value is object {
-    assertType(isObject(value), paramName, message, stackCrawlMark);
+    mustBeType(isObject, value, paramName, message, stackCrawlMark);
 }
 
 /* @internal */
 export function mustBeObjectOrNull(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeObjectOrNull): asserts value is object | null {
-    if (value !== null) mustBeObject(value, paramName, message, stackCrawlMark);
+    mustBeTypeOrNull(isObject, value, paramName, message, stackCrawlMark);
 }
 
 /* @internal */
 export function mustBeFunction(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeFunction): asserts value is Function {
-    assertType(typeof value === "function", paramName, message, stackCrawlMark);
+    mustBeType(isFunction, value, paramName, message, stackCrawlMark);
 }
 
 /* @internal */
 export function mustBeFunctionOrUndefined(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeFunctionOrUndefined): asserts value is Function | undefined {
-    if (value !== undefined) mustBeFunction(value, paramName, message, stackCrawlMark);
+    mustBeTypeOrUndefined(isFunction, value, paramName, message, stackCrawlMark);
 }
 
 /* @internal */
 export function mustBeIterable(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeIterable): asserts value is Iterable<unknown> {
-    mustBeObject(value, paramName, message, stackCrawlMark);
-    assertType(isIterable(value), paramName, message, stackCrawlMark);
+    mustBeType(isIterable, value, paramName, message, stackCrawlMark);
+}
+
+function isIterableObject(value: unknown): value is Iterable<unknown> & object {
+    return isObject(value) && isIterable(value);
 }
 
 /* @internal */
 export function mustBeIterableOrUndefined(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeIterableOrUndefined): asserts value is Iterable<unknown> | undefined {
-    if (value !== undefined) mustBeIterable(value, paramName, message, stackCrawlMark);
+    mustBeTypeOrUndefined(isIterable, value, paramName, message, stackCrawlMark);
 }
+
+/* @internal */
+export function mustBeIterableObject(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeIterable): asserts value is Iterable<unknown> & object {
+    mustBeType(isIterableObject, value, paramName, message, stackCrawlMark);
+}
+
+/* @internal */
+export function mustBeIterableObjectOrUndefined(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeIterable): asserts value is Iterable<unknown> & object {
+    mustBeTypeOrUndefined(isIterableObject, value, paramName, message, stackCrawlMark);
+}
+
+/* @internal */
+export function mustBeIterator(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeIterator): asserts value is Iterator<unknown, unknown, unknown> {
+    mustBeType(isIterator, value, paramName, message, stackCrawlMark);
+}
+

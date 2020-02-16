@@ -22,6 +22,11 @@ export function isFunction(value: unknown): value is Function {
 }
 
 /*@internal*/
+export function isFunctionOrUndefined(value: unknown): value is Function | undefined {
+    return typeof value === "function" || value === undefined;
+}
+
+/*@internal*/
 export function isObject(value: unknown): value is object {
     return typeof value === "object" && value !== null
         || typeof value === "function";
@@ -49,10 +54,20 @@ export function isDefined<T>(value: T): value is NonNullable<T> {
 
 /*@internal*/
 export function isIterable(value: unknown): value is Iterable<any> {
-    return typeof value === "object"
+    return value !== undefined
         && value !== null
-        && Symbol.iterator in value;
+        && Symbol.iterator in Object(value);
 }
+
+/** @internal */
+export function isIterator(value: unknown): value is Iterator<unknown> {
+    return isObject(value)
+        && isFunction((value as Iterator<unknown>).next)
+        && isFunctionOrUndefined((value as Iterator<unknown>).throw)
+        && isFunctionOrUndefined((value as Iterator<unknown>).return)
+        && isFunctionOrUndefined((value as IterableIterator<unknown>)[Symbol.iterator]);
+}
+
 
 /*@internal*/
 export function isNumber(value: unknown): value is number {
@@ -62,6 +77,11 @@ export function isNumber(value: unknown): value is number {
 /*@internal*/
 export function isBoolean(value: unknown): value is boolean {
     return typeof value === "boolean";
+}
+
+/*@internal*/
+export function isString(value: unknown): value is string {
+    return typeof value === "string";
 }
 
 /*@internal*/
