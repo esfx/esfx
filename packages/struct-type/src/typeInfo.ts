@@ -15,13 +15,13 @@
 */
 
 import { MatchingKeys } from '@esfx/type-model';
-import { StructPrimitiveType, StructType, StructFieldDefinition, StructDefinition, Struct } from './index';
+import { StructPrimitiveType, StructFieldDefinition, StructType, Struct as StructBase } from './index';
 import { NumberType, sizeOf, getValueFromView, putValueInView, Alignment } from './numbers';
+import { Struct as Struct_ } from "./struct";
 
 type StructTypeLike =
     | StructType
-    | (new (buffer: ArrayBufferLike, byteOffset?: number) => Struct)
-    | typeof Struct;
+    | typeof Struct_;
 
 const typeInfos = new WeakMap<object, TypeInfo>();
 
@@ -57,9 +57,9 @@ export abstract class TypeInfo {
         }
     }
 
-    abstract coerce(value: any): number | bigint | Struct;
-    abstract readFrom(view: DataView, offset: number, isLittleEndian?: boolean): number | bigint | Struct;
-    abstract writeTo(view: DataView, offset: number, value: number | bigint | Struct, isLittleEndian?: boolean): void;
+    abstract coerce(value: any): number | bigint | StructBase;
+    abstract readFrom(view: DataView, offset: number, isLittleEndian?: boolean): number | bigint | StructBase;
+    abstract writeTo(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean): void;
 }
 
 /* @internal */
@@ -120,7 +120,7 @@ export class PrimitiveTypeInfo extends TypeInfo {
     }
 }
 
-const weakFieldCache = new WeakMap<StructFieldInfo, WeakMap<Struct, Struct>>();
+const weakFieldCache = new WeakMap<StructFieldInfo, WeakMap<StructBase, StructBase>>();
 
 /* @internal */
 export class StructFieldInfo {
@@ -140,7 +140,7 @@ export class StructFieldInfo {
         Object.freeze(this);
     }
 
-    get name() { return this.field.name; }
+    get name(): string | symbol { return this.field.name; }
     get type() { return this.field.type; }
     get size() { return this.field.type.SIZE; }
 
@@ -148,7 +148,7 @@ export class StructFieldInfo {
         return this.typeInfo.coerce(value);
     }
 
-    readFrom(owner: Struct, view: DataView, isLittleEndian?: boolean) {
+    readFrom(owner: Struct_, view: DataView, isLittleEndian?: boolean) {
         if (this.typeInfo instanceof StructTypeInfo) {
             let cache = weakFieldCache.get(this);
             if (!cache) weakFieldCache.set(this, cache = new WeakMap());
@@ -159,7 +159,7 @@ export class StructFieldInfo {
         return this.typeInfo.readFrom(view, this.byteOffset, isLittleEndian);
     }
 
-    writeTo(_owner: Struct, view: DataView, value: number | bigint | Struct, isLittleEndian?: boolean) {
+    writeTo(_owner: Struct_, view: DataView, value: number | bigint | StructBase, isLittleEndian?: boolean) {
         this.typeInfo.writeTo(view, this.byteOffset, value, isLittleEndian);
     }
 }
@@ -174,7 +174,7 @@ export class StructTypeInfo extends TypeInfo {
 
     private _structType!: StructType;
 
-    constructor(fields: StructDefinition, baseType?: StructTypeInfo) {
+    constructor(fields: readonly StructFieldDefinition[], baseType?: StructTypeInfo) {
         const fieldNames = new Set<string | symbol>();
         const fieldsArray: StructFieldInfo[] = [];
         const fieldsByName = new Map<string | symbol, StructFieldInfo>();
@@ -244,7 +244,7 @@ export class StructTypeInfo extends TypeInfo {
         return new this._structType(view.buffer, view.byteOffset + offset);
     }
 
-    writeTo(view: DataView, offset: number, value: number | bigint | Struct, isLittleEndian?: boolean) {
+    writeTo(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean) {
         if (!(value instanceof this._structType)) {
             throw new TypeError();
         }
@@ -252,7 +252,7 @@ export class StructTypeInfo extends TypeInfo {
     }
 
     finishType<T extends StructType>(structType: T): T;
-    finishType(structType: typeof Struct): void;
+    finishType(structType: typeof Struct_): void;
     finishType<T extends StructType>(structType: T) {
         this._structType = structType;
         Object.freeze(this.ownFields);
