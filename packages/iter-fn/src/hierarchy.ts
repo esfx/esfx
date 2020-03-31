@@ -15,11 +15,14 @@
 */
 
 import * as assert from "@esfx/internal-assert";
-import { HierarchyProvider, HierarchyIterable, Hierarchical, OrderedHierarchyIterable } from "@esfx/iter-hierarchy";
+import { HashMap } from '@esfx/collections-hashmap';
+import { HashSet } from '@esfx/collections-hashset';
+import { Equaler } from '@esfx/equatable';
 import { T } from '@esfx/fn';
-import { toArray } from './scalars';
-import { Axis } from './internal/axis';
+import { Hierarchical, HierarchyIterable, HierarchyProvider, OrderedHierarchyIterable } from "@esfx/iter-hierarchy";
 import { OrderedIterable } from '@esfx/iter-ordered';
+import { Axis } from '@esfx/iter-hierarchy/dist/axis';
+import { toArray } from './scalars';
 
 function isHierarchyElement<T>(provider: HierarchyProvider<T>, value: T) {
     return value !== undefined && (provider.owns === undefined || provider.owns(value));
@@ -27,7 +30,7 @@ function isHierarchyElement<T>(provider: HierarchyProvider<T>, value: T) {
 
 function createHierarchyIterable(tag: string, axis: <TNode>(provider: HierarchyProvider<TNode>, element: TNode) => Iterable<TNode>) {
     return {
-        [tag]: class HierarchyHierarchyIterable<TNode> implements HierarchyIterable<TNode> {
+        [tag]: class <TNode> implements HierarchyIterable<TNode> {
             private _source: HierarchyIterable<TNode>;
             private _predicate: (element: TNode) => boolean;
             private _axis: (provider: HierarchyProvider<TNode>, element: TNode) => Iterable<TNode>;
@@ -202,6 +205,7 @@ export function precedingSiblings<TNode>(source: HierarchyIterable<TNode>, predi
 }
 
 export { precedingSiblings as siblingsBeforeSelf };
+export { followingSiblings as siblingsAfterSelf };
 
 const FollowingSiblingsHierarchyIterable = createHierarchyIterable("FollowingSiblingsHierarchyIterable", Axis.followingSiblings);
 
@@ -217,7 +221,6 @@ export function followingSiblings<TNode>(source: HierarchyIterable<TNode>, predi
     return new FollowingSiblingsHierarchyIterable(source, predicate);
 }
 
-export { followingSiblings as siblingsAfterSelf };
 
 const PrecedingHierarchyIterable = createHierarchyIterable("PrecedingHierarchyIterable", Axis.preceding);
 
@@ -236,7 +239,7 @@ export function preceding<TNode>(source: HierarchyIterable<TNode>, predicate: (e
 const FollowingHierarchyIterable = createHierarchyIterable("FollowingHierarchyIterable", Axis.following);
 
 /**
- * Selects the  that follow each node in the iterable. This is equivalent to the `following-sibling::*` selector in XPath or the `~` combinator in CSS.
+ * Selects the nodes that follow each node in the iterable. This is equivalent to the `following-sibling::*` selector in XPath or the `~` combinator in CSS.
  * @category Hierarchy
  */
 export function following<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
@@ -330,7 +333,7 @@ class NthChildHierarchyIterable<TNode> implements Iterable<TNode> {
  * @param predicate An optional callback used to filter the results.
  * @category Hierarchy
  */
-export function nthChild<TNode, U extends TNode>(source: HierarchyIterable<TNode>, offset: number, predicate?: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
+export function nthChild<TNode, U extends TNode>(source: HierarchyIterable<TNode>, offset: number, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function nthChild<TNode>(source: HierarchyIterable<TNode>, offset: number, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
 export function nthChild<TNode>(source: HierarchyIterable<TNode>, offset: number, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
     assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
@@ -342,25 +345,28 @@ export function nthChild<TNode>(source: HierarchyIterable<TNode>, offset: number
 class TopMostIterable<TNode, T extends TNode> implements HierarchyIterable<TNode, T> {
     private _source: HierarchyIterable<TNode, T>;
     private _predicate: (value: T) => boolean;
+    private _equaler: Equaler<TNode> | undefined;
 
-    constructor(source: HierarchyIterable<TNode, T>, predicate: (value: T) => boolean) {
+    constructor(source: HierarchyIterable<TNode, T>, predicate: (value: T) => boolean, equaler: Equaler<TNode> | undefined) {
         this._source = source;
         this._predicate = predicate;
+        this._equaler = equaler;
     }
 
     *[Symbol.iterator](): Iterator<T> {
         const source = this._source;
         const predicate = this._predicate;
+        const equaler = this._equaler;
         const hierarchy = source[Hierarchical.hierarchy]();
         const topMostNodes = toArray(source);
-        const ancestors = new Map<TNode, Set<TNode>>();
+        const ancestors = new HashMap<TNode, HashSet<TNode>>(equaler);
         for (let i = topMostNodes.length - 1; i >= 1; i--) {
             const node = topMostNodes[i];
             for (let j = i - 1; j >= 0; j--) {
                 const other = topMostNodes[j];
                 let ancestorsOfNode = ancestors.get(node);
                 if (!ancestorsOfNode) {
-                    ancestorsOfNode = new Set(Axis.ancestors(hierarchy, node));
+                    ancestorsOfNode = new HashSet(Axis.ancestors(hierarchy, node), equaler);
                     ancestors.set(node, ancestorsOfNode);
                 }
 
@@ -371,7 +377,7 @@ class TopMostIterable<TNode, T extends TNode> implements HierarchyIterable<TNode
 
                 let ancestorsOfOther = ancestors.get(other);
                 if (!ancestorsOfOther) {
-                    ancestorsOfOther = new Set(Axis.ancestors(hierarchy, other));
+                    ancestorsOfOther = new HashSet(Axis.ancestors(hierarchy, other), equaler);
                     ancestors.set(other, ancestorsOfOther);
                 }
 
@@ -398,46 +404,52 @@ class TopMostIterable<TNode, T extends TNode> implements HierarchyIterable<TNode
  *
  * @param source A `HierarchyIterable` object.
  * @param predicate An optional callback used to filter the results.
+ * @param equaler An optional `Equaler` used to compare equality between nodes.
  * @category Hierarchy
  */
-export function topMost<TNode, T extends TNode, U extends T>(source: HierarchyIterable<TNode, T>, predicate: (value: T) => value is U): HierarchyIterable<TNode, U>;
+export function topMost<TNode, T extends TNode, U extends T>(source: HierarchyIterable<TNode, T>, predicate: (value: T) => value is U, equaler?: Equaler<TNode>): HierarchyIterable<TNode, U>;
 /**
  * Creates a `HierarchyIterable` for the top-most elements. Elements that are a descendant of any other
  * element are removed.
  *
  * @param source A `HierarchyIterable` object.
  * @param predicate An optional callback used to filter the results.
+ * @param equaler An optional `Equaler` used to compare equality between nodes.
  * @category Hierarchy
  */
-export function topMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate?: (value: T) => boolean): HierarchyIterable<TNode, T>;
-export function topMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate: (value: T) => boolean = T): HierarchyIterable<TNode, T> {
+export function topMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate?: (value: T) => boolean, equaler?: Equaler<TNode>): HierarchyIterable<TNode, T>;
+export function topMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate: (value: T) => boolean = T, equaler: Equaler<TNode> = Equaler.defaultEqualer): HierarchyIterable<TNode, T> {
     assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
     assert.mustBeFunction(predicate, "predicate");
-    return new TopMostIterable(source, predicate);
+    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+    return new TopMostIterable<TNode, T>(source, predicate, equaler);
 }
 
 class BottomMostIterable<TNode, T extends TNode> implements HierarchyIterable<TNode, T> {
     private _source: HierarchyIterable<TNode, T>;
     private _predicate: (value: T) => boolean;
+    private _equaler: Equaler<TNode> | undefined;
 
-    constructor(source: HierarchyIterable<TNode, T>, predicate: (value: T) => boolean) {
+    constructor(source: HierarchyIterable<TNode, T>, predicate: (value: T) => boolean, equaler: Equaler<TNode> | undefined) {
         this._source = source;
         this._predicate = predicate;
+        this._equaler = equaler;
     }
 
     *[Symbol.iterator](): Iterator<T> {
         const source = this._source;
         const predicate = this._predicate;
+        const equaler = this._equaler;
         const hierarchy = source[Hierarchical.hierarchy]();
         const bottomMostNodes = toArray(source);
-        const ancestors = new Map<TNode, Set<TNode>>();
+        const ancestors = new HashMap<TNode, HashSet<TNode>>(equaler);
         for (let i = bottomMostNodes.length - 1; i >= 1; i--) {
             const node = bottomMostNodes[i];
             for (let j = i - 1; j >= 0; j--) {
                 const other = bottomMostNodes[j];
                 let ancestorsOfOther = ancestors.get(other);
                 if (!ancestorsOfOther) {
-                    ancestorsOfOther = new Set(Axis.ancestors(hierarchy, other));
+                    ancestorsOfOther = new HashSet(Axis.ancestors(hierarchy, other), equaler);
                     ancestors.set(other, ancestorsOfOther);
                 }
 
@@ -448,7 +460,7 @@ class BottomMostIterable<TNode, T extends TNode> implements HierarchyIterable<TN
 
                 let ancestorsOfNode = ancestors.get(node);
                 if (!ancestorsOfNode) {
-                    ancestorsOfNode = new Set(Axis.ancestors(hierarchy, node));
+                    ancestorsOfNode = new HashSet(Axis.ancestors(hierarchy, node), equaler);
                     ancestors.set(node, ancestorsOfNode);
                 }
 
@@ -477,20 +489,22 @@ class BottomMostIterable<TNode, T extends TNode> implements HierarchyIterable<TN
  * @param predicate An optional callback used to filter the results.
  * @category Hierarchy
  */
-export function bottomMost<TNode, T extends TNode, U extends T>(source: HierarchyIterable<TNode, T>, predicate: (value: T) => value is U): HierarchyIterable<TNode, U>;
+export function bottomMost<TNode, T extends TNode, U extends T>(source: HierarchyIterable<TNode, T>, predicate: (value: T) => value is U, equaler?: Equaler<TNode>): HierarchyIterable<TNode, U>;
 /**
  * Creates a `HierarchyIterable` for the bottom-most elements of a `HierarchyIterable`.
  * Elements of `source` that are an ancestor of any other element of `source` are removed.
  *
  * @param source A `HierarchyIterable` object.
  * @param predicate An optional callback used to filter the results.
+ * @param equaler An optional `Equaler` used to compare equality between nodes.
  * @category Hierarchy
  */
-export function bottomMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate?: (value: T) => boolean): HierarchyIterable<TNode, T>;
-export function bottomMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate: (value: T) => boolean = T): HierarchyIterable<TNode, T> {
+export function bottomMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate?: (value: T) => boolean, equaler?: Equaler<TNode>): HierarchyIterable<TNode, T>;
+export function bottomMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate: (value: T) => boolean = T, equaler: Equaler<TNode> = Equaler.defaultEqualer): HierarchyIterable<TNode, T> {
     assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
     assert.mustBeFunction(predicate, "predicate");
-    return new BottomMostIterable(source, predicate);
+    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+    return new BottomMostIterable<TNode, T>(source, predicate, equaler);
 }
 
 /**
@@ -498,6 +512,7 @@ export function bottomMost<TNode, T extends TNode>(source: HierarchyIterable<TNo
  *
  * @param source An `Iterable` object.
  * @param hierarchy A `HierarchyProvider`.
+ * @param equaler An optional `Equaler` used to compare equality between nodes.
  * @category Hierarchy
  */
 export function toHierarchy<TNode, T extends TNode = TNode>(iterable: OrderedIterable<T>, provider: HierarchyProvider<TNode>): OrderedHierarchyIterable<TNode, T>;

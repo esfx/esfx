@@ -102,6 +102,12 @@ export class HashSet<T> implements Collection<T> {
         return this;
     }
 
+    tryAdd(value: T) {
+        const oldSize = this.size;
+        insertEntry(this._hashData, value, value);
+        return this.size > oldSize;
+    }
+
     delete(value: T) {
         return deleteEntry(this._hashData, value);
     }

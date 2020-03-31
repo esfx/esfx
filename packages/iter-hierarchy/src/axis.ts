@@ -14,8 +14,8 @@
    limitations under the License.
 */
 
-import { HierarchyProvider } from "@esfx/iter-hierarchy";
-import { elementAt } from '../scalars';
+import { HierarchyProvider } from "./provider";
+import { Index } from "@esfx/interval";
 
 type HasPreviousSibling<T> = Pick<Required<HierarchyProvider<T>>, "previousSibling">;
 type HasNextSibling<T> = Pick<Required<HierarchyProvider<T>>, "nextSibling">;
@@ -38,9 +38,11 @@ function hasLastChild<T>(provider: HierarchyProvider<T>): provider is HierarchyP
     return provider.lastChild !== undefined;
 }
 
-/** @internal */
+/**
+ * Axis traversal helpers.
+ */
 export namespace Axis {
-    export function * self<T>(_provider: HierarchyProvider<T>, element: T) {
+    export function * self<T>(provider: HierarchyProvider<T>, element: T) {
         yield element;
     }
 
@@ -121,12 +123,54 @@ export namespace Axis {
             : lastChildFallback(provider, element);
     }
 
-    export function * nthChild<T>(provider: HierarchyProvider<T>, element: T, offset: number) {
+    function nth<T>(source: Iterable<T>, offset: number | Index): T | undefined {
+        let isFromEnd = false;
+        if (typeof offset === "number") {
+            isFromEnd = offset < 0;
+            if (isFromEnd) offset = -offset;
+        }
+        else {
+            isFromEnd = offset.isFromEnd;
+            offset = offset.value;
+        }
+        if (isFromEnd) {
+            if (offset === 0) {
+                return undefined;
+            }
+            if (offset === 1) {
+                let last: T | undefined;
+                for (const element of source) {
+                    last = element;
+                }
+                return last;
+            }
+            const array: T[] = [];
+            for (const element of source) {
+                if (array.length >= offset) {
+                    array.shift();
+                }
+                array.push(element);
+            }
+            return array.length === offset ? array[0] : undefined;
+        }
+        for (const element of source) {
+            if (offset === 0) {
+                return element;
+            }
+            offset--;
+        }
+        return undefined;
+    }
+
+    export function * nthChild<T>(provider: HierarchyProvider<T>, element: T, offset: number | Index) {
+        if (typeof offset !== "number" && !offset.isFromEnd) {
+            offset = offset.value;
+        }
         if (offset === 0) {
             yield* firstChild(provider, element);
         }
         else {
-            const child = elementAt(children(provider, element), offset);
+            const child = nth(children(provider, element), offset);
             if (child !== undefined) {
                 yield child;
             }

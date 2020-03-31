@@ -1,0 +1,18 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../../internal/assert" },
+        { "path": "../../internal/guards" },
+        { "path": "../async-iter-ordered" },
+        { "path": "../async-iter-ordered-fromsync" },
+        { "path": "../async-iter-fromsync" },
+        { "path": "../equatable" },
+        { "path": "../iter-hierarchy" },
+        { "path": "../iter-ordered" },
+    ]
+}

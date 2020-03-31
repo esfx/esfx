@@ -55,7 +55,7 @@ class PageByIterable<T, R> implements Iterable<R> {
 }
 
 /**
- * Creates an `Iterable` that splits a `Iterable` into one or more pages.
+ * Creates an `Iterable` that splits an `Iterable` into one or more pages.
  * While advancing from page to page is evaluated lazily, the elements of the page are
  * evaluated eagerly.
  *
@@ -65,7 +65,7 @@ class PageByIterable<T, R> implements Iterable<R> {
  */
 export function pageBy<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, pageSize: number): Iterable<HierarchyPage<TNode, T>>;
 /**
- * Creates an `Iterable` that splits a `Iterable` into one or more pages.
+ * Creates an `Iterable` that splits an `Iterable` into one or more pages.
  * While advancing from page to page is evaluated lazily, the elements of the page are
  * evaluated eagerly.
  *
@@ -76,7 +76,7 @@ export function pageBy<TNode, T extends TNode>(source: HierarchyIterable<TNode, 
  */
 export function pageBy<TNode, T extends TNode, R>(source: HierarchyIterable<TNode, T>, pageSize: number, pageSelector: (page: number, offset: number, values: HierarchyIterable<TNode, T>) => R): Iterable<R>;
 /**
- * Creates an `Iterable` that splits a `Iterable` into one or more pages.
+ * Creates an `Iterable` that splits an `Iterable` into one or more pages.
  * While advancing from page to page is evaluated lazily, the elements of the page are
  * evaluated eagerly.
  *
@@ -86,7 +86,7 @@ export function pageBy<TNode, T extends TNode, R>(source: HierarchyIterable<TNod
  */
 export function pageBy<T>(source: Iterable<T>, pageSize: number): Iterable<Page<T>>;
 /**
- * Creates an `Iterable` that splits a `Iterable` into one or more pages.
+ * Creates an `Iterable` that splits an `Iterable` into one or more pages.
  * While advancing from page to page is evaluated lazily, the elements of the page are
  * evaluated eagerly.
  *
@@ -253,7 +253,7 @@ class GroupByIterable<T, K, V, R> implements Iterable<R> {
 }
 
 /**
- * Groups each element of a `Iterable` by its key.
+ * Groups each element of an `Iterable` by its key.
  *
  * @param source An `Iterable` object.
  * @param keySelector A callback used to select the key for an element.
@@ -262,7 +262,7 @@ class GroupByIterable<T, K, V, R> implements Iterable<R> {
  */
 export function groupBy<TNode, T extends TNode, K>(source: HierarchyIterable<TNode, T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Iterable<HierarchyGrouping<K, TNode, T>>;
 /**
- * Groups each element of a `Iterable` by its key.
+ * Groups each element of an `Iterable` by its key.
  *
  * @param source An `Iterable` object.
  * @param keySelector A callback used to select the key for an element.
@@ -273,7 +273,7 @@ export function groupBy<TNode, T extends TNode, K>(source: HierarchyIterable<TNo
  */
 export function groupBy<TNode, T extends TNode, K, R>(source: HierarchyIterable<TNode, T>, keySelector: (element: T) => K, elementSelector: undefined, resultSelector: (key: K, elements: HierarchyIterable<TNode, T>) => R, keyEqualer?: Equaler<K>): Iterable<R>;
 /**
- * Groups each element of a `Iterable` by its key.
+ * Groups each element of an `Iterable` by its key.
  *
  * @param source An `Iterable` object.
  * @param keySelector A callback used to select the key for an element.
@@ -282,7 +282,7 @@ export function groupBy<TNode, T extends TNode, K, R>(source: HierarchyIterable<
  */
 export function groupBy<T, K>(source: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Iterable<Grouping<K, T>>;
 /**
- * Groups each element of a `Iterable` by its key.
+ * Groups each element of an `Iterable` by its key.
  *
  * @param source An `Iterable` object.
  * @param keySelector A callback used to select the key for an element.
@@ -292,7 +292,7 @@ export function groupBy<T, K>(source: Iterable<T>, keySelector: (element: T) => 
  */
 export function groupBy<T, K, V>(source: Iterable<T>, keySelector: (element: T) => K, elementSelector: (element: T) => V, keyEqualer?: Equaler<K>): Iterable<Grouping<K, V>>;
 /**
- * Groups each element of a `Iterable` by its key.
+ * Groups each element of an `Iterable` by its key.
  *
  * @param source An `Iterable` object.
  * @param keySelector A callback used to select the key for an element.

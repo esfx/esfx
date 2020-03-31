@@ -83,6 +83,106 @@ export interface HierarchyProvider<TNode> {
 }
 
 export namespace HierarchyProvider {
+    function flattenProviderWorker<T>(provider: HierarchyProvider<T>, providersSeen: Set<HierarchyProvider<T>>, providersOut: HierarchyProvider<T>[]) {
+        if (providersSeen.has(provider)) {
+            return;
+        }
+        providersSeen.add(provider);
+        if (provider.providers) {
+            for (const child of provider.providers()) {
+                flattenProviderWorker(child, providersSeen, providersOut);
+            }
+        }
+        else {
+            providersOut.push(provider);
+        }
+    }
+
+    function flattenProvider<T>(provider: HierarchyProvider<T>) {
+        const providersOut: HierarchyProvider<T>[] = [];
+        flattenProviderWorker(provider, new Set(), providersOut);
+        return providersOut;
+    }
+
+    function findOwner<T>(hierarchies: readonly HierarchyProvider<T>[], value: T) {
+        let bestMatch: HierarchyProvider<T> | undefined;
+        for (const hierarchy of hierarchies) {
+            if (hierarchy.owns) {
+                if (hierarchy.owns(value)) return hierarchy;
+            }
+            else if (!bestMatch) {
+                bestMatch = hierarchy;
+            }
+        }
+        return bestMatch;
+    }
+
+    const providerMembers = ["root", "firstChild", "lastChild", "previousSibling", "nextSibling"] as const;
+
+    /**
+     * Combines two hierarchy providers.
+     */
+    export function combine<T>(left: HierarchyProvider<T> | undefined, right: HierarchyProvider<T> | undefined): HierarchyProvider<T> | undefined {
+        if (right === undefined || left === right) return left;
+        if (left === undefined) return right;
+
+        const leftProviders = flattenProvider(left);
+        const rightProviders = flattenProvider(right);
+        const providers = [...new Set([...leftProviders, ...rightProviders])];
+
+        if (providers.length === 1) return providers[0];
+        if (providers.length === leftProviders.length) return left;
+        if (providers.length > leftProviders.length && providers.length === rightProviders.length) {
+            let startsWithLeftProviders = true;
+            for (let i = 0; i < leftProviders.length; i++) {
+                if (providers[i] !== leftProviders[i]) {
+                    startsWithLeftProviders = false;
+                    break;
+                }
+            }
+            if (startsWithLeftProviders) {
+                return right;
+            }
+        }
+
+        const composite: HierarchyProvider<T> = {
+            providers() {
+                return providers[Symbol.iterator]();
+            },
+            provider(value) {
+                return value !== undefined ? findOwner(providers, value) : undefined;
+            },
+            owns(value) {
+                return findOwner(providers, value) !== undefined;
+            },
+            parent(value) {
+                return findOwner(providers, value)?.parent(value);
+            },
+            children(value) {
+                return findOwner(providers, value)?.children(value) ?? { *[Symbol.iterator]() { }};
+            }
+        };
+
+        // Add optional helpers if every provider implements them...
+        const membersSet = new Set(providerMembers);
+        for (const provider of providers) {
+            for (const member of membersSet) {
+                if (provider[member] === undefined) {
+                    membersSet.delete(member);
+                }
+            }
+        }
+
+        for (const member of membersSet) {
+            composite[member] = (value: T) => {
+                const hierarchy = findOwner(providers, value);
+                return hierarchy?.[member]!(value)!;
+            };
+        }
+
+        return composite;
+    }
+
     export function hasInstance(value: unknown): value is HierarchyProvider<unknown> {
         return isObject(value)
             && isFunction((value as HierarchyProvider<unknown>).parent)

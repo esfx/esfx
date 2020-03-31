@@ -9,6 +9,7 @@
         { "path": "../../internal/assert" },
         { "path": "../../internal/guards" },
         { "path": "../equatable" },
+        { "path": "../interval" },
         { "path": "../iter-ordered" },
     ]
 }

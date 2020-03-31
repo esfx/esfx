@@ -45,7 +45,8 @@ import {
     IsEmpty,
     Diff,
     Intersect,
-    Assign
+    Assign,
+    AsyncIteratedType
 } from "..";
 
 it("type-model", () => {
@@ -91,21 +92,20 @@ it("type-model", () => {
 }
 // #endregion GeneratorNextType tests
 
-// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
-// // #region AsyncIteratedType tests
-// {
-//     type _ = [
-//         __Verify<__ExactType<AsyncIteratedType<AsyncIterable<number>>, number>>,
-//         __Verify<__ExactType<AsyncIteratedType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: false, value: number }> } }>, number>>,
-//     ];
-// }
-// // #endregion AsyncIteratedType tests
+// #region AsyncIteratedType tests
+{
+    type _ = [
+        __Test<__ExpectType<AsyncIteratedType<AsyncIterable<number>>, number>>,
+        __Test<__ExpectType<AsyncIteratedType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: false, value: number }> } }>, number>>,
+    ];
+}
+// #endregion AsyncIteratedType tests
 
 // TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
 // // #region AsyncGeneratorNextType tests
 // {
 //     type _ = [
-//         __Verify<__ExactType<AsyncGeneratorNextType<{ [Symbol.asyncIterator](): { next(value?: number): any } }>, number>>,
+//         __Test<__ExpectType<AsyncGeneratorNextType<{ [Symbol.asyncIterator](): { next(value?: number): any } }>, number>>,
 //     ];
 // }
 // // #endregion AsyncGeneratorNextType tests
@@ -114,8 +114,8 @@ it("type-model", () => {
 // // #region AsyncGeneratorReturnType tests
 // {
 //     type _ = [
-//         __Verify<__ExactType<AsyncGeneratorReturnType<AsyncIterable<number>>, number>>,
-//         __Verify<__ExactType<AsyncGeneratorReturnType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: true, value: number }> } }>, number>>,
+//         __Test<__ExpectType<AsyncGeneratorReturnType<AsyncIterable<number>>, number>>,
+//         __Test<__ExpectType<AsyncGeneratorReturnType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: true, value: number }> } }>, number>>,
 //     ];
 // }
 // // #endregion AsyncGeneratorReturnType tests
@@ -134,9 +134,9 @@ it("type-model", () => {
 // // #region UnionToIntersection tests
 // {
 //     type _ = [
-//         __Verify<__ExactType<UnionToIntersection<1 | 2>, 1 & 2>>,
-//         __Verify<__ExactType<UnionToIntersection<1 | never>, 1>>,
-//         __Verify<__ExactType<UnionToIntersection<1 | unknown>, unknown>>,
+//         __Test<__ExpectType<UnionToIntersection<1 | 2>, 1 & 2>>,
+//         __Test<__ExpectType<UnionToIntersection<1 | never>, 1>>,
+//         __Test<__ExpectType<UnionToIntersection<1 | unknown>, unknown>>,
 //     ];
 // }
 // // #endregion
@@ -624,9 +624,9 @@ it("type-model", () => {
 // // #region Await tests
 // {
 //     type _ = [
-//         __Verify<__ExactType<Await<number>,                   number>>,
-//         __Verify<__ExactType<Await<Promise<number>>,          number>>,
-//         __Verify<__ExactType<Await<Promise<Promise<number>>>, number>>,
+//         __Test<__ExpectType<Await<number>,                   number>>,
+//         __Test<__ExpectType<Await<Promise<number>>,          number>>,
+//         __Test<__ExpectType<Await<Promise<Promise<number>>>, number>>,
 //     ];
 // }
 // // #endregion Await tests
@@ -635,10 +635,10 @@ it("type-model", () => {
 // // #region AwaitAll tests
 // {
 //     type _ = [
-//         __Verify<__ExactType<AwaitAll<[]>,                          []>>,
-//         __Verify<__ExactType<AwaitAll<[number]>,                    [number]>>,
-//         __Verify<__ExactType<AwaitAll<[Promise<number>]>,           [number]>>,
-//         __Verify<__ExactType<AwaitAll<[Promise<number>, number]>,   [number, number]>>,
+//         __Test<__ExpectType<AwaitAll<[]>,                          []>>,
+//         __Test<__ExpectType<AwaitAll<[number]>,                    [number]>>,
+//         __Test<__ExpectType<AwaitAll<[Promise<number>]>,           [number]>>,
+//         __Test<__ExpectType<AwaitAll<[Promise<number>, number]>,   [number, number]>>,
 //     ];
 // }
 // // #endregion AwaitAll tests
@@ -647,10 +647,10 @@ it("type-model", () => {
 // // #region Shift tests
 // {
 //     type _ = [
-//         __Verify<__ExactType<Shift<[1, 2, 3]>,  [1, [2, 3]]>>,
-//         __Verify<__ExactType<Shift<[1, 2]>,     [1, [2]]>>,
-//         __Verify<__ExactType<Shift<[1]>,        [1, []]>>,
-//         __Verify<__ExactType<Shift<[]>,         [never, never]>>,
+//         __Test<__ExpectType<Shift<[1, 2, 3]>,  [1, [2, 3]]>>,
+//         __Test<__ExpectType<Shift<[1, 2]>,     [1, [2]]>>,
+//         __Test<__ExpectType<Shift<[1]>,        [1, []]>>,
+//         __Test<__ExpectType<Shift<[]>,         [never, never]>>,
 //     ];
 // }
 // // #endregion Shift tests
@@ -659,10 +659,10 @@ it("type-model", () => {
 // // #region Unshift tests
 // {
 //     type _ = [
-//         __Verify<__ExactType<Unshift<[1, 2], 3>,    [3, 1, 2]>>,
-//         __Verify<__ExactType<Unshift<[1], 2>,       [2, 1]>>,
-//         __Verify<__ExactType<Unshift<[], 1>,        [1]>>,
-//         __Verify<__ExactType<Unshift<never, 1>,     never>>,
+//         __Test<__ExpectType<Unshift<[1, 2], 3>,    [3, 1, 2]>>,
+//         __Test<__ExpectType<Unshift<[1], 2>,       [2, 1]>>,
+//         __Test<__ExpectType<Unshift<[], 1>,        [1]>>,
+//         __Test<__ExpectType<Unshift<never, 1>,     never>>,
 //     ];
 // }
 // // #endregion Unshift tests
@@ -671,12 +671,12 @@ it("type-model", () => {
 // // #region Reverse tests
 // {
 //     type _ = [
-//         __Verify<__ExactType<Reverse<[1, 2, 3]>,        [3, 2, 1]>>,
-//         __Verify<__ExactType<Reverse<[1, 2]>,           [2, 1]>>,
-//         __Verify<__ExactType<Reverse<[1]>,              [1]>>,
-//         __Verify<__ExactType<Reverse<[]>,               []>>,
-//         __Verify<__ExactType<Reverse<[1, ...number[]]>, [1]>>,
-//         __Verify<__ExactType<Reverse<never>,            never>>,
+//         __Test<__ExpectType<Reverse<[1, 2, 3]>,        [3, 2, 1]>>,
+//         __Test<__ExpectType<Reverse<[1, 2]>,           [2, 1]>>,
+//         __Test<__ExpectType<Reverse<[1]>,              [1]>>,
+//         __Test<__ExpectType<Reverse<[]>,               []>>,
+//         __Test<__ExpectType<Reverse<[1, ...number[]]>, [1]>>,
+//         __Test<__ExpectType<Reverse<never>,            never>>,
 //     ];
 // }
 // // #endregion Reverse tests
@@ -685,10 +685,10 @@ it("type-model", () => {
 // // #region Pop tests
 // {
 //     type _ = [
-//         __Verify<__ExactType<Pop<[1, 2, 3]>,   [3, [1, 2]]>>,
-//         __Verify<__ExactType<Pop<[1, 2]>,      [2, [1]]>>,
-//         __Verify<__ExactType<Pop<[1]>,         [1, []]>>,
-//         __Verify<__ExactType<Pop<[]>,          [never, never]>>,
+//         __Test<__ExpectType<Pop<[1, 2, 3]>,   [3, [1, 2]]>>,
+//         __Test<__ExpectType<Pop<[1, 2]>,      [2, [1]]>>,
+//         __Test<__ExpectType<Pop<[1]>,         [1, []]>>,
+//         __Test<__ExpectType<Pop<[]>,          [never, never]>>,
 //     ];
 // }
 // // #endregion Pop tests
@@ -697,10 +697,10 @@ it("type-model", () => {
 // // #region Push tests
 // {
 //     type _ = [
-//         __Verify<__ExactType<Push<[1, 2], 3>,   [1, 2, 3]>>,
-//         __Verify<__ExactType<Push<[1], 2>,      [1, 2]>>,
-//         __Verify<__ExactType<Push<[], 1>,       [1]>>,
-//         __Verify<__ExactType<Push<never, 1>,    never>>,
+//         __Test<__ExpectType<Push<[1, 2], 3>,   [1, 2, 3]>>,
+//         __Test<__ExpectType<Push<[1], 2>,      [1, 2]>>,
+//         __Test<__ExpectType<Push<[], 1>,       [1]>>,
+//         __Test<__ExpectType<Push<never, 1>,    never>>,
 //     ]
 // }
 // // #endregion Push tests

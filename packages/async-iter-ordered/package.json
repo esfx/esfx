@@ -1,0 +1,25 @@
+{
+    "name": "@esfx/async-iter-ordered",
+    "version": "1.0.0-pre.15",
+    "description": "A Symbol-based API for defining an ECMAScript AsyncIterable with an inherent order.",
+    "main": "dist",
+    "types": "dist",
+    "type": "commonjs",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "dependencies": {
+        "@esfx/internal-guards": "^1.0.0-pre.11",
+        "@esfx/equatable": "^1.0.0-pre.13"
+    },
+
+    "publishConfig": {
+        "access": "public"
+    }
+}

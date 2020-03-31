@@ -15,7 +15,7 @@
 */
 
 import * as Debug from "./debug";
-import { isBoolean, isNumber, isString, isObject, isFunction, isIterable, isIterator } from "@esfx/internal-guards";
+import { isBoolean, isNumber, isString, isObject, isFunction, isIterable, isIterator, isAsyncIterable } from "@esfx/internal-guards";
 
 /* @internal */
 export function fail(ErrorType: new (message?: string) => Error, paramName: string | undefined, message: string | undefined, stackCrawlMark: Function = fail): never {
@@ -42,6 +42,11 @@ export function assertRange(condition: boolean, paramName?: string, message?: st
 /* @internal */
 export function mustBeType<T>(test: (value: unknown) => value is T, value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeType): asserts value is T {
     assertType(test(value), paramName, message, stackCrawlMark);
+}
+
+/* @internal */
+export function mustBeInstanceOf<T>(C: new (...args: any[]) => T, value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeType): asserts value is T {
+    assertType(value instanceof C, paramName, message, stackCrawlMark);
 }
 
 /* @internal */
@@ -169,3 +174,25 @@ export function mustBeIterator(value: unknown, paramName?: string, message?: str
     mustBeType(isIterator, value, paramName, message, stackCrawlMark);
 }
 
+function isAsyncIterableObject(value: unknown): value is AsyncIterable<unknown> & object {
+    return isObject(value) && isAsyncIterable(value);
+}
+
+/* @internal */
+export function mustBeAsyncIterableObject(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeIterable): asserts value is AsyncIterable<unknown> & object {
+    mustBeType(isAsyncIterableObject, value, paramName, message, stackCrawlMark);
+}
+
+function isAsyncOrSyncIterableObject(value: unknown): value is (AsyncIterable<unknown> | Iterable<unknown>) & object {
+    return isObject(value) && (isAsyncIterable(value) || isIterable(value));
+}
+
+/* @internal */
+export function mustBeAsyncOrSyncIterableObject(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeIterable): asserts value is (AsyncIterable<unknown> | Iterable<unknown>) & object {
+    mustBeType(isAsyncOrSyncIterableObject, value, paramName, message, stackCrawlMark);
+}
+
+/* @internal */
+export function mustBeAsyncOrSyncIterableObjectOrUndefined(value: unknown, paramName?: string, message?: string, stackCrawlMark: Function = mustBeIterable): asserts value is (AsyncIterable<unknown> | Iterable<unknown>) & object | undefined {
+    if (value !== undefined) mustBeType(isAsyncOrSyncIterableObject, value, paramName, message, stackCrawlMark);
+}

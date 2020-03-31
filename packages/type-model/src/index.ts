@@ -163,6 +163,17 @@ export type GeneratorNextType<T> =
     T extends { [Symbol.iterator](): { next(value?: infer U): any } } ? U :
     never;
 
+/**
+ * Gets the type yielded by an AsyncIterable.
+ */
+export type AsyncIteratedType<T> =
+    T extends { [Symbol.asyncIterator](): { next(...args: any): PromiseLike<infer R> } } ?
+        R extends { done?: boolean, value: any } ?
+            R["done"] extends true ? never :
+                R["value"] extends PromiseLike<infer V> ? V : R["value"] :
+            never :
+        never;
+
 // TODO(rbuckton): Depends on `Await<T>`, which is currently unsafe.
 // /**
 //  * Gets the type yielded by an AsyncIterable.

@@ -144,19 +144,24 @@ class FilterByIterable<T, K> implements Iterable<T> {
     private _source: Iterable<T>;
     private _keySelector: (element: T) => K;
     private _predicate: (key: K, offset: number) => boolean;
+    private _invert: boolean;
 
-    constructor(source: Iterable<T>, keySelector: (element: T) => K, predicate: (key: K, offset: number) => boolean) {
+    constructor(source: Iterable<T>, keySelector: (element: T) => K, predicate: (key: K, offset: number) => boolean, invert: boolean) {
         this._source = source;
         this._keySelector = keySelector;
         this._predicate = predicate;
+        this._invert = invert;
     }
 
     *[Symbol.iterator](): Iterator<T> {
         const keySelector = this._keySelector;
         const predicate = this._predicate;
+        const inverted = this._invert;
         let offset = 0;
         for (const element of this._source) {
-            if (predicate(keySelector(element), offset++)) {
+            let result = predicate(keySelector(element), offset++);
+            if (inverted) result = !result;
+            if (result) {
                 yield element;
             }
         }
@@ -185,7 +190,7 @@ export function filterBy<T, K>(source: Iterable<T>, keySelector: (element: T) =>
     assert.mustBeIterableObject(source, "source");
     assert.mustBeFunction(keySelector, "keySelector");
     assert.mustBeFunction(predicate, "predicate");
-    return flowHierarchy(new FilterByIterable(source, keySelector, predicate), source);
+    return flowHierarchy(new FilterByIterable(source, keySelector, predicate, /*invert*/ false), source);
 }
 
 export { filterBy as whereBy };
@@ -271,6 +276,95 @@ export function filterDefinedBy<T, K>(source: Iterable<T>, keySelector: (value: 
 }
 
 export { filterDefinedBy as whereDefinedBy };
+
+/**
+ * Creates an `Iterable` where the selected key for each element does not match the supplied predicate.
+ *
+ * @param source An `Iterable` object.
+ * @param keySelector A callback used to select the key for each element.
+ * @param predicate A callback used to match each key.
+ * @category Subquery
+ */
+export function filterNotBy<TNode, T extends TNode, K>(source: HierarchyIterable<TNode, T>, keySelector: (element: T) => K, predicate: (key: K, offset: number) => boolean): HierarchyIterable<TNode, T>;
+/**
+ * Creates an `Iterable` where the selected key for each element does not match the supplied predicate.
+ *
+ * @param source An `Iterable` object.
+ * @param keySelector A callback used to select the key for each element.
+ * @param predicate A callback used to match each key.
+ * @category Subquery
+ */
+export function filterNotBy<T, K>(source: Iterable<T>, keySelector: (element: T) => K, predicate: (key: K, offset: number) => boolean): Iterable<T>;
+export function filterNotBy<T, K>(source: Iterable<T>, keySelector: (element: T) => K, predicate: (key: K, offset: number) => boolean): Iterable<T> {
+    assert.mustBeIterableObject(source, "source");
+    assert.mustBeFunction(keySelector, "keySelector");
+    assert.mustBeFunction(predicate, "predicate");
+    return flowHierarchy(new FilterByIterable(source, keySelector, predicate, /*invert*/ true), source);
+}
+
+export { filterNotBy as whereNotBy };
+
+/**
+ * Creates an `Iterable` whose elements do not match the supplied predicate.
+ *
+ * @param source An `Iterable` object.
+ * @param predicate A callback used to match each element.
+ * @category Subquery
+ */
+export function filterNot<TNode, T extends TNode, U extends T>(source: HierarchyIterable<TNode, T>, predicate: (element: T, offset: number) => element is U): HierarchyIterable<TNode, U>;
+/**
+ * Creates an `Iterable` whose elements do not match the supplied predicate.
+ *
+ * @param source An `Iterable` object.
+ * @param predicate A callback used to match each element.
+ * @category Subquery
+ */
+export function filterNot<T, U extends T>(source: Iterable<T>, predicate: (element: T, offset: number) => element is U): Iterable<U>;
+/**
+ * Creates an `Iterable` whose elements do not match the supplied predicate.
+ *
+ * @param source An `Iterable` object.
+ * @param predicate A callback used to match each element.
+ * @category Subquery
+ */
+export function filterNot<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate: (element: T, offset: number) => boolean): HierarchyIterable<TNode, T>;
+/**
+ * Creates an `Iterable` whose elements do not match the supplied predicate.
+ *
+ * @param source An `Iterable` object.
+ * @param predicate A callback used to match each element.
+ * @category Subquery
+ */
+export function filterNot<T>(source: Iterable<T>, predicate: (element: T, offset: number) => boolean): Iterable<T>;
+export function filterNot<T>(source: Iterable<T>, predicate: (element: T, offset: number) => boolean): Iterable<T> {
+    assert.mustBeIterableObject(source, "source");
+    assert.mustBeFunction(predicate, "predicate");
+    return filterNotBy(source, identity, predicate);
+}
+
+export { filterNot as whereNot };
+
+/**
+ * Creates an `Iterable` where the selected key for each element is either `null` or `undefined`.
+ *
+ * @param source An `Iterable` object.
+ * @param keySelector A callback used to select the key for each element.
+ * @category Subquery
+ */
+export function filterNotDefinedBy<TNode, T extends TNode, K>(source: HierarchyIterable<TNode, T>, keySelector: (value: T) => K): HierarchyIterable<TNode, T>;
+/**
+ * Creates an `Iterable` where the selected key for each element is either `null` or `undefined`.
+ *
+ * @param source An `Iterable` object.
+ * @param keySelector A callback used to select the key for each element.
+ * @category Subquery
+ */
+export function filterNotDefinedBy<T, K>(source: Iterable<T>, keySelector: (value: T) => K): Iterable<T>;
+export function filterNotDefinedBy<T, K>(source: Iterable<T>, keySelector: (value: T) => K): Iterable<T> {
+    return filterNotBy(source, keySelector, isDefined);
+}
+
+export { filterNotDefinedBy as whereNotDefinedBy };
 
 class MapIterable<T, U> implements Iterable<U> {
     private _source: Iterable<T>;
@@ -467,21 +561,23 @@ export { dropRight as skipRight };
 class DropWhileIterable<T> implements Iterable<T> {
     private _source: Iterable<T>;
     private _predicate: (element: T) => boolean;
-    private _until: boolean;
+    private _invert: boolean;
 
-    constructor(source: Iterable<T>, predicate: (element: T) => boolean, until: boolean) {
+    constructor(source: Iterable<T>, predicate: (element: T) => boolean, invert: boolean) {
         this._source = source;
         this._predicate = predicate;
-        this._until = until;
+        this._invert = invert;
     }
 
     *[Symbol.iterator](): Iterator<T> {
         const predicate = this._predicate;
-        const until = this._until;
+        const inverted = this._invert;
         let skipping = true;
         for (const element of this._source) {
             if (skipping) {
-                skipping = !!predicate(element) === !until;
+                let result = predicate(element);
+                if (inverted) result = !result;
+                skipping = !!result;
             }
             if (!skipping) {
                 yield element;
@@ -511,7 +607,7 @@ export function dropWhile<T>(source: Iterable<T>, predicate: (element: T) => boo
 export function dropWhile<T>(source: Iterable<T>, predicate: (element: T) => boolean): Iterable<T> {
     assert.mustBeIterableObject(source, "source");
     assert.mustBeFunction(predicate, "predicate");
-    return flowHierarchy(new DropWhileIterable(source, predicate, /*until*/ false), source);
+    return flowHierarchy(new DropWhileIterable(source, predicate, /*invert*/ false), source);
 }
 
 export { dropWhile as skipWhile };
@@ -537,7 +633,7 @@ export function dropUntil<T>(source: Iterable<T>, predicate: (element: T) => boo
 export function dropUntil<T>(source: Iterable<T>, predicate: (element: T) => boolean): Iterable<T> {
     assert.mustBeIterableObject(source, "source");
     assert.mustBeFunction(predicate, "predicate");
-    return flowHierarchy(new DropWhileIterable(source, predicate, /*until*/ true), source);
+    return flowHierarchy(new DropWhileIterable(source, predicate, /*invert*/ true), source);
 }
 
 export { dropUntil as skipUntil };
@@ -642,18 +738,21 @@ export function takeRight<T>(source: Iterable<T>, count: number): Iterable<T> {
 class TakeWhileIterable<T> implements Iterable<T> {
     private _source: Iterable<T>;
     private _predicate: (element: T) => boolean;
-    private _until: boolean;
+    private _invert: boolean;
 
-    constructor(source: Iterable<T>, predicate: (element: T) => boolean, until: boolean) {
+    constructor(source: Iterable<T>, predicate: (element: T) => boolean, invert: boolean) {
         this._source = source;
         this._predicate = predicate;
-        this._until = until;
+        this._invert = invert;
     }
 
     *[Symbol.iterator](): Iterator<T> {
         const predicate = this._predicate;
+        const inverted = this._invert;
         for (const element of this._source) {
-            if (!predicate(element) === !this._until) {
+            let result = predicate(element);
+            if (inverted) result = !result;
+            if (!result) {
                 break;
             }
             yield element;
@@ -696,7 +795,7 @@ export function takeWhile<T>(source: Iterable<T>, predicate: (element: T) => boo
 export function takeWhile<T>(source: Iterable<T>, predicate: (element: T) => boolean): Iterable<T> {
     assert.mustBeIterableObject(source, "source");
     assert.mustBeFunction(predicate, "predicate");
-    return flowHierarchy(new TakeWhileIterable(source, predicate, /*until*/ false), source);
+    return flowHierarchy(new TakeWhileIterable(source, predicate, /*invert*/ false), source);
 }
 
 /**
@@ -734,7 +833,7 @@ export function takeUntil<T>(source: Iterable<T>, predicate: (element: T) => boo
 export function takeUntil<T>(source: Iterable<T>, predicate: (element: T) => boolean): Iterable<T> {
     assert.mustBeIterableObject(source, "source");
     assert.mustBeFunction(predicate, "predicate");
-    return flowHierarchy(new TakeWhileIterable(source, predicate, /*until*/ true), source);
+    return flowHierarchy(new TakeWhileIterable(source, predicate, /*invert*/ true), source);
 }
 
 class IntersectByIterable<T, K> implements Iterable<T> {
@@ -836,12 +935,6 @@ export function intersect<T>(left: Iterable<T>, right: Iterable<T>, equaler?: Eq
     return intersectBy(left, right, identity, equaler);
 }
 
-function tryAdd<T>(set: HashSet<T>, value: T): boolean {
-    const oldSize = set.size;
-    set.add(value);
-    return set.size > oldSize;
-}
-
 class UnionByIterable<T, K> implements Iterable<T> {
     private _left: Iterable<T>;
     private _right: Iterable<T>;
@@ -859,12 +952,12 @@ class UnionByIterable<T, K> implements Iterable<T> {
         const keySelector = this._keySelector;
         const set = new HashSet<K>(this._keyEqualer);
         for (const element of this._left) {
-            if (tryAdd(set, keySelector(element))) {
+            if (set.tryAdd(keySelector(element))) {
                 yield element;
             }
         }
         for (const element of this._right) {
-            if (tryAdd(set, keySelector(element))) {
+            if (set.tryAdd(keySelector(element))) {
                 yield element;
             }
         }
@@ -960,7 +1053,7 @@ class ExceptByIterable<T, K> implements Iterable<T> {
         const keySelector = this._keySelector;
         const set = toHashSet(this._right, keySelector, this._keyEqualer!);
         for (const element of this._left) {
-            if (tryAdd(set, keySelector(element))) {
+            if (set.tryAdd(keySelector(element))) {
                 yield element;
             }
         }
@@ -1360,19 +1453,19 @@ class SymmetricDifferenceByIterable<T, K> implements Iterable<T> {
         const right = new HashMap<K, T>(this._keyEqualer);
         for (const element of this._right) {
             const key = keySelector(element);
-            if (tryAdd(rightKeys, key)) {
+            if (rightKeys.tryAdd(key)) {
                 right.set(key, element);
             }
         }
         const set = new HashSet<K>(this._keyEqualer);
         for (const element of this._left) {
             const key = keySelector(element);
-            if (tryAdd(set, key) && !right.has(key)) {
+            if (set.tryAdd(key) && !right.has(key)) {
                 yield element;
             }
         }
         for (const [key, element] of right) {
-            if (tryAdd(set, key)) {
+            if (set.tryAdd(key)) {
                 yield element;
             }
         }

@@ -17,8 +17,6 @@
 import { HashMap } from '@esfx/collections-hashmap';
 import { Equaler } from '@esfx/equatable';
 import { Hierarchical, HierarchyProvider, HierarchyIterable } from '@esfx/iter-hierarchy';
-import { startsWith } from '../scalars';
-import { empty } from '../queries';
 
 /** @internal */
 export function createGroupings<T, K, V>(source: Iterable<T>, keySelector: (element: T) => K, elementSelector: (element: T) => V, keyEqualer?: Equaler<K>): HashMap<K, V[]> {
@@ -37,94 +35,6 @@ export function createGroupings<T, K, V>(source: Iterable<T>, keySelector: (elem
     return map;
 }
 
-function flattenProviderWorker<T>(provider: HierarchyProvider<T>, providersSeen: Set<HierarchyProvider<T>>, providersOut: HierarchyProvider<T>[]) {
-    if (providersSeen.has(provider)) {
-        return;
-    }
-    providersSeen.add(provider);
-    if (provider.providers) {
-        for (const child of provider.providers()) {
-            flattenProviderWorker(child, providersSeen, providersOut);
-        }
-    }
-    else {
-        providersOut.push(provider);
-    }
-}
-
-function flattenProvider<T>(provider: HierarchyProvider<T>) {
-    const providersOut: HierarchyProvider<T>[] = [];
-    flattenProviderWorker(provider, new Set(), providersOut);
-    return providersOut;
-}
-
-function findOwner<T>(hierarchies: readonly HierarchyProvider<T>[], value: T) {
-    let bestMatch: HierarchyProvider<T> | undefined;
-    for (const hierarchy of hierarchies) {
-        if (hierarchy.owns) {
-            if (hierarchy.owns(value)) return hierarchy;
-        }
-        else if (!bestMatch) {
-            bestMatch = hierarchy;
-        }
-    }
-    return bestMatch;
-}
-
-const providerMembers = ["root", "firstChild", "lastChild", "previousSibling", "nextSibling"] as const;
-
-function combineProviders<T>(left: HierarchyProvider<T> | undefined, right: HierarchyProvider<T> | undefined) {
-    if (right === undefined || left === right) return left;
-    if (left === undefined) return right;
-
-    const leftProviders = flattenProvider(left);
-    const rightProviders = flattenProvider(right);
-    const providers = [...new Set([...leftProviders, ...rightProviders])];
-    
-    if (providers.length === 1) return providers[0];
-    if (providers.length === leftProviders.length) return left;
-    if (providers.length > leftProviders.length && providers.length === rightProviders.length && startsWith(providers, leftProviders)) {
-        return right;
-    }
-
-    const composite: HierarchyProvider<T> = {
-        providers() {
-            return providers[Symbol.iterator]();
-        },
-        provider(value) {
-            return value !== undefined ? findOwner(providers, value) : undefined;
-        },
-        owns(value) {
-            return findOwner(providers, value) !== undefined;
-        },
-        parent(value) {
-            return findOwner(providers, value)?.parent(value);
-        },
-        children(value) {
-            return findOwner(providers, value)?.children(value) ?? empty<T>();
-        }
-    };
-
-    // Add optional helpers if every provider implements them...
-    const membersSet = new Set(providerMembers);
-    for (const provider of providers) {
-        for (const member of membersSet) {
-            if (provider[member] === undefined) {
-                membersSet.delete(member);
-            }
-        }
-    }
-
-    for (const member of membersSet) {
-        composite[member] = (value: T) => {
-            const hierarchy = findOwner(providers, value);
-            return hierarchy?.[member]!(value)!;
-        };
-    }
-
-    return composite;
-}
-
 /** @internal */
 export function flowHierarchy<TNode, T extends TNode, TIter extends Iterable<T>>(to: TIter, fromLeft: HierarchyIterable<TNode, T>, fromRight?: Iterable<T>): TIter & Hierarchical<TNode>;
 /** @internal */
@@ -134,7 +44,7 @@ export function flowHierarchy<T, TIter extends Iterable<T>>(to: TIter, fromLeft:
 export function flowHierarchy<T, TIter extends Iterable<T>>(to: TIter, fromLeft: Iterable<T>, fromRight?: Iterable<T>): TIter {
     const leftProvider = HierarchyIterable.hasInstance(fromLeft) ? fromLeft[Hierarchical.hierarchy]() : undefined;
     const rightProvider = HierarchyIterable.hasInstance(fromRight) ? fromRight[Hierarchical.hierarchy]() : undefined;
-    const provider = combineProviders(leftProvider, rightProvider);
+    const provider = HierarchyProvider.combine(leftProvider, rightProvider);
     if (provider) {
         Object.defineProperty(to, Hierarchical.hierarchy, {
             enumerable: false,

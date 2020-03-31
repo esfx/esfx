@@ -59,6 +59,13 @@ export function isIterable(value: unknown): value is Iterable<any> {
         && Symbol.iterator in Object(value);
 }
 
+/*@internal*/
+export function isAsyncIterable(value: unknown): value is AsyncIterable<any> {
+    return value !== undefined
+        && value !== null
+        && Symbol.asyncIterator in Object(value);
+}
+
 /** @internal */
 export function isIterator(value: unknown): value is Iterator<unknown> {
     return isObject(value)
@@ -67,7 +74,6 @@ export function isIterator(value: unknown): value is Iterator<unknown> {
         && isFunctionOrUndefined((value as Iterator<unknown>).return)
         && isFunctionOrUndefined((value as IterableIterator<unknown>)[Symbol.iterator]);
 }
-
 
 /*@internal*/
 export function isNumber(value: unknown): value is number {
@@ -89,4 +95,10 @@ export function isPropertyKey(value: unknown): value is PropertyKey {
     return typeof value === "string"
         || typeof value === "symbol"
         || typeof value === "number";
+}
+
+/*@internal*/
+export function isPrimitive(value: unknown): value is string | symbol | number | bigint | boolean | undefined | null {
+    return typeof value !== "function"
+        && (typeof value !== "object" || value === null);
 }

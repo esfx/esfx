@@ -8,6 +8,7 @@ import * as books from "./data/books";
 import { Comparable } from '@esfx/equatable';
 import { HashSet } from '@esfx/collections-hashset';
 import { HashMap } from '@esfx/collections-hashmap';
+import { Index } from '@esfx/interval';
 
 describe("empty()", () => {
     it("is empty", () => expect(fn.empty()).toEqualSequence([]));
@@ -875,6 +876,9 @@ describe("elementAt()", () => {
     it("at offset 1", () => expect(fn.elementAt([1, 2, 3], 1)).toBe(2));
     it("at offset -1", () => expect(fn.elementAt([1, 2, 3], -1)).toBe(3));
     it("at offset -2", () => expect(fn.elementAt([1, 2, 3], -2)).toBe(2));
+    it("at offset ^0", () => expect(fn.elementAt([1, 2, 3], Index.fromEnd(0))).toBe(undefined));
+    it("at offset ^1", () => expect(fn.elementAt([1, 2, 3], Index.fromEnd(1))).toBe(3));
+    it("at offset ^2", () => expect(fn.elementAt([1, 2, 3], Index.fromEnd(2))).toBe(2));
     it("at offset greater than size", () => expect(fn.elementAt([1, 2, 3], 3)).toBeUndefined());
     it("at negative offset greater than size", () => expect(fn.elementAt([1, 2, 3], -4)).toBeUndefined());
     it.each`

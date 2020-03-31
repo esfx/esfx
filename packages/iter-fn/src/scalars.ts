@@ -23,7 +23,9 @@ import { Lookup } from "@esfx/iter-lookup";
 import { identity, T } from '@esfx/fn';
 import { consume, empty, ConsumeOptions } from './queries';
 import { prepend, takeRight } from './subqueries';
-import { createGroupings } from './internal/utils';
+import { createGroupings, flowHierarchy } from './internal/utils';
+import { HierarchyIterable } from '@esfx/iter-hierarchy';
+import { Index } from "@esfx/interval";
 
 /**
  * Computes a scalar value by applying an accumulator callback over each element.
@@ -154,6 +156,15 @@ export function count<T>(source: Iterable<T>, predicate: (element: T) => boolean
  * @param predicate An optional callback used to match each element.
  * @category Scalar
  */
+export function first<T, U extends T>(source: Iterable<T>, predicate: (element: T) => element is U): U | undefined;
+/**
+ * Gets the first element, optionally filtering elements using the supplied callback.
+ *
+ * @param source An `Iterable` object.
+ * @param predicate An optional callback used to match each element.
+ * @category Scalar
+ */
+export function first<T>(source: Iterable<T>, predicate?: (element: T) => boolean): T | undefined;
 export function first<T>(source: Iterable<T>, predicate: (element: T) => boolean = T): T | undefined {
     assert.mustBeIterableObject(source, "source");
     assert.mustBeFunction(predicate, "predicate");
@@ -173,6 +184,16 @@ export function first<T>(source: Iterable<T>, predicate: (element: T) => boolean
  * @param predicate An optional callback used to match each element.
  * @category Scalar
  */
+export function last<T, U extends T>(source: Iterable<T>, predicate: (element: T) => element is U): U | undefined;
+/**
+ * Gets the last element of a `Iterable`, optionally filtering elements using the supplied
+ * callback.
+ *
+ * @param source An `Iterable` object.
+ * @param predicate An optional callback used to match each element.
+ * @category Scalar
+ */
+export function last<T>(source: Iterable<T>, predicate?: (element: T) => boolean): T | undefined;
 export function last<T>(source: Iterable<T>, predicate: (element: T) => boolean = T): T | undefined {
     assert.mustBeIterableObject(source, "source");
     assert.mustBeFunction(predicate, "predicate");
@@ -192,6 +213,15 @@ export function last<T>(source: Iterable<T>, predicate: (element: T) => boolean 
  * @param predicate An optional callback used to match each element.
  * @category Scalar
  */
+export function single<T, U extends T>(source: Iterable<T>, predicate: (element: T) => element is U): U | undefined;
+/**
+ * Gets the only element, or returns `undefined`.
+ *
+ * @param source An `Iterable` object.
+ * @param predicate An optional callback used to match each element.
+ * @category Scalar
+ */
+export function single<T>(source: Iterable<T>, predicate?: (element: T) => boolean): T | undefined;
 export function single<T>(source: Iterable<T>, predicate: (element: T) => boolean = T) {
     assert.mustBeIterableObject(source, "source");
     assert.mustBeFunction(predicate, "predicate");
@@ -352,15 +382,15 @@ export function every<T>(source: Iterable<T>, predicate: (element: T) => boolean
  * @param source A `Iterable`
  * @category Scalar
  */
-export function unzip<T extends [any, ...any[]]>(source: Iterable<T>): { [I in keyof T]: T[I][]; };
+export function unzip<T extends readonly any[] | []>(source: Iterable<T>): { [I in keyof T]: T[I][]; };
 /**
  * Unzips a sequence of tuples into a tuple of sequences.
  * @param source A `Iterable`
  * @param partSelector A callback that converts a result into a tuple.
  * @category Scalar
  */
-export function unzip<T, U extends [any, ...any[]]>(source: Iterable<T>, partSelector: (value: T) => U): { [I in keyof U]: U[I][]; };
-export function unzip<T extends [any, ...any[]]>(source: Iterable<T>, partSelector: (value: T) => T = identity): any {
+export function unzip<T, U extends readonly any[] | []>(source: Iterable<T>, partSelector: (value: T) => U): { [I in keyof U]: U[I][]; };
+export function unzip<T extends readonly any[] | []>(source: Iterable<T>, partSelector: (value: T) => T = identity): any {
     const result: any[][] = [];
     let length = -1;
     for (const element of source) {
@@ -752,6 +782,32 @@ const cacheAndClose: ConsumeOptions = { cacheElements: true, leaveOpen: false };
  * @param predicate The predicate used to match elements.
  * @category Scalar
  */
+export function span<TNode, T extends TNode, U extends T>(source: HierarchyIterable<TNode, T>, predicate: (element: T, offset: number) => element is U): [HierarchyIterable<TNode, U>, HierarchyIterable<TNode, T>];
+/**
+ * Creates a tuple whose first element is an `Iterable` containing the first span of
+ * elements that match the supplied predicate, and whose second element is an `Iterable`
+ * containing the remaining elements.
+ *
+ * The first `Iterable` is eagerly evaluated, while the second `Iterable` is lazily
+ * evaluated.
+ *
+ * @param source An `Iterable` object.
+ * @param predicate The predicate used to match elements.
+ * @category Scalar
+ */
+export function span<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate: (element: T, offset: number) => boolean): [HierarchyIterable<TNode, T>, HierarchyIterable<TNode, T>];
+/**
+ * Creates a tuple whose first element is an `Iterable` containing the first span of
+ * elements that match the supplied predicate, and whose second element is an `Iterable`
+ * containing the remaining elements.
+ *
+ * The first `Iterable` is eagerly evaluated, while the second `Iterable` is lazily
+ * evaluated.
+ *
+ * @param source An `Iterable` object.
+ * @param predicate The predicate used to match elements.
+ * @category Scalar
+ */
 export function span<T, U extends T>(source: Iterable<T>, predicate: (element: T, offset: number) => element is U): [Iterable<U>, Iterable<T>];
 /**
  * Creates a tuple whose first element is an `Iterable` containing the first span of
@@ -776,15 +832,15 @@ export function span<T>(source: Iterable<T>, predicate: (element: T, offset: num
         if (!predicate(value, offset++)) {
             const remaining = prepend(consume(iterator, cacheAndClose), value);
             return [
-                prefix,
-                remaining
+                flowHierarchy({ [Symbol.iterator]() { return prefix[Symbol.iterator](); } }, source),
+                flowHierarchy(remaining, source)
             ];
         }
         prefix.push(value);
     }
     return [
-        prefix,
-        empty<T>()
+        flowHierarchy({ [Symbol.iterator]() { return prefix[Symbol.iterator](); } }, source),
+        flowHierarchy(empty<T>(), source)
     ];
 }
 
@@ -800,6 +856,20 @@ export function span<T>(source: Iterable<T>, predicate: (element: T, offset: num
  * @param predicate The predicate used to match elements.
  * @category Scalar
  */
+export function spanUntil<T>(source: HierarchyIterable<T>, predicate: (element: T, offset: number) => boolean): [HierarchyIterable<T>, HierarchyIterable<T>];
+/**
+ * Creates a tuple whose first element is an `Iterable` containing the first span of
+ * elements that do not match the supplied predicate, and whose second element is an `Iterable`
+ * containing the remaining elements.
+ *
+ * The first `Iterable` is eagerly evaluated, while the second `Iterable` is lazily
+ * evaluated.
+ *
+ * @param source An `Iterable` object.
+ * @param predicate The predicate used to match elements.
+ * @category Scalar
+ */
+export function spanUntil<T>(source: Iterable<T>, predicate: (element: T, offset: number) => boolean): [Iterable<T>, Iterable<T>];
 export function spanUntil<T>(source: Iterable<T>, predicate: (element: T, offset: number) => boolean): [Iterable<T>, Iterable<T>] {
     assert.mustBeIterableObject(source, "source");
     assert.mustBeFunction(predicate, "predicate");
@@ -810,15 +880,15 @@ export function spanUntil<T>(source: Iterable<T>, predicate: (element: T, offset
         if (predicate(value, offset++)) {
             const remaining = prepend(consume(iterator, cacheAndClose), value);
             return [
-                prefix,
-                remaining
+                flowHierarchy({ [Symbol.iterator]() { return prefix[Symbol.iterator](); } }, source),
+                flowHierarchy(remaining, source)
             ];
         }
         prefix.push(value);
     }
     return [
-        prefix,
-        empty<T>()
+        flowHierarchy({ [Symbol.iterator]() { return prefix[Symbol.iterator](); } }, source),
+        flowHierarchy(empty<T>(), source)
     ];
 }
 
@@ -914,14 +984,26 @@ export function corresponds<T, U>(left: Iterable<T>, right: Iterable<U>, equaler
  * @param offset An offset.
  * @category Scalar
  */
-export function elementAt<T>(source: Iterable<T>, offset: number): T | undefined {
+export function elementAt<T>(source: Iterable<T>, offset: number | Index): T | undefined {
     assert.mustBeIterableObject(source, "source")
-    assert.mustBeInteger(offset, "offset");
-    if (offset === -1) {
-        return last(source);
+    let isFromEnd = false;
+    if (typeof offset === "number") {
+        assert.mustBeInteger(offset, "offset");
+        isFromEnd = offset < 0;
+        if (isFromEnd) offset = -offset;
     }
-    if (offset < 0) {
-        offset = Math.abs(offset);
+    else {
+        assert.mustBeInstanceOf(Index, offset, "offset");
+        isFromEnd = offset.isFromEnd;
+        offset = offset.value;
+    }
+    if (isFromEnd) {
+        if (offset === 0) {
+            return undefined;
+        }
+        if (offset === 1) {
+            return last(source);
+        }
         const array: T[] = [];
         for (const element of source) {
             if (array.length >= offset) {
@@ -1111,7 +1193,6 @@ export function includesSequence<T>(left: Iterable<T>, right: Iterable<T>, equal
     return false;
 }
 
-
 class ArrayWrapper<T> {
     constructor(private array: T[]) { }
     get [IndexedCollection.size](): number { return this.array.length; }
@@ -1126,7 +1207,7 @@ class ArrayWrapper<T> {
  * have enough space to write the requested number of elements (i.e. arrays are *not* resized).
  *
  * @param source An `Iterable` object.
- * @param dest The destination array.
+ * @param collection The destination array or `IndexedCollection`.
  * @param start The offset into the array at which to start writing.
  * @param count The number of elements to write to the array.
  * @category Scalar

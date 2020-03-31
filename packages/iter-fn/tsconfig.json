@@ -16,6 +16,7 @@
         { "path": "../collections-hashset" },
         { "path": "../equatable" },
         { "path": "../fn" },
+        { "path": "../interval" },
         { "path": "../iter-grouping" },
         { "path": "../iter-lookup" },
         { "path": "../iter-page" },

@@ -1,0 +1,29 @@
+{
+    "extends": "../tsconfig-base",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist"
+    },
+    "include": ["src/**/*.ts"],
+    "references": [
+        { "path": "../../internal/assert" },
+        { "path": "../../internal/binarysearch" },
+        { "path": "../../internal/guards" },
+        { "path": "../async-iter-hierarchy" },
+        { "path": "../async-iter-ordered-fromsync" },
+        { "path": "../async-iter-ordered" },
+        { "path": "../async-iter-fromsync" },
+        { "path": "../collection-core" },
+        { "path": "../collections-hashmap" },
+        { "path": "../collections-hashset" },
+        { "path": "../equatable" },
+        { "path": "../fn" },
+        { "path": "../interval" },
+        { "path": "../iter-fn" },
+        { "path": "../iter-grouping" },
+        { "path": "../iter-hierarchy" },
+        { "path": "../iter-lookup" },
+        { "path": "../iter-ordered" },
+        { "path": "../iter-page" },
+    ]
+}

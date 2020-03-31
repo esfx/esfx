@@ -67,6 +67,12 @@
         { "path": "./threading-spinwait" },
         { "path": "./threading" },
         { "path": "./type-model" },
+        { "path": "./async-iter-fn" },
+        { "path": "./async-iter-ordered" },
+        { "path": "./async-iter-hierarchy" },
+        { "path": "./async-iter-fromsync" },
+        { "path": "./async-iter-ordered-fromsync" },
+        { "path": "./interval" },
         // hygen: add new project references above this line
     ]
 }
