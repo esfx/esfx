@@ -336,8 +336,8 @@ describe("Subqueries", () => {
     describe("materialize()", () => {
         it("materializes", async () => {
             const received: number[] = [];
-            const q = await fn.materializeAsync(fn.tapAsync([1, 2, 3, 4], x => { received.push(x); }));
-            expect(q).toEqualSequence([1, 2, 3, 4]);
+            const q = fn.materializeAsync(fn.tapAsync([1, 2, 3, 4], x => { received.push(x); }));
+            await expect(q).toEqualSequenceAsync([1, 2, 3, 4]);
             expect(received).toEqual([1, 2, 3, 4]);
         });
     });

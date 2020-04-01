@@ -26,6 +26,7 @@ import { Hierarchical, HierarchyIterable, HierarchyProvider } from "@esfx/iter-h
 import { OrderedIterable } from '@esfx/iter-ordered';
 import { Axis } from '@esfx/iter-hierarchy/dist/axis';
 import { toArrayAsync } from './scalars';
+import { Index } from '@esfx/interval';
 
 function isHierarchyElement<T>(provider: HierarchyProvider<T>, value: T) {
     return value !== undefined && (provider.owns === undefined || provider.owns(value));
@@ -299,10 +300,10 @@ export function lastChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | Hi
 
 class AsyncNthChildIterable<TNode, T extends TNode> implements AsyncIterable<TNode> {
     private _source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>;
-    private _predicate: (element: TNode) => Promise<boolean> | boolean;
-    private _offset: number;
+    private _predicate: (element: TNode) => PromiseLike<boolean> | boolean;
+    private _offset: number | Index;
 
-    constructor(source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, offset: number, predicate: (element: TNode) => Promise<boolean> | boolean) {
+    constructor(source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, offset: number | Index, predicate: (element: TNode) => PromiseLike<boolean> | boolean) {
         this._source = source;
         this._offset = offset;
         this._predicate = predicate;
@@ -340,7 +341,7 @@ class AsyncNthChildIterable<TNode, T extends TNode> implements AsyncIterable<TNo
  * @param predicate An optional callback used to filter the results.
  * @category Hierarchy
  */
-export function nthChildAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode, U> | HierarchyIterable<TNode, U>, offset: number, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
+export function nthChildAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode, U> | HierarchyIterable<TNode, U>, offset: number | Index, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 /**
  * Creates an `AsyncHierarchyIterable` for the child of each element at the specified offset. A negative offset
  * starts from the last child.
@@ -350,8 +351,8 @@ export function nthChildAsync<TNode, U extends TNode>(source: AsyncHierarchyIter
  * @param predicate An optional callback used to filter the results.
  * @category Hierarchy
  */
-export function nthChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, offset: number, predicate?: (element: TNode) => boolean): AsyncHierarchyIterable<TNode>;
-export function nthChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, offset: number, predicate: (element: TNode) => boolean = T): AsyncHierarchyIterable<TNode> {
+export function nthChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, offset: number | Index, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
+export function nthChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, offset: number | Index, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
     assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
     assert.mustBeInteger(offset, "offset");
     assert.mustBeFunction(predicate, "predicate");

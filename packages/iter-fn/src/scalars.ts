@@ -615,7 +615,239 @@ function makeDescriptor<K, V>(_key: K, value: V) {
  * @param keySelector A callback used to select a key for each element.
  * @category Scalar
  */
-export function toObject<T>(source: Iterable<T>, prototype: object | null | undefined, keySelector: (element: T) => PropertyKey): object;
+export function toObject<T, TProto extends object, K extends PropertyKey>(source: Iterable<T>, prototype: TProto, keySelector: (element: T) => K): TProto & Record<K, T>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = toObject(`"`, 1], ["y", 2]], undefined, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = toObject(`"`, 1], ["y", 2]], baseObject, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // function
+ * obj.toString(); // "x",1:"y",2
+ *
+ * // with a null prototype
+ * const obj = toObject(`"`, 1], ["y", 2]], null, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @category Scalar
+ */
+export function toObject<T, TProto extends object>(source: Iterable<T>, prototype: TProto, keySelector: (element: T) => PropertyKey): TProto & Record<PropertyKey, T>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = toObject(`"`, 1], ["y", 2]], undefined, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = toObject(`"`, 1], ["y", 2]], baseObject, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // function
+ * obj.toString(); // "x",1:"y",2
+ *
+ * // with a null prototype
+ * const obj = toObject(`"`, 1], ["y", 2]], null, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @category Scalar
+ */
+export function toObject<T, K extends PropertyKey>(source: Iterable<T>, prototype: object | null | undefined, keySelector: (element: T) => K): Record<K, T>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = toObject(`"`, 1], ["y", 2]], undefined, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = toObject(`"`, 1], ["y", 2]], baseObject, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // function
+ * obj.toString(); // "x",1:"y",2
+ *
+ * // with a null prototype
+ * const obj = toObject(`"`, 1], ["y", 2]], null, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @category Scalar
+ */
+export function toObject<T>(source: Iterable<T>, prototype: object | null | undefined, keySelector: (element: T) => PropertyKey): Record<PropertyKey, T>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = toObject(`"`, 1], ["y", 2]], undefined, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = toObject(`"`, 1], ["y", 2]], baseObject, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ * obj.toString(); // 1:2
+ *
+ * // with a null prototype
+ * const obj = toObject(`"`, 1], ["y", 2]], null, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @param elementSelector A callback that selects a value for each element.
+ * @param descriptorSelector A callback that defines the `PropertyDescriptor` for each property.
+ * @category Scalar
+ */
+export function toObject<T, TProto extends object, K extends PropertyKey, V>(source: Iterable<T>, prototype: TProto, keySelector: (element: T) => K, elementSelector: (element: T) => V, descriptorSelector?: (key: K, value: V) => TypedPropertyDescriptor<V>): TProto & Record<K, V>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = toObject(`"`, 1], ["y", 2]], undefined, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = toObject(`"`, 1], ["y", 2]], baseObject, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ * obj.toString(); // 1:2
+ *
+ * // with a null prototype
+ * const obj = toObject(`"`, 1], ["y", 2]], null, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @param elementSelector A callback that selects a value for each element.
+ * @param descriptorSelector A callback that defines the `PropertyDescriptor` for each property.
+ * @category Scalar
+ */
+export function toObject<T, TProto extends object, V>(source: Iterable<T>, prototype: TProto, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => V, descriptorSelector?: (key: PropertyKey, value: V) => TypedPropertyDescriptor<V>): TProto & Record<PropertyKey, V>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = toObject(`"`, 1], ["y", 2]], undefined, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = toObject(`"`, 1], ["y", 2]], baseObject, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ * obj.toString(); // 1:2
+ *
+ * // with a null prototype
+ * const obj = toObject(`"`, 1], ["y", 2]], null, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @param elementSelector A callback that selects a value for each element.
+ * @param descriptorSelector A callback that defines the `PropertyDescriptor` for each property.
+ * @category Scalar
+ */
+export function toObject<T, K extends PropertyKey, V>(source: Iterable<T>, prototype: object | null | undefined, keySelector: (element: T) => K, elementSelector: (element: T) => V, descriptorSelector?: (key: K, value: V) => TypedPropertyDescriptor<V>): Record<K, V>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = toObject(`"`, 1], ["y", 2]], undefined, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = toObject(`"`, 1], ["y", 2]], baseObject, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ * obj.toString(); // 1:2
+ *
+ * // with a null prototype
+ * const obj = toObject(`"`, 1], ["y", 2]], null, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @param elementSelector A callback that selects a value for each element.
+ * @param descriptorSelector A callback that defines the `PropertyDescriptor` for each property.
+ * @category Scalar
+ */
+export function toObject<T, V>(source: Iterable<T>, prototype: object | null | undefined, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => V, descriptorSelector?: (key: PropertyKey, value: V) => TypedPropertyDescriptor<V>): Record<PropertyKey, V>;
 /**
  * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
  *

@@ -31,6 +31,7 @@
         "@esfx/collections-hashset": "^1.0.0-pre.13",
         "@esfx/equatable": "^1.0.0-pre.13",
         "@esfx/fn": "^1.0.0-pre.15",
+        "@esfx/interval": "^1.0.0-pre.15",
         "@esfx/internal-assert": "^1.0.0-pre.15",
         "@esfx/internal-binarysearch": "^1.0.0-pre.13",
         "@esfx/internal-guards": "^1.0.0-pre.11",

@@ -417,14 +417,14 @@ async function everyAsyncCore<T>(source: AsyncIterable<T> | Iterable<PromiseLike
  * @param source An `AsyncIterable` or `Iterable`
  * @category Scalar
  */
-export function unzipAsync<T extends readonly any[] | []>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): Promise<{ [I in keyof T]: T[I][]; }>;
+export function unzipAsync<T extends readonly any[] | []>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): Promise<{ -readonly [I in keyof T]: T[I][]; }>;
 /**
  * Unzips a sequence of tuples into a tuple of sequences.
  * @param source An `AsyncIterable` or `Iterable`
  * @param partSelector A callback that converts a result into a tuple.
  * @category Scalar
  */
-export function unzipAsync<T, U extends readonly any[] | []>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, partSelector: (value: T) => PromiseLike<U> | U): Promise<{ [I in keyof U]: U[I][]; }>
+export function unzipAsync<T, U extends readonly any[] | []>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, partSelector: (value: T) => PromiseLike<U> | U): Promise<{ -readonly [I in keyof U]: U[I][]; }>
 export function unzipAsync<T extends readonly any[] | []>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, partSelector: (value: T) => PromiseLike<T> | T = identity): Promise<any> {
     assert.mustBeAsyncOrSyncIterableObject(source, "source");
     assert.mustBeFunction(partSelector, "partSelector");
@@ -672,7 +672,239 @@ async function toArrayAsyncCore<T>(source: AsyncIterable<T> | Iterable<PromiseLi
  * @param keySelector A callback used to select a key for each element.
  * @category Scalar
  */
-export function toObjectAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: object | null | undefined, keySelector: (element: T) => PropertyKey): Promise<object>;
+export function toObjectAsync<T, TProto extends object, K extends PropertyKey>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: TProto, keySelector: (element: T) => K): Promise<TProto & Record<K, T>>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], undefined, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], baseObject, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // function
+ * obj.toString(); // "x",1:"y",2
+ *
+ * // with a null prototype
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], null, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `AsyncIterable` or `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @category Scalar
+ */
+export function toObjectAsync<T, TProto extends object>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: TProto, keySelector: (element: T) => PropertyKey): Promise<TProto & Record<PropertyKey, T>>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], undefined, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], baseObject, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // function
+ * obj.toString(); // "x",1:"y",2
+ *
+ * // with a null prototype
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], null, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `AsyncIterable` or `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @category Scalar
+ */
+export function toObjectAsync<T, K extends PropertyKey>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: object | null | undefined, keySelector: (element: T) => K): Promise<Record<K, T>>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], undefined, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], baseObject, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // function
+ * obj.toString(); // "x",1:"y",2
+ *
+ * // with a null prototype
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], null, a => a[0]);
+ * obj.x; // ["x", 1]
+ * obj.y; // ["y", 2]
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `AsyncIterable` or `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @category Scalar
+ */
+export function toObjectAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: object | null | undefined, keySelector: (element: T) => PropertyKey): Promise<Record<PropertyKey, T>>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], undefined, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], baseObject, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ * obj.toString(); // 1:2
+ *
+ * // with a null prototype
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], null, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `AsyncIterable` or `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @param elementSelector A callback that selects a value for each element.
+ * @param descriptorSelector A callback that defines the `PropertyDescriptor` for each property.
+ * @category Scalar
+ */
+export function toObjectAsync<T, TProto extends object, K extends PropertyKey, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: TProto, keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, descriptorSelector?: (key: K, value: V) => TypedPropertyDescriptor<V>): Promise<TProto & Record<K, V>>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], undefined, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], baseObject, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ * obj.toString(); // 1:2
+ *
+ * // with a null prototype
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], null, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `AsyncIterable` or `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @param elementSelector A callback that selects a value for each element.
+ * @param descriptorSelector A callback that defines the `PropertyDescriptor` for each property.
+ * @category Scalar
+ */
+export function toObjectAsync<T, TProto extends object, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: TProto, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => PromiseLike<V> | V, descriptorSelector?: (key: PropertyKey, value: V) => TypedPropertyDescriptor<V>): Promise<TProto & Record<PropertyKey, V>>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], undefined, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], baseObject, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ * obj.toString(); // 1:2
+ *
+ * // with a null prototype
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], null, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `AsyncIterable` or `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @param elementSelector A callback that selects a value for each element.
+ * @param descriptorSelector A callback that defines the `PropertyDescriptor` for each property.
+ * @category Scalar
+ */
+export function toObjectAsync<T, K extends PropertyKey, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: object | null | undefined, keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, descriptorSelector?: (key: K, value: V) => TypedPropertyDescriptor<V>): Promise<Record<K, V>>;
+/**
+ * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
+ *
+ * ```ts
+ * // As a regular object
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], undefined, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ *
+ * // with a custom prototype
+ * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], baseObject, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // function
+ * obj.toString(); // 1:2
+ *
+ * // with a null prototype
+ * const obj = await toObjectAsync([Promise.resolve(["x", 1]), ["y", 2]], null, a => a[0], a => a[1]);
+ * obj.x; // 1
+ * obj.y; // 2
+ * typeof obj.toString; // undefined
+ * ```
+ *
+ * @param source An `AsyncIterable` or `Iterable` object.
+ * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+ * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+ * @param keySelector A callback used to select a key for each element.
+ * @param elementSelector A callback that selects a value for each element.
+ * @param descriptorSelector A callback that defines the `PropertyDescriptor` for each property.
+ * @category Scalar
+ */
+export function toObjectAsync<T, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: object | null | undefined, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => PromiseLike<V> | V, descriptorSelector?: (key: PropertyKey, value: V) => TypedPropertyDescriptor<V>): Promise<Record<PropertyKey, V>>;
 /**
  * Creates an Object for the elements of `source`. Properties are added via `Object.defineProperty`.
  *
@@ -707,7 +939,7 @@ export function toObjectAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike
  * @category Scalar
  */
 export function toObjectAsync<T, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: object | null | undefined, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => PromiseLike<V> | V, descriptorSelector?: (key: PropertyKey, value: V) => PropertyDescriptor): Promise<object>;
-export function toObjectAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: object | null = Object.prototype, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => PromiseLike<T> | T = identity, descriptorSelector: (key: PropertyKey, value: T) => PropertyDescriptor = makeDescriptor): Promise<object> {
+export function toObjectAsync<T, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: object | null = Object.prototype, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => PromiseLike<T | V> | T | V = identity, descriptorSelector: (key: PropertyKey, value: T | V) => PropertyDescriptor = makeDescriptor): Promise<object> {
     assert.mustBeAsyncOrSyncIterableObject(source, "source");
     assert.mustBeObjectOrNull(prototype, "prototype");
     assert.mustBeFunction(keySelector, "keySelector");
@@ -716,7 +948,7 @@ export function toObjectAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike
     return toObjectAsyncCore(source, prototype, keySelector, elementSelector, descriptorSelector);
 }
 
-async function toObjectAsyncCore<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: object | null, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => PromiseLike<T> | T, descriptorSelector: (key: PropertyKey, value: T) => PropertyDescriptor): Promise<object> {
+async function toObjectAsyncCore<T, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: object | null, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => PromiseLike<V> | V, descriptorSelector: (key: PropertyKey, value: V) => PropertyDescriptor): Promise<object> {
     const obj = prototype === Object.prototype ? {} : Object.create(prototype);
     for await (const item of source) {
         const key = keySelector(item);

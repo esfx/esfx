@@ -2,15 +2,19 @@
     "extends": "../tsconfig-base",
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "dist",
-        "stripInternal": true
+        "outDir": "dist"
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../internal/jest-sequence" },
         { "path": "../../internal/assert" },
         { "path": "../../internal/binarysearch" },
         { "path": "../../internal/guards" },
+        { "path": "../../internal/jest-sequence" },
+        { "path": "../async-iter-fn" },
+        { "path": "../async-iter-fromsync" },
+        { "path": "../async-iter-hierarchy" },
+        { "path": "../async-iter-ordered" },
+        { "path": "../async-iter-ordered-fromsync" },
         { "path": "../collection-core" },
         { "path": "../collections-hashmap" },
         { "path": "../collections-hashset" },
@@ -19,9 +23,10 @@
         { "path": "../interval" },
         { "path": "../iter-fn" },
         { "path": "../iter-grouping" },
-        { "path": "../iter-lookup" },
-        { "path": "../iter-page" },
-        { "path": "../iter-ordered" },
         { "path": "../iter-hierarchy" },
+        { "path": "../iter-lookup" },
+        { "path": "../iter-ordered" },
+        { "path": "../iter-page" },
+        { "path": "../iter-query" },
     ]
 }

@@ -73,6 +73,8 @@
         { "path": "./async-iter-fromsync" },
         { "path": "./async-iter-ordered-fromsync" },
         { "path": "./interval" },
+        { "path": "./async-iter-query" },
+        { "path": "./async-iter" },
         // hygen: add new project references above this line
     ]
 }

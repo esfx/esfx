@@ -9,6 +9,7 @@
         { "path": "../../internal/assert" },
         { "path": "../../internal/binarysearch" },
         { "path": "../../internal/guards" },
+        { "path": "../../internal/jest-sequence" },
         { "path": "../async-iter-hierarchy" },
         { "path": "../async-iter-ordered-fromsync" },
         { "path": "../async-iter-ordered" },

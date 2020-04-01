@@ -1,3 +1,19 @@
+/*!
+  Copyright 2018 Ron Buckton (rbuckton@chronicles.org)
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ */
+
 import * as assert from "@esfx/internal-assert";
 import * as fn from "@esfx/iter-fn";
 import { Equaler, Comparison, Comparer, EqualityComparison } from '@esfx/equatable';
@@ -10,6 +26,7 @@ import { Grouping } from '@esfx/iter-grouping';
 import { Lookup } from '@esfx/iter-lookup';
 import { HierarchyIterable, HierarchyProvider, Hierarchical, OrderedHierarchyIterable } from '@esfx/iter-hierarchy';
 import { ConsumeOptions } from "@esfx/iter-fn";
+import { Index } from "@esfx/interval";
 export { ConsumeOptions };
 
 const kSource = Symbol("[[Source]]");
@@ -22,16 +39,10 @@ export function from<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>
 export function from<TNode, T extends TNode>(source: OrderedIterable<T>, provider: HierarchyProvider<TNode>): OrderedHierarchyQuery<TNode, T>;
 export function from<TNode, T extends TNode>(source: Iterable<T>, provider: HierarchyProvider<TNode>): HierarchyQuery<TNode, T>;
 export function from<T>(source: OrderedIterable<T>): OrderedQuery<T>;
+export function from<T extends readonly unknown[] | []>(source: Iterable<T>): Query<T>;
 export function from<T>(source: Iterable<T>): Query<T>;
-export function from<TNode, T extends TNode>(source: Iterable<T>, provider?: HierarchyProvider<TNode>): any {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeTypeOrUndefined(HierarchyProvider.hasInstance, provider, "provider");
-    if (provider) source = fn.toHierarchy(source, provider);
-    return source instanceof Query ? source :
-        OrderedHierarchyIterable.hasInstance(source) ? new OrderedHierarchyQuery(source) :
-        HierarchyIterable.hasInstance(source) ? new HierarchyQuery(source) :
-        OrderedIterable.hasInstance(source) ? new OrderedQuery(source) :
-        new Query(source);
+export function from<TNode, T extends TNode>(source: Iterable<T>, provider?: HierarchyProvider<TNode>): Query<T> {
+    return Query.from(source, provider!);
 }
 
 function getSource<TNode, T extends TNode>(source: OrderedHierarchyIterable<TNode, T>): OrderedHierarchyIterable<TNode, T>;
@@ -45,20 +56,20 @@ function getSource<T>(source: Iterable<T>): Iterable<T> {
     return source;
 }
 
-function wrapResultSelector<I, O, R>(selector: ((inner: I, outer: Query<O>) => R)): ((inner: I, outer: Iterable<O>) => R);
-function wrapResultSelector<I, O, R>(selector: ((inner: I, outer: Query<O>) => R) | undefined): ((inner: I, outer: Iterable<O>) => R) | undefined;
-function wrapResultSelector<I, O, R>(selector: ((inner: I, outer: Query<O>) => R) | undefined) {
+function wrapResultSelector<I, O, R>(query: Query<any>, selector: ((inner: I, outer: Query<O>) => R)): ((inner: I, outer: Iterable<O>) => R);
+function wrapResultSelector<I, O, R>(query: Query<any>, selector: ((inner: I, outer: Query<O>) => R) | undefined): ((inner: I, outer: Iterable<O>) => R) | undefined;
+function wrapResultSelector<I, O, R>(query: Query<any>, selector: ((inner: I, outer: Query<O>) => R) | undefined) {
     if (typeof selector === "function") {
-        return (inner: I, outer: Iterable<O>) => selector(inner, from(outer));
+        return (inner: I, outer: Iterable<O>) => selector(inner, query["_from"](outer));
     }
     return selector;
 }
 
-function wrapPageSelector<T, R>(selector: ((page: number, offset: number, values: Query<T>) => R)): (page: number, offset: number, values: Iterable<T>) => R;
-function wrapPageSelector<T, R>(selector: ((page: number, offset: number, values: Query<T>) => R) | undefined): ((page: number, offset: number, values: Iterable<T>) => R) | undefined;
-function wrapPageSelector<T, R>(selector: ((page: number, offset: number, values: Query<T>) => R) | undefined) {
+function wrapPageSelector<T, R>(query: Query<any>, selector: ((page: number, offset: number, values: Query<T>) => R)): (page: number, offset: number, values: Iterable<T>) => R;
+function wrapPageSelector<T, R>(query: Query<any>, selector: ((page: number, offset: number, values: Query<T>) => R) | undefined): ((page: number, offset: number, values: Iterable<T>) => R) | undefined;
+function wrapPageSelector<T, R>(query: Query<any>, selector: ((page: number, offset: number, values: Query<T>) => R) | undefined) {
     if (typeof selector === "function") {
-        return (page: number, offset: number, values: Iterable<T>) => selector(page, offset, from(values));
+        return (page: number, offset: number, values: Iterable<T>) => selector(page, offset, query["_from"](values));
     }
     return selector;
 }
@@ -92,9 +103,17 @@ export class Query<T> implements Iterable<T> {
     static from<TNode, T extends TNode>(source: OrderedIterable<T>, provider: HierarchyProvider<TNode>): OrderedHierarchyQuery<TNode, T>;
     static from<TNode, T extends TNode>(source: Iterable<T>, provider: HierarchyProvider<TNode>): HierarchyQuery<TNode, T>;
     static from<T>(source: OrderedIterable<T>): OrderedQuery<T>;
+    static from<T extends readonly unknown[] | []>(source: Iterable<T>): Query<T>;
     static from<T>(source: Iterable<T>): Query<T>;
     static from<TNode, T extends TNode>(source: Iterable<T>, provider?: HierarchyProvider<TNode>): Query<T> {
-        return from(source, provider!);
+        assert.mustBeIterableObject(source, "source");
+        assert.mustBeTypeOrUndefined(HierarchyProvider.hasInstance, provider, "provider");
+        if (provider) source = fn.toHierarchy(source, provider);
+        return source instanceof Query ? source :
+            OrderedHierarchyIterable.hasInstance(source) ? new OrderedHierarchyQuery(source) :
+            HierarchyIterable.hasInstance(source) ? new HierarchyQuery(source) :
+            OrderedIterable.hasInstance(source) ? new OrderedQuery(source) :
+            new Query(source);
     }
 
     /**
@@ -105,7 +124,7 @@ export class Query<T> implements Iterable<T> {
      */
     static of<T>(...elements: T[]): Query<T>;
     static of<T>(): Query<T> {
-        return from(arguments);
+        return this.from(arguments);
     }
 
     /**
@@ -114,7 +133,7 @@ export class Query<T> implements Iterable<T> {
      * @category Query
      */
     static empty<T>(): Query<T> {
-        return from(fn.empty<T>());
+        return this.from(fn.empty<T>());
     }
 
     /**
@@ -124,7 +143,7 @@ export class Query<T> implements Iterable<T> {
      * @category Query
      */
     static once<T>(value: T): Query<T> {
-        return from(fn.once(value));
+        return this.from(fn.once(value));
     }
 
     /**
@@ -135,7 +154,7 @@ export class Query<T> implements Iterable<T> {
      * @category Query
      */
     static repeat<T>(value: T, count: number): Query<T> {
-        return from(fn.repeat(value, count));
+        return this.from(fn.repeat(value, count));
     }
 
     /**
@@ -147,7 +166,7 @@ export class Query<T> implements Iterable<T> {
      * @category Query
      */
     static range(start: number, end: number, increment?: number) {
-        return from(fn.range(start, end, increment));
+        return this.from(fn.range(start, end, increment));
     }
 
     /**
@@ -157,7 +176,7 @@ export class Query<T> implements Iterable<T> {
      * @category Query
      */
     static continuous<T>(value: T) {
-        return from(fn.continuous(value));
+        return this.from(fn.continuous(value));
     }
 
     /**
@@ -169,7 +188,7 @@ export class Query<T> implements Iterable<T> {
      * @category Query
      */
     static generate<T>(count: number, generator: (offset: number) => T) {
-        return from(fn.generate(count, generator));
+        return this.from(fn.generate(count, generator));
     }
 
     /**
@@ -179,7 +198,7 @@ export class Query<T> implements Iterable<T> {
      * @category Query
      */
     static consume<T>(iterator: Iterator<T>, options?: ConsumeOptions) {
-        return from(fn.consume(iterator, options));
+        return this.from(fn.consume(iterator, options));
     }
 
     // /**
@@ -192,7 +211,7 @@ export class Query<T> implements Iterable<T> {
     //  * @category Query
     //  */
     // static if<T>(condition: () => boolean, thenIterable: Iterable<T>, elseIterable?: Iterable<T>): Query<T> {
-    //     return from(fn.if(condition, thenIterable, elseIterable));
+    //     return this.from(fn.if(condition, thenIterable, elseIterable));
     // }
 
     // /**
@@ -205,7 +224,7 @@ export class Query<T> implements Iterable<T> {
     //  * @category Query
     //  */
     // static choose<K, V>(chooser: () => K, choices: Iterable<Choice<K, V>>, otherwise?: Iterable<V>): Query<V> {
-    //     return from(fn.choose(chooser, choices, otherwise));
+    //     return this.from(fn.choose(chooser, choices, otherwise));
     // }
 
     // /**
@@ -215,7 +234,7 @@ export class Query<T> implements Iterable<T> {
     //  * @category Query
     //  */
     // static objectKeys<T extends object>(source: T): Query<Extract<keyof T, string>> {
-    //     return from(fn.objectKeys(source));
+    //     return this.from(fn.objectKeys(source));
     // }
 
     // /**
@@ -225,7 +244,7 @@ export class Query<T> implements Iterable<T> {
     //  * @category Query
     //  */
     // static objectValues<T extends object>(source: T): Query<T[Extract<keyof T, string>]> {
-    //     return from(fn.objectValues(source));
+    //     return this.from(fn.objectValues(source));
     // }
 
     // /**
@@ -235,7 +254,7 @@ export class Query<T> implements Iterable<T> {
     //  * @category Query
     //  */
     // static objectEntries<T extends object>(source: T): Query<KeyValuePair<T, Extract<keyof T, string>>> {
-    //     return from(fn.objectEntries(source));
+    //     return this.from(fn.objectEntries(source));
     // }
 
     // #endregion Query
@@ -261,7 +280,7 @@ export class Query<T> implements Iterable<T> {
      */
     filter(predicate: (element: T, offset: number) => boolean): Query<T>;
     filter(predicate: (element: T, offset: number) => boolean) {
-        return from(fn.filter(getSource(this), predicate));
+        return this._from(fn.filter(getSource(this), predicate));
     }
 
     /**
@@ -275,7 +294,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     filterBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => boolean): Query<T> {
-        return from(fn.filterBy(getSource(this), keySelector, predicate));
+        return this._from(fn.filterBy(getSource(this), keySelector, predicate));
     }
 
     /**
@@ -284,7 +303,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     filterDefined(): Query<NonNullable<T>> {
-        return from(fn.filterDefined(getSource(this)));
+        return this._from(fn.filterDefined(getSource(this)));
     }
 
     /**
@@ -295,7 +314,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     filterDefinedBy<K>(keySelector: (element: T) => K): Query<T> {
-        return from(fn.filterDefinedBy(getSource(this), keySelector));
+        return this._from(fn.filterDefinedBy(getSource(this), keySelector));
     }
 
     /**
@@ -365,6 +384,108 @@ export class Query<T> implements Iterable<T> {
     }
 
     /**
+     * Creates a subquery whose elements do not match the supplied predicate.
+     *
+     * @param predicate A callback used to match each element.
+     * @param predicate.element The element to test.
+     * @param predicate.offset The offset from the start of the source iterable.
+     * @category Subquery
+     */
+    filterNot<U extends T>(predicate: (element: T, offset: number) => element is U): Query<U>;
+    /**
+     * Creates a subquery whose elements do not match the supplied predicate.
+     *
+     * @param predicate A callback used to match each element.
+     * @param predicate.element The element to test.
+     * @param predicate.offset The offset from the start of the source iterable.
+     * @category Subquery
+     */
+    filterNot(predicate: (element: T, offset: number) => boolean): Query<T>;
+    filterNot(predicate: (element: T, offset: number) => boolean) {
+        return this._from(fn.filterNot(getSource(this), predicate));
+    }
+
+    /**
+     * Creates a subquery where the selected key for each element does not match the supplied predicate.
+     *
+     * @param keySelector A callback used to select the key for each element.
+     * @param keySelector.element The element from which to select a key.
+     * @param predicate A callback used to match each key.
+     * @param predicate.key The key to test.
+     * @param predicate.offset The offset from the start of the source iterable.
+     * @category Subquery
+     */
+    filterNotBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => boolean): Query<T> {
+        return this._from(fn.filterNotBy(getSource(this), keySelector, predicate));
+    }
+
+    /**
+     * Creates a subquery where the selected key for each element is either `null` or `undefined`.
+     *
+     * @param keySelector A callback used to select the key for each element.
+     * @param keySelector.element The element from which to select a key.
+     * @category Subquery
+     */
+    filterNotDefinedBy<K>(keySelector: (element: T) => K): Query<T> {
+        return this._from(fn.filterNotDefinedBy(getSource(this), keySelector));
+    }
+
+    /**
+     * Creates a subquery whose elements do not match the supplied predicate.
+     *
+     * NOTE: This is an alias for `filterNot`.
+     *
+     * @param predicate A callback used to match each element.
+     * @param predicate.element The element to test.
+     * @param predicate.offset The offset from the start of the source iterable.
+     * @category Subquery
+     */
+    whereNot<U extends T>(predicate: (element: T, offset: number) => element is U): Query<U>;
+    /**
+     * Creates a subquery whose elements do not match the supplied predicate.
+     *
+     * NOTE: This is an alias for `filterNot`.
+     *
+     * @param predicate A callback used to match each element.
+     * @param predicate.element The element to test.
+     * @param predicate.offset The offset from the start of the source iterable.
+     * @category Subquery
+     */
+    whereNot(predicate: (element: T, offset: number) => boolean): Query<T>;
+    whereNot(predicate: (element: T, offset: number) => boolean) {
+        return this.filterNot(predicate);
+    }
+
+    /**
+     * Creates a subquery where the selected key for each element does not match the supplied predicate.
+     *
+     * NOTE: This is an alias for `filterNotBy`.
+     *
+     * @param keySelector A callback used to select the key for each element.
+     * @param keySelector.element The element from which to select a key.
+     * @param predicate A callback used to match each key.
+     * @param predicate.key The key to test.
+     * @param predicate.offset The offset from the start of the source iterable.
+     * @category Subquery
+     */
+    whereNotBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => boolean) {
+        return this.filterNotBy(keySelector, predicate);
+    }
+
+    /**
+     * Creates a subquery where the selected key for each element is either `null` or `undefined`.
+     *
+     * NOTE: This is an alias for `filterNotDefinedBy`.
+     *
+     * @param keySelector A callback used to select the key for each element.
+     * @param keySelector.element The element from which to select a key.
+     * @category Subquery
+     */
+    whereNotDefinedBy<K>(keySelector: (element: T) => K) {
+        return this.filterNotDefinedBy(keySelector);
+    }
+
+    /**
      * Creates a subquery by applying a callback to each element.
      *
      * @param selector A callback used to map each element.
@@ -373,7 +494,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     map<U>(selector: (element: T, offset: number) => U) {
-        return from(fn.map(getSource(this), selector));
+        return this._from(fn.map(getSource(this), selector));
     }
 
     /**
@@ -410,7 +531,7 @@ export class Query<T> implements Iterable<T> {
      */
     flatMap<U, R>(projection: (element: T) => Iterable<U>, resultSelector: (element: T, innerElement: U) => R): Query<R>;
     flatMap<U, R>(projection: (element: T) => Iterable<U>, resultSelector?: (element: T, innerElement: U) => R) {
-        return from(fn.flatMap(getSource(this), projection, resultSelector!));
+        return this._from(fn.flatMap(getSource(this), projection, resultSelector!));
     }
 
     /**
@@ -449,13 +570,11 @@ export class Query<T> implements Iterable<T> {
     //  * @category Subquery
     //  */
     // expand(projection: (element: T) => Iterable<T>): Query<T> {
-    //     return from(fn.expand(getSource(this), projection));
+    //     return this._from(fn.expand(getSource(this), projection));
     // }
 
     /**
      * Lazily invokes a callback as each element of the `Query` is iterated.
-     *
-     * NOTE: This is an alias for `do`.
      *
      * @param callback The callback to invoke.
      * @param callback.element An element of the source.
@@ -463,7 +582,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     tap(callback: (element: T, offset: number) => void): Query<T> {
-        return from(fn.tap(getSource(this), callback));
+        return this._from(fn.tap(getSource(this), callback));
     }
 
     /**
@@ -472,7 +591,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     reverse(): Query<T> {
-        return from(fn.reverse(getSource(this)));
+        return this._from(fn.reverse(getSource(this)));
     }
 
     /**
@@ -482,7 +601,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     exclude(...values: [T, ...T[]]): Query<T> {
-        return from(fn.exclude(getSource(this), ...values));
+        return this._from(fn.exclude(getSource(this), ...values));
     }
 
     /**
@@ -493,7 +612,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     drop(count: number): Query<T> {
-        return from(fn.drop(getSource(this), count));
+        return this._from(fn.drop(getSource(this), count));
     }
 
     /**
@@ -504,7 +623,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     dropRight(count: number): Query<T> {
-        return from(fn.dropRight(getSource(this), count));
+        return this._from(fn.dropRight(getSource(this), count));
     }
 
     /**
@@ -516,7 +635,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     dropWhile(predicate: (element: T) => boolean): Query<T> {
-        return from(fn.dropWhile(getSource(this), predicate));
+        return this._from(fn.dropWhile(getSource(this), predicate));
     }
 
     /**
@@ -528,7 +647,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     dropUntil(predicate: (element: T) => boolean): Query<T> {
-        return from(fn.dropUntil(getSource(this), predicate));
+        return this._from(fn.dropUntil(getSource(this), predicate));
     }
 
     /**
@@ -593,7 +712,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     take(count: number): Query<T> {
-        return from(fn.take(getSource(this), count));
+        return this._from(fn.take(getSource(this), count));
     }
 
     /**
@@ -604,7 +723,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     takeRight(count: number): Query<T> {
-        return from(fn.takeRight(getSource(this), count));
+        return this._from(fn.takeRight(getSource(this), count));
     }
 
     /**
@@ -623,7 +742,7 @@ export class Query<T> implements Iterable<T> {
      */
     takeWhile(predicate: (element: T) => boolean): Query<T>;
     takeWhile(predicate: (element: T) => boolean) {
-        return from(fn.takeWhile(getSource(this), predicate));
+        return this._from(fn.takeWhile(getSource(this), predicate));
     }
 
     /**
@@ -634,7 +753,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     takeUntil(predicate: (element: T) => boolean): Query<T> {
-        return from(fn.takeUntil(getSource(this), predicate));
+        return this._from(fn.takeUntil(getSource(this), predicate));
     }
 
     /**
@@ -654,7 +773,7 @@ export class Query<T> implements Iterable<T> {
      */
     intersect(right: Iterable<T>, equaler?: Equaler<T>): Query<T>;
     intersect(right: Iterable<T>, equaler?: Equaler<T>): Query<T> | HierarchyQuery<T> {
-        return from(fn.intersect(getSource(this), right, equaler));
+        return this._from(fn.intersect(getSource(this), right, equaler));
     }
 
     /**
@@ -678,7 +797,7 @@ export class Query<T> implements Iterable<T> {
      */
     intersectBy<K>(right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T>;
     intersectBy<K>(right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T> | HierarchyQuery<T> {
-        return from(fn.intersectBy(getSource(this), getSource(right), keySelector, keyEqualer));
+        return this._from(fn.intersectBy(getSource(this), getSource(right), keySelector, keyEqualer));
     }
 
     /**
@@ -698,7 +817,7 @@ export class Query<T> implements Iterable<T> {
      */
     union(right: Iterable<T>, equaler?: Equaler<T>): Query<T>;
     union(right: Iterable<T>, equaler?: Equaler<T>): Query<T> | HierarchyQuery<T> {
-        return from(fn.union(getSource(this), getSource(right), equaler));
+        return this._from(fn.union(getSource(this), getSource(right), equaler));
     }
 
     /**
@@ -722,7 +841,7 @@ export class Query<T> implements Iterable<T> {
      */
     unionBy<K>(right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T>;
     unionBy<K>(right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T> | HierarchyQuery<T> {
-        return from(fn.unionBy(getSource(this), getSource(right), keySelector, keyEqualer));
+        return this._from(fn.unionBy(getSource(this), getSource(right), keySelector, keyEqualer));
     }
 
     /**
@@ -733,7 +852,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     except(right: Iterable<T>, equaler?: Equaler<T>): Query<T> {
-        return from(fn.except(getSource(this), getSource(right), equaler));
+        return this._from(fn.except(getSource(this), getSource(right), equaler));
     }
 
     /**
@@ -746,7 +865,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     exceptBy<K>(right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T> {
-        return from(fn.exceptBy(getSource(this), getSource(right), keySelector, keyEqualer));
+        return this._from(fn.exceptBy(getSource(this), getSource(right), keySelector, keyEqualer));
     }
 
     /**
@@ -794,7 +913,7 @@ export class Query<T> implements Iterable<T> {
      */
     symmetricDifference(right: Iterable<T>, equaler?: Equaler<T>): Query<T>;
     symmetricDifference(right: Iterable<T>, equaler?: Equaler<T>): Query<T> | HierarchyQuery<T> {
-        return from(fn.symmetricDifference(getSource(this), getSource(right), equaler));
+        return this._from(fn.symmetricDifference(getSource(this), getSource(right), equaler));
     }
 
     /**
@@ -818,59 +937,7 @@ export class Query<T> implements Iterable<T> {
      */
     symmetricDifferenceBy<K>(right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T>;
     symmetricDifferenceBy<K>(right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T> | HierarchyQuery<T> {
-        return from(fn.symmetricDifferenceBy(getSource(this), getSource(right), keySelector, keyEqualer));
-    }
-
-    /**
-     * Creates a subquery for the symmetric difference between this and another `Iterable`.
-     *
-     * NOTE: This is an alias for `symmetricDifference`.
-     *
-     * @param right A `Iterable` object.
-     * @param equaler An `Equaler` object used to compare equality.
-     * @category Subquery
-     */
-    xor<TNode, T extends TNode>(this: Query<T>, right: HierarchyIterable<TNode, T>, equaler?: Equaler<T>): HierarchyQuery<TNode, T>;
-    /**
-     * Creates a subquery for the symmetric difference between this and another `Iterable`.
-     *
-     * NOTE: This is an alias for `symmetricDifference`.
-     *
-     * @param right A `Iterable` object.
-     * @param equaler An `Equaler` object used to compare equality.
-     * @category Subquery
-     */
-    xor(right: Iterable<T>, equaler?: Equaler<T>): Query<T>;
-    xor(right: Iterable<T>, equaler?: Equaler<T>): Query<T> | HierarchyQuery<T> {
-        return this.symmetricDifference(right, equaler);
-    }
-
-    /**
-     * Creates a subquery for the symmetric difference between this and another `Iterable`, where set identity is determined by the selected key.
-     *
-     * NOTE: This is an alias for `symmetricDifferenceBy`.
-     *
-     * @param right A `Iterable` object.
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element An element from which to select a key.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    xorBy<TNode, T extends TNode, K>(this: Query<T>, right: HierarchyIterable<TNode, T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): HierarchyQuery<TNode, T>;
-    /**
-     * Creates a subquery for the symmetric difference between this and another `Iterable`, where set identity is determined by the selected key.
-     *
-     * NOTE: This is an alias for `symmetricDifferenceBy`.
-     *
-     * @param right A `Iterable` object.
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element An element from which to select a key.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    xorBy<K>(right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T>;
-    xorBy<K>(right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T> | HierarchyQuery<T> {
-        return this.symmetricDifferenceBy(right, keySelector, keyEqualer);
+        return this._from(fn.symmetricDifferenceBy(getSource(this), getSource(right), keySelector, keyEqualer));
     }
 
     /**
@@ -888,7 +955,7 @@ export class Query<T> implements Iterable<T> {
      */
     concat(right: Iterable<T>): Query<T>;
     concat(right: Iterable<T>): Query<T> | HierarchyQuery<T> {
-        return from(fn.concat(getSource(this), getSource(right)));
+        return this._from(fn.concat(getSource(this), getSource(right)));
     }
 
     /**
@@ -897,7 +964,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     distinct(equaler?: Equaler<T>): Query<T> {
-        return from(fn.distinct(getSource(this), equaler));
+        return this._from(fn.distinct(getSource(this), equaler));
     }
 
     /**
@@ -909,7 +976,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     distinctBy<K>(keySelector: (value: T) => K, keyEqualer?: Equaler<K>): Query<T> {
-        return from(fn.distinctBy(getSource(this), keySelector, keyEqualer));
+        return this._from(fn.distinctBy(getSource(this), keySelector, keyEqualer));
     }
 
     /**
@@ -919,7 +986,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     append(value: T): Query<T> {
-        return from(fn.append(getSource(this), value));
+        return this._from(fn.append(getSource(this), value));
     }
 
     /**
@@ -929,7 +996,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     prepend(value: T): Query<T> {
-        return from(fn.prepend(getSource(this), value));
+        return this._from(fn.prepend(getSource(this), value));
     }
 
     /**
@@ -942,7 +1009,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     patch(start: number, skipCount?: number, range?: Iterable<T>): Query<T> {
-        return from(fn.patch(getSource(this), start, skipCount, range && getSource(range)));
+        return this._from(fn.patch(getSource(this), start, skipCount, range && getSource(range)));
     }
 
     /**
@@ -953,7 +1020,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     defaultIfEmpty(defaultValue: T): Query<T> {
-        return from(fn.defaultIfEmpty(getSource(this), defaultValue));
+        return this._from(fn.defaultIfEmpty(getSource(this), defaultValue));
     }
 
     /**
@@ -975,7 +1042,7 @@ export class Query<T> implements Iterable<T> {
      */
     pageBy<R>(pageSize: number, pageSelector: (page: number, offset: number, values: Query<T>) => R): Query<R>;
     pageBy<R>(pageSize: number, pageSelector?: (page: number, offset: number, values: Query<T>) => R) {
-        return from(fn.pageBy(getSource(this), pageSize, wrapPageSelector(pageSelector!)));
+        return this._from(fn.pageBy(getSource(this), pageSize, wrapPageSelector(this, pageSelector!)));
     }
 
     /**
@@ -1031,7 +1098,7 @@ export class Query<T> implements Iterable<T> {
             keyEqualer = spanSelector;
             spanSelector = Grouping.from;
         }
-        return from(fn.spanMap(getSource(this), keySelector, elementSelector!, wrapResultSelector(spanSelector!), keyEqualer));
+        return this._from(fn.spanMap(getSource(this), keySelector, elementSelector!, wrapResultSelector(this, spanSelector!), keyEqualer));
     }
 
     /**
@@ -1091,7 +1158,7 @@ export class Query<T> implements Iterable<T> {
             keyEqualer = resultSelector;
             resultSelector = undefined;
         }
-        return from(fn.groupBy(getSource(this), keySelector, elementSelector!, wrapResultSelector(resultSelector!), keyEqualer));
+        return this._from(fn.groupBy(getSource(this), keySelector, elementSelector!, wrapResultSelector(this, resultSelector!), keyEqualer));
     }
 
     /**
@@ -1116,7 +1183,7 @@ export class Query<T> implements Iterable<T> {
      */
     scan<U>(accumulator: (current: U, element: T, offset: number) => U, seed: U): Query<U>;
     scan(accumulator: (current: T, element: T, offset: number) => T, seed?: T): Query<T> {
-        return from(arguments.length > 1
+        return this._from(arguments.length > 1
             ? fn.scan(getSource(this), accumulator, seed as T)
             : fn.scan(getSource(this), accumulator));
     }
@@ -1143,7 +1210,7 @@ export class Query<T> implements Iterable<T> {
      */
     scanRight<U>(accumulator: (current: U, element: T, offset: number) => U, seed?: U): Query<U>;
     scanRight(accumulator: (current: T, element: T, offset: number) => T, seed?: T): Query<T> {
-        return from(arguments.length > 1
+        return this._from(arguments.length > 1
             ? fn.scanRight(getSource(this), accumulator, seed as T)
             : fn.scanRight(getSource(this), accumulator));
     }
@@ -1181,7 +1248,7 @@ export class Query<T> implements Iterable<T> {
      */
     through<R>(callback: (source: this) => Iterable<R>): Query<R>;
     through<R>(callback: (source: this) => Iterable<R>): Query<R> | HierarchyQuery<R> {
-        return from(fn.into(this, callback));
+        return this._from(this.into(callback));
     }
 
     /**
@@ -1189,7 +1256,7 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     materialize(): Query<T> {
-        return from(fn.materialize(getSource(this)));
+        return this._from(fn.materialize(getSource(this)));
     }
 
     // #endregion Subquery
@@ -1207,7 +1274,7 @@ export class Query<T> implements Iterable<T> {
      * @category Join
      */
     groupJoin<I, K, R>(inner: Iterable<I>, outerKeySelector: (element: T) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: T, inner: Query<I>) => R, keyEqualer?: Equaler<K>): Query<R> {
-        return from(fn.groupJoin(getSource(this), getSource(inner), outerKeySelector, innerKeySelector, wrapResultSelector(resultSelector), keyEqualer));
+        return this._from(fn.groupJoin(getSource(this), getSource(inner), outerKeySelector, innerKeySelector, wrapResultSelector(this, resultSelector), keyEqualer));
     }
 
     /**
@@ -1221,7 +1288,7 @@ export class Query<T> implements Iterable<T> {
      * @category Join
      */
     join<I, K, R>(inner: Iterable<I>, outerKeySelector: (element: T) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: T, inner: I) => R, keyEqualer?: Equaler<K>): Query<R> {
-        return from(fn.join(getSource(this), getSource(inner), outerKeySelector, innerKeySelector, resultSelector, keyEqualer));
+        return this._from(fn.join(getSource(this), getSource(inner), outerKeySelector, innerKeySelector, resultSelector, keyEqualer));
     }
 
     /**
@@ -1235,7 +1302,7 @@ export class Query<T> implements Iterable<T> {
      * @category Join
      */
     fullJoin<I, K, R>(inner: Iterable<I>, outerKeySelector: (element: T) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: T | undefined, inner: I | undefined) => R, keyEqualer?: Equaler<K>): Query<R> {
-        return from(fn.fullJoin(getSource(this), getSource(inner), outerKeySelector, innerKeySelector, resultSelector, keyEqualer));
+        return this._from(fn.fullJoin(getSource(this), getSource(inner), outerKeySelector, innerKeySelector, resultSelector, keyEqualer));
     }
 
     /**
@@ -1256,7 +1323,7 @@ export class Query<T> implements Iterable<T> {
      */
     zip<U, R>(right: Iterable<U>, selector: (left: T, right: U) => R): Query<R>;
     zip<U, R>(right: Iterable<U>, selector?: (left: T, right: U) => R): Query<R> {
-        return from(fn.zip(getSource(this), getSource(right), selector!));
+        return this._from(fn.zip(getSource(this), getSource(right), selector!));
     }
 
     // #endregion Join
@@ -1271,7 +1338,7 @@ export class Query<T> implements Iterable<T> {
      * @category Order
      */
     orderBy<K>(keySelector: (element: T) => K, comparer?: Comparison<K> | Comparer<K>): OrderedQuery<T> {
-        return from(fn.orderBy(getSource(this), keySelector, comparer));
+        return this._from(fn.orderBy(getSource(this), keySelector, comparer));
     }
 
     /**
@@ -1283,7 +1350,7 @@ export class Query<T> implements Iterable<T> {
      */
     orderByDescending<K>(keySelector: (element: T) => K, comparer?: Comparison<K> | Comparer<K>): OrderedQuery<T>;
     orderByDescending<K>(keySelector: (element: T) => K, comparer?: Comparison<K> | Comparer<K>) {
-        return from(fn.orderByDescending(getSource(this), keySelector, comparer));
+        return this._from(fn.orderByDescending(getSource(this), keySelector, comparer));
     }
 
     // #endregion Order
@@ -1319,7 +1386,7 @@ export class Query<T> implements Iterable<T> {
      */
     toHierarchy(provider: HierarchyProvider<T>): HierarchyQuery<T>;
     toHierarchy(provider: HierarchyProvider<unknown>): HierarchyQuery<unknown, T> | OrderedHierarchyQuery<unknown, T> {
-        return from(fn.toHierarchy(getSource(this), provider));
+        return this._from(fn.toHierarchy(getSource(this), provider));
     }
 
     // #endregion Hierarchy
@@ -1717,7 +1784,7 @@ export class Query<T> implements Iterable<T> {
      * @param offset An offset.
      * @category Scalar
      */
-    elementAt(offset: number): T | undefined {
+    elementAt(offset: number | Index): T | undefined {
         return fn.elementAt(getSource(this), offset);
     }
 
@@ -1730,7 +1797,7 @@ export class Query<T> implements Iterable<T> {
      * @param offset An offset.
      * @category Scalar
      */
-    nth(offset: number): T | undefined {
+    nth(offset: number | Index): T | undefined {
         return fn.nth(getSource(this), offset);
     }
 
@@ -1859,38 +1926,27 @@ export class Query<T> implements Iterable<T> {
      * @category Scalar
      */
     toSet<V>(elementSelector: (element: T) => V): Set<V>;
-    toSet(elementSelector?: ((element: T) => T) | Equaler<T>): Set<T> | HashSet<T> {
-        return fn.toSet(getSource(this), elementSelector as (element: T) => T);
+    toSet<V>(elementSelector?: ((element: T) => T | V) | Equaler<T>): Set<T | V> {
+        return fn.toSet(getSource(this), elementSelector as (element: T) => T | V);
     }
 
     /**
-     * Creates a `Set` for the elements of the `Query`.
-     * @category Scalar
-     */
-    toHashSet(): HashSet<T>;
-    /**
-     * Creates a `Set` for the elements of the `Query`.
+     * Creates a `HashSet` for the elements of the `Query`.
+     * 
      * @param equaler An `Equaler` object used to compare equality.
      * @category Scalar
      */
-    toHashSet(equaler: Equaler<T>): HashSet<T>;
+    toHashSet(equaler?: Equaler<T>): HashSet<T>;
     /**
-     * Creates a `Set` for the elements of the `Query`.
-     *
-     * @param elementSelector A callback that selects a value for each element.
-     * @category Scalar
-     */
-    toHashSet<V>(elementSelector: (element: T) => V): HashSet<V>;
-    /**
-     * Creates a `Set` for the elements of the `Query`.
+     * Creates a `HashSet` for the elements of the `Query`.
      *
      * @param elementSelector A callback that selects a value for each element.
      * @param equaler An `Equaler` object used to compare equality.
      * @category Scalar
      */
-    toHashSet<V>(elementSelector: (element: T) => V, equaler: Equaler<V>): HashSet<V>;
-    toHashSet(elementSelector?: ((element: T) => T) | Equaler<T>, equaler?: Equaler<T>): Set<T> | HashSet<T> {
-        return fn.toHashSet(getSource(this), elementSelector as (element: T) => T, equaler!);
+    toHashSet<V>(elementSelector: (element: T) => V, equaler?: Equaler<V>): HashSet<V>;
+    toHashSet<V>(elementSelector?: ((element: T) => T | V) | Equaler<T>, equaler?: Equaler<T>): HashSet<T | V> {
+        return fn.toHashSet(getSource(this), elementSelector as (element: T) => T | V, equaler!);
     }
 
     /**
@@ -1929,8 +1985,8 @@ export class Query<T> implements Iterable<T> {
      * @category Scalar
      */
     toHashMap<K, V>(keySelector: (element: T) => K, elementSelector: (element: T) => V, keyEqualer?: Equaler<K>): HashMap<K, V>;
-    toHashMap<K>(keySelector: (element: T) => K, elementSelector?: ((element: T) => T) | Equaler<K>, keyEqualer?: Equaler<K>) {
-        return fn.toHashMap(getSource(this), keySelector, elementSelector as (element: T) => T, keyEqualer!);
+    toHashMap<K, V>(keySelector: (element: T) => K, elementSelector?: ((element: T) => T | V) | Equaler<K>, keyEqualer?: Equaler<K>) {
+        return fn.toHashMap(getSource(this), keySelector, elementSelector as (element: T) => T | V, keyEqualer!);
     }
 
     /**
@@ -1984,7 +2040,232 @@ export class Query<T> implements Iterable<T> {
      * @param keySelector A callback used to select a key for each element.
      * @category Scalar
      */
-    toObject(prototype: object | null | undefined, keySelector: (element: T) => PropertyKey): object;
+    toObject<TProto extends object, K extends PropertyKey>(prototype: TProto, keySelector: (element: T) => K): TProto & Record<K, T>;
+    /**
+     * Creates an Object for the elements of the `Query`. Properties are added via `Object.defineProperty`.
+     *
+     * ```ts
+     * // As a regular object
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(undefined, a => a[0]);
+     * obj.x; // ["x", 1]
+     * obj.y; // ["y", 2]
+     * typeof obj.toString; // function
+     *
+     * // with a custom prototype
+     * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(baseObject, a => a[0]);
+     * obj.x; // ["x", 1]
+     * obj.y; // ["y", 2]
+     * typeof obj.toString; // function
+     * obj.toString(); // "x",1:"y",2
+     *
+     * // with a null prototype
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(null, a => a[0]);
+     * obj.x; // ["x", 1]
+     * obj.y; // ["y", 2]
+     * typeof obj.toString; // undefined
+     * ```
+     *
+     * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+     * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+     * @param keySelector A callback used to select a key for each element.
+     * @category Scalar
+     */
+    toObject<TProto extends object>(prototype: TProto, keySelector: (element: T) => PropertyKey): TProto & Record<PropertyKey, T>;
+    /**
+     * Creates an Object for the elements of the `Query`. Properties are added via `Object.defineProperty`.
+     *
+     * ```ts
+     * // As a regular object
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(undefined, a => a[0]);
+     * obj.x; // ["x", 1]
+     * obj.y; // ["y", 2]
+     * typeof obj.toString; // function
+     *
+     * // with a custom prototype
+     * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(baseObject, a => a[0]);
+     * obj.x; // ["x", 1]
+     * obj.y; // ["y", 2]
+     * typeof obj.toString; // function
+     * obj.toString(); // "x",1:"y",2
+     *
+     * // with a null prototype
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(null, a => a[0]);
+     * obj.x; // ["x", 1]
+     * obj.y; // ["y", 2]
+     * typeof obj.toString; // undefined
+     * ```
+     *
+     * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+     * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+     * @param keySelector A callback used to select a key for each element.
+     * @category Scalar
+     */
+    toObject<K extends PropertyKey>(prototype: object | null | undefined, keySelector: (element: T) => K): Record<K, T>;
+    /**
+     * Creates an Object for the elements of the `Query`. Properties are added via `Object.defineProperty`.
+     *
+     * ```ts
+     * // As a regular object
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(undefined, a => a[0]);
+     * obj.x; // ["x", 1]
+     * obj.y; // ["y", 2]
+     * typeof obj.toString; // function
+     *
+     * // with a custom prototype
+     * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(baseObject, a => a[0]);
+     * obj.x; // ["x", 1]
+     * obj.y; // ["y", 2]
+     * typeof obj.toString; // function
+     * obj.toString(); // "x",1:"y",2
+     *
+     * // with a null prototype
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(null, a => a[0]);
+     * obj.x; // ["x", 1]
+     * obj.y; // ["y", 2]
+     * typeof obj.toString; // undefined
+     * ```
+     *
+     * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+     * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+     * @param keySelector A callback used to select a key for each element.
+     * @category Scalar
+     */
+    toObject(prototype: object | null | undefined, keySelector: (element: T) => PropertyKey): Record<PropertyKey, T>;
+    /**
+     * Creates an Object for the elements the `Query`. Properties are added via `Object.defineProperty`.
+     *
+     * ```ts
+     * // As a regular object
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(undefined, a => a[0], a => a[1]);
+     * obj.x; // 1
+     * obj.y; // 2
+     * typeof obj.toString; // function
+     *
+     * // with a custom prototype
+     * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(baseObject, a => a[0], a => a[1]);
+     * obj.x; // 1
+     * obj.y; // 2
+     * typeof obj.toString; // function
+     * obj.toString(); // 1:2
+     *
+     * // with a null prototype
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(null, a => a[0], a => a[1]);
+     * obj.x; // 1
+     * obj.y; // 2
+     * typeof obj.toString; // undefined
+     * ```
+     *
+     * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+     * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+     * @param keySelector A callback used to select a key for each element.
+     * @param elementSelector A callback that selects a value for each element.
+     * @param descriptorSelector A callback that defines the `PropertyDescriptor` for each property.
+     * @category Scalar
+     */
+    toObject<TProto extends object, K extends PropertyKey, V>(prototype: TProto, keySelector: (element: T) => K, elementSelector: (element: T) => V, descriptorSelector?: (key: K, element: V) => TypedPropertyDescriptor<V>): TProto & Record<K, V>;
+    /**
+     * Creates an Object for the elements the `Query`. Properties are added via `Object.defineProperty`.
+     *
+     * ```ts
+     * // As a regular object
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(undefined, a => a[0], a => a[1]);
+     * obj.x; // 1
+     * obj.y; // 2
+     * typeof obj.toString; // function
+     *
+     * // with a custom prototype
+     * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(baseObject, a => a[0], a => a[1]);
+     * obj.x; // 1
+     * obj.y; // 2
+     * typeof obj.toString; // function
+     * obj.toString(); // 1:2
+     *
+     * // with a null prototype
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(null, a => a[0], a => a[1]);
+     * obj.x; // 1
+     * obj.y; // 2
+     * typeof obj.toString; // undefined
+     * ```
+     *
+     * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+     * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+     * @param keySelector A callback used to select a key for each element.
+     * @param elementSelector A callback that selects a value for each element.
+     * @param descriptorSelector A callback that defines the `PropertyDescriptor` for each property.
+     * @category Scalar
+     */
+    toObject<TProto extends object, V>(prototype: TProto, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => V, descriptorSelector?: (key: PropertyKey, element: V) => TypedPropertyDescriptor<V>): TProto & Record<PropertyKey, V>;
+    /**
+     * Creates an Object for the elements the `Query`. Properties are added via `Object.defineProperty`.
+     *
+     * ```ts
+     * // As a regular object
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(undefined, a => a[0], a => a[1]);
+     * obj.x; // 1
+     * obj.y; // 2
+     * typeof obj.toString; // function
+     *
+     * // with a custom prototype
+     * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(baseObject, a => a[0], a => a[1]);
+     * obj.x; // 1
+     * obj.y; // 2
+     * typeof obj.toString; // function
+     * obj.toString(); // 1:2
+     *
+     * // with a null prototype
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(null, a => a[0], a => a[1]);
+     * obj.x; // 1
+     * obj.y; // 2
+     * typeof obj.toString; // undefined
+     * ```
+     *
+     * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+     * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+     * @param keySelector A callback used to select a key for each element.
+     * @param elementSelector A callback that selects a value for each element.
+     * @param descriptorSelector A callback that defines the `PropertyDescriptor` for each property.
+     * @category Scalar
+     */
+    toObject<K extends PropertyKey, V>(prototype: object | null | undefined, keySelector: (element: T) => K, elementSelector: (element: T) => V, descriptorSelector?: (key: K, element: V) => TypedPropertyDescriptor<V>): Record<K, V>;
+    /**
+     * Creates an Object for the elements the `Query`. Properties are added via `Object.defineProperty`.
+     *
+     * ```ts
+     * // As a regular object
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(undefined, a => a[0], a => a[1]);
+     * obj.x; // 1
+     * obj.y; // 2
+     * typeof obj.toString; // function
+     *
+     * // with a custom prototype
+     * const baseObject = { toString() { return `${this.x}:${this.y}` } };
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(baseObject, a => a[0], a => a[1]);
+     * obj.x; // 1
+     * obj.y; // 2
+     * typeof obj.toString; // function
+     * obj.toString(); // 1:2
+     *
+     * // with a null prototype
+     * const obj = from(`"`, 1], ["y", 2]]).toObject(null, a => a[0], a => a[1]);
+     * obj.x; // 1
+     * obj.y; // 2
+     * typeof obj.toString; // undefined
+     * ```
+     *
+     * @param prototype The prototype for the object. If `prototype` is `null`, an object with a `null`
+     * prototype is created. If `prototype` is `undefined`, the default `Object.prototype` is used.
+     * @param keySelector A callback used to select a key for each element.
+     * @param elementSelector A callback that selects a value for each element.
+     * @param descriptorSelector A callback that defines the `PropertyDescriptor` for each property.
+     * @category Scalar
+     */
+    toObject<V>(prototype: object | null | undefined, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => V, descriptorSelector?: (key: PropertyKey, element: V) => TypedPropertyDescriptor<V>): Record<PropertyKey, V>;
     /**
      * Creates an Object for the elements the `Query`. Properties are added via `Object.defineProperty`.
      *
@@ -2068,6 +2349,17 @@ export class Query<T> implements Iterable<T> {
     [Symbol.iterator](): Iterator<T> {
         return this[kSource][Symbol.iterator]();
     }
+
+    protected _from<TNode, T extends TNode>(source: OrderedHierarchyIterable<TNode, T>): OrderedHierarchyQuery<TNode, T>;
+    protected _from<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>): HierarchyQuery<TNode, T>;
+    protected _from<TNode, T extends TNode>(source: OrderedIterable<T>, provider: HierarchyProvider<TNode>): OrderedHierarchyQuery<TNode, T>;
+    protected _from<TNode, T extends TNode>(source: Iterable<T>, provider: HierarchyProvider<TNode>): HierarchyQuery<TNode, T>;
+    protected _from<T>(source: OrderedIterable<T>): OrderedQuery<T>;
+    protected _from<T extends readonly unknown[] | []>(source: Iterable<T>): Query<T>;
+    protected _from<T>(source: Iterable<T>): Query<T>;
+    protected _from<TNode, T extends TNode>(source: Iterable<T>, provider?: HierarchyProvider<TNode>): Query<T> {
+        return (this.constructor as typeof Query).from(source, provider!);
+    }
 }
 
 /**
@@ -2089,7 +2381,7 @@ export class OrderedQuery<T> extends Query<T> implements OrderedIterable<T> {
      * @category Order
      */
     thenBy<K>(keySelector: (element: T) => K, comparer?: Comparison<K> | Comparer<K>): OrderedQuery<T> {
-        return from(fn.thenBy(getSource(this), keySelector, comparer));
+        return this._from(fn.thenBy(getSource(this), keySelector, comparer));
     }
 
     /**
@@ -2100,7 +2392,7 @@ export class OrderedQuery<T> extends Query<T> implements OrderedIterable<T> {
      * @category Order
      */
     thenByDescending<K>(keySelector: (element: T) => K, comparer?: Comparison<K> | Comparer<K>): OrderedQuery<T> {
-        return from(fn.thenByDescending(getSource(this), keySelector, comparer));
+        return this._from(fn.thenByDescending(getSource(this), keySelector, comparer));
     }
 
     // #endregion Order
@@ -2825,7 +3117,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     root(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     root(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.root(getSource(this), predicate));
+        return this._from(fn.root(getSource(this), predicate));
     }
 
     /**
@@ -2843,7 +3135,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     ancestors(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     ancestors(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.ancestors(getSource(this), predicate));
+        return this._from(fn.ancestors(getSource(this), predicate));
     }
 
     /**
@@ -2861,7 +3153,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     ancestorsAndSelf(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     ancestorsAndSelf(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.ancestorsAndSelf(getSource(this), predicate));
+        return this._from(fn.ancestorsAndSelf(getSource(this), predicate));
     }
 
     /**
@@ -2879,7 +3171,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     descendants(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     descendants(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.descendants(getSource(this), predicate));
+        return this._from(fn.descendants(getSource(this), predicate));
     }
 
     /**
@@ -2897,7 +3189,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     descendantsAndSelf(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     descendantsAndSelf(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.descendantsAndSelf(getSource(this), predicate));
+        return this._from(fn.descendantsAndSelf(getSource(this), predicate));
     }
 
     /**
@@ -2915,7 +3207,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     parents(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     parents(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.parents(getSource(this), predicate));
+        return this._from(fn.parents(getSource(this), predicate));
     }
 
     /**
@@ -2940,7 +3232,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     self(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     self(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.self(getSource(this), predicate));
+        return this._from(fn.self(getSource(this), predicate));
     }
 
     /**
@@ -2958,7 +3250,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     siblings(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     siblings(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.siblings(getSource(this), predicate));
+        return this._from(fn.siblings(getSource(this), predicate));
     }
 
     /**
@@ -2976,7 +3268,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     siblingsAndSelf(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     siblingsAndSelf(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.siblingsAndSelf(getSource(this), predicate));
+        return this._from(fn.siblingsAndSelf(getSource(this), predicate));
     }
 
     /**
@@ -2995,7 +3287,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     children(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     children(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.children(getSource(this), predicate));
+        return this._from(fn.children(getSource(this), predicate));
     }
 
     /**
@@ -3013,7 +3305,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     precedingSiblings(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     precedingSiblings(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.precedingSiblings(getSource(this), predicate));
+        return this._from(fn.precedingSiblings(getSource(this), predicate));
     }
 
     /**
@@ -3053,7 +3345,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     followingSiblings(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     followingSiblings(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.followingSiblings(getSource(this), predicate));
+        return this._from(fn.followingSiblings(getSource(this), predicate));
     }
 
     /**
@@ -3093,7 +3385,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     preceding(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     preceding(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.preceding(getSource(this), predicate));
+        return this._from(fn.preceding(getSource(this), predicate));
     }
 
     /**
@@ -3111,7 +3403,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     following(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     following(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.following(getSource(this), predicate));
+        return this._from(fn.following(getSource(this), predicate));
     }
 
     /**
@@ -3129,7 +3421,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     firstChild(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     firstChild(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.firstChild(getSource(this), predicate));
+        return this._from(fn.firstChild(getSource(this), predicate));
     }
 
     /**
@@ -3147,7 +3439,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     lastChild(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     lastChild(predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.lastChild(getSource(this), predicate));
+        return this._from(fn.lastChild(getSource(this), predicate));
     }
 
     /**
@@ -3167,7 +3459,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     nthChild(offset: number, predicate?: (element: TNode) => boolean): HierarchyQuery<TNode>;
     nthChild(offset: number, predicate?: (element: TNode) => boolean): HierarchyQuery<TNode> {
-        return from(fn.nthChild(getSource(this), offset, predicate));
+        return this._from(fn.nthChild(getSource(this), offset, predicate));
     }
 
     /**
@@ -3183,7 +3475,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     topMost(predicate?: (element: T) => boolean): HierarchyQuery<TNode, T>;
     topMost(predicate?: (element: T) => boolean): HierarchyQuery<TNode, T> {
-        return from(fn.topMost(getSource(this), predicate));
+        return this._from(fn.topMost(getSource(this), predicate));
     }
 
     /**
@@ -3199,7 +3491,7 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
      */
     bottomMost(predicate?: (element: T) => boolean): HierarchyQuery<TNode, T>;
     bottomMost(predicate?: (element: T) => boolean): HierarchyQuery<TNode, T> {
-        return from(fn.bottomMost(getSource(this), predicate));
+        return this._from(fn.bottomMost(getSource(this), predicate));
     }
 
     // #endregion Hierarchy
@@ -3236,7 +3528,7 @@ export class OrderedHierarchyQuery<TNode, T extends TNode = TNode> extends Hiera
      * @category Order
      */
     thenBy<K>(keySelector: (element: T) => K, comparison?: Comparison<K> | Comparer<K>): OrderedHierarchyQuery<TNode, T> {
-        return from(fn.thenBy(getSource(this), keySelector, comparison));
+        return this._from(fn.thenBy(getSource(this), keySelector, comparison));
     }
 
     /**
@@ -3247,7 +3539,7 @@ export class OrderedHierarchyQuery<TNode, T extends TNode = TNode> extends Hiera
      * @category Order
      */
     thenByDescending<K>(keySelector: (element: T) => K, comparison?: Comparison<K> | Comparer<K>): OrderedHierarchyQuery<TNode, T> {
-        return from(fn.thenByDescending(getSource(this), keySelector, comparison));
+        return this._from(fn.thenByDescending(getSource(this), keySelector, comparison));
     }
 
     // #endregion Order

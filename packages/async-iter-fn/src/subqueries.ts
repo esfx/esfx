@@ -1604,24 +1604,40 @@ export function tapAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> |
     return flowHierarchy(new AsyncTapIterable(source, callback), source);
 }
 
+class AsyncMaterializeIterable<T> implements AsyncIterable<T> {
+    private _source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>;
+    private _sourceArray?: Promise<readonly T[]>;
+
+    constructor(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>) {
+        this._source = source;
+    }
+
+    async *[Symbol.asyncIterator]() {
+        if (!this._sourceArray) {
+            this._sourceArray = toArrayAsync(this._source);
+        }
+        const sourceArray = await this._sourceArray;
+        yield* sourceArray;
+    }
+}
+
 /**
- * Eagerly evaluate an `AsyncIterable` or `Iterable` object, returning a `Promise` for an `Iterable` for the
+ * Eagerly evaluate an `AsyncIterable` or `Iterable` object, returning an `AsyncIterable` for the
  * resolved elements of the original sequence.
  *
  * @param source A `AsyncIterable` or `Iterable` object.
  * @category Scalar
  */
-export function materializeAsync<TNode, T extends TNode>(source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>): Promise<HierarchyIterable<TNode, T>>;
+export function materializeAsync<TNode, T extends TNode>(source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>): AsyncHierarchyIterable<TNode, T>;
 /**
- * Eagerly evaluate an `AsyncIterable` or `Iterable` object, returning a `Promise` for an `Iterable` for the
+ * Eagerly evaluate an `AsyncIterable` or `Iterable` object, returning an `AsyncIterable` for the
  * resolved elements of the original sequence.
  *
- * @param An `AsyncIterable` or `Iterable` object.
+ * @param source A `AsyncIterable` or `Iterable` object.
  * @category Scalar
  */
-export function materializeAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): Promise<Iterable<T>>;
-export async function materializeAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): Promise<Iterable<T>> {
+export function materializeAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncIterable<T>;
+export function materializeAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncIterable<T> {
     assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    const sourceArray = await toArrayAsync(source);
-    return flowHierarchy({ [Symbol.iterator]() { return sourceArray[Symbol.iterator](); } }, source);
+    return flowHierarchy(new AsyncMaterializeIterable(source), source);
 }
