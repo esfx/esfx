@@ -113,7 +113,8 @@
         <td><span class="xref">Iterable</span>&lt;T | <span class="xref">PromiseLike</span>&lt;T&gt;&gt;</td>
         <td><em>iterable</em></td>
         <td>
-          
+          <p>An optional iterable of values or promises.</p>
+
           
         </td>
       </tr>
@@ -174,7 +175,9 @@
   
   
   <h4 id="_esfx_async_queue_AsyncQueue_size_member" data-uid="@esfx/async-queue!AsyncQueue#size:member">size</h4>
-  <div class="markdown level1 summary"><p>Gets the number of entries in the queue. When positive, indicates the number of entries available to get. When negative, indicates the number of requests waiting to be fulfilled.</p>
+  <div class="markdown level1 summary"><p>Gets the number of entries in the queue.
+When positive, indicates the number of entries available to get.
+When negative, indicates the number of requests waiting to be fulfilled.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -226,7 +229,8 @@
   
   
   <h4 id="_esfx_async_queue_AsyncQueue_doneReading_member_1_" data-uid="@esfx/async-queue!AsyncQueue#doneReading:member(1)">doneReading()</h4>
-  <div class="markdown level1 summary"><p>Blocks attempts to read from the queue until it is empty. Available items in the queue can still be read until the queue is empty.</p>
+  <div class="markdown level1 summary"><p>Blocks attempts to read from the queue until it is empty. Available items in the queue
+can still be read until the queue is empty.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -251,7 +255,8 @@
   
   
   <h4 id="_esfx_async_queue_AsyncQueue_doneWriting_member_1_" data-uid="@esfx/async-queue!AsyncQueue#doneWriting:member(1)">doneWriting()</h4>
-  <div class="markdown level1 summary"><p>Blocks attempts to write to the queue. Pending requests in the queue can still be resolved until the queue is empty.</p>
+  <div class="markdown level1 summary"><p>Blocks attempts to write to the queue. Pending requests in the queue can still be
+resolved until the queue is empty.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -276,7 +281,9 @@
   
   
   <h4 id="_esfx_async_queue_AsyncQueue_end_member_1_" data-uid="@esfx/async-queue!AsyncQueue#end:member(1)">end()</h4>
-  <div class="markdown level1 summary"><p>Blocks future attempts to read or write from the queue. Available items in the queue can still be read until the queue is empty. Pending reads from the queue are rejected with a <code>CancelError</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Blocks future attempts to read or write from the queue. Available items in the queue
+can still be read until the queue is empty. Pending reads from the queue are rejected
+with a <code>CancelError</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -301,7 +308,8 @@
   
   
   <h4 id="_esfx_async_queue_AsyncQueue_get_member_1_" data-uid="@esfx/async-queue!AsyncQueue#get:member(1)">get(cancelable)</h4>
-  <div class="markdown level1 summary"><p>Removes and returns a <code>Promise</code> for the first value in the queue. If the queue is empty, returns a <code>Promise</code> for the next value to be added to the queue.</p>
+  <div class="markdown level1 summary"><p>Removes and returns a <code>Promise</code> for the first value in the queue. If the queue is empty,
+returns a <code>Promise</code> for the next value to be added to the queue.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -322,7 +330,8 @@
         <td><a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></td>
         <td><em>cancelable</em></td>
         <td>
-          
+          <p>A <code>Cancelable</code> used to cancel the request.</p>
+
           
         </td>
       </tr>
@@ -346,7 +355,8 @@
   
   
   <h4 id="_esfx_async_queue_AsyncQueue_put_member_1_" data-uid="@esfx/async-queue!AsyncQueue#put:member(1)">put(this)</h4>
-  <div class="markdown level1 summary"><p>Adds a value to the end of the queue. If the queue is empty but has a pending dequeue request, the value will be dequeued and the request fulfilled.</p>
+  <div class="markdown level1 summary"><p>Adds a value to the end of the queue. If the queue is empty but has a pending
+dequeue request, the value will be dequeued and the request fulfilled.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -391,7 +401,8 @@
   
   
   <h4 id="_esfx_async_queue_AsyncQueue_put_member_2_" data-uid="@esfx/async-queue!AsyncQueue#put:member(2)">put(value)</h4>
-  <div class="markdown level1 summary"><p>Adds a value to the end of the queue. If the queue is empty but has a pending dequeue request, the value will be dequeued and the request fulfilled.</p>
+  <div class="markdown level1 summary"><p>Adds a value to the end of the queue. If the queue is empty but has a pending
+dequeue request, the value will be dequeued and the request fulfilled.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -412,7 +423,8 @@
         <td>T | <span class="xref">PromiseLike</span>&lt;T&gt;</td>
         <td><em>value</em></td>
         <td>
-          
+          <p>A value or promise to add to the queue.</p>
+
           
         </td>
       </tr>

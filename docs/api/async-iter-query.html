@@ -1,0 +1,587 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Package @esfx/async-iter-query
+   | @esfx API Reference </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Package @esfx/async-iter-query
+   | @esfx API Reference ">
+    <meta name="generator" content="docfx 2.46.0.0">
+    
+    <link rel="shortcut icon" href="../images/favicon-32x32.png">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../images/esfx-logo-white-38x38.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="@esfx/async-iter-query!">
+  
+  <h1 id="_esfx_async_iter_query_" data-uid="@esfx/async-iter-query!" class="text-break">Package @esfx/async-iter-query
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+        <h4><a class="xref" href="async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a></h4>
+        <section><p>Represents a sequence of hierarchically organized values.</p>
+</section>
+        <h4><a class="xref" href="async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_class">AsyncOrderedHierarchyQuery</a></h4>
+        <section><p>Represents an ordered sequence of hierarchically organized values.</p>
+</section>
+        <h4><a class="xref" href="async-iter-query/asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_class">AsyncOrderedQuery</a></h4>
+        <section><p>Represents an ordered sequence of elements.</p>
+</section>
+        <h4><a class="xref" href="async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a></h4>
+        <section><p>A <code>AsyncQuery</code> represents a series of operations that act upon an <code>Iterable</code> or ArrayLike. Evaluation of
+these operations is deferred until the either a scalar value is requested from the <code>AsyncQuery</code> or the
+<code>AsyncQuery</code> is iterated.</p>
+</section>
+    <h3 id="functions">Functions
+  </h3>
+  
+  
+        <h4 id="_esfx_async_iter_query_fromAsync_function_1_" data-uid="@esfx/async-iter-query!fromAsync:function(1)">fromAsync(source)</h4>
+              <div class="markdown level1 summary"><p>Creates a <code>AsyncQuery</code> from an <code>AsyncIterable</code> or <code>Iterable</code> source.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function fromAsync&lt;TNode, T extends TNode&gt;(source: AsyncOrderedHierarchyIterable&lt;TNode, T&gt; | OrderedHierarchyIterable&lt;TNode, T&gt;): AsyncOrderedHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="async-iter-hierarchy/asyncorderedhierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncOrderedHierarchyIterable_interface">AsyncOrderedHierarchyIterable</a>&lt;TNode, T&gt; | <a class="xref" href="iter-hierarchy/orderedhierarchyiterable-interface.html#_esfx_iter_hierarchy_OrderedHierarchyIterable_interface">OrderedHierarchyIterable</a>&lt;TNode, T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_class">AsyncOrderedHierarchyQuery</a>&lt;TNode, T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>TNode</em></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+  
+  
+        <h4 id="_esfx_async_iter_query_fromAsync_function_2_" data-uid="@esfx/async-iter-query!fromAsync:function(2)">fromAsync(source)</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function fromAsync&lt;TNode, T extends TNode&gt;(source: AsyncHierarchyIterable&lt;TNode, T&gt; | HierarchyIterable&lt;TNode, T&gt;): AsyncHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface">AsyncHierarchyIterable</a>&lt;TNode, T&gt; | <a class="xref" href="iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;TNode, T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>TNode</em></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+  
+  
+        <h4 id="_esfx_async_iter_query_fromAsync_function_3_" data-uid="@esfx/async-iter-query!fromAsync:function(3)">fromAsync(source, provider)</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function fromAsync&lt;TNode, T extends TNode&gt;(source: AsyncOrderedIterable&lt;T&gt; | OrderedIterable&lt;T&gt;, provider: HierarchyProvider&lt;TNode&gt;): AsyncOrderedHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="async-iter-ordered/asyncorderediterable-interface.html#_esfx_async_iter_ordered_AsyncOrderedIterable_interface">AsyncOrderedIterable</a>&lt;T&gt; | <a class="xref" href="iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+            <tr>
+              <td><a class="xref" href="iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</td>
+              <td><em>provider</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_class">AsyncOrderedHierarchyQuery</a>&lt;TNode, T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>TNode</em></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+  
+  
+        <h4 id="_esfx_async_iter_query_fromAsync_function_4_" data-uid="@esfx/async-iter-query!fromAsync:function(4)">fromAsync(source, provider)</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function fromAsync&lt;TNode, T extends TNode&gt;(source: AsyncIterable&lt;T&gt; | Iterable&lt;T&gt;, provider: HierarchyProvider&lt;TNode&gt;): AsyncHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">AsyncIterable</span>&lt;T&gt; | <span class="xref">Iterable</span>&lt;T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+            <tr>
+              <td><a class="xref" href="iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</td>
+              <td><em>provider</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;TNode, T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>TNode</em></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+  
+  
+        <h4 id="_esfx_async_iter_query_fromAsync_function_5_" data-uid="@esfx/async-iter-query!fromAsync:function(5)">fromAsync(source)</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function fromAsync&lt;T&gt;(source: AsyncOrderedIterable&lt;T&gt; | OrderedIterable&lt;T&gt;): AsyncOrderedQuery&lt;T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="async-iter-ordered/asyncorderediterable-interface.html#_esfx_async_iter_ordered_AsyncOrderedIterable_interface">AsyncOrderedIterable</a>&lt;T&gt; | <a class="xref" href="iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="async-iter-query/asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_class">AsyncOrderedQuery</a>&lt;T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+  
+  
+        <h4 id="_esfx_async_iter_query_fromAsync_function_6_" data-uid="@esfx/async-iter-query!fromAsync:function(6)">fromAsync(source)</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function fromAsync&lt;T extends readonly unknown[] | []&gt;(source: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;): AsyncQuery&lt;T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">AsyncIterable</span>&lt;T&gt; | <span class="xref">Iterable</span>&lt;<span class="xref">PromiseLike</span>&lt;T&gt; | T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+  
+  
+        <h4 id="_esfx_async_iter_query_fromAsync_function_7_" data-uid="@esfx/async-iter-query!fromAsync:function(7)">fromAsync(source)</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function fromAsync&lt;T&gt;(source: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;): AsyncQuery&lt;T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">AsyncIterable</span>&lt;T&gt; | <span class="xref">Iterable</span>&lt;<span class="xref">PromiseLike</span>&lt;T&gt; | T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

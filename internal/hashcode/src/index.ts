@@ -147,7 +147,8 @@ function hashLocalSymbol(symbol: symbol) {
     if (hash === undefined) {
         if (!localSymbolCounter) localSymbolCounter = { next: 1 };
         hash = combineHashes(localSymbolSeed, localSymbolCounter.next++);
-        if (symbol.description) hash = hashStringWithSeed(getDescription(symbol), "utf8", hash);
+        const description = getDescription(symbol);
+        if (description) hash = hashStringWithSeed(description, "utf8", hash);
         if (!localSymbolHashes) localSymbolHashes = new Map();
         localSymbolHashes.set(symbol, hash);
     }

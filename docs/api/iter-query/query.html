@@ -84,7 +84,9 @@
   <h1 id="_esfx_iter_query_Query_class" data-uid="@esfx/iter-query!Query:class">Class Query
   </h1>
   <h6><strong>Package</strong>: <a class="xref" href="../iter-query.html">@esfx/iter-query</a></h6>
-  <div class="markdown level0 summary"><p>A <code>Query</code> represents a series of operations that act upon an <code>Iterable</code> or ArrayLike. Evaluation of these operations is deferred until the either a scalar value is requested from the <code>Query</code> or the <code>Query</code> is iterated.</p>
+  <div class="markdown level0 summary"><p>A <code>Query</code> represents a series of operations that act upon an <code>Iterable</code> or ArrayLike. Evaluation of
+these operations is deferred until the either a scalar value is requested from the <code>Query</code> or the
+<code>Query</code> is iterated.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h3 id="constructors">Constructors
@@ -113,7 +115,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>source</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -121,6 +124,451 @@
   </table>
   <h3 id="methods">Methods
   </h3>
+  
+  
+  <h4 id="_esfx_iter_query_Query__from_member_1_" data-uid="@esfx/iter-query!Query#_from:member(1)">_from(source)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">protected _from&lt;TNode, T extends TNode&gt;(source: OrderedHierarchyIterable&lt;TNode, T&gt;): OrderedHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../iter-hierarchy/orderedhierarchyiterable-interface.html#_esfx_iter_hierarchy_OrderedHierarchyIterable_interface">OrderedHierarchyIterable</a>&lt;TNode, T&gt;</td>
+        <td><em>source</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_class">OrderedHierarchyQuery</a>&lt;TNode, T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TNode</em></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query__from_member_2_" data-uid="@esfx/iter-query!Query#_from:member(2)">_from(source)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">protected _from&lt;TNode, T extends TNode&gt;(source: HierarchyIterable&lt;TNode, T&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</td>
+        <td><em>source</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TNode</em></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query__from_member_3_" data-uid="@esfx/iter-query!Query#_from:member(3)">_from(source, provider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">protected _from&lt;TNode, T extends TNode&gt;(source: OrderedIterable&lt;T&gt;, provider: HierarchyProvider&lt;TNode&gt;): OrderedHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;T&gt;</td>
+        <td><em>source</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</td>
+        <td><em>provider</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_class">OrderedHierarchyQuery</a>&lt;TNode, T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TNode</em></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query__from_member_4_" data-uid="@esfx/iter-query!Query#_from:member(4)">_from(source, provider)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">protected _from&lt;TNode, T extends TNode&gt;(source: Iterable&lt;T&gt;, provider: HierarchyProvider&lt;TNode&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Iterable</span>&lt;T&gt;</td>
+        <td><em>source</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</td>
+        <td><em>provider</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TNode</em></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query__from_member_5_" data-uid="@esfx/iter-query!Query#_from:member(5)">_from(source)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">protected _from&lt;T&gt;(source: OrderedIterable&lt;T&gt;): OrderedQuery&lt;T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="../iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;T&gt;</td>
+        <td><em>source</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query__from_member_6_" data-uid="@esfx/iter-query!Query#_from:member(6)">_from(source)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">protected _from&lt;T extends readonly unknown[] | []&gt;(source: Iterable&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Iterable</span>&lt;T&gt;</td>
+        <td><em>source</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query__from_member_7_" data-uid="@esfx/iter-query!Query#_from:member(7)">_from(source)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">protected _from&lt;T&gt;(source: Iterable&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Iterable</span>&lt;T&gt;</td>
+        <td><em>source</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   
   
   <h4 id="_esfx_iter_query_Query__Symbol_iterator__member_1_" data-uid="@esfx/iter-query!Query#[Symbol.iterator]:member(1)">[Symbol.iterator]()</h4>
@@ -169,7 +617,9 @@
         <td><span class="xref">T</span></td>
         <td><em>value</em></td>
         <td>
-          
+          <p>The value to append.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -194,7 +644,7 @@
   
   <h4 id="_esfx_iter_query_Query_average_member_1_" data-uid="@esfx/iter-query!Query#average:member(1)">average()</h4>
   <div class="markdown level1 summary"><p>Computes the average for a series of numbers.</p>
-<p>Scalar</p>
+<p> Scalar</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -220,7 +670,7 @@
   
   <h4 id="_esfx_iter_query_Query_average_member_2_" data-uid="@esfx/iter-query!Query#average:member(2)">average(elementSelector)</h4>
   <div class="markdown level1 summary"><p>Computes the average for a series of numbers.</p>
-<p>Scalar</p>
+<p> Scalar</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -265,8 +715,11 @@
   
   
   <h4 id="_esfx_iter_query_Query_break_member_1_" data-uid="@esfx/iter-query!Query#break:member(1)">break(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of elements that do not match the supplied predicate, and whose second element is a subquery containing the remaining elements.</p>
-<p>The first subquery is eagerly evaluated, while the second subquery is lazily evaluated.</p>
+  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of
+elements that do not match the supplied predicate, and whose second element is a subquery
+containing the remaining elements.</p>
+<p>The first subquery is eagerly evaluated, while the second subquery is lazily
+evaluated.</p>
 <p>NOTE: This is an alias for <code>spanUntil</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -288,7 +741,9 @@
         <td><span class="xref">(element: T, offset: number) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>The predicate used to match elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -341,7 +796,9 @@
         <td><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -405,7 +862,9 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -450,7 +909,9 @@
         <td><span class="xref">Iterator</span>&lt;T&gt;</td>
         <td><em>iterator</em></td>
         <td>
-          
+          <p>An <code>Iterator</code> object.
+ Query</p>
+
           
         </td>
       </tr>
@@ -518,7 +979,9 @@
         <td><span class="xref">T</span></td>
         <td><em>value</em></td>
         <td>
-          
+          <p>The value for each element of the <code>Query</code><!-- -->.
+ Query</p>
+
           
         </td>
       </tr>
@@ -557,7 +1020,9 @@
   
   
   <h4 id="_esfx_iter_query_Query_copyTo_member_1_" data-uid="@esfx/iter-query!Query#copyTo:member(1)">copyTo(dest, start, count)</h4>
-  <div class="markdown level1 summary"><p>Writes each element to a destination. The destination must already have enough space to write the requested number of elements (i.e. arrays are *not* resized).</p>
+  <div class="markdown level1 summary"><p>Writes each element to a destination. The destination must already
+have enough space to write the requested number of elements (i.e.
+arrays are *not* resized).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -578,7 +1043,8 @@
         <td><span class="xref">T[]</span></td>
         <td><em>dest</em></td>
         <td>
-          
+          <p>The destination array.</p>
+
           
         </td>
       </tr>
@@ -586,7 +1052,8 @@
         <td><span class="xref">number</span></td>
         <td><em>start</em></td>
         <td>
-          
+          <p>The offset into the array at which to start writing.</p>
+
           
         </td>
       </tr>
@@ -594,7 +1061,9 @@
         <td><span class="xref">number</span></td>
         <td><em>count</em></td>
         <td>
-          
+          <p>The number of elements to write to the array.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -618,7 +1087,9 @@
   
   
   <h4 id="_esfx_iter_query_Query_copyTo_member_2_" data-uid="@esfx/iter-query!Query#copyTo:member(2)">copyTo(dest, start, count)</h4>
-  <div class="markdown level1 summary"><p>Writes each element to a destination. The destination must already have enough space to write the requested number of elements (i.e. arrays are *not* resized).</p>
+  <div class="markdown level1 summary"><p>Writes each element to a destination. The destination must already
+have enough space to write the requested number of elements (i.e.
+arrays are *not* resized).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -639,7 +1110,8 @@
         <td><span class="xref">U</span></td>
         <td><em>dest</em></td>
         <td>
-          
+          <p>The destination array.</p>
+
           
         </td>
       </tr>
@@ -647,7 +1119,8 @@
         <td><span class="xref">number</span></td>
         <td><em>start</em></td>
         <td>
-          
+          <p>The offset into the array at which to start writing.</p>
+
           
         </td>
       </tr>
@@ -655,7 +1128,9 @@
         <td><span class="xref">number</span></td>
         <td><em>count</em></td>
         <td>
-          
+          <p>The number of elements to write to the array.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -694,7 +1169,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_corresponds_member_1_" data-uid="@esfx/iter-query!Query#corresponds:member(1)">corresponds(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in this <code>Query</code> corresponds to a matching element in another <code>Iterable</code> at the same position.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in this <code>Query</code> corresponds to a matching element
+in another <code>Iterable</code> at the same position.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -715,7 +1191,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -723,7 +1200,9 @@
         <td><a class="xref" href="../equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -747,7 +1226,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_corresponds_member_2_" data-uid="@esfx/iter-query!Query#corresponds:member(2)">corresponds(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in this <code>Query</code> corresponds to a matching element in another <code>Iterable</code> at the same position.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in this <code>Query</code> corresponds to a matching element
+in another <code>Iterable</code> at the same position.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -768,7 +1248,8 @@
         <td><span class="xref">Iterable</span>&lt;U&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -776,7 +1257,9 @@
         <td><span class="xref">(left: T, right: U) =&gt; boolean</span></td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -815,7 +1298,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_correspondsBy_member_1_" data-uid="@esfx/iter-query!Query#correspondsBy:member(1)">correspondsBy(right, keySelector, keyEqualer)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in this <code>Query</code> corresponds to a matching element in another <code>Iterable</code> at the same position.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in this <code>Query</code> corresponds to a matching element
+in another <code>Iterable</code> at the same position.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -836,7 +1320,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -844,7 +1329,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -852,7 +1338,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> used to compare the equality of two keys.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -891,7 +1379,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_correspondsBy_member_2_" data-uid="@esfx/iter-query!Query#correspondsBy:member(2)">correspondsBy(right, leftKeySelector, rightKeySelector, keyEqualer)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the key for every element in this <code>Query</code> corresponds to a matching key in <code>right</code> at the same position.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the key for every element in this <code>Query</code> corresponds to a matching key
+in <code>right</code> at the same position.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -912,7 +1401,8 @@
         <td><span class="xref">Iterable</span>&lt;U&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -920,7 +1410,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>leftKeySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element in this <code>Query</code><!-- -->.</p>
+
           
         </td>
       </tr>
@@ -928,7 +1419,8 @@
         <td><span class="xref">(element: U) =&gt; K</span></td>
         <td><em>rightKeySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element in <code>right</code><!-- -->.</p>
+
           
         </td>
       </tr>
@@ -936,7 +1428,9 @@
         <td><a class="xref" href="../equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;K&gt; | <a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An optional callback used to compare the equality of two keys.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -979,7 +1473,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_count_member_1_" data-uid="@esfx/iter-query!Query#count:member(1)">count(predicate)</h4>
-  <div class="markdown level1 summary"><p>Counts the number of elements in the <code>Query</code><!-- -->, optionally filtering elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Counts the number of elements in the <code>Query</code><!-- -->, optionally filtering elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1000,7 +1495,9 @@
         <td><span class="xref">(element: T) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>An optional callback used to match each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -1024,7 +1521,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_defaultIfEmpty_member_1_" data-uid="@esfx/iter-query!Query#defaultIfEmpty:member(1)">defaultIfEmpty(defaultValue)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery that contains the provided default value if this <code>Query</code> contains no elements.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery that contains the provided default value if this <code>Query</code>
+contains no elements.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1045,7 +1543,9 @@
         <td><span class="xref">T</span></td>
         <td><em>defaultValue</em></td>
         <td>
-          
+          <p>The default value.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -1090,7 +1590,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -1135,7 +1637,8 @@
         <td><span class="xref">(value: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key to determine uniqueness.</p>
+
           
         </td>
       </tr>
@@ -1143,7 +1646,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -1182,7 +1687,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_drop_member_1_" data-uid="@esfx/iter-query!Query#drop:member(1)">drop(count)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements up to the supplied count.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements up to the supplied
+count.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1203,7 +1709,9 @@
         <td><span class="xref">number</span></td>
         <td><em>count</em></td>
         <td>
-          
+          <p>The number of elements to drop.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -1227,7 +1735,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_dropRight_member_1_" data-uid="@esfx/iter-query!Query#dropRight:member(1)">dropRight(count)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the last elements up to the supplied count.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the last elements up to the supplied
+count.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1248,7 +1757,9 @@
         <td><span class="xref">number</span></td>
         <td><em>count</em></td>
         <td>
-          
+          <p>The number of elements to drop.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -1272,7 +1783,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_dropUntil_member_1_" data-uid="@esfx/iter-query!Query#dropUntil:member(1)">dropUntil(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that don&#39;t match the supplied predicate.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that don&#39;t match
+the supplied predicate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1293,7 +1805,8 @@
         <td><span class="xref">(element: T) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -1317,7 +1830,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_dropWhile_member_1_" data-uid="@esfx/iter-query!Query#dropWhile:member(1)">dropWhile(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that match the supplied predicate.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that match
+the supplied predicate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1338,7 +1852,8 @@
         <td><span class="xref">(element: T) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -1362,12 +1877,13 @@
   
   
   <h4 id="_esfx_iter_query_Query_elementAt_member_1_" data-uid="@esfx/iter-query!Query#elementAt:member(1)">elementAt(offset)</h4>
-  <div class="markdown level1 summary"><p>Finds the value in the <code>Query</code> at the provided offset. A negative offset starts from the last element.</p>
+  <div class="markdown level1 summary"><p>Finds the value in the <code>Query</code> at the provided offset. A negative offset starts from the
+last element.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">elementAt(offset: number): T | undefined;</code></pre>
+    <pre><code class="lang-typeScript hljs">elementAt(offset: number | Index): T | undefined;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1380,10 +1896,12 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">number</span></td>
+        <td>number | <a class="xref" href="../interval/index.html#_esfx_interval_Index_class">Index</a></td>
         <td><em>offset</em></td>
         <td>
-          
+          <p>An offset.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -1408,7 +1926,7 @@
   
   <h4 id="_esfx_iter_query_Query_empty_member_1_" data-uid="@esfx/iter-query!Query.empty:member(1)">empty()</h4>
   <div class="markdown level1 summary"><p>Creates a <code>Query</code> with no elements.</p>
-<p>Query</p>
+<p> Query</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1448,7 +1966,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_endsWith_member_1_" data-uid="@esfx/iter-query!Query#endsWith:member(1)">endsWith(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>Query</code> end with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>Query</code> end
+with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1469,7 +1988,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -1477,7 +1997,9 @@
         <td><a class="xref" href="../equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>A callback used to compare the equality of two elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -1501,7 +2023,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_endsWith_member_2_" data-uid="@esfx/iter-query!Query#endsWith:member(2)">endsWith(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>Query</code> end with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>Query</code> end
+with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1522,7 +2045,8 @@
         <td><span class="xref">Iterable</span>&lt;U&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -1530,7 +2054,9 @@
         <td><span class="xref">(left: T, right: U) =&gt; boolean</span></td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>A callback used to compare the equality of two elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -1569,7 +2095,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_every_member_1_" data-uid="@esfx/iter-query!Query#every:member(1)">every(predicate)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether all elements of the <code>Query</code> match the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether all elements of the <code>Query</code>
+match the supplied callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1590,7 +2117,9 @@
         <td>(element: T) =&gt; <span class="xref">element</span> is U</td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -1629,7 +2158,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_every_member_2_" data-uid="@esfx/iter-query!Query#every:member(2)">every(predicate)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether all elements of the <code>Query</code> match the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether all elements of the <code>Query</code>
+match the supplied callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1650,7 +2180,9 @@
         <td><span class="xref">(element: T) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -1695,7 +2227,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -1703,7 +2236,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -1748,7 +2283,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -1756,7 +2292,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -1764,7 +2301,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -1824,7 +2363,9 @@
         <td><span class="xref">[T, ...T[]]</span></td>
         <td><em>values</em></td>
         <td>
-          
+          <p>The values to exclude.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -1869,7 +2410,8 @@
         <td>(element: T, offset: number) =&gt; <span class="xref">element</span> is U</td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -1929,7 +2471,8 @@
         <td><span class="xref">(element: T, offset: number) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -1974,7 +2517,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -1982,7 +2526,8 @@
         <td><span class="xref">(key: K, offset: number) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each key.</p>
+
           
         </td>
       </tr>
@@ -2022,7 +2567,7 @@
   
   <h4 id="_esfx_iter_query_Query_filterDefined_member_1_" data-uid="@esfx/iter-query!Query#filterDefined:member(1)">filterDefined()</h4>
   <div class="markdown level1 summary"><p>Creates a subquery whose elements are neither <code>null</code> nor <code>undefined</code><!-- -->.</p>
-<p>Subquery</p>
+<p> Subquery</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -2068,7 +2613,246 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
+          <p>A callback used to select the key for each element.</p>
+
           
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>K</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query_filterNot_member_1_" data-uid="@esfx/iter-query!Query#filterNot:member(1)">filterNot(predicate)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery whose elements do not match the supplied predicate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">filterNot&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): Query&lt;U&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>(element: T, offset: number) =&gt; <span class="xref">element</span> is U</td>
+        <td><em>predicate</em></td>
+        <td>
+          <p>A callback used to match each element.</p>
+
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;U&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>U</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query_filterNot_member_2_" data-uid="@esfx/iter-query!Query#filterNot:member(2)">filterNot(predicate)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery whose elements do not match the supplied predicate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">filterNot(predicate: (element: T, offset: number) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">(element: T, offset: number) =&gt; boolean</span></td>
+        <td><em>predicate</em></td>
+        <td>
+          <p>A callback used to match each element.</p>
+
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query_filterNotBy_member_1_" data-uid="@esfx/iter-query!Query#filterNotBy:member(1)">filterNotBy(keySelector, predicate)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery where the selected key for each element does not match the supplied predicate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">filterNotBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">(element: T) =&gt; K</span></td>
+        <td><em>keySelector</em></td>
+        <td>
+          <p>A callback used to select the key for each element.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">(key: K, offset: number) =&gt; boolean</span></td>
+        <td><em>predicate</em></td>
+        <td>
+          <p>A callback used to match each key.</p>
+
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>K</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query_filterNotDefinedBy_member_1_" data-uid="@esfx/iter-query!Query#filterNotDefinedBy:member(1)">filterNotDefinedBy(keySelector)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery where the selected key for each element is either <code>null</code> or <code>undefined</code><!-- -->.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">filterNotDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): Query&lt;T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">(element: T) =&gt; K</span></td>
+        <td><em>keySelector</em></td>
+        <td>
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -2107,7 +2891,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_first_member_1_" data-uid="@esfx/iter-query!Query#first:member(1)">first(predicate)</h4>
-  <div class="markdown level1 summary"><p>Gets the first element in the <code>Query</code><!-- -->, optionally filtering elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Gets the first element in the <code>Query</code><!-- -->, optionally filtering elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -2128,7 +2913,9 @@
         <td>(element: T) =&gt; <span class="xref">element</span> is U</td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>An optional callback used to match each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -2167,7 +2954,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_first_member_2_" data-uid="@esfx/iter-query!Query#first:member(2)">first(predicate)</h4>
-  <div class="markdown level1 summary"><p>Gets the first element in the <code>Query</code><!-- -->, optionally filtering elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Gets the first element in the <code>Query</code><!-- -->, optionally filtering elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -2188,7 +2976,9 @@
         <td><span class="xref">(element: T) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>An optional callback used to match each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -2233,7 +3023,8 @@
         <td>(element: T) =&gt; <span class="xref">Iterable</span>&lt;U&gt;</td>
         <td><em>projection</em></td>
         <td>
-          
+          <p>A callback used to map each element into a <code>Iterable</code><!-- -->.</p>
+
           
         </td>
       </tr>
@@ -2293,7 +3084,8 @@
         <td>(element: T) =&gt; <span class="xref">Iterable</span>&lt;U&gt;</td>
         <td><em>projection</em></td>
         <td>
-          
+          <p>A callback used to map each element into a <code>Iterable</code><!-- -->.</p>
+
           
         </td>
       </tr>
@@ -2301,7 +3093,8 @@
         <td><span class="xref">(element: T, innerElement: U) =&gt; R</span></td>
         <td><em>resultSelector</em></td>
         <td>
-          
+          <p>An optional callback used to map the outer and projected inner elements.</p>
+
           
         </td>
       </tr>
@@ -2365,7 +3158,9 @@
         <td><span class="xref">(element: T, offset: number) =&gt; void</span></td>
         <td><em>callback</em></td>
         <td>
-          
+          <p>The callback to invoke.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -2389,7 +3184,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_from_member_1_" data-uid="@esfx/iter-query!Query.from:member(1)">from(source)</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>Query</code> from a <code>Iterable</code> source. Query</p>
+  <div class="markdown level1 summary"><p>Creates a <code>Query</code> from a <code>Iterable</code> source.
+ Query</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -2721,6 +3517,65 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">static from&lt;T extends readonly unknown[] | []&gt;(source: Iterable&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Iterable</span>&lt;T&gt;</td>
+        <td><em>source</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>T</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query_from_member_7_" data-uid="@esfx/iter-query!Query.from:member(7)">from(source)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">static from&lt;T&gt;(source: Iterable&lt;T&gt;): Query&lt;T&gt;;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
@@ -2797,7 +3652,8 @@
         <td><span class="xref">Iterable</span>&lt;I&gt;</td>
         <td><em>inner</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -2805,7 +3661,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>outerKeySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element in this <code>Query</code><!-- -->.</p>
+
           
         </td>
       </tr>
@@ -2813,7 +3670,8 @@
         <td><span class="xref">(element: I) =&gt; K</span></td>
         <td><em>innerKeySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element in the other Iterable.</p>
+
           
         </td>
       </tr>
@@ -2821,7 +3679,8 @@
         <td><span class="xref">(outer: T | undefined, inner: I | undefined) =&gt; R</span></td>
         <td><em>resultSelector</em></td>
         <td>
-          
+          <p>A callback used to select the result for the correlated elements.</p>
+
           
         </td>
       </tr>
@@ -2829,7 +3688,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Join</p>
+
           
         </td>
       </tr>
@@ -2876,7 +3737,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_generate_member_1_" data-uid="@esfx/iter-query!Query.generate:member(1)">generate(count, generator)</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>Query</code> whose values are provided by a callback executed a provided number of times.</p>
+  <div class="markdown level1 summary"><p>Creates a <code>Query</code> whose values are provided by a callback executed a provided number of
+times.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -2897,7 +3759,8 @@
         <td><span class="xref">number</span></td>
         <td><em>count</em></td>
         <td>
-          
+          <p>The number of times to execute the callback.</p>
+
           
         </td>
       </tr>
@@ -2905,7 +3768,9 @@
         <td><span class="xref">(offset: number) =&gt; T</span></td>
         <td><em>generator</em></td>
         <td>
-          
+          <p>The callback to execute.
+ Query</p>
+
           
         </td>
       </tr>
@@ -2965,7 +3830,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element.</p>
+
           
         </td>
       </tr>
@@ -2973,7 +3839,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -3033,7 +3901,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element.</p>
+
           
         </td>
       </tr>
@@ -3041,7 +3910,8 @@
         <td><span class="xref">(element: T) =&gt; V</span></td>
         <td><em>elementSelector</em></td>
         <td>
-          
+          <p>A callback used to select a value for an element.</p>
+
           
         </td>
       </tr>
@@ -3049,7 +3919,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -3113,7 +3985,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element.</p>
+
           
         </td>
       </tr>
@@ -3121,7 +3994,8 @@
         <td><span class="xref">(element: T) =&gt; V</span></td>
         <td><em>elementSelector</em></td>
         <td>
-          
+          <p>A callback used to select a value for an element.</p>
+
           
         </td>
       </tr>
@@ -3129,7 +4003,8 @@
         <td>(key: K, elements: <a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;V&gt;) =&gt; R</td>
         <td><em>resultSelector</em></td>
         <td>
-          
+          <p>A callback used to select a result from a group.</p>
+
           
         </td>
       </tr>
@@ -3137,7 +4012,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -3205,7 +4082,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element.</p>
+
           
         </td>
       </tr>
@@ -3213,7 +4091,8 @@
         <td><a class="xref" href="https://tc39.github.io/ecma262/#sec-ecmascript-language-types-undefined-type">undefined</a></td>
         <td><em>elementSelector</em></td>
         <td>
-          
+          <p>A callback used to select a value for an element.</p>
+
           
         </td>
       </tr>
@@ -3221,7 +4100,8 @@
         <td>(key: K, elements: <a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;) =&gt; R</td>
         <td><em>resultSelector</em></td>
         <td>
-          
+          <p>A callback used to select a result from a group.</p>
+
           
         </td>
       </tr>
@@ -3229,7 +4109,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -3293,7 +4175,8 @@
         <td><span class="xref">Iterable</span>&lt;I&gt;</td>
         <td><em>inner</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -3301,7 +4184,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>outerKeySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element in this <code>Query</code><!-- -->.</p>
+
           
         </td>
       </tr>
@@ -3309,7 +4193,8 @@
         <td><span class="xref">(element: I) =&gt; K</span></td>
         <td><em>innerKeySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element in the other <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -3317,7 +4202,8 @@
         <td>(outer: T, inner: <a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;I&gt;) =&gt; R</td>
         <td><em>resultSelector</em></td>
         <td>
-          
+          <p>A callback used to select the result for the correlated elements.</p>
+
           
         </td>
       </tr>
@@ -3325,7 +4211,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Join</p>
+
           
         </td>
       </tr>
@@ -3393,7 +4281,8 @@
         <td><span class="xref">T</span></td>
         <td><em>value</em></td>
         <td>
-          
+          <p>A value.</p>
+
           
         </td>
       </tr>
@@ -3401,7 +4290,9 @@
         <td><a class="xref" href="../equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -3446,7 +4337,8 @@
         <td><span class="xref">U</span></td>
         <td><em>value</em></td>
         <td>
-          
+          <p>A value.</p>
+
           
         </td>
       </tr>
@@ -3454,7 +4346,9 @@
         <td><span class="xref">(left: T, right: U) =&gt; boolean</span></td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -3493,7 +4387,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_includesSequence_member_1_" data-uid="@esfx/iter-query!Query#includesSequence:member(1)">includesSequence(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>Query</code> include an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>Query</code> include
+an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -3514,7 +4409,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -3522,7 +4418,9 @@
         <td><a class="xref" href="../equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>A callback used to compare the equality of two elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -3546,7 +4444,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_includesSequence_member_2_" data-uid="@esfx/iter-query!Query#includesSequence:member(2)">includesSequence(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>Query</code> include an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>Query</code> include
+an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -3567,7 +4466,8 @@
         <td><span class="xref">Iterable</span>&lt;U&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -3575,7 +4475,9 @@
         <td><span class="xref">(left: T, right: U) =&gt; boolean</span></td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>A callback used to compare the equality of two elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -3643,7 +4545,8 @@
         <td><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -3651,7 +4554,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -3715,7 +4620,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -3723,7 +4629,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -3776,7 +4684,8 @@
         <td><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -3784,7 +4693,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -3792,7 +4702,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -3860,7 +4772,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -3868,7 +4781,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -3876,7 +4790,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -3936,7 +4852,8 @@
         <td><span class="xref">(source: this) =&gt; R</span></td>
         <td><em>callback</em></td>
         <td>
-          
+          <p>A callback function.</p>
+
           
         </td>
       </tr>
@@ -3996,7 +4913,8 @@
         <td><span class="xref">Iterable</span>&lt;I&gt;</td>
         <td><em>inner</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -4004,7 +4922,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>outerKeySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element in this <code>Query</code><!-- -->.</p>
+
           
         </td>
       </tr>
@@ -4012,7 +4931,8 @@
         <td><span class="xref">(element: I) =&gt; K</span></td>
         <td><em>innerKeySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element in the other Iterable.</p>
+
           
         </td>
       </tr>
@@ -4020,7 +4940,8 @@
         <td><span class="xref">(outer: T, inner: I) =&gt; R</span></td>
         <td><em>resultSelector</em></td>
         <td>
-          
+          <p>A callback used to select the result for the correlated elements.</p>
+
           
         </td>
       </tr>
@@ -4028,7 +4949,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Join</p>
+
           
         </td>
       </tr>
@@ -4075,7 +4998,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_last_member_1_" data-uid="@esfx/iter-query!Query#last:member(1)">last(predicate)</h4>
-  <div class="markdown level1 summary"><p>Gets the last element in the <code>Query</code><!-- -->, optionally filtering elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Gets the last element in the <code>Query</code><!-- -->, optionally filtering elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4096,7 +5020,9 @@
         <td>(element: T) =&gt; <span class="xref">element</span> is U</td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>An optional callback used to match each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -4135,7 +5061,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_last_member_2_" data-uid="@esfx/iter-query!Query#last:member(2)">last(predicate)</h4>
-  <div class="markdown level1 summary"><p>Gets the last element in the <code>Query</code><!-- -->, optionally filtering elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Gets the last element in the <code>Query</code><!-- -->, optionally filtering elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4156,7 +5083,9 @@
         <td><span class="xref">(element: T) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>An optional callback used to match each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -4201,7 +5130,8 @@
         <td><span class="xref">(element: T, offset: number) =&gt; U</span></td>
         <td><em>selector</em></td>
         <td>
-          
+          <p>A callback used to map each element.</p>
+
           
         </td>
       </tr>
@@ -4240,7 +5170,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_materialize_member_1_" data-uid="@esfx/iter-query!Query#materialize:member(1)">materialize()</h4>
-  <div class="markdown level1 summary"><p>Eagerly evaluate the <code>Query</code><!-- -->, returning a new <code>Query</code><!-- -->. Subquery</p>
+  <div class="markdown level1 summary"><p>Eagerly evaluate the <code>Query</code><!-- -->, returning a new <code>Query</code><!-- -->.
+ Subquery</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4265,7 +5196,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_max_member_1_" data-uid="@esfx/iter-query!Query#max:member(1)">max(comparer)</h4>
-  <div class="markdown level1 summary"><p>Gets the maximum element in the <code>Query</code><!-- -->, optionally comparing elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Gets the maximum element in the <code>Query</code><!-- -->, optionally comparing elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4286,7 +5218,9 @@
         <td><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;T&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;T&gt;</td>
         <td><em>comparer</em></td>
         <td>
-          
+          <p>An optional callback used to compare two elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -4331,7 +5265,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to choose the key to compare.</p>
+
           
         </td>
       </tr>
@@ -4339,7 +5274,9 @@
         <td><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</td>
         <td><em>keyComparer</em></td>
         <td>
-          
+          <p>An optional callback used to compare the keys.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -4378,7 +5315,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_min_member_1_" data-uid="@esfx/iter-query!Query#min:member(1)">min(comparer)</h4>
-  <div class="markdown level1 summary"><p>Gets the minimum element in the <code>Query</code><!-- -->, optionally comparing elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Gets the minimum element in the <code>Query</code><!-- -->, optionally comparing elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4399,7 +5337,9 @@
         <td><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;T&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;T&gt;</td>
         <td><em>comparer</em></td>
         <td>
-          
+          <p>An optional callback used to compare two elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -4444,7 +5384,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to choose the key to compare.</p>
+
           
         </td>
       </tr>
@@ -4452,7 +5393,9 @@
         <td><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</td>
         <td><em>keyComparer</em></td>
         <td>
-          
+          <p>An optional callback used to compare the keys.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -4491,13 +5434,14 @@
   
   
   <h4 id="_esfx_iter_query_Query_nth_member_1_" data-uid="@esfx/iter-query!Query#nth:member(1)">nth(offset)</h4>
-  <div class="markdown level1 summary"><p>Finds the value in the <code>Query</code> at the provided offset. A negative offset starts from the last element.</p>
+  <div class="markdown level1 summary"><p>Finds the value in the <code>Query</code> at the provided offset. A negative offset starts from the
+last element.</p>
 <p>NOTE: This is an alias for <code>elementAt</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">nth(offset: number): T | undefined;</code></pre>
+    <pre><code class="lang-typeScript hljs">nth(offset: number | Index): T | undefined;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -4510,10 +5454,12 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">number</span></td>
+        <td>number | <a class="xref" href="../interval/index.html#_esfx_interval_Index_class">Index</a></td>
         <td><em>offset</em></td>
         <td>
-          
+          <p>An offset.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -4558,7 +5504,9 @@
         <td><span class="xref">T[]</span></td>
         <td><em>elements</em></td>
         <td>
-          
+          <p>The elements of the <code>Query</code><!-- -->.
+ Query</p>
+
           
         </td>
       </tr>
@@ -4618,7 +5566,9 @@
         <td><span class="xref">T</span></td>
         <td><em>value</em></td>
         <td>
-          
+          <p>The only element for the <code>Query</code><!-- -->.
+ Query</p>
+
           
         </td>
       </tr>
@@ -4678,7 +5628,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element.</p>
+
           
         </td>
       </tr>
@@ -4686,7 +5637,9 @@
         <td><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</td>
         <td><em>comparer</em></td>
         <td>
-          
+          <p>An optional callback used to compare two keys.
+ Order</p>
+
           
         </td>
       </tr>
@@ -4746,7 +5699,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element.</p>
+
           
         </td>
       </tr>
@@ -4754,7 +5708,9 @@
         <td><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</td>
         <td><em>comparer</em></td>
         <td>
-          
+          <p>An optional callback used to compare two keys.
+ Order</p>
+
           
         </td>
       </tr>
@@ -4793,7 +5749,9 @@
   
   
   <h4 id="_esfx_iter_query_Query_pageBy_member_1_" data-uid="@esfx/iter-query!Query#pageBy:member(1)">pageBy(pageSize)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery that splits this <code>Query</code> into one or more pages. While advancing from page to page is evaluated lazily, the elements of the page are evaluated eagerly.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery that splits this <code>Query</code> into one or more pages.
+While advancing from page to page is evaluated lazily, the elements of the page are
+evaluated eagerly.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4814,7 +5772,9 @@
         <td><span class="xref">number</span></td>
         <td><em>pageSize</em></td>
         <td>
-          
+          <p>The number of elements per page.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -4838,7 +5798,9 @@
   
   
   <h4 id="_esfx_iter_query_Query_pageBy_member_2_" data-uid="@esfx/iter-query!Query#pageBy:member(2)">pageBy(pageSize, pageSelector)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery that splits this <code>Query</code> into one or more pages. While advancing from page to page is evaluated lazily, the elements of the page are evaluated eagerly.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery that splits this <code>Query</code> into one or more pages.
+While advancing from page to page is evaluated lazily, the elements of the page are
+evaluated eagerly.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4859,7 +5821,9 @@
         <td><span class="xref">number</span></td>
         <td><em>pageSize</em></td>
         <td>
-          
+          <p>The number of elements per page.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -4906,7 +5870,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_patch_member_1_" data-uid="@esfx/iter-query!Query#patch:member(1)">patch(start, skipCount, range)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the elements of this <code>Query</code> with the provided range patched into the results.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery for the elements of this <code>Query</code> with the provided range
+patched into the results.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4927,7 +5892,8 @@
         <td><span class="xref">number</span></td>
         <td><em>start</em></td>
         <td>
-          
+          <p>The offset at which to patch the range.</p>
+
           
         </td>
       </tr>
@@ -4935,7 +5901,8 @@
         <td><span class="xref">number</span></td>
         <td><em>skipCount</em></td>
         <td>
-          
+          <p>The number of elements to skip from start.</p>
+
           
         </td>
       </tr>
@@ -4943,7 +5910,9 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>range</em></td>
         <td>
-          
+          <p>The range to patch into the result.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -4988,7 +5957,9 @@
         <td><span class="xref">T</span></td>
         <td><em>value</em></td>
         <td>
-          
+          <p>The value to prepend.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -5033,7 +6004,8 @@
         <td><span class="xref">number</span></td>
         <td><em>start</em></td>
         <td>
-          
+          <p>The starting number of the range.</p>
+
           
         </td>
       </tr>
@@ -5041,7 +6013,8 @@
         <td><span class="xref">number</span></td>
         <td><em>end</em></td>
         <td>
-          
+          <p>The ending number of the range.</p>
+
           
         </td>
       </tr>
@@ -5049,7 +6022,9 @@
         <td><span class="xref">number</span></td>
         <td><em>increment</em></td>
         <td>
-          
+          <p>The amount by which to change between each itereated value.
+ Query</p>
+
           
         </td>
       </tr>
@@ -5094,7 +6069,8 @@
         <td><span class="xref">(current: T, element: T, offset: number) =&gt; T</span></td>
         <td><em>accumulator</em></td>
         <td>
-          
+          <p>the callback used to compute the result.</p>
+
           
         </td>
       </tr>
@@ -5139,7 +6115,8 @@
         <td><span class="xref">(current: U, element: T, offset: number) =&gt; U</span></td>
         <td><em>accumulator</em></td>
         <td>
-          
+          <p>the callback used to compute the result.</p>
+
           
         </td>
       </tr>
@@ -5147,7 +6124,9 @@
         <td><span class="xref">U</span></td>
         <td><em>seed</em></td>
         <td>
-          
+          <p>An optional seed value.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -5215,7 +6194,8 @@
         <td><span class="xref">(current: U, element: T, offset: number) =&gt; U</span></td>
         <td><em>accumulator</em></td>
         <td>
-          
+          <p>the callback used to compute the result.</p>
+
           
         </td>
       </tr>
@@ -5223,7 +6203,8 @@
         <td><span class="xref">U</span></td>
         <td><em>seed</em></td>
         <td>
-          
+          <p>An optional seed value.</p>
+
           
         </td>
       </tr>
@@ -5231,7 +6212,9 @@
         <td><span class="xref">(result: U, count: number) =&gt; R</span></td>
         <td><em>resultSelector</em></td>
         <td>
-          
+          <p>An optional callback used to compute the final result.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -5295,7 +6278,9 @@
         <td><span class="xref">(current: T, element: T, offset: number) =&gt; T</span></td>
         <td><em>accumulator</em></td>
         <td>
-          
+          <p>the callback used to compute the result.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -5340,7 +6325,8 @@
         <td><span class="xref">(current: U, element: T, offset: number) =&gt; U</span></td>
         <td><em>accumulator</em></td>
         <td>
-          
+          <p>the callback used to compute the result.</p>
+
           
         </td>
       </tr>
@@ -5348,7 +6334,9 @@
         <td><span class="xref">U</span></td>
         <td><em>seed</em></td>
         <td>
-          
+          <p>An optional seed value.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -5416,7 +6404,8 @@
         <td><span class="xref">(current: U, element: T, offset: number) =&gt; U</span></td>
         <td><em>accumulator</em></td>
         <td>
-          
+          <p>the callback used to compute the result.</p>
+
           
         </td>
       </tr>
@@ -5424,7 +6413,8 @@
         <td><span class="xref">U</span></td>
         <td><em>seed</em></td>
         <td>
-          
+          <p>An optional seed value.</p>
+
           
         </td>
       </tr>
@@ -5432,7 +6422,9 @@
         <td><span class="xref">(result: U, count: number) =&gt; R</span></td>
         <td><em>resultSelector</em></td>
         <td>
-          
+          <p>An optional callback used to compute the final result.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -5497,7 +6489,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -5505,7 +6498,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -5551,7 +6546,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -5559,7 +6555,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -5567,7 +6564,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -5627,7 +6626,8 @@
         <td><span class="xref">T</span></td>
         <td><em>value</em></td>
         <td>
-          
+          <p>The value for each element of the <code>Query</code><!-- -->.</p>
+
           
         </td>
       </tr>
@@ -5635,7 +6635,9 @@
         <td><span class="xref">number</span></td>
         <td><em>count</em></td>
         <td>
-          
+          <p>The number of times to repeat the value.
+ Query</p>
+
           
         </td>
       </tr>
@@ -5675,7 +6677,7 @@
   
   <h4 id="_esfx_iter_query_Query_reverse_member_1_" data-uid="@esfx/iter-query!Query#reverse:member(1)">reverse()</h4>
   <div class="markdown level1 summary"><p>Creates a subquery whose elements are in the reverse order.</p>
-<p>Subquery</p>
+<p> Subquery</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -5721,7 +6723,8 @@
         <td><span class="xref">(current: T, element: T, offset: number) =&gt; T</span></td>
         <td><em>accumulator</em></td>
         <td>
-          
+          <p>The callback used to compute each result.</p>
+
           
         </td>
       </tr>
@@ -5766,7 +6769,8 @@
         <td><span class="xref">(current: U, element: T, offset: number) =&gt; U</span></td>
         <td><em>accumulator</em></td>
         <td>
-          
+          <p>The callback used to compute each result.</p>
+
           
         </td>
       </tr>
@@ -5774,7 +6778,9 @@
         <td><span class="xref">U</span></td>
         <td><em>seed</em></td>
         <td>
-          
+          <p>An optional seed value.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -5834,7 +6840,8 @@
         <td><span class="xref">(current: T, element: T, offset: number) =&gt; T</span></td>
         <td><em>accumulator</em></td>
         <td>
-          
+          <p>The callback used to compute each result.</p>
+
           
         </td>
       </tr>
@@ -5879,7 +6886,8 @@
         <td><span class="xref">(current: U, element: T, offset: number) =&gt; U</span></td>
         <td><em>accumulator</em></td>
         <td>
-          
+          <p>The callback used to compute each result.</p>
+
           
         </td>
       </tr>
@@ -5887,7 +6895,9 @@
         <td><span class="xref">U</span></td>
         <td><em>seed</em></td>
         <td>
-          
+          <p>An optional seed value.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -5948,7 +6958,8 @@
         <td><span class="xref">(element: T, offset: number) =&gt; U</span></td>
         <td><em>selector</em></td>
         <td>
-          
+          <p>A callback used to map each element.</p>
+
           
         </td>
       </tr>
@@ -6009,7 +7020,8 @@
         <td>(element: T) =&gt; <span class="xref">Iterable</span>&lt;U&gt;</td>
         <td><em>projection</em></td>
         <td>
-          
+          <p>A callback used to map each element into an iterable.</p>
+
           
         </td>
       </tr>
@@ -6070,7 +7082,8 @@
         <td>(element: T) =&gt; <span class="xref">Iterable</span>&lt;U&gt;</td>
         <td><em>projection</em></td>
         <td>
-          
+          <p>A callback used to map each element into an iterable.</p>
+
           
         </td>
       </tr>
@@ -6078,7 +7091,8 @@
         <td><span class="xref">(element: T, innerElement: U) =&gt; R</span></td>
         <td><em>resultSelector</em></td>
         <td>
-          
+          <p>An optional callback used to map the outer and projected inner elements.</p>
+
           
         </td>
       </tr>
@@ -6142,7 +7156,9 @@
         <td>(element: T) =&gt; <span class="xref">element</span> is U</td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>An optional callback used to match each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -6202,7 +7218,9 @@
         <td><span class="xref">(element: T) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>An optional callback used to match each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -6226,7 +7244,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_skip_member_1_" data-uid="@esfx/iter-query!Query#skip:member(1)">skip(count)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements up to the supplied count.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements up to the supplied
+count.</p>
 <p>NOTE: This is an alias for <code>drop</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -6248,7 +7267,9 @@
         <td><span class="xref">number</span></td>
         <td><em>count</em></td>
         <td>
-          
+          <p>The number of elements to skip.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -6272,7 +7293,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_skipRight_member_1_" data-uid="@esfx/iter-query!Query#skipRight:member(1)">skipRight(count)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the last elements up to the supplied count.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the last elements up to the supplied
+count.</p>
 <p>NOTE: This is an alias for <code>dropRight</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -6294,7 +7316,9 @@
         <td><span class="xref">number</span></td>
         <td><em>count</em></td>
         <td>
-          
+          <p>The number of elements to skip.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -6318,7 +7342,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_skipUntil_member_1_" data-uid="@esfx/iter-query!Query#skipUntil:member(1)">skipUntil(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that don&#39;t match the supplied predicate.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that don&#39;t match
+the supplied predicate.</p>
 <p>NOTE: This is an alias for <code>dropUntil</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -6340,7 +7365,8 @@
         <td><span class="xref">(element: T) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -6364,7 +7390,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_skipWhile_member_1_" data-uid="@esfx/iter-query!Query#skipWhile:member(1)">skipWhile(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that match the supplied predicate.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that match
+the supplied predicate.</p>
 <p>NOTE: This is an alias for <code>dropWhile</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -6386,7 +7413,8 @@
         <td><span class="xref">(element: T) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -6410,7 +7438,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_some_member_1_" data-uid="@esfx/iter-query!Query#some:member(1)">some(predicate)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the <code>Query</code> contains any elements, optionally filtering the elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the <code>Query</code> contains any elements,
+optionally filtering the elements using the supplied callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6431,7 +7460,9 @@
         <td><span class="xref">(element: T) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>An optional callback used to match each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -6455,8 +7486,11 @@
   
   
   <h4 id="_esfx_iter_query_Query_span_member_1_" data-uid="@esfx/iter-query!Query#span:member(1)">span(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of elements that match the supplied predicate, and whose second element is a subquery containing the remaining elements.</p>
-<p>The first subquery is eagerly evaluated, while the second subquery is lazily evaluated.</p>
+  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of
+elements that match the supplied predicate, and whose second element is a subquery
+containing the remaining elements.</p>
+<p>The first subquery is eagerly evaluated, while the second subquery is lazily
+evaluated.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6477,7 +7511,9 @@
         <td>(element: T, offset: number) =&gt; <span class="xref">element</span> is U</td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>The predicate used to match elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -6516,8 +7552,11 @@
   
   
   <h4 id="_esfx_iter_query_Query_span_member_2_" data-uid="@esfx/iter-query!Query#span:member(2)">span(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of elements that match the supplied predicate, and whose second element is a subquery containing the remaining elements.</p>
-<p>The first subquery is eagerly evaluated, while the second subquery is lazily evaluated.</p>
+  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of
+elements that match the supplied predicate, and whose second element is a subquery
+containing the remaining elements.</p>
+<p>The first subquery is eagerly evaluated, while the second subquery is lazily
+evaluated.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6538,7 +7577,9 @@
         <td><span class="xref">(element: T, offset: number) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>The predicate used to match elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -6583,7 +7624,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element.</p>
+
           
         </td>
       </tr>
@@ -6651,7 +7693,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element.</p>
+
           
         </td>
       </tr>
@@ -6659,7 +7702,8 @@
         <td><span class="xref">(element: T) =&gt; V</span></td>
         <td><em>elementSelector</em></td>
         <td>
-          
+          <p>A callback used to select a value for an element.</p>
+
           
         </td>
       </tr>
@@ -6731,7 +7775,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element.</p>
+
           
         </td>
       </tr>
@@ -6739,7 +7784,8 @@
         <td><span class="xref">(element: T) =&gt; V</span></td>
         <td><em>elementSelector</em></td>
         <td>
-          
+          <p>A callback used to select a value for an element.</p>
+
           
         </td>
       </tr>
@@ -6747,7 +7793,8 @@
         <td>(key: K, elements: <a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;V&gt;) =&gt; R</td>
         <td><em>spanSelector</em></td>
         <td>
-          
+          <p>A callback used to select a result from a contiguous range.</p>
+
           
         </td>
       </tr>
@@ -6823,7 +7870,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for an element.</p>
+
           
         </td>
       </tr>
@@ -6831,7 +7879,8 @@
         <td><a class="xref" href="https://tc39.github.io/ecma262/#sec-ecmascript-language-types-undefined-type">undefined</a></td>
         <td><em>elementSelector</em></td>
         <td>
-          
+          <p>A callback used to select a value for an element.</p>
+
           
         </td>
       </tr>
@@ -6839,7 +7888,8 @@
         <td>(key: K, elements: <a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;) =&gt; R</td>
         <td><em>spanSelector</em></td>
         <td>
-          
+          <p>A callback used to select a result from a contiguous range.</p>
+
           
         </td>
       </tr>
@@ -6890,8 +7940,11 @@
   
   
   <h4 id="_esfx_iter_query_Query_spanUntil_member_1_" data-uid="@esfx/iter-query!Query#spanUntil:member(1)">spanUntil(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of elements that do not match the supplied predicate, and whose second element is a subquery containing the remaining elements.</p>
-<p>The first subquery is eagerly evaluated, while the second subquery is lazily evaluated.</p>
+  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of
+elements that do not match the supplied predicate, and whose second element is a subquery
+containing the remaining elements.</p>
+<p>The first subquery is eagerly evaluated, while the second subquery is lazily
+evaluated.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6912,7 +7965,9 @@
         <td><span class="xref">(element: T, offset: number) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>The predicate used to match elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -6936,7 +7991,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_startsWith_member_1_" data-uid="@esfx/iter-query!Query#startsWith:member(1)">startsWith(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>Query</code> start with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>Query</code> start
+with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6957,7 +8013,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -6965,7 +8022,9 @@
         <td><a class="xref" href="../equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>A callback used to compare the equality of two elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -6989,7 +8048,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_startsWith_member_2_" data-uid="@esfx/iter-query!Query#startsWith:member(2)">startsWith(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>Query</code> start with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>Query</code> start
+with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -7010,7 +8070,8 @@
         <td><span class="xref">Iterable</span>&lt;U&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -7018,7 +8079,9 @@
         <td><span class="xref">(left: T, right: U) =&gt; boolean</span></td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>A callback used to compare the equality of two elements.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -7058,7 +8121,7 @@
   
   <h4 id="_esfx_iter_query_Query_sum_member_1_" data-uid="@esfx/iter-query!Query#sum:member(1)">sum()</h4>
   <div class="markdown level1 summary"><p>Computes the sum for a series of numbers.</p>
-<p>Scalar</p>
+<p> Scalar</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -7084,7 +8147,7 @@
   
   <h4 id="_esfx_iter_query_Query_sum_member_2_" data-uid="@esfx/iter-query!Query#sum:member(2)">sum(elementSelector)</h4>
   <div class="markdown level1 summary"><p>Computes the sum for a series of numbers.</p>
-<p>Scalar</p>
+<p> Scalar</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -7158,7 +8221,8 @@
         <td><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -7166,7 +8230,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -7230,7 +8296,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -7238,7 +8305,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -7291,7 +8360,8 @@
         <td><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -7299,7 +8369,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -7307,7 +8378,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -7375,7 +8448,8 @@
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -7383,7 +8457,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -7391,7 +8466,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -7430,7 +8507,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_take_member_1_" data-uid="@esfx/iter-query!Query#take:member(1)">take(count)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing the first elements up to the supplied count.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing the first elements up to the supplied
+count.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -7451,7 +8529,9 @@
         <td><span class="xref">number</span></td>
         <td><em>count</em></td>
         <td>
-          
+          <p>The number of elements to take.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -7475,7 +8555,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_takeRight_member_1_" data-uid="@esfx/iter-query!Query#takeRight:member(1)">takeRight(count)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing the last elements up to the supplied count.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing the last elements up to the supplied
+count.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -7496,7 +8577,9 @@
         <td><span class="xref">number</span></td>
         <td><em>count</em></td>
         <td>
-          
+          <p>The number of elements to take.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -7541,7 +8624,8 @@
         <td><span class="xref">(element: T) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -7586,7 +8670,8 @@
         <td>(element: T) =&gt; <span class="xref">element</span> is U</td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -7646,7 +8731,8 @@
         <td><span class="xref">(element: T) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -7671,7 +8757,6 @@
   
   <h4 id="_esfx_iter_query_Query_tap_member_1_" data-uid="@esfx/iter-query!Query#tap:member(1)">tap(callback)</h4>
   <div class="markdown level1 summary"><p>Lazily invokes a callback as each element of the <code>Query</code> is iterated.</p>
-<p>NOTE: This is an alias for <code>do</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -7692,7 +8777,8 @@
         <td><span class="xref">(element: T, offset: number) =&gt; void</span></td>
         <td><em>callback</em></td>
         <td>
-          
+          <p>The callback to invoke.</p>
+
           
         </td>
       </tr>
@@ -7737,7 +8823,8 @@
         <td>(source: this) =&gt; <a class="xref" href="../iter-hierarchy/orderedhierarchyiterable-interface.html#_esfx_iter_hierarchy_OrderedHierarchyIterable_interface">OrderedHierarchyIterable</a>&lt;RNode, R&gt;</td>
         <td><em>callback</em></td>
         <td>
-          
+          <p>A callback function.</p>
+
           
         </td>
       </tr>
@@ -7801,7 +8888,8 @@
         <td>(source: this) =&gt; <a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;RNode, R&gt;</td>
         <td><em>callback</em></td>
         <td>
-          
+          <p>A callback function.</p>
+
           
         </td>
       </tr>
@@ -7865,7 +8953,8 @@
         <td>(source: this) =&gt; <a class="xref" href="../iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;R&gt;</td>
         <td><em>callback</em></td>
         <td>
-          
+          <p>A callback function.</p>
+
           
         </td>
       </tr>
@@ -7925,7 +9014,8 @@
         <td>(source: this) =&gt; <span class="xref">Iterable</span>&lt;R&gt;</td>
         <td><em>callback</em></td>
         <td>
-          
+          <p>A callback function.</p>
+
           
         </td>
       </tr>
@@ -7964,7 +9054,8 @@
   
   
   <h4 id="_esfx_iter_query_Query_toArray_member_1_" data-uid="@esfx/iter-query!Query#toArray:member(1)">toArray()</h4>
-  <div class="markdown level1 summary"><p>Creates an Array for the elements of the <code>Query</code><!-- -->. Scalar</p>
+  <div class="markdown level1 summary"><p>Creates an Array for the elements of the <code>Query</code><!-- -->.
+ Scalar</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -8010,7 +9101,9 @@
         <td><span class="xref">(element: T) =&gt; V</span></td>
         <td><em>elementSelector</em></td>
         <td>
-          
+          <p>A callback that selects a value for each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -8070,7 +9163,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select a key for each element.</p>
+
           
         </td>
       </tr>
@@ -8078,7 +9172,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -8138,7 +9234,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select a key for each element.</p>
+
           
         </td>
       </tr>
@@ -8146,7 +9243,8 @@
         <td><span class="xref">(element: T) =&gt; V</span></td>
         <td><em>elementSelector</em></td>
         <td>
-          
+          <p>A callback that selects a value for each element.</p>
+
           
         </td>
       </tr>
@@ -8154,7 +9252,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -8196,38 +9296,13 @@
   </table>
   
   
-  <h4 id="_esfx_iter_query_Query_toHashSet_member_1_" data-uid="@esfx/iter-query!Query#toHashSet:member(1)">toHashSet()</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>Set</code> for the elements of the <code>Query</code><!-- -->. Scalar</p>
+  <h4 id="_esfx_iter_query_Query_toHashSet_member_1_" data-uid="@esfx/iter-query!Query#toHashSet:member(1)">toHashSet(equaler)</h4>
+  <div class="markdown level1 summary"><p>Creates a <code>HashSet</code> for the elements of the <code>Query</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHashSet(): HashSet&lt;T&gt;;</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="../collections-hashset/hashset.html#_esfx_collections_hashset_HashSet_class">HashSet</a>&lt;T&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="_esfx_iter_query_Query_toHashSet_member_2_" data-uid="@esfx/iter-query!Query#toHashSet:member(2)">toHashSet(equaler)</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>Set</code> for the elements of the <code>Query</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHashSet(equaler: Equaler&lt;T&gt;): HashSet&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">toHashSet(equaler?: Equaler&lt;T&gt;): HashSet&lt;T&gt;;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -8243,7 +9318,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare equality.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -8266,13 +9343,13 @@
   </table>
   
   
-  <h4 id="_esfx_iter_query_Query_toHashSet_member_3_" data-uid="@esfx/iter-query!Query#toHashSet:member(3)">toHashSet(elementSelector)</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>Set</code> for the elements of the <code>Query</code><!-- -->.</p>
+  <h4 id="_esfx_iter_query_Query_toHashSet_member_2_" data-uid="@esfx/iter-query!Query#toHashSet:member(2)">toHashSet(elementSelector, equaler)</h4>
+  <div class="markdown level1 summary"><p>Creates a <code>HashSet</code> for the elements of the <code>Query</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHashSet&lt;V&gt;(elementSelector: (element: T) =&gt; V): HashSet&lt;V&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">toHashSet&lt;V&gt;(elementSelector: (element: T) =&gt; V, equaler?: Equaler&lt;V&gt;): HashSet&lt;V&gt;;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -8288,67 +9365,8 @@
         <td><span class="xref">(element: T) =&gt; V</span></td>
         <td><em>elementSelector</em></td>
         <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="../collections-hashset/hashset.html#_esfx_collections_hashset_HashSet_class">HashSet</a>&lt;V&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>V</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="_esfx_iter_query_Query_toHashSet_member_4_" data-uid="@esfx/iter-query!Query#toHashSet:member(4)">toHashSet(elementSelector, equaler)</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>Set</code> for the elements of the <code>Query</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHashSet&lt;V&gt;(elementSelector: (element: T) =&gt; V, equaler: Equaler&lt;V&gt;): HashSet&lt;V&gt;;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">(element: T) =&gt; V</span></td>
-        <td><em>elementSelector</em></td>
-        <td>
-          
+          <p>A callback that selects a value for each element.</p>
+
           
         </td>
       </tr>
@@ -8356,7 +9374,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;V&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare equality.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -8424,7 +9444,9 @@
         <td><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</td>
         <td><em>provider</em></td>
         <td>
-          
+          <p>A <code>HierarchyProvider</code><!-- -->.
+ Hierarchy</p>
+
           
         </td>
       </tr>
@@ -8496,7 +9518,9 @@
         <td><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;T&gt;</td>
         <td><em>provider</em></td>
         <td>
-          
+          <p>A <code>HierarchyProvider</code><!-- -->.
+ Hierarchy</p>
+
           
         </td>
       </tr>
@@ -8549,7 +9573,9 @@
         <td><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</td>
         <td><em>provider</em></td>
         <td>
-          
+          <p>A <code>HierarchyProvider</code><!-- -->.
+ Hierarchy</p>
+
           
         </td>
       </tr>
@@ -8613,7 +9639,9 @@
         <td><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;T&gt;</td>
         <td><em>provider</em></td>
         <td>
-          
+          <p>A <code>HierarchyProvider</code><!-- -->.
+ Hierarchy</p>
+
           
         </td>
       </tr>
@@ -8682,7 +9710,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select a key for each element.</p>
+
           
         </td>
       </tr>
@@ -8690,7 +9719,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -8750,7 +9781,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select a key for each element.</p>
+
           
         </td>
       </tr>
@@ -8758,7 +9790,8 @@
         <td><span class="xref">(element: T) =&gt; V</span></td>
         <td><em>elementSelector</em></td>
         <td>
-          
+          <p>A callback that selects a value for each element.</p>
+
           
         </td>
       </tr>
@@ -8766,7 +9799,9 @@
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -8830,7 +9865,9 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select a key for each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -8890,7 +9927,8 @@
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select a key for each element.</p>
+
           
         </td>
       </tr>
@@ -8898,7 +9936,9 @@
         <td><span class="xref">(element: T) =&gt; V</span></td>
         <td><em>elementSelector</em></td>
         <td>
-          
+          <p>A callback that selects a value for each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -8965,7 +10005,7 @@ typeof obj.toString; // undefined
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toObject(prototype: object | null | undefined, keySelector: (element: T) =&gt; PropertyKey): object;</code></pre>
+    <pre><code class="lang-typeScript hljs">toObject&lt;TProto extends object, K extends PropertyKey&gt;(prototype: TProto, keySelector: (element: T) =&gt; K): TProto &amp; Record&lt;K, T&gt;;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -8978,18 +10018,22 @@ typeof obj.toString; // undefined
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">object | null | undefined</span></td>
+        <td><span class="xref">TProto</span></td>
         <td><em>prototype</em></td>
         <td>
-          
+          <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+
           
         </td>
       </tr>
       <tr>
-        <td>(element: T) =&gt; <span class="xref">PropertyKey</span></td>
+        <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select a key for each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -9005,14 +10049,743 @@ typeof obj.toString; // undefined
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">object</span></td>
+        <td>TProto &amp; <span class="xref">Record</span>&lt;K, T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TProto</em></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><em>K</em></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="_esfx_iter_query_Query_toObject_member_2_" data-uid="@esfx/iter-query!Query#toObject:member(2)">toObject(prototype, keySelector, elementSelector, descriptorSelector)</h4>
+  <h4 id="_esfx_iter_query_Query_toObject_member_2_" data-uid="@esfx/iter-query!Query#toObject:member(2)">toObject(prototype, keySelector)</h4>
+  <div class="markdown level1 summary"><p>Creates an Object for the elements of the <code>Query</code><!-- -->. Properties are added via <code>Object.defineProperty</code><!-- -->.</p>
+<pre><code class="lang-ts">// As a regular object
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(undefined, a =&gt; a[0]);
+obj.x; // [&quot;x&quot;, 1]
+obj.y; // [&quot;y&quot;, 2]
+typeof obj.toString; // function
+
+// with a custom prototype
+const baseObject = { toString() { return `${this.x}:${this.y}` } };
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(baseObject, a =&gt; a[0]);
+obj.x; // [&quot;x&quot;, 1]
+obj.y; // [&quot;y&quot;, 2]
+typeof obj.toString; // function
+obj.toString(); // &quot;x&quot;,1:&quot;y&quot;,2
+
+// with a null prototype
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(null, a =&gt; a[0]);
+obj.x; // [&quot;x&quot;, 1]
+obj.y; // [&quot;y&quot;, 2]
+typeof obj.toString; // undefined
+</code></pre></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">toObject&lt;TProto extends object&gt;(prototype: TProto, keySelector: (element: T) =&gt; PropertyKey): TProto &amp; Record&lt;PropertyKey, T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TProto</span></td>
+        <td><em>prototype</em></td>
+        <td>
+          <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td>(element: T) =&gt; <span class="xref">PropertyKey</span></td>
+        <td><em>keySelector</em></td>
+        <td>
+          <p>A callback used to select a key for each element.
+ Scalar</p>
+
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>TProto &amp; <span class="xref">Record</span>&lt;<span class="xref">PropertyKey</span>, T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TProto</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query_toObject_member_3_" data-uid="@esfx/iter-query!Query#toObject:member(3)">toObject(prototype, keySelector)</h4>
+  <div class="markdown level1 summary"><p>Creates an Object for the elements of the <code>Query</code><!-- -->. Properties are added via <code>Object.defineProperty</code><!-- -->.</p>
+<pre><code class="lang-ts">// As a regular object
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(undefined, a =&gt; a[0]);
+obj.x; // [&quot;x&quot;, 1]
+obj.y; // [&quot;y&quot;, 2]
+typeof obj.toString; // function
+
+// with a custom prototype
+const baseObject = { toString() { return `${this.x}:${this.y}` } };
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(baseObject, a =&gt; a[0]);
+obj.x; // [&quot;x&quot;, 1]
+obj.y; // [&quot;y&quot;, 2]
+typeof obj.toString; // function
+obj.toString(); // &quot;x&quot;,1:&quot;y&quot;,2
+
+// with a null prototype
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(null, a =&gt; a[0]);
+obj.x; // [&quot;x&quot;, 1]
+obj.y; // [&quot;y&quot;, 2]
+typeof obj.toString; // undefined
+</code></pre></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">toObject&lt;K extends PropertyKey&gt;(prototype: object | null | undefined, keySelector: (element: T) =&gt; K): Record&lt;K, T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object | null | undefined</span></td>
+        <td><em>prototype</em></td>
+        <td>
+          <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">(element: T) =&gt; K</span></td>
+        <td><em>keySelector</em></td>
+        <td>
+          <p>A callback used to select a key for each element.
+ Scalar</p>
+
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Record</span>&lt;K, T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>K</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query_toObject_member_4_" data-uid="@esfx/iter-query!Query#toObject:member(4)">toObject(prototype, keySelector)</h4>
+  <div class="markdown level1 summary"><p>Creates an Object for the elements of the <code>Query</code><!-- -->. Properties are added via <code>Object.defineProperty</code><!-- -->.</p>
+<pre><code class="lang-ts">// As a regular object
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(undefined, a =&gt; a[0]);
+obj.x; // [&quot;x&quot;, 1]
+obj.y; // [&quot;y&quot;, 2]
+typeof obj.toString; // function
+
+// with a custom prototype
+const baseObject = { toString() { return `${this.x}:${this.y}` } };
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(baseObject, a =&gt; a[0]);
+obj.x; // [&quot;x&quot;, 1]
+obj.y; // [&quot;y&quot;, 2]
+typeof obj.toString; // function
+obj.toString(); // &quot;x&quot;,1:&quot;y&quot;,2
+
+// with a null prototype
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(null, a =&gt; a[0]);
+obj.x; // [&quot;x&quot;, 1]
+obj.y; // [&quot;y&quot;, 2]
+typeof obj.toString; // undefined
+</code></pre></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">toObject(prototype: object | null | undefined, keySelector: (element: T) =&gt; PropertyKey): Record&lt;PropertyKey, T&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object | null | undefined</span></td>
+        <td><em>prototype</em></td>
+        <td>
+          <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td>(element: T) =&gt; <span class="xref">PropertyKey</span></td>
+        <td><em>keySelector</em></td>
+        <td>
+          <p>A callback used to select a key for each element.
+ Scalar</p>
+
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Record</span>&lt;<span class="xref">PropertyKey</span>, T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query_toObject_member_5_" data-uid="@esfx/iter-query!Query#toObject:member(5)">toObject(prototype, keySelector, elementSelector, descriptorSelector)</h4>
+  <div class="markdown level1 summary"><p>Creates an Object for the elements the <code>Query</code><!-- -->. Properties are added via <code>Object.defineProperty</code><!-- -->.</p>
+<pre><code class="lang-ts">// As a regular object
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(undefined, a =&gt; a[0], a =&gt; a[1]);
+obj.x; // 1
+obj.y; // 2
+typeof obj.toString; // function
+
+// with a custom prototype
+const baseObject = { toString() { return `${this.x}:${this.y}` } };
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(baseObject, a =&gt; a[0], a =&gt; a[1]);
+obj.x; // 1
+obj.y; // 2
+typeof obj.toString; // function
+obj.toString(); // 1:2
+
+// with a null prototype
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(null, a =&gt; a[0], a =&gt; a[1]);
+obj.x; // 1
+obj.y; // 2
+typeof obj.toString; // undefined
+</code></pre></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">toObject&lt;TProto extends object, K extends PropertyKey, V&gt;(prototype: TProto, keySelector: (element: T) =&gt; K, elementSelector: (element: T) =&gt; V, descriptorSelector?: (key: K, element: V) =&gt; TypedPropertyDescriptor&lt;V&gt;): TProto &amp; Record&lt;K, V&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TProto</span></td>
+        <td><em>prototype</em></td>
+        <td>
+          <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">(element: T) =&gt; K</span></td>
+        <td><em>keySelector</em></td>
+        <td>
+          <p>A callback used to select a key for each element.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">(element: T) =&gt; V</span></td>
+        <td><em>elementSelector</em></td>
+        <td>
+          <p>A callback that selects a value for each element.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td>(key: K, element: V) =&gt; <span class="xref">TypedPropertyDescriptor</span>&lt;V&gt;</td>
+        <td><em>descriptorSelector</em></td>
+        <td>
+          <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
+
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>TProto &amp; <span class="xref">Record</span>&lt;K, V&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TProto</em></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><em>K</em></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><em>V</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query_toObject_member_6_" data-uid="@esfx/iter-query!Query#toObject:member(6)">toObject(prototype, keySelector, elementSelector, descriptorSelector)</h4>
+  <div class="markdown level1 summary"><p>Creates an Object for the elements the <code>Query</code><!-- -->. Properties are added via <code>Object.defineProperty</code><!-- -->.</p>
+<pre><code class="lang-ts">// As a regular object
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(undefined, a =&gt; a[0], a =&gt; a[1]);
+obj.x; // 1
+obj.y; // 2
+typeof obj.toString; // function
+
+// with a custom prototype
+const baseObject = { toString() { return `${this.x}:${this.y}` } };
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(baseObject, a =&gt; a[0], a =&gt; a[1]);
+obj.x; // 1
+obj.y; // 2
+typeof obj.toString; // function
+obj.toString(); // 1:2
+
+// with a null prototype
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(null, a =&gt; a[0], a =&gt; a[1]);
+obj.x; // 1
+obj.y; // 2
+typeof obj.toString; // undefined
+</code></pre></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">toObject&lt;TProto extends object, V&gt;(prototype: TProto, keySelector: (element: T) =&gt; PropertyKey, elementSelector: (element: T) =&gt; V, descriptorSelector?: (key: PropertyKey, element: V) =&gt; TypedPropertyDescriptor&lt;V&gt;): TProto &amp; Record&lt;PropertyKey, V&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">TProto</span></td>
+        <td><em>prototype</em></td>
+        <td>
+          <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td>(element: T) =&gt; <span class="xref">PropertyKey</span></td>
+        <td><em>keySelector</em></td>
+        <td>
+          <p>A callback used to select a key for each element.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">(element: T) =&gt; V</span></td>
+        <td><em>elementSelector</em></td>
+        <td>
+          <p>A callback that selects a value for each element.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td>(key: <span class="xref">PropertyKey</span>, element: V) =&gt; <span class="xref">TypedPropertyDescriptor</span>&lt;V&gt;</td>
+        <td><em>descriptorSelector</em></td>
+        <td>
+          <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
+
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>TProto &amp; <span class="xref">Record</span>&lt;<span class="xref">PropertyKey</span>, V&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>TProto</em></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><em>V</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query_toObject_member_7_" data-uid="@esfx/iter-query!Query#toObject:member(7)">toObject(prototype, keySelector, elementSelector, descriptorSelector)</h4>
+  <div class="markdown level1 summary"><p>Creates an Object for the elements the <code>Query</code><!-- -->. Properties are added via <code>Object.defineProperty</code><!-- -->.</p>
+<pre><code class="lang-ts">// As a regular object
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(undefined, a =&gt; a[0], a =&gt; a[1]);
+obj.x; // 1
+obj.y; // 2
+typeof obj.toString; // function
+
+// with a custom prototype
+const baseObject = { toString() { return `${this.x}:${this.y}` } };
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(baseObject, a =&gt; a[0], a =&gt; a[1]);
+obj.x; // 1
+obj.y; // 2
+typeof obj.toString; // function
+obj.toString(); // 1:2
+
+// with a null prototype
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(null, a =&gt; a[0], a =&gt; a[1]);
+obj.x; // 1
+obj.y; // 2
+typeof obj.toString; // undefined
+</code></pre></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">toObject&lt;K extends PropertyKey, V&gt;(prototype: object | null | undefined, keySelector: (element: T) =&gt; K, elementSelector: (element: T) =&gt; V, descriptorSelector?: (key: K, element: V) =&gt; TypedPropertyDescriptor&lt;V&gt;): Record&lt;K, V&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object | null | undefined</span></td>
+        <td><em>prototype</em></td>
+        <td>
+          <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">(element: T) =&gt; K</span></td>
+        <td><em>keySelector</em></td>
+        <td>
+          <p>A callback used to select a key for each element.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">(element: T) =&gt; V</span></td>
+        <td><em>elementSelector</em></td>
+        <td>
+          <p>A callback that selects a value for each element.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td>(key: K, element: V) =&gt; <span class="xref">TypedPropertyDescriptor</span>&lt;V&gt;</td>
+        <td><em>descriptorSelector</em></td>
+        <td>
+          <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
+
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Record</span>&lt;K, V&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>K</em></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><em>V</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query_toObject_member_8_" data-uid="@esfx/iter-query!Query#toObject:member(8)">toObject(prototype, keySelector, elementSelector, descriptorSelector)</h4>
+  <div class="markdown level1 summary"><p>Creates an Object for the elements the <code>Query</code><!-- -->. Properties are added via <code>Object.defineProperty</code><!-- -->.</p>
+<pre><code class="lang-ts">// As a regular object
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(undefined, a =&gt; a[0], a =&gt; a[1]);
+obj.x; // 1
+obj.y; // 2
+typeof obj.toString; // function
+
+// with a custom prototype
+const baseObject = { toString() { return `${this.x}:${this.y}` } };
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(baseObject, a =&gt; a[0], a =&gt; a[1]);
+obj.x; // 1
+obj.y; // 2
+typeof obj.toString; // function
+obj.toString(); // 1:2
+
+// with a null prototype
+const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(null, a =&gt; a[0], a =&gt; a[1]);
+obj.x; // 1
+obj.y; // 2
+typeof obj.toString; // undefined
+</code></pre></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">toObject&lt;V&gt;(prototype: object | null | undefined, keySelector: (element: T) =&gt; PropertyKey, elementSelector: (element: T) =&gt; V, descriptorSelector?: (key: PropertyKey, element: V) =&gt; TypedPropertyDescriptor&lt;V&gt;): Record&lt;PropertyKey, V&gt;;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object | null | undefined</span></td>
+        <td><em>prototype</em></td>
+        <td>
+          <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td>(element: T) =&gt; <span class="xref">PropertyKey</span></td>
+        <td><em>keySelector</em></td>
+        <td>
+          <p>A callback used to select a key for each element.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td><span class="xref">(element: T) =&gt; V</span></td>
+        <td><em>elementSelector</em></td>
+        <td>
+          <p>A callback that selects a value for each element.</p>
+
+          
+        </td>
+      </tr>
+      <tr>
+        <td>(key: <span class="xref">PropertyKey</span>, element: V) =&gt; <span class="xref">TypedPropertyDescriptor</span>&lt;V&gt;</td>
+        <td><em>descriptorSelector</em></td>
+        <td>
+          <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
+
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Record</span>&lt;<span class="xref">PropertyKey</span>, V&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><em>V</em></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_iter_query_Query_toObject_member_9_" data-uid="@esfx/iter-query!Query#toObject:member(9)">toObject(prototype, keySelector, elementSelector, descriptorSelector)</h4>
   <div class="markdown level1 summary"><p>Creates an Object for the elements the <code>Query</code><!-- -->. Properties are added via <code>Object.defineProperty</code><!-- -->.</p>
 <pre><code class="lang-ts">// As a regular object
 const obj = from(`&quot;`, 1], [&quot;y&quot;, 2]]).toObject(undefined, a =&gt; a[0], a =&gt; a[1]);
@@ -9053,7 +10826,9 @@ typeof obj.toString; // undefined
         <td><span class="xref">object | null | undefined</span></td>
         <td><em>prototype</em></td>
         <td>
-          
+          <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+
           
         </td>
       </tr>
@@ -9061,7 +10836,8 @@ typeof obj.toString; // undefined
         <td>(element: T) =&gt; <span class="xref">PropertyKey</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select a key for each element.</p>
+
           
         </td>
       </tr>
@@ -9069,7 +10845,8 @@ typeof obj.toString; // undefined
         <td><span class="xref">(element: T) =&gt; V</span></td>
         <td><em>elementSelector</em></td>
         <td>
-          
+          <p>A callback that selects a value for each element.</p>
+
           
         </td>
       </tr>
@@ -9077,7 +10854,9 @@ typeof obj.toString; // undefined
         <td>(key: <span class="xref">PropertyKey</span>, element: V) =&gt; <span class="xref">PropertyDescriptor</span></td>
         <td><em>descriptorSelector</em></td>
         <td>
-          
+          <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -9116,7 +10895,8 @@ typeof obj.toString; // undefined
   
   
   <h4 id="_esfx_iter_query_Query_toSet_member_1_" data-uid="@esfx/iter-query!Query#toSet:member(1)">toSet()</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>Set</code> for the elements of the <code>Query</code><!-- -->. Scalar</p>
+  <div class="markdown level1 summary"><p>Creates a <code>Set</code> for the elements of the <code>Query</code><!-- -->.
+ Scalar</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -9162,7 +10942,9 @@ typeof obj.toString; // undefined
         <td><span class="xref">(element: T) =&gt; V</span></td>
         <td><em>elementSelector</em></td>
         <td>
-          
+          <p>A callback that selects a value for each element.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -9230,7 +11012,8 @@ typeof obj.toString; // undefined
         <td><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -9238,7 +11021,9 @@ typeof obj.toString; // undefined
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -9302,7 +11087,8 @@ typeof obj.toString; // undefined
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -9310,7 +11096,9 @@ typeof obj.toString; // undefined
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
         <td><em>equaler</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -9363,7 +11151,8 @@ typeof obj.toString; // undefined
         <td><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -9371,7 +11160,8 @@ typeof obj.toString; // undefined
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -9379,7 +11169,9 @@ typeof obj.toString; // undefined
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -9447,7 +11239,8 @@ typeof obj.toString; // undefined
         <td><span class="xref">Iterable</span>&lt;T&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -9455,7 +11248,8 @@ typeof obj.toString; // undefined
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -9463,7 +11257,9 @@ typeof obj.toString; // undefined
         <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
         <td><em>keyEqualer</em></td>
         <td>
-          
+          <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
           
         </td>
       </tr>
@@ -9554,7 +11350,9 @@ typeof obj.toString; // undefined
         <td><span class="xref">(value: T) =&gt; U</span></td>
         <td><em>partSelector</em></td>
         <td>
-          
+          <p>A callback that converts a result into a tuple.
+ Scalar</p>
+
           
         </td>
       </tr>
@@ -9617,7 +11415,8 @@ typeof obj.toString; // undefined
         <td>(element: T, offset: number) =&gt; <span class="xref">element</span> is U</td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -9678,7 +11477,8 @@ typeof obj.toString; // undefined
         <td><span class="xref">(element: T, offset: number) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -9724,7 +11524,8 @@ typeof obj.toString; // undefined
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -9732,7 +11533,8 @@ typeof obj.toString; // undefined
         <td><span class="xref">(key: K, offset: number) =&gt; boolean</span></td>
         <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each key.</p>
+
           
         </td>
       </tr>
@@ -9773,7 +11575,7 @@ typeof obj.toString; // undefined
   <h4 id="_esfx_iter_query_Query_whereDefined_member_1_" data-uid="@esfx/iter-query!Query#whereDefined:member(1)">whereDefined()</h4>
   <div class="markdown level1 summary"><p>Creates a subquery whose elements are neither <code>null</code> nor <code>undefined</code><!-- -->.</p>
 <p>NOTE: This is an alias for <code>filterDefined</code><!-- -->.</p>
-<p>Subquery</p>
+<p> Subquery</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -9820,7 +11622,8 @@ typeof obj.toString; // undefined
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -9858,14 +11661,14 @@ typeof obj.toString; // undefined
   </table>
   
   
-  <h4 id="_esfx_iter_query_Query_xor_member_1_" data-uid="@esfx/iter-query!Query#xor:member(1)">xor(this, right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->.</p>
-<p>NOTE: This is an alias for <code>symmetricDifference</code><!-- -->.</p>
+  <h4 id="_esfx_iter_query_Query_whereNot_member_1_" data-uid="@esfx/iter-query!Query#whereNot:member(1)">whereNot(predicate)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery whose elements do not match the supplied predicate.</p>
+<p>NOTE: This is an alias for <code>filterNot</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">xor&lt;TNode, T extends TNode&gt;(this: Query&lt;T&gt;, right: HierarchyIterable&lt;TNode, T&gt;, equaler?: Equaler&lt;T&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereNot&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): Query&lt;U&gt;;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -9878,26 +11681,11 @@ typeof obj.toString; // undefined
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</td>
-        <td><em>this</em></td>
+        <td>(element: T, offset: number) =&gt; <span class="xref">element</span> is U</td>
+        <td><em>predicate</em></td>
         <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</td>
-        <td><em>right</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
-        <td><em>equaler</em></td>
-        <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -9913,7 +11701,7 @@ typeof obj.toString; // undefined
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</td>
+        <td><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;U&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -9928,25 +11716,21 @@ typeof obj.toString; // undefined
     </thead>
     <tbody>
       <tr>
-        <td><em>TNode</em></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><em>T</em></td>
+        <td><em>U</em></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="_esfx_iter_query_Query_xor_member_2_" data-uid="@esfx/iter-query!Query#xor:member(2)">xor(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->.</p>
-<p>NOTE: This is an alias for <code>symmetricDifference</code><!-- -->.</p>
+  <h4 id="_esfx_iter_query_Query_whereNot_member_2_" data-uid="@esfx/iter-query!Query#whereNot:member(2)">whereNot(predicate)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery whose elements do not match the supplied predicate.</p>
+<p>NOTE: This is an alias for <code>filterNot</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">xor(right: Iterable&lt;T&gt;, equaler?: Equaler&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereNot(predicate: (element: T, offset: number) =&gt; boolean): Query&lt;T&gt;;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -9959,18 +11743,11 @@ typeof obj.toString; // undefined
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Iterable</span>&lt;T&gt;</td>
-        <td><em>right</em></td>
+        <td><span class="xref">(element: T, offset: number) =&gt; boolean</span></td>
+        <td><em>predicate</em></td>
         <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</td>
-        <td><em>equaler</em></td>
-        <td>
-          
+          <p>A callback used to match each element.</p>
+
           
         </td>
       </tr>
@@ -9993,14 +11770,14 @@ typeof obj.toString; // undefined
   </table>
   
   
-  <h4 id="_esfx_iter_query_Query_xorBy_member_1_" data-uid="@esfx/iter-query!Query#xorBy:member(1)">xorBy(this, right, keySelector, keyEqualer)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
-<p>NOTE: This is an alias for <code>symmetricDifferenceBy</code><!-- -->.</p>
+  <h4 id="_esfx_iter_query_Query_whereNotBy_member_1_" data-uid="@esfx/iter-query!Query#whereNotBy:member(1)">whereNotBy(keySelector, predicate)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery where the selected key for each element does not match the supplied predicate.</p>
+<p>NOTE: This is an alias for <code>filterNotBy</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">xorBy&lt;TNode, T extends TNode, K&gt;(this: Query&lt;T&gt;, right: HierarchyIterable&lt;TNode, T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereNotBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; boolean): Query&lt;T&gt;;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -10012,35 +11789,21 @@ typeof obj.toString; // undefined
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</td>
-        <td><em>this</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</td>
-        <td><em>right</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
       <tr>
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
       <tr>
-        <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
-        <td><em>keyEqualer</em></td>
+        <td><span class="xref">(key: K, offset: number) =&gt; boolean</span></td>
+        <td><em>predicate</em></td>
         <td>
-          
+          <p>A callback used to match each key.</p>
+
           
         </td>
       </tr>
@@ -10056,7 +11819,7 @@ typeof obj.toString; // undefined
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</td>
+        <td><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -10070,14 +11833,6 @@ typeof obj.toString; // undefined
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><em>TNode</em></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><em>T</em></td>
-        <td></td>
-      </tr>
       <tr>
         <td><em>K</em></td>
         <td></td>
@@ -10086,14 +11841,14 @@ typeof obj.toString; // undefined
   </table>
   
   
-  <h4 id="_esfx_iter_query_Query_xorBy_member_2_" data-uid="@esfx/iter-query!Query#xorBy:member(2)">xorBy(right, keySelector, keyEqualer)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
-<p>NOTE: This is an alias for <code>symmetricDifferenceBy</code><!-- -->.</p>
+  <h4 id="_esfx_iter_query_Query_whereNotDefinedBy_member_1_" data-uid="@esfx/iter-query!Query#whereNotDefinedBy:member(1)">whereNotDefinedBy(keySelector)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery where the selected key for each element is either <code>null</code> or <code>undefined</code><!-- -->.</p>
+<p>NOTE: This is an alias for <code>filterNotDefinedBy</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">xorBy&lt;K&gt;(right: Iterable&lt;T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereNotDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): Query&lt;T&gt;;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -10106,26 +11861,11 @@ typeof obj.toString; // undefined
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Iterable</span>&lt;T&gt;</td>
-        <td><em>right</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
         <td><span class="xref">(element: T) =&gt; K</span></td>
         <td><em>keySelector</em></td>
         <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
-        <td><em>keyEqualer</em></td>
-        <td>
-          
+          <p>A callback used to select the key for each element.</p>
+
           
         </td>
       </tr>
@@ -10164,7 +11904,8 @@ typeof obj.toString; // undefined
   
   
   <h4 id="_esfx_iter_query_Query_zip_member_1_" data-uid="@esfx/iter-query!Query#zip:member(1)">zip(right)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery that combines this <code>Query</code> with another <code>Iterable</code> by combining elements in tuples.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery that combines this <code>Query</code> with another <code>Iterable</code> by combining elements
+in tuples.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -10185,7 +11926,9 @@ typeof obj.toString; // undefined
         <td><span class="xref">Iterable</span>&lt;U&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.
+ Join</p>
+
           
         </td>
       </tr>
@@ -10224,7 +11967,8 @@ typeof obj.toString; // undefined
   
   
   <h4 id="_esfx_iter_query_Query_zip_member_2_" data-uid="@esfx/iter-query!Query#zip:member(2)">zip(right, selector)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery that combines this <code>Query</code> with another <code>Iterable</code> by combining elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery that combines this <code>Query</code> with another <code>Iterable</code> by combining elements
+using the supplied callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -10245,7 +11989,8 @@ typeof obj.toString; // undefined
         <td><span class="xref">Iterable</span>&lt;U&gt;</td>
         <td><em>right</em></td>
         <td>
-          
+          <p>A <code>Iterable</code> object.</p>
+
           
         </td>
       </tr>
@@ -10253,7 +11998,9 @@ typeof obj.toString; // undefined
         <td><span class="xref">(left: T, right: U) =&gt; R</span></td>
         <td><em>selector</em></td>
         <td>
-          
+          <p>A callback used to combine two elements.
+ Join</p>
+
           
         </td>
       </tr>

@@ -45,8 +45,7 @@
         "@esfx/iter-query": "^1.0.0-pre.15"
     },
     "devDependencies": {
-        "@esfx/internal-jest-sequence": "^1.0.0-pre.15",
-        "@esfx/internal-generate-export-map": "^1.0.0-pre.15"
+        "@esfx/internal-jest-sequence": "^1.0.0-pre.15"
     },
 
     "publishConfig": {

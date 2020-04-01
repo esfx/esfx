@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class Struct
+    <title>Class Index
    | @esfx API Reference </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class Struct
+    <meta name="title" content="Class Index
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.46.0.0">
     
@@ -78,35 +78,26 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="@esfx/struct-type!Struct:class">
+            <article class="content wrap" id="_content" data-uid="@esfx/interval!Index:class">
   
   
-  <h1 id="_esfx_struct_type_Struct_class" data-uid="@esfx/struct-type!Struct:class">Class Struct
+  <h1 id="_esfx_interval_Index_class" data-uid="@esfx/interval!Index:class">Class Index
   </h1>
-  <h6><strong>Package</strong>: <a class="xref" href="../struct-type.html">@esfx/struct-type</a></h6>
-  <div class="markdown level0 summary"></div>
+  <h6><strong>Package</strong>: <a class="xref" href="../interval.html">@esfx/interval</a></h6>
+  <div class="markdown level0 summary"><p>Represents an ordinal index within an indexed collection.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <h3 id="constructors">Constructors
   </h3>
   
   
-  <h4 id="_esfx_struct_type_Struct_constructor_1_" data-uid="@esfx/struct-type!Struct:constructor(1)">(constructor)()</h4>
-  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>Struct</code> class</p>
+  <h4 id="_esfx_interval_Index_constructor_1_" data-uid="@esfx/interval!Index:constructor(1)">(constructor)(value, isFromEnd)</h4>
+  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>Index</code> class</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">constructor();</code></pre>
-  </div>
-  
-  
-  <h4 id="_esfx_struct_type_Struct_constructor_2_" data-uid="@esfx/struct-type!Struct:constructor(2)">(constructor)(shared)</h4>
-  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>Struct</code> class</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">constructor(shared: boolean);</code></pre>
+    <pre><code class="lang-typeScript hljs">constructor(value: number, isFromEnd?: boolean);</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -118,77 +109,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><span class="xref">boolean</span></td>
-        <td><em>shared</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="_esfx_struct_type_Struct_constructor_3_" data-uid="@esfx/struct-type!Struct:constructor(3)">(constructor)(buffer, byteOffset)</h4>
-  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>Struct</code> class</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">constructor(buffer: ArrayBufferLike, byteOffset?: number);</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">ArrayBufferLike</span></td>
-        <td><em>buffer</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
       <tr>
         <td><span class="xref">number</span></td>
-        <td><em>byteOffset</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="_esfx_struct_type_Struct_constructor_4_" data-uid="@esfx/struct-type!Struct:constructor(4)">(constructor)(object, shared)</h4>
-  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>Struct</code> class</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">constructor(object: Partial&lt;StructInitProperties&lt;TDef&gt;&gt;, shared?: boolean);</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Partial</span>&lt;<a class="xref" href="../struct-type.html#_esfx_struct_type_StructInitProperties_type">StructInitProperties</a>&lt;TDef&gt;&gt;</td>
-        <td><em>object</em></td>
+        <td><em>value</em></td>
         <td>
           
           
@@ -196,45 +119,7 @@
       </tr>
       <tr>
         <td><span class="xref">boolean</span></td>
-        <td><em>shared</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="_esfx_struct_type_Struct_constructor_5_" data-uid="@esfx/struct-type!Struct:constructor(5)">(constructor)(elements, shared)</h4>
-  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>Struct</code> class</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">constructor(elements: Partial&lt;StructInitElements&lt;TDef&gt;&gt;, shared?: boolean);</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Partial</span>&lt;<a class="xref" href="../struct-type.html#_esfx_struct_type_StructInitElements_type">StructInitElements</a>&lt;TDef&gt;&gt;</td>
-        <td><em>elements</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><span class="xref">boolean</span></td>
-        <td><em>shared</em></td>
+        <td><em>isFromEnd</em></td>
         <td>
           
           
@@ -246,12 +131,13 @@
   </h3>
   
   
-  <h4 id="_esfx_struct_type_Struct_buffer_member" data-uid="@esfx/struct-type!Struct#buffer:member">buffer</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="_esfx_interval_Index_end_member" data-uid="@esfx/interval!Index.end:member">end</h4>
+  <div class="markdown level1 summary"><p>Gets an <code>Index</code> representing the last element of an indexed collection.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">get buffer(): ArrayBuffer | SharedArrayBuffer;</code></pre>
+    <pre><code class="lang-typeScript hljs">static get end(): Index;</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -263,19 +149,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ArrayBuffer</span> | <span class="xref">SharedArrayBuffer</span></td>
+        <td><a class="xref" href="index.html#_esfx_interval_Index_class">Index</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="_esfx_struct_type_Struct_byteLength_member" data-uid="@esfx/struct-type!Struct#byteLength:member">byteLength</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="_esfx_interval_Index_isFromEnd_member" data-uid="@esfx/interval!Index#isFromEnd:member">isFromEnd</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the index value is relative to the end of the collection.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">get byteLength(): number;</code></pre>
+    <pre><code class="lang-typeScript hljs">get isFromEnd(): boolean;</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -287,19 +174,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">number</span></td>
+        <td><span class="xref">boolean</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="_esfx_struct_type_Struct_byteOffset_member" data-uid="@esfx/struct-type!Struct#byteOffset:member">byteOffset</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="_esfx_interval_Index_start_member" data-uid="@esfx/interval!Index.start:member">start</h4>
+  <div class="markdown level1 summary"><p>Gets an <code>Index</code> representing the first element of an indexed collection.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">get byteOffset(): number;</code></pre>
+    <pre><code class="lang-typeScript hljs">static get start(): Index;</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -311,19 +199,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">number</span></td>
+        <td><a class="xref" href="index.html#_esfx_interval_Index_class">Index</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="_esfx_struct_type_Struct_SIZE_member" data-uid="@esfx/struct-type!Struct.SIZE:member">SIZE</h4>
-  <div class="markdown level1 summary"></div>
+  <h4 id="_esfx_interval_Index_value_member" data-uid="@esfx/interval!Index#value:member">value</h4>
+  <div class="markdown level1 summary"><p>Gets the value for the index.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">static get SIZE(): number;</code></pre>
+    <pre><code class="lang-typeScript hljs">get value(): number;</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -344,12 +233,12 @@
   </h3>
   
   
-  <h4 id="_esfx_struct_type_Struct_get_member_1_" data-uid="@esfx/struct-type!Struct#get:member(1)">get(key)</h4>
+  <h4 id="_esfx_interval_Index__Equatable_equals__member_1_" data-uid="@esfx/interval!Index#[Equatable.equals]:member(1)">[Equatable.equals](other)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">get&lt;K extends keyof StructProperties&lt;TDef&gt;&gt;(key: K): StructProperties&lt;TDef&gt;[K];</code></pre>
+    <pre><code class="lang-typeScript hljs">[Equatable.equals](other: unknown): boolean;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -362,201 +251,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">K</span></td>
-        <td><em>key</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="../struct-type.html#_esfx_struct_type_StructProperties_type">StructProperties</a>&lt;TDef&gt;[K]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>K</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="_esfx_struct_type_Struct_getIndex_member_1_" data-uid="@esfx/struct-type!Struct#getIndex:member(1)">getIndex(index)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">getIndex&lt;I extends keyof StructElements&lt;TDef&gt;&gt;(index: I): StructElements&lt;TDef&gt;[I];</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">I</span></td>
-        <td><em>index</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="../struct-type.html#_esfx_struct_type_StructElements_type">StructElements</a>&lt;TDef&gt;[I]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>I</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="_esfx_struct_type_Struct_set_member_1_" data-uid="@esfx/struct-type!Struct#set:member(1)">set(key, value)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">set&lt;K extends keyof StructProperties&lt;TDef&gt;&gt;(key: K, value: StructProperties&lt;TDef&gt;[K]): void;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">K</span></td>
-        <td><em>key</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="../struct-type.html#_esfx_struct_type_StructProperties_type">StructProperties</a>&lt;TDef&gt;[K]</td>
-        <td><em>value</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">void</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>K</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h4 id="_esfx_struct_type_Struct_setIndex_member_1_" data-uid="@esfx/struct-type!Struct#setIndex:member(1)">setIndex(index, value)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">setIndex&lt;I extends keyof StructElements&lt;TDef&gt;&gt;(index: I, value: StructElements&lt;TDef&gt;[I]): boolean;</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">I</span></td>
-        <td><em>index</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="../struct-type.html#_esfx_struct_type_StructElements_type">StructElements</a>&lt;TDef&gt;[I]</td>
-        <td><em>value</em></td>
+        <td><span class="xref">unknown</span></td>
+        <td><em>other</em></td>
         <td>
           
           
@@ -579,29 +275,38 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="typeParameters">Type Parameters</h5>
+  
+  
+  <h4 id="_esfx_interval_Index__Equatable_hash__member_1_" data-uid="@esfx/interval!Index#[Equatable.hash]:member(1)">[Equatable.hash]()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[Equatable.hash](): number;</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
-        <th>Name</th>
+        <th>Type</th>
         <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><em>I</em></td>
+        <td><span class="xref">number</span></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   
   
-  <h4 id="_esfx_struct_type_Struct_writeTo_member_1_" data-uid="@esfx/struct-type!Struct#writeTo:member(1)">writeTo(buffer, byteOffset)</h4>
+  <h4 id="_esfx_interval_Index_equals_member_1_" data-uid="@esfx/interval!Index#equals:member(1)">equals(other)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">writeTo(buffer: ArrayBufferLike, byteOffset?: number): void;</code></pre>
+    <pre><code class="lang-typeScript hljs">equals(other: Index): boolean;</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -614,16 +319,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ArrayBufferLike</span></td>
-        <td><em>buffer</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-      <tr>
-        <td><span class="xref">number</span></td>
-        <td><em>byteOffset</em></td>
+        <td><a class="xref" href="index.html#_esfx_interval_Index_class">Index</a></td>
+        <td><em>other</em></td>
         <td>
           
           
@@ -641,7 +338,191 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">void</span></td>
+        <td><span class="xref">boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_interval_Index_fromEnd_member_1_" data-uid="@esfx/interval!Index.fromEnd:member(1)">fromEnd(value)</h4>
+  <div class="markdown level1 summary"><p>Creates an index relative to the end of an indexed collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">static fromEnd(value: number): Index;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td><em>value</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="index.html#_esfx_interval_Index_class">Index</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_interval_Index_fromStart_member_1_" data-uid="@esfx/interval!Index.fromStart:member(1)">fromStart(value)</h4>
+  <div class="markdown level1 summary"><p>Creates an index relative to the start of an indexed collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">static fromStart(value: number): Index;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td><em>value</em></td>
+        <td>
+          
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="index.html#_esfx_interval_Index_class">Index</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_interval_Index_getIndex_member_1_" data-uid="@esfx/interval!Index#getIndex:member(1)">getIndex(length)</h4>
+  <div class="markdown level1 summary"><p>Computes the index based on a fixed length.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">getIndex(length: number): number;</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td><em>length</em></td>
+        <td>
+          <p>The number of elements in the collection.</p>
+
+          
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_interval_Index_hash_member_1_" data-uid="@esfx/interval!Index#hash:member(1)">hash()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">hash(): number;</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">number</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h4 id="_esfx_interval_Index_toString_member_1_" data-uid="@esfx/interval!Index#toString:member(1)">toString()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">toString(): string;</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
         <td></td>
       </tr>
     </tbody>

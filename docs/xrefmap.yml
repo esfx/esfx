@@ -245,6 +245,2326 @@ references:
   name: delay(cancelable, msec, value)
   href: api/async-delay.html#_esfx_async_delay_delay_function_4_
   fullName: delay(cancelable, msec, value)
+- uid: '@esfx/async-iter!'
+  name: '@esfx/async-iter'
+  href: api/async-iter.html
+  fullName: '@esfx/async-iter'
+- uid: '@esfx/async-iter-fn!'
+  name: '@esfx/async-iter-fn'
+  href: api/async-iter-fn.html
+  fullName: '@esfx/async-iter-fn'
+- uid: '@esfx/async-iter-fn!ancestorsAndSelfAsync:function(1)'
+  name: ancestorsAndSelfAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_ancestorsAndSelfAsync_function_1_
+  fullName: ancestorsAndSelfAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!ancestorsAndSelfAsync:function(2)'
+  name: ancestorsAndSelfAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_ancestorsAndSelfAsync_function_2_
+  fullName: ancestorsAndSelfAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!ancestorsAsync:function(1)'
+  name: ancestorsAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_ancestorsAsync_function_1_
+  fullName: ancestorsAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!ancestorsAsync:function(2)'
+  name: ancestorsAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_ancestorsAsync_function_2_
+  fullName: ancestorsAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!appendAsync:function(1)'
+  name: appendAsync(source, value)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_appendAsync_function_1_
+  fullName: appendAsync(source, value)
+- uid: '@esfx/async-iter-fn!appendAsync:function(2)'
+  name: appendAsync(source, value)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_appendAsync_function_2_
+  fullName: appendAsync(source, value)
+- uid: '@esfx/async-iter-fn!averageAsync:function(1)'
+  name: averageAsync(source)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_averageAsync_function_1_
+  fullName: averageAsync(source)
+- uid: '@esfx/async-iter-fn!averageAsync:function(2)'
+  name: averageAsync(source, elementSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_averageAsync_function_2_
+  fullName: averageAsync(source, elementSelector)
+- uid: '@esfx/async-iter-fn!bottomMostAsync:function(1)'
+  name: bottomMostAsync(source, predicate, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_bottomMostAsync_function_1_
+  fullName: bottomMostAsync(source, predicate, equaler)
+- uid: '@esfx/async-iter-fn!bottomMostAsync:function(2)'
+  name: bottomMostAsync(source, predicate, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_bottomMostAsync_function_2_
+  fullName: bottomMostAsync(source, predicate, equaler)
+- uid: '@esfx/async-iter-fn!childrenAsync:function(1)'
+  name: childrenAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_childrenAsync_function_1_
+  fullName: childrenAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!childrenAsync:function(2)'
+  name: childrenAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_childrenAsync_function_2_
+  fullName: childrenAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!concatAsync:function(1)'
+  name: concatAsync(left, right)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_concatAsync_function_1_
+  fullName: concatAsync(left, right)
+- uid: '@esfx/async-iter-fn!concatAsync:function(2)'
+  name: concatAsync(left, right)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_concatAsync_function_2_
+  fullName: concatAsync(left, right)
+- uid: '@esfx/async-iter-fn!concatAsync:function(3)'
+  name: concatAsync(left, right)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_concatAsync_function_3_
+  fullName: concatAsync(left, right)
+- uid: '@esfx/async-iter-fn!consumeAsync:function(1)'
+  name: consumeAsync(iterator, { cacheElements, leaveOpen })
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_consumeAsync_function_1_
+  fullName: consumeAsync(iterator, { cacheElements, leaveOpen })
+- uid: '@esfx/async-iter-fn!ConsumeAsyncOptions#cacheElements:member'
+  name: cacheElements
+  href: api/async-iter-fn/consumeasyncoptions.html#_esfx_async_iter_fn_ConsumeAsyncOptions_cacheElements_member
+  fullName: cacheElements
+- uid: '@esfx/async-iter-fn!ConsumeAsyncOptions#leaveOpen:member'
+  name: leaveOpen
+  href: api/async-iter-fn/consumeasyncoptions.html#_esfx_async_iter_fn_ConsumeAsyncOptions_leaveOpen_member
+  fullName: leaveOpen
+- uid: '@esfx/async-iter-fn!ConsumeAsyncOptions:interface'
+  name: ConsumeAsyncOptions
+  href: api/async-iter-fn/consumeasyncoptions.html#_esfx_async_iter_fn_ConsumeAsyncOptions_interface
+  fullName: ConsumeAsyncOptions
+- uid: '@esfx/async-iter-fn!continuousAsync:function(1)'
+  name: continuousAsync(value)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_continuousAsync_function_1_
+  fullName: continuousAsync(value)
+- uid: '@esfx/async-iter-fn!copyToAsync:function(1)'
+  name: copyToAsync(source, collection, start, count)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_copyToAsync_function_1_
+  fullName: copyToAsync(source, collection, start, count)
+- uid: '@esfx/async-iter-fn!correspondsAsync:function(1)'
+  name: correspondsAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_correspondsAsync_function_1_
+  fullName: correspondsAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!correspondsAsync:function(2)'
+  name: correspondsAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_correspondsAsync_function_2_
+  fullName: correspondsAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!correspondsByAsync:function(1)'
+  name: correspondsByAsync(left, right, keySelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_correspondsByAsync_function_1_
+  fullName: correspondsByAsync(left, right, keySelector)
+- uid: '@esfx/async-iter-fn!correspondsByAsync:function(2)'
+  name: correspondsByAsync(left, right, leftKeySelector, rightKeySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_correspondsByAsync_function_2_
+  fullName: correspondsByAsync(left, right, leftKeySelector, rightKeySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!countAsync:function(1)'
+  name: countAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_countAsync_function_1_
+  fullName: countAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!defaultIfEmptyAsync:function(1)'
+  name: defaultIfEmptyAsync(source, defaultValue)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_defaultIfEmptyAsync_function_1_
+  fullName: defaultIfEmptyAsync(source, defaultValue)
+- uid: '@esfx/async-iter-fn!defaultIfEmptyAsync:function(2)'
+  name: defaultIfEmptyAsync(source, defaultValue)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_defaultIfEmptyAsync_function_2_
+  fullName: defaultIfEmptyAsync(source, defaultValue)
+- uid: '@esfx/async-iter-fn!descendantsAndSelfAsync:function(1)'
+  name: descendantsAndSelfAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_descendantsAndSelfAsync_function_1_
+  fullName: descendantsAndSelfAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!descendantsAndSelfAsync:function(2)'
+  name: descendantsAndSelfAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_descendantsAndSelfAsync_function_2_
+  fullName: descendantsAndSelfAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!descendantsAsync:function(1)'
+  name: descendantsAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_descendantsAsync_function_1_
+  fullName: descendantsAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!descendantsAsync:function(2)'
+  name: descendantsAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_descendantsAsync_function_2_
+  fullName: descendantsAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!distinctAsync:function(1)'
+  name: distinctAsync(source, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_distinctAsync_function_1_
+  fullName: distinctAsync(source, equaler)
+- uid: '@esfx/async-iter-fn!distinctAsync:function(2)'
+  name: distinctAsync(source, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_distinctAsync_function_2_
+  fullName: distinctAsync(source, equaler)
+- uid: '@esfx/async-iter-fn!distinctByAsync:function(1)'
+  name: distinctByAsync(source, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_distinctByAsync_function_1_
+  fullName: distinctByAsync(source, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!distinctByAsync:function(2)'
+  name: distinctByAsync(source, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_distinctByAsync_function_2_
+  fullName: distinctByAsync(source, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!dropAsync:function(1)'
+  name: dropAsync(source, count)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_dropAsync_function_1_
+  fullName: dropAsync(source, count)
+- uid: '@esfx/async-iter-fn!dropAsync:function(2)'
+  name: dropAsync(source, count)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_dropAsync_function_2_
+  fullName: dropAsync(source, count)
+- uid: '@esfx/async-iter-fn!dropRightAsync:function(1)'
+  name: dropRightAsync(source, count)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_dropRightAsync_function_1_
+  fullName: dropRightAsync(source, count)
+- uid: '@esfx/async-iter-fn!dropRightAsync:function(2)'
+  name: dropRightAsync(source, count)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_dropRightAsync_function_2_
+  fullName: dropRightAsync(source, count)
+- uid: '@esfx/async-iter-fn!dropUntilAsync:function(1)'
+  name: dropUntilAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_dropUntilAsync_function_1_
+  fullName: dropUntilAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!dropUntilAsync:function(2)'
+  name: dropUntilAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_dropUntilAsync_function_2_
+  fullName: dropUntilAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!dropWhileAsync:function(1)'
+  name: dropWhileAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_dropWhileAsync_function_1_
+  fullName: dropWhileAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!dropWhileAsync:function(2)'
+  name: dropWhileAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_dropWhileAsync_function_2_
+  fullName: dropWhileAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!elementAtAsync:function(1)'
+  name: elementAtAsync(source, offset)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_elementAtAsync_function_1_
+  fullName: elementAtAsync(source, offset)
+- uid: '@esfx/async-iter-fn!emptyAsync:function(1)'
+  name: emptyAsync()
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_emptyAsync_function_1_
+  fullName: emptyAsync()
+- uid: '@esfx/async-iter-fn!endsWithAsync:function(1)'
+  name: endsWithAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_endsWithAsync_function_1_
+  fullName: endsWithAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!endsWithAsync:function(2)'
+  name: endsWithAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_endsWithAsync_function_2_
+  fullName: endsWithAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!everyAsync:function(1)'
+  name: everyAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_everyAsync_function_1_
+  fullName: everyAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!exceptAsync:function(1)'
+  name: exceptAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_exceptAsync_function_1_
+  fullName: exceptAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!exceptAsync:function(2)'
+  name: exceptAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_exceptAsync_function_2_
+  fullName: exceptAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!exceptByAsync:function(1)'
+  name: exceptByAsync(left, right, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_exceptByAsync_function_1_
+  fullName: exceptByAsync(left, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!exceptByAsync:function(2)'
+  name: exceptByAsync(left, right, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_exceptByAsync_function_2_
+  fullName: exceptByAsync(left, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!excludeAsync:function(1)'
+  name: excludeAsync(source, values)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_excludeAsync_function_1_
+  fullName: excludeAsync(source, values)
+- uid: '@esfx/async-iter-fn!excludeAsync:function(2)'
+  name: excludeAsync(source, values)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_excludeAsync_function_2_
+  fullName: excludeAsync(source, values)
+- uid: '@esfx/async-iter-fn!filterAsync:function(1)'
+  name: filterAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterAsync_function_1_
+  fullName: filterAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!filterAsync:function(2)'
+  name: filterAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterAsync_function_2_
+  fullName: filterAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!filterAsync:function(3)'
+  name: filterAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterAsync_function_3_
+  fullName: filterAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!filterAsync:function(4)'
+  name: filterAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterAsync_function_4_
+  fullName: filterAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!filterByAsync:function(1)'
+  name: filterByAsync(source, keySelector, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterByAsync_function_1_
+  fullName: filterByAsync(source, keySelector, predicate)
+- uid: '@esfx/async-iter-fn!filterByAsync:function(2)'
+  name: filterByAsync(source, keySelector, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterByAsync_function_2_
+  fullName: filterByAsync(source, keySelector, predicate)
+- uid: '@esfx/async-iter-fn!filterDefinedAsync:function(1)'
+  name: filterDefinedAsync(source)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterDefinedAsync_function_1_
+  fullName: filterDefinedAsync(source)
+- uid: '@esfx/async-iter-fn!filterDefinedAsync:function(2)'
+  name: filterDefinedAsync(source)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterDefinedAsync_function_2_
+  fullName: filterDefinedAsync(source)
+- uid: '@esfx/async-iter-fn!filterDefinedByAsync:function(1)'
+  name: filterDefinedByAsync(source, keySelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterDefinedByAsync_function_1_
+  fullName: filterDefinedByAsync(source, keySelector)
+- uid: '@esfx/async-iter-fn!filterDefinedByAsync:function(2)'
+  name: filterDefinedByAsync(source, keySelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterDefinedByAsync_function_2_
+  fullName: filterDefinedByAsync(source, keySelector)
+- uid: '@esfx/async-iter-fn!filterNotAsync:function(1)'
+  name: filterNotAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterNotAsync_function_1_
+  fullName: filterNotAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!filterNotAsync:function(2)'
+  name: filterNotAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterNotAsync_function_2_
+  fullName: filterNotAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!filterNotAsync:function(3)'
+  name: filterNotAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterNotAsync_function_3_
+  fullName: filterNotAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!filterNotAsync:function(4)'
+  name: filterNotAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterNotAsync_function_4_
+  fullName: filterNotAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!filterNotByAsync:function(1)'
+  name: filterNotByAsync(source, keySelector, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterNotByAsync_function_1_
+  fullName: filterNotByAsync(source, keySelector, predicate)
+- uid: '@esfx/async-iter-fn!filterNotByAsync:function(2)'
+  name: filterNotByAsync(source, keySelector, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterNotByAsync_function_2_
+  fullName: filterNotByAsync(source, keySelector, predicate)
+- uid: '@esfx/async-iter-fn!filterNotDefinedByAsync:function(1)'
+  name: filterNotDefinedByAsync(source, keySelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterNotDefinedByAsync_function_1_
+  fullName: filterNotDefinedByAsync(source, keySelector)
+- uid: '@esfx/async-iter-fn!filterNotDefinedByAsync:function(2)'
+  name: filterNotDefinedByAsync(source, keySelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_filterNotDefinedByAsync_function_2_
+  fullName: filterNotDefinedByAsync(source, keySelector)
+- uid: '@esfx/async-iter-fn!firstAsync:function(1)'
+  name: firstAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_firstAsync_function_1_
+  fullName: firstAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!firstAsync:function(2)'
+  name: firstAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_firstAsync_function_2_
+  fullName: firstAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!firstChildAsync:function(1)'
+  name: firstChildAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_firstChildAsync_function_1_
+  fullName: firstChildAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!firstChildAsync:function(2)'
+  name: firstChildAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_firstChildAsync_function_2_
+  fullName: firstChildAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!flatMapAsync:function(1)'
+  name: flatMapAsync(source, projection)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_flatMapAsync_function_1_
+  fullName: flatMapAsync(source, projection)
+- uid: '@esfx/async-iter-fn!flatMapAsync:function(2)'
+  name: flatMapAsync(source, projection, resultSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_flatMapAsync_function_2_
+  fullName: flatMapAsync(source, projection, resultSelector)
+- uid: '@esfx/async-iter-fn!followingAsync:function(1)'
+  name: followingAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_followingAsync_function_1_
+  fullName: followingAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!followingAsync:function(2)'
+  name: followingAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_followingAsync_function_2_
+  fullName: followingAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!followingSiblingsAsync:function(1)'
+  name: followingSiblingsAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_followingSiblingsAsync_function_1_
+  fullName: followingSiblingsAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!followingSiblingsAsync:function(2)'
+  name: followingSiblingsAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_followingSiblingsAsync_function_2_
+  fullName: followingSiblingsAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!forEachAsync:function(1)'
+  name: forEachAsync(source, callback)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_forEachAsync_function_1_
+  fullName: forEachAsync(source, callback)
+- uid: '@esfx/async-iter-fn!fullJoinAsync:function(1)'
+  name: fullJoinAsync(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_fullJoinAsync_function_1_
+  fullName: fullJoinAsync(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!generateAsync:function(1)'
+  name: generateAsync(count, generator)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_generateAsync_function_1_
+  fullName: generateAsync(count, generator)
+- uid: '@esfx/async-iter-fn!groupByAsync:function(1)'
+  name: groupByAsync(source, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_groupByAsync_function_1_
+  fullName: groupByAsync(source, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!groupByAsync:function(2)'
+  name: groupByAsync(source, keySelector, elementSelector, resultSelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_groupByAsync_function_2_
+  fullName: groupByAsync(source, keySelector, elementSelector, resultSelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!groupByAsync:function(3)'
+  name: groupByAsync(source, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_groupByAsync_function_3_
+  fullName: groupByAsync(source, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!groupByAsync:function(4)'
+  name: groupByAsync(source, keySelector, elementSelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_groupByAsync_function_4_
+  fullName: groupByAsync(source, keySelector, elementSelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!groupByAsync:function(5)'
+  name: groupByAsync(source, keySelector, elementSelector, resultSelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_groupByAsync_function_5_
+  fullName: groupByAsync(source, keySelector, elementSelector, resultSelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!groupJoinAsync:function(1)'
+  name: groupJoinAsync(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_groupJoinAsync_function_1_
+  fullName: groupJoinAsync(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!includesAsync:function(1)'
+  name: includesAsync(source, value, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_includesAsync_function_1_
+  fullName: includesAsync(source, value, equaler)
+- uid: '@esfx/async-iter-fn!includesAsync:function(2)'
+  name: includesAsync(source, value, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_includesAsync_function_2_
+  fullName: includesAsync(source, value, equaler)
+- uid: '@esfx/async-iter-fn!includesSequenceAsync:function(1)'
+  name: includesSequenceAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_includesSequenceAsync_function_1_
+  fullName: includesSequenceAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!includesSequenceAsync:function(2)'
+  name: includesSequenceAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_includesSequenceAsync_function_2_
+  fullName: includesSequenceAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!intersectAsync:function(1)'
+  name: intersectAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_intersectAsync_function_1_
+  fullName: intersectAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!intersectAsync:function(2)'
+  name: intersectAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_intersectAsync_function_2_
+  fullName: intersectAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!intersectAsync:function(3)'
+  name: intersectAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_intersectAsync_function_3_
+  fullName: intersectAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!intersectByAsync:function(1)'
+  name: intersectByAsync(left, right, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_intersectByAsync_function_1_
+  fullName: intersectByAsync(left, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!intersectByAsync:function(2)'
+  name: intersectByAsync(left, right, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_intersectByAsync_function_2_
+  fullName: intersectByAsync(left, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!intersectByAsync:function(3)'
+  name: intersectByAsync(left, right, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_intersectByAsync_function_3_
+  fullName: intersectByAsync(left, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!intoAsync:function(1)'
+  name: intoAsync(source, callback)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_intoAsync_function_1_
+  fullName: intoAsync(source, callback)
+- uid: '@esfx/async-iter-fn!joinAsync:function(1)'
+  name: joinAsync(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_joinAsync_function_1_
+  fullName: joinAsync(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!lastAsync:function(1)'
+  name: lastAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_lastAsync_function_1_
+  fullName: lastAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!lastAsync:function(2)'
+  name: lastAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_lastAsync_function_2_
+  fullName: lastAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!lastChildAsync:function(1)'
+  name: lastChildAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_lastChildAsync_function_1_
+  fullName: lastChildAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!lastChildAsync:function(2)'
+  name: lastChildAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_lastChildAsync_function_2_
+  fullName: lastChildAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!mapAsync:function(1)'
+  name: mapAsync(source, selector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_mapAsync_function_1_
+  fullName: mapAsync(source, selector)
+- uid: '@esfx/async-iter-fn!materializeAsync:function(1)'
+  name: materializeAsync(source)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_materializeAsync_function_1_
+  fullName: materializeAsync(source)
+- uid: '@esfx/async-iter-fn!materializeAsync:function(2)'
+  name: materializeAsync(source)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_materializeAsync_function_2_
+  fullName: materializeAsync(source)
+- uid: '@esfx/async-iter-fn!maxAsync:function(1)'
+  name: maxAsync(source, comparer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_maxAsync_function_1_
+  fullName: maxAsync(source, comparer)
+- uid: '@esfx/async-iter-fn!maxByAsync:function(1)'
+  name: maxByAsync(source, keySelector, keyComparer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_maxByAsync_function_1_
+  fullName: maxByAsync(source, keySelector, keyComparer)
+- uid: '@esfx/async-iter-fn!minAsync:function(1)'
+  name: minAsync(source, comparer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_minAsync_function_1_
+  fullName: minAsync(source, comparer)
+- uid: '@esfx/async-iter-fn!minByAsync:function(1)'
+  name: minByAsync(source, keySelector, keyComparer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_minByAsync_function_1_
+  fullName: minByAsync(source, keySelector, keyComparer)
+- uid: '@esfx/async-iter-fn!nthChildAsync:function(1)'
+  name: nthChildAsync(source, offset, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_nthChildAsync_function_1_
+  fullName: nthChildAsync(source, offset, predicate)
+- uid: '@esfx/async-iter-fn!nthChildAsync:function(2)'
+  name: nthChildAsync(source, offset, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_nthChildAsync_function_2_
+  fullName: nthChildAsync(source, offset, predicate)
+- uid: '@esfx/async-iter-fn!onceAsync:function(1)'
+  name: onceAsync(value)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_onceAsync_function_1_
+  fullName: onceAsync(value)
+- uid: '@esfx/async-iter-fn!orderByAsync:function(1)'
+  name: orderByAsync(source, keySelector, keyComparer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_orderByAsync_function_1_
+  fullName: orderByAsync(source, keySelector, keyComparer)
+- uid: '@esfx/async-iter-fn!orderByAsync:function(2)'
+  name: orderByAsync(source, keySelector, keyComparer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_orderByAsync_function_2_
+  fullName: orderByAsync(source, keySelector, keyComparer)
+- uid: '@esfx/async-iter-fn!orderByDescendingAsync:function(1)'
+  name: orderByDescendingAsync(source, keySelector, keyComparer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_orderByDescendingAsync_function_1_
+  fullName: orderByDescendingAsync(source, keySelector, keyComparer)
+- uid: '@esfx/async-iter-fn!orderByDescendingAsync:function(2)'
+  name: orderByDescendingAsync(source, keySelector, keyComparer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_orderByDescendingAsync_function_2_
+  fullName: orderByDescendingAsync(source, keySelector, keyComparer)
+- uid: '@esfx/async-iter-fn!pageByAsync:function(1)'
+  name: pageByAsync(source, pageSize)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_pageByAsync_function_1_
+  fullName: pageByAsync(source, pageSize)
+- uid: '@esfx/async-iter-fn!pageByAsync:function(2)'
+  name: pageByAsync(source, pageSize, pageSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_pageByAsync_function_2_
+  fullName: pageByAsync(source, pageSize, pageSelector)
+- uid: '@esfx/async-iter-fn!pageByAsync:function(3)'
+  name: pageByAsync(source, pageSize)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_pageByAsync_function_3_
+  fullName: pageByAsync(source, pageSize)
+- uid: '@esfx/async-iter-fn!pageByAsync:function(4)'
+  name: pageByAsync(source, pageSize, pageSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_pageByAsync_function_4_
+  fullName: pageByAsync(source, pageSize, pageSelector)
+- uid: '@esfx/async-iter-fn!parentsAsync:function(1)'
+  name: parentsAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_parentsAsync_function_1_
+  fullName: parentsAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!parentsAsync:function(2)'
+  name: parentsAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_parentsAsync_function_2_
+  fullName: parentsAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!patchAsync:function(1)'
+  name: patchAsync(source, start, skipCount, range)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_patchAsync_function_1_
+  fullName: patchAsync(source, start, skipCount, range)
+- uid: '@esfx/async-iter-fn!patchAsync:function(2)'
+  name: patchAsync(source, start, skipCount, range)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_patchAsync_function_2_
+  fullName: patchAsync(source, start, skipCount, range)
+- uid: '@esfx/async-iter-fn!precedingAsync:function(1)'
+  name: precedingAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_precedingAsync_function_1_
+  fullName: precedingAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!precedingAsync:function(2)'
+  name: precedingAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_precedingAsync_function_2_
+  fullName: precedingAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!precedingSiblingsAsync:function(1)'
+  name: precedingSiblingsAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_precedingSiblingsAsync_function_1_
+  fullName: precedingSiblingsAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!precedingSiblingsAsync:function(2)'
+  name: precedingSiblingsAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_precedingSiblingsAsync_function_2_
+  fullName: precedingSiblingsAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!prependAsync:function(1)'
+  name: prependAsync(source, value)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_prependAsync_function_1_
+  fullName: prependAsync(source, value)
+- uid: '@esfx/async-iter-fn!prependAsync:function(2)'
+  name: prependAsync(source, value)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_prependAsync_function_2_
+  fullName: prependAsync(source, value)
+- uid: '@esfx/async-iter-fn!reduceAsync:function(1)'
+  name: reduceAsync(source, accumulator)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_reduceAsync_function_1_
+  fullName: reduceAsync(source, accumulator)
+- uid: '@esfx/async-iter-fn!reduceAsync:function(2)'
+  name: reduceAsync(source, accumulator, seed)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_reduceAsync_function_2_
+  fullName: reduceAsync(source, accumulator, seed)
+- uid: '@esfx/async-iter-fn!reduceAsync:function(3)'
+  name: reduceAsync(source, accumulator, seed, resultSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_reduceAsync_function_3_
+  fullName: reduceAsync(source, accumulator, seed, resultSelector)
+- uid: '@esfx/async-iter-fn!reduceRightAsync:function(1)'
+  name: reduceRightAsync(source, accumulator)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_reduceRightAsync_function_1_
+  fullName: reduceRightAsync(source, accumulator)
+- uid: '@esfx/async-iter-fn!reduceRightAsync:function(2)'
+  name: reduceRightAsync(source, accumulator, seed)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_reduceRightAsync_function_2_
+  fullName: reduceRightAsync(source, accumulator, seed)
+- uid: '@esfx/async-iter-fn!reduceRightAsync:function(3)'
+  name: reduceRightAsync(source, accumulator, seed, resultSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_reduceRightAsync_function_3_
+  fullName: reduceRightAsync(source, accumulator, seed, resultSelector)
+- uid: '@esfx/async-iter-fn!repeatAsync:function(1)'
+  name: repeatAsync(value, count)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_repeatAsync_function_1_
+  fullName: repeatAsync(value, count)
+- uid: '@esfx/async-iter-fn!reverseAsync:function(1)'
+  name: reverseAsync(source)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_reverseAsync_function_1_
+  fullName: reverseAsync(source)
+- uid: '@esfx/async-iter-fn!reverseAsync:function(2)'
+  name: reverseAsync(source)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_reverseAsync_function_2_
+  fullName: reverseAsync(source)
+- uid: '@esfx/async-iter-fn!rootAsync:function(1)'
+  name: rootAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_rootAsync_function_1_
+  fullName: rootAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!rootAsync:function(2)'
+  name: rootAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_rootAsync_function_2_
+  fullName: rootAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!scanAsync:function(1)'
+  name: scanAsync(source, accumulator)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_scanAsync_function_1_
+  fullName: scanAsync(source, accumulator)
+- uid: '@esfx/async-iter-fn!scanAsync:function(2)'
+  name: scanAsync(source, accumulator, seed)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_scanAsync_function_2_
+  fullName: scanAsync(source, accumulator, seed)
+- uid: '@esfx/async-iter-fn!scanRightAsync:function(1)'
+  name: scanRightAsync(source, accumulator)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_scanRightAsync_function_1_
+  fullName: scanRightAsync(source, accumulator)
+- uid: '@esfx/async-iter-fn!scanRightAsync:function(2)'
+  name: scanRightAsync(source, accumulator, seed)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_scanRightAsync_function_2_
+  fullName: scanRightAsync(source, accumulator, seed)
+- uid: '@esfx/async-iter-fn!selfAsync:function(1)'
+  name: selfAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_selfAsync_function_1_
+  fullName: selfAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!selfAsync:function(2)'
+  name: selfAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_selfAsync_function_2_
+  fullName: selfAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!siblingsAndSelfAsync:function(1)'
+  name: siblingsAndSelfAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_siblingsAndSelfAsync_function_1_
+  fullName: siblingsAndSelfAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!siblingsAndSelfAsync:function(2)'
+  name: siblingsAndSelfAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_siblingsAndSelfAsync_function_2_
+  fullName: siblingsAndSelfAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!siblingsAsync:function(1)'
+  name: siblingsAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_siblingsAsync_function_1_
+  fullName: siblingsAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!siblingsAsync:function(2)'
+  name: siblingsAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_siblingsAsync_function_2_
+  fullName: siblingsAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!singleAsync:function(1)'
+  name: singleAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_singleAsync_function_1_
+  fullName: singleAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!singleAsync:function(2)'
+  name: singleAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_singleAsync_function_2_
+  fullName: singleAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!someAsync:function(1)'
+  name: someAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_someAsync_function_1_
+  fullName: someAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!spanAsync:function(1)'
+  name: spanAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_spanAsync_function_1_
+  fullName: spanAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!spanAsync:function(2)'
+  name: spanAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_spanAsync_function_2_
+  fullName: spanAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!spanAsync:function(3)'
+  name: spanAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_spanAsync_function_3_
+  fullName: spanAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!spanAsync:function(4)'
+  name: spanAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_spanAsync_function_4_
+  fullName: spanAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!spanMapAsync:function(1)'
+  name: spanMapAsync(source, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_spanMapAsync_function_1_
+  fullName: spanMapAsync(source, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!spanMapAsync:function(2)'
+  name: spanMapAsync(source, keySelector, elementSelector, spanSelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_spanMapAsync_function_2_
+  fullName: spanMapAsync(source, keySelector, elementSelector, spanSelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!spanMapAsync:function(3)'
+  name: spanMapAsync(source, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_spanMapAsync_function_3_
+  fullName: spanMapAsync(source, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!spanMapAsync:function(4)'
+  name: spanMapAsync(source, keySelector, elementSelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_spanMapAsync_function_4_
+  fullName: spanMapAsync(source, keySelector, elementSelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!spanMapAsync:function(5)'
+  name: spanMapAsync(source, keySelector, elementSelector, spanSelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_spanMapAsync_function_5_
+  fullName: spanMapAsync(source, keySelector, elementSelector, spanSelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!spanUntilAsync:function(1)'
+  name: spanUntilAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_spanUntilAsync_function_1_
+  fullName: spanUntilAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!spanUntilAsync:function(2)'
+  name: spanUntilAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_spanUntilAsync_function_2_
+  fullName: spanUntilAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!startsWithAsync:function(1)'
+  name: startsWithAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_startsWithAsync_function_1_
+  fullName: startsWithAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!startsWithAsync:function(2)'
+  name: startsWithAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_startsWithAsync_function_2_
+  fullName: startsWithAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!sumAsync:function(1)'
+  name: sumAsync(source)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_sumAsync_function_1_
+  fullName: sumAsync(source)
+- uid: '@esfx/async-iter-fn!sumAsync:function(2)'
+  name: sumAsync(source, elementSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_sumAsync_function_2_
+  fullName: sumAsync(source, elementSelector)
+- uid: '@esfx/async-iter-fn!symmetricDifferenceAsync:function(1)'
+  name: symmetricDifferenceAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_symmetricDifferenceAsync_function_1_
+  fullName: symmetricDifferenceAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!symmetricDifferenceAsync:function(2)'
+  name: symmetricDifferenceAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_symmetricDifferenceAsync_function_2_
+  fullName: symmetricDifferenceAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!symmetricDifferenceAsync:function(3)'
+  name: symmetricDifferenceAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_symmetricDifferenceAsync_function_3_
+  fullName: symmetricDifferenceAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!symmetricDifferenceByAsync:function(1)'
+  name: symmetricDifferenceByAsync(left, right, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_symmetricDifferenceByAsync_function_1_
+  fullName: symmetricDifferenceByAsync(left, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!symmetricDifferenceByAsync:function(2)'
+  name: symmetricDifferenceByAsync(left, right, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_symmetricDifferenceByAsync_function_2_
+  fullName: symmetricDifferenceByAsync(left, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!symmetricDifferenceByAsync:function(3)'
+  name: symmetricDifferenceByAsync(left, right, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_symmetricDifferenceByAsync_function_3_
+  fullName: symmetricDifferenceByAsync(left, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!takeAsync:function(1)'
+  name: takeAsync(source, count)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_takeAsync_function_1_
+  fullName: takeAsync(source, count)
+- uid: '@esfx/async-iter-fn!takeAsync:function(2)'
+  name: takeAsync(source, count)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_takeAsync_function_2_
+  fullName: takeAsync(source, count)
+- uid: '@esfx/async-iter-fn!takeRightAsync:function(1)'
+  name: takeRightAsync(source, count)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_takeRightAsync_function_1_
+  fullName: takeRightAsync(source, count)
+- uid: '@esfx/async-iter-fn!takeRightAsync:function(2)'
+  name: takeRightAsync(source, count)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_takeRightAsync_function_2_
+  fullName: takeRightAsync(source, count)
+- uid: '@esfx/async-iter-fn!takeUntilAsync:function(1)'
+  name: takeUntilAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_takeUntilAsync_function_1_
+  fullName: takeUntilAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!takeUntilAsync:function(2)'
+  name: takeUntilAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_takeUntilAsync_function_2_
+  fullName: takeUntilAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!takeUntilAsync:function(3)'
+  name: takeUntilAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_takeUntilAsync_function_3_
+  fullName: takeUntilAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!takeUntilAsync:function(4)'
+  name: takeUntilAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_takeUntilAsync_function_4_
+  fullName: takeUntilAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!takeWhileAsync:function(1)'
+  name: takeWhileAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_takeWhileAsync_function_1_
+  fullName: takeWhileAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!takeWhileAsync:function(2)'
+  name: takeWhileAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_takeWhileAsync_function_2_
+  fullName: takeWhileAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!takeWhileAsync:function(3)'
+  name: takeWhileAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_takeWhileAsync_function_3_
+  fullName: takeWhileAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!takeWhileAsync:function(4)'
+  name: takeWhileAsync(source, predicate)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_takeWhileAsync_function_4_
+  fullName: takeWhileAsync(source, predicate)
+- uid: '@esfx/async-iter-fn!tapAsync:function(1)'
+  name: tapAsync(source, callback)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_tapAsync_function_1_
+  fullName: tapAsync(source, callback)
+- uid: '@esfx/async-iter-fn!tapAsync:function(2)'
+  name: tapAsync(source, callback)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_tapAsync_function_2_
+  fullName: tapAsync(source, callback)
+- uid: '@esfx/async-iter-fn!thenByAsync:function(1)'
+  name: thenByAsync(source, keySelector, keyComparer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_thenByAsync_function_1_
+  fullName: thenByAsync(source, keySelector, keyComparer)
+- uid: '@esfx/async-iter-fn!thenByAsync:function(2)'
+  name: thenByAsync(source, keySelector, keyComparer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_thenByAsync_function_2_
+  fullName: thenByAsync(source, keySelector, keyComparer)
+- uid: '@esfx/async-iter-fn!thenByDescendingAsync:function(1)'
+  name: thenByDescendingAsync(source, keySelector, keyComparer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_thenByDescendingAsync_function_1_
+  fullName: thenByDescendingAsync(source, keySelector, keyComparer)
+- uid: '@esfx/async-iter-fn!thenByDescendingAsync:function(2)'
+  name: thenByDescendingAsync(source, keySelector, keyComparer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_thenByDescendingAsync_function_2_
+  fullName: thenByDescendingAsync(source, keySelector, keyComparer)
+- uid: '@esfx/async-iter-fn!toArrayAsync:function(1)'
+  name: toArrayAsync(source)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toArrayAsync_function_1_
+  fullName: toArrayAsync(source)
+- uid: '@esfx/async-iter-fn!toArrayAsync:function(2)'
+  name: toArrayAsync(source, elementSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toArrayAsync_function_2_
+  fullName: toArrayAsync(source, elementSelector)
+- uid: '@esfx/async-iter-fn!toHashMapAsync:function(1)'
+  name: toHashMapAsync(source, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toHashMapAsync_function_1_
+  fullName: toHashMapAsync(source, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!toHashMapAsync:function(2)'
+  name: toHashMapAsync(source, keySelector, elementSelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toHashMapAsync_function_2_
+  fullName: toHashMapAsync(source, keySelector, elementSelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!toHashSetAsync:function(1)'
+  name: toHashSetAsync(source, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toHashSetAsync_function_1_
+  fullName: toHashSetAsync(source, equaler)
+- uid: '@esfx/async-iter-fn!toHashSetAsync:function(2)'
+  name: toHashSetAsync(source, elementSelector, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toHashSetAsync_function_2_
+  fullName: toHashSetAsync(source, elementSelector, equaler)
+- uid: '@esfx/async-iter-fn!toHierarchyAsync:function(1)'
+  name: toHierarchyAsync(source, hierarchy)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toHierarchyAsync_function_1_
+  fullName: toHierarchyAsync(source, hierarchy)
+- uid: '@esfx/async-iter-fn!toHierarchyAsync:function(2)'
+  name: toHierarchyAsync(source, hierarchy)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toHierarchyAsync_function_2_
+  fullName: toHierarchyAsync(source, hierarchy)
+- uid: '@esfx/async-iter-fn!toLookupAsync:function(1)'
+  name: toLookupAsync(source, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toLookupAsync_function_1_
+  fullName: toLookupAsync(source, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!toLookupAsync:function(2)'
+  name: toLookupAsync(source, keySelector, elementSelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toLookupAsync_function_2_
+  fullName: toLookupAsync(source, keySelector, elementSelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!toMapAsync:function(1)'
+  name: toMapAsync(source, keySelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toMapAsync_function_1_
+  fullName: toMapAsync(source, keySelector)
+- uid: '@esfx/async-iter-fn!toMapAsync:function(2)'
+  name: toMapAsync(source, keySelector, elementSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toMapAsync_function_2_
+  fullName: toMapAsync(source, keySelector, elementSelector)
+- uid: '@esfx/async-iter-fn!toObjectAsync:function(1)'
+  name: toObjectAsync(source, prototype, keySelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toObjectAsync_function_1_
+  fullName: toObjectAsync(source, prototype, keySelector)
+- uid: '@esfx/async-iter-fn!toObjectAsync:function(2)'
+  name: toObjectAsync(source, prototype, keySelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toObjectAsync_function_2_
+  fullName: toObjectAsync(source, prototype, keySelector)
+- uid: '@esfx/async-iter-fn!toObjectAsync:function(3)'
+  name: toObjectAsync(source, prototype, keySelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toObjectAsync_function_3_
+  fullName: toObjectAsync(source, prototype, keySelector)
+- uid: '@esfx/async-iter-fn!toObjectAsync:function(4)'
+  name: toObjectAsync(source, prototype, keySelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toObjectAsync_function_4_
+  fullName: toObjectAsync(source, prototype, keySelector)
+- uid: '@esfx/async-iter-fn!toObjectAsync:function(5)'
+  name: toObjectAsync(source, prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toObjectAsync_function_5_
+  fullName: toObjectAsync(source, prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/async-iter-fn!toObjectAsync:function(6)'
+  name: toObjectAsync(source, prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toObjectAsync_function_6_
+  fullName: toObjectAsync(source, prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/async-iter-fn!toObjectAsync:function(7)'
+  name: toObjectAsync(source, prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toObjectAsync_function_7_
+  fullName: toObjectAsync(source, prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/async-iter-fn!toObjectAsync:function(8)'
+  name: toObjectAsync(source, prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toObjectAsync_function_8_
+  fullName: toObjectAsync(source, prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/async-iter-fn!toObjectAsync:function(9)'
+  name: toObjectAsync(source, prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toObjectAsync_function_9_
+  fullName: toObjectAsync(source, prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/async-iter-fn!topMostAsync:function(1)'
+  name: topMostAsync(source, predicate, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_topMostAsync_function_1_
+  fullName: topMostAsync(source, predicate, equaler)
+- uid: '@esfx/async-iter-fn!topMostAsync:function(2)'
+  name: topMostAsync(source, predicate, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_topMostAsync_function_2_
+  fullName: topMostAsync(source, predicate, equaler)
+- uid: '@esfx/async-iter-fn!toSetAsync:function(1)'
+  name: toSetAsync(source)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toSetAsync_function_1_
+  fullName: toSetAsync(source)
+- uid: '@esfx/async-iter-fn!toSetAsync:function(2)'
+  name: toSetAsync(source, elementSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_toSetAsync_function_2_
+  fullName: toSetAsync(source, elementSelector)
+- uid: '@esfx/async-iter-fn!unionAsync:function(1)'
+  name: unionAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_unionAsync_function_1_
+  fullName: unionAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!unionAsync:function(2)'
+  name: unionAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_unionAsync_function_2_
+  fullName: unionAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!unionAsync:function(3)'
+  name: unionAsync(left, right, equaler)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_unionAsync_function_3_
+  fullName: unionAsync(left, right, equaler)
+- uid: '@esfx/async-iter-fn!unionByAsync:function(1)'
+  name: unionByAsync(left, right, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_unionByAsync_function_1_
+  fullName: unionByAsync(left, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!unionByAsync:function(2)'
+  name: unionByAsync(left, right, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_unionByAsync_function_2_
+  fullName: unionByAsync(left, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!unionByAsync:function(3)'
+  name: unionByAsync(left, right, keySelector, keyEqualer)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_unionByAsync_function_3_
+  fullName: unionByAsync(left, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-fn!unzipAsync:function(1)'
+  name: unzipAsync(source)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_unzipAsync_function_1_
+  fullName: unzipAsync(source)
+- uid: '@esfx/async-iter-fn!unzipAsync:function(2)'
+  name: unzipAsync(source, partSelector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_unzipAsync_function_2_
+  fullName: unzipAsync(source, partSelector)
+- uid: '@esfx/async-iter-fn!zipAsync:function(1)'
+  name: zipAsync(left, right)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_zipAsync_function_1_
+  fullName: zipAsync(left, right)
+- uid: '@esfx/async-iter-fn!zipAsync:function(2)'
+  name: zipAsync(left, right, selector)
+  href: api/async-iter-fn.html#_esfx_async_iter_fn_zipAsync_function_2_
+  fullName: zipAsync(left, right, selector)
+- uid: '@esfx/async-iter-fromsync!'
+  name: '@esfx/async-iter-fromsync'
+  href: api/async-iter-fromsync.html
+  fullName: '@esfx/async-iter-fromsync'
+- uid: '@esfx/async-iter-fromsync!toAsyncIterable:function(1)'
+  name: toAsyncIterable(source)
+  href: api/async-iter-fromsync.html#_esfx_async_iter_fromsync_toAsyncIterable_function_1_
+  fullName: toAsyncIterable(source)
+- uid: '@esfx/async-iter-hierarchy!'
+  name: '@esfx/async-iter-hierarchy'
+  href: api/async-iter-hierarchy.html
+  fullName: '@esfx/async-iter-hierarchy'
+- uid: '@esfx/async-iter-hierarchy!AsyncHierarchyIterable.create:function(1)'
+  name: create(iterable, provider)
+  href: api/async-iter-hierarchy/asynchierarchyiterable-namespace.html
+  fullName: AsyncHierarchyIterable.create(iterable, provider)
+- uid: '@esfx/async-iter-hierarchy!AsyncHierarchyIterable.create:function(2)'
+  name: create(iterable, provider)
+  href: api/async-iter-hierarchy/asynchierarchyiterable-namespace.html
+  fullName: AsyncHierarchyIterable.create(iterable, provider)
+- uid: '@esfx/async-iter-hierarchy!AsyncHierarchyIterable.hasInstance:function(1)'
+  name: hasInstance(x)
+  href: api/async-iter-hierarchy/asynchierarchyiterable-namespace.html
+  fullName: AsyncHierarchyIterable.hasInstance(x)
+- uid: '@esfx/async-iter-hierarchy!AsyncHierarchyIterable:interface'
+  name: AsyncHierarchyIterable
+  href: api/async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface
+  fullName: AsyncHierarchyIterable
+- uid: '@esfx/async-iter-hierarchy!AsyncHierarchyIterable:namespace'
+  name: AsyncHierarchyIterable
+  href: api/async-iter-hierarchy/asynchierarchyiterable-namespace.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_namespace
+  fullName: AsyncHierarchyIterable
+- uid: '@esfx/async-iter-hierarchy!AsyncOrderedHierarchyIterable#[AsyncOrderedIterable.thenByAsync]:member(1)'
+  name: '[AsyncOrderedIterable.thenByAsync](keySelector, comparer, descending)'
+  href: api/async-iter-hierarchy/asyncorderedhierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncOrderedHierarchyIterable__AsyncOrderedIterable_thenByAsync__member_1_
+  fullName: '[AsyncOrderedIterable.thenByAsync](keySelector, comparer, descending)'
+- uid: '@esfx/async-iter-hierarchy!AsyncOrderedHierarchyIterable.hasInstance:function(1)'
+  name: hasInstance(value)
+  href: api/async-iter-hierarchy/asyncorderedhierarchyiterable-namespace.html
+  fullName: AsyncOrderedHierarchyIterable.hasInstance(value)
+- uid: '@esfx/async-iter-hierarchy!AsyncOrderedHierarchyIterable:interface'
+  name: AsyncOrderedHierarchyIterable
+  href: api/async-iter-hierarchy/asyncorderedhierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncOrderedHierarchyIterable_interface
+  fullName: AsyncOrderedHierarchyIterable
+- uid: '@esfx/async-iter-hierarchy!AsyncOrderedHierarchyIterable:namespace'
+  name: AsyncOrderedHierarchyIterable
+  href: api/async-iter-hierarchy/asyncorderedhierarchyiterable-namespace.html#_esfx_async_iter_hierarchy_AsyncOrderedHierarchyIterable_namespace
+  fullName: AsyncOrderedHierarchyIterable
+- uid: '@esfx/async-iter-ordered!'
+  name: '@esfx/async-iter-ordered'
+  href: api/async-iter-ordered.html
+  fullName: '@esfx/async-iter-ordered'
+- uid: '@esfx/async-iter-ordered!AsyncOrderedIterable#[AsyncOrderedIterable.thenByAsync]:member(1)'
+  name: '[AsyncOrderedIterable.thenByAsync](keySelector, comparer, descending)'
+  href: api/async-iter-ordered/asyncorderediterable-interface.html#_esfx_async_iter_ordered_AsyncOrderedIterable__AsyncOrderedIterable_thenByAsync__member_1_
+  fullName: '[AsyncOrderedIterable.thenByAsync](keySelector, comparer, descending)'
+- uid: '@esfx/async-iter-ordered!AsyncOrderedIterable.hasInstance:function(1)'
+  name: hasInstance(x)
+  href: api/async-iter-ordered/asyncorderediterable-namespace.html
+  fullName: AsyncOrderedIterable.hasInstance(x)
+- uid: '@esfx/async-iter-ordered!AsyncOrderedIterable.thenByAsync:var'
+  name: thenByAsync
+  href: api/async-iter-ordered/asyncorderediterable-namespace.html
+  fullName: AsyncOrderedIterable.thenByAsync
+- uid: '@esfx/async-iter-ordered!AsyncOrderedIterable:interface'
+  name: AsyncOrderedIterable
+  href: api/async-iter-ordered/asyncorderediterable-interface.html#_esfx_async_iter_ordered_AsyncOrderedIterable_interface
+  fullName: AsyncOrderedIterable
+- uid: '@esfx/async-iter-ordered!AsyncOrderedIterable:namespace'
+  name: AsyncOrderedIterable
+  href: api/async-iter-ordered/asyncorderediterable-namespace.html#_esfx_async_iter_ordered_AsyncOrderedIterable_namespace
+  fullName: AsyncOrderedIterable
+- uid: '@esfx/async-iter-ordered-fromsync!'
+  name: '@esfx/async-iter-ordered-fromsync'
+  href: api/async-iter-ordered-fromsync.html
+  fullName: '@esfx/async-iter-ordered-fromsync'
+- uid: '@esfx/async-iter-ordered-fromsync!toAsyncOrderedIterable:function(1)'
+  name: toAsyncOrderedIterable(iterable)
+  href: api/async-iter-ordered-fromsync.html#_esfx_async_iter_ordered_fromsync_toAsyncOrderedIterable_function_1_
+  fullName: toAsyncOrderedIterable(iterable)
+- uid: '@esfx/async-iter-query!'
+  name: '@esfx/async-iter-query'
+  href: api/async-iter-query.html
+  fullName: '@esfx/async-iter-query'
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#[Hierarchical.hierarchy]:member(1)'
+  name: '[Hierarchical.hierarchy]()'
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery__Hierarchical_hierarchy__member_1_
+  fullName: '[Hierarchical.hierarchy]()'
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#ancestors:member(1)'
+  name: ancestors(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_ancestors_member_1_
+  fullName: ancestors(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#ancestors:member(2)'
+  name: ancestors(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_ancestors_member_2_
+  fullName: ancestors(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#ancestorsAndSelf:member(1)'
+  name: ancestorsAndSelf(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_ancestorsAndSelf_member_1_
+  fullName: ancestorsAndSelf(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#ancestorsAndSelf:member(2)'
+  name: ancestorsAndSelf(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_ancestorsAndSelf_member_2_
+  fullName: ancestorsAndSelf(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#append:member(1)'
+  name: append(value)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_append_member_1_
+  fullName: append(value)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#bottomMost:member(1)'
+  name: bottomMost(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_bottomMost_member_1_
+  fullName: bottomMost(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#bottomMost:member(2)'
+  name: bottomMost(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_bottomMost_member_2_
+  fullName: bottomMost(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#children:member(1)'
+  name: children(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_children_member_1_
+  fullName: children(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#children:member(2)'
+  name: children(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_children_member_2_
+  fullName: children(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#concat:member(1)'
+  name: concat(right)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_concat_member_1_
+  fullName: concat(right)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#defaultIfEmpty:member(1)'
+  name: defaultIfEmpty(defaultValue)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_defaultIfEmpty_member_1_
+  fullName: defaultIfEmpty(defaultValue)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#descendants:member(1)'
+  name: descendants(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_descendants_member_1_
+  fullName: descendants(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#descendants:member(2)'
+  name: descendants(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_descendants_member_2_
+  fullName: descendants(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#descendantsAndSelf:member(1)'
+  name: descendantsAndSelf(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_descendantsAndSelf_member_1_
+  fullName: descendantsAndSelf(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#descendantsAndSelf:member(2)'
+  name: descendantsAndSelf(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_descendantsAndSelf_member_2_
+  fullName: descendantsAndSelf(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#distinct:member(1)'
+  name: distinct(equaler)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_distinct_member_1_
+  fullName: distinct(equaler)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#distinctBy:member(1)'
+  name: distinctBy(keySelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_distinctBy_member_1_
+  fullName: distinctBy(keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#drop:member(1)'
+  name: drop(count)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_drop_member_1_
+  fullName: drop(count)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#dropRight:member(1)'
+  name: dropRight(count)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_dropRight_member_1_
+  fullName: dropRight(count)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#dropUntil:member(1)'
+  name: dropUntil(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_dropUntil_member_1_
+  fullName: dropUntil(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#dropWhile:member(1)'
+  name: dropWhile(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_dropWhile_member_1_
+  fullName: dropWhile(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#except:member(1)'
+  name: except(right, equaler)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_except_member_1_
+  fullName: except(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#exceptBy:member(1)'
+  name: exceptBy(right, keySelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_exceptBy_member_1_
+  fullName: exceptBy(right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#exclude:member(1)'
+  name: exclude(values)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_exclude_member_1_
+  fullName: exclude(values)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filter:member(1)'
+  name: filter(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filter_member_1_
+  fullName: filter(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filter:member(2)'
+  name: filter(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filter_member_2_
+  fullName: filter(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterBy:member(1)'
+  name: filterBy(keySelector, predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterBy_member_1_
+  fullName: filterBy(keySelector, predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterDefined:member(1)'
+  name: filterDefined()
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterDefined_member_1_
+  fullName: filterDefined()
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterDefinedBy:member(1)'
+  name: filterDefinedBy(keySelector)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterDefinedBy_member_1_
+  fullName: filterDefinedBy(keySelector)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterNot:member(1)'
+  name: filterNot(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterNot_member_1_
+  fullName: filterNot(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterNot:member(2)'
+  name: filterNot(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterNot_member_2_
+  fullName: filterNot(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterNotBy:member(1)'
+  name: filterNotBy(keySelector, predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterNotBy_member_1_
+  fullName: filterNotBy(keySelector, predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterNotDefinedBy:member(1)'
+  name: filterNotDefinedBy(keySelector)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterNotDefinedBy_member_1_
+  fullName: filterNotDefinedBy(keySelector)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#firstChild:member(1)'
+  name: firstChild(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_firstChild_member_1_
+  fullName: firstChild(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#firstChild:member(2)'
+  name: firstChild(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_firstChild_member_2_
+  fullName: firstChild(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#following:member(1)'
+  name: following(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_following_member_1_
+  fullName: following(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#following:member(2)'
+  name: following(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_following_member_2_
+  fullName: following(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#followingSiblings:member(1)'
+  name: followingSiblings(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_followingSiblings_member_1_
+  fullName: followingSiblings(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#followingSiblings:member(2)'
+  name: followingSiblings(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_followingSiblings_member_2_
+  fullName: followingSiblings(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#groupBy:member(1)'
+  name: groupBy(keySelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_groupBy_member_1_
+  fullName: groupBy(keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#groupBy:member(2)'
+  name: groupBy(keySelector, elementSelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_groupBy_member_2_
+  fullName: groupBy(keySelector, elementSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#groupBy:member(3)'
+  name: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_groupBy_member_3_
+  fullName: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#groupBy:member(4)'
+  name: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_groupBy_member_4_
+  fullName: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#intersect:member(1)'
+  name: intersect(right, equaler)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_intersect_member_1_
+  fullName: intersect(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#intersectBy:member(1)'
+  name: intersectBy(right, keySelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_intersectBy_member_1_
+  fullName: intersectBy(right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#lastChild:member(1)'
+  name: lastChild(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_lastChild_member_1_
+  fullName: lastChild(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#lastChild:member(2)'
+  name: lastChild(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_lastChild_member_2_
+  fullName: lastChild(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#materialize:member(1)'
+  name: materialize()
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_materialize_member_1_
+  fullName: materialize()
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#nthChild:member(1)'
+  name: nthChild(offset, predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_nthChild_member_1_
+  fullName: nthChild(offset, predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#nthChild:member(2)'
+  name: nthChild(offset, predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_nthChild_member_2_
+  fullName: nthChild(offset, predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#pageBy:member(1)'
+  name: pageBy(pageSize)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_pageBy_member_1_
+  fullName: pageBy(pageSize)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#pageBy:member(2)'
+  name: pageBy(pageSize, pageSelector)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_pageBy_member_2_
+  fullName: pageBy(pageSize, pageSelector)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#parents:member(1)'
+  name: parents(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_parents_member_1_
+  fullName: parents(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#parents:member(2)'
+  name: parents(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_parents_member_2_
+  fullName: parents(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#patch:member(1)'
+  name: patch(start, skipCount, range)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_patch_member_1_
+  fullName: patch(start, skipCount, range)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#preceding:member(1)'
+  name: preceding(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_preceding_member_1_
+  fullName: preceding(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#preceding:member(2)'
+  name: preceding(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_preceding_member_2_
+  fullName: preceding(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#precedingSiblings:member(1)'
+  name: precedingSiblings(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_precedingSiblings_member_1_
+  fullName: precedingSiblings(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#precedingSiblings:member(2)'
+  name: precedingSiblings(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_precedingSiblings_member_2_
+  fullName: precedingSiblings(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#prepend:member(1)'
+  name: prepend(value)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_prepend_member_1_
+  fullName: prepend(value)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#relativeComplement:member(1)'
+  name: relativeComplement(right, equaler)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_relativeComplement_member_1_
+  fullName: relativeComplement(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#relativeComplementBy:member(1)'
+  name: relativeComplementBy(right, keySelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_relativeComplementBy_member_1_
+  fullName: relativeComplementBy(right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#reverse:member(1)'
+  name: reverse()
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_reverse_member_1_
+  fullName: reverse()
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#root:member(1)'
+  name: root(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_root_member_1_
+  fullName: root(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#root:member(2)'
+  name: root(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_root_member_2_
+  fullName: root(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#self:member(1)'
+  name: self(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_self_member_1_
+  fullName: self(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#self:member(2)'
+  name: self(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_self_member_2_
+  fullName: self(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#self:member(3)'
+  name: self(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_self_member_3_
+  fullName: self(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#siblings:member(1)'
+  name: siblings(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_siblings_member_1_
+  fullName: siblings(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#siblings:member(2)'
+  name: siblings(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_siblings_member_2_
+  fullName: siblings(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#siblingsAfterSelf:member(1)'
+  name: siblingsAfterSelf(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_siblingsAfterSelf_member_1_
+  fullName: siblingsAfterSelf(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#siblingsAfterSelf:member(2)'
+  name: siblingsAfterSelf(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_siblingsAfterSelf_member_2_
+  fullName: siblingsAfterSelf(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#siblingsAndSelf:member(1)'
+  name: siblingsAndSelf(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_siblingsAndSelf_member_1_
+  fullName: siblingsAndSelf(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#siblingsAndSelf:member(2)'
+  name: siblingsAndSelf(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_siblingsAndSelf_member_2_
+  fullName: siblingsAndSelf(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#siblingsBeforeSelf:member(1)'
+  name: siblingsBeforeSelf(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_siblingsBeforeSelf_member_1_
+  fullName: siblingsBeforeSelf(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#siblingsBeforeSelf:member(2)'
+  name: siblingsBeforeSelf(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_siblingsBeforeSelf_member_2_
+  fullName: siblingsBeforeSelf(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#skip:member(1)'
+  name: skip(count)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_skip_member_1_
+  fullName: skip(count)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#skipRight:member(1)'
+  name: skipRight(count)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_skipRight_member_1_
+  fullName: skipRight(count)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#skipUntil:member(1)'
+  name: skipUntil(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_skipUntil_member_1_
+  fullName: skipUntil(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#skipWhile:member(1)'
+  name: skipWhile(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_skipWhile_member_1_
+  fullName: skipWhile(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#spanMap:member(1)'
+  name: spanMap(keySelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_spanMap_member_1_
+  fullName: spanMap(keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#spanMap:member(2)'
+  name: spanMap(keySelector, elementSelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_spanMap_member_2_
+  fullName: spanMap(keySelector, elementSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#spanMap:member(3)'
+  name: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_spanMap_member_3_
+  fullName: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#spanMap:member(4)'
+  name: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_spanMap_member_4_
+  fullName: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#symmetricDifference:member(1)'
+  name: symmetricDifference(right, equaler)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_symmetricDifference_member_1_
+  fullName: symmetricDifference(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#symmetricDifferenceBy:member(1)'
+  name: symmetricDifferenceBy(right, keySelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_symmetricDifferenceBy_member_1_
+  fullName: symmetricDifferenceBy(right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#take:member(1)'
+  name: take(count)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_take_member_1_
+  fullName: take(count)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#takeRight:member(1)'
+  name: takeRight(count)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_takeRight_member_1_
+  fullName: takeRight(count)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#takeUntil:member(1)'
+  name: takeUntil(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_takeUntil_member_1_
+  fullName: takeUntil(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#takeWhile:member(1)'
+  name: takeWhile(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_takeWhile_member_1_
+  fullName: takeWhile(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#takeWhile:member(2)'
+  name: takeWhile(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_takeWhile_member_2_
+  fullName: takeWhile(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#topMost:member(1)'
+  name: topMost(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_topMost_member_1_
+  fullName: topMost(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#topMost:member(2)'
+  name: topMost(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_topMost_member_2_
+  fullName: topMost(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#union:member(1)'
+  name: union(right, equaler)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_union_member_1_
+  fullName: union(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#unionBy:member(1)'
+  name: unionBy(right, keySelector, keyEqualer)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_unionBy_member_1_
+  fullName: unionBy(right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#where:member(1)'
+  name: where(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_where_member_1_
+  fullName: where(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#where:member(2)'
+  name: where(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_where_member_2_
+  fullName: where(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereBy:member(1)'
+  name: whereBy(keySelector, predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereBy_member_1_
+  fullName: whereBy(keySelector, predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereDefined:member(1)'
+  name: whereDefined()
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereDefined_member_1_
+  fullName: whereDefined()
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereDefinedBy:member(1)'
+  name: whereDefinedBy(keySelector)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereDefinedBy_member_1_
+  fullName: whereDefinedBy(keySelector)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereNot:member(1)'
+  name: whereNot(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereNot_member_1_
+  fullName: whereNot(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereNot:member(2)'
+  name: whereNot(predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereNot_member_2_
+  fullName: whereNot(predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereNotBy:member(1)'
+  name: whereNotBy(keySelector, predicate)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereNotBy_member_1_
+  fullName: whereNotBy(keySelector, predicate)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereNotDefinedBy:member(1)'
+  name: whereNotDefinedBy(keySelector)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereNotDefinedBy_member_1_
+  fullName: whereNotDefinedBy(keySelector)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery:class'
+  name: AsyncHierarchyQuery
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class
+  fullName: AsyncHierarchyQuery
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery:constructor(1)'
+  name: (constructor)(source)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_constructor_1_
+  fullName: (constructor)(source)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQuery:constructor(2)'
+  name: (constructor)(source, provider)
+  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_constructor_2_
+  fullName: (constructor)(source, provider)
+- uid: '@esfx/async-iter-query!AsyncOrderedHierarchyQuery#[AsyncOrderedIterable.thenByAsync]:member(1)'
+  name: '[AsyncOrderedIterable.thenByAsync](keySelector, comparison, descending)'
+  href: api/async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery__AsyncOrderedIterable_thenByAsync__member_1_
+  fullName: '[AsyncOrderedIterable.thenByAsync](keySelector, comparison, descending)'
+- uid: '@esfx/async-iter-query!AsyncOrderedHierarchyQuery#thenBy:member(1)'
+  name: thenBy(keySelector, comparison)
+  href: api/async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_thenBy_member_1_
+  fullName: thenBy(keySelector, comparison)
+- uid: '@esfx/async-iter-query!AsyncOrderedHierarchyQuery#thenByDescending:member(1)'
+  name: thenByDescending(keySelector, comparison)
+  href: api/async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_thenByDescending_member_1_
+  fullName: thenByDescending(keySelector, comparison)
+- uid: '@esfx/async-iter-query!AsyncOrderedHierarchyQuery:class'
+  name: AsyncOrderedHierarchyQuery
+  href: api/async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_class
+  fullName: AsyncOrderedHierarchyQuery
+- uid: '@esfx/async-iter-query!AsyncOrderedHierarchyQuery:constructor(1)'
+  name: (constructor)(source)
+  href: api/async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_constructor_1_
+  fullName: (constructor)(source)
+- uid: '@esfx/async-iter-query!AsyncOrderedHierarchyQuery:constructor(2)'
+  name: (constructor)(source, provider)
+  href: api/async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_constructor_2_
+  fullName: (constructor)(source, provider)
+- uid: '@esfx/async-iter-query!AsyncOrderedQuery#[AsyncOrderedIterable.thenByAsync]:member(1)'
+  name: '[AsyncOrderedIterable.thenByAsync](keySelector, comparer, descending)'
+  href: api/async-iter-query/asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery__AsyncOrderedIterable_thenByAsync__member_1_
+  fullName: '[AsyncOrderedIterable.thenByAsync](keySelector, comparer, descending)'
+- uid: '@esfx/async-iter-query!AsyncOrderedQuery#thenBy:member(1)'
+  name: thenBy(keySelector, comparer)
+  href: api/async-iter-query/asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_thenBy_member_1_
+  fullName: thenBy(keySelector, comparer)
+- uid: '@esfx/async-iter-query!AsyncOrderedQuery#thenByDescending:member(1)'
+  name: thenByDescending(keySelector, comparer)
+  href: api/async-iter-query/asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_thenByDescending_member_1_
+  fullName: thenByDescending(keySelector, comparer)
+- uid: '@esfx/async-iter-query!AsyncOrderedQuery:class'
+  name: AsyncOrderedQuery
+  href: api/async-iter-query/asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_class
+  fullName: AsyncOrderedQuery
+- uid: '@esfx/async-iter-query!AsyncOrderedQuery:constructor(1)'
+  name: (constructor)(source)
+  href: api/async-iter-query/asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_constructor_1_
+  fullName: (constructor)(source)
+- uid: '@esfx/async-iter-query!AsyncQuery#[Symbol.asyncIterator]:member(1)'
+  name: '[Symbol.asyncIterator]()'
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__Symbol_asyncIterator__member_1_
+  fullName: '[Symbol.asyncIterator]()'
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromAsync:member(1)'
+  name: _fromAsync(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromAsync_member_1_
+  fullName: _fromAsync(source)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromAsync:member(2)'
+  name: _fromAsync(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromAsync_member_2_
+  fullName: _fromAsync(source)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromAsync:member(3)'
+  name: _fromAsync(source, provider)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromAsync_member_3_
+  fullName: _fromAsync(source, provider)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromAsync:member(4)'
+  name: _fromAsync(source, provider)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromAsync_member_4_
+  fullName: _fromAsync(source, provider)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromAsync:member(5)'
+  name: _fromAsync(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromAsync_member_5_
+  fullName: _fromAsync(source)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromAsync:member(6)'
+  name: _fromAsync(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromAsync_member_6_
+  fullName: _fromAsync(source)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromAsync:member(7)'
+  name: _fromAsync(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromAsync_member_7_
+  fullName: _fromAsync(source)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromSync:member(1)'
+  name: _fromSync(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromSync_member_1_
+  fullName: _fromSync(source)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromSync:member(2)'
+  name: _fromSync(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromSync_member_2_
+  fullName: _fromSync(source)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromSync:member(3)'
+  name: _fromSync(source, provider)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromSync_member_3_
+  fullName: _fromSync(source, provider)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromSync:member(4)'
+  name: _fromSync(source, provider)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromSync_member_4_
+  fullName: _fromSync(source, provider)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromSync:member(5)'
+  name: _fromSync(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromSync_member_5_
+  fullName: _fromSync(source)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromSync:member(6)'
+  name: _fromSync(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromSync_member_6_
+  fullName: _fromSync(source)
+- uid: '@esfx/async-iter-query!AsyncQuery#_fromSync:member(7)'
+  name: _fromSync(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__fromSync_member_7_
+  fullName: _fromSync(source)
+- uid: '@esfx/async-iter-query!AsyncQuery#append:member(1)'
+  name: append(value)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_append_member_1_
+  fullName: append(value)
+- uid: '@esfx/async-iter-query!AsyncQuery#average:member(1)'
+  name: average()
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_average_member_1_
+  fullName: average()
+- uid: '@esfx/async-iter-query!AsyncQuery#average:member(2)'
+  name: average(elementSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_average_member_2_
+  fullName: average(elementSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#break:member(1)'
+  name: break(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_break_member_1_
+  fullName: break(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#concat:member(1)'
+  name: concat(this, right)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_concat_member_1_
+  fullName: concat(this, right)
+- uid: '@esfx/async-iter-query!AsyncQuery#concat:member(2)'
+  name: concat(right)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_concat_member_2_
+  fullName: concat(right)
+- uid: '@esfx/async-iter-query!AsyncQuery#copyTo:member(1)'
+  name: copyTo(dest, start, count)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_copyTo_member_1_
+  fullName: copyTo(dest, start, count)
+- uid: '@esfx/async-iter-query!AsyncQuery#corresponds:member(1)'
+  name: corresponds(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_corresponds_member_1_
+  fullName: corresponds(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#corresponds:member(2)'
+  name: corresponds(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_corresponds_member_2_
+  fullName: corresponds(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#correspondsBy:member(1)'
+  name: correspondsBy(right, keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_correspondsBy_member_1_
+  fullName: correspondsBy(right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#correspondsBy:member(2)'
+  name: correspondsBy(right, leftKeySelector, rightKeySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_correspondsBy_member_2_
+  fullName: correspondsBy(right, leftKeySelector, rightKeySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#count:member(1)'
+  name: count(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_count_member_1_
+  fullName: count(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#defaultIfEmpty:member(1)'
+  name: defaultIfEmpty(defaultValue)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_defaultIfEmpty_member_1_
+  fullName: defaultIfEmpty(defaultValue)
+- uid: '@esfx/async-iter-query!AsyncQuery#distinct:member(1)'
+  name: distinct(equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_distinct_member_1_
+  fullName: distinct(equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#distinctBy:member(1)'
+  name: distinctBy(keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_distinctBy_member_1_
+  fullName: distinctBy(keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#drop:member(1)'
+  name: drop(count)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_drop_member_1_
+  fullName: drop(count)
+- uid: '@esfx/async-iter-query!AsyncQuery#dropRight:member(1)'
+  name: dropRight(count)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_dropRight_member_1_
+  fullName: dropRight(count)
+- uid: '@esfx/async-iter-query!AsyncQuery#dropUntil:member(1)'
+  name: dropUntil(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_dropUntil_member_1_
+  fullName: dropUntil(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#dropWhile:member(1)'
+  name: dropWhile(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_dropWhile_member_1_
+  fullName: dropWhile(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#elementAt:member(1)'
+  name: elementAt(offset)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_elementAt_member_1_
+  fullName: elementAt(offset)
+- uid: '@esfx/async-iter-query!AsyncQuery#endsWith:member(1)'
+  name: endsWith(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_endsWith_member_1_
+  fullName: endsWith(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#endsWith:member(2)'
+  name: endsWith(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_endsWith_member_2_
+  fullName: endsWith(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#every:member(1)'
+  name: every(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_every_member_1_
+  fullName: every(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#except:member(1)'
+  name: except(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_except_member_1_
+  fullName: except(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#exceptBy:member(1)'
+  name: exceptBy(right, keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_exceptBy_member_1_
+  fullName: exceptBy(right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#exclude:member(1)'
+  name: exclude(values)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_exclude_member_1_
+  fullName: exclude(values)
+- uid: '@esfx/async-iter-query!AsyncQuery#filter:member(1)'
+  name: filter(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_filter_member_1_
+  fullName: filter(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#filter:member(2)'
+  name: filter(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_filter_member_2_
+  fullName: filter(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#filterBy:member(1)'
+  name: filterBy(keySelector, predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_filterBy_member_1_
+  fullName: filterBy(keySelector, predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#filterDefined:member(1)'
+  name: filterDefined()
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_filterDefined_member_1_
+  fullName: filterDefined()
+- uid: '@esfx/async-iter-query!AsyncQuery#filterDefinedBy:member(1)'
+  name: filterDefinedBy(keySelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_filterDefinedBy_member_1_
+  fullName: filterDefinedBy(keySelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#filterNot:member(1)'
+  name: filterNot(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_filterNot_member_1_
+  fullName: filterNot(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#filterNot:member(2)'
+  name: filterNot(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_filterNot_member_2_
+  fullName: filterNot(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#filterNotBy:member(1)'
+  name: filterNotBy(keySelector, predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_filterNotBy_member_1_
+  fullName: filterNotBy(keySelector, predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#filterNotDefinedBy:member(1)'
+  name: filterNotDefinedBy(keySelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_filterNotDefinedBy_member_1_
+  fullName: filterNotDefinedBy(keySelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#first:member(1)'
+  name: first(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_first_member_1_
+  fullName: first(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#first:member(2)'
+  name: first(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_first_member_2_
+  fullName: first(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#flatMap:member(1)'
+  name: flatMap(projection)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_flatMap_member_1_
+  fullName: flatMap(projection)
+- uid: '@esfx/async-iter-query!AsyncQuery#flatMap:member(2)'
+  name: flatMap(projection, resultSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_flatMap_member_2_
+  fullName: flatMap(projection, resultSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#forEach:member(1)'
+  name: forEach(callback)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_forEach_member_1_
+  fullName: forEach(callback)
+- uid: '@esfx/async-iter-query!AsyncQuery#fullJoin:member(1)'
+  name: fullJoin(inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_fullJoin_member_1_
+  fullName: fullJoin(inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#groupBy:member(1)'
+  name: groupBy(keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_groupBy_member_1_
+  fullName: groupBy(keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#groupBy:member(2)'
+  name: groupBy(keySelector, elementSelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_groupBy_member_2_
+  fullName: groupBy(keySelector, elementSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#groupBy:member(3)'
+  name: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_groupBy_member_3_
+  fullName: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#groupBy:member(4)'
+  name: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_groupBy_member_4_
+  fullName: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#groupJoin:member(1)'
+  name: groupJoin(inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_groupJoin_member_1_
+  fullName: groupJoin(inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#includes:member(1)'
+  name: includes(value, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_includes_member_1_
+  fullName: includes(value, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#includes:member(2)'
+  name: includes(value, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_includes_member_2_
+  fullName: includes(value, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#includesSequence:member(1)'
+  name: includesSequence(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_includesSequence_member_1_
+  fullName: includesSequence(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#includesSequence:member(2)'
+  name: includesSequence(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_includesSequence_member_2_
+  fullName: includesSequence(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#intersect:member(1)'
+  name: intersect(this, right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_intersect_member_1_
+  fullName: intersect(this, right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#intersect:member(2)'
+  name: intersect(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_intersect_member_2_
+  fullName: intersect(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#intersectBy:member(1)'
+  name: intersectBy(this, right, keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_intersectBy_member_1_
+  fullName: intersectBy(this, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#intersectBy:member(2)'
+  name: intersectBy(right, keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_intersectBy_member_2_
+  fullName: intersectBy(right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#into:member(1)'
+  name: into(callback)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_into_member_1_
+  fullName: into(callback)
+- uid: '@esfx/async-iter-query!AsyncQuery#join:member(1)'
+  name: join(inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_join_member_1_
+  fullName: join(inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#last:member(1)'
+  name: last(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_last_member_1_
+  fullName: last(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#last:member(2)'
+  name: last(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_last_member_2_
+  fullName: last(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#map:member(1)'
+  name: map(selector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_map_member_1_
+  fullName: map(selector)
+- uid: '@esfx/async-iter-query!AsyncQuery#materialize:member(1)'
+  name: materialize()
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_materialize_member_1_
+  fullName: materialize()
+- uid: '@esfx/async-iter-query!AsyncQuery#max:member(1)'
+  name: max(comparer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_max_member_1_
+  fullName: max(comparer)
+- uid: '@esfx/async-iter-query!AsyncQuery#maxBy:member(1)'
+  name: maxBy(keySelector, keyComparer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_maxBy_member_1_
+  fullName: maxBy(keySelector, keyComparer)
+- uid: '@esfx/async-iter-query!AsyncQuery#min:member(1)'
+  name: min(comparer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_min_member_1_
+  fullName: min(comparer)
+- uid: '@esfx/async-iter-query!AsyncQuery#minBy:member(1)'
+  name: minBy(keySelector, keyComparer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_minBy_member_1_
+  fullName: minBy(keySelector, keyComparer)
+- uid: '@esfx/async-iter-query!AsyncQuery#nth:member(1)'
+  name: nth(offset)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_nth_member_1_
+  fullName: nth(offset)
+- uid: '@esfx/async-iter-query!AsyncQuery#orderBy:member(1)'
+  name: orderBy(keySelector, comparer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_orderBy_member_1_
+  fullName: orderBy(keySelector, comparer)
+- uid: '@esfx/async-iter-query!AsyncQuery#orderByDescending:member(1)'
+  name: orderByDescending(keySelector, comparer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_orderByDescending_member_1_
+  fullName: orderByDescending(keySelector, comparer)
+- uid: '@esfx/async-iter-query!AsyncQuery#pageBy:member(1)'
+  name: pageBy(pageSize)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_pageBy_member_1_
+  fullName: pageBy(pageSize)
+- uid: '@esfx/async-iter-query!AsyncQuery#pageBy:member(2)'
+  name: pageBy(pageSize, pageSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_pageBy_member_2_
+  fullName: pageBy(pageSize, pageSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#patch:member(1)'
+  name: patch(start, skipCount, range)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_patch_member_1_
+  fullName: patch(start, skipCount, range)
+- uid: '@esfx/async-iter-query!AsyncQuery#prepend:member(1)'
+  name: prepend(value)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_prepend_member_1_
+  fullName: prepend(value)
+- uid: '@esfx/async-iter-query!AsyncQuery#reduce:member(1)'
+  name: reduce(accumulator)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_reduce_member_1_
+  fullName: reduce(accumulator)
+- uid: '@esfx/async-iter-query!AsyncQuery#reduce:member(2)'
+  name: reduce(accumulator, seed, resultSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_reduce_member_2_
+  fullName: reduce(accumulator, seed, resultSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#reduce:member(3)'
+  name: reduce(accumulator, seed, resultSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_reduce_member_3_
+  fullName: reduce(accumulator, seed, resultSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#reduceRight:member(1)'
+  name: reduceRight(accumulator)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_reduceRight_member_1_
+  fullName: reduceRight(accumulator)
+- uid: '@esfx/async-iter-query!AsyncQuery#reduceRight:member(2)'
+  name: reduceRight(accumulator, seed, resultSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_reduceRight_member_2_
+  fullName: reduceRight(accumulator, seed, resultSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#reduceRight:member(3)'
+  name: reduceRight(accumulator, seed, resultSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_reduceRight_member_3_
+  fullName: reduceRight(accumulator, seed, resultSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#relativeComplement:member(1)'
+  name: relativeComplement(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_relativeComplement_member_1_
+  fullName: relativeComplement(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#relativeComplementBy:member(1)'
+  name: relativeComplementBy(right, keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_relativeComplementBy_member_1_
+  fullName: relativeComplementBy(right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#reverse:member(1)'
+  name: reverse()
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_reverse_member_1_
+  fullName: reverse()
+- uid: '@esfx/async-iter-query!AsyncQuery#scan:member(1)'
+  name: scan(accumulator)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_scan_member_1_
+  fullName: scan(accumulator)
+- uid: '@esfx/async-iter-query!AsyncQuery#scan:member(2)'
+  name: scan(accumulator, seed)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_scan_member_2_
+  fullName: scan(accumulator, seed)
+- uid: '@esfx/async-iter-query!AsyncQuery#scanRight:member(1)'
+  name: scanRight(accumulator)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_scanRight_member_1_
+  fullName: scanRight(accumulator)
+- uid: '@esfx/async-iter-query!AsyncQuery#scanRight:member(2)'
+  name: scanRight(accumulator, seed)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_scanRight_member_2_
+  fullName: scanRight(accumulator, seed)
+- uid: '@esfx/async-iter-query!AsyncQuery#select:member(1)'
+  name: select(selector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_select_member_1_
+  fullName: select(selector)
+- uid: '@esfx/async-iter-query!AsyncQuery#selectMany:member(1)'
+  name: selectMany(projection)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_selectMany_member_1_
+  fullName: selectMany(projection)
+- uid: '@esfx/async-iter-query!AsyncQuery#selectMany:member(2)'
+  name: selectMany(projection, resultSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_selectMany_member_2_
+  fullName: selectMany(projection, resultSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#single:member(1)'
+  name: single(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_single_member_1_
+  fullName: single(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#single:member(2)'
+  name: single(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_single_member_2_
+  fullName: single(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#skip:member(1)'
+  name: skip(count)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_skip_member_1_
+  fullName: skip(count)
+- uid: '@esfx/async-iter-query!AsyncQuery#skipRight:member(1)'
+  name: skipRight(count)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_skipRight_member_1_
+  fullName: skipRight(count)
+- uid: '@esfx/async-iter-query!AsyncQuery#skipUntil:member(1)'
+  name: skipUntil(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_skipUntil_member_1_
+  fullName: skipUntil(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#skipWhile:member(1)'
+  name: skipWhile(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_skipWhile_member_1_
+  fullName: skipWhile(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#some:member(1)'
+  name: some(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_some_member_1_
+  fullName: some(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#span:member(1)'
+  name: span(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_span_member_1_
+  fullName: span(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#span:member(2)'
+  name: span(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_span_member_2_
+  fullName: span(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#spanMap:member(1)'
+  name: spanMap(keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_spanMap_member_1_
+  fullName: spanMap(keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#spanMap:member(2)'
+  name: spanMap(keySelector, elementSelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_spanMap_member_2_
+  fullName: spanMap(keySelector, elementSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#spanMap:member(3)'
+  name: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_spanMap_member_3_
+  fullName: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#spanMap:member(4)'
+  name: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_spanMap_member_4_
+  fullName: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#spanUntil:member(1)'
+  name: spanUntil(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_spanUntil_member_1_
+  fullName: spanUntil(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#startsWith:member(1)'
+  name: startsWith(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_startsWith_member_1_
+  fullName: startsWith(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#startsWith:member(2)'
+  name: startsWith(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_startsWith_member_2_
+  fullName: startsWith(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#sum:member(1)'
+  name: sum()
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_sum_member_1_
+  fullName: sum()
+- uid: '@esfx/async-iter-query!AsyncQuery#sum:member(2)'
+  name: sum(elementSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_sum_member_2_
+  fullName: sum(elementSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#symmetricDifference:member(1)'
+  name: symmetricDifference(this, right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_symmetricDifference_member_1_
+  fullName: symmetricDifference(this, right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#symmetricDifference:member(2)'
+  name: symmetricDifference(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_symmetricDifference_member_2_
+  fullName: symmetricDifference(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#symmetricDifferenceBy:member(1)'
+  name: symmetricDifferenceBy(this, right, keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_symmetricDifferenceBy_member_1_
+  fullName: symmetricDifferenceBy(this, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#symmetricDifferenceBy:member(2)'
+  name: symmetricDifferenceBy(right, keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_symmetricDifferenceBy_member_2_
+  fullName: symmetricDifferenceBy(right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#take:member(1)'
+  name: take(count)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_take_member_1_
+  fullName: take(count)
+- uid: '@esfx/async-iter-query!AsyncQuery#takeRight:member(1)'
+  name: takeRight(count)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_takeRight_member_1_
+  fullName: takeRight(count)
+- uid: '@esfx/async-iter-query!AsyncQuery#takeUntil:member(1)'
+  name: takeUntil(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_takeUntil_member_1_
+  fullName: takeUntil(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#takeWhile:member(1)'
+  name: takeWhile(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_takeWhile_member_1_
+  fullName: takeWhile(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#takeWhile:member(2)'
+  name: takeWhile(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_takeWhile_member_2_
+  fullName: takeWhile(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#tap:member(1)'
+  name: tap(callback)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_tap_member_1_
+  fullName: tap(callback)
+- uid: '@esfx/async-iter-query!AsyncQuery#through:member(1)'
+  name: through(callback)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_through_member_1_
+  fullName: through(callback)
+- uid: '@esfx/async-iter-query!AsyncQuery#through:member(2)'
+  name: through(callback)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_through_member_2_
+  fullName: through(callback)
+- uid: '@esfx/async-iter-query!AsyncQuery#through:member(3)'
+  name: through(callback)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_through_member_3_
+  fullName: through(callback)
+- uid: '@esfx/async-iter-query!AsyncQuery#through:member(4)'
+  name: through(callback)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_through_member_4_
+  fullName: through(callback)
+- uid: '@esfx/async-iter-query!AsyncQuery#toArray:member(1)'
+  name: toArray()
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toArray_member_1_
+  fullName: toArray()
+- uid: '@esfx/async-iter-query!AsyncQuery#toArray:member(2)'
+  name: toArray(elementSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toArray_member_2_
+  fullName: toArray(elementSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#toHashMap:member(1)'
+  name: toHashMap(keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHashMap_member_1_
+  fullName: toHashMap(keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#toHashMap:member(2)'
+  name: toHashMap(keySelector, elementSelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHashMap_member_2_
+  fullName: toHashMap(keySelector, elementSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#toHashSet:member(1)'
+  name: toHashSet(equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHashSet_member_1_
+  fullName: toHashSet(equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#toHashSet:member(2)'
+  name: toHashSet(elementSelector, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHashSet_member_2_
+  fullName: toHashSet(elementSelector, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#toHierarchy:member(1)'
+  name: toHierarchy(this, provider)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHierarchy_member_1_
+  fullName: toHierarchy(this, provider)
+- uid: '@esfx/async-iter-query!AsyncQuery#toHierarchy:member(2)'
+  name: toHierarchy(this, provider)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHierarchy_member_2_
+  fullName: toHierarchy(this, provider)
+- uid: '@esfx/async-iter-query!AsyncQuery#toHierarchy:member(3)'
+  name: toHierarchy(this, provider)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHierarchy_member_3_
+  fullName: toHierarchy(this, provider)
+- uid: '@esfx/async-iter-query!AsyncQuery#toHierarchy:member(4)'
+  name: toHierarchy(provider)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHierarchy_member_4_
+  fullName: toHierarchy(provider)
+- uid: '@esfx/async-iter-query!AsyncQuery#toLookup:member(1)'
+  name: toLookup(keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toLookup_member_1_
+  fullName: toLookup(keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#toLookup:member(2)'
+  name: toLookup(keySelector, elementSelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toLookup_member_2_
+  fullName: toLookup(keySelector, elementSelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#toMap:member(1)'
+  name: toMap(keySelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toMap_member_1_
+  fullName: toMap(keySelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#toMap:member(2)'
+  name: toMap(keySelector, elementSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toMap_member_2_
+  fullName: toMap(keySelector, elementSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#toObject:member(1)'
+  name: toObject(prototype, keySelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toObject_member_1_
+  fullName: toObject(prototype, keySelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#toObject:member(2)'
+  name: toObject(prototype, keySelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toObject_member_2_
+  fullName: toObject(prototype, keySelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#toObject:member(3)'
+  name: toObject(prototype, keySelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toObject_member_3_
+  fullName: toObject(prototype, keySelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#toObject:member(4)'
+  name: toObject(prototype, keySelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toObject_member_4_
+  fullName: toObject(prototype, keySelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#toObject:member(5)'
+  name: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toObject_member_5_
+  fullName: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#toObject:member(6)'
+  name: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toObject_member_6_
+  fullName: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#toObject:member(7)'
+  name: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toObject_member_7_
+  fullName: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#toObject:member(8)'
+  name: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toObject_member_8_
+  fullName: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#toObject:member(9)'
+  name: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toObject_member_9_
+  fullName: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#toSet:member(1)'
+  name: toSet()
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toSet_member_1_
+  fullName: toSet()
+- uid: '@esfx/async-iter-query!AsyncQuery#toSet:member(2)'
+  name: toSet(elementSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toSet_member_2_
+  fullName: toSet(elementSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#union:member(1)'
+  name: union(this, right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_union_member_1_
+  fullName: union(this, right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#union:member(2)'
+  name: union(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_union_member_2_
+  fullName: union(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#unionBy:member(1)'
+  name: unionBy(this, right, keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_unionBy_member_1_
+  fullName: unionBy(this, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#unionBy:member(2)'
+  name: unionBy(right, keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_unionBy_member_2_
+  fullName: unionBy(right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#unzip:member(1)'
+  name: unzip()
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_unzip_member_1_
+  fullName: unzip()
+- uid: '@esfx/async-iter-query!AsyncQuery#unzip:member(2)'
+  name: unzip(partSelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_unzip_member_2_
+  fullName: unzip(partSelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#where:member(1)'
+  name: where(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_where_member_1_
+  fullName: where(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#where:member(2)'
+  name: where(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_where_member_2_
+  fullName: where(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#whereBy:member(1)'
+  name: whereBy(keySelector, predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_whereBy_member_1_
+  fullName: whereBy(keySelector, predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#whereDefined:member(1)'
+  name: whereDefined()
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_whereDefined_member_1_
+  fullName: whereDefined()
+- uid: '@esfx/async-iter-query!AsyncQuery#whereDefinedBy:member(1)'
+  name: whereDefinedBy(keySelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_whereDefinedBy_member_1_
+  fullName: whereDefinedBy(keySelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#whereNot:member(1)'
+  name: whereNot(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_whereNot_member_1_
+  fullName: whereNot(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#whereNot:member(2)'
+  name: whereNot(predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_whereNot_member_2_
+  fullName: whereNot(predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#whereNotBy:member(1)'
+  name: whereNotBy(keySelector, predicate)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_whereNotBy_member_1_
+  fullName: whereNotBy(keySelector, predicate)
+- uid: '@esfx/async-iter-query!AsyncQuery#whereNotDefinedBy:member(1)'
+  name: whereNotDefinedBy(keySelector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_whereNotDefinedBy_member_1_
+  fullName: whereNotDefinedBy(keySelector)
+- uid: '@esfx/async-iter-query!AsyncQuery#xor:member(1)'
+  name: xor(this, right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_xor_member_1_
+  fullName: xor(this, right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#xor:member(2)'
+  name: xor(right, equaler)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_xor_member_2_
+  fullName: xor(right, equaler)
+- uid: '@esfx/async-iter-query!AsyncQuery#xorBy:member(1)'
+  name: xorBy(this, right, keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_xorBy_member_1_
+  fullName: xorBy(this, right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#xorBy:member(2)'
+  name: xorBy(right, keySelector, keyEqualer)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_xorBy_member_2_
+  fullName: xorBy(right, keySelector, keyEqualer)
+- uid: '@esfx/async-iter-query!AsyncQuery#zip:member(1)'
+  name: zip(right)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_zip_member_1_
+  fullName: zip(right)
+- uid: '@esfx/async-iter-query!AsyncQuery#zip:member(2)'
+  name: zip(right, selector)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_zip_member_2_
+  fullName: zip(right, selector)
+- uid: '@esfx/async-iter-query!AsyncQuery.consume:member(1)'
+  name: consume(iterator, options)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_consume_member_1_
+  fullName: consume(iterator, options)
+- uid: '@esfx/async-iter-query!AsyncQuery.continuous:member(1)'
+  name: continuous(value)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_continuous_member_1_
+  fullName: continuous(value)
+- uid: '@esfx/async-iter-query!AsyncQuery.empty:member(1)'
+  name: empty()
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_empty_member_1_
+  fullName: empty()
+- uid: '@esfx/async-iter-query!AsyncQuery.from:member(1)'
+  name: from(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_from_member_1_
+  fullName: from(source)
+- uid: '@esfx/async-iter-query!AsyncQuery.from:member(2)'
+  name: from(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_from_member_2_
+  fullName: from(source)
+- uid: '@esfx/async-iter-query!AsyncQuery.from:member(3)'
+  name: from(source, provider)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_from_member_3_
+  fullName: from(source, provider)
+- uid: '@esfx/async-iter-query!AsyncQuery.from:member(4)'
+  name: from(source, provider)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_from_member_4_
+  fullName: from(source, provider)
+- uid: '@esfx/async-iter-query!AsyncQuery.from:member(5)'
+  name: from(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_from_member_5_
+  fullName: from(source)
+- uid: '@esfx/async-iter-query!AsyncQuery.from:member(6)'
+  name: from(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_from_member_6_
+  fullName: from(source)
+- uid: '@esfx/async-iter-query!AsyncQuery.from:member(7)'
+  name: from(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_from_member_7_
+  fullName: from(source)
+- uid: '@esfx/async-iter-query!AsyncQuery.generate:member(1)'
+  name: generate(count, generator)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_generate_member_1_
+  fullName: generate(count, generator)
+- uid: '@esfx/async-iter-query!AsyncQuery.of:member(1)'
+  name: of(elements)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_of_member_1_
+  fullName: of(elements)
+- uid: '@esfx/async-iter-query!AsyncQuery.once:member(1)'
+  name: once(value)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_once_member_1_
+  fullName: once(value)
+- uid: '@esfx/async-iter-query!AsyncQuery.range:member(1)'
+  name: range(start, end, increment)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_range_member_1_
+  fullName: range(start, end, increment)
+- uid: '@esfx/async-iter-query!AsyncQuery.repeat:member(1)'
+  name: repeat(value, count)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_repeat_member_1_
+  fullName: repeat(value, count)
+- uid: '@esfx/async-iter-query!AsyncQuery:class'
+  name: AsyncQuery
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_class
+  fullName: AsyncQuery
+- uid: '@esfx/async-iter-query!AsyncQuery:constructor(1)'
+  name: (constructor)(source)
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_constructor_1_
+  fullName: (constructor)(source)
+- uid: '@esfx/async-iter-query!fromAsync:function(1)'
+  name: fromAsync(source)
+  href: api/async-iter-query.html#_esfx_async_iter_query_fromAsync_function_1_
+  fullName: fromAsync(source)
+- uid: '@esfx/async-iter-query!fromAsync:function(2)'
+  name: fromAsync(source)
+  href: api/async-iter-query.html#_esfx_async_iter_query_fromAsync_function_2_
+  fullName: fromAsync(source)
+- uid: '@esfx/async-iter-query!fromAsync:function(3)'
+  name: fromAsync(source, provider)
+  href: api/async-iter-query.html#_esfx_async_iter_query_fromAsync_function_3_
+  fullName: fromAsync(source, provider)
+- uid: '@esfx/async-iter-query!fromAsync:function(4)'
+  name: fromAsync(source, provider)
+  href: api/async-iter-query.html#_esfx_async_iter_query_fromAsync_function_4_
+  fullName: fromAsync(source, provider)
+- uid: '@esfx/async-iter-query!fromAsync:function(5)'
+  name: fromAsync(source)
+  href: api/async-iter-query.html#_esfx_async_iter_query_fromAsync_function_5_
+  fullName: fromAsync(source)
+- uid: '@esfx/async-iter-query!fromAsync:function(6)'
+  name: fromAsync(source)
+  href: api/async-iter-query.html#_esfx_async_iter_query_fromAsync_function_6_
+  fullName: fromAsync(source)
+- uid: '@esfx/async-iter-query!fromAsync:function(7)'
+  name: fromAsync(source)
+  href: api/async-iter-query.html#_esfx_async_iter_query_fromAsync_function_7_
+  fullName: fromAsync(source)
 - uid: '@esfx/async-lazy!'
   name: '@esfx/async-lazy'
   href: api/async-lazy.html
@@ -1481,6 +3801,10 @@ references:
   name: trimExcess(capacity)
   href: api/collections-hashset/hashset.html#_esfx_collections_hashset_HashSet_trimExcess_member_1_
   fullName: trimExcess(capacity)
+- uid: '@esfx/collections-hashset!HashSet#tryAdd:member(1)'
+  name: tryAdd(value)
+  href: api/collections-hashset/hashset.html#_esfx_collections_hashset_HashSet_tryAdd_member_1_
+  fullName: tryAdd(value)
 - uid: '@esfx/collections-hashset!HashSet#values:member(1)'
   name: values()
   href: api/collections-hashset/hashset.html#_esfx_collections_hashset_HashSet_values_member_1_
@@ -3057,10 +5381,10 @@ references:
   name: factory(ctor, args)
   href: api/fn.html#_esfx_fn_factory_function_7_
   fullName: factory(ctor, args)
-- uid: '@esfx/fn!fail:function(1)'
-  name: fail(value)
-  href: api/fn.html#_esfx_fn_fail_function_1_
-  fullName: fail(value)
+- uid: '@esfx/fn!fail_2:function(1)'
+  name: fail_2(value)
+  href: api/fn.html#_esfx_fn_fail_2_function_1_
+  fullName: fail_2(value)
 - uid: '@esfx/fn!fallback:function(1)'
   name: fallback(a, b)
   href: api/fn.html#_esfx_fn_fallback_function_1_
@@ -4841,6 +7165,130 @@ references:
   name: (constructor)()
   href: api/indexed-object/integerindexedobject.html#_esfx_indexed_object_IntegerIndexedObject_constructor_1_
   fullName: (constructor)()
+- uid: '@esfx/interval!'
+  name: '@esfx/interval'
+  href: api/interval.html
+  fullName: '@esfx/interval'
+- uid: '@esfx/interval!Index#[Equatable.equals]:member(1)'
+  name: '[Equatable.equals](other)'
+  href: api/interval/index.html#_esfx_interval_Index__Equatable_equals__member_1_
+  fullName: '[Equatable.equals](other)'
+- uid: '@esfx/interval!Index#[Equatable.hash]:member(1)'
+  name: '[Equatable.hash]()'
+  href: api/interval/index.html#_esfx_interval_Index__Equatable_hash__member_1_
+  fullName: '[Equatable.hash]()'
+- uid: '@esfx/interval!Index#equals:member(1)'
+  name: equals(other)
+  href: api/interval/index.html#_esfx_interval_Index_equals_member_1_
+  fullName: equals(other)
+- uid: '@esfx/interval!Index#getIndex:member(1)'
+  name: getIndex(length)
+  href: api/interval/index.html#_esfx_interval_Index_getIndex_member_1_
+  fullName: getIndex(length)
+- uid: '@esfx/interval!Index#hash:member(1)'
+  name: hash()
+  href: api/interval/index.html#_esfx_interval_Index_hash_member_1_
+  fullName: hash()
+- uid: '@esfx/interval!Index#isFromEnd:member'
+  name: isFromEnd
+  href: api/interval/index.html#_esfx_interval_Index_isFromEnd_member
+  fullName: isFromEnd
+- uid: '@esfx/interval!Index#toString:member(1)'
+  name: toString()
+  href: api/interval/index.html#_esfx_interval_Index_toString_member_1_
+  fullName: toString()
+- uid: '@esfx/interval!Index#value:member'
+  name: value
+  href: api/interval/index.html#_esfx_interval_Index_value_member
+  fullName: value
+- uid: '@esfx/interval!Index.end:member'
+  name: end
+  href: api/interval/index.html#_esfx_interval_Index_end_member
+  fullName: end
+- uid: '@esfx/interval!Index.fromEnd:member(1)'
+  name: fromEnd(value)
+  href: api/interval/index.html#_esfx_interval_Index_fromEnd_member_1_
+  fullName: fromEnd(value)
+- uid: '@esfx/interval!Index.fromStart:member(1)'
+  name: fromStart(value)
+  href: api/interval/index.html#_esfx_interval_Index_fromStart_member_1_
+  fullName: fromStart(value)
+- uid: '@esfx/interval!Index.start:member'
+  name: start
+  href: api/interval/index.html#_esfx_interval_Index_start_member
+  fullName: start
+- uid: '@esfx/interval!Index:class'
+  name: Index
+  href: api/interval/index.html#_esfx_interval_Index_class
+  fullName: Index
+- uid: '@esfx/interval!Index:constructor(1)'
+  name: (constructor)(value, isFromEnd)
+  href: api/interval/index.html#_esfx_interval_Index_constructor_1_
+  fullName: (constructor)(value, isFromEnd)
+- uid: '@esfx/interval!Interval#[Equatable.equals]:member(1)'
+  name: '[Equatable.equals](other)'
+  href: api/interval/interval.html#_esfx_interval_Interval__Equatable_equals__member_1_
+  fullName: '[Equatable.equals](other)'
+- uid: '@esfx/interval!Interval#[Equatable.hash]:member(1)'
+  name: '[Equatable.hash]()'
+  href: api/interval/interval.html#_esfx_interval_Interval__Equatable_hash__member_1_
+  fullName: '[Equatable.hash]()'
+- uid: '@esfx/interval!Interval#[Symbol.iterator]:member(1)'
+  name: '[Symbol.iterator]()'
+  href: api/interval/interval.html#_esfx_interval_Interval__Symbol_iterator__member_1_
+  fullName: '[Symbol.iterator]()'
+- uid: '@esfx/interval!Interval#end:member'
+  name: end
+  href: api/interval/interval.html#_esfx_interval_Interval_end_member
+  fullName: end
+- uid: '@esfx/interval!Interval#equals:member(1)'
+  name: equals(other)
+  href: api/interval/interval.html#_esfx_interval_Interval_equals_member_1_
+  fullName: equals(other)
+- uid: '@esfx/interval!Interval#getIndices:member(1)'
+  name: getIndices(length)
+  href: api/interval/interval.html#_esfx_interval_Interval_getIndices_member_1_
+  fullName: getIndices(length)
+- uid: '@esfx/interval!Interval#hash:member(1)'
+  name: hash()
+  href: api/interval/interval.html#_esfx_interval_Interval_hash_member_1_
+  fullName: hash()
+- uid: '@esfx/interval!Interval#start:member'
+  name: start
+  href: api/interval/interval.html#_esfx_interval_Interval_start_member
+  fullName: start
+- uid: '@esfx/interval!Interval#step:member'
+  name: step
+  href: api/interval/interval.html#_esfx_interval_Interval_step_member
+  fullName: step
+- uid: '@esfx/interval!Interval#toString:member(1)'
+  name: toString()
+  href: api/interval/interval.html#_esfx_interval_Interval_toString_member_1_
+  fullName: toString()
+- uid: '@esfx/interval!Interval#values:member(1)'
+  name: values(length)
+  href: api/interval/interval.html#_esfx_interval_Interval_values_member_1_
+  fullName: values(length)
+- uid: '@esfx/interval!Interval.all:member'
+  name: all
+  href: api/interval/interval.html#_esfx_interval_Interval_all_member
+  fullName: all
+- uid: '@esfx/interval!Interval.endAt:member(1)'
+  name: endAt(index)
+  href: api/interval/interval.html#_esfx_interval_Interval_endAt_member_1_
+  fullName: endAt(index)
+- uid: '@esfx/interval!Interval.startAt:member(1)'
+  name: startAt(index)
+  href: api/interval/interval.html#_esfx_interval_Interval_startAt_member_1_
+  fullName: startAt(index)
+- uid: '@esfx/interval!Interval:class'
+  name: Interval
+  href: api/interval/interval.html#_esfx_interval_Interval_class
+  fullName: Interval
+- uid: '@esfx/interval!Interval:constructor(1)'
+  name: (constructor)(start, end, step)
+  href: api/interval/interval.html#_esfx_interval_Interval_constructor_1_
+  fullName: (constructor)(start, end, step)
 - uid: '@esfx/iter!'
   name: '@esfx/iter'
   href: api/iter.html
@@ -4882,13 +7330,13 @@ references:
   href: api/iter-fn.html#_esfx_iter_fn_average_function_2_
   fullName: average(source, elementSelector)
 - uid: '@esfx/iter-fn!bottomMost:function(1)'
-  name: bottomMost(source, predicate)
+  name: bottomMost(source, predicate, equaler)
   href: api/iter-fn.html#_esfx_iter_fn_bottomMost_function_1_
-  fullName: bottomMost(source, predicate)
+  fullName: bottomMost(source, predicate, equaler)
 - uid: '@esfx/iter-fn!bottomMost:function(2)'
-  name: bottomMost(source, predicate)
+  name: bottomMost(source, predicate, equaler)
   href: api/iter-fn.html#_esfx_iter_fn_bottomMost_function_2_
-  fullName: bottomMost(source, predicate)
+  fullName: bottomMost(source, predicate, equaler)
 - uid: '@esfx/iter-fn!children:function(1)'
   name: children(source, predicate)
   href: api/iter-fn.html#_esfx_iter_fn_children_function_1_
@@ -5113,9 +7561,45 @@ references:
   name: filterDefinedBy(source, keySelector)
   href: api/iter-fn.html#_esfx_iter_fn_filterDefinedBy_function_2_
   fullName: filterDefinedBy(source, keySelector)
+- uid: '@esfx/iter-fn!filterNot:function(1)'
+  name: filterNot(source, predicate)
+  href: api/iter-fn.html#_esfx_iter_fn_filterNot_function_1_
+  fullName: filterNot(source, predicate)
+- uid: '@esfx/iter-fn!filterNot:function(2)'
+  name: filterNot(source, predicate)
+  href: api/iter-fn.html#_esfx_iter_fn_filterNot_function_2_
+  fullName: filterNot(source, predicate)
+- uid: '@esfx/iter-fn!filterNot:function(3)'
+  name: filterNot(source, predicate)
+  href: api/iter-fn.html#_esfx_iter_fn_filterNot_function_3_
+  fullName: filterNot(source, predicate)
+- uid: '@esfx/iter-fn!filterNot:function(4)'
+  name: filterNot(source, predicate)
+  href: api/iter-fn.html#_esfx_iter_fn_filterNot_function_4_
+  fullName: filterNot(source, predicate)
+- uid: '@esfx/iter-fn!filterNotBy:function(1)'
+  name: filterNotBy(source, keySelector, predicate)
+  href: api/iter-fn.html#_esfx_iter_fn_filterNotBy_function_1_
+  fullName: filterNotBy(source, keySelector, predicate)
+- uid: '@esfx/iter-fn!filterNotBy:function(2)'
+  name: filterNotBy(source, keySelector, predicate)
+  href: api/iter-fn.html#_esfx_iter_fn_filterNotBy_function_2_
+  fullName: filterNotBy(source, keySelector, predicate)
+- uid: '@esfx/iter-fn!filterNotDefinedBy:function(1)'
+  name: filterNotDefinedBy(source, keySelector)
+  href: api/iter-fn.html#_esfx_iter_fn_filterNotDefinedBy_function_1_
+  fullName: filterNotDefinedBy(source, keySelector)
+- uid: '@esfx/iter-fn!filterNotDefinedBy:function(2)'
+  name: filterNotDefinedBy(source, keySelector)
+  href: api/iter-fn.html#_esfx_iter_fn_filterNotDefinedBy_function_2_
+  fullName: filterNotDefinedBy(source, keySelector)
 - uid: '@esfx/iter-fn!first:function(1)'
   name: first(source, predicate)
   href: api/iter-fn.html#_esfx_iter_fn_first_function_1_
+  fullName: first(source, predicate)
+- uid: '@esfx/iter-fn!first:function(2)'
+  name: first(source, predicate)
+  href: api/iter-fn.html#_esfx_iter_fn_first_function_2_
   fullName: first(source, predicate)
 - uid: '@esfx/iter-fn!firstChild:function(1)'
   name: firstChild(source, predicate)
@@ -5236,6 +7720,10 @@ references:
 - uid: '@esfx/iter-fn!last:function(1)'
   name: last(source, predicate)
   href: api/iter-fn.html#_esfx_iter_fn_last_function_1_
+  fullName: last(source, predicate)
+- uid: '@esfx/iter-fn!last:function(2)'
+  name: last(source, predicate)
+  href: api/iter-fn.html#_esfx_iter_fn_last_function_2_
   fullName: last(source, predicate)
 - uid: '@esfx/iter-fn!lastChild:function(1)'
   name: lastChild(source, predicate)
@@ -5449,6 +7937,10 @@ references:
   name: single(source, predicate)
   href: api/iter-fn.html#_esfx_iter_fn_single_function_1_
   fullName: single(source, predicate)
+- uid: '@esfx/iter-fn!single:function(2)'
+  name: single(source, predicate)
+  href: api/iter-fn.html#_esfx_iter_fn_single_function_2_
+  fullName: single(source, predicate)
 - uid: '@esfx/iter-fn!some:function(1)'
   name: some(source, predicate)
   href: api/iter-fn.html#_esfx_iter_fn_some_function_1_
@@ -5460,6 +7952,14 @@ references:
 - uid: '@esfx/iter-fn!span:function(2)'
   name: span(source, predicate)
   href: api/iter-fn.html#_esfx_iter_fn_span_function_2_
+  fullName: span(source, predicate)
+- uid: '@esfx/iter-fn!span:function(3)'
+  name: span(source, predicate)
+  href: api/iter-fn.html#_esfx_iter_fn_span_function_3_
+  fullName: span(source, predicate)
+- uid: '@esfx/iter-fn!span:function(4)'
+  name: span(source, predicate)
+  href: api/iter-fn.html#_esfx_iter_fn_span_function_4_
   fullName: span(source, predicate)
 - uid: '@esfx/iter-fn!spanMap:function(1)'
   name: spanMap(source, keySelector, keyEqualer)
@@ -5484,6 +7984,10 @@ references:
 - uid: '@esfx/iter-fn!spanUntil:function(1)'
   name: spanUntil(source, predicate)
   href: api/iter-fn.html#_esfx_iter_fn_spanUntil_function_1_
+  fullName: spanUntil(source, predicate)
+- uid: '@esfx/iter-fn!spanUntil:function(2)'
+  name: spanUntil(source, predicate)
+  href: api/iter-fn.html#_esfx_iter_fn_spanUntil_function_2_
   fullName: spanUntil(source, predicate)
 - uid: '@esfx/iter-fn!startsWith:function(1)'
   name: startsWith(left, right, equaler)
@@ -5650,17 +8154,45 @@ references:
   href: api/iter-fn.html#_esfx_iter_fn_toObject_function_1_
   fullName: toObject(source, prototype, keySelector)
 - uid: '@esfx/iter-fn!toObject:function(2)'
-  name: toObject(source, prototype, keySelector, elementSelector, descriptorSelector)
+  name: toObject(source, prototype, keySelector)
   href: api/iter-fn.html#_esfx_iter_fn_toObject_function_2_
+  fullName: toObject(source, prototype, keySelector)
+- uid: '@esfx/iter-fn!toObject:function(3)'
+  name: toObject(source, prototype, keySelector)
+  href: api/iter-fn.html#_esfx_iter_fn_toObject_function_3_
+  fullName: toObject(source, prototype, keySelector)
+- uid: '@esfx/iter-fn!toObject:function(4)'
+  name: toObject(source, prototype, keySelector)
+  href: api/iter-fn.html#_esfx_iter_fn_toObject_function_4_
+  fullName: toObject(source, prototype, keySelector)
+- uid: '@esfx/iter-fn!toObject:function(5)'
+  name: toObject(source, prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/iter-fn.html#_esfx_iter_fn_toObject_function_5_
+  fullName: toObject(source, prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/iter-fn!toObject:function(6)'
+  name: toObject(source, prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/iter-fn.html#_esfx_iter_fn_toObject_function_6_
+  fullName: toObject(source, prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/iter-fn!toObject:function(7)'
+  name: toObject(source, prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/iter-fn.html#_esfx_iter_fn_toObject_function_7_
+  fullName: toObject(source, prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/iter-fn!toObject:function(8)'
+  name: toObject(source, prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/iter-fn.html#_esfx_iter_fn_toObject_function_8_
+  fullName: toObject(source, prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/iter-fn!toObject:function(9)'
+  name: toObject(source, prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/iter-fn.html#_esfx_iter_fn_toObject_function_9_
   fullName: toObject(source, prototype, keySelector, elementSelector, descriptorSelector)
 - uid: '@esfx/iter-fn!topMost:function(1)'
-  name: topMost(source, predicate)
+  name: topMost(source, predicate, equaler)
   href: api/iter-fn.html#_esfx_iter_fn_topMost_function_1_
-  fullName: topMost(source, predicate)
+  fullName: topMost(source, predicate, equaler)
 - uid: '@esfx/iter-fn!topMost:function(2)'
-  name: topMost(source, predicate)
+  name: topMost(source, predicate, equaler)
   href: api/iter-fn.html#_esfx_iter_fn_topMost_function_2_
-  fullName: topMost(source, predicate)
+  fullName: topMost(source, predicate, equaler)
 - uid: '@esfx/iter-fn!toSet:function(1)'
   name: toSet(source)
   href: api/iter-fn.html#_esfx_iter_fn_toSet_function_1_
@@ -5849,6 +8381,10 @@ references:
   name: root(element)
   href: api/iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_root_member_1_
   fullName: root(element)
+- uid: '@esfx/iter-hierarchy!HierarchyProvider.combine:function(1)'
+  name: combine(left, right)
+  href: api/iter-hierarchy/hierarchyprovider-namespace.html
+  fullName: HierarchyProvider.combine(left, right)
 - uid: '@esfx/iter-hierarchy!HierarchyProvider.hasInstance:function(1)'
   name: hasInstance(value)
   href: api/iter-hierarchy/hierarchyprovider-namespace.html
@@ -6020,6 +8556,10 @@ references:
 - uid: '@esfx/iter-query!from:function(6)'
   name: from(source)
   href: api/iter-query.html#_esfx_iter_query_from_function_6_
+  fullName: from(source)
+- uid: '@esfx/iter-query!from:function(7)'
+  name: from(source)
+  href: api/iter-query.html#_esfx_iter_query_from_function_7_
   fullName: from(source)
 - uid: '@esfx/iter-query!HierarchyQuery#[Hierarchical.hierarchy]:member(1)'
   name: '[Hierarchical.hierarchy]()'
@@ -6485,6 +9025,34 @@ references:
   name: '[Symbol.iterator]()'
   href: api/iter-query/query.html#_esfx_iter_query_Query__Symbol_iterator__member_1_
   fullName: '[Symbol.iterator]()'
+- uid: '@esfx/iter-query!Query#_from:member(1)'
+  name: _from(source)
+  href: api/iter-query/query.html#_esfx_iter_query_Query__from_member_1_
+  fullName: _from(source)
+- uid: '@esfx/iter-query!Query#_from:member(2)'
+  name: _from(source)
+  href: api/iter-query/query.html#_esfx_iter_query_Query__from_member_2_
+  fullName: _from(source)
+- uid: '@esfx/iter-query!Query#_from:member(3)'
+  name: _from(source, provider)
+  href: api/iter-query/query.html#_esfx_iter_query_Query__from_member_3_
+  fullName: _from(source, provider)
+- uid: '@esfx/iter-query!Query#_from:member(4)'
+  name: _from(source, provider)
+  href: api/iter-query/query.html#_esfx_iter_query_Query__from_member_4_
+  fullName: _from(source, provider)
+- uid: '@esfx/iter-query!Query#_from:member(5)'
+  name: _from(source)
+  href: api/iter-query/query.html#_esfx_iter_query_Query__from_member_5_
+  fullName: _from(source)
+- uid: '@esfx/iter-query!Query#_from:member(6)'
+  name: _from(source)
+  href: api/iter-query/query.html#_esfx_iter_query_Query__from_member_6_
+  fullName: _from(source)
+- uid: '@esfx/iter-query!Query#_from:member(7)'
+  name: _from(source)
+  href: api/iter-query/query.html#_esfx_iter_query_Query__from_member_7_
+  fullName: _from(source)
 - uid: '@esfx/iter-query!Query#append:member(1)'
   name: append(value)
   href: api/iter-query/query.html#_esfx_iter_query_Query_append_member_1_
@@ -6617,6 +9185,22 @@ references:
   name: filterDefinedBy(keySelector)
   href: api/iter-query/query.html#_esfx_iter_query_Query_filterDefinedBy_member_1_
   fullName: filterDefinedBy(keySelector)
+- uid: '@esfx/iter-query!Query#filterNot:member(1)'
+  name: filterNot(predicate)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_filterNot_member_1_
+  fullName: filterNot(predicate)
+- uid: '@esfx/iter-query!Query#filterNot:member(2)'
+  name: filterNot(predicate)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_filterNot_member_2_
+  fullName: filterNot(predicate)
+- uid: '@esfx/iter-query!Query#filterNotBy:member(1)'
+  name: filterNotBy(keySelector, predicate)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_filterNotBy_member_1_
+  fullName: filterNotBy(keySelector, predicate)
+- uid: '@esfx/iter-query!Query#filterNotDefinedBy:member(1)'
+  name: filterNotDefinedBy(keySelector)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_filterNotDefinedBy_member_1_
+  fullName: filterNotDefinedBy(keySelector)
 - uid: '@esfx/iter-query!Query#first:member(1)'
   name: first(predicate)
   href: api/iter-query/query.html#_esfx_iter_query_Query_first_member_1_
@@ -6970,20 +9554,12 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_toHashMap_member_2_
   fullName: toHashMap(keySelector, elementSelector, keyEqualer)
 - uid: '@esfx/iter-query!Query#toHashSet:member(1)'
-  name: toHashSet()
-  href: api/iter-query/query.html#_esfx_iter_query_Query_toHashSet_member_1_
-  fullName: toHashSet()
-- uid: '@esfx/iter-query!Query#toHashSet:member(2)'
   name: toHashSet(equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_toHashSet_member_2_
+  href: api/iter-query/query.html#_esfx_iter_query_Query_toHashSet_member_1_
   fullName: toHashSet(equaler)
-- uid: '@esfx/iter-query!Query#toHashSet:member(3)'
-  name: toHashSet(elementSelector)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_toHashSet_member_3_
-  fullName: toHashSet(elementSelector)
-- uid: '@esfx/iter-query!Query#toHashSet:member(4)'
+- uid: '@esfx/iter-query!Query#toHashSet:member(2)'
   name: toHashSet(elementSelector, equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_toHashSet_member_4_
+  href: api/iter-query/query.html#_esfx_iter_query_Query_toHashSet_member_2_
   fullName: toHashSet(elementSelector, equaler)
 - uid: '@esfx/iter-query!Query#toHierarchy:member(1)'
   name: toHierarchy(this, provider)
@@ -7026,8 +9602,36 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_toObject_member_1_
   fullName: toObject(prototype, keySelector)
 - uid: '@esfx/iter-query!Query#toObject:member(2)'
-  name: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+  name: toObject(prototype, keySelector)
   href: api/iter-query/query.html#_esfx_iter_query_Query_toObject_member_2_
+  fullName: toObject(prototype, keySelector)
+- uid: '@esfx/iter-query!Query#toObject:member(3)'
+  name: toObject(prototype, keySelector)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_toObject_member_3_
+  fullName: toObject(prototype, keySelector)
+- uid: '@esfx/iter-query!Query#toObject:member(4)'
+  name: toObject(prototype, keySelector)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_toObject_member_4_
+  fullName: toObject(prototype, keySelector)
+- uid: '@esfx/iter-query!Query#toObject:member(5)'
+  name: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_toObject_member_5_
+  fullName: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/iter-query!Query#toObject:member(6)'
+  name: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_toObject_member_6_
+  fullName: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/iter-query!Query#toObject:member(7)'
+  name: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_toObject_member_7_
+  fullName: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/iter-query!Query#toObject:member(8)'
+  name: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_toObject_member_8_
+  fullName: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+- uid: '@esfx/iter-query!Query#toObject:member(9)'
+  name: toObject(prototype, keySelector, elementSelector, descriptorSelector)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_toObject_member_9_
   fullName: toObject(prototype, keySelector, elementSelector, descriptorSelector)
 - uid: '@esfx/iter-query!Query#toSet:member(1)'
   name: toSet()
@@ -7081,22 +9685,22 @@ references:
   name: whereDefinedBy(keySelector)
   href: api/iter-query/query.html#_esfx_iter_query_Query_whereDefinedBy_member_1_
   fullName: whereDefinedBy(keySelector)
-- uid: '@esfx/iter-query!Query#xor:member(1)'
-  name: xor(this, right, equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_xor_member_1_
-  fullName: xor(this, right, equaler)
-- uid: '@esfx/iter-query!Query#xor:member(2)'
-  name: xor(right, equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_xor_member_2_
-  fullName: xor(right, equaler)
-- uid: '@esfx/iter-query!Query#xorBy:member(1)'
-  name: xorBy(this, right, keySelector, keyEqualer)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_xorBy_member_1_
-  fullName: xorBy(this, right, keySelector, keyEqualer)
-- uid: '@esfx/iter-query!Query#xorBy:member(2)'
-  name: xorBy(right, keySelector, keyEqualer)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_xorBy_member_2_
-  fullName: xorBy(right, keySelector, keyEqualer)
+- uid: '@esfx/iter-query!Query#whereNot:member(1)'
+  name: whereNot(predicate)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_whereNot_member_1_
+  fullName: whereNot(predicate)
+- uid: '@esfx/iter-query!Query#whereNot:member(2)'
+  name: whereNot(predicate)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_whereNot_member_2_
+  fullName: whereNot(predicate)
+- uid: '@esfx/iter-query!Query#whereNotBy:member(1)'
+  name: whereNotBy(keySelector, predicate)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_whereNotBy_member_1_
+  fullName: whereNotBy(keySelector, predicate)
+- uid: '@esfx/iter-query!Query#whereNotDefinedBy:member(1)'
+  name: whereNotDefinedBy(keySelector)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_whereNotDefinedBy_member_1_
+  fullName: whereNotDefinedBy(keySelector)
 - uid: '@esfx/iter-query!Query#zip:member(1)'
   name: zip(right)
   href: api/iter-query/query.html#_esfx_iter_query_Query_zip_member_1_
@@ -7140,6 +9744,10 @@ references:
 - uid: '@esfx/iter-query!Query.from:member(6)'
   name: from(source)
   href: api/iter-query/query.html#_esfx_iter_query_Query_from_member_6_
+  fullName: from(source)
+- uid: '@esfx/iter-query!Query.from:member(7)'
+  name: from(source)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_from_member_7_
   fullName: from(source)
 - uid: '@esfx/iter-query!Query.generate:member(1)'
   name: generate(count, generator)
@@ -7413,86 +10021,10 @@ references:
   name: int8
   href: api/struct-type.html#_esfx_struct_type_int8_var
   fullName: int8
-- uid: '@esfx/struct-type!Struct#buffer:member'
-  name: buffer
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_buffer_member
-  fullName: buffer
-- uid: '@esfx/struct-type!Struct#byteLength:member'
-  name: byteLength
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_byteLength_member
-  fullName: byteLength
-- uid: '@esfx/struct-type!Struct#byteOffset:member'
-  name: byteOffset
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_byteOffset_member
-  fullName: byteOffset
-- uid: '@esfx/struct-type!Struct#get:member(1)'
-  name: get(key)
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_get_member_1_
-  fullName: get(key)
-- uid: '@esfx/struct-type!Struct#getIndex:member(1)'
-  name: getIndex(index)
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_getIndex_member_1_
-  fullName: getIndex(index)
-- uid: '@esfx/struct-type!Struct#set:member(1)'
-  name: set(key, value)
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_set_member_1_
-  fullName: set(key, value)
-- uid: '@esfx/struct-type!Struct#setIndex:member(1)'
-  name: setIndex(index, value)
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_setIndex_member_1_
-  fullName: setIndex(index, value)
-- uid: '@esfx/struct-type!Struct#writeTo:member(1)'
-  name: writeTo(buffer, byteOffset)
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_writeTo_member_1_
-  fullName: writeTo(buffer, byteOffset)
-- uid: '@esfx/struct-type!Struct.SIZE:member'
-  name: SIZE
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_SIZE_member
-  fullName: SIZE
-- uid: '@esfx/struct-type!Struct:class'
+- uid: '@esfx/struct-type!Struct:type'
   name: Struct
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_class
+  href: api/struct-type.html#_esfx_struct_type_Struct_type
   fullName: Struct
-- uid: '@esfx/struct-type!Struct:constructor(1)'
-  name: (constructor)()
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_constructor_1_
-  fullName: (constructor)()
-- uid: '@esfx/struct-type!Struct:constructor(2)'
-  name: (constructor)(shared)
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_constructor_2_
-  fullName: (constructor)(shared)
-- uid: '@esfx/struct-type!Struct:constructor(3)'
-  name: (constructor)(buffer, byteOffset)
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_constructor_3_
-  fullName: (constructor)(buffer, byteOffset)
-- uid: '@esfx/struct-type!Struct:constructor(4)'
-  name: (constructor)(object, shared)
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_constructor_4_
-  fullName: (constructor)(object, shared)
-- uid: '@esfx/struct-type!Struct:constructor(5)'
-  name: (constructor)(elements, shared)
-  href: api/struct-type/struct.html#_esfx_struct_type_Struct_constructor_5_
-  fullName: (constructor)(elements, shared)
-- uid: '@esfx/struct-type!StructClass#[kFields]:member'
-  name: '[kFields]'
-  href: api/struct-type/structclass.html#_esfx_struct_type_StructClass__kFields__member
-  fullName: '[kFields]'
-- uid: '@esfx/struct-type!StructClass#SIZE:member'
-  name: SIZE
-  href: api/struct-type/structclass.html#_esfx_struct_type_StructClass_SIZE_member
-  fullName: SIZE
-- uid: '@esfx/struct-type!StructClass:interface'
-  name: StructClass
-  href: api/struct-type/structclass.html#_esfx_struct_type_StructClass_interface
-  fullName: StructClass
-- uid: '@esfx/struct-type!StructDefinition:type'
-  name: StructDefinition
-  href: api/struct-type.html#_esfx_struct_type_StructDefinition_type
-  fullName: StructDefinition
-- uid: '@esfx/struct-type!StructElements:type'
-  name: StructElements
-  href: api/struct-type.html#_esfx_struct_type_StructElements_type
-  fullName: StructElements
 - uid: '@esfx/struct-type!StructFieldDefinition#name:member'
   name: name
   href: api/struct-type/structfielddefinition.html#_esfx_struct_type_StructFieldDefinition_name_member
@@ -7537,14 +10069,6 @@ references:
   name: StructPrimitiveType
   href: api/struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface
   fullName: StructPrimitiveType
-- uid: '@esfx/struct-type!StructProperties:type'
-  name: StructProperties
-  href: api/struct-type.html#_esfx_struct_type_StructProperties_type
-  fullName: StructProperties
-- uid: '@esfx/struct-type!StructType#[kFields]:member'
-  name: '[kFields]'
-  href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType__kFields__member
-  fullName: '[kFields]'
 - uid: '@esfx/struct-type!StructType#SIZE:member'
   name: SIZE
   href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType_SIZE_member
@@ -7565,10 +10089,6 @@ references:
   name: StructTypeConstructor
   href: api/struct-type/structtypeconstructor.html#_esfx_struct_type_StructTypeConstructor_interface
   fullName: StructTypeConstructor
-- uid: '@esfx/struct-type!TypedStruct:type'
-  name: TypedStruct
-  href: api/struct-type.html#_esfx_struct_type_TypedStruct_type
-  fullName: TypedStruct
 - uid: '@esfx/struct-type!uint16:var'
   name: uint16
   href: api/struct-type.html#_esfx_struct_type_uint16_var

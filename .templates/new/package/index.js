@@ -101,9 +101,9 @@ module.exports = {
                 path: cleanPath(path.relative(resolvedPackagePath, pkg.location))
             }));
 
-        const devDependencies = exportMap ?
-            packages.filter(pkg => pkg.name === "@esfx/internal-generate-export-map") :
-            undefined;
+        // const devDependencies = exportMap ?
+        //     packages.filter(pkg => pkg.name === "@esfx/internal-generate-export-map") :
+        //     undefined;
 
         return {
             ...args,
@@ -120,7 +120,7 @@ module.exports = {
             unscopedPackageName,
             description,
             dependencies,
-            devDependencies,
+            // devDependencies,
             injectGulpfileBefore: `add new ${internal ? "internal" : "public"} projects above this line`,
         };
     }

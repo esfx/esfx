@@ -1,6 +1,6 @@
 // @ts-check
 const { defineMixin } = require("./mixin");
-const { JsonSchema } = require("@microsoft/node-core-library");
+const { JsonSchema } = require("@rushstack/node-core-library");
 const { ApiItem, ApiDocumentedItem } = require("@microsoft/api-extractor-model");
 
 const yamlApiSchema = JsonSchema.fromFile(require.resolve("../typescript.schema.json"));

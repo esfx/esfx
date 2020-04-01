@@ -1,7 +1,7 @@
 import * as path from "path";
 import cjs = require("module");
 import { Worker as NodeWorker, MessagePort } from "worker_threads";
-import { Options as TSNodeOptions, TSError } from "ts-node";
+import { RegisterOptions as TSNodeOptions, TSError } from "ts-node";
 import { EventEmitter } from 'events';
 import { ScriptTarget, CompilerOptions } from "typescript";
 

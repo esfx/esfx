@@ -1,14 +1,30 @@
 // "fixes" https://github.com/microsoft/rushstack/issues/1029
 
 // @ts-check
-const { TypeScriptHelpers } = require("@microsoft/api-extractor/lib/analyzer/TypeScriptHelpers");
-const ts = require("typescript");
+// const ts = require("typescript");
+let ts = require("typescript");
+ts = tryRequire("@microsoft/api-extractor/node_modules/typescript") || ts;
 
+const { TypeScriptHelpers } = require("@microsoft/api-extractor/lib/analyzer/TypeScriptHelpers");
 const { AstSymbol } = require("@microsoft/api-extractor/lib/analyzer/AstSymbol");
 const { AstDeclaration } = require("@microsoft/api-extractor/lib/analyzer/AstDeclaration");
 const { ExportAnalyzer } = require("@microsoft/api-extractor/lib/analyzer/ExportAnalyzer");
 const { Collector } = require("@microsoft/api-extractor/lib/collector/Collector");
 const { InternalDeclarationMetadata } = require("@microsoft/api-extractor/lib/collector/DeclarationMetadata");
+// const { InternalError } = require("@rushstack/node-core-library");
+
+// // @ts-ignore
+// const saved_tryGetExternalModulePath = ExportAnalyzer.prototype._tryGetExternalModulePath;
+// // @ts-ignore
+// ExportAnalyzer.prototype._tryGetExternalModulePath = function (importOrExportDeclaration, exportSymbol) {
+//     const moduleSpecifier = TypeScriptHelpers.getModuleSpecifier(importOrExportDeclaration);
+//     if (!moduleSpecifier) {
+//         console.log(importOrExportDeclaration.kind === ts.SyntaxKind.ImportDeclaration);
+//         console.log(importOrExportDeclaration.parent.getText());
+//         throw new InternalError('Unable to parse module specifier');
+//     }
+//     return saved_tryGetExternalModulePath.call(this, importOrExportDeclaration, exportSymbol);
+// }
 
 // @ts-ignore
 const saved_tryMatchImportDeclaration = ExportAnalyzer.prototype._tryMatchImportDeclaration;
@@ -99,3 +115,7 @@ Collector.prototype._calculateDeclarationMetadataForDeclarations = function(astS
         }
     }
 };
+
+function tryRequire(id) {
+    try { return require(id); } catch { return undefined; }
+}

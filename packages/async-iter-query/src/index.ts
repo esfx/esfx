@@ -474,7 +474,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
     /**
      * Creates a subquery that iterates the results of applying a callback to each element.
      *
-     * @param projection A callback us`ede tlo bmaap eeh In na sctro `Iterabbloo
+     * @param projection A callback used to map each element into an `AsyncIterable` or `Iterable` object.
      * @param projection.element The element to map.
      * @category Subquery
      */
@@ -482,7 +482,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
     /**
      * Creates a subquery that iterates the results of applying a callback to each element.
      *
-     * @param projection A callback us oapahlen ieloaar`AtInInyraAro `Iterab`boo
+     * @param projection A callback used to map each element into an `AsyncIterable` or `Iterable` object.
      * @param projection.element The outer element to map.
      * @param resultSelector An optional callback used to map the outer and projected inner elements.
      * @param resultSelector.element The outer element to map.

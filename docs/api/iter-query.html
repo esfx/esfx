@@ -97,7 +97,9 @@
         <section><p>Represents an ordered sequence of elements.</p>
 </section>
         <h4><a class="xref" href="iter-query/query.html#_esfx_iter_query_Query_class">Query</a></h4>
-        <section><p>A <code>Query</code> represents a series of operations that act upon an <code>Iterable</code> or ArrayLike. Evaluation of these operations is deferred until the either a scalar value is requested from the <code>Query</code> or the <code>Query</code> is iterated.</p>
+        <section><p>A <code>Query</code> represents a series of operations that act upon an <code>Iterable</code> or ArrayLike. Evaluation of
+these operations is deferred until the either a scalar value is requested from the <code>Query</code> or the
+<code>Query</code> is iterated.</p>
 </section>
     <h3 id="functions">Functions
   </h3>
@@ -432,6 +434,65 @@
   
   
         <h4 id="_esfx_iter_query_from_function_6_" data-uid="@esfx/iter-query!from:function(6)">from(source)</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function from&lt;T extends readonly unknown[] | []&gt;(source: Iterable&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+        </div>
+        <h5 class="parameters">Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="xref">Iterable</span>&lt;T&gt;</td>
+              <td><em>source</em></td>
+              <td>
+                
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="returns">Returns</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a class="xref" href="iter-query/query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="typeParameters">Type Parameters</h5>
+        <table class="table table-bordered table-striped table-condensed">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><em>T</em></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+  
+  
+        <h4 id="_esfx_iter_query_from_function_7_" data-uid="@esfx/iter-query!from:function(7)">from(source)</h4>
               <div class="markdown level1 summary"></div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>

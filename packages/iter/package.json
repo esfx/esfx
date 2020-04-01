@@ -22,7 +22,6 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "devDependencies": {
-        "@esfx/internal-generate-export-map": "^1.0.0-pre.15",
         "@esfx/internal-jest-sequence": "^1.0.0-pre.15"
     },
     "dependencies": {

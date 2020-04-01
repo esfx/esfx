@@ -1,8 +1,9 @@
 {
   "version": "1.0.0-pre.15",
+  "npmClient": "yarn",
+  "useWorkspaces": true,
   "packages": [
     "internal/*",
-    "packages/*",
-    "shims/*"
+    "packages/*"
   ]
 }
