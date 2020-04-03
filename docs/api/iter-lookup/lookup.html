@@ -90,7 +90,7 @@
   </h3>
   
   
-  <h4 id="_esfx_iter_lookup_Lookup_constructor_1_" data-uid="@esfx/iter-lookup!Lookup:constructor(1)">(constructor)(entries, keyEqualer)</h4>
+  <h4 id="_esfx_iter_lookup_Lookup_constructor_1_" data-uid="@esfx/iter-lookup!Lookup:constructor(1)">constructor(entries, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a new Lookup for the provided groups.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -98,35 +98,36 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">constructor(entries: Iterable&lt;[K, Iterable&lt;V&gt;]&gt;, keyEqualer?: Equaler&lt;K&gt;);</code></pre>
   </div>
+  
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Iterable</span>&lt;[K, <span class="xref">Iterable</span>&lt;V&gt;]&gt;</td>
-        <td><em>entries</em></td>
-        <td>
-          <p>A map containing the unique groups of values.</p>
+    <div class="property">
+      <dl class="parameter">
+        <dt>entries</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;[K, <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;V&gt;]&gt;</dd>
+      </dl>
+      <p>
+        <p>A map containing the unique groups of values.</p>
 
-          
-        </td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</td>
-        <td><em>keyEqualer</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>keyEqualer</dt>
+        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+  
+  
+  
+  
+  
+  
   <h3 id="properties">Properties
   </h3>
   
@@ -139,21 +140,19 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get size(): number;</code></pre>
   </div>
+  
+  
+  
+  
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">number</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
+    <p>
+  </div>
+  
+  
+  
   <h3 id="methods">Methods
   </h3>
   
@@ -165,21 +164,19 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">[Symbol.iterator](): Iterator&lt;Grouping&lt;K, V&gt;, any, undefined&gt;;</code></pre>
   </div>
+  
+  
+  
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Iterator</span>&lt;<a class="xref" href="../iter-grouping/grouping.html#_esfx_iter_grouping_Grouping_class">Grouping</a>&lt;K, V&gt;, any, undefined&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.es/ecma262/#sec-iterator-interface">Iterator</a>&lt;<a class="xref" href="../iter-grouping/grouping.html#_esfx_iter_grouping_Grouping_class">Grouping</a>&lt;K, V&gt;, any, undefined&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
   
   
   <h4 id="_esfx_iter_lookup_Lookup_applyResultSelector_member_1_" data-uid="@esfx/iter-lookup!Lookup#applyResultSelector:member(1)">applyResultSelector(selector)</h4>
@@ -190,57 +187,41 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">applyResultSelector&lt;R&gt;(selector: (key: K, elements: Iterable&lt;V&gt;) =&gt; R): Iterable&lt;R&gt;;</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>(key: K, elements: <span class="xref">Iterable</span>&lt;V&gt;) =&gt; R</td>
-        <td><em>selector</em></td>
-        <td>
-          <p>A callback used to select results for each group.</p>
-
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Iterable</span>&lt;R&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>R</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="property">
+      <dl class="parameter">
+        <dt>R</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>selector</dt>
+        <dd>(key: K, elements: <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;V&gt;) =&gt; R</dd>
+      </dl>
+      <p>
+        <p>A callback used to select results for each group.</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;R&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
   
   
   <h4 id="_esfx_iter_lookup_Lookup_get_member_1_" data-uid="@esfx/iter-lookup!Lookup#get:member(1)">get(key)</h4>
@@ -251,42 +232,31 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get(key: K): Iterable&lt;V&gt;;</code></pre>
   </div>
+  
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">K</span></td>
-        <td><em>key</em></td>
-        <td>
-          <p>A key.</p>
+    <div class="property">
+      <dl class="parameter">
+        <dt>key</dt>
+        <dd><span class="xref">K</span></dd>
+      </dl>
+      <p>
+        <p>A key.</p>
 
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        
+      </p>
+    </div>
+  
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Iterable</span>&lt;V&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;V&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
   
   
   <h4 id="_esfx_iter_lookup_Lookup_has_member_1_" data-uid="@esfx/iter-lookup!Lookup#has:member(1)">has(key)</h4>
@@ -296,43 +266,32 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">has(key: K): boolean;</code></pre>
   </div>
+  
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">K</span></td>
-        <td><em>key</em></td>
-        <td>
-          <p>A key.
+    <div class="property">
+      <dl class="parameter">
+        <dt>key</dt>
+        <dd><span class="xref">K</span></dd>
+      </dl>
+      <p>
+        <p>A key.
 Gets a value indicating whether any group has the provided key.</p>
 
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        
+      </p>
+    </div>
+  
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">boolean</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
 </article>
           </div>
           

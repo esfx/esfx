@@ -99,59 +99,41 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">function create&lt;T&gt;(comparison: Comparison&lt;T&gt;): Comparer&lt;T&gt;;</code></pre>
         </div>
-        <h5 class="parameters">Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;T&gt;</td>
-              <td><em>comparison</em></td>
-              <td>
-                <p>A Comparison function used to create a Comparer.</p>
-
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <h5 class="returns">Returns</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><a class="xref" href="comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;T&gt;</td>
-              <td><p>The Comparer for the provided comparison function.</p>
-</td>
-            </tr>
-          </tbody>
-        </table>
+  
         <h5 class="typeParameters">Type Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><em>T</em></td>
-              <td><p>The type of value that can be compared.</p>
-</td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              <p>The type of value that can be compared.</p>
+
+            </p>
+          </div>
+  
+        <h5 class="parameters">Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>comparison</dt>
+              <dd><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;T&gt;</dd>
+            </dl>
+            <p>
+              <p>A Comparison function used to create a Comparer.</p>
+
+              
+            </p>
+          </div>
+  
+        <h5 class="returns">Returns</h5>
+        <div class="property">
+          <div><a class="xref" href="comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;T&gt;</div>
+          <p><p>The Comparer for the provided comparison function.</p>
+</p>
+        </div>
+  
+  
+  
   
   
         <h4 id="_esfx_equatable_Comparer_hasInstance_function_1_" data-uid="@esfx/equatable!Comparer.hasInstance:function(1)">hasInstance(value)</h4>
@@ -161,41 +143,28 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">function hasInstance(value: unknown): value is Comparer&lt;unknown&gt;;</code></pre>
         </div>
+  
+  
         <h5 class="parameters">Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="xref">unknown</span></td>
-              <td><em>value</em></td>
-              <td>
-                
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>value</dt>
+              <dd><span class="xref">unknown</span></dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+  
         <h5 class="returns">Returns</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="xref">value</span> is <a class="xref" href="comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;unknown&gt;</td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="property">
+          <div><span class="xref">value</span> is <a class="xref" href="comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;unknown&gt;</div>
+          <p>
+        </div>
+  
+  
+  
     <h3 id="variables">Variables
   </h3>
   
@@ -210,6 +179,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_equatable_Comparer_structuralComparer_var" data-uid="@esfx/equatable!Comparer.structuralComparer:var">structuralComparer</h4>
               <div class="markdown level1 summary"><p>A default <code>Comparer</code> that supports <code>StructuralComparable</code> values.</p>
 </div>
@@ -218,6 +193,12 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">structuralComparer: Comparer&lt;unknown&gt;</code></pre>
         </div>
+  
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_equatable_Comparer_tupleComparer_var" data-uid="@esfx/equatable!Comparer.tupleComparer:var">tupleComparer</h4>
@@ -230,6 +211,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_equatable_Comparer_tupleStructuralComparer_var" data-uid="@esfx/equatable!Comparer.tupleStructuralComparer:var">tupleStructuralComparer</h4>
               <div class="markdown level1 summary"><p>A default <code>Comparer</code> that compares array values that may be <code>StructuralComparable</code> rather than the arrays themselves.</p>
 </div>
@@ -238,6 +225,12 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">tupleStructuralComparer: Comparer&lt;readonly unknown[]&gt;</code></pre>
         </div>
+  
+  
+  
+  
+  
+  
 </article>
           </div>
           

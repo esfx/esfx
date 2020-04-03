@@ -14,13 +14,15 @@
    limitations under the License.
 */
 
-import { SignalFlags, waitForArray } from "@esfx/internal-threading";
 import { Disposable } from "@esfx/disposable";
 import { Lockable } from "@esfx/threading-lockable";
 
-const enum Field {
-    Signal
-}
+// NOTE: This must be a single bit, must be distinct from other threading coordination
+//       primitives, and must be a bit >= 16.
+const CONDVAR_ID = 1 << 19;
+const CONDVAR_EXCLUDES = ~(CONDVAR_ID);
+
+const ATOM_INDEX = 0;
 
 const kArray = Symbol("kArray");
 export class ConditionVariable implements Disposable {
@@ -34,63 +36,123 @@ export class ConditionVariable implements Disposable {
             if (byteOffset < 0 || byteOffset > buffer.byteLength - 4) throw new RangeError("Out of range: byteOffset.");
             if (byteOffset % 4) throw new RangeError("Not aligned: byteOffset.");
             array = new Int32Array(buffer, byteOffset, 1);
-            const data = Atomics.load(array, Field.Signal);
-            if (!(data & SignalFlags.ConditionVariable) || data & SignalFlags.ConditionVariableExcludes) throw new TypeError("Invalid handle.");
         }
         else {
             array = new Int32Array(new SharedArrayBuffer(4));
-            array[Field.Signal] = SignalFlags.ConditionVariable;
         }
+
+        Atomics.compareExchange(array, ATOM_INDEX, 0, CONDVAR_ID);
+
+        const data = Atomics.load(array, ATOM_INDEX);
+        if (!(data & CONDVAR_ID) || data & CONDVAR_EXCLUDES) throw new TypeError("Invalid handle.");
+
         this[kArray] = array;
     }
 
+    /**
+     * Gets the `SharedArrayBuffer` for this object.
+     */
     get buffer() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
         return array.buffer as SharedArrayBuffer;
     }
 
+    /**
+     * Gets the byte offset of this object in its buffer.
+     */
     get byteOffset() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
         return array.byteOffset;
     }
 
+    /**
+     * Gets the number of bytes occupied by this object in its buffer.
+     */
     get byteLength() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
         return 4;
     }
 
+    /**
+     * Blocks the current thread until the condition variable is notified.
+     * 
+     * @param mutex A lock used to synchronize access to the condition variable.
+     * @param condition An optional condition to wait for.
+     * @returns `true` if the condition variable was notified; otherwise, `false`.
+     */
     wait(mutex: Lockable, condition?: () => boolean) {
-        return this.waitFor(mutex, +Infinity, condition);
+        return this.waitFor(mutex, Infinity, condition);
     }
 
+    /**
+     * Blocks the current thread until the condition variable is notified or after the
+     * specified timeout has elapsed.
+     * 
+     * @param mutex A lock used to synchronize access to the condition variable.
+     * @param ms The number of milliseconds to wait.
+     * @param condition An optional condition to wait for.
+     * @returns `true` if the condition variable was notified prior to the timeout period elapsing; otherwise, `false`.
+     */
     waitFor(mutex: Lockable, ms: number, condition?: () => boolean) {
+        if (typeof ms !== "number") throw new TypeError("Number expected: ms");
+        ms = isNaN(ms) ? Infinity : Math.max(ms, 0);
+
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        const unlock = () => { if (!mutex[Lockable.unlock]()) throw new Error("Mutex does not own lock."); };
-        const lock = () => { mutex[Lockable.lock](); }
-        return waitForArray(array, Field.Signal, unlock, lock, ms, condition);
+
+        const start = isFinite(ms) ? Date.now() : 0;
+        let timeout = ms;
+
+        while (!condition?.()) {
+            if (!mutex[Lockable.unlock]()) throw new Error("Mutex does not own lock.");
+            const result = Atomics.wait(array, ATOM_INDEX, CONDVAR_ID, timeout);
+            mutex[Lockable.lock]();
+            if (result === "not-equal") throw new Error("Illegal state");
+            if (result === "timed-out") return false;
+            if (!condition) break;
+            if (isFinite(ms)) {
+                timeout = ms - (Date.now() - start);
+            }
+        }
+        return true;
     }
 
+    /**
+     * Notifies one waiting thread.
+     * 
+     * @returns `true` if a thread was notified; otherwise, `false`.
+     */
     notifyOne() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        return Atomics.notify(array, Field.Signal, 1) === 1;
+        return Atomics.notify(array, ATOM_INDEX, 1) === 1;
     }
 
+    /**
+     * Notifies all waiting threads.
+     * 
+     * @returns The number of threads notified.
+     */
     notifyAll() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        return Atomics.notify(array, Field.Signal, +Infinity);
+        return Atomics.notify(array, ATOM_INDEX, +Infinity);
     }
 
+    /**
+     * Releases the resources associated for this object.
+     */
     close() {
         this[kArray] = undefined;
     }
 
+    /**
+     * Releases the resources associated for this object.
+     */
     [Disposable.dispose]() {
-        this[kArray] = undefined;
+        this.close();
     }
 }

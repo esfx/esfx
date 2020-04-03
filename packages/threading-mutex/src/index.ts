@@ -14,131 +14,186 @@
    limitations under the License.
 */
 
-import { SignalFlags, lockArray } from "@esfx/internal-threading";
 import { Lockable } from "@esfx/threading-lockable";
 import { Disposable } from "@esfx/disposable";
 
-const enum Field {
-    Signal,
-    Counter,
-    Owner,
-}
+// NOTE: This must be a single bit, must be distinct from other threading coordination
+//       primitives, and must be a bit >= 16.
+const MUTEX_ID = 1 << 18;
+
+const UNLOCKED = MUTEX_ID | 0;
+const LOCKED = MUTEX_ID | 1;
+const IN_CONTENTION = MUTEX_ID | 2;
+const MUTEX_EXCLUDES = ~(UNLOCKED | LOCKED | IN_CONTENTION);
+
+const ATOM_INDEX = 0;
 
 const kArray = Symbol("kArray");
-const kId = Symbol("kId");
+const kOwnsLock = Symbol("kOwnsLock");
+
 export class Mutex implements Lockable, Disposable {
-    static readonly SIZE = 12;
+    static readonly SIZE = 4;
 
     private [kArray]: Int32Array | undefined;
-    private [kId]: number;
+    private [kOwnsLock]: boolean;
 
     constructor(initiallyOwned?: boolean);
     constructor(buffer: SharedArrayBuffer, byteOffset?: number);
     constructor(bufferOrInitiallyOwned: SharedArrayBuffer | boolean = false, byteOffset = 0) {
         let array: Int32Array;
-        let initiallyOwned = false;
+        let initiallyOwned: boolean;
         if (bufferOrInitiallyOwned instanceof SharedArrayBuffer) {
-            if (byteOffset < 0 || byteOffset > bufferOrInitiallyOwned.byteLength - 12) throw new RangeError("Out of range: byteOffset.");
+            if (byteOffset < 0 || byteOffset > bufferOrInitiallyOwned.byteLength - 4) throw new RangeError("Out of range: byteOffset.");
             if (byteOffset % 4) throw new RangeError("Not aligned: byteOffset.");
-            array = new Int32Array(bufferOrInitiallyOwned, byteOffset, 3);
-            const data = Atomics.load(array, Field.Signal);
-            if (!(data & SignalFlags.Mutex) || data & SignalFlags.MutexExcludes) throw new TypeError("Invalid handle.");
+            array = new Int32Array(bufferOrInitiallyOwned, byteOffset, 1);
+            initiallyOwned = false;
         }
         else {
+            array = new Int32Array(new SharedArrayBuffer(4));
             initiallyOwned = bufferOrInitiallyOwned;
-            array = new Int32Array(new SharedArrayBuffer(12));
-            array[Field.Signal] = SignalFlags.MutexUnlocked;
         }
+
+        Atomics.compareExchange(array, ATOM_INDEX, 0, UNLOCKED);
+
+        const data = Atomics.load(array, ATOM_INDEX);
+        if (!(data & MUTEX_ID) || data & MUTEX_EXCLUDES) throw new TypeError("Invalid handle.");
+
         this[kArray] = array;
-        this[kId] = Atomics.add(array, Field.Counter, 1) + 1;
+        this[kOwnsLock] = false;
         if (initiallyOwned) {
             this.lock();
         }
     }
 
+    /**
+     * Gets the `SharedArrayBuffer` for this mutex.
+     */
     get buffer() {
         const array = this[kArray];
         if (!array) throw new TypeError("Object is disposed.");
         return array.buffer as SharedArrayBuffer;
     }
 
+    /**
+     * Gets the byte offset of this mutex in its buffer.
+     */
     get byteOffset() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
         return array.byteOffset;
     }
 
+    /**
+     * Gets the number of bytes occupied by this mutex in its buffer.
+     */
     get byteLength() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        return 12;
+        return 4;
     }
 
+    /**
+     * Gets a value indicating whether this instance of the mutex owns the lock.
+     */
     get ownsLock() {
-        const array = this[kArray];
-        if (!array) throw new TypeError("Object is disposed.");
-        return Atomics.load(array, Field.Owner) === this[kId];
+        return this[kOwnsLock];
     }
 
+    /**
+     * Gets a value indicating whether the mutex is currently locked.
+     */
     get isLocked() {
         const array = this[kArray];
         if (!array) throw new TypeError("Object is disposed.");
-        return Atomics.load(array, Field.Signal) === SignalFlags.MutexLocked;
+
+        const atom = Atomics.load(array, ATOM_INDEX);
+        return atom === LOCKED || atom === IN_CONTENTION;
     }
 
-    lock(ms?: number) {
-        if (typeof ms !== "undefined") {
-            if (typeof ms !== "number") throw new TypeError("Number expected: ms.");
-            if (!isFinite(ms) || ms < 0) throw new RangeError("Out of range: ms.");
-        }
+    /**
+     * Blocks the current `Agent` until it can acquire a lock on the mutex.
+     *
+     * @param ms The number of milliseconds to wait before the operation times out.
+     * @returns `true` if the lock was acquired within the provided timeout period; otherwise, `false`.
+     */
+    lock(ms: number = Infinity) {
+        if (typeof ms !== "number") throw new TypeError("Number expected: ms");
+        ms = isNaN(ms) ? Infinity : Math.max(ms, 0);
 
         const array = this[kArray];
         if (!array) throw new TypeError("Object is disposed.");
 
-        const id = this[kId];
-        if (Atomics.load(array, Field.Owner) === id) {
+        if (this[kOwnsLock]) {
             throw new Error("Deadlock would occur.");
         }
 
-        if (lockArray(array, Field.Signal, SignalFlags.MutexUnlocked, SignalFlags.MutexLocked, ms)) {
-            Atomics.store(array, Field.Owner, id);
-            return true;
+        const start = isFinite(ms) ? Date.now() : 0;
+        let timeout = ms;
+
+        // algorithm based on https://github.com/eliben/code-for-blog/blob/e041beff3712e0674e87dbae5283a09987e566cf/2018/futex-basics/mutex-using-futex.cpp.
+        let c = Atomics.compareExchange(array, ATOM_INDEX, UNLOCKED, LOCKED);
+        if (c !== UNLOCKED) {
+            do {
+                if (c === IN_CONTENTION || Atomics.compareExchange(array, ATOM_INDEX, LOCKED, IN_CONTENTION) !== UNLOCKED) {
+                    if (timeout <= 0 || Atomics.wait(array, ATOM_INDEX, IN_CONTENTION, timeout) === "timed-out") {
+                        return false;
+                    }
+                    if (isFinite(ms)) {
+                        timeout = ms - (Date.now() - start);
+                    }
+                }
+            } while ((c = Atomics.compareExchange(array, ATOM_INDEX, UNLOCKED, IN_CONTENTION)) !== UNLOCKED);
         }
 
-        return false;
+        this[kOwnsLock] = true;
+        return true;
     }
 
+    /**
+     * Attempts to acquire a lock on the mutex without blocking the current `Agent`.
+     *
+     * @returns `true` if the lock was acquired successfully; otherwise, `false`.
+     */
     tryLock(): boolean {
         const array = this[kArray];
         if (!array) throw new TypeError("Object is disposed.");
-
-        const id = this[kId];
-        if (Atomics.load(array, Field.Owner) === id) {
+        if (this[kOwnsLock]) {
             throw new Error("Deadlock would occur.");
         }
-
-        if (Atomics.compareExchange(array, Field.Signal, SignalFlags.MutexUnlocked, SignalFlags.MutexLocked) === SignalFlags.MutexUnlocked) {
-            Atomics.store(array, Field.Owner, id);
+        if (Atomics.compareExchange(array, ATOM_INDEX, UNLOCKED, LOCKED) === UNLOCKED) {
+            this[kOwnsLock] = true;
             return true;
         }
-
         return false;
     }
 
+    /**
+     * Releases the lock on the mutex allowing the next waiter to take the lock.
+     * 
+     * @returns `true` if the lock was released successfully; otherwise, `false`.
+     */
     unlock() {
         const array = this[kArray];
         if (!array) throw new TypeError("Object is disposed.");
-
-        const id = this[kId];
-        if (Atomics.compareExchange(array, Field.Owner, id, 0) === id) {
-            Atomics.store(array, Field.Signal, SignalFlags.MutexUnlocked);
-            Atomics.notify(array, Field.Signal, 1);
+        if (this[kOwnsLock]) {
+            if (Atomics.sub(array, ATOM_INDEX, 1) !== LOCKED) {
+                Atomics.store(array, ATOM_INDEX, UNLOCKED);
+                Atomics.notify(array, ATOM_INDEX, 1);
+            }
+            this[kOwnsLock] = false;
             return true;
         }
         return false;
     }
 
+    /**
+     * Releases the lock on the mutex (if this mutex owns the lock) and releases all resources
+     * for this mutex.
+     */
     close() {
+        if (this[kArray]) {
+            this.unlock();
+        }
         this[kArray] = undefined;
     }
 
@@ -154,6 +209,10 @@ export class Mutex implements Lockable, Disposable {
         return this.unlock();
     }
 
+    /**
+     * Releases the lock on the mutex (if this mutex owns the lock) and releases all resources
+     * for this mutex.
+     */
     [Disposable.dispose]() {
         this.close();
     }

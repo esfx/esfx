@@ -117,60 +117,51 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">function combineHashes(x: number, y: number, rotate?: number): number;</code></pre>
         </div>
+  
+  
         <h5 class="parameters">Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="xref">number</span></td>
-              <td><em>x</em></td>
-              <td>
-                <p>The first hash code.</p>
+          <div class="property">
+            <dl class="parameter">
+              <dt>x</dt>
+              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+            </dl>
+            <p>
+              <p>The first hash code.</p>
 
-                
-              </td>
-            </tr>
-            <tr>
-              <td><span class="xref">number</span></td>
-              <td><em>y</em></td>
-              <td>
-                <p>The second hash code.</p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>y</dt>
+              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+            </dl>
+            <p>
+              <p>The second hash code.</p>
 
-                
-              </td>
-            </tr>
-            <tr>
-              <td><span class="xref">number</span></td>
-              <td><em>rotate</em></td>
-              <td>
-                <p>The number of bits (between 0 and 31) to left-rotate the first hash code before XOR&#39;ing it with the second (default 7).</p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>rotate</dt>
+              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+            </dl>
+            <p>
+              <p>The number of bits (between 0 and 31) to left-rotate the first hash code before XOR&#39;ing it with the second (default 7).</p>
 
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              
+            </p>
+          </div>
+  
         <h5 class="returns">Returns</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="xref">number</span></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="property">
+          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
+          <p>
+        </div>
+  
+  
+  
     <h3 id="variables">Variables
   </h3>
   
@@ -185,6 +176,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_equatable_defaultEqualer_var" data-uid="@esfx/equatable!defaultEqualer:var">defaultEqualer</h4>
               <div class="markdown level1 summary"><p>Gets the default <code>Equaler</code><!-- -->.</p>
 </div>
@@ -193,6 +190,12 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">defaultEqualer: Equaler&lt;unknown&gt;</code></pre>
         </div>
+  
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_equatable_structuralComparer_var" data-uid="@esfx/equatable!structuralComparer:var">structuralComparer</h4>
@@ -205,6 +208,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_equatable_structuralEqualer_var" data-uid="@esfx/equatable!structuralEqualer:var">structuralEqualer</h4>
               <div class="markdown level1 summary"><p>Gets a default <code>Equaler</code> that supports <code>StructuralEquatable</code> values.</p>
 </div>
@@ -213,6 +222,12 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">structuralEqualer: Equaler&lt;unknown&gt;</code></pre>
         </div>
+  
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_equatable_tupleComparer_var" data-uid="@esfx/equatable!tupleComparer:var">tupleComparer</h4>
@@ -225,6 +240,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_equatable_tupleEqualer_var" data-uid="@esfx/equatable!tupleEqualer:var">tupleEqualer</h4>
               <div class="markdown level1 summary"><p>An <code>Equaler</code> that compares array values rather than the arrays themselves.</p>
 </div>
@@ -235,6 +256,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_equatable_tupleStructuralComparer_var" data-uid="@esfx/equatable!tupleStructuralComparer:var">tupleStructuralComparer</h4>
               <div class="markdown level1 summary"><p>A default <code>Comparer</code> that compares array values that may be <code>StructuralComparable</code> rather than the arrays themselves.</p>
 </div>
@@ -243,6 +270,12 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">tupleStructuralComparer: Comparer&lt;readonly unknown[]&gt;</code></pre>
         </div>
+  
+  
+  
+  
+  
+  
     <h3 id="typealiases">Type Aliases
   </h3>
   
@@ -261,22 +294,23 @@ value indicating one of the following conditions:</p>
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">export declare type Comparison&lt;T&gt; = (x: T, y: T) =&gt; number;</code></pre>
         </div>
+  
         <h5 class="typeParameters">Type Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><em>T</em></td>
-              <td><p>The type of value that can be compared.</p>
-</td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              <p>The type of value that can be compared.</p>
+
+            </p>
+          </div>
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_equatable_EqualityComparison_type" data-uid="@esfx/equatable!EqualityComparison:type">EqualityComparison</h4>
@@ -287,22 +321,23 @@ value indicating one of the following conditions:</p>
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">export declare type EqualityComparison&lt;T&gt; = (x: T, y: T) =&gt; boolean;</code></pre>
         </div>
+  
         <h5 class="typeParameters">Type Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><em>T</em></td>
-              <td><p>The type of value that can be compared.</p>
-</td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              <p>The type of value that can be compared.</p>
+
+            </p>
+          </div>
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_equatable_HashGenerator_type" data-uid="@esfx/equatable!HashGenerator:type">HashGenerator</h4>
@@ -313,22 +348,23 @@ value indicating one of the following conditions:</p>
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">export declare type HashGenerator&lt;T&gt; = (x: T) =&gt; number;</code></pre>
         </div>
+  
         <h5 class="typeParameters">Type Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><em>T</em></td>
-              <td><p>The type of value that can be hashed.</p>
-</td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              <p>The type of value that can be hashed.</p>
+
+            </p>
+          </div>
+  
+  
+  
+  
+  
     <h3 id="namespaces">Namespaces
   </h3>
         <h4><a class="xref" href="equatable/comparable-namespace.html#_esfx_equatable_Comparable_namespace">Comparable</a></h4>

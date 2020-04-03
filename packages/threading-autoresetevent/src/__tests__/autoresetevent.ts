@@ -85,6 +85,7 @@ describe("ctor", () => {
         });
         it("throws if bad handle", () => {
             const buffer = new SharedArrayBuffer(4);
+            new DataView(buffer).setUint32(0, 1);
             expect(() => new AutoResetEvent(buffer)).toThrow(/Invalid handle/);
         });
     });

@@ -26,9 +26,9 @@ references:
   href: api/async-autoresetevent/asyncautoresetevent.html#_esfx_async_autoresetevent_AsyncAutoResetEvent_class
   fullName: AsyncAutoResetEvent
 - uid: '@esfx/async-autoresetevent!AsyncAutoResetEvent:constructor(1)'
-  name: (constructor)(initialState)
+  name: constructor(initialState)
   href: api/async-autoresetevent/asyncautoresetevent.html#_esfx_async_autoresetevent_AsyncAutoResetEvent_constructor_1_
-  fullName: (constructor)(initialState)
+  fullName: constructor(initialState)
 - uid: '@esfx/async-barrier!'
   name: '@esfx/async-barrier'
   href: api/async-barrier.html
@@ -62,9 +62,9 @@ references:
   href: api/async-barrier/asyncbarrier.html#_esfx_async_barrier_AsyncBarrier_class
   fullName: AsyncBarrier
 - uid: '@esfx/async-barrier!AsyncBarrier:constructor(1)'
-  name: (constructor)(participantCount, postPhaseAction)
+  name: constructor(participantCount, postPhaseAction)
   href: api/async-barrier/asyncbarrier.html#_esfx_async_barrier_AsyncBarrier_constructor_1_
-  fullName: (constructor)(participantCount, postPhaseAction)
+  fullName: constructor(participantCount, postPhaseAction)
 - uid: '@esfx/async-canceltoken!'
   name: '@esfx/async-canceltoken'
   href: api/async-canceltoken.html
@@ -190,9 +190,9 @@ references:
   href: api/async-countdown/asynccountdownevent.html#_esfx_async_countdown_AsyncCountdownEvent_class
   fullName: AsyncCountdownEvent
 - uid: '@esfx/async-countdown!AsyncCountdownEvent:constructor(1)'
-  name: (constructor)(initialCount)
+  name: constructor(initialCount)
   href: api/async-countdown/asynccountdownevent.html#_esfx_async_countdown_AsyncCountdownEvent_constructor_1_
-  fullName: (constructor)(initialCount)
+  fullName: constructor(initialCount)
 - uid: '@esfx/async-deferred!'
   name: '@esfx/async-deferred'
   href: api/async-deferred.html
@@ -222,9 +222,9 @@ references:
   href: api/async-deferred/deferred.html#_esfx_async_deferred_Deferred_class
   fullName: Deferred
 - uid: '@esfx/async-deferred!Deferred:constructor(1)'
-  name: (constructor)()
+  name: constructor()
   href: api/async-deferred/deferred.html#_esfx_async_deferred_Deferred_constructor_1_
-  fullName: (constructor)()
+  fullName: constructor()
 - uid: '@esfx/async-delay!'
   name: '@esfx/async-delay'
   href: api/async-delay.html
@@ -1698,13 +1698,13 @@ references:
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class
   fullName: AsyncHierarchyQuery
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery:constructor(1)'
-  name: (constructor)(source)
+  name: constructor(source)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_constructor_1_
-  fullName: (constructor)(source)
+  fullName: constructor(source)
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery:constructor(2)'
-  name: (constructor)(source, provider)
+  name: constructor(source, provider)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_constructor_2_
-  fullName: (constructor)(source, provider)
+  fullName: constructor(source, provider)
 - uid: '@esfx/async-iter-query!AsyncOrderedHierarchyQuery#[AsyncOrderedIterable.thenByAsync]:member(1)'
   name: '[AsyncOrderedIterable.thenByAsync](keySelector, comparison, descending)'
   href: api/async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery__AsyncOrderedIterable_thenByAsync__member_1_
@@ -1722,13 +1722,13 @@ references:
   href: api/async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_class
   fullName: AsyncOrderedHierarchyQuery
 - uid: '@esfx/async-iter-query!AsyncOrderedHierarchyQuery:constructor(1)'
-  name: (constructor)(source)
+  name: constructor(source)
   href: api/async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_constructor_1_
-  fullName: (constructor)(source)
+  fullName: constructor(source)
 - uid: '@esfx/async-iter-query!AsyncOrderedHierarchyQuery:constructor(2)'
-  name: (constructor)(source, provider)
+  name: constructor(source, provider)
   href: api/async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_constructor_2_
-  fullName: (constructor)(source, provider)
+  fullName: constructor(source, provider)
 - uid: '@esfx/async-iter-query!AsyncOrderedQuery#[AsyncOrderedIterable.thenByAsync]:member(1)'
   name: '[AsyncOrderedIterable.thenByAsync](keySelector, comparer, descending)'
   href: api/async-iter-query/asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery__AsyncOrderedIterable_thenByAsync__member_1_
@@ -1746,9 +1746,9 @@ references:
   href: api/async-iter-query/asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_class
   fullName: AsyncOrderedQuery
 - uid: '@esfx/async-iter-query!AsyncOrderedQuery:constructor(1)'
-  name: (constructor)(source)
+  name: constructor(source)
   href: api/async-iter-query/asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_constructor_1_
-  fullName: (constructor)(source)
+  fullName: constructor(source)
 - uid: '@esfx/async-iter-query!AsyncQuery#[Symbol.asyncIterator]:member(1)'
   name: '[Symbol.asyncIterator]()'
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__Symbol_asyncIterator__member_1_
@@ -2534,9 +2534,9 @@ references:
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_class
   fullName: AsyncQuery
 - uid: '@esfx/async-iter-query!AsyncQuery:constructor(1)'
-  name: (constructor)(source)
+  name: constructor(source)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_constructor_1_
-  fullName: (constructor)(source)
+  fullName: constructor(source)
 - uid: '@esfx/async-iter-query!fromAsync:function(1)'
   name: fromAsync(source)
   href: api/async-iter-query.html#_esfx_async_iter_query_fromAsync_function_1_
@@ -2590,9 +2590,9 @@ references:
   href: api/async-lazy/asynclazy.html#_esfx_async_lazy_AsyncLazy_class
   fullName: AsyncLazy
 - uid: '@esfx/async-lazy!AsyncLazy:constructor(1)'
-  name: (constructor)(factory)
+  name: constructor(factory)
   href: api/async-lazy/asynclazy.html#_esfx_async_lazy_AsyncLazy_constructor_1_
-  fullName: (constructor)(factory)
+  fullName: constructor(factory)
 - uid: '@esfx/async-lockable!'
   name: '@esfx/async-lockable'
   href: api/async-lockable.html
@@ -2686,9 +2686,9 @@ references:
   href: api/async-manualresetevent/asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_class
   fullName: AsyncManualResetEvent
 - uid: '@esfx/async-manualresetevent!AsyncManualResetEvent:constructor(1)'
-  name: (constructor)(initialState)
+  name: constructor(initialState)
   href: api/async-manualresetevent/asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_constructor_1_
-  fullName: (constructor)(initialState)
+  fullName: constructor(initialState)
 - uid: '@esfx/async-mutex!'
   name: '@esfx/async-mutex'
   href: api/async-mutex.html
@@ -2770,9 +2770,9 @@ references:
   href: api/async-queue/asyncqueue.html#_esfx_async_queue_AsyncQueue_class
   fullName: AsyncQueue
 - uid: '@esfx/async-queue!AsyncQueue:constructor(1)'
-  name: (constructor)(iterable)
+  name: constructor(iterable)
   href: api/async-queue/asyncqueue.html#_esfx_async_queue_AsyncQueue_constructor_1_
-  fullName: (constructor)(iterable)
+  fullName: constructor(iterable)
 - uid: '@esfx/async-readerwriterlock!'
   name: '@esfx/async-readerwriterlock'
   href: api/async-readerwriterlock.html
@@ -2866,9 +2866,9 @@ references:
   href: api/async-semaphore/asyncsemaphore.html#_esfx_async_semaphore_AsyncSemaphore_class
   fullName: AsyncSemaphore
 - uid: '@esfx/async-semaphore!AsyncSemaphore:constructor(1)'
-  name: (constructor)(initialCount, maxCount)
+  name: constructor(initialCount, maxCount)
   href: api/async-semaphore/asyncsemaphore.html#_esfx_async_semaphore_AsyncSemaphore_constructor_1_
-  fullName: (constructor)(initialCount, maxCount)
+  fullName: constructor(initialCount, maxCount)
 - uid: '@esfx/async-stack!'
   name: '@esfx/async-stack'
   href: api/async-stack.html
@@ -2918,9 +2918,9 @@ references:
   href: api/async-stack/asyncstack.html#_esfx_async_stack_AsyncStack_class
   fullName: AsyncStack
 - uid: '@esfx/async-stack!AsyncStack:constructor(1)'
-  name: (constructor)(iterable)
+  name: constructor(iterable)
   href: api/async-stack/asyncstack.html#_esfx_async_stack_AsyncStack_constructor_1_
-  fullName: (constructor)(iterable)
+  fullName: constructor(iterable)
 - uid: '@esfx/async-waitqueue!'
   name: '@esfx/async-waitqueue'
   href: api/async-waitqueue.html
@@ -3062,9 +3062,9 @@ references:
   href: api/cancelable/cancelerror.html#_esfx_cancelable_CancelError_class
   fullName: CancelError
 - uid: '@esfx/cancelable!CancelError:constructor(1)'
-  name: (constructor)(message)
+  name: constructor(message)
   href: api/cancelable/cancelerror.html#_esfx_cancelable_CancelError_constructor_1_
-  fullName: (constructor)(message)
+  fullName: constructor(message)
 - uid: '@esfx/cancelable!CancelSignal#signaled:member'
   name: signaled
   href: api/cancelable/cancelsignal.html#_esfx_cancelable_CancelSignal_signaled_member
@@ -3702,17 +3702,17 @@ references:
   href: api/collections-hashmap/hashmap.html#_esfx_collections_hashmap_HashMap_class
   fullName: HashMap
 - uid: '@esfx/collections-hashmap!HashMap:constructor(1)'
-  name: (constructor)(equaler)
+  name: constructor(equaler)
   href: api/collections-hashmap/hashmap.html#_esfx_collections_hashmap_HashMap_constructor_1_
-  fullName: (constructor)(equaler)
+  fullName: constructor(equaler)
 - uid: '@esfx/collections-hashmap!HashMap:constructor(2)'
-  name: (constructor)(iterable, equaler)
+  name: constructor(iterable, equaler)
   href: api/collections-hashmap/hashmap.html#_esfx_collections_hashmap_HashMap_constructor_2_
-  fullName: (constructor)(iterable, equaler)
+  fullName: constructor(iterable, equaler)
 - uid: '@esfx/collections-hashmap!HashMap:constructor(3)'
-  name: (constructor)(capacity, equaler)
+  name: constructor(capacity, equaler)
   href: api/collections-hashmap/hashmap.html#_esfx_collections_hashmap_HashMap_constructor_3_
-  fullName: (constructor)(capacity, equaler)
+  fullName: constructor(capacity, equaler)
 - uid: '@esfx/collections-hashmap!ReadonlyHashMap#[Symbol.iterator]:member(1)'
   name: '[Symbol.iterator]()'
   href: api/collections-hashmap/readonlyhashmap.html#_esfx_collections_hashmap_ReadonlyHashMap__Symbol_iterator__member_1_
@@ -3814,17 +3814,17 @@ references:
   href: api/collections-hashset/hashset.html#_esfx_collections_hashset_HashSet_class
   fullName: HashSet
 - uid: '@esfx/collections-hashset!HashSet:constructor(1)'
-  name: (constructor)(equaler)
+  name: constructor(equaler)
   href: api/collections-hashset/hashset.html#_esfx_collections_hashset_HashSet_constructor_1_
-  fullName: (constructor)(equaler)
+  fullName: constructor(equaler)
 - uid: '@esfx/collections-hashset!HashSet:constructor(2)'
-  name: (constructor)(iterable, equaler)
+  name: constructor(iterable, equaler)
   href: api/collections-hashset/hashset.html#_esfx_collections_hashset_HashSet_constructor_2_
-  fullName: (constructor)(iterable, equaler)
+  fullName: constructor(iterable, equaler)
 - uid: '@esfx/collections-hashset!HashSet:constructor(3)'
-  name: (constructor)(capacity, equaler)
+  name: constructor(capacity, equaler)
   href: api/collections-hashset/hashset.html#_esfx_collections_hashset_HashSet_constructor_3_
-  fullName: (constructor)(capacity, equaler)
+  fullName: constructor(capacity, equaler)
 - uid: '@esfx/collections-hashset!ReadonlyHashSet#[Symbol.iterator]:member(1)'
   name: '[Symbol.iterator]()'
   href: api/collections-hashset/readonlyhashset.html#_esfx_collections_hashset_ReadonlyHashSet__Symbol_iterator__member_1_
@@ -4058,13 +4058,13 @@ references:
   href: api/collections-linkedlist/linkedlist.html#_esfx_collections_linkedlist_LinkedList_class
   fullName: LinkedList
 - uid: '@esfx/collections-linkedlist!LinkedList:constructor(1)'
-  name: (constructor)(equaler)
+  name: constructor(equaler)
   href: api/collections-linkedlist/linkedlist.html#_esfx_collections_linkedlist_LinkedList_constructor_1_
-  fullName: (constructor)(equaler)
+  fullName: constructor(equaler)
 - uid: '@esfx/collections-linkedlist!LinkedList:constructor(2)'
-  name: (constructor)(iterable, equaler)
+  name: constructor(iterable, equaler)
   href: api/collections-linkedlist/linkedlist.html#_esfx_collections_linkedlist_LinkedList_constructor_2_
-  fullName: (constructor)(iterable, equaler)
+  fullName: constructor(iterable, equaler)
 - uid: '@esfx/collections-linkedlist!LinkedListNode#[kList]:member'
   name: '[kList]'
   href: api/collections-linkedlist/linkedlistnode.html#_esfx_collections_linkedlist_LinkedListNode__kList__member
@@ -4106,9 +4106,9 @@ references:
   href: api/collections-linkedlist/linkedlistnode.html#_esfx_collections_linkedlist_LinkedListNode_class
   fullName: LinkedListNode
 - uid: '@esfx/collections-linkedlist!LinkedListNode:constructor(1)'
-  name: (constructor)(value)
+  name: constructor(value)
   href: api/collections-linkedlist/linkedlistnode.html#_esfx_collections_linkedlist_LinkedListNode_constructor_1_
-  fullName: (constructor)(value)
+  fullName: constructor(value)
 - uid: '@esfx/collections-multimap!'
   name: '@esfx/collections-multimap'
   href: api/collections-multimap.html
@@ -4230,17 +4230,17 @@ references:
   href: api/collections-multimap/multimap.html#_esfx_collections_multimap_MultiMap_class
   fullName: MultiMap
 - uid: '@esfx/collections-multimap!MultiMap:constructor(1)'
-  name: (constructor)(options)
+  name: constructor(options)
   href: api/collections-multimap/multimap.html#_esfx_collections_multimap_MultiMap_constructor_1_
-  fullName: (constructor)(options)
+  fullName: constructor(options)
 - uid: '@esfx/collections-multimap!MultiMap:constructor(2)'
-  name: (constructor)(iterable, options)
+  name: constructor(iterable, options)
   href: api/collections-multimap/multimap.html#_esfx_collections_multimap_MultiMap_constructor_2_
-  fullName: (constructor)(iterable, options)
+  fullName: constructor(iterable, options)
 - uid: '@esfx/collections-multimap!MultiMap:constructor(3)'
-  name: (constructor)(capacity, options)
+  name: constructor(capacity, options)
   href: api/collections-multimap/multimap.html#_esfx_collections_multimap_MultiMap_constructor_3_
-  fullName: (constructor)(capacity, options)
+  fullName: constructor(capacity, options)
 - uid: '@esfx/collections-multimap!MultiMapOptions#keyEqualer:member'
   name: keyEqualer
   href: api/collections-multimap/multimapoptions.html#_esfx_collections_multimap_MultiMapOptions_keyEqualer_member
@@ -4402,13 +4402,13 @@ references:
   href: api/collections-sortedmap/sortedmap.html#_esfx_collections_sortedmap_SortedMap_class
   fullName: SortedMap
 - uid: '@esfx/collections-sortedmap!SortedMap:constructor(1)'
-  name: (constructor)(comparer)
+  name: constructor(comparer)
   href: api/collections-sortedmap/sortedmap.html#_esfx_collections_sortedmap_SortedMap_constructor_1_
-  fullName: (constructor)(comparer)
+  fullName: constructor(comparer)
 - uid: '@esfx/collections-sortedmap!SortedMap:constructor(2)'
-  name: (constructor)(iterable, comparer)
+  name: constructor(iterable, comparer)
   href: api/collections-sortedmap/sortedmap.html#_esfx_collections_sortedmap_SortedMap_constructor_2_
-  fullName: (constructor)(iterable, comparer)
+  fullName: constructor(iterable, comparer)
 - uid: '@esfx/collections-sortedset!'
   name: '@esfx/collections-sortedset'
   href: api/collections-sortedset.html
@@ -4498,13 +4498,13 @@ references:
   href: api/collections-sortedset/sortedset.html#_esfx_collections_sortedset_SortedSet_class
   fullName: SortedSet
 - uid: '@esfx/collections-sortedset!SortedSet:constructor(1)'
-  name: (constructor)(comparer)
+  name: constructor(comparer)
   href: api/collections-sortedset/sortedset.html#_esfx_collections_sortedset_SortedSet_constructor_1_
-  fullName: (constructor)(comparer)
+  fullName: constructor(comparer)
 - uid: '@esfx/collections-sortedset!SortedSet:constructor(2)'
-  name: (constructor)(iterable, comparer)
+  name: constructor(iterable, comparer)
   href: api/collections-sortedset/sortedset.html#_esfx_collections_sortedset_SortedSet_constructor_2_
-  fullName: (constructor)(iterable, comparer)
+  fullName: constructor(iterable, comparer)
 - uid: '@esfx/decorators!'
   name: '@esfx/decorators'
   href: api/decorators.html
@@ -5273,10 +5273,10 @@ references:
   name: caller(args)
   href: api/fn.html#_esfx_fn_caller_function_7_
   fullName: caller(args)
-- uid: '@esfx/fn!clamp.withComparer:var'
-  name: withComparer
+- uid: '@esfx/fn!clamp.withComparer:function(1)'
+  name: withComparer(comparer)
   href: api/fn/clamp-namespace.html
-  fullName: clamp.withComparer
+  fullName: clamp.withComparer(comparer)
 - uid: '@esfx/fn!clamp:function(1)'
   name: clamp(min, max)
   href: api/fn.html#_esfx_fn_clamp_function_1_
@@ -5285,10 +5285,10 @@ references:
   name: clamp
   href: api/fn/clamp-namespace.html#_esfx_fn_clamp_namespace
   fullName: clamp
-- uid: '@esfx/fn!compare.withComparer:var'
-  name: withComparer
+- uid: '@esfx/fn!compare.withComparer:function(1)'
+  name: withComparer(comparer)
   href: api/fn/compare-namespace.html
-  fullName: compare.withComparer
+  fullName: compare.withComparer(comparer)
 - uid: '@esfx/fn!compare:function(1)'
   name: compare(a, b)
   href: api/fn.html#_esfx_fn_compare_function_1_
@@ -5321,10 +5321,10 @@ references:
   name: compose(rest)
   href: api/fn.html#_esfx_fn_compose_function_5_
   fullName: compose(rest)
-- uid: '@esfx/fn!decrementer.step:var'
-  name: step
+- uid: '@esfx/fn!decrementer.step:function(1)'
+  name: step(count, start)
   href: api/fn/decrementer-namespace.html
-  fullName: decrementer.step
+  fullName: decrementer.step(count, start)
 - uid: '@esfx/fn!decrementer:function(1)'
   name: decrementer(start)
   href: api/fn.html#_esfx_fn_decrementer_function_1_
@@ -5341,10 +5341,10 @@ references:
   name: either(a, b)
   href: api/fn.html#_esfx_fn_either_function_2_
   fullName: either(a, b)
-- uid: '@esfx/fn!equate.withEqualer:var'
-  name: withEqualer
+- uid: '@esfx/fn!equate.withEqualer:function(1)'
+  name: withEqualer(equaler)
   href: api/fn/equate-namespace.html
-  fullName: equate.withEqualer
+  fullName: equate.withEqualer(equaler)
 - uid: '@esfx/fn!equate:function(1)'
   name: equate(a, b)
   href: api/fn.html#_esfx_fn_equate_function_1_
@@ -5393,10 +5393,10 @@ references:
   name: flip(f)
   href: api/fn.html#_esfx_fn_flip_function_1_
   fullName: flip(f)
-- uid: '@esfx/fn!hash.withEqualer:var'
-  name: withEqualer
+- uid: '@esfx/fn!hash.withEqualer:function(1)'
+  name: withEqualer(equaler)
   href: api/fn/hash-namespace.html
-  fullName: hash.withEqualer
+  fullName: hash.withEqualer(equaler)
 - uid: '@esfx/fn!hash:function(1)'
   name: hash(value)
   href: api/fn.html#_esfx_fn_hash_function_1_
@@ -5409,10 +5409,10 @@ references:
   name: identity(value)
   href: api/fn.html#_esfx_fn_identity_function_1_
   fullName: identity(value)
-- uid: '@esfx/fn!incrementer.step:var'
-  name: step
+- uid: '@esfx/fn!incrementer.step:function(1)'
+  name: step(count, start)
   href: api/fn/incrementer-namespace.html
-  fullName: incrementer.step
+  fullName: incrementer.step(count, start)
 - uid: '@esfx/fn!incrementer:function(1)'
   name: incrementer(start)
   href: api/fn.html#_esfx_fn_incrementer_function_1_
@@ -7162,9 +7162,9 @@ references:
   href: api/indexed-object/integerindexedobject.html#_esfx_indexed_object_IntegerIndexedObject_class
   fullName: IntegerIndexedObject
 - uid: '@esfx/indexed-object!IntegerIndexedObject:constructor(1)'
-  name: (constructor)()
+  name: constructor()
   href: api/indexed-object/integerindexedobject.html#_esfx_indexed_object_IntegerIndexedObject_constructor_1_
-  fullName: (constructor)()
+  fullName: constructor()
 - uid: '@esfx/interval!'
   name: '@esfx/interval'
   href: api/interval.html
@@ -7222,9 +7222,9 @@ references:
   href: api/interval/index.html#_esfx_interval_Index_class
   fullName: Index
 - uid: '@esfx/interval!Index:constructor(1)'
-  name: (constructor)(value, isFromEnd)
+  name: constructor(value, isFromEnd)
   href: api/interval/index.html#_esfx_interval_Index_constructor_1_
-  fullName: (constructor)(value, isFromEnd)
+  fullName: constructor(value, isFromEnd)
 - uid: '@esfx/interval!Interval#[Equatable.equals]:member(1)'
   name: '[Equatable.equals](other)'
   href: api/interval/interval.html#_esfx_interval_Interval__Equatable_equals__member_1_
@@ -7286,9 +7286,9 @@ references:
   href: api/interval/interval.html#_esfx_interval_Interval_class
   fullName: Interval
 - uid: '@esfx/interval!Interval:constructor(1)'
-  name: (constructor)(start, end, step)
+  name: constructor(start, end, step)
   href: api/interval/interval.html#_esfx_interval_Interval_constructor_1_
-  fullName: (constructor)(start, end, step)
+  fullName: constructor(start, end, step)
 - uid: '@esfx/iter!'
   name: '@esfx/iter'
   href: api/iter.html
@@ -8274,9 +8274,9 @@ references:
   href: api/iter-grouping/grouping.html#_esfx_iter_grouping_Grouping_class
   fullName: Grouping
 - uid: '@esfx/iter-grouping!Grouping:constructor(1)'
-  name: (constructor)(key, values)
+  name: constructor(key, values)
   href: api/iter-grouping/grouping.html#_esfx_iter_grouping_Grouping_constructor_1_
-  fullName: (constructor)(key, values)
+  fullName: constructor(key, values)
 - uid: '@esfx/iter-grouping!HierarchyGrouping#[Hierarchical.hierarchy]:member(1)'
   name: '[Hierarchical.hierarchy]()'
   href: api/iter-grouping/hierarchygrouping.html#_esfx_iter_grouping_HierarchyGrouping__Hierarchical_hierarchy__member_1_
@@ -8290,13 +8290,13 @@ references:
   href: api/iter-grouping/hierarchygrouping.html#_esfx_iter_grouping_HierarchyGrouping_class
   fullName: HierarchyGrouping
 - uid: '@esfx/iter-grouping!HierarchyGrouping:constructor(1)'
-  name: (constructor)(key, values, provider)
+  name: constructor(key, values, provider)
   href: api/iter-grouping/hierarchygrouping.html#_esfx_iter_grouping_HierarchyGrouping_constructor_1_
-  fullName: (constructor)(key, values, provider)
+  fullName: constructor(key, values, provider)
 - uid: '@esfx/iter-grouping!HierarchyGrouping:constructor(2)'
-  name: (constructor)(key, values)
+  name: constructor(key, values)
   href: api/iter-grouping/hierarchygrouping.html#_esfx_iter_grouping_HierarchyGrouping_constructor_2_
-  fullName: (constructor)(key, values)
+  fullName: constructor(key, values)
 - uid: '@esfx/iter-hierarchy!'
   name: '@esfx/iter-hierarchy'
   href: api/iter-hierarchy.html
@@ -8442,9 +8442,9 @@ references:
   href: api/iter-lookup/lookup.html#_esfx_iter_lookup_Lookup_class
   fullName: Lookup
 - uid: '@esfx/iter-lookup!Lookup:constructor(1)'
-  name: (constructor)(entries, keyEqualer)
+  name: constructor(entries, keyEqualer)
   href: api/iter-lookup/lookup.html#_esfx_iter_lookup_Lookup_constructor_1_
-  fullName: (constructor)(entries, keyEqualer)
+  fullName: constructor(entries, keyEqualer)
 - uid: '@esfx/iter-ordered!'
   name: '@esfx/iter-ordered'
   href: api/iter-ordered.html
@@ -8486,13 +8486,13 @@ references:
   href: api/iter-page/hierarchypage.html#_esfx_iter_page_HierarchyPage_class
   fullName: HierarchyPage
 - uid: '@esfx/iter-page!HierarchyPage:constructor(1)'
-  name: (constructor)(page, offset, values, provider)
+  name: constructor(page, offset, values, provider)
   href: api/iter-page/hierarchypage.html#_esfx_iter_page_HierarchyPage_constructor_1_
-  fullName: (constructor)(page, offset, values, provider)
+  fullName: constructor(page, offset, values, provider)
 - uid: '@esfx/iter-page!HierarchyPage:constructor(2)'
-  name: (constructor)(page, offset, values)
+  name: constructor(page, offset, values)
   href: api/iter-page/hierarchypage.html#_esfx_iter_page_HierarchyPage_constructor_2_
-  fullName: (constructor)(page, offset, values)
+  fullName: constructor(page, offset, values)
 - uid: '@esfx/iter-page!Page#[Symbol.iterator]:member(1)'
   name: '[Symbol.iterator]()'
   href: api/iter-page/page.html#_esfx_iter_page_Page__Symbol_iterator__member_1_
@@ -8526,9 +8526,9 @@ references:
   href: api/iter-page/page.html#_esfx_iter_page_Page_class
   fullName: Page
 - uid: '@esfx/iter-page!Page:constructor(1)'
-  name: (constructor)(page, offset, values)
+  name: constructor(page, offset, values)
   href: api/iter-page/page.html#_esfx_iter_page_Page_constructor_1_
-  fullName: (constructor)(page, offset, values)
+  fullName: constructor(page, offset, values)
 - uid: '@esfx/iter-query!'
   name: '@esfx/iter-query'
   href: api/iter-query.html
@@ -8970,13 +8970,13 @@ references:
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class
   fullName: HierarchyQuery
 - uid: '@esfx/iter-query!HierarchyQuery:constructor(1)'
-  name: (constructor)(source)
+  name: constructor(source)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_constructor_1_
-  fullName: (constructor)(source)
+  fullName: constructor(source)
 - uid: '@esfx/iter-query!HierarchyQuery:constructor(2)'
-  name: (constructor)(source, provider)
+  name: constructor(source, provider)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_constructor_2_
-  fullName: (constructor)(source, provider)
+  fullName: constructor(source, provider)
 - uid: '@esfx/iter-query!OrderedHierarchyQuery#[OrderedIterable.thenBy]:member(1)'
   name: '[OrderedIterable.thenBy](keySelector, comparison, descending)'
   href: api/iter-query/orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery__OrderedIterable_thenBy__member_1_
@@ -8994,13 +8994,13 @@ references:
   href: api/iter-query/orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_class
   fullName: OrderedHierarchyQuery
 - uid: '@esfx/iter-query!OrderedHierarchyQuery:constructor(1)'
-  name: (constructor)(source)
+  name: constructor(source)
   href: api/iter-query/orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_constructor_1_
-  fullName: (constructor)(source)
+  fullName: constructor(source)
 - uid: '@esfx/iter-query!OrderedHierarchyQuery:constructor(2)'
-  name: (constructor)(source, provider)
+  name: constructor(source, provider)
   href: api/iter-query/orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_constructor_2_
-  fullName: (constructor)(source, provider)
+  fullName: constructor(source, provider)
 - uid: '@esfx/iter-query!OrderedQuery#[OrderedIterable.thenBy]:member(1)'
   name: '[OrderedIterable.thenBy](keySelector, comparer, descending)'
   href: api/iter-query/orderedquery.html#_esfx_iter_query_OrderedQuery__OrderedIterable_thenBy__member_1_
@@ -9018,9 +9018,9 @@ references:
   href: api/iter-query/orderedquery.html#_esfx_iter_query_OrderedQuery_class
   fullName: OrderedQuery
 - uid: '@esfx/iter-query!OrderedQuery:constructor(1)'
-  name: (constructor)(source)
+  name: constructor(source)
   href: api/iter-query/orderedquery.html#_esfx_iter_query_OrderedQuery_constructor_1_
-  fullName: (constructor)(source)
+  fullName: constructor(source)
 - uid: '@esfx/iter-query!Query#[Symbol.iterator]:member(1)'
   name: '[Symbol.iterator]()'
   href: api/iter-query/query.html#_esfx_iter_query_Query__Symbol_iterator__member_1_
@@ -9774,9 +9774,9 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_class
   fullName: Query
 - uid: '@esfx/iter-query!Query:constructor(1)'
-  name: (constructor)(source)
+  name: constructor(source)
   href: api/iter-query/query.html#_esfx_iter_query_Query_constructor_1_
-  fullName: (constructor)(source)
+  fullName: constructor(source)
 - uid: '@esfx/lazy!'
   name: '@esfx/lazy'
   href: api/lazy.html
@@ -9802,9 +9802,9 @@ references:
   href: api/lazy/lazy.html#_esfx_lazy_Lazy_class
   fullName: Lazy
 - uid: '@esfx/lazy!Lazy:constructor(1)'
-  name: (constructor)(factory)
+  name: constructor(factory)
   href: api/lazy/lazy.html#_esfx_lazy_Lazy_constructor_1_
-  fullName: (constructor)(factory)
+  fullName: constructor(factory)
 - uid: '@esfx/metadata!'
   name: '@esfx/metadata'
   href: api/metadata.html
@@ -10150,13 +10150,13 @@ references:
   href: api/threading-autoresetevent/autoresetevent.html#_esfx_threading_autoresetevent_AutoResetEvent_class
   fullName: AutoResetEvent
 - uid: '@esfx/threading-autoresetevent!AutoResetEvent:constructor(1)'
-  name: (constructor)(initialState)
+  name: constructor(initialState)
   href: api/threading-autoresetevent/autoresetevent.html#_esfx_threading_autoresetevent_AutoResetEvent_constructor_1_
-  fullName: (constructor)(initialState)
+  fullName: constructor(initialState)
 - uid: '@esfx/threading-autoresetevent!AutoResetEvent:constructor(2)'
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/threading-autoresetevent/autoresetevent.html#_esfx_threading_autoresetevent_AutoResetEvent_constructor_2_
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: '@esfx/threading-conditionvariable!'
   name: '@esfx/threading-conditionvariable'
   href: api/threading-conditionvariable.html
@@ -10206,9 +10206,9 @@ references:
   href: api/threading-conditionvariable/conditionvariable.html#_esfx_threading_conditionvariable_ConditionVariable_class
   fullName: ConditionVariable
 - uid: '@esfx/threading-conditionvariable!ConditionVariable:constructor(1)'
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/threading-conditionvariable/conditionvariable.html#_esfx_threading_conditionvariable_ConditionVariable_constructor_1_
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: '@esfx/threading-countdown!'
   name: '@esfx/threading-countdown'
   href: api/threading-countdown.html
@@ -10274,13 +10274,13 @@ references:
   href: api/threading-countdown/countdownevent.html#_esfx_threading_countdown_CountdownEvent_class
   fullName: CountdownEvent
 - uid: '@esfx/threading-countdown!CountdownEvent:constructor(1)'
-  name: (constructor)(initialCount)
+  name: constructor(initialCount)
   href: api/threading-countdown/countdownevent.html#_esfx_threading_countdown_CountdownEvent_constructor_1_
-  fullName: (constructor)(initialCount)
+  fullName: constructor(initialCount)
 - uid: '@esfx/threading-countdown!CountdownEvent:constructor(2)'
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/threading-countdown/countdownevent.html#_esfx_threading_countdown_CountdownEvent_constructor_2_
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: '@esfx/threading-lockable!'
   name: '@esfx/threading-lockable'
   href: api/threading-lockable.html
@@ -10374,13 +10374,13 @@ references:
   href: api/threading-manualresetevent/manualresetevent.html#_esfx_threading_manualresetevent_ManualResetEvent_class
   fullName: ManualResetEvent
 - uid: '@esfx/threading-manualresetevent!ManualResetEvent:constructor(1)'
-  name: (constructor)(initialState)
+  name: constructor(initialState)
   href: api/threading-manualresetevent/manualresetevent.html#_esfx_threading_manualresetevent_ManualResetEvent_constructor_1_
-  fullName: (constructor)(initialState)
+  fullName: constructor(initialState)
 - uid: '@esfx/threading-manualresetevent!ManualResetEvent:constructor(2)'
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/threading-manualresetevent/manualresetevent.html#_esfx_threading_manualresetevent_ManualResetEvent_constructor_2_
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: '@esfx/threading-mutex!'
   name: '@esfx/threading-mutex'
   href: api/threading-mutex.html
@@ -10446,13 +10446,13 @@ references:
   href: api/threading-mutex/mutex.html#_esfx_threading_mutex_Mutex_class
   fullName: Mutex
 - uid: '@esfx/threading-mutex!Mutex:constructor(1)'
-  name: (constructor)(initiallyOwned)
+  name: constructor(initiallyOwned)
   href: api/threading-mutex/mutex.html#_esfx_threading_mutex_Mutex_constructor_1_
-  fullName: (constructor)(initiallyOwned)
+  fullName: constructor(initiallyOwned)
 - uid: '@esfx/threading-mutex!Mutex:constructor(2)'
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/threading-mutex/mutex.html#_esfx_threading_mutex_Mutex_constructor_2_
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: '@esfx/threading-semaphore!'
   name: '@esfx/threading-semaphore'
   href: api/threading-semaphore.html
@@ -10490,13 +10490,13 @@ references:
   href: api/threading-semaphore/semaphore.html#_esfx_threading_semaphore_Semaphore_class
   fullName: Semaphore
 - uid: '@esfx/threading-semaphore!Semaphore:constructor(1)'
-  name: (constructor)(initialCount, maxCount)
+  name: constructor(initialCount, maxCount)
   href: api/threading-semaphore/semaphore.html#_esfx_threading_semaphore_Semaphore_constructor_1_
-  fullName: (constructor)(initialCount, maxCount)
+  fullName: constructor(initialCount, maxCount)
 - uid: '@esfx/threading-semaphore!Semaphore:constructor(2)'
-  name: (constructor)(buffer, byteOffset)
+  name: constructor(buffer, byteOffset)
   href: api/threading-semaphore/semaphore.html#_esfx_threading_semaphore_Semaphore_constructor_2_
-  fullName: (constructor)(buffer, byteOffset)
+  fullName: constructor(buffer, byteOffset)
 - uid: '@esfx/threading-sleep!'
   name: '@esfx/threading-sleep'
   href: api/threading-sleep.html

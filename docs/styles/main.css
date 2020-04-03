@@ -18,3 +18,36 @@
     background: hsla(44,100%,90%,1) !important;
     border: 1px solid hsla(44,100%,90%,.999);
 }
+
+div.property {
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
+}
+
+dl.parameter {
+    display: flex;
+    max-width: 100%;
+    margin: 0;
+}
+
+dl.parameter dt {
+    background-color: #fafafa;
+    display: inline-block;
+    font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+    font-weight: 600;
+    padding: 0 6px 2px;
+}
+
+dl.parameter dd {
+    margin-left: 12px;
+    overflow: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
+}
+
+.affix > ul.level1 {
+    overflow-y: auto;
+}

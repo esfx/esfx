@@ -62,11 +62,12 @@ describe("ctor", () => {
             expect(() => new Mutex(buffer, 4)).toThrow(/Out of range/);
         });
         it("throws if offset not aligned", () => {
-            const buffer = new SharedArrayBuffer(13);
+            const buffer = new SharedArrayBuffer(5);
             expect(() => new Mutex(buffer, 1)).toThrow(/Not aligned/);
         });
         it("throws if bad handle", () => {
-            const buffer = new SharedArrayBuffer(12);
+            const buffer = new SharedArrayBuffer(4);
+            new DataView(buffer).setUint32(0, 1);
             expect(() => new Mutex(buffer)).toThrow(/Invalid handle/);
         });
     });

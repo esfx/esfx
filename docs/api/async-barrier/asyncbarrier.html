@@ -92,7 +92,7 @@ multiple phases.</p>
   </h3>
   
   
-  <h4 id="_esfx_async_barrier_AsyncBarrier_constructor_1_" data-uid="@esfx/async-barrier!AsyncBarrier:constructor(1)">(constructor)(participantCount, postPhaseAction)</h4>
+  <h4 id="_esfx_async_barrier_AsyncBarrier_constructor_1_" data-uid="@esfx/async-barrier!AsyncBarrier:constructor(1)">constructor(participantCount, postPhaseAction)</h4>
   <div class="markdown level1 summary"><p>Initializes a new instance of the Barrier class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -100,36 +100,37 @@ multiple phases.</p>
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">constructor(participantCount: number, postPhaseAction?: (barrier: AsyncBarrier) =&gt; void | PromiseLike&lt;void&gt;);</code></pre>
   </div>
+  
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">number</span></td>
-        <td><em>participantCount</em></td>
-        <td>
-          <p>The initial number of participants for the barrier.</p>
+    <div class="property">
+      <dl class="parameter">
+        <dt>participantCount</dt>
+        <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+      </dl>
+      <p>
+        <p>The initial number of participants for the barrier.</p>
 
-          
-        </td>
-      </tr>
-      <tr>
-        <td>(barrier: <a class="xref" href="asyncbarrier.html#_esfx_async_barrier_AsyncBarrier_class">AsyncBarrier</a>) =&gt; void | <span class="xref">PromiseLike</span>&lt;void&gt;</td>
-        <td><em>postPhaseAction</em></td>
-        <td>
-          <p>An action to execute between each phase.</p>
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>postPhaseAction</dt>
+        <dd>(barrier: <a class="xref" href="asyncbarrier.html#_esfx_async_barrier_AsyncBarrier_class">AsyncBarrier</a>) =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;</dd>
+      </dl>
+      <p>
+        <p>An action to execute between each phase.</p>
 
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        
+      </p>
+    </div>
+  
+  
+  
+  
+  
+  
   <h3 id="properties">Properties
   </h3>
   
@@ -142,21 +143,19 @@ multiple phases.</p>
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get currentPhaseNumber(): number;</code></pre>
   </div>
+  
+  
+  
+  
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">number</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
+    <p>
+  </div>
+  
+  
+  
   
   
   <h4 id="_esfx_async_barrier_AsyncBarrier_participantCount_member" data-uid="@esfx/async-barrier!AsyncBarrier#participantCount:member">participantCount</h4>
@@ -167,21 +166,19 @@ multiple phases.</p>
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get participantCount(): number;</code></pre>
   </div>
+  
+  
+  
+  
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">number</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
+    <p>
+  </div>
+  
+  
+  
   
   
   <h4 id="_esfx_async_barrier_AsyncBarrier_remainingParticipants_member" data-uid="@esfx/async-barrier!AsyncBarrier#remainingParticipants:member">remainingParticipants</h4>
@@ -192,21 +189,19 @@ multiple phases.</p>
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get remainingParticipants(): number;</code></pre>
   </div>
+  
+  
+  
+  
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">number</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
+    <p>
+  </div>
+  
+  
+  
   <h3 id="methods">Methods
   </h3>
   
@@ -219,42 +214,31 @@ multiple phases.</p>
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">add(participantCount?: number): void;</code></pre>
   </div>
+  
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">number</span></td>
-        <td><em>participantCount</em></td>
-        <td>
-          <p>The number of additional participants.</p>
+    <div class="property">
+      <dl class="parameter">
+        <dt>participantCount</dt>
+        <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+      </dl>
+      <p>
+        <p>The number of additional participants.</p>
 
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        
+      </p>
+    </div>
+  
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">void</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div><span class="xref">void</span></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
   
   
   <h4 id="_esfx_async_barrier_AsyncBarrier_remove_member_1_" data-uid="@esfx/async-barrier!AsyncBarrier#remove:member(1)">remove(participantCount)</h4>
@@ -265,42 +249,31 @@ multiple phases.</p>
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">remove(participantCount?: number): void;</code></pre>
   </div>
+  
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">number</span></td>
-        <td><em>participantCount</em></td>
-        <td>
-          <p>The number of participants to remove.</p>
+    <div class="property">
+      <dl class="parameter">
+        <dt>participantCount</dt>
+        <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+      </dl>
+      <p>
+        <p>The number of participants to remove.</p>
 
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        
+      </p>
+    </div>
+  
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">void</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div><span class="xref">void</span></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
   
   
   <h4 id="_esfx_async_barrier_AsyncBarrier_signalAndWait_member_1_" data-uid="@esfx/async-barrier!AsyncBarrier#signalAndWait:member(1)">signalAndWait(cancelable)</h4>
@@ -312,42 +285,31 @@ to reach the barrier.</p>
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">signalAndWait(cancelable?: Cancelable): Promise&lt;void&gt;;</code></pre>
   </div>
+  
+  
   <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></td>
-        <td><em>cancelable</em></td>
-        <td>
-          <p>An optional Cancelable used to cancel the request.</p>
+    <div class="property">
+      <dl class="parameter">
+        <dt>cancelable</dt>
+        <dd><a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></dd>
+      </dl>
+      <p>
+        <p>An optional Cancelable used to cancel the request.</p>
 
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        
+      </p>
+    </div>
+  
   <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Promise</span>&lt;void&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;void&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
 </article>
           </div>
           

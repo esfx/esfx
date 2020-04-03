@@ -44,104 +44,62 @@
       <div class="codewrapper">
         <pre><code class="lang-{{syntax.content.0.lang}} hljs">{{syntax.content.0.value}}</code></pre>
       </div>
-      {{#parameters.0}}
-      <h5 class="parameters">{{__global.parameters}}</h5>
-      <table class="table table-bordered table-striped table-condensed">
-        <thead>
-          <tr>
-            <th>{{__global.type}}</th>
-            <th>{{__global.name}}</th>
-            <th>{{__global.description}}</th>
-          </tr>
-        </thead>
-        <tbody>
-      {{/parameters.0}}
-      {{#parameters}}
-          <tr>
-            <td>{{{type.specName.0.value}}}</td>
-            <td><em>{{{id}}}</em></td>
-            <td>
-              {{{description}}}
-              {{>partials/uref/parameters}}
-            </td>
-          </tr>
-      {{/parameters}}
-      {{#parameters.0}}
-        </tbody>
-      </table>
-      {{/parameters.0}}
-      {{#return}}
-      <h5 class="returns">{{__global.returns}}</h5>
-      <table class="table table-bordered table-striped table-condensed">
-        <thead>
-          <tr>
-            <th>{{__global.type}}</th>
-            <th>{{__global.description}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{{value.type.0.specName.0.value}}}</td>
-            <td>{{{value.description}}}</td>
-          </tr>
-        </tbody>
-      </table>
-      {{/return}}
+
       {{#typeParameters.0}}
       <h5 class="typeParameters">{{__global.typeParameters}}</h5>
-      <table class="table table-bordered table-striped table-condensed">
-        <thead>
-          <tr>
-            <th>{{__global.name}}</th>
-            <th>{{__global.description}}</th>
-          </tr>
-        </thead>
-        <tbody>
       {{/typeParameters.0}}
       {{#typeParameters}}
-          <tr>
-            <td><em>{{{id}}}</em></td>
-            <td>{{{description}}}</td>
-          </tr>
+        <div class="property">
+          <dl class="parameter">
+            <dt>{{{id}}}</dt>
+            <dd>{{{type.specName.0.value}}}</dd>
+          </dl>
+          <p>
+            {{{description}}}
+          </p>
+        </div>
       {{/typeParameters}}
-      {{#typeParameters.0}}
-        </tbody>
-      </table>
-      {{/typeParameters.0}}
+
+      {{#parameters.0}}
+      <h5 class="parameters">{{__global.parameters}}</h5>
+      {{/parameters.0}}
+      {{#parameters}}
+        <div class="property">
+          <dl class="parameter">
+            <dt>{{{id}}}</dt>
+            <dd>{{{type.specName.0.value}}}</dd>
+          </dl>
+          <p>
+            {{{description}}}
+            {{>partials/uref/parameters}}
+          </p>
+        </div>
+      {{/parameters}}
+
+      {{#return}}
+      <h5 class="returns">{{__global.returns}}</h5>
+      <div class="property">
+        <div>{{{value.type.0.specName.0.value}}}</div>
+        <p>{{{value.description}}}</p>
+      </div>
+      {{/return}}
+
       {{#fieldValue}}
       <h5 class="fieldValue">{{__global.fieldValue}}</h5>
-      <table class="table table-bordered table-striped table-condensed">
-        <thead>
-          <tr>
-            <th>{{__global.type}}</th>
-            <th>{{__global.description}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{{value.type.0.specName.0.value}}}</td>
-            <td>{{{value.description}}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="property">
+        <div>{{{value.type.0.specName.0.value}}}</div>
+        <p>{{{value.description}}}</p>
+      </div>
       {{/fieldValue}}
+
       {{#propertyValue}}
       <h5 class="propertyValue">{{__global.propertyValue}}</h5>
-      <table class="table table-bordered table-striped table-condensed">
-        <thead>
-          <tr>
-            <th>{{__global.type}}</th>
-            <th>{{__global.description}}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{{value.type.0.specName.0.value}}}</td>
-            <td>{{{value.description}}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="property">
+        <div>{{{value.type.0.specName.0.value}}}</div>
+        <p>{{{value.description}}}</p>
+      </div>
       {{/propertyValue}}
+
       {{#eventType}}
       <h5 class="eventType">{{__global.eventType}}</h5>
       <table class="table table-bordered table-striped table-condensed">

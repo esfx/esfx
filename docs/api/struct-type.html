@@ -113,6 +113,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_struct_type_biguint64_var" data-uid="@esfx/struct-type!biguint64:var">biguint64</h4>
               <div class="markdown level1 summary"><p>A primitive type representing an 8-byte unsigned integer.</p>
 <p>Aliases: <code>u64</code><!-- -->, <code>ulong</code></p>
@@ -122,6 +128,12 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">biguint64: StructPrimitiveType&lt;&quot;biguint64&quot;, bigint&gt;</code></pre>
         </div>
+  
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_struct_type_float32_var" data-uid="@esfx/struct-type!float32:var">float32</h4>
@@ -135,6 +147,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_struct_type_float64_var" data-uid="@esfx/struct-type!float64:var">float64</h4>
               <div class="markdown level1 summary"><p>A primitive type representing an 8-byte floating point number.</p>
 <p>Aliases: <code>f64</code><!-- -->, <code>double</code></p>
@@ -144,6 +162,12 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">float64: StructPrimitiveType&lt;&quot;float64&quot;, number&gt;</code></pre>
         </div>
+  
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_struct_type_int16_var" data-uid="@esfx/struct-type!int16:var">int16</h4>
@@ -157,6 +181,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_struct_type_int32_var" data-uid="@esfx/struct-type!int32:var">int32</h4>
               <div class="markdown level1 summary"><p>A primitive type representing a 4-byte signed integer.</p>
 <p>Aliases: <code>i32</code><!-- -->, <code>int</code></p>
@@ -166,6 +196,12 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">int32: StructPrimitiveType&lt;&quot;int32&quot;, number&gt;</code></pre>
         </div>
+  
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_struct_type_int8_var" data-uid="@esfx/struct-type!int8:var">int8</h4>
@@ -179,6 +215,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_struct_type_StructType_var" data-uid="@esfx/struct-type!StructType:var">StructType</h4>
               <div class="markdown level1 summary"><p>Creates a new <code>Struct</code> type from a provided field definition.</p>
 </div>
@@ -187,6 +229,12 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">StructType: StructTypeConstructor</code></pre>
         </div>
+  
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_struct_type_uint16_var" data-uid="@esfx/struct-type!uint16:var">uint16</h4>
@@ -200,6 +248,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_struct_type_uint32_var" data-uid="@esfx/struct-type!uint32:var">uint32</h4>
               <div class="markdown level1 summary"><p>A primitive type representing a 4-byte unsigned integer.</p>
 <p>Aliases: <code>u32</code><!-- -->, <code>uint</code></p>
@@ -211,6 +265,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_struct_type_uint8_var" data-uid="@esfx/struct-type!uint8:var">uint8</h4>
               <div class="markdown level1 summary"><p>A primitive type representing a 1-byte unsigned integer.</p>
 <p>Aliases: <code>u8</code><!-- -->, <code>byte</code></p>
@@ -220,6 +280,12 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">uint8: StructPrimitiveType&lt;&quot;uint8&quot;, number&gt;</code></pre>
         </div>
+  
+  
+  
+  
+  
+  
     <h3 id="typealiases">Type Aliases
   </h3>
   
@@ -251,21 +317,22 @@
     [I in keyof TDef &amp; numstr&lt;keyof TDef&gt; &amp; number]: StructFieldRuntimeType&lt;Extract&lt;TDef[I], StructFieldDefinition&gt;&gt;;
 };</code></pre>
         </div>
+  
         <h5 class="typeParameters">Type Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><em>TDef</em></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TDef</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_struct_type_StructFieldRuntimeType_type" data-uid="@esfx/struct-type!StructFieldRuntimeType:type">StructFieldRuntimeType</h4>
@@ -276,21 +343,22 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">export declare type StructFieldRuntimeType&lt;TField extends StructFieldDefinition&gt; = TField[&quot;type&quot;] extends StructPrimitiveType ? ReturnType&lt;TField[&quot;type&quot;]&gt; : TField[&quot;type&quot;] extends StructType ? InstanceType&lt;TField[&quot;type&quot;]&gt; : never;</code></pre>
         </div>
+  
         <h5 class="typeParameters">Type Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><em>TField</em></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TField</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_struct_type_StructFieldType_type" data-uid="@esfx/struct-type!StructFieldType:type">StructFieldType</h4>
@@ -300,6 +368,12 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">export declare type StructFieldType = typeof int8 | typeof int16 | typeof int32 | typeof uint8 | typeof uint16 | typeof uint32 | typeof bigint64 | typeof biguint64 | typeof float32 | typeof float64 | StructType;</code></pre>
         </div>
+  
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_struct_type_StructInitElements_type" data-uid="@esfx/struct-type!StructInitElements:type">StructInitElements</h4>
@@ -312,21 +386,22 @@
     [I in keyof TDef]: StructInitFieldType&lt;Extract&lt;TDef[I], StructFieldDefinition&gt;&gt;;
 };</code></pre>
         </div>
+  
         <h5 class="typeParameters">Type Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><em>TDef</em></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TDef</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_struct_type_StructInitFieldType_type" data-uid="@esfx/struct-type!StructInitFieldType:type">StructInitFieldType</h4>
@@ -337,21 +412,22 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">export declare type StructInitFieldType&lt;TField extends StructFieldDefinition&gt; = TField[&quot;type&quot;] extends StructPrimitiveType ? ReturnType&lt;TField[&quot;type&quot;]&gt; : TField[&quot;type&quot;] extends StructType&lt;infer TDef&gt; ? InstanceType&lt;TField[&quot;type&quot;]&gt; | StructInitProperties&lt;TDef&gt; | StructInitElements&lt;TDef&gt; : never;</code></pre>
         </div>
+  
         <h5 class="typeParameters">Type Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><em>TField</em></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TField</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_struct_type_StructInitProperties_type" data-uid="@esfx/struct-type!StructInitProperties:type">StructInitProperties</h4>
@@ -366,21 +442,22 @@
     }&gt;&gt;;
 };</code></pre>
         </div>
+  
         <h5 class="typeParameters">Type Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><em>TDef</em></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TDef</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
 </article>
           </div>
           

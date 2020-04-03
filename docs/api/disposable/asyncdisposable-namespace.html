@@ -98,41 +98,28 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">function create(dispose: () =&gt; void | PromiseLike&lt;void&gt;): AsyncDisposable;</code></pre>
         </div>
+  
+  
         <h5 class="parameters">Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>() =&gt; void | <span class="xref">PromiseLike</span>&lt;void&gt;</td>
-              <td><em>dispose</em></td>
-              <td>
-                
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>dispose</dt>
+              <dd>() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;</dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+  
         <h5 class="returns">Returns</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="property">
+          <div><a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a></div>
+          <p>
+        </div>
+  
+  
+  
   
   
         <h4 id="_esfx_disposable_AsyncDisposable_from_function_1_" data-uid="@esfx/disposable!AsyncDisposable.from:function(1)">from(resources)</h4>
@@ -143,42 +130,29 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">function from(resources: Iterable&lt;AsyncDisposable | Disposable | null | undefined&gt;): AsyncDisposable;</code></pre>
         </div>
+  
+  
         <h5 class="parameters">Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="xref">Iterable</span>&lt;<a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a> | <a class="xref" href="disposable-interface.html#_esfx_disposable_Disposable_interface">Disposable</a> | null | undefined&gt;</td>
-              <td><em>resources</em></td>
-              <td>
-                <p>An <code>Iterable</code> of <code>AsyncDisposable</code> or <code>Disposable</code> objects.</p>
+          <div class="property">
+            <dl class="parameter">
+              <dt>resources</dt>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a> | <a class="xref" href="disposable-interface.html#_esfx_disposable_Disposable_interface">Disposable</a> | null | undefined&gt;</dd>
+            </dl>
+            <p>
+              <p>An <code>Iterable</code> of <code>AsyncDisposable</code> or <code>Disposable</code> objects.</p>
 
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              
+            </p>
+          </div>
+  
         <h5 class="returns">Returns</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="property">
+          <div><a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a></div>
+          <p>
+        </div>
+  
+  
+  
   
   
         <h4 id="_esfx_disposable_AsyncDisposable_hasInstance_function_1_" data-uid="@esfx/disposable!AsyncDisposable.hasInstance:function(1)">hasInstance(value)</h4>
@@ -189,41 +163,28 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">function hasInstance(value: unknown): value is AsyncDisposable;</code></pre>
         </div>
+  
+  
         <h5 class="parameters">Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="xref">unknown</span></td>
-              <td><em>value</em></td>
-              <td>
-                
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>value</dt>
+              <dd><span class="xref">unknown</span></dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+  
         <h5 class="returns">Returns</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="xref">value</span> is <a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="property">
+          <div><span class="xref">value</span> is <a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a></div>
+          <p>
+        </div>
+  
+  
+  
   
   
         <h4 id="_esfx_disposable_AsyncDisposable_isAsyncDisposable_function_1_" data-uid="@esfx/disposable!AsyncDisposable.isAsyncDisposable:function(1)">isAsyncDisposable(value)</h4>
@@ -239,41 +200,28 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">function isAsyncDisposable(value: unknown): value is AsyncDisposable;</code></pre>
         </div>
+  
+  
         <h5 class="parameters">Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="xref">unknown</span></td>
-              <td><em>value</em></td>
-              <td>
-                
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>value</dt>
+              <dd><span class="xref">unknown</span></dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+  
         <h5 class="returns">Returns</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="xref">value</span> is <a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="property">
+          <div><span class="xref">value</span> is <a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a></div>
+          <p>
+        </div>
+  
+  
+  
   
   
         <h4 id="_esfx_disposable_AsyncDisposable_use_function_1_" data-uid="@esfx/disposable!AsyncDisposable.use:function(1)">use(resource, callback)</h4>
@@ -284,68 +232,57 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">function use&lt;T extends AsyncDisposable | Disposable | null | undefined, U&gt;(resource: T, callback: (resource: T) =&gt; U | PromiseLike&lt;U&gt;): Promise&lt;U&gt;;</code></pre>
         </div>
-        <h5 class="parameters">Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="xref">T</span></td>
-              <td><em>resource</em></td>
-              <td>
-                
-                
-              </td>
-            </tr>
-            <tr>
-              <td>(resource: T) =&gt; U | <span class="xref">PromiseLike</span>&lt;U&gt;</td>
-              <td><em>callback</em></td>
-              <td>
-                
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <h5 class="returns">Returns</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><span class="xref">Promise</span>&lt;U&gt;</td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+  
         <h5 class="typeParameters">Type Parameters</h5>
-        <table class="table table-bordered table-striped table-condensed">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><em>T</em></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td><em>U</em></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>U</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+        <h5 class="parameters">Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>resource</dt>
+              <dd><span class="xref">T</span></dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>callback</dt>
+              <dd>(resource: T) =&gt; U | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;U&gt;</dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+  
+        <h5 class="returns">Returns</h5>
+        <div class="property">
+          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;U&gt;</div>
+          <p>
+        </div>
+  
+  
+  
     <h3 id="variables">Variables
   </h3>
   
@@ -360,6 +297,12 @@
         </div>
   
   
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_disposable_AsyncDisposable_name_var" data-uid="@esfx/disposable!AsyncDisposable.name:var">name</h4>
               <div class="markdown level1 summary"></div>
         <div class="markdown level1 conceptual"></div>
@@ -367,6 +310,12 @@
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">name = &quot;AsyncDisposable&quot;</code></pre>
         </div>
+  
+  
+  
+  
+  
+  
 </article>
           </div>
           

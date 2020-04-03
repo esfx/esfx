@@ -55,7 +55,6 @@ export function alwaysFalse(): false {
 
 export { alwaysFalse as F };
 
-
 /**
  * Returns a function that always throws the provided error.
  */
@@ -88,13 +87,15 @@ export function incrementer(start = 0) {
     return () => start++;
 }
 
-/**
- * Returns a function that produces a monotonically increasing number value each time it is called.
- */
-incrementer.step = function(count: number, start = 0) {
-    return count > 0 ? (() => start += count) :
-        fail(new Error("Count must be a positive number"));
-};
+export namespace incrementer {
+    /**
+     * Returns a function that produces a monotonically increasing number value each time it is called.
+     */
+    export function step(count: number, start = 0) {
+        return count > 0 ? (() => start += count) :
+            fail(new Error("Count must be a positive number"));
+    }
+}
 
 /**
  * Returns a function that produces a monotonically increasing number value each time it is called.
@@ -103,13 +104,15 @@ export function decrementer(start = 0) {
     return () => start--;
 }
 
-/**
- * Returns a function that produces a monotonically decreasing number value each time it is called.
- */
-decrementer.step = function(count: number, start = 0) {
-    return count > 0 ? (() => start -= count) :
-        fail(new Error("Count must be a positive number"));
-};
+export namespace decrementer {
+    /**
+     * Returns a function that produces a monotonically decreasing number value each time it is called.
+     */
+    export function step(count: number, start = 0) {
+        return count > 0 ? (() => start -= count) :
+            fail(new Error("Count must be a positive number"));
+    }
+}
 
 /**
  * Makes a "tuple" from the provided arguments.
@@ -327,12 +330,14 @@ export function equate<T>(a: T, b: T) {
     return Equaler.defaultEqualer.equals(a, b);
 }
 
-/**
- * Creates a copy of `equate` for a specific `Equaler`.
- */
-equate.withEqualer = <T>(equaler: Equaler<T>): (a: T, b: T) => boolean => {
-    return (a, b) => equaler.equals(a, b);
-};
+export namespace equate {
+    /**
+     * Creates a copy of `equate` for a specific `Equaler`.
+     */
+    export function withEqualer<T>(equaler: Equaler<T>): (a: T, b: T) => boolean {
+        return (a, b) => equaler.equals(a, b);
+    }
+}
 
 /**
  * Generates a hashcode from a value.
@@ -341,12 +346,14 @@ export function hash(value: unknown): number {
     return Equaler.defaultEqualer.hash(value);
 }
 
-/**
- * Creates a copy of `hash` for a specific `Equaler`.
- */
-hash.withEqualer = <T>(equaler: Equaler<T>): (value: T) => number => {
-    return value => equaler.hash(value);
-};
+export namespace hash {
+    /**
+     * Creates a copy of `hash` for a specific `Equaler`.
+     */
+    export function withEqualer<T>(equaler: Equaler<T>): (value: T) => number {
+        return value => equaler.hash(value);
+    }
+}
 
 /**
  * Compares two values using the default `Comparer`.
@@ -356,12 +363,14 @@ export function compare<T>(a: T, b: T) {
     return Comparer.defaultComparer.compare(a, b);
 }
 
-/**
- * Creates a copy of `compare` for a specific `Comparer`.
- */
-compare.withComparer = <T>(comparer: Comparer<T>): (a: T, b: T) => number => {
-    return (a, b) => comparer.compare(a, b);
-};
+export namespace compare {
+    /**
+     * Creates a copy of `compare` for a specific `Comparer`.
+     */
+    export function withComparer<T>(comparer: Comparer<T>): (a: T, b: T) => number {
+        return (a, b) => comparer.compare(a, b);
+    }
+}
 
 /**
  * Clamps a value to a set range using the default `Comparer`.
@@ -379,13 +388,15 @@ export function clamp<T>(min: T, max: T): (value: T) => T {
                     value;
 }
 
-/**
- * Creates a copy of `clamp` for a specific `Comparer`.
- */
-clamp.withComparer = <T>(comparer: Comparer<T>): (min: T, max: T) => (value: T) => T => {
-    return (min, max) => (value) => comparer.compare(value, min) < 0 ? min :
-                                    comparer.compare(value, max) > 0 ? max :
-                                    value;
+export namespace clamp {
+    /**
+     * Creates a copy of `clamp` for a specific `Comparer`.
+     */
+    export function withComparer<T>(comparer: Comparer<T>): (min: T, max: T) => (value: T) => T {
+        return (min, max) => (value) => comparer.compare(value, min) < 0 ? min :
+                                        comparer.compare(value, max) > 0 ? max :
+                                        value;
+    }
 }
 
 /**

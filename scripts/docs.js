@@ -16,7 +16,7 @@ require("./docs/patches/api-extractor");
 require("./docs/patches/api-documenter");
 const { Extractor, ExtractorConfig, ExtractorMessageCategory, ExtractorLogLevel } = require("@microsoft/api-extractor");
 const { ApiModel, ApiDocumentedItem, ApiDeclaredItem, ApiItemContainerMixin, ApiParameterListMixin } = require("@microsoft/api-extractor-model");
-const { CustomYamlDocumenter } = require("./docs/yamlDocumenter");
+const { YamlDocumenter } = require("@microsoft/api-documenter/lib/documenters/YamlDocumenter");
 const { exec } = require("./exec");
 const { newer } = require("./newer");
 const log = require("fancy-log");
@@ -154,7 +154,7 @@ async function apiDocumenter(projectFolders, apiDir = "<projectFolder>/obj/api",
     }
 
     for (const [outputDir, apiModel] of apiModels) {
-        const documenter = new CustomYamlDocumenter(apiModel, /*newDocfxNamespaces*/ true);
+        const documenter = new YamlDocumenter(apiModel, /*newDocfxNamespaces*/ true);
         documenter.generateFiles(outputDir);
     }
 }

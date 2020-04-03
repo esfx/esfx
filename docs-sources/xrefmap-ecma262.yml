@@ -1,7 +1,11 @@
 ### YamlMime:XRefMap
-sorted: true
+sorted: false
 references:
 - uid: ArrayBuffer
+  name: ArrayBuffer
+  href: https://tc39.github.io/ecma262/#sec-arraybuffer-objects
+  fullName: ArrayBuffer
+- uid: '!ArrayBuffer:interface'
   name: ArrayBuffer
   href: https://tc39.github.io/ecma262/#sec-arraybuffer-objects
   fullName: ArrayBuffer
@@ -9,10 +13,70 @@ references:
   name: SharedArrayBuffer
   href: https://tc39.github.io/ecma262/#sec-sharedarraybuffer-objects
   fullName: SharedArrayBuffer
+- uid: '!SharedArrayBuffer:interface'
+  name: SharedArrayBuffer
+  href: https://tc39.github.io/ecma262/#sec-sharedarraybuffer-objects
+  fullName: SharedArrayBuffer
 - uid: Promise
   name: Promise
   fullName: Promise
   href: https://tc39.github.io/ecma262/#sec-promise-objects
+- uid: '!Promise:interface'
+  name: Promise
+  fullName: Promise
+  href: https://tc39.github.io/ecma262/#sec-promise-objects
+- uid: '!PromiseLike:interface'
+  name: PromiseLike
+  fullName: PromiseLike
+  href: https://tc39.github.io/ecma262/#sec-promise-objects
+- uid: Generator
+  name: Generator
+  fullName: Generator
+  href: https://tc39.github.io/ecma262/#sec-generator-objects
+- uid: '!Generator:interface'
+  name: Generator
+  fullName: Generator
+  href: https://tc39.github.io/ecma262/#sec-generator-objects
+- uid: AsyncGenerator
+  name: AsyncGenerator
+  fullName: AsyncGenerator
+  href: https://tc39.github.io/ecma262/#sec-asyncgenerator-objects
+- uid: '!AsyncGenerator:interface'
+  name: AsyncGenerator
+  fullName: AsyncGenerator
+  href: https://tc39.github.io/ecma262/#sec-asyncgenerator-objects
+- uid: Iterable
+  name: Iterable
+  fullName: Iterable
+  href: https://tc39.es/ecma262/#sec-iterable-interface
+- uid: '!Iterable:interface'
+  name: Iterable
+  fullName: Iterable
+  href: https://tc39.es/ecma262/#sec-iterable-interface
+- uid: Iterator
+  name: Iterator
+  fullName: Iterator
+  href: https://tc39.es/ecma262/#sec-iterator-interface
+- uid: '!Iterator:interface'
+  name: Iterator
+  fullName: Iterator
+  href: https://tc39.es/ecma262/#sec-iterator-interface
+- uid: AsyncIterable
+  name: AsyncIterable
+  fullName: AsyncIterable
+  href: https://tc39.es/ecma262/#sec-asynciterable-interface
+- uid: '!AsyncIterable:interface'
+  name: AsyncIterable
+  fullName: AsyncIterable
+  href: https://tc39.es/ecma262/#sec-asynciterable-interface
+- uid: AsyncIterator
+  name: AsyncIterator
+  fullName: AsyncIterator
+  href: https://tc39.es/ecma262/#sec-asynciterator-interface
+- uid: '!AsyncIterator:interface'
+  name: AsyncIterator
+  fullName: AsyncIterator
+  href: https://tc39.es/ecma262/#sec-asynciterator-interface
 - uid: boolean
   name: boolean
   fullName: boolean
@@ -25,6 +89,10 @@ references:
   name: number
   fullName: number
   href: https://tc39.github.io/ecma262/#sec-number-objects
+- uid: bigint
+  name: bigint
+  fullName: bigint
+  href: https://tc39.github.io/ecma262/#sec-bigint-objects
 - uid: string
   name: string
   fullName: string

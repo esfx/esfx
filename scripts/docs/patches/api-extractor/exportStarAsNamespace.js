@@ -1,7 +1,6 @@
 // "fixes" https://github.com/microsoft/rushstack/issues/1029
 
 // @ts-check
-// const ts = require("typescript");
 let ts = require("typescript");
 ts = tryRequire("@microsoft/api-extractor/node_modules/typescript") || ts;
 

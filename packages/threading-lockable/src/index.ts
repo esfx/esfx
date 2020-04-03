@@ -17,8 +17,24 @@
 import { isObject, isFunction, isDefined } from "@esfx/internal-guards";
 
 export interface Lockable {
+    /**
+     * Takes an exclusive lock.
+     *
+     * @param ms The number of milliseconds to wait for the lock.
+     * @returns `true` if the current thread now owns the lock; otherwise, `false`.
+     */
     [Lockable.lock](ms?: number): boolean;
+    /**
+     * Attempts to take an exclusive lock without waiting.
+     *
+     * @returns `true` if the current thread now owns the lock; otherwise, `false`.
+     */
     [Lockable.tryLock]?(): boolean;
+    /**
+     * Releases the exclusive lock.
+     *
+     * @returns `true` if the current thread previously owned the lock and the lock could be released; otherwise, `false`.
+     */
     [Lockable.unlock](): boolean;
 }
 

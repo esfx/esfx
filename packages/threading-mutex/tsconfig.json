@@ -6,7 +6,6 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../internal/threading" },
         { "path": "../../internal/ts-worker" },
         { "path": "../threading-lockable" },
         { "path": "../disposable" }

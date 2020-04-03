@@ -17,35 +17,43 @@
 /* @internal */
 export const enum SignalFlags {
     NonSignaled = 0,
-    Signaled = 1 << 0,
+    Unlocked = NonSignaled,
 
-    ManualReset = 1 << 1,
-    ManualResetExcludes = ~(ManualReset | Signaled | NonSignaled),
-    ManualResetSignaled = Signaled | ManualReset,
-    ManualResetNonSignaled = NonSignaled | ManualReset,
+    Signaled = 1,
+    Locked = Signaled,
 
-    AutoReset = 1 << 2,
-    AutoResetExcludes = ~(AutoReset | Signaled | NonSignaled),
-    AutoResetSignaled = Signaled | AutoReset,
-    AutoResetNonSignaled = NonSignaled | AutoReset,
+    InContention = 2,
 
-    Mutex = 1 << 3,
-    MutexExcludes = ~(Mutex | Signaled | NonSignaled),
-    MutexLocked = Signaled | Mutex,
-    MutexUnlocked = NonSignaled | Mutex,
+    // ManualReset = 1 << 16,
+    // ManualResetExcludes = ~(ManualReset | Signaled | NonSignaled),
+    // ManualResetSignaled = Signaled | ManualReset,
+    // ManualResetNonSignaled = NonSignaled | ManualReset,
 
-    ConditionVariable = 1 << 4,
-    ConditionVariableExcludes = ~(ConditionVariable),
+    // AutoReset = 1 << 17,
+    // AutoResetExcludes = ~(AutoReset | Signaled | NonSignaled),
+    // AutoResetSignaled = Signaled | AutoReset,
+    // AutoResetNonSignaled = NonSignaled | AutoReset,
 
-    Semaphore = 1 << 5,
-    SemaphoreExcludes = ~(Semaphore | Signaled | NonSignaled),
-    SemaphoreLocked = Signaled | Semaphore,
-    SemaphoreUnlocked = NonSignaled | Semaphore,
+    // Mutex = 1 << 18,
+    // MutexExcludes = ~(Mutex | Unlocked | Locked | InContention),
+    // MutexUnlocked = Mutex | Unlocked,
+    // MutexLocked = Mutex | Locked,
+    // MutexInContention = Mutex | InContention,
 
-    Countdown = 1 << 6,
-    CountdownExcludes = ~(Countdown | Signaled | NonSignaled),
-    CountdownSignaled = Signaled | Countdown,
-    CountdownNonSignaled = NonSignaled | Countdown,
+    // ConditionVariable = 1 << 19,
+    // ConditionVariableExcludes = ~(ConditionVariable),
+
+    // Semaphore = 1 << 20,
+    // SemaphoreExcludes = ~(Semaphore | Unlocked | Locked),
+    // SemaphoreUnlocked = Semaphore | Unlocked,
+    // SemaphoreLocked = Semaphore | Locked,
+
+    Countdown = 1 << 21,
+    CountdownExcludes = ~(Countdown | NonSignaled | Signaled),
+    CountdownNonSignaled = Countdown | NonSignaled,
+    CountdownSignaled = Countdown | Signaled,
+
+    // KindMask = ManualReset | AutoReset | Mutex | ConditionVariable | Semaphore | Countdown,
 }
 
 /* @internal */
@@ -69,13 +77,14 @@ export function waitOneArray(array: Int32Array, index: number, valueWhenNonSigna
 
 /* @internal */
 export function lockArray(array: Int32Array, index: number, valueWhenUnlocked: number, valueWhenLocked: number, ms = +Infinity) {
-    const start = Date.now();
+    const start = isFinite(ms) ? Date.now() : 0;
+    let timeout = ms;
     while (Atomics.compareExchange(array, index, valueWhenUnlocked, valueWhenLocked) !== valueWhenUnlocked) {
-        if (ms <= 0 || Atomics.wait(array, index, valueWhenLocked, ms) === "timed-out") {
+        if (timeout <= 0 || Atomics.wait(array, index, valueWhenLocked, timeout) === "timed-out") {
             return false;
         }
         if (isFinite(ms)) {
-            ms -= Date.now() - start;
+            timeout = ms - (Date.now() - start);
         }
     }
     return true;

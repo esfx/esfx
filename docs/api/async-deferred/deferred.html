@@ -91,7 +91,7 @@
   </h3>
   
   
-  <h4 id="_esfx_async_deferred_Deferred_constructor_1_" data-uid="@esfx/async-deferred!Deferred:constructor(1)">(constructor)()</h4>
+  <h4 id="_esfx_async_deferred_Deferred_constructor_1_" data-uid="@esfx/async-deferred!Deferred:constructor(1)">constructor()</h4>
   <div class="markdown level1 summary"><p>Initializes a new instance of the Deferred class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -99,6 +99,14 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">constructor();</code></pre>
   </div>
+  
+  
+  
+  
+  
+  
+  
+  
   <h3 id="properties">Properties
   </h3>
   
@@ -111,21 +119,19 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get callback(): T extends void ? (err: Error | null | undefined) =&gt; void : (err: Error | null | undefined, value: T) =&gt; void;</code></pre>
   </div>
+  
+  
+  
+  
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>T extends void ? (err: <span class="xref">Error</span> | null | undefined) =&gt; void : (err: <span class="xref">Error</span> | null | undefined, value: T) =&gt; void</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div>T extends void ? (err: <span class="xref">Error</span> | null | undefined) =&gt; void : (err: <span class="xref">Error</span> | null | undefined, value: T) =&gt; void</div>
+    <p>
+  </div>
+  
+  
+  
   
   
   <h4 id="_esfx_async_deferred_Deferred_promise_member" data-uid="@esfx/async-deferred!Deferred#promise:member">promise</h4>
@@ -136,21 +142,19 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get promise(): Promise&lt;T&gt;;</code></pre>
   </div>
+  
+  
+  
+  
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Promise</span>&lt;T&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;T&gt;</div>
+    <p>
+  </div>
+  
+  
+  
   
   
   <h4 id="_esfx_async_deferred_Deferred_reject_member" data-uid="@esfx/async-deferred!Deferred#reject:member">reject</h4>
@@ -161,21 +165,19 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get reject(): (reason: any) =&gt; void;</code></pre>
   </div>
+  
+  
+  
+  
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">(reason: any) =&gt; void</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div><span class="xref">(reason: any) =&gt; void</span></div>
+    <p>
+  </div>
+  
+  
+  
   
   
   <h4 id="_esfx_async_deferred_Deferred_resolve_member" data-uid="@esfx/async-deferred!Deferred#resolve:member">resolve</h4>
@@ -186,21 +188,19 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">get resolve(): (value?: T | PromiseLike&lt;T&gt; | undefined) =&gt; void;</code></pre>
   </div>
+  
+  
+  
+  
+  
   <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>(value?: T | <span class="xref">PromiseLike</span>&lt;T&gt; | undefined) =&gt; void</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="property">
+    <div>(value?: T | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | undefined) =&gt; void</div>
+    <p>
+  </div>
+  
+  
+  
   <h3 id="methods">Methods
   </h3>
   
@@ -213,56 +213,40 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">createCallback&lt;A extends any[]&gt;(selector: (...args: A) =&gt; T): (err: Error | null | undefined, ...args: A) =&gt; void;</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">(...args: A) =&gt; T</span></td>
-        <td><em>selector</em></td>
-        <td>
-          
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>(err: <span class="xref">Error</span> | null | undefined, ...args: A) =&gt; void</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+  
   <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><em>A</em></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="property">
+      <dl class="parameter">
+        <dt>A</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>selector</dt>
+        <dd><span class="xref">(...args: A) =&gt; T</span></dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div>(err: <span class="xref">Error</span> | null | undefined, ...args: A) =&gt; void</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
 </article>
           </div>
           
