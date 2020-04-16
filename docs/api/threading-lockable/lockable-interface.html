@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface Lockable
    | @esfx API Reference ">
-    <meta name="generator" content="docfx 2.46.0.0">
+    <meta name="generator" content="docfx 2.52.0.0">
     
     <link rel="shortcut icon" href="../../images/favicon-32x32.png">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -91,7 +91,8 @@
   
   
   <h4 id="_esfx_threading_lockable_Lockable__Lockable_lock__member_1_" data-uid="@esfx/threading-lockable!Lockable#[Lockable.lock]:member(1)">[Lockable.lock](ms)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Takes an exclusive lock.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -106,7 +107,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        
+        <p>The number of milliseconds to wait for the lock.</p>
+
         
       </p>
     </div>
@@ -114,7 +116,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p>
+    <p><p><code>true</code> if the current thread now owns the lock; otherwise, <code>false</code><!-- -->.</p>
+</p>
   </div>
   
   
@@ -124,7 +127,8 @@
   
   
   <h4 id="_esfx_threading_lockable_Lockable__Lockable_tryLock__member_1_" data-uid="@esfx/threading-lockable!Lockable#[Lockable.tryLock]:member(1)">[Lockable.tryLock]()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Attempts to take an exclusive lock without waiting.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -136,7 +140,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p>
+    <p><p><code>true</code> if the current thread now owns the lock; otherwise, <code>false</code><!-- -->.</p>
+</p>
   </div>
   
   
@@ -146,7 +151,8 @@
   
   
   <h4 id="_esfx_threading_lockable_Lockable__Lockable_unlock__member_1_" data-uid="@esfx/threading-lockable!Lockable#[Lockable.unlock]:member(1)">[Lockable.unlock]()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Releases the exclusive lock.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -158,7 +164,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p>
+    <p><p><code>true</code> if the current thread previously owned the lock and the lock could be released; otherwise, <code>false</code><!-- -->.</p>
+</p>
   </div>
   
   

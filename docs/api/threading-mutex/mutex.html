@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Mutex
    | @esfx API Reference ">
-    <meta name="generator" content="docfx 2.46.0.0">
+    <meta name="generator" content="docfx 2.52.0.0">
     
     <link rel="shortcut icon" href="../../images/favicon-32x32.png">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -161,7 +161,8 @@
   
   
   <h4 id="_esfx_threading_mutex_Mutex_buffer_member" data-uid="@esfx/threading-mutex!Mutex#buffer:member">buffer</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the <code>SharedArrayBuffer</code> for this mutex.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -183,7 +184,8 @@
   
   
   <h4 id="_esfx_threading_mutex_Mutex_byteLength_member" data-uid="@esfx/threading-mutex!Mutex#byteLength:member">byteLength</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the number of bytes occupied by this mutex in its buffer.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -205,7 +207,8 @@
   
   
   <h4 id="_esfx_threading_mutex_Mutex_byteOffset_member" data-uid="@esfx/threading-mutex!Mutex#byteOffset:member">byteOffset</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the byte offset of this mutex in its buffer.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -227,7 +230,8 @@
   
   
   <h4 id="_esfx_threading_mutex_Mutex_isLocked_member" data-uid="@esfx/threading-mutex!Mutex#isLocked:member">isLocked</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the mutex is currently locked.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -249,7 +253,8 @@
   
   
   <h4 id="_esfx_threading_mutex_Mutex_ownsLock_member" data-uid="@esfx/threading-mutex!Mutex#ownsLock:member">ownsLock</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether this instance of the mutex owns the lock.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -275,7 +280,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">static readonly SIZE = 12;</code></pre>
+    <pre><code class="lang-typeScript hljs">static readonly SIZE = 4;</code></pre>
   </div>
   
   
@@ -290,7 +295,9 @@
   
   
   <h4 id="_esfx_threading_mutex_Mutex__Disposable_dispose__member_1_" data-uid="@esfx/threading-mutex!Mutex#[Disposable.dispose]:member(1)">[Disposable.dispose]()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Releases the lock on the mutex (if this mutex owns the lock) and releases all resources
+for this mutex.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -389,7 +396,9 @@
   
   
   <h4 id="_esfx_threading_mutex_Mutex_close_member_1_" data-uid="@esfx/threading-mutex!Mutex#close:member(1)">close()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Releases the lock on the mutex (if this mutex owns the lock) and releases all resources
+for this mutex.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -411,7 +420,8 @@
   
   
   <h4 id="_esfx_threading_mutex_Mutex_lock_member_1_" data-uid="@esfx/threading-mutex!Mutex#lock:member(1)">lock(ms)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Blocks the current <code>Agent</code> until it can acquire a lock on the mutex.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -426,7 +436,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        
+        <p>The number of milliseconds to wait before the operation times out.</p>
+
         
       </p>
     </div>
@@ -434,7 +445,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p>
+    <p><p><code>true</code> if the lock was acquired within the provided timeout period; otherwise, <code>false</code><!-- -->.</p>
+</p>
   </div>
   
   
@@ -444,7 +456,8 @@
   
   
   <h4 id="_esfx_threading_mutex_Mutex_tryLock_member_1_" data-uid="@esfx/threading-mutex!Mutex#tryLock:member(1)">tryLock()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Attempts to acquire a lock on the mutex without blocking the current <code>Agent</code><!-- -->.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -456,7 +469,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p>
+    <p><p><code>true</code> if the lock was acquired successfully; otherwise, <code>false</code><!-- -->.</p>
+</p>
   </div>
   
   
@@ -466,7 +480,8 @@
   
   
   <h4 id="_esfx_threading_mutex_Mutex_unlock_member_1_" data-uid="@esfx/threading-mutex!Mutex#unlock:member(1)">unlock()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Releases the lock on the mutex allowing the next waiter to take the lock.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -478,7 +493,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p>
+    <p><p><code>true</code> if the lock was released successfully; otherwise, <code>false</code><!-- -->.</p>
+</p>
   </div>
   
   

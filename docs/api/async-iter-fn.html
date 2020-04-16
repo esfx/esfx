@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Package @esfx/async-iter-fn
    | @esfx API Reference ">
-    <meta name="generator" content="docfx 2.46.0.0">
+    <meta name="generator" content="docfx 2.52.0.0">
     
     <link rel="shortcut icon" href="../images/favicon-32x32.png">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -83,7 +83,36 @@
   <h1 id="_esfx_async_iter_fn_" data-uid="@esfx/async-iter-fn!" class="text-break">Package @esfx/async-iter-fn
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>An iteration and query API for ECMAScript iterables.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/iter-fn
+</code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_Bnc7DIrNHy">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_Bnc7DIrNHy_ts" role="tab" aria-controls="tabpanel_Bnc7DIrNHy_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_Bnc7DIrNHy_js" role="tab" aria-controls="tabpanel_Bnc7DIrNHy_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_Bnc7DIrNHy_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { map } from &quot;@esfx/iter-fn&quot;;
+const x = map([1, 2, 3], x =&gt; x * 2);
+x; // [2, 4, 6]
+</code></pre></section>
+<section id="tabpanel_Bnc7DIrNHy_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-ts">const { map } = require(&quot;@esfx/iter-fn&quot;);
+const x = map([1, 2, 3], x =&gt; x * 2);
+x; // [2, 4, 6]
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces
   </h3>
@@ -16293,6 +16322,9 @@ using the supplied callback.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/iter/docs-sources/overwrite/iter-fn.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class CountdownEvent
    | @esfx API Reference ">
-    <meta name="generator" content="docfx 2.46.0.0">
+    <meta name="generator" content="docfx 2.52.0.0">
     
     <link rel="shortcut icon" href="../../images/favicon-32x32.png">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -161,7 +161,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent_buffer_member" data-uid="@esfx/threading-countdown!CountdownEvent#buffer:member">buffer</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the <code>SharedArrayBuffer</code> for this object.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -183,7 +184,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent_byteLength_member" data-uid="@esfx/threading-countdown!CountdownEvent#byteLength:member">byteLength</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the number of bytes occupied by this object in its buffer.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -205,7 +207,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent_byteOffset_member" data-uid="@esfx/threading-countdown!CountdownEvent#byteOffset:member">byteOffset</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the byte offset of this object in its buffer.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -227,7 +230,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent_initialCount_member" data-uid="@esfx/threading-countdown!CountdownEvent#initialCount:member">initialCount</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the number of participants initially required to signal the event.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -249,7 +253,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent_isSet_member" data-uid="@esfx/threading-countdown!CountdownEvent#isSet:member">isSet</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the event is signaled (all participants are accounted for).</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -271,7 +276,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent_remainingCount_member" data-uid="@esfx/threading-countdown!CountdownEvent#remainingCount:member">remainingCount</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the number of remaining participants required to signal the event.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -312,7 +318,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent__Disposable_dispose__member_1_" data-uid="@esfx/threading-countdown!CountdownEvent#[Disposable.dispose]:member(1)">[Disposable.dispose]()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Releases all resources for this object.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -334,7 +341,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent_add_member_1_" data-uid="@esfx/threading-countdown!CountdownEvent#add:member(1)">add(count)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Adds one or more required participants to the event.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -367,7 +375,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent_close_member_1_" data-uid="@esfx/threading-countdown!CountdownEvent#close:member(1)">close()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Releases all resources for this object.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -389,7 +398,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent_reset_member_1_" data-uid="@esfx/threading-countdown!CountdownEvent#reset:member(1)">reset(count)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Resets the countdown to the specified count.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -404,7 +414,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        
+        <p>The new number of participants required. If this is <code>undefined</code><!-- -->, the current value of <code>initialCount</code> is used.</p>
+
         
       </p>
     </div>
@@ -422,7 +433,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent_signal_member_1_" data-uid="@esfx/threading-countdown!CountdownEvent#signal:member(1)">signal(count)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Signals a participant is ready, decrementing the number of remaining required participants by the provided value.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -437,7 +449,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        
+        <p>The number of participants to signal (default: <code>1</code><!-- -->).</p>
+
         
       </p>
     </div>
@@ -445,7 +458,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p>
+    <p><p><code>true</code> if all participants were accounted for and the event became signaled; otherwise, <code>false</code><!-- -->.</p>
+</p>
   </div>
   
   
@@ -455,7 +469,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent_tryAdd_member_1_" data-uid="@esfx/threading-countdown!CountdownEvent#tryAdd:member(1)">tryAdd(count)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Adds one or more required participants to the event if the event is not already signaled.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -478,7 +493,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p>
+    <p><p><code>true</code> if the participants were added; otherwise, <code>false</code><!-- -->.</p>
+</p>
   </div>
   
   
@@ -488,7 +504,8 @@
   
   
   <h4 id="_esfx_threading_countdown_CountdownEvent_wait_member_1_" data-uid="@esfx/threading-countdown!CountdownEvent#wait:member(1)">wait(ms)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Blocks the current thread until the countdown is set.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -503,7 +520,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        
+        <p>The number of milliseconds to wait.</p>
+
         
       </p>
     </div>
@@ -511,7 +529,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p>
+    <p><p><code>true</code> if the event was signaled before the timeout period elapsed; otherwise, <code>false</code><!-- -->.</p>
+</p>
   </div>
   
   

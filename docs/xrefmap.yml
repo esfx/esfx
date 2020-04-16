@@ -10457,6 +10457,10 @@ references:
   name: '@esfx/threading-semaphore'
   href: api/threading-semaphore.html
   fullName: '@esfx/threading-semaphore'
+- uid: '@esfx/threading-semaphore!Semaphore#[Disposable.dispose]:member(1)'
+  name: '[Disposable.dispose]()'
+  href: api/threading-semaphore/semaphore.html#_esfx_threading_semaphore_Semaphore__Disposable_dispose__member_1_
+  fullName: '[Disposable.dispose]()'
 - uid: '@esfx/threading-semaphore!Semaphore#buffer:member'
   name: buffer
   href: api/threading-semaphore/semaphore.html#_esfx_threading_semaphore_Semaphore_buffer_member
@@ -10469,6 +10473,10 @@ references:
   name: byteOffset
   href: api/threading-semaphore/semaphore.html#_esfx_threading_semaphore_Semaphore_byteOffset_member
   fullName: byteOffset
+- uid: '@esfx/threading-semaphore!Semaphore#close:member(1)'
+  name: close()
+  href: api/threading-semaphore/semaphore.html#_esfx_threading_semaphore_Semaphore_close_member_1_
+  fullName: close()
 - uid: '@esfx/threading-semaphore!Semaphore#count:member'
   name: count
   href: api/threading-semaphore/semaphore.html#_esfx_threading_semaphore_Semaphore_count_member

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ConditionVariable
    | @esfx API Reference ">
-    <meta name="generator" content="docfx 2.46.0.0">
+    <meta name="generator" content="docfx 2.52.0.0">
     
     <link rel="shortcut icon" href="../../images/favicon-32x32.png">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -132,7 +132,8 @@
   
   
   <h4 id="_esfx_threading_conditionvariable_ConditionVariable_buffer_member" data-uid="@esfx/threading-conditionvariable!ConditionVariable#buffer:member">buffer</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the <code>SharedArrayBuffer</code> for this object.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -154,7 +155,8 @@
   
   
   <h4 id="_esfx_threading_conditionvariable_ConditionVariable_byteLength_member" data-uid="@esfx/threading-conditionvariable!ConditionVariable#byteLength:member">byteLength</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the number of bytes occupied by this object in its buffer.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -176,7 +178,8 @@
   
   
   <h4 id="_esfx_threading_conditionvariable_ConditionVariable_byteOffset_member" data-uid="@esfx/threading-conditionvariable!ConditionVariable#byteOffset:member">byteOffset</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the byte offset of this object in its buffer.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -217,7 +220,8 @@
   
   
   <h4 id="_esfx_threading_conditionvariable_ConditionVariable__Disposable_dispose__member_1_" data-uid="@esfx/threading-conditionvariable!ConditionVariable#[Disposable.dispose]:member(1)">[Disposable.dispose]()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Releases the resources associated for this object.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -239,7 +243,8 @@
   
   
   <h4 id="_esfx_threading_conditionvariable_ConditionVariable_close_member_1_" data-uid="@esfx/threading-conditionvariable!ConditionVariable#close:member(1)">close()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Releases the resources associated for this object.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -261,7 +266,8 @@
   
   
   <h4 id="_esfx_threading_conditionvariable_ConditionVariable_notifyAll_member_1_" data-uid="@esfx/threading-conditionvariable!ConditionVariable#notifyAll:member(1)">notifyAll()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Notifies all waiting threads.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -273,7 +279,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
-    <p>
+    <p><p>The number of threads notified.</p>
+</p>
   </div>
   
   
@@ -283,7 +290,8 @@
   
   
   <h4 id="_esfx_threading_conditionvariable_ConditionVariable_notifyOne_member_1_" data-uid="@esfx/threading-conditionvariable!ConditionVariable#notifyOne:member(1)">notifyOne()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Notifies one waiting thread.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -295,7 +303,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p>
+    <p><p><code>true</code> if a thread was notified; otherwise, <code>false</code><!-- -->.</p>
+</p>
   </div>
   
   
@@ -305,7 +314,8 @@
   
   
   <h4 id="_esfx_threading_conditionvariable_ConditionVariable_wait_member_1_" data-uid="@esfx/threading-conditionvariable!ConditionVariable#wait:member(1)">wait(mutex, condition)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Blocks the current thread until the condition variable is notified.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -320,7 +330,8 @@
         <dd><a class="xref" href="../threading-lockable/lockable-interface.html#_esfx_threading_lockable_Lockable_interface">Lockable</a></dd>
       </dl>
       <p>
-        
+        <p>A lock used to synchronize access to the condition variable.</p>
+
         
       </p>
     </div>
@@ -330,7 +341,8 @@
         <dd><span class="xref">() =&gt; boolean</span></dd>
       </dl>
       <p>
-        
+        <p>An optional condition to wait for.</p>
+
         
       </p>
     </div>
@@ -338,7 +350,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p>
+    <p><p><code>true</code> if the condition variable was notified; otherwise, <code>false</code><!-- -->.</p>
+</p>
   </div>
   
   
@@ -348,7 +361,9 @@
   
   
   <h4 id="_esfx_threading_conditionvariable_ConditionVariable_waitFor_member_1_" data-uid="@esfx/threading-conditionvariable!ConditionVariable#waitFor:member(1)">waitFor(mutex, ms, condition)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Blocks the current thread until the condition variable is notified or after the
+specified timeout has elapsed.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -363,7 +378,8 @@
         <dd><a class="xref" href="../threading-lockable/lockable-interface.html#_esfx_threading_lockable_Lockable_interface">Lockable</a></dd>
       </dl>
       <p>
-        
+        <p>A lock used to synchronize access to the condition variable.</p>
+
         
       </p>
     </div>
@@ -373,7 +389,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        
+        <p>The number of milliseconds to wait.</p>
+
         
       </p>
     </div>
@@ -383,7 +400,8 @@
         <dd><span class="xref">() =&gt; boolean</span></dd>
       </dl>
       <p>
-        
+        <p>An optional condition to wait for.</p>
+
         
       </p>
     </div>
@@ -391,7 +409,8 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p>
+    <p><p><code>true</code> if the condition variable was notified prior to the timeout period elapsing; otherwise, <code>false</code><!-- -->.</p>
+</p>
   </div>
   
   
