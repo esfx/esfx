@@ -31,8 +31,8 @@ async function main() {
     await stack.pop(); // 1
 
     // take two more pending items from the stack
-    const p3 = stack.get();
-    const p4 = stack.get();
+    const p3 = stack.pop();
+    const p4 = stack.pop();
 
     // put two more items on the stack
     stack.put(3);
