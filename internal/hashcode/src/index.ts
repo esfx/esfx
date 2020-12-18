@@ -83,6 +83,7 @@ function hashBuffer(buffer: Buffer, seed: number) {
 }
 
 function hashStringWithSeed(x: string, encoding: string, seed: number) {
+    if (!Buffer.isEncoding(encoding)) throw new RangeError(`Invalid encoding: ${encoding}`);
     return hashBuffer(Buffer.from(x, encoding), seed);
 }
 

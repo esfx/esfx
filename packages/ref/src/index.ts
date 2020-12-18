@@ -36,15 +36,15 @@ interface ReferenceData<T> {
     set?: (value: T) => void;
 }
 
-const refPrototype: Reference<unknown> = {
-    get value(this: InternalReference<unknown>) {
+const refPrototype: Reference<unknown> & ThisType<InternalReference<unknown>> = {
+    get value() {
         const data = this[refData];
         if (!data) throw new ReferenceError("Object is not a Reference.");
 
         const { get } = data;
         return get();
     },
-    set value(this: InternalReference<unknown>, _: unknown) {
+    set value(_: unknown) {
         const data = this[refData];
         if (!data) throw new ReferenceError("Object is not a Reference.");
 

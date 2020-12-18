@@ -176,7 +176,7 @@ export class Event<F extends (...args: any[]) => void> {
     private [symContext]: EventContext<F>;
 
     private constructor(context: EventContext<F>) {
-        const { Event: self }: { Event: Event<F> } = { Event: function (listener: EventListener<F>) { return self.addListener(listener); } as Event<F> };
+        const self = function Event(listener: EventListener<F>) { return self.addListener(listener); } as Event<F>;
         Object.setPrototypeOf(self, new.target.prototype);
         self[symContext] = context;
         return self;

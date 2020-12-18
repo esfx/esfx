@@ -64,8 +64,8 @@ export class Worker extends EventEmitter {
         this[kWorker].postMessage(value, transferList);
     }
 
-    terminate(callback?: (err: any, exitCode: number) => void): void {
-        this[kWorker].terminate(callback);
+    terminate(): Promise<number> {
+        return this[kWorker].terminate();
     }
 
     ref() {

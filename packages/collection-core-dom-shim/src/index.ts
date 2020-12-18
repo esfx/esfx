@@ -26,7 +26,8 @@ const methodBase: PropertyDescriptor = { ...accessorBase, writable: true };
 
 // Collections
 
-declare global { interface AudioTrackList extends ReadonlyIndexedCollection<AudioTrack> {} }
+// declare global { interface AudioTrackList extends ReadonlyIndexedCollection<AudioTrack> {} }
+declare var AudioTrackList: any;
 if (typeof AudioTrackList === "function") makeReadonlyIndexedCollection(AudioTrackList.prototype);
 
 declare global { interface CSSRuleList extends ReadonlyIndexedCollection<CSSRule> {} }
@@ -124,7 +125,8 @@ if (typeof TextTrackList === "function") makeReadonlyIndexedCollection(TextTrack
 declare global { interface TouchList extends ReadonlyIndexedCollection<Touch> {} }
 if (typeof TouchList === "function") makeReadonlyIndexedCollection(TouchList.prototype);
 
-declare global { interface VideoTrackList extends ReadonlyIndexedCollection<VideoTrack> {} }
+// declare global { interface VideoTrackList extends ReadonlyIndexedCollection<VideoTrack> {} }
+declare var VideoTrackList: any;
 if (typeof VideoTrackList === "function") makeReadonlyIndexedCollection(VideoTrackList.prototype);
 
 // Maps

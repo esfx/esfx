@@ -18,7 +18,7 @@ import { toEqualSequence } from "./toEqualSequence";
 import { toEqualSequenceAsync } from "./toEqualSequenceAsync";
 import { toStartWithSequence } from "./toStartWithSequence";
 import { toStartWithSequenceAsync } from "./toStartWithSequenceAsync";
-import { IteratedType, AsyncIteratedType } from "@esfx/type-model";
+import { IteratedType, AsyncIteratedType, PromisedType } from "@esfx/type-model";
 
 expect.extend({
     toEqualSequence,
@@ -40,21 +40,31 @@ declare global {
         // }
         // interface Matchers<R, V = R> {
         interface Matchers<R> {
-            toEqualSequence<T>(this: Matchers<Iterable<T>>, expected: Iterable<T>): R;
-            toEqualSequence<T>(this: Matchers<Promise<Iterable<T>>>, expected: Iterable<T>): R;
-            toEqualSequence<T>(this: Matchers<Promise<Promise<Iterable<T>>>>, expected: Iterable<T>): R;
+            toEqualSequence<T>(this: Matchers<void, Iterable<T>>, expected: Iterable<T>): R;
+            toEqualSequence<T>(this: Matchers<Promise<void>, Iterable<T> | PromiseLike<Iterable<T>>>, expected: Iterable<T>): R;
+            // toEqualSequence<T>(this: JestMatchers<Matchers<Iterable<T>>>, expected: Iterable<T>): R;
+            // toEqualSequence<T>(this: JestMatchers<Matchers<Promise<Iterable<T>>>>, expected: Iterable<T>): R;
+            // toEqualSequence<T>(this: JestMatchers<Matchers<Promise<Promise<Iterable<T>>>>>, expected: Iterable<T>): R;
             // toEqualSequence(expected: Iterable<IteratedType<V>>): R;
-            toStartWithSequence<T>(this: Matchers<Iterable<T>>, expected: Iterable<T>): R;
-            toStartWithSequence<T>(this: Matchers<Promise<Iterable<T>>>, expected: Iterable<T>): R;
-            toStartWithSequence<T>(this: Matchers<Promise<Promise<Iterable<T>>>>, expected: Iterable<T>): R;
+            toStartWithSequence<T>(this: Matchers<void, Iterable<T>>, expected: Iterable<T>): R;
+            toStartWithSequence<T>(this: Matchers<Promise<void>, Iterable<T> | PromiseLike<Iterable<T>>>, expected: Iterable<T>): R;
+            // toStartWithSequence<T>(this: JestMatchers<Matchers<Iterable<T>>>, expected: Iterable<T>): R;
+            // toStartWithSequence<T>(this: JestMatchers<Matchers<Promise<Iterable<T>>>>, expected: Iterable<T>): R;
+            // toStartWithSequence<T>(this: JestMatchers<Matchers<Promise<Promise<Iterable<T>>>>>, expected: Iterable<T>): R;
             // toStartWithSequence(expected: Iterable<IteratedType<V>>): R;
-            toEqualSequenceAsync<T>(this: Matchers<AsyncIterable<T> | Iterable<PromiseLike<T> | T>>, expected: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): R;
-            toEqualSequenceAsync<T>(this: Matchers<Promise<AsyncIterable<T> | Iterable<PromiseLike<T> | T>>>, expected: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): R;
-            toEqualSequenceAsync<T>(this: Matchers<Promise<Promise<AsyncIterable<T> | Iterable<PromiseLike<T> | T>>>>, expected: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): R;
+
+            toEqualSequenceAsync<T>(this: Matchers<void, AsyncIterable<T> | Iterable<T | PromiseLike<T>>>, expected: AsyncIterable<T> | Iterable<T | PromiseLike<T>>): Promise<R>;
+            toEqualSequenceAsync<T>(this: Matchers<Promise<void>, AsyncIterable<T> | Iterable<T | PromiseLike<T>> | PromiseLike<AsyncIterable<T> | Iterable<T | PromiseLike<T>>>>, expected: AsyncIterable<T> | Iterable<T | PromiseLike<T>>): R;
+            // toEqualSequenceAsync<T>(this: JestMatchers<Matchers<AsyncIterable<T> | Iterable<PromiseLike<T> | T>>>, expected: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): R;
+            // toEqualSequenceAsync<T>(this: JestMatchers<Matchers<Promise<AsyncIterable<T> | Iterable<PromiseLike<T> | T>>>>, expected: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): R;
+            // toEqualSequenceAsync<T>(this: JestMatchers<Matchers<Promise<Promise<AsyncIterable<T> | Iterable<PromiseLike<T> | T>>>>>, expected: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): R;
             // toEqualSequenceAsync(expected: AsyncIterable<AsyncIteratedType<V> | IteratedType<V>> | Iterable<PromiseLike<AsyncIteratedType<V> | IteratedType<V>> | AsyncIteratedType<V> | IteratedType<V>>): R extends PromiseLike<any> ? R : Promise<V>;
-            toStartWithSequenceAsync<T>(this: Matchers<AsyncIterable<T> | Iterable<PromiseLike<T> | T>>, expected: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): R;
-            toStartWithSequenceAsync<T>(this: Matchers<Promise<AsyncIterable<T> | Iterable<PromiseLike<T> | T>>>, expected: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): R;
-            toStartWithSequenceAsync<T>(this: Matchers<Promise<Promise<AsyncIterable<T> | Iterable<PromiseLike<T> | T>>>>, expected: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): R;
+
+            toStartWithSequenceAsync<T>(this: Matchers<void, AsyncIterable<T> | Iterable<T | PromiseLike<T>>>, expected: AsyncIterable<T> | Iterable<T | PromiseLike<T>>): Promise<R>;
+            toStartWithSequenceAsync<T>(this: Matchers<Promise<void>, AsyncIterable<T> | Iterable<T | PromiseLike<T>> | PromiseLike<AsyncIterable<T> | Iterable<T | PromiseLike<T>>>>, expected: AsyncIterable<T> | Iterable<T | PromiseLike<T>>): R;
+            // toStartWithSequenceAsync<T>(this: JestMatchers<Matchers<AsyncIterable<T> | Iterable<PromiseLike<T> | T>>>, expected: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): R;
+            // toStartWithSequenceAsync<T>(this: JestMatchers<Matchers<Promise<AsyncIterable<T> | Iterable<PromiseLike<T> | T>>>>, expected: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): R;
+            // toStartWithSequenceAsync<T>(this: JestMatchers<Matchers<Promise<Promise<AsyncIterable<T> | Iterable<PromiseLike<T> | T>>>>>, expected: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): R;
             // toStartWithSequenceAsync(expected: AsyncIterable<AsyncIteratedType<V> | IteratedType<V>> | Iterable<PromiseLike<AsyncIteratedType<V> | IteratedType<V>> | AsyncIteratedType<V> | IteratedType<V>>): R extends PromiseLike<any> ? R : Promise<V>;
         }
     }
