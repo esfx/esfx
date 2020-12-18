@@ -6175,14 +6175,6 @@ pretty-hrtime@^1.0.0:
   resolved "https://registry.yarnpkg.com/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
   integrity sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=
 
-prex@^0.4.5:
-  version "0.4.6"
-  resolved "https://registry.yarnpkg.com/prex/-/prex-0.4.6.tgz#eb2f793a480dcaca8b59139fb8c87da7b87f6019"
-  integrity sha512-QQhbvA94dOqgTN4VNlQ4DI1A8mpxpf4iMLex9BEWYB4R6EUxf3MRQGKoVq/onYxZ+oDFzCV5/zgY73a3jVwbKA==
-  dependencies:
-    "@esfx/cancelable" "^1.0.0-pre.0"
-    "@esfx/disposable" "^1.0.0-pre.0"
-
 process-nextick-args@^2.0.0, process-nextick-args@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"

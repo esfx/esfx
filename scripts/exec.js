@@ -1,6 +1,5 @@
 const { spawn } = require("child_process");
 const { default: chalk } = require("chalk");
-const { CancellationToken, CancelError } = require("prex");
 const log = require("fancy-log");
 const isWindows = /^win/.test(process.platform);
 
@@ -10,27 +9,17 @@ const isWindows = /^win/.test(process.platform);
  * @param {object} options
  * @param {boolean} [options.ignoreExitCode]
  * @param {boolean} [options.verbose]
- * @param {CancellationToken} [options.cancelToken]
  * @param {string} [options.cwd]
  * @returns {Promise<{exitCode: number}>}
  */
-function exec(cmd, args = [], { ignoreExitCode, verbose, cancelToken = CancellationToken.none, cwd } = {}) {
+function exec(cmd, args = [], { ignoreExitCode, verbose, cwd } = {}) {
     return new Promise((resolve, reject) => {
-        cancelToken.throwIfCancellationRequested();
         const shell = isWindows ? "cmd" : "/bin/sh";
         const shellArgs = isWindows ? ["/c", cmd.includes(" ") >= 0 ? `"${cmd}"` : cmd, ...args] : ["-c", `${cmd} ${args.join(" ")}`];
         if (verbose) log(`> ${chalk.green(cmd)} ${args.join(" ")}`);
         const child = spawn(shell, shellArgs, { stdio: "inherit", cwd, windowsVerbatimArguments: true });
-        const reg = cancelToken.register(() => {
-            child.removeAllListeners();
-            if (verbose) log(`${chalk.red("killing")} '${chalk.green(cmd)} ${args.join(" ")}'...`);
-            child.kill("SIGINT");
-            child.kill("SIGTERM");
-            reject(new CancelError());
-        });
         child.on("exit", (exitCode) => {
             child.removeAllListeners();
-            reg.unregister();
             if (exitCode === 0 || ignoreExitCode) {
                 resolve({ exitCode });
             }
@@ -40,7 +29,6 @@ function exec(cmd, args = [], { ignoreExitCode, verbose, cancelToken = Cancellat
         });
         child.on("error", error => {
             child.removeAllListeners();
-            reg.unregister();
             reject(error);
         });
     });
