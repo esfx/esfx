@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-sleep",
-    "version": "1.0.0-pre.9",
+    "version": "1.0.0-pre.16",
     "description": "Provides a 'sleep' function which causes the current execution thread to sleep until the timeout expires",
     "main": "dist",
     "types": "dist",

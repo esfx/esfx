@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-jest-sequence",
-    "version": "1.0.0-pre.15",
+    "version": "1.0.0-pre.16",
     "description": "This package provides internal utilities for '@esfx' and is not intended for use in user-code.",
     "main": "dist",
     "types": "dist",
@@ -14,7 +14,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/type-model": "^1.0.0-pre.11",
+        "@esfx/type-model": "^1.0.0-pre.16",
         "expect": "^24.9.0",
         "jest-matcher-utils": "^24.9.0"
     },

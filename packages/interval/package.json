@@ -1,6 +1,6 @@
 {
     "name": "@esfx/interval",
-    "version": "1.0.0-pre.15",
+    "version": "1.0.0-pre.16",
     "description": "An implementation of Index and Interval types for ECMAScript",
     "main": "dist",
     "types": "dist",
@@ -15,11 +15,10 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/internal-assert": "^1.0.0-pre.15",
-        "@esfx/internal-guards": "^1.0.0-pre.11",
-        "@esfx/equatable": "^1.0.0-pre.13"
+        "@esfx/equatable": "^1.0.0-pre.16",
+        "@esfx/internal-assert": "^1.0.0-pre.16",
+        "@esfx/internal-guards": "^1.0.0-pre.16"
     },
-
     "publishConfig": {
         "access": "public"
     }

@@ -1,6 +1,6 @@
 {
     "name": "@esfx/decorators-stage1-core",
-    "version": "1.0.0-pre.11",
+    "version": "1.0.0-pre.16",
     "description": "A low-level API for working with ECMAScript Stage 1 Decorators.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,8 +14,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.11",
-        "@esfx/type-model": "^1.0.0-pre.11",
+        "@esfx/internal-guards": "^1.0.0-pre.16",
+        "@esfx/type-model": "^1.0.0-pre.16",
         "tslib": "^1.9.3"
     },
     "publishConfig": {

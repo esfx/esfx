@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-guards",
-    "version": "1.0.0-pre.11",
+    "version": "1.0.0-pre.16",
     "description": "This package provides internal utilities for @esfx and is not intended for use in user-code.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
     },
     "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b",
     "dependencies": {
-        "@esfx/type-model": "^1.0.0-pre.11",
+        "@esfx/type-model": "^1.0.0-pre.16",
         "tslib": "^1.9.3"
     }
 }
