@@ -10,7 +10,7 @@
         "./": "./dist/"
     },
     "scripts": {
-        "postinstall": "generate-export-map"
+        "prepare": "generate-export-map"
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
