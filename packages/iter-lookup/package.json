@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-lookup",
-    "version": "1.0.0-pre.17",
+    "version": "1.0.0-pre.18",
     "description": "A collection class used to map and look up iterables related to a key.",
     "main": "dist",
     "types": "dist",
@@ -21,7 +21,7 @@
         "@esfx/collections-hashmap": "^1.0.0-pre.17",
         "@esfx/equatable": "^1.0.0-pre.17",
         "@esfx/internal-assert": "^1.0.0-pre.17",
-        "@esfx/iter-grouping": "^1.0.0-pre.17",
+        "@esfx/iter-grouping": "^1.0.0-pre.18",
         "tslib": "^2.1.0"
     },
     "publishConfig": {

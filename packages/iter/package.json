@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter",
-    "version": "1.0.0-pre.17",
+    "version": "1.0.0-pre.18",
     "description": "An iteration and query API for ECMAScript iterables.",
     "types": "index",
     "main": "dist",
@@ -33,13 +33,13 @@
         "@esfx/internal-assert": "^1.0.0-pre.17",
         "@esfx/internal-binarysearch": "^1.0.0-pre.17",
         "@esfx/internal-guards": "^1.0.0-pre.17",
-        "@esfx/iter-fn": "^1.0.0-pre.17",
-        "@esfx/iter-grouping": "^1.0.0-pre.17",
+        "@esfx/iter-fn": "^1.0.0-pre.18",
+        "@esfx/iter-grouping": "^1.0.0-pre.18",
         "@esfx/iter-hierarchy": "^1.0.0-pre.17",
-        "@esfx/iter-lookup": "^1.0.0-pre.17",
+        "@esfx/iter-lookup": "^1.0.0-pre.18",
         "@esfx/iter-ordered": "^1.0.0-pre.17",
         "@esfx/iter-page": "^1.0.0-pre.17",
-        "@esfx/iter-query": "^1.0.0-pre.17",
+        "@esfx/iter-query": "^1.0.0-pre.18",
         "tslib": "^2.1.0"
     },
     "publishConfig": {
