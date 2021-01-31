@@ -1,6 +1,6 @@
 {
     "name": "@esfx/fn",
-    "version": "1.0.0-pre.16",
+    "version": "1.0.0-pre.17",
     "description": "Common utility functions.",
     "main": "dist",
     "types": "dist",
@@ -24,7 +24,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.0.0-pre.16",
+        "@esfx/equatable": "^1.0.0-pre.17",
         "tslib": "^2.1.0"
     },
     "publishConfig": {

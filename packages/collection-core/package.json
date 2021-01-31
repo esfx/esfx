@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collection-core",
-    "version": "1.0.0-pre.16",
+    "version": "1.0.0-pre.17",
     "description": "A low-level Symbol-based API for defining common collection behaviors.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,8 +14,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/internal-deprecate": "^1.0.0-pre.16",
-        "@esfx/internal-guards": "^1.0.0-pre.16"
+        "@esfx/internal-deprecate": "^1.0.0-pre.17",
+        "@esfx/internal-guards": "^1.0.0-pre.17"
     },
     "publishConfig": {
         "access": "public"

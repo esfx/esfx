@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections-hashmap",
-    "version": "1.0.0-pre.16",
+    "version": "1.0.0-pre.17",
     "description": "Provides 'HashMap', a collection class that utilizes '@esfx/collection-core' and '@esfx/equatable'.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,10 +14,10 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.0.0-pre.16",
-        "@esfx/equatable": "^1.0.0-pre.16",
-        "@esfx/internal-collections-hash": "^1.0.0-pre.16",
-        "@esfx/internal-guards": "^1.0.0-pre.16"
+        "@esfx/collection-core": "^1.0.0-pre.17",
+        "@esfx/equatable": "^1.0.0-pre.17",
+        "@esfx/internal-collections-hash": "^1.0.0-pre.17",
+        "@esfx/internal-guards": "^1.0.0-pre.17"
     },
     "publishConfig": {
         "access": "public"

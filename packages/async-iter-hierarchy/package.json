@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-hierarchy",
-    "version": "1.0.0-pre.16",
+    "version": "1.0.0-pre.17",
     "description": "A Symbol-based API for defining an ECMAScript AsyncIterable with an inherent hierarchy.",
     "main": "dist",
     "types": "dist",
@@ -15,14 +15,14 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-iter-fromsync": "^1.0.0-pre.16",
-        "@esfx/async-iter-ordered": "^1.0.0-pre.16",
-        "@esfx/async-iter-ordered-fromsync": "^1.0.0-pre.16",
-        "@esfx/equatable": "^1.0.0-pre.16",
-        "@esfx/internal-assert": "^1.0.0-pre.16",
-        "@esfx/internal-guards": "^1.0.0-pre.16",
-        "@esfx/iter-hierarchy": "^1.0.0-pre.16",
-        "@esfx/iter-ordered": "^1.0.0-pre.16",
+        "@esfx/async-iter-fromsync": "^1.0.0-pre.17",
+        "@esfx/async-iter-ordered": "^1.0.0-pre.17",
+        "@esfx/async-iter-ordered-fromsync": "^1.0.0-pre.17",
+        "@esfx/equatable": "^1.0.0-pre.17",
+        "@esfx/internal-assert": "^1.0.0-pre.17",
+        "@esfx/internal-guards": "^1.0.0-pre.17",
+        "@esfx/iter-hierarchy": "^1.0.0-pre.17",
+        "@esfx/iter-ordered": "^1.0.0-pre.17",
         "tslib": "^2.1.0"
     },
     "publishConfig": {

@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-integers",
-    "version": "1.0.0-pre.16",
+    "version": "1.0.0-pre.17",
     "description": "This package provides internal utilities for @esfx and is not intended for use in user-code.",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -16,7 +16,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b",
-    "dependencies": {
-    }
+    "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b"
 }

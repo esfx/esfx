@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-threading",
-    "version": "1.0.0-pre.16",
+    "version": "1.0.0-pre.17",
     "description": "This package provides internal utilities for '@esfx' and is not intended for use in user-code.",
     "main": "dist",
     "types": "dist",
@@ -12,8 +12,6 @@
     },
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
-    },
-    "dependencies": {
     },
     "publishConfig": {
         "access": "public"

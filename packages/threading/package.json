@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading",
-    "version": "1.0.0-pre.16",
+    "version": "1.0.0-pre.17",
     "description": "Thread synchronization primitives for use with Workers.",
     "main": "dist",
     "types": "dist",
@@ -14,15 +14,15 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/threading-autoresetevent": "^1.0.0-pre.16",
-        "@esfx/threading-conditionvariable": "^1.0.0-pre.16",
-        "@esfx/threading-countdown": "^1.0.0-pre.16",
-        "@esfx/threading-lockable": "^1.0.0-pre.16",
-        "@esfx/threading-manualresetevent": "^1.0.0-pre.16",
-        "@esfx/threading-mutex": "^1.0.0-pre.16",
-        "@esfx/threading-semaphore": "^1.0.0-pre.16",
-        "@esfx/threading-sleep": "^1.0.0-pre.16",
-        "@esfx/threading-spinwait": "^1.0.0-pre.16",
+        "@esfx/threading-autoresetevent": "^1.0.0-pre.17",
+        "@esfx/threading-conditionvariable": "^1.0.0-pre.17",
+        "@esfx/threading-countdown": "^1.0.0-pre.17",
+        "@esfx/threading-lockable": "^1.0.0-pre.17",
+        "@esfx/threading-manualresetevent": "^1.0.0-pre.17",
+        "@esfx/threading-mutex": "^1.0.0-pre.17",
+        "@esfx/threading-semaphore": "^1.0.0-pre.17",
+        "@esfx/threading-sleep": "^1.0.0-pre.17",
+        "@esfx/threading-spinwait": "^1.0.0-pre.17",
         "tslib": "^2.1.0"
     },
     "publishConfig": {

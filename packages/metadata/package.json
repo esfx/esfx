@@ -1,6 +1,6 @@
 {
     "name": "@esfx/metadata",
-    "version": "1.0.0-pre.16",
+    "version": "1.0.0-pre.17",
     "description": "This package provides an API for defining metadata about an object.",
     "main": "index.js",
     "types": "index.d.ts",
@@ -14,8 +14,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/decorators-stage1-core": "^1.0.0-pre.16",
-        "@esfx/internal-guards": "^1.0.0-pre.16"
+        "@esfx/decorators-stage1-core": "^1.0.0-pre.17",
+        "@esfx/internal-guards": "^1.0.0-pre.17"
     },
     "publishConfig": {
         "access": "public"

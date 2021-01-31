@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-grouping",
-    "version": "1.0.0-pre.16",
+    "version": "1.0.0-pre.17",
     "description": "",
     "main": "dist",
     "types": "dist",
@@ -22,8 +22,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/internal-assert": "^1.0.0-pre.16",
-        "@esfx/iter-hierarchy": "^1.0.0-pre.16",
+        "@esfx/internal-assert": "^1.0.0-pre.17",
+        "@esfx/iter-hierarchy": "^1.0.0-pre.17",
         "tslib": "^2.1.0"
     },
     "publishConfig": {
