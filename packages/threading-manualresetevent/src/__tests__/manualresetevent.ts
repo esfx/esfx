@@ -1,8 +1,10 @@
 import { ManualResetEvent } from "..";
 import { Worker } from "@esfx/internal-ts-worker";
 
-it("test", () => new Promise((resolve, reject) => {
-    jest.setTimeout(10000);
+it("test", () => new Promise<void>((resolve, reject) => {
+    // NOTE: We need to give adequate time here for ts-node to parse/evaulate the dependency
+    // graph.
+    jest.setTimeout(20000);
     const event = new ManualResetEvent();
     const data = new Int32Array(new SharedArrayBuffer(4));
     const workerScript = `

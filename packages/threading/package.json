@@ -23,7 +23,7 @@
         "@esfx/threading-semaphore": "^1.0.0-pre.16",
         "@esfx/threading-sleep": "^1.0.0-pre.16",
         "@esfx/threading-spinwait": "^1.0.0-pre.16",
-        "tslib": "^1.9.3"
+        "tslib": "^2.1.0"
     },
     "publishConfig": {
         "access": "public"

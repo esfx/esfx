@@ -44,7 +44,7 @@ import { Tag } from "@esfx/internal-tag";
 @Tag()
 export class Deferred<T> {
     private _promise: Promise<T>;
-    private _resolve!: (value?: PromiseLike<T> | T) => void;
+    private _resolve!: (value: PromiseLike<T> | T) => void;
     private _reject!: (reason: any) => void;
     private _callback?: (err: Error | null | undefined, value: T) => void;
 

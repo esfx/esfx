@@ -20,7 +20,7 @@
         "@esfx/collections-multimap": "^1.0.0-pre.16",
         "@esfx/collections-sortedmap": "^1.0.0-pre.16",
         "@esfx/collections-sortedset": "^1.0.0-pre.16",
-        "tslib": "^1.9.3"
+        "tslib": "^2.1.0"
     },
     "publishConfig": {
         "access": "public"

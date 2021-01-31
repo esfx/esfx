@@ -60,7 +60,7 @@ function getSource<T>(source: AsyncIterable<T>): AsyncIterable<T>;
 function getSource<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncIterable<T> | Iterable<PromiseLike<T> | T>;
 function getSource<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncIterable<T> | Iterable<PromiseLike<T> | T> {
     if (source instanceof AsyncQuery) {
-        return source[kSource];
+        return (source as AsyncQuery<T>)[kSource];
     }
     return source;
 }
@@ -121,7 +121,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
     static from<T>(source: AsyncOrderedIterable<T> | OrderedIterable<T>): AsyncOrderedQuery<T>;
     static from<T extends readonly unknown[] | []>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncQuery<T>;
     static from<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncQuery<T>;
-    static from<TNode, T extends TNode>(source: AsyncIterable<T> | Iterable<T>, provider?: HierarchyProvider<TNode>): AsyncQuery<T> {
+    static from(source: AsyncIterable<any> | Iterable<any>, provider?: HierarchyProvider<any>): AsyncQuery<any> {
         assert.mustBeAsyncOrSyncIterableObject(source, "source");
         assert.mustBeTypeOrUndefined(HierarchyProvider.hasInstance, provider, "provider");
         if (provider) source = fn.toHierarchyAsync(source, provider);

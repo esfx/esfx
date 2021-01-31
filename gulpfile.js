@@ -85,7 +85,7 @@ const verify = () => {
 };
 gulp.task("verify", verify);
 
-gulp.task("default", gulp.series(verify, build, test));
+gulp.task("default", gulp.series(build, verify, test));
 
 function makeProjects(projects) {
     const builders = [];

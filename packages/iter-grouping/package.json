@@ -23,7 +23,8 @@
     },
     "dependencies": {
         "@esfx/internal-assert": "^1.0.0-pre.16",
-        "@esfx/iter-hierarchy": "^1.0.0-pre.16"
+        "@esfx/iter-hierarchy": "^1.0.0-pre.16",
+        "tslib": "^2.1.0"
     },
     "publishConfig": {
         "access": "public"

@@ -21,7 +21,6 @@
         "@esfx/disposable": "^1.0.0-pre.16",
         "@esfx/internal-deprecate": "^1.0.0-pre.16",
         "@esfx/internal-guards": "^1.0.0-pre.16",
-        "@esfx/internal-tag": "^1.0.0-pre.6",
-        "tslib": "^1.9.3"
+        "@esfx/internal-tag": "^1.0.0-pre.6"
     }
 }

@@ -17,7 +17,7 @@
         "@esfx/internal-guards": "^1.0.0-pre.16",
         "@esfx/metadata": "^1.0.0-pre.16",
         "@esfx/metadata-shim": "^1.0.0-pre.16",
-        "tslib": "^1.9.3"
+        "tslib": "^2.1.0"
     },
     "publishConfig": {
         "access": "public"

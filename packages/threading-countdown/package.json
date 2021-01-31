@@ -18,8 +18,7 @@
         "@esfx/internal-integers": "^1.0.0-pre.16",
         "@esfx/internal-threading": "^1.0.0-pre.16",
         "@esfx/threading-manualresetevent": "^1.0.0-pre.16",
-        "@esfx/threading-spinwait": "^1.0.0-pre.16",
-        "tslib": "^1.9.3"
+        "@esfx/threading-spinwait": "^1.0.0-pre.16"
     },
     "devDependencies": {
         "@esfx/internal-ts-worker": "^1.0.0-pre.16"

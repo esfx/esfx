@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import * as Murmur3 from '@esfx/internal-murmur3';
+import { createSeed, hash } from '@esfx/internal-murmur3';
 
 interface Counter { next: number; }
 let weakPrototypeCounters: WeakMap<object, Counter> | undefined;
@@ -29,11 +29,11 @@ const minInt32 = ~maxInt32;
 const maxUint32 = (2 ** 32) - 1;
 const minUint32 = 0;
 const float64View = new DataView(new ArrayBuffer(8));
-const defaultObjectSeed = Murmur3.createSeed();
-const defaultStringSeed = Murmur3.createSeed();
-const defaultLocalSymbolSeed = Murmur3.createSeed();
-const defaultGlobalSymbolSeed = Murmur3.createSeed();
-const defaultBigIntSeed = Murmur3.createSeed();
+const defaultObjectSeed = createSeed();
+const defaultStringSeed = createSeed();
+const defaultLocalSymbolSeed = createSeed();
+const defaultGlobalSymbolSeed = createSeed();
+const defaultBigIntSeed = createSeed();
 let objectSeed = defaultObjectSeed;
 let stringSeed = defaultStringSeed;
 let bigIntSeed = defaultBigIntSeed;
@@ -79,7 +79,7 @@ export function hashNumber(x: number) {
 
 function hashBuffer(buffer: Buffer, seed: number) {
     const arrayBuffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
-    return Murmur3.hash(arrayBuffer, seed);
+    return hash(arrayBuffer, seed);
 }
 
 function hashStringWithSeed(x: string, encoding: string, seed: number) {

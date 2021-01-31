@@ -24,7 +24,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.0.0-pre.16"
+        "@esfx/equatable": "^1.0.0-pre.16",
+        "tslib": "^2.1.0"
     },
     "publishConfig": {
         "access": "public"

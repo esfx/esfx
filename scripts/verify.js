@@ -211,12 +211,12 @@ for (const base of [internalPath, packagesPath]) {
                 const packageRelativeExpected = path.relative(packagePath, path.resolve(expected));
 
                 if (!references) {
-                    references = ts.createArrayLiteral([], true);
+                    references = ts.factory.createArrayLiteralExpression([], true);
                     referencesFix = {
                         file: packageTsconfigJsonFile,
                         action: "appendProperty",
                         object: packageTsconfigObject,
-                        property: ts.createPropertyAssignment("references", references)
+                        property: ts.factory.createPropertyAssignment("references", references)
                     };
                 }
 
@@ -231,7 +231,7 @@ for (const base of [internalPath, packagesPath]) {
                         file: packageTsconfigJsonFile,
                         action: "appendElement",
                         array: references,
-                        element: ts.createObjectLiteral([ts.createPropertyAssignment("path", ts.createStringLiteral(packageRelativeExpected))], false),
+                        element: ts.factory.createObjectLiteralExpression([ts.factory.createPropertyAssignment("path", ts.factory.createStringLiteral(packageRelativeExpected))], false),
                         antecedent: referencesFix,
                         description: `Add missing reference '${packageRelativeExpected}' to '${baseRelativePackageTsconfigJsonPath}'`
                     }, {
@@ -252,24 +252,24 @@ for (const base of [internalPath, packagesPath]) {
                 const packageDependencyName = formatDependencyName(path.resolve(actual));
 
                 if (!dependencies) {
-                    dependencies = ts.createObjectLiteral([], true);
+                    dependencies = ts.factory.createObjectLiteralExpression([], true);
                     dependenciesFix = {
                         file: packageJsonFile,
                         action: "appendProperty",
                         object: packageJsonObject,
-                        property: ts.createPropertyAssignment("dependencies", dependencies)
+                        property: ts.factory.createPropertyAssignment("dependencies", dependencies)
                     };
                 }
 
                 assert(ts.isObjectLiteralExpression(dependencies));
 
                 if (!devDependencies) {
-                    devDependencies = ts.createObjectLiteral([], true);
+                    devDependencies = ts.factory.createObjectLiteralExpression([], true);
                     devDependenciesFix = {
                         file: packageJsonFile,
                         action: "appendProperty",
                         object: packageJsonObject,
-                        property: ts.createPropertyAssignment("devDependencies", devDependencies)
+                        property: ts.factory.createPropertyAssignment("devDependencies", devDependencies)
                     };
                 }
 
@@ -289,20 +289,40 @@ for (const base of [internalPath, packagesPath]) {
                         file: packageJsonFile,
                         action: "appendProperty",
                         object: dependencies,
-                        property: ts.createPropertyAssignment(packageDependencyName, ts.createStringLiteral(getPackageVersion(actual))),
+                        property: ts.factory.createPropertyAssignment(packageDependencyName, ts.factory.createStringLiteral(getPackageVersion(actual))),
                         antecedent: dependenciesFix,
                         description: `Add production dependency '${packageDependencyName}' to '${baseRelativePackageJsonPath}'`
                     }, {
                         file: packageJsonFile,
                         action: "appendProperty",
                         object: devDependencies,
-                        property: ts.createPropertyAssignment(packageDependencyName, ts.createStringLiteral(getPackageVersion(actual))),
+                        property: ts.factory.createPropertyAssignment(packageDependencyName, ts.factory.createStringLiteral(getPackageVersion(actual))),
                         antecedent: devDependenciesFix,
                         description: `Add development dependency '${packageDependencyName}' to '${baseRelativePackageJsonPath}'`
                     }]
                 });
             }
         }
+
+        const parsedCommandLine = ts.getParsedCommandLineOfConfigFile(
+            packageTsconfigJsonPath,
+            ts.getDefaultCompilerOptions(),
+            {
+                fileExists: ts.sys.fileExists,
+                getCurrentDirectory: ts.sys.getCurrentDirectory,
+                readDirectory: ts.sys.readDirectory,
+                readFile: ts.sys.readFile,
+                useCaseSensitiveFileNames: ts.sys.useCaseSensitiveFileNames,
+                onUnRecoverableConfigFileDiagnostic: diagnostic => {}
+            });
+
+        const tslibDependency = dependencies && pickProperty(dependencies, "tslib");
+        const tslibDevDependency = devDependencies && pickProperty(devDependencies, "tslib");
+        /** @type {{ file: ts.SourceFile, range: ts.TextRange} | undefined} */
+        let tslibReference;
+        /** @type {{ file: ts.SourceFile, range: ts.TextRange} | undefined} */
+        let tslibTestReference;
+        let hasOutput = false;
 
         const sourceFiles = collectSourceFiles(packageTsconfigJsonFile)
             .filter(f => !f.isDeclarationFile && ts.isExternalModule(f));
@@ -318,6 +338,98 @@ for (const base of [internalPath, packagesPath]) {
                         });
                     }
                 }
+            }
+
+            if (parsedCommandLine.options.importHelpers) {
+                const outputFiles = ts.getOutputFileNames(parsedCommandLine, sourceFile.fileName, !ts.sys.useCaseSensitiveFileNames);
+                for (const outputFile of outputFiles) {
+                    if (!outputFile.endsWith(".js")) continue;
+                    try {
+                        const text = fs.readFileSync(outputFile, "utf8");
+                        hasOutput = true;
+                        const match = /^\s*(?:const|var) tslib(?:_\d+)? = require\("tslib"\);/m.exec(text);
+                        if (match) {
+                            const end = match.index + match[0].length;
+                            const ref = {
+                                file: ts.createSourceFile(outputFile, text, ts.ScriptTarget.Latest, true),
+                                range: {
+                                    pos: end - `require("tslib");`.length,
+                                    end
+                                }
+                            };
+                            if (/[\\/]__tests?__[\\/]/.test(outputFile)) {
+                                if (!tslibTestReference) tslibTestReference = ref;
+                            }
+                            else {
+                                if (!tslibReference) tslibReference = ref;
+                            }
+                            if (tslibTestReference && tslibReference) {
+                                break;
+                            }
+                        }
+                    }
+                    catch {
+                    }
+                }
+            }
+        }
+
+        if (parsedCommandLine.options.importHelpers) {
+            if (hasOutput) {
+                if (tslibReference) {
+                    if (!tslibDependency) {
+                        if (tslibDevDependency) {
+                            errorDiagnostics.push({
+                                message: `'tslib' should be a 'dependency', not a 'devDependency' as it is referenced by shipping code.`,
+                                location: formatLocation(packageJsonFile, tslibDevDependency),
+                                relatedLocation: formatLocation(tslibReference.file, tslibReference.range)
+                            });
+                        }
+                        else {
+                            errorDiagnostics.push({
+                                message: `'tslib' should be added as a 'dependency' as it is referenced by shipping code.`,
+                                location: formatLocation(packageJsonFile, dependencies),
+                                relatedLocation: formatLocation(tslibReference.file, tslibReference.range)
+                            });
+                        }
+                    }
+                }
+                else if (tslibTestReference) {
+                    if (!tslibDevDependency) {
+                        if (tslibDependency) {
+                            errorDiagnostics.push({
+                                message: `'tslib' should be a 'devDependency', not a 'dependency', as it is only referenced by non-shipping test code.`,
+                                location: formatLocation(packageJsonFile, tslibDependency),
+                                relatedLocation: formatLocation(tslibTestReference.file, tslibTestReference.range)
+                            });
+                        }
+                        else {
+                            errorDiagnostics.push({
+                                message: `'tslib' should be added as a 'devDependency' as it is referenced by non-shipping test code.`,
+                                location: formatLocation(packageJsonFile, devDependencies),
+                                relatedLocation: formatLocation(tslibTestReference.file, tslibTestReference.range)
+                            });
+                        }
+                    }
+                }
+                else if (tslibDependency) {
+                    warningDiagnostics.push({
+                        message: `'tslib' should be removed as a 'dependency' as it is not referenced by shipping code.`,
+                        location: formatLocation(packageJsonFile, tslibDependency)
+                    });
+                }
+                else if (tslibDevDependency) {
+                    warningDiagnostics.push({
+                        message: `'tslib' should be removed as a 'devDependency' as it is not referenced by non-shipping test code.`,
+                        location: formatLocation(packageJsonFile, tslibDevDependency)
+                    });
+                }
+            }
+            else {
+                warningDiagnostics.push({
+                    message: "'tslib' dependency usage could not be checked as there were no build outputs.",
+                    location: formatLocation(packageTsconfigJsonFile || packageJsonFile, packageTsconfigJsonFile || packageJsonFile)
+                });
             }
         }
     }
@@ -340,12 +452,12 @@ for (const base of [internalPath, packagesPath]) {
         for (const [expected, node] of expectedContainerProjects) {
             if (!actualContainerProjects.has(expected)) {
                 if (!references) {
-                    references = ts.createArrayLiteral([], true);
+                    references = ts.factory.createArrayLiteralExpression([], true);
                     referencesFix = {
                         file: containerTsconfigJsonFile,
                         action: "appendProperty",
                         object: containerTsconfigObject,
-                        property: ts.createPropertyAssignment("references", references)
+                        property: ts.factory.createPropertyAssignment("references", references)
                     };
                 }
 
@@ -361,7 +473,7 @@ for (const base of [internalPath, packagesPath]) {
                         file: containerTsconfigJsonFile,
                         action: "appendElement",
                         array: references,
-                        element: ts.createObjectLiteral([ts.createPropertyAssignment("path", ts.createStringLiteral(baseRelativeExpected))], false),
+                        element: ts.factory.createObjectLiteralExpression([ts.factory.createPropertyAssignment("path", ts.factory.createStringLiteral(baseRelativeExpected))], false),
                         antecedent: referencesFix,
                         description: `Add missing reference '${baseRelativeExpected}' to '${baseRelativeContainerTsconfigJsonPath}'`
                     }]
@@ -391,6 +503,7 @@ for (const base of [internalPath, packagesPath]) {
         }
     }
 }
+
 
 // if (argv.fix) {
 //     applyFixes(argv.interactive ? applyFixInteractively : applyFixAutomatically);
@@ -526,11 +639,11 @@ function formatDependencyName(dependency) {
 }
 
 /**
- * @param {import("typescript").SourceFile} sourceFile
- * @param {import("typescript").Node} node
+ * @param {ts.SourceFile} sourceFile
+ * @param {ts.Node | ts.TextRange} node
  */
 function formatLocation(sourceFile, node) {
-    const { line, character } = ts.getLineAndCharacterOfPosition(sourceFile, node.getStart(sourceFile));
+    const { line, character } = ts.getLineAndCharacterOfPosition(sourceFile, "kind" in node ? node.getStart(sourceFile) : node.pos);
     return `${path.relative(basePath, path.resolve(sourceFile.fileName))}:${line + 1}:${character + 1}`;
 }
 
@@ -698,12 +811,12 @@ function createDependenciesMutator(fix) {
             assert(ts.isObjectLiteralExpression(fix.property.initializer));
             const node = fix.property.initializer;
             assert(node.properties.includes(n));
-            fix.property = ts.updatePropertyAssignment(
+            fix.property = ts.factory.updatePropertyAssignment(
                 fix.property,
                 fix.property.name,
-                ts.updateObjectLiteral(
+                ts.factory.updateObjectLiteralExpression(
                     node,
-                    ts.setTextRange(ts.createNodeArray(node.properties.filter(p => p !== n), node.properties.hasTrailingComma), node.properties))
+                    ts.setTextRange(ts.factory.createNodeArray(node.properties.filter(p => p !== n), node.properties.hasTrailingComma), node.properties))
             );
         },
         insertNodeAtEndOfList(_, list, n) {
@@ -711,10 +824,10 @@ function createDependenciesMutator(fix) {
             assert(ts.isPropertyAssignment(n));
             assert(ts.isObjectLiteralExpression(fix.property.initializer));
             const node = fix.property.initializer;
-            fix.property = ts.updatePropertyAssignment(
+            fix.property = ts.factory.updatePropertyAssignment(
                 fix.property,
                 fix.property.name,
-                ts.updateObjectLiteral(node, ts.setTextRange(ts.createNodeArray([...node.properties, n], node.properties.hasTrailingComma), node.properties))
+                ts.factory.updateObjectLiteralExpression(node, ts.setTextRange(ts.factory.createNodeArray([...node.properties, n], node.properties.hasTrailingComma), node.properties))
             );
         }
     }
@@ -733,10 +846,10 @@ function createReferencesMutator(fix) {
             assert(ts.isArrayLiteralExpression(fix.property.initializer));
             const node = fix.property.initializer;
             assert(node.elements.includes(n));
-            fix.property = ts.updatePropertyAssignment(
+            fix.property = ts.factory.updatePropertyAssignment(
                 fix.property,
                 fix.property.name,
-                ts.updateArrayLiteral(node, ts.setTextRange(ts.createNodeArray(node.elements.filter(e => e !== n), node.elements.hasTrailingComma), node.elements))
+                ts.factory.updateArrayLiteralExpression(node, ts.setTextRange(ts.factory.createNodeArray(node.elements.filter(e => e !== n), node.elements.hasTrailingComma), node.elements))
             );
         },
         insertNodeAtEndOfList(_, list, n) {
@@ -744,10 +857,10 @@ function createReferencesMutator(fix) {
             assert(ts.isObjectLiteralExpression(n));
             assert(ts.isArrayLiteralExpression(fix.property.initializer));
             const node = fix.property.initializer;
-            fix.property = ts.updatePropertyAssignment(
+            fix.property = ts.factory.updatePropertyAssignment(
                 fix.property,
                 fix.property.name,
-                ts.updateArrayLiteral(node, ts.setTextRange(ts.createNodeArray([...node.elements, n], node.elements.hasTrailingComma), node.elements))
+                ts.factory.updateArrayLiteralExpression(node, ts.setTextRange(ts.factory.createNodeArray([...node.elements, n], node.elements.hasTrailingComma), node.elements))
             );
         }
     }

@@ -14,12 +14,15 @@
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
     },
+    "devDependencies": {
+        "@esfx/internal-jest-sequence": "^1.0.0-pre.16"
+    },
     "dependencies": {
         "@esfx/collections-hashmap": "^1.0.0-pre.16",
         "@esfx/equatable": "^1.0.0-pre.16",
         "@esfx/internal-assert": "^1.0.0-pre.16",
-        "@esfx/internal-jest-sequence": "^1.0.0-pre.16",
-        "@esfx/iter-grouping": "^1.0.0-pre.16"
+        "@esfx/iter-grouping": "^1.0.0-pre.16",
+        "tslib": "^2.1.0"
     },
     "publishConfig": {
         "access": "public"

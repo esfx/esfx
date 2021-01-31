@@ -105,7 +105,7 @@ export class Query<T> implements Iterable<T> {
     static from<T>(source: OrderedIterable<T>): OrderedQuery<T>;
     static from<T extends readonly unknown[] | []>(source: Iterable<T>): Query<T>;
     static from<T>(source: Iterable<T>): Query<T>;
-    static from<TNode, T extends TNode>(source: Iterable<T>, provider?: HierarchyProvider<TNode>): Query<T> {
+    static from(source: Iterable<any>, provider?: HierarchyProvider<any>): Query<any> {
         assert.mustBeIterableObject(source, "source");
         assert.mustBeTypeOrUndefined(HierarchyProvider.hasInstance, provider, "provider");
         if (provider) source = fn.toHierarchy(source, provider);

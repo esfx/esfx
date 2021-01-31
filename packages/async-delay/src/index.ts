@@ -85,7 +85,7 @@ export function delay<T>(cancelable: number | Cancelable, msec?: T | PromiseLike
 
         const handle = setTimeout(() => {
             subscription.unsubscribe();
-            resolve(value);
+            resolve(value!);
         }, msec);
 
         const subscription = Cancelable.subscribe(cancelable, () => {

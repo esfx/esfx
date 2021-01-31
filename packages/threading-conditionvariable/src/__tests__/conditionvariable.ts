@@ -5,7 +5,9 @@ import { ConditionVariable } from "..";
 import { Record, pushStep } from "./workers/utils";
 
 it("test", async () => {
-    jest.setTimeout(10000);
+    // NOTE: We need to give adequate time here for ts-node to parse/evaulate the dependency
+    // graph.
+    jest.setTimeout(20000);
     const m = new Mutex();
     const cv = new ConditionVariable();
     const data = new Record(/*shared*/ true);

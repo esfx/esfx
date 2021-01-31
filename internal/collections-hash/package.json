@@ -15,8 +15,7 @@
     },
     "dependencies": {
         "@esfx/equatable": "^1.0.0-pre.16",
-        "@esfx/internal-integers": "^1.0.0-pre.16",
-        "tslib": "^1.9.3"
+        "@esfx/internal-integers": "^1.0.0-pre.16"
     },
     "publishConfig": {
         "access": "public"

@@ -14,8 +14,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.0.0-pre.16",
-        "tslib": "^1.9.3"
+        "@esfx/disposable": "^1.0.0-pre.16"
     },
     "devDependencies": {
         "@esfx/internal-ts-worker": "^1.0.0-pre.16"
