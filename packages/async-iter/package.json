@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter",
-    "version": "1.0.0-pre.17",
+    "version": "1.0.0-pre.18",
     "description": "An iteration and query API for ECMAScript async iterables.",
     "main": "dist",
     "types": "dist",
@@ -8,9 +8,6 @@
     "exports": {
         ".": "./dist/index.js",
         "./": "./dist/"
-    },
-    "scripts": {
-        "prepare": "generate-export-map"
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
@@ -22,10 +19,10 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-iter-fn": "^1.0.0-pre.17",
+        "@esfx/async-iter-fn": "^1.0.0-pre.18",
         "@esfx/async-iter-hierarchy": "^1.0.0-pre.17",
         "@esfx/async-iter-ordered": "^1.0.0-pre.17",
-        "@esfx/async-iter-query": "^1.0.0-pre.17",
+        "@esfx/async-iter-query": "^1.0.0-pre.18",
         "@esfx/collection-core": "^1.0.0-pre.17",
         "@esfx/collections-hashmap": "^1.0.0-pre.17",
         "@esfx/collections-hashset": "^1.0.0-pre.17",
@@ -34,16 +31,17 @@
         "@esfx/internal-assert": "^1.0.0-pre.17",
         "@esfx/internal-binarysearch": "^1.0.0-pre.17",
         "@esfx/internal-guards": "^1.0.0-pre.17",
-        "@esfx/iter-fn": "^1.0.0-pre.17",
-        "@esfx/iter-grouping": "^1.0.0-pre.17",
+        "@esfx/iter-fn": "^1.0.0-pre.18",
+        "@esfx/iter-grouping": "^1.0.0-pre.18",
         "@esfx/iter-hierarchy": "^1.0.0-pre.17",
-        "@esfx/iter-lookup": "^1.0.0-pre.17",
+        "@esfx/iter-lookup": "^1.0.0-pre.18",
         "@esfx/iter-ordered": "^1.0.0-pre.17",
         "@esfx/iter-page": "^1.0.0-pre.17",
-        "@esfx/iter-query": "^1.0.0-pre.17",
+        "@esfx/iter-query": "^1.0.0-pre.18",
         "tslib": "^2.1.0"
     },
     "publishConfig": {
         "access": "public"
-    }
+    },
+    "gitHead": "42fb2dbf38d870b7131276e5f73764ec3dcf14a5"
 }

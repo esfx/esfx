@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-grouping",
-    "version": "1.0.0-pre.17",
+    "version": "1.0.0-pre.18",
     "description": "",
     "main": "dist",
     "types": "dist",
@@ -8,9 +8,6 @@
     "exports": {
         ".": "./dist/index.js",
         "./": "./dist/"
-    },
-    "scripts": {
-        "prepare": "generate-export-map"
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
@@ -28,5 +25,6 @@
     },
     "publishConfig": {
         "access": "public"
-    }
+    },
+    "gitHead": "42fb2dbf38d870b7131276e5f73764ec3dcf14a5"
 }

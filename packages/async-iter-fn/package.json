@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-fn",
-    "version": "1.0.0-pre.17",
+    "version": "1.0.0-pre.18",
     "description": "An fp-style async iteration API for ECMAScript iterables.",
     "main": "dist",
     "types": "dist",
@@ -8,9 +8,6 @@
     "exports": {
         ".": "./dist/index.js",
         "./": "./dist/"
-    },
-    "scripts": {
-        "prepare": "generate-export-map"
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
@@ -35,10 +32,10 @@
         "@esfx/internal-binarysearch": "^1.0.0-pre.17",
         "@esfx/internal-guards": "^1.0.0-pre.17",
         "@esfx/interval": "^1.0.0-pre.17",
-        "@esfx/iter-fn": "^1.0.0-pre.17",
-        "@esfx/iter-grouping": "^1.0.0-pre.17",
+        "@esfx/iter-fn": "^1.0.0-pre.18",
+        "@esfx/iter-grouping": "^1.0.0-pre.18",
         "@esfx/iter-hierarchy": "^1.0.0-pre.17",
-        "@esfx/iter-lookup": "^1.0.0-pre.17",
+        "@esfx/iter-lookup": "^1.0.0-pre.18",
         "@esfx/iter-ordered": "^1.0.0-pre.17",
         "@esfx/iter-page": "^1.0.0-pre.17",
         "tslib": "^2.1.0"
@@ -48,5 +45,6 @@
     },
     "publishConfig": {
         "access": "public"
-    }
+    },
+    "gitHead": "42fb2dbf38d870b7131276e5f73764ec3dcf14a5"
 }
