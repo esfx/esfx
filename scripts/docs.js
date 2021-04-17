@@ -8,6 +8,7 @@
 //   - https://dotnet.github.io/docfx/
 
 const fs = require("fs");
+const os = require("os");
 const path = require("path");
 const del = require("del");
 const { default: chalk } = require("chalk");
@@ -21,6 +22,10 @@ const { exec } = require("./exec");
 const { newer } = require("./newer");
 const log = require("fancy-log");
 const glob = require("glob");
+const { pipeline } = require("stream");
+const { promisify } = require("util");
+const { default: fetch } = require("node-fetch");
+const unzip = require("extract-zip");
 
 const { TSDocTagDefinition, TSDocTagSyntaxKind, StandardTags } = require("@microsoft/tsdoc");
 const { AedocDefinitions } = require("@microsoft/api-extractor-model/lib/aedoc/AedocDefinitions");
@@ -231,8 +236,39 @@ function copyInheritedDocs(targetDocComment, sourceDocComment) {
     targetDocComment.inheritDocTag = undefined;
 }
 
+/**
+ * @param {boolean} force 
+ */
+async function installDocFx(force) {
+    if (!force && fs.existsSync("./.docfx/bin/docfx.exe")) return;
+    await installDocFx();
+
+    async function installDocFx() {
+        try { await fs.promises.mkdir("./.docfx/bin", { recursive: true }); } catch { }
+        log("Downloading https://github.com/dotnet/docfx/releases/download/v2.57.2/docfx.zip...");
+        const response = await fetch("https://github.com/dotnet/docfx/releases/download/v2.57.2/docfx.zip");
+        if (response.ok) {
+            await del("./.docfx/bin/**/*.*");
+            const tmpFile = path.join(os.tmpdir(), "docfx.zip");
+            try {
+                await promisify(pipeline)(response.body, fs.createWriteStream(tmpFile));
+                log("Unzipping docfx.zip...");
+                await unzip(tmpFile, { dir: path.resolve("./.docfx/bin") });
+            }
+            finally {
+                await fs.promises.unlink(tmpFile);
+            }
+        }
+        else {
+            log(`${response.status}: ${response.statusText}`);
+        }
+    }
+}
+
+exports.installDocFx = installDocFx;
+
 async function docfx(serve = false) {
     await del("docs");
-    await exec("docfx", serve ? ["--serve"] : []);
+    await exec("./.docfx/bin/docfx", serve ? ["--serve"] : []);
 }
 exports.docfx = docfx;

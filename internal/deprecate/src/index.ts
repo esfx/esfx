@@ -20,24 +20,24 @@ try {
     deprecateCore = util.deprecate;
 }
 catch (_) {
-    const emitWarning: typeof process["emitWarning"] = 
-        typeof process === "object" && typeof process.emitWarning === "function" ? function emitWarning(msg, name?, ctor = emitWarning) {
-            process.emitWarning(msg, name, ctor);
+    const emitWarning: (warning: string | Error, type?: string, ctor?: Function) => void = 
+        typeof process === "object" && typeof process.emitWarning === "function" ? function emitWarning(warning, type = "Warning", ctor = emitWarning) {
+            process.emitWarning(warning, type, ctor);
         } :
-        typeof Error.captureStackTrace === "function" ? function emitWarning(msg, name = "Warning", ctor = emitWarning) {
-            if (typeof msg === "string") {
-                msg = new Error(msg);
-                msg.name = name;
+        typeof Error.captureStackTrace === "function" ? function emitWarning(warning, type = "Warning", ctor = emitWarning) {
+            if (typeof warning === "string") {
+                warning = new Error(warning);
+                warning.name = type;
             }
-            Error.captureStackTrace(msg, ctor);
-            console.warn(msg);
+            Error.captureStackTrace(warning, ctor);
+            console.warn(warning);
         } :
-        function emitWarning(msg, name = "Warning") {
-            if (typeof msg === "string") {
-                console.warn(`${name}:`, msg);
+        function emitWarning(warning, type = "Warning") {
+            if (typeof warning === "string") {
+                console.warn(`${type}:`, warning);
             }
             else {
-                console.warn(msg);
+                console.warn(warning);
             }
         };
 

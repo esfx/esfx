@@ -21,7 +21,7 @@ const yargs = require("yargs")
     ;
 
 const { argv } = yargs;
-const { apiExtractor, apiDocumenter, docfx } = require("./scripts/docs");
+const { apiExtractor, apiDocumenter, docfx, installDocFx } = require("./scripts/docs");
 const { fname } = require("./scripts/fname");
 
 const internalPackages = fs.readdirSync("internal")
@@ -129,12 +129,19 @@ const docsApiDocumenter = fname("docs:api-documenter", () => apiDocumenter(docPa
 
 const docsDocfx = fname("docs:docfx", () => docfx(argv.serve || false));
 
+gulp.task("install:docfx", () => installDocFx(argv.force));
 gulp.task("docs:api-extractor", docsApiExtractor);
 gulp.task("docs:api-documenter", docsApiDocumenter);
 gulp.task("docs:docfx", docsDocfx)
 gulp.task("docs", gulp.series(
-    build,
-    docsApiExtractor,
-    docsApiDocumenter,
+    gulp.parallel(
+        gulp.series(
+            build,
+            docsApiExtractor,
+            docsApiDocumenter,
+        ),
+        fname("install:docfx", () => installDocFx(false))
+    ),
     docsDocfx
 ));
+

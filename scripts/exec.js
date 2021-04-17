@@ -10,18 +10,25 @@ const isWindows = /^win/.test(process.platform);
  * @param {boolean} [options.ignoreExitCode]
  * @param {boolean} [options.verbose]
  * @param {string} [options.cwd]
- * @returns {Promise<{exitCode: number}>}
+ * @param {import("child_process").StdioOptions} [options.stdio]
+ * @returns {Promise<{ exitCode: number, stdout: string, stderr: string }>}
  */
-function exec(cmd, args = [], { ignoreExitCode, verbose, cwd } = {}) {
+function exec(cmd, args = [], { ignoreExitCode, verbose, cwd, stdio = "inherit" } = {}) {
     return new Promise((resolve, reject) => {
         const shell = isWindows ? "cmd" : "/bin/sh";
         const shellArgs = isWindows ? ["/c", cmd.includes(" ") >= 0 ? `"${cmd}"` : cmd, ...args] : ["-c", `${cmd} ${args.join(" ")}`];
         if (verbose) log(`> ${chalk.green(cmd)} ${args.join(" ")}`);
-        const child = spawn(shell, shellArgs, { stdio: "inherit", cwd, windowsVerbatimArguments: true });
+        const child = spawn(shell, shellArgs, { stdio, cwd, windowsVerbatimArguments: true, windowsHide: true });
+        let stdout = "";
+        let stderr = "";
+        child.stdout?.setEncoding("utf-8").on("data", data => stdout += data);
+        child.stderr?.setEncoding("utf-8").on("data", data => stderr += data);
         child.on("exit", (exitCode) => {
             child.removeAllListeners();
+            child.stdout?.removeAllListeners();
+            child.stderr?.removeAllListeners();
             if (exitCode === 0 || ignoreExitCode) {
-                resolve({ exitCode });
+                resolve({ exitCode, stdout, stderr });
             }
             else {
                 reject(new Error(`Process exited with code: ${exitCode}`));
@@ -29,6 +36,8 @@ function exec(cmd, args = [], { ignoreExitCode, verbose, cwd } = {}) {
         });
         child.on("error", error => {
             child.removeAllListeners();
+            child.stdout?.removeAllListeners();
+            child.stderr?.removeAllListeners();
             reject(error);
         });
     });

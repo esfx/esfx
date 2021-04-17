@@ -129,7 +129,7 @@ const integerIndexedObjectHandler: ProxyHandler<IntegerIndexedObject<any>> = {
         return Reflect.deleteProperty(target, propertyKey);
     },
     ownKeys(target) {
-        const keys: PropertyKey[] = [];
+        const keys: (string | symbol)[] = [];
         // @ts-ignore
         const length = target.getLength();
         for (let i = 0; i < length; i++) {
