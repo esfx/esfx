@@ -2,8 +2,10 @@
     "name": "@esfx/async-waitqueue",
     "version": "1.0.0-pre.17",
     "description": "Provides 'WaitQueue', an async coordination primitive used to queue and resolve promises.",
-    "main": "dist",
-    "types": "dist",
+    "type": "commonjs",
+    "main": "./dist/index.js",
+    "exports": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {

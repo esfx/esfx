@@ -23,11 +23,3 @@ export const readonly = createDecoratorOrDecoratorFactory((member: MemberDescrip
     if (!isMethod(member)) throw new TypeError(`'@readonly' is only supported on methods.`);
     member.descriptor.writable = false;
 });
-
-/**
- * Makes a method writable.
- */
-export const writable = createDecoratorOrDecoratorFactory((member: MemberDescriptor) => {
-    if (!isMethod(member)) throw new TypeError(`'@writable' is only supported on methods.`);
-    member.descriptor.writable = true;
-});

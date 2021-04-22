@@ -20,9 +20,9 @@ import { AsyncOrderedIterable } from '@esfx/async-iter-ordered';
 import { Hierarchical, HierarchyProvider } from '@esfx/iter-hierarchy';
 import { Comparison, Comparer } from '@esfx/equatable';
 import { OrderedIterable } from '@esfx/iter-ordered';
-import { AsyncOrderedHierarchyIterable } from './ordered';
 import { toAsyncOrderedIterable } from '@esfx/async-iter-ordered-fromsync';
 import { toAsyncIterable } from '@esfx/async-iter-fromsync';
+import { AsyncOrderedHierarchyIterable } from './ordered';
 
 /**
  * Represents an `Iterable` with a navigable hierarchy.

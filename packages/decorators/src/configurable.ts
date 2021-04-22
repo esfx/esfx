@@ -23,11 +23,3 @@ export const configurable = createDecoratorOrDecoratorFactory((member: MemberDes
     if (!isMethod(member) && !isAccessor(member)) throw new TypeError(`'@configurable' is only supported on methods or accessors.`);
     member.descriptor.configurable = true;
 });
-
-/**
- * Makes a method or accessor non-configurable.
- */
-export const nonconfigurable = createDecoratorOrDecoratorFactory((member: MemberDescriptor) => {
-    if (!isMethod(member) && !isAccessor(member)) throw new TypeError(`'@nonconfigurable' is only supported on methods or accessors.`);
-    member.descriptor.configurable = false;
-});

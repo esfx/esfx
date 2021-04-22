@@ -2,13 +2,10 @@
     "name": "@esfx/iter",
     "version": "1.0.0-pre.18",
     "description": "An iteration and query API for ECMAScript iterables.",
-    "types": "index",
-    "main": "dist",
     "type": "commonjs",
-    "exports": {
-        ".": "./dist/index.js",
-        "./": "./dist/"
-    },
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": "./dist/index.js",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {

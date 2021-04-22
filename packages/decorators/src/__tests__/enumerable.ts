@@ -1,4 +1,5 @@
-import { enumerable, nonenumerable } from "../enumerable";
+import { enumerable } from "../enumerable";
+import { nonenumerable } from "../nonenumerable";
 
 it("enumerable", () => {
     class C {
@@ -8,14 +9,4 @@ it("enumerable", () => {
     }
 
     expect(Object.getOwnPropertyDescriptor(C.prototype, "method")!.enumerable).toBe(true);
-});
-
-it("nonenumerable", () => {
-    class C {
-        @nonenumerable
-        @enumerable
-        method() {}
-    }
-
-    expect(Object.getOwnPropertyDescriptor(C.prototype, "method")!.enumerable).toBe(false);
 });

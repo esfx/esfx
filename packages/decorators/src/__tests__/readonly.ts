@@ -1,4 +1,5 @@
-import { readonly, writable } from "../readonly";
+import { readonly } from "../readonly";
+import { writable } from "../writable";
 
 it("readonly", () => {
     class C {
@@ -8,14 +9,4 @@ it("readonly", () => {
     }
 
     expect(Object.getOwnPropertyDescriptor(C.prototype, "method")!.writable).toBe(false);
-});
-
-it("writable", () => {
-    class C {
-        @writable
-        @readonly
-        method() {}
-    }
-
-    expect(Object.getOwnPropertyDescriptor(C.prototype, "method")!.writable).toBe(true);
 });

@@ -24,7 +24,7 @@ import { T } from '@esfx/fn';
 import { isAsyncIterable, isIterable, isPrimitive } from '@esfx/internal-guards';
 import { Hierarchical, HierarchyIterable, HierarchyProvider } from "@esfx/iter-hierarchy";
 import { OrderedIterable } from '@esfx/iter-ordered';
-import { Axis } from '@esfx/iter-hierarchy/dist/axis';
+import { Axis } from '@esfx/iter-hierarchy/axis';
 import { toArrayAsync } from './scalars';
 import { Index } from '@esfx/interval';
 

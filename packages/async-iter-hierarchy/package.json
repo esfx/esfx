@@ -2,9 +2,26 @@
     "name": "@esfx/async-iter-hierarchy",
     "version": "1.0.0-pre.17",
     "description": "A Symbol-based API for defining an ECMAScript AsyncIterable with an inherent hierarchy.",
-    "main": "dist",
-    "types": "dist",
     "type": "commonjs",
+    "main": "./dist/index.js",
+    "exports": {
+        ".": "./dist/index.js",
+        "./hierarchy": "./dist/hierarchy.js",
+        "./hierarchy.js": "./dist/hierarchy.js",
+        "./ordered": "./dist/ordered.js",
+        "./ordered.js": "./dist/ordered.js"
+    },
+    "types": "index",
+    "typesVersions": {
+        "*": {
+            "index": ["./dist/index.d.ts"],
+            "index.js": ["./dist/index.d.ts"],
+            "hierarchy": ["./dist/hierarchy.d.ts"],
+            "hierarchy.js": ["./dist/hierarchy.d.ts"],
+            "ordered": ["./dist/ordered.d.ts"],
+            "ordered.js": ["./dist/ordered.d.ts"]
+        }
+    },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {

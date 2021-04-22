@@ -14,10 +14,6 @@
    limitations under the License.
 */
 
-import { deprecateProperty } from "@esfx/internal-deprecate";
-import { isMissing, isObject } from "@esfx/internal-guards";
-import { defineTag } from "@esfx/internal-tag";
-
 /**
  * Indicates an object that has resources that can be explicitly disposed.
  */
@@ -29,32 +25,19 @@ export interface Disposable {
 }
 
 export namespace Disposable {
-    // #region Disposable
+    const disposablePrototype: object = Object.defineProperty({ }, Symbol.toStringTag, { configurable: true, value: "Disposable" });
+    const reportIsDisposableDeprecation = createDeprecation("Use 'Disposable.hasInstance' instead.");
+
     /**
      * A well-known symbol used to define an explicit resource disposal method on an object.
      */
     export const dispose = Symbol.for("@esfx/disposable:Disposable.dispose");
-    // #endregion Disposable
 
-    /**
-     * Determines whether a value is Disposable.
-     * @deprecated Use `Disposable.hasInstance` instead.
-     */
-    export function isDisposable(value: unknown): value is Disposable {
-        return Disposable.hasInstance(value);
-    }
-
-    const disposablePrototype: object = defineTag({ }, "Disposable");
-    
     /**
      * Creates a `Disposable` wrapper around a callback used to dispose of a resource.
      */
     export function create(dispose: () => void): Disposable {
-        return Object.setPrototypeOf({
-            [Disposable.dispose]() {
-                dispose();
-            }
-        }, disposablePrototype);
+        return Object.setPrototypeOf({ [Disposable.dispose]() { dispose(); } }, disposablePrototype);
     }
 
     /**
@@ -62,31 +45,32 @@ export namespace Disposable {
      * @param disposables An `Iterable` of `Disposable` objects.
      */
     export function from(disposables: Iterable<Disposable | null | undefined>) {
-        const disposablesArray: Disposable[] = [];
-        for (const disposable of disposables) {
-            if (isMissing(disposable)) continue;
-            if (!isDisposable(disposable)) throw new TypeError("Disposable element expected: disposables");
-            disposablesArray.push(disposable);
+        const disposablesArray: DisposableRecord[] = [];
+        let i = 0;
+        for (const resource of disposables) {
+            const record = ToDisposableRecord(resource);
+            if (record === "not-disposable") throw new TypeError("Disposable element expected: disposables");
+            if (record === undefined) continue;
+            disposablesArray[i++] = record;
         }
-        return create(() => {
-            for (const disposable of disposablesArray) {
-                disposable[dispose]();
-            }
-        });
+        return create(() => Dispose(disposablesArray, undefined));
     }
 
     /**
      * Executes a callback with the provided `Disposable` resource, disposing the resource when the callback completes.
      */
     export function use<T extends Disposable | null | undefined, U>(resource: T, callback: (resource: T) => U) {
-        if (!isMissing(resource) && !isDisposable(resource)) throw new TypeError("Disposable expected: resource");
+        const record = ToDisposableRecord(resource);
+        if (record === "not-disposable") throw new TypeError("Disposable expected: resource");
+        let completion: ErrorCompletion | undefined;
         try {
             return callback(resource);
         }
+        catch (e) {
+            completion = { value: e };
+        }
         finally {
-            if (!isMissing(resource)) {
-                resource[Disposable.dispose]();
-            }
+            Dispose(record && [record], completion);
         }
     }
 
@@ -96,10 +80,21 @@ export namespace Disposable {
      * Determines whether a value is Disposable.
      */
     export function hasInstance(value: unknown): value is Disposable {
-        return isObject(value)
+        return typeof value === "object"
+            && value != null
             && dispose in value;
     }
 
+    Object.defineProperty(Disposable, Symbol.hasInstance, { writable: true, configurable: true, value: hasInstance });
+
+    /**
+     * Determines whether a value is Disposable.
+     * @deprecated Use `Disposable.hasInstance` instead.
+     */
+    export function isDisposable(value: unknown): value is Disposable {
+        reportIsDisposableDeprecation();
+        return hasInstance(value);
+    }
 }
 
 /**
@@ -113,42 +108,19 @@ export interface AsyncDisposable {
 }
 
 export namespace AsyncDisposable {
+    const asyncDisposablePrototype: object = Object.defineProperty({ }, Symbol.toStringTag, { configurable: true, value: "AsyncDisposable" });
+    const reportIsAsyncDisposableDeprecation = createDeprecation("Use 'AsyncDisposable.hasInstance' instead.");
+
     /**
      * A well-known symbol used to define an async explicit resource disposal method on an object.
      */
     export const asyncDispose = Symbol.for("@esfx/disposable:AsyncDisposable.asyncDispose");
 
     /**
-     * Determines whether a value is [[AsyncDisposable]].
-     * @deprecated Use `AsyncDisposable.hasInstance` instead.
-     */
-    export function isAsyncDisposable(value: unknown): value is AsyncDisposable {
-        return AsyncDisposable.hasInstance(value);
-    }
-
-    const asyncDisposablePrototype: object = defineTag({ }, "AsyncDisposable");
-
-    /**
      * Creates an `AsyncDisposable` wrapper around a callback used to dispose resources.
      */
     export function create(dispose: () => void | PromiseLike<void>): AsyncDisposable {
-        return Object.setPrototypeOf({
-            async [AsyncDisposable.asyncDispose]() {
-                await dispose();
-            }
-        }, asyncDisposablePrototype);
-    }
-
-    function asyncFromSyncDisposable(disposable: Disposable) {
-        return create(() => disposable[Disposable.dispose]());
-    }
-
-    function toAsyncDisposable(resource: AsyncDisposable | Disposable): AsyncDisposable;
-    function toAsyncDisposable(resource: AsyncDisposable | Disposable | null | undefined): AsyncDisposable | undefined;
-    function toAsyncDisposable(resource: AsyncDisposable | Disposable | null | undefined) {
-        return AsyncDisposable.hasInstance(resource) ? resource :
-            Disposable.hasInstance(resource) ? asyncFromSyncDisposable(resource) :
-            undefined;
+        return Object.setPrototypeOf({ async [AsyncDisposable.asyncDispose]() { await dispose(); } }, asyncDisposablePrototype);
     }
 
     /**
@@ -156,36 +128,32 @@ export namespace AsyncDisposable {
      * @param resources An `Iterable` of `AsyncDisposable` or `Disposable` objects.
      */
     export function from(resources: Iterable<AsyncDisposable | Disposable | null | undefined>) {
-        const disposablesArray: AsyncDisposable[] = [];
+        const disposablesArray: (AsyncDisposableRecord | DisposableRecord)[] = [];
+        let i = 0;
         for (const resource of resources) {
-            if (!isMissing(resource) && !AsyncDisposable.hasInstance(resource) && !Disposable.hasInstance(resource)) {
-                throw new TypeError("AsyncDisposable element expected: resources");
-            }
-            if (isMissing(resource)) continue;
-            disposablesArray.push(toAsyncDisposable(resource));
+            const record = ToAsyncDisposableRecord(resource);
+            if (record === undefined) continue;
+            if (record === "not-disposable") throw new TypeError("AsyncDisposable element expected: resources");
+            disposablesArray[i++] = record;
         }
-        return create(async () => {
-            for (const disposable of disposablesArray) {
-                await disposable[AsyncDisposable.asyncDispose]();
-            }
-        });
+        return create(() => AsyncDispose(disposablesArray, undefined));
     }
 
     /**
      * Executes a callback with the provided `AsyncDisposable` resource, disposing the resource when the callback completes asynchronously.
      */
     export async function use<T extends AsyncDisposable | Disposable | null | undefined, U>(resource: T, callback: (resource: T) => U | PromiseLike<U>) {
-        if (!isMissing(resource) && !Disposable.hasInstance(resource) && !AsyncDisposable.hasInstance(resource)) {
-            throw new TypeError("AsyncDisposable expected: resource");
-        }
-        const disposable = toAsyncDisposable(resource);
+        const record = ToAsyncDisposableRecord(resource);
+        if (record === "not-disposable") throw new TypeError("AsyncDisposable expected: resource");
+        let completion: ErrorCompletion | undefined;
         try {
             return await callback(resource);
         }
+        catch (e) {
+            completion = { value: e };
+        }
         finally {
-            if (!isMissing(disposable)) {
-                await disposable[AsyncDisposable.asyncDispose]();
-            }
+            await AsyncDispose(record && [record], completion);
         }
     }
 
@@ -195,10 +163,138 @@ export namespace AsyncDisposable {
      * Determines whether a value is [[AsyncDisposable]].
      */
     export function hasInstance(value: unknown): value is AsyncDisposable {
-        return isObject(value)
-            && AsyncDisposable.asyncDispose in value;
+        return typeof value === "object"
+            && value !== null
+            && asyncDispose in value;
+    }
+
+    Object.defineProperty(AsyncDisposable, Symbol.hasInstance, { writable: true, configurable: true, value: hasInstance });
+
+    /**
+     * Determines whether a value is [[AsyncDisposable]].
+     * @deprecated Use `AsyncDisposable.hasInstance` instead.
+     */
+    export function isAsyncDisposable(value: unknown): value is AsyncDisposable {
+        reportIsAsyncDisposableDeprecation();
+        return hasInstance(value);
     }
 }
 
-deprecateProperty(Disposable, "isDisposable", "Use 'Disposable.hasInstance' instead.");
-deprecateProperty(AsyncDisposable, "isAsyncDisposable", "Use 'AsyncDisposable.hasInstance' instead.");
+const Call: <T, A extends any[], R>(f: (this: T, ...args: A) => R, thisArg: T, ...args: A ) => R = Function.prototype.call.bind(Function.prototype.call);
+
+interface DisposableRecord {
+    hint: "sync";
+    resource: object;
+    disposeFn: (this: object) => void;
+}
+
+interface AsyncDisposableRecord {
+    hint: "async";
+    resource: object;
+    asyncDisposeFn: (this: object) => Promise<void>;
+}
+
+interface ErrorCompletion {
+    value: Error;
+}
+
+function ToDisposableRecord(resource: Disposable | null | undefined): DisposableRecord | "not-disposable" | undefined {
+    if (resource !== null && resource !== undefined) {
+        const disposeFn = typeof resource === "object" ? resource[Disposable.dispose] : undefined;
+        if (typeof disposeFn !== "function") return "not-disposable";
+        return { hint: "sync", resource, disposeFn };
+    }
+    return undefined;
+}
+
+function ToAsyncDisposableRecord(resource: AsyncDisposable | Disposable | null | undefined): AsyncDisposableRecord | DisposableRecord | "not-disposable" | undefined {
+    if (resource !== null && resource !== undefined) {
+        if (typeof resource === "object") {
+            const asyncDisposeFn = (resource as AsyncDisposable)[AsyncDisposable.asyncDispose];
+            if (asyncDisposeFn === undefined) {
+                const disposeFn = (resource as Disposable)[Disposable.dispose];
+                if (typeof disposeFn === "function") {
+                    return { hint: "sync", resource, disposeFn };
+                }
+            }
+            else if (typeof asyncDisposeFn === "function") {
+                return { hint: "async", resource, asyncDisposeFn };
+            }
+            return "not-disposable";
+        }
+    }
+    return undefined;
+}
+
+function Dispose(records: (DisposableRecord | undefined)[] | undefined, completion: ErrorCompletion | undefined) {
+    let errors: any[] | undefined = completion ? [completion.value] : undefined;
+    let i = completion ? 1 : 0;
+    if (records) {
+        for (const record of records) {
+            try {
+                if (record) Call(record.disposeFn, record.resource);
+            }
+            catch (e) {
+                errors ||= [];
+                errors[i++]
+            }
+        }
+    }
+    if (errors) {
+        if (errors.length === 1) throw errors[0];
+        ThrowAggregateError(errors, Dispose);
+    }
+}
+
+async function AsyncDispose(records: (AsyncDisposableRecord | DisposableRecord | undefined)[] | undefined, completion: ErrorCompletion | undefined) {
+    let errors: any[] | undefined = completion ? [completion.value] : undefined;
+    let i = completion ? 1 : 0;
+    if (records) {
+        for (const record of records) {
+            try {
+                if (record) {
+                    await Call(record.hint === "async" ? record.asyncDisposeFn : record.disposeFn, record.resource);
+                }
+            }
+            catch (e) {
+                errors ||= [];
+                errors[i++] = e;
+            }
+        }
+    }
+    if (errors) {
+        if (errors.length === 1) throw errors[0];
+        ThrowAggregateError(errors, AsyncDispose);
+    }
+}
+
+function ThrowAggregateError(errors: any[], stackCrawlMark: Function = ThrowAggregateError) {
+    let error: AggregateError;
+    if (typeof AggregateError === "function") {
+        error = new AggregateError(errors);
+    }
+    else {
+        error = new Error("One or more errors occurred") as AggregateError;
+        error.name = "AggregateError";
+        error.errors = errors;
+    }
+    if (Error.captureStackTrace) {
+        Error.captureStackTrace(error, stackCrawlMark);
+    }
+    throw error;
+}
+
+function createDeprecation(message: string) {
+    let hasReportedWarning = false;
+    return () => {
+        if (!hasReportedWarning) {
+            hasReportedWarning = true;
+            if (typeof process === "object" && process.emitWarning) {
+                process.emitWarning(message, "Deprecation");
+            }
+            else if (typeof console === "object") {
+                console.warn(`Deprecation: ${message}`)
+            }
+        }
+    }
+}

@@ -2,15 +2,10 @@
     "name": "@esfx/fn",
     "version": "1.0.0-pre.17",
     "description": "Common utility functions.",
-    "main": "dist",
-    "types": "dist",
     "type": "commonjs",
-    "exports": {
-        ".": "./dist/index.js",
-        "./common": "./dist/common.js",
-        "./operators": "./dist/operators.js",
-        "./partial": "./dist/partial.js"
-    },
+    "main": "./dist/index.js",
+    "exports": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "scripts": {
         "postintall": "node ./scripts/generateExportMap.js"
     },

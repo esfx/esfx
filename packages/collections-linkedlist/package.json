@@ -2,8 +2,10 @@
     "name": "@esfx/collections-linkedlist",
     "version": "1.0.0-pre.17",
     "description": "LinkedList collection API.",
-    "main": "index.js",
-    "types": "index.d.ts",
+    "type": "commonjs",
+    "main": "./dist/index.js",
+    "exports": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {

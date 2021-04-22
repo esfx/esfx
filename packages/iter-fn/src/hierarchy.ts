@@ -21,7 +21,7 @@ import { Equaler } from '@esfx/equatable';
 import { T } from '@esfx/fn';
 import { Hierarchical, HierarchyIterable, HierarchyProvider, OrderedHierarchyIterable } from "@esfx/iter-hierarchy";
 import { OrderedIterable } from '@esfx/iter-ordered';
-import { Axis } from '@esfx/iter-hierarchy/dist/axis';
+import { Axis } from '@esfx/iter-hierarchy/axis';
 import { toArray } from './scalars';
 
 function isHierarchyElement<T>(provider: HierarchyProvider<T>, value: T) {

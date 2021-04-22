@@ -2,9 +2,10 @@
     "name": "@esfx/iter-page",
     "version": "1.0.0-pre.17",
     "description": "A Symbol-based API for defining a paged Iterable.",
-    "main": "dist",
-    "types": "dist",
     "type": "commonjs",
+    "main": "./dist/index.js",
+    "exports": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {

@@ -14,11 +14,7 @@
    limitations under the License.
 */
 
-import { hashUnknown, hashString, hashNumber, hashBigInt, hashBoolean, hashSymbol } from '@esfx/internal-hashcode';
-import { Equatable, Comparable } from '@esfx/equatable';
-
-const accessorBase: PropertyDescriptor = { enumerable: false, configurable: true };
-const methodBase: PropertyDescriptor = { ...accessorBase, writable: true };
+import { Equatable, Comparable, rawHash } from '@esfx/equatable';
 
 // #region Object augmentations
 
@@ -31,15 +27,17 @@ declare global {
 
 Object.defineProperties(Object.prototype, {
     [Equatable.equals]: {
-        ...methodBase,
+        configurable: true,
+        writable: true,
         value: function (this: unknown, other: unknown) {
             return Object.is(this, other);
         }
     },
     [Equatable.hash]: {
-        ...methodBase,
+        configurable: true,
+        writable: true,
         value: function (this: unknown) {
-            return hashUnknown(this);
+            return rawHash(this);
         }
     }
 });
@@ -58,19 +56,15 @@ declare global {
 
 Object.defineProperties(String.prototype, {
     [Equatable.equals]: {
-        ...methodBase,
+        configurable: true,
+        writable: true,
         value: function (this: string, other: unknown) {
             return this === other;
         }
     },
-    [Equatable.hash]: {
-        ...methodBase,
-        value: function (this: string) {
-            return hashString(this);
-        }
-    },
     [Comparable.compareTo]: {
-        ...methodBase,
+        configurable: true,
+        writable: true,
         value: function (this: string, other: unknown) {
             const s = String(other);
             if (this < s) return -1;
@@ -93,20 +87,15 @@ declare global {
 
 Object.defineProperties(Symbol.prototype, {
     [Equatable.equals]: {
-        ...methodBase,
+        configurable: true,
+        writable: true,
         value: function (this: symbol, other: unknown) {
             return this === other;
-        }
-    },
-    [Equatable.hash]: {
-        ...methodBase,
-        value: function (this: symbol) {
-            return hashSymbol(this);
         }
     }
 });
 
-// #endregion String augmentations
+// #endregion Symbol augmentations
 
 // #region Number augmentations
 
@@ -116,19 +105,15 @@ declare global {
 
 Object.defineProperties(Number.prototype, {
     [Equatable.equals]: {
-        ...methodBase,
+        configurable: true,
+        writable: true,
         value: function (this: number, other: unknown) {
             return this === other;
         }
     },
-    [Equatable.hash]: {
-        ...methodBase,
-        value: function (this: number) {
-            return hashNumber(this);
-        }
-    },
     [Comparable.compareTo]: {
-        ...methodBase,
+        configurable: true,
+        writable: true,
         value: function (this: number, other: unknown) {
             return this - Number(other);
         }
@@ -146,15 +131,10 @@ declare global {
 if (typeof BigInt === "function") {
     Object.defineProperties(BigInt.prototype, {
         [Equatable.equals]: {
-            ...methodBase,
+            configurable: true,
+            writable: true,
             value: function (this: bigint, other: unknown) {
                 return this === other;
-            }
-        },
-        [Equatable.hash]: {
-            ...methodBase,
-            value: function (this: bigint) {
-                return hashBigInt(this);
             }
         },
         [Comparable.compareTo]: {
@@ -162,7 +142,7 @@ if (typeof BigInt === "function") {
             configurable: true,
             writable: true,
             value: function (this: bigint, other: unknown) {
-                const i = BigInt(other);
+                const i = BigInt(other as any);
                 if (this < i) return -1;
                 if (this > i) return 1;
                 return 0;
@@ -181,19 +161,15 @@ declare global {
 
 Object.defineProperties(Boolean.prototype, {
     [Equatable.equals]: {
-        ...methodBase,
+        configurable: true,
+        writable: true,
         value: function (this: boolean, other: unknown) {
             return this === other;
         }
     },
-    [Equatable.hash]: {
-        ...methodBase,
-        value: function (this: boolean) {
-            return hashBoolean(this);
-        }
-    },
     [Comparable.compareTo]: {
-        ...methodBase,
+        configurable: true,
+        writable: true,
         value: function (this: boolean, other: unknown) {
             const s = Boolean(other);
             if (this < s) return -1;

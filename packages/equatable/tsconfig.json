@@ -5,9 +5,5 @@
         "outDir": "dist",
         "stripInternal": true
     },
-    "include": ["src/**/*.ts"],
-    "references": [
-        { "path": "../../internal/deprecate" },
-        { "path": "../../internal/hashcode" },
-    ]
+    "include": ["src/**/*.ts"]
 }

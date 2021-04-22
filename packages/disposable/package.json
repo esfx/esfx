@@ -2,8 +2,10 @@
     "name": "@esfx/disposable",
     "version": "1.0.0-pre.17",
     "description": "A low-level API for defining explicit resource management.",
-    "main": "index.js",
-    "types": "index.d.ts",
+    "type": "commonjs",
+    "main": "./dist/index.js",
+    "exports": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {
@@ -16,10 +18,5 @@
     "publishConfig": {
         "access": "public"
     },
-    "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b",
-    "dependencies": {
-        "@esfx/internal-deprecate": "^1.0.0-pre.17",
-        "@esfx/internal-guards": "^1.0.0-pre.17",
-        "@esfx/internal-tag": "^1.0.0-pre.6"
-    }
+    "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b"
 }

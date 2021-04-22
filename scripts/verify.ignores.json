@@ -1,0 +1,17 @@
+{
+    "packages/fn/package.json": [
+        "Expected.*to have an 'exports' property",
+        "Expected.*to have a 'types' property",
+        "Expected.*to have a 'typesVersions' property"
+    ],
+    "packages/struct-type/package.json": [
+        "Expected.*to have an 'exports' property",
+        "Expected.*to have a 'types' property",
+        "Expected.*to have a 'typesVersions' property"
+    ],
+    "packages/decorators-stage1-core/package.json": [
+        "Expected.*to have an 'exports' property",
+        "Expected.*to have a 'types' property",
+        "Expected.*to have a 'typesVersions' property"
+    ]
+}

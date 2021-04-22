@@ -1,10 +1,7 @@
-.docs
 .vscode
+obj
+src
 __tests__
 api-extractor.json
-gulpfile.json
-jest.config.js
-lerna.json
-src
 tsconfig.json
 tsconfig.tsbuildinfo

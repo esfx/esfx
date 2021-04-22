@@ -2,9 +2,10 @@
     "name": "@esfx/async-iter-ordered-fromsync",
     "version": "1.0.0-pre.17",
     "description": "An API to convert an OrderedIterable into an AsyncOrderedIterable",
-    "main": "dist",
-    "types": "dist",
+    "main": "./dist/index.js",
     "type": "commonjs",
+    "exports": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {

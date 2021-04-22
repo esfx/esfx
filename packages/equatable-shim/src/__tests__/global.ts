@@ -1,21 +1,28 @@
 import "..";
 import { Equatable, Comparable } from '@esfx/equatable';
-import { hashUnknown } from "@esfx/internal-hashcode";
+import { pathToFileURL, fileURLToPath, URL } from "url";
 
-const state = hashUnknown.getState();
+let hashUnknown: typeof import("@esfx/equatable/src/internal/hashCode").hashUnknown;
 
-beforeEach(() => {
+beforeEach(async () => {
+    // Import `hashUnknown` via the explicit path to hashCode to bypass `"exports"` maps.
+    if (!hashUnknown) {
+        const hashCodePath = fileURLToPath(new URL("./internal/hashCode.js", pathToFileURL(require.resolve("@esfx/equatable"))));
+        const hashCode = (await import(hashCodePath)) as typeof import("@esfx/equatable/src/internal/hashCode");
+        hashUnknown = hashCode.hashUnknown;
+    }
+
+    const state = hashUnknown.getState();
     hashUnknown.setState({
         objectSeed: 0x1dc8529e,
         stringSeed: 0x6744b005,
         bigIntSeed: 0x6c9503bc,
         localSymbolSeed: 0x78819b01,
-        globalSymbolSeed: 0x1875c170
+        globalSymbolSeed: 0x1875c170,
     });
-});
-
-afterEach(() => {
-    hashUnknown.setState(state);
+    afterEach(() => {
+        hashUnknown.setState(state);
+    });
 });
 
 describe("Object", () => {

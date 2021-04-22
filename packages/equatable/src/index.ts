@@ -14,8 +14,7 @@
    limitations under the License.
 */
 
-import { deprecateProperty } from "@esfx/internal-deprecate";
-import { hashUnknown } from '@esfx/internal-hashcode';
+import { hashUnknown } from './internal/hashCode';
 
 /**
  * Represents a value that can compare its equality with another value.
@@ -59,25 +58,27 @@ export namespace Equatable {
      * @returns `true` if the value is an Equatable; otherwise, `false`.
      */
     export function hasInstance(value: unknown): value is Equatable {
-        const obj = Object(value);
-        return Equatable.equals in obj
-            && Equatable.hash in obj;
+        let obj: object;
+        return value !== undefined
+            && value !== null
+            && equals in (obj = Object(value))
+            && hash in obj;
     }
+
+    Object.defineProperty(Equatable, Symbol.hasInstance, { configurable: true, writable: true, value: hasInstance });
 }
 
 /* @internal */
 export namespace Equatable {
+    const reportIsEquatableDeprecation = createDeprecation("Use 'Equatable.hasInstance' instead.");
+
     /**
-     * Determines whether a value is Equatable.
-     * @param value The value to test.
-     * @returns `true` if the value is an Equatable; otherwise, `false`.
      * @deprecated Use `Equatable.hasInstance` instead.
      */
     export function isEquatable(value: unknown): value is Equatable {
+        reportIsEquatableDeprecation();
         return Equatable.hasInstance(value);
     }
-
-    deprecateProperty(Equatable, "isEquatable", "Use 'Equatable.hasInstance' instead.");
 }
 
 /**
@@ -118,24 +119,25 @@ export namespace Comparable {
      * @returns `true` if the value is a Comparable; otherwise, `false`.
      */
     export function hasInstance(value: unknown): value is Comparable {
-        const obj = Object(value);
-        return Comparable.compareTo in obj;
+        return value !== null
+            && value !== undefined
+            && compareTo in Object(value);
     }
+
+    Object.defineProperty(Comparable, Symbol.hasInstance, { configurable: true, writable: true, value: hasInstance });
 }
 
 /* @internal */
 export namespace Comparable {
+    const reportIsComparableDeprecation = createDeprecation("Use 'Comparable.hasInstance' instead.");
+
     /**
-     * Determines whether a value is Comparable.
-     * @param value The value to test.
-     * @returns `true` if the value is a Comparable; otherwise, `false`.
      * @deprecated Use `Comparable.hasInstance` instead.
      */
     export function isComparable(value: unknown): value is Comparable {
+        reportIsComparableDeprecation();
         return Comparable.hasInstance(value);
     }
-
-    deprecateProperty(Comparable, "isComparable", "Use 'Comparable.hasInstance' instead.");
 }
 
 /**
@@ -182,25 +184,27 @@ export namespace StructuralEquatable {
      * @returns `true` if the value is StructuralEquatable; otherwise, `false`.
      */
     export function hasInstance(value: unknown): value is StructuralEquatable {
-        const obj = Object(value);
-        return StructuralEquatable.structuralEquals in obj
-            && StructuralEquatable.structuralHash in obj;
+        let obj: object;
+        return value !== null
+            && value !== undefined
+            && structuralEquals in (obj = Object(value))
+            && structuralHash in obj;
     }
+
+    Object.defineProperty(StructuralEquatable, Symbol.hasInstance, { configurable: true, writable: true, value: hasInstance });
 }
 
 /* @internal */
 export namespace StructuralEquatable {
+    const reportIsStructuralEquatableDeprecation = createDeprecation("Use 'StructuralEquatable.hasInstance' instead.");
+
     /**
-     * Determines whether a value is StructuralEquatable.
-     * @param value The value to test.
-     * @returns `true` if the value is StructuralEquatable; otherwise, `false`.
      * @deprecated Use `StructuralEquatable.hasInstance` instead.
      */
     export function isStructuralEquatable(value: unknown): value is StructuralEquatable {
+        reportIsStructuralEquatableDeprecation();
         return StructuralEquatable.hasInstance(value);
     }
-
-    deprecateProperty(StructuralEquatable, "isStructuralEquatable", "Use 'StructuralEquatable.hasInstance' instead.");
 }
 
 /**
@@ -239,24 +243,25 @@ export namespace StructuralComparable {
      * @returns `true` if the value is StructuralComparable; otherwise, `false`.
      */
     export function hasInstance(value: unknown): value is StructuralComparable {
-        const obj = Object(value);
-        return StructuralComparable.structuralCompareTo in obj;
+        return value !== null
+            && value !== undefined
+            && structuralCompareTo in Object(value);
     }
+
+    Object.defineProperty(StructuralComparable, Symbol.hasInstance, { configurable: true, writable: true, value: hasInstance });
 }
 
 /* @internal */
 export namespace StructuralComparable {
+    const reportIsStructuralComparableDeprecation = createDeprecation("Use 'StructuralComparable.hasInstance' instead.");
+
     /**
-     * Determines whether a value is StructuralComparable.
-     * @param value The value to test.
-     * @returns `true` if the value is StructuralComparable; otherwise, `false`.
      * @deprecated Use `StructuralComparable.hasInstance` instead.
      */
     export function isStructuralComparable(value: unknown): value is StructuralComparable {
+        reportIsStructuralComparableDeprecation();
         return StructuralComparable.hasInstance(value);
     }
-
-    deprecateProperty(StructuralComparable, "isStructuralComparable", "Use 'StructuralComparable.hasInstance' instead.");
 }
 
 /**
@@ -296,41 +301,34 @@ export interface Equaler<T> {
  * Provides various implementations of `Equaler`.
  */
 export namespace Equaler {
+    const equalerPrototype = Object.defineProperty({}, Symbol.toStringTag, { configurable: true, value: "Equaler" });
+
     /**
      * Gets the default `Equaler`.
      */
-    export const defaultEqualer: Equaler<unknown> = {
-        equals(x, y) {
-            return Equatable.hasInstance(x) ? x[Equatable.equals](y) :
-                Equatable.hasInstance(y) ? y[Equatable.equals](x) :
-                Object.is(x, y);
-        },
-        hash(x) {
-            return Equatable.hasInstance(x) ? x[Equatable.hash]() :
-                hashUnknown(x);
-        }
-    };
+    export const defaultEqualer: Equaler<unknown> = create(
+        (x, y) => Equatable.hasInstance(x) ? x[Equatable.equals](y) :
+            Equatable.hasInstance(y) ? y[Equatable.equals](x) :
+            Object.is(x, y),
+        (x) => Equatable.hasInstance(x) ? x[Equatable.hash]() :
+            hashUnknown(x)
+    );
 
     /**
      * Gets a default `Equaler` that supports `StructuralEquatable` values.
      */
-    export const structuralEqualer: Equaler<unknown> = {
-        equals(x, y) {
-            return StructuralEquatable.hasInstance(x) ? x[StructuralEquatable.structuralEquals](y, structuralEqualer) :
-                StructuralEquatable.hasInstance(y) ? y[StructuralEquatable.structuralEquals](x, structuralEqualer) :
-                defaultEqualer.equals(x, y);
-        },
-        hash(x) {
-            return StructuralEquatable.hasInstance(x) ? x[StructuralEquatable.structuralHash](structuralEqualer) :
-                defaultEqualer.hash(x);
-        }
-    };
+    export const structuralEqualer: Equaler<unknown> = create(
+        (x, y) => StructuralEquatable.hasInstance(x) ? x[StructuralEquatable.structuralEquals](y, structuralEqualer) :
+            StructuralEquatable.hasInstance(y) ? y[StructuralEquatable.structuralEquals](x, structuralEqualer) :
+            defaultEqualer.equals(x, y),
+        (x) => StructuralEquatable.hasInstance(x) ? x[StructuralEquatable.structuralHash](structuralEqualer) :
+            defaultEqualer.hash(x));
 
     /**
      * An `Equaler` that compares array values rather than the arrays themselves.
      */
-    export const tupleEqualer: Equaler<readonly unknown[]> = {
-        equals(x, y) {
+    export const tupleEqualer: Equaler<readonly unknown[]> = create(
+        (x, y) => {
             if (!Array.isArray(x) && x !== null && x !== undefined ||
                 !Array.isArray(y) && y !== null && y !== undefined) {
                 throw new TypeError("Array expected");
@@ -348,7 +346,7 @@ export namespace Equaler {
             }
             return true;
         },
-        hash(x) {
+        (x) => {
             if (x === null || x === undefined) {
                 return 0;
             }
@@ -360,14 +358,13 @@ export namespace Equaler {
                 hc = combineHashes(hc, Equaler.defaultEqualer.hash(item));
             }
             return hc;
-        }
-    };
+        });
 
     /**
      * An `Equaler` that compares array values that may be `StructuralEquatable` rather than the arrays themselves.
      */
-    export const tupleStructuralEqualer: Equaler<readonly unknown[]> = {
-        equals(x, y) {
+    export const tupleStructuralEqualer: Equaler<readonly unknown[]> = create(
+        (x, y) => {
             if (!Array.isArray(x) && x !== null && x !== undefined ||
                 !Array.isArray(y) && y !== null && y !== undefined) {
                 throw new TypeError("Array expected");
@@ -385,7 +382,7 @@ export namespace Equaler {
             }
             return true;
         },
-        hash(x) {
+        (x) => {
             if (x === null || x === undefined) {
                 return 0;
             }
@@ -397,8 +394,7 @@ export namespace Equaler {
                 hc = combineHashes(hc, Equaler.structuralEqualer.hash(item));
             }
             return hc;
-        }
-    };
+        });
 
     /**
      * Creates an `Equaler` from a comparison function and an optional hash generator.
@@ -408,7 +404,7 @@ export namespace Equaler {
      * @returns An Equaler for the provided callbacks.
      */
     export function create<T>(equalityComparison: EqualityComparison<T>, hashGenerator: HashGenerator<T> = defaultEqualer.hash): Equaler<T> {
-        return { equals: equalityComparison, hash: hashGenerator };
+        return Object.setPrototypeOf({ equals: equalityComparison, hash: hashGenerator }, equalerPrototype);
     }
 
     /**
@@ -430,10 +426,13 @@ export namespace Equaler {
     }
 
     export function hasInstance(value: unknown): value is Equaler<unknown> {
-        return Object(value) === value
+        return typeof value === "object"
+            && value !== null
             && typeof (value as Equaler<unknown>).equals === "function"
             && typeof (value as Equaler<unknown>).hash === "function";
     }
+
+    Object.defineProperty(Equaler, Symbol.hasInstance, { configurable: true, writable: true, value: hasInstance });
 }
 
 export import defaultEqualer = Equaler.defaultEqualer;
@@ -473,73 +472,65 @@ export interface Comparer<T> {
  * Provides various implementations of `Comparer`.
  */
 export namespace Comparer {
+    const comparerProtototype = Object.defineProperty({}, Symbol.toStringTag, { configurable: true, value: "Comparer" });
+
     /**
      * The default `Comparer`.
      */
-    export const defaultComparer: Comparer<unknown> = {
-        compare(x, y) {
-            return Comparable.hasInstance(x) ? x[Comparable.compareTo](y) :
-                Comparable.hasInstance(y) ? -y[Comparable.compareTo](x) :
-                (x as any) < (y as any) ? -1 :
-                (x as any) > (y as any) ? 1 :
-                0;
-        }
-    };
+    export const defaultComparer: Comparer<unknown> = create((x, y) => 
+        Comparable.hasInstance(x) ? x[Comparable.compareTo](y) :
+        Comparable.hasInstance(y) ? -y[Comparable.compareTo](x) :
+        (x as any) < (y as any) ? -1 :
+        (x as any) > (y as any) ? 1 :
+        0);
 
     /**
      * A default `Comparer` that supports `StructuralComparable` values.
      */
-    export const structuralComparer: Comparer<unknown> = {
-        compare(x, y) {
-            return StructuralComparable.hasInstance(x) ? x[StructuralComparable.structuralCompareTo](y, structuralComparer) :
-                StructuralComparable.hasInstance(y) ? -y[StructuralComparable.structuralCompareTo](x, structuralComparer) :
-                defaultComparer.compare(x, y);
-        }
-    };
+    export const structuralComparer: Comparer<unknown> = create((x, y) => 
+        StructuralComparable.hasInstance(x) ? x[StructuralComparable.structuralCompareTo](y, structuralComparer) :
+        StructuralComparable.hasInstance(y) ? -y[StructuralComparable.structuralCompareTo](x, structuralComparer) :
+        defaultComparer.compare(x, y));
 
     /**
      * A default `Comparer` that compares array values rather than the arrays themselves.
      */
-    export const tupleComparer: Comparer<readonly unknown[]> = {
-        compare(x, y) {
-            if (!Array.isArray(x) && x !== null && x !== undefined ||
-                !Array.isArray(y) && y !== null && y !== undefined) {
-                throw new TypeError("Array expected");
-            }
-            let r: number;
-            if (r = defaultComparer.compare(x.length, y.length)) {
+    export const tupleComparer: Comparer<readonly unknown[]> = create((x, y) => {
+        if (!Array.isArray(x) && x !== null && x !== undefined ||
+            !Array.isArray(y) && y !== null && y !== undefined) {
+            throw new TypeError("Array expected");
+        }
+        let r: number;
+        if (r = defaultComparer.compare(x.length, y.length)) {
+            return r;
+        }
+        for (let i = 0; i < x.length; i++) {
+            if (r = defaultComparer.compare(x[i], y[i])) {
                 return r;
             }
-            for (let i = 0; i < x.length; i++) {
-                if (r = defaultComparer.compare(x[i], y[i])) {
-                    return r;
-                }
-            }
-            return 0;
         }
-    };
+        return 0;
+    });
 
     /**
      * A default `Comparer` that compares array values that may be `StructuralComparable` rather than the arrays themselves.
      */
-    export const tupleStructuralComparer: Comparer<readonly unknown[]> = {
-        compare(x, y) {
-            if (!Array.isArray(x) && x !== null && x !== undefined ||
-                !Array.isArray(y) && y !== null && y !== undefined) {
-                throw new TypeError("Array expected");
-            }
-            let r: number;
-            if (r = defaultComparer.compare(x.length, y.length)) {
+    export const tupleStructuralComparer: Comparer<readonly unknown[]> = create((x, y) => {
+        if (!Array.isArray(x) && x !== null && x !== undefined ||
+            !Array.isArray(y) && y !== null && y !== undefined) {
+            throw new TypeError("Array expected");
+        }
+        let r: number;
+        if (r = defaultComparer.compare(x.length, y.length)) {
+            return r;
+        }
+        for (let i = 0; i < x.length; i++) {
+            if (r = structuralComparer.compare(x[i], y[i])) {
                 return r;
             }
-            for (let i = 0; i < x.length; i++) {
-                if (r = structuralComparer.compare(x[i], y[i])) {
-                    return r;
-                }
-            }
-            return 0;
         }
-    };
+        return 0;
+    });
 
     /**
      * Creates a `Comparer` from a comparison function.
@@ -548,16 +539,43 @@ export namespace Comparer {
      * @returns The Comparer for the provided comparison function.
      */
     export function create<T>(comparison: Comparison<T>): Comparer<T> {
-        return { compare: comparison };
+        return Object.setPrototypeOf({ compare: comparison }, comparerProtototype);
     }
 
     export function hasInstance(value: unknown): value is Comparer<unknown> {
-        return Object(value) === value
+        return typeof value === "object"
+            && value !== null
             && typeof (value as Comparer<unknown>).compare === "function";
     }
+
+    Object.defineProperty(Comparer, Symbol.hasInstance, { configurable: true, writable: true, value: hasInstance });
 }
 
 export import defaultComparer = Comparer.defaultComparer;
 export import structuralComparer = Comparer.structuralComparer;
 export import tupleComparer = Comparer.tupleComparer;
 export import tupleStructuralComparer = Comparer.tupleStructuralComparer;
+
+/**
+ * Gets the raw hashcode for a value. This bypasses any `[Equatable.hash]` properties on an object.
+ * @param value Any value.
+ * @returns The hashcode for the value.
+ */
+export function rawHash(value: unknown): number {
+    return hashUnknown(value);
+}
+
+function createDeprecation(message: string) {
+    let hasReportedWarning = false;
+    return () => {
+        if (!hasReportedWarning) {
+            hasReportedWarning = true;
+            if (typeof process === "object" && process.emitWarning) {
+                process.emitWarning(message, "Deprecation");
+            }
+            else if (typeof console === "object") {
+                console.warn(`Deprecation: ${message}`)
+            }
+        }
+    }
+}

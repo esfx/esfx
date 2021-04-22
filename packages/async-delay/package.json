@@ -2,8 +2,10 @@
     "name": "@esfx/async-delay",
     "version": "1.0.0-pre.17",
     "description": "Provides 'delay', an async coordination function.",
-    "main": "index.js",
-    "types": "index.d.ts",
+    "main": "./dist/index.js",
+    "type": "commonjs",
+    "exports": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {

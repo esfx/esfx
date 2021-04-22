@@ -23,11 +23,3 @@ export const enumerable = createDecoratorOrDecoratorFactory((member: MemberDescr
     if (!isMethod(member) && !isAccessor(member)) throw new TypeError(`'@enumerable' is only supported on methods or accessors.`);
     member.descriptor.enumerable = true;
 });
-
-/**
- * Makes a method or accessor non-enumerable.
- */
-export const nonenumerable = createDecoratorOrDecoratorFactory((member: MemberDescriptor) => {
-    if (!isMethod(member) && !isAccessor(member)) throw new TypeError(`'@nonenumerable' is only supported on methods or accessors.`);
-    member.descriptor.enumerable = false;
-});

@@ -9,6 +9,7 @@ module.exports = {
     transform: {
         "^.+\\.tsx?": "ts-jest",
     },
+    resolver: "<rootDir>/scripts/resolver.js",
     testPathIgnorePatterns: [
         '/dist/',
         '/workers/',

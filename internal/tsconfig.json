@@ -7,7 +7,6 @@
         { "path": "./binarysearch" },
         { "path": "./collections-hash" },
         { "path": "./guards" },
-        { "path": "./hashcode" },
         { "path": "./integers" },
         { "path": "./murmur3" },
         { "path": "./tag" },

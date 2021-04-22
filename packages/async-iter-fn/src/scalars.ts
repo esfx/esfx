@@ -25,7 +25,7 @@ import { toAsyncIterable } from '@esfx/async-iter-fromsync';
 import { consumeAsync, emptyAsync, ConsumeAsyncOptions } from './queries';
 import { prependAsync, takeRightAsync } from './subqueries';
 import { createGroupingsAsync, flowHierarchy } from './internal/utils';
-import { AsyncHierarchyIterable } from '@esfx/async-iter-hierarchy/dist';
+import { AsyncHierarchyIterable } from '@esfx/async-iter-hierarchy';
 import { HierarchyIterable } from '@esfx/iter-hierarchy';
 import { Index } from "@esfx/interval";
 
