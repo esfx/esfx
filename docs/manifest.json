@@ -287,7 +287,7 @@
       "output": {
         ".html": {
           "relative_path": "api/async-iter-fn.html",
-          "hash": "SN9AsXQNUebyUKuZG5pzq5ygjbuqaoLN91R+yvkl/RU="
+          "hash": "qQaQiWgIaKEnk/vFLE5+Pz9xNjqxcxxORTEYoQFyTQc="
         }
       },
       "is_incremental": false,
@@ -2841,19 +2841,17 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because docfx version changed from 2.52.0.0 to 2.57.2.0.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "DocfxVersionChanged"
+        "skipped_file_count": 0
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 1,
-          "skipped_file_count": 0
+          "skipped_file_count": 1
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
