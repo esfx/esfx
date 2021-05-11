@@ -22,10 +22,9 @@ export type conststring = string & {} | "";
 /** A type useful as a base constraint for a number that should be inferred as a number literal type. */
 export type constnumber = number & {} | 0;
 
-declare const kIgnore: unique symbol;
-
 /** A type useful as a base constraint for a symbol that should be inferred as a unique symbol type. */
 export type constsymbol = symbol & {} | typeof kIgnore;
+declare const kIgnore: unique symbol;
 
 /** A type useful as a base constraint for an array that should be inferred as a tuple. */
 export type consttuple<T> = readonly T[] | readonly [];
@@ -65,9 +64,12 @@ export type numstr<I extends keyof any> =
 export type Primitive = string | symbol | boolean | number | bigint;
 
 /**
- * A union of all of the falsey types in TypeScript.
+ * A union of all of the falsy types in TypeScript.
  */
-export type Falsey = null | undefined | false | 0 | 0n | '';
+export type Falsy = null | undefined | false | 0 | 0n | '';
+
+/** @deprecated Use {@link Falsy} instead. */
+export type Falsey = Falsy;
 
 /**
  * A PropertyDescriptor constrained to the valid attributes for an accessor.
@@ -132,7 +134,7 @@ export type Constructor<T = {}, A extends any[] = any[]> = new (...args: A) => T
 /**
  * Represents an abstract class constructor.
  */
-export type AbstractConstructor<T = {}> = Function & { prototype: T };
+export type AbstractConstructor<T = {}, A extends any[] = any[]> = abstract new (...args: A) => T;
 
 /**
  * Gets the type yielded by an Iterable.
@@ -140,8 +142,7 @@ export type AbstractConstructor<T = {}> = Function & { prototype: T };
 export type IteratedType<T> =
     T extends { [Symbol.iterator](): { next(...args: any): infer R } } ?
         R extends { done?: boolean, value: any } ?
-            R["done"] extends true ? never :
-                R["value"] :
+            R["done"] extends true ? never : R["value"] :
             never :
         never;
 
@@ -151,8 +152,7 @@ export type IteratedType<T> =
 export type GeneratorReturnType<T> =
     T extends { [Symbol.iterator](): { next(...args: any): infer R } } ?
         R extends { done?: boolean, value: any } ?
-            R["done"] extends false | undefined ? never :
-                R["value"] :
+            R["done"] extends false | undefined ? never : R["value"] :
             never :
         never;
 
@@ -168,41 +168,27 @@ export type GeneratorNextType<T> =
  */
 export type AsyncIteratedType<T> =
     T extends { [Symbol.asyncIterator](): { next(...args: any): PromiseLike<infer R> } } ?
-        R extends { done?: boolean, value: any } ?
-            R["done"] extends true ? never :
-                R["value"] extends PromiseLike<infer V> ? V : R["value"] :
+        R extends { done?: boolean, value?: any } ?
+            R["done"] extends true ? never : Await<R["value"]> :
             never :
         never;
 
-// TODO(rbuckton): Depends on `Await<T>`, which is currently unsafe.
-// /**
-//  * Gets the type yielded by an AsyncIterable.
-//  */
-// export type AsyncIteratedType<T> =
-//     T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: false, value: infer U }) => any): any; } } } ? Await<U> :
-//     T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: true }) => any): any; } } } ? never :
-//     T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: boolean, value: infer U }) => any): any; } } } ? Await<U> :
-//     T extends { [Symbol.asyncIterator](): any } ? void :
-//     never;
+/**
+ * Gets the type that can be sent to a generator via its `next` method.
+ */
+export type AsyncGeneratorNextType<T> =
+    T extends { [Symbol.asyncIterator](): { next(value?: infer U): any } } ? U :
+    never;
 
-// TODO(rbuckton): Depends on `Await<T>`, which is currently unsafe.
-// /**
-//  * Gets the type that can be sent to a generator via its `next` method.
-//  */
-// export type AsyncGeneratorNextType<T> =
-//     T extends { [Symbol.asyncIterator](): { next(value?: infer U): any } } ? U :
-//     never;
-
-// TODO(rbuckton): Depends on `Await<T>`, which is currently unsafe.
-// /**
-//  * Gets the type that can be returned from a generator when it has finished executing.
-//  */
-// export type AsyncGeneratorReturnType<T> =
-//     T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: true, value?: infer U }) => any): any; } } } ? Await<U> :
-//     T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: false }) => any): any; } } } ? never :
-//     T extends { [Symbol.asyncIterator](): { next(): { then(onfulfilled: (value: { done: boolean, value?: infer U }) => any): any; } } } ? Await<U> :
-//     T extends { [Symbol.asyncIterator](): any } ? void :
-//     never;
+/**
+ * Gets the type that can be returned from a generator when it has finished executing.
+ */
+export type AsyncGeneratorReturnType<T> =
+    T extends { [Symbol.asyncIterator](): { next(...args: any): PromiseLike<infer R> } } ?
+        R extends { done?: boolean, value?: any } ?
+            R["done"] extends false | undefined ? never : Await<R["value"]> :
+            never :
+        never;
 
 /**
  * Gets the promised type of a Promise.
@@ -211,9 +197,20 @@ export type PromisedType<T> =
     T extends { then(onfulfilled: infer U): any } ? U extends ((value: infer V) => any) ? V : never :
     never;
 
-// TODO(rbuckton): Investigate whether UnionToIntersection should be kept. Intersections are ordered
-//                  while unions are unordered.
+/**
+ * Maps an ordered tuple of types into an intersection of those types.
+ */
+export type Intersection<A extends any[]> =
+    A extends [infer H, ...infer T] ? H & Intersection<T> :
+    unknown;
 
+/**
+ * Maps an ordered tuple of types into a union of those types.
+ */
+export type Union<A extends any[]> = A[number];
+
+// TODO(rbuckton): Investigate whether UnionToIntersection should be kept. Intersections are ordered
+//                 while unions are unordered.
 // /**
 //  * Maps a union of types into an intersection of types.
 //  */
@@ -472,53 +469,45 @@ export type FunctionKeys<T, F extends Function = Function> = MatchingKeys<T, F>;
  */
 export type NonFunctionKeys<T, F extends Function = Function> = NonMatchingKeys<T, F>;
 
-// /**
-//  * Maps `T` to its awaited type if `T` is a promise.
-//  */
-// export type Await<T> = {
-//     0: T,
-//     1: T extends { then(onfulfilled: infer U): any } ? U extends ((value: infer V) => any) ? Await<V> : never : never;
-// }[T extends { then(): any } ? 1 : 0];
+/**
+ * Maps `T` to its awaited type if `T` is a promise.
+ */
+export type Await<T> =
+    T extends { then(onfulfilled: infer U): any } ?
+        U extends ((value: infer V) => any) ?
+            Await<V> :
+            never :
+    T;
 
-// /**
-//  * Maps each element of `T` to its awaited type if the element is a promise.
-//  */
-// export type AwaitAll<T extends any[]> = { [P in keyof T]: Await<T[P]>; };
+/**
+ * Maps each element of `T` to its awaited type if the element is a promise.
+ */
+export type AwaitAll<T extends any[]> = { [P in keyof T]: Await<T[P]>; };
 
-// /**
-//  * Maps to a tuple where the first element is the first element of `L` and the second element are the remaining elements of `L`.
-//  */
-// export type Shift<L extends any[]> =
-//     [] extends L ? [never, never] :
-//     ((...a: L) => void) extends ((head: infer H, ...tail: infer T) => void) ? [H, T] :
-//     never;
+/**
+ * Maps to a tuple where the first element is the first element of `L` and the second element are the remaining elements of `L`.
+ */
+export type Shift<L extends any[]> = L extends [infer H, ...infer T] ? [H, T] : [never, never];
 
-// /**
-//  * Inserts an element at the start of a tuple.
-//  */
-// export type Unshift<T extends any[], H> = ((h: H, ...t: T) => void) extends ((...l: infer L) => void) ? L : never;
+/**
+ * Inserts an element at the start of a tuple.
+ */
+export type Unshift<T extends any[], H> = [H, ...T];
 
-// type __Reverse<L extends any[], R extends any[] = []> = {
-//     0: R,
-//     1: ((...l: L) => void) extends ((h: infer H, ...t: infer T) => void) ? __Reverse<T, Unshift<R, H>> : never
-// }[L extends [any, ...any[]] ? 1 : 0];
+/**
+ * Reverse the order of the elements of a tuple.
+ */
+export type Reverse<L extends any[]> = L extends [infer H, ...infer T] ? [...Reverse<T>, H] : [];
 
-// /**
-//  * Reverse the order of the elements of a tuple.
-//  */
-// export type Reverse<L extends any[]> = __Reverse<L>;
+/**
+ * Maps to a tuple where the first element is the last element of `L` and the second element are the remaining elements of `L`.
+ */
+export type Pop<L extends any[]> = L extends [...infer H, infer T] ? [T, H] : [never, never];
 
-// type __PopRest<R extends [any, any[]]> = [R[0], Reverse<R[1]>];
-
-// /**
-//  * Maps to a tuple where the first element is the last element of `L` and the second element are the remaining elements of `L`.
-//  */
-// export type Pop<L extends any[]> = __PopRest<Shift<Reverse<L>>>;
-
-// /**
-//  * Push an element on to the end of a tuple.
-//  */
-// export type Push<H extends any[], T> = Reverse<Unshift<Reverse<H>, T>>;
+/**
+ * Push an element on to the end of a tuple.
+ */
+export type Push<H extends any[], T> = [...H, T];
 
 /**
  * Split an object into a union of objects for each key/value pair.
@@ -548,7 +537,8 @@ export type Conjoin<T extends object> = {
  */
 export type DisjoinOverlaps<A, B> = Overlaps<
     A extends object ? Disjoin<A> : A,
-    B extends object ? Disjoin<B> : B>;
+    B extends object ? Disjoin<B> : B
+>;
 
 /**
  * Maps to `true` if `T` is an empty object (`{}`).
@@ -558,7 +548,7 @@ export type IsEmpty<T extends object> = IsNever<keyof T>;
 /**
  * Remove from `T` all keys in `K`.
  */
-export type Omit<T, K extends PropertyKey> = Pick<T, Exclude<keyof T, K>>;
+export import Omit = globalThis.Omit;
 
 /**
  * Remove from `A` all properties with the same types that exist in `B`.

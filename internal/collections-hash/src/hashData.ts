@@ -46,8 +46,9 @@
 */
 
 import { Equaler } from "@esfx/equatable";
-import { maxInt32 } from '@esfx/internal-integers';
 import { getPrime, expandPrime } from './primes';
+
+const MAX_INT32 = (2 ** 31) - 1;
 
 /*@internal*/
 export interface HashEntry<K, V> {
@@ -136,7 +137,7 @@ export function findEntryIndex<K, V>(hashData: HashData<K, V>, key: K) {
     let i = -1;
     const { buckets, entries, equaler } = hashData;
     if (buckets && entries) {
-        let hashCode = equaler.hash(key) & maxInt32;
+        let hashCode = equaler.hash(key) & MAX_INT32;
         // Value in _buckets is 1-based
         i = buckets[hashCode % buckets.length] - 1;
         while ((i >>> 0) < entries.length && !(entries[i].hashCode === hashCode && equaler.equals(entries[i].key, key))) {
@@ -157,7 +158,7 @@ export function insertEntry<K, V>(hashData: HashData<K, V>, key: K, value: V) {
     if (!hashData.buckets) initializeHashData(hashData, 0);
     if (!hashData.buckets || !hashData.entries) throw new Error();
 
-    const hashCode = hashData.equaler.hash(key) & maxInt32;
+    const hashCode = hashData.equaler.hash(key) & MAX_INT32;
     let bucket = hashCode % hashData.buckets.length;
     // Value in _buckets is 1-based
     let i = hashData.buckets[bucket] - 1;
@@ -205,7 +206,7 @@ export function insertEntry<K, V>(hashData: HashData<K, V>, key: K, value: V) {
 /*@internal*/
 export function deleteEntry<K, V>(hashData: HashData<K, V>, key: K) {
     if (hashData.buckets && hashData.entries) {
-        const hashCode = hashData.equaler.hash(key) & maxInt32;
+        const hashCode = hashData.equaler.hash(key) & MAX_INT32;
         const bucket = hashCode % hashData.buckets.length;
         let last = -1;
         let entry: HashEntry<K, V> | undefined;

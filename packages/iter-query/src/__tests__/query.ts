@@ -8,6 +8,7 @@ import * as books from "./data/books";
 import { Comparable } from '@esfx/equatable';
 import { HashSet } from '@esfx/collections-hashset';
 import { HashMap } from '@esfx/collections-hashmap';
+import { empty, map } from "@esfx/iter-fn";
 
 describe("Query", () => {
     // Query
@@ -323,6 +324,14 @@ describe("Query", () => {
     });
     describe("concat()", () => {
         it("concats", () => expect(Query.from([1, 1, 2, 3, 4]).concat([1, 3, 3, 5, 7])).toEqualSequence([1, 1, 2, 3, 4, 1, 3, 3, 5, 7]));
+        it("concat typing", () => {
+            // Using `this` parameters in some query methods to work with `HierarchyQuery` objects breaks overloads, so we
+            // need to make sure we have regular overloads that also use `this` parameters.
+            type X = { x: 1 };
+            Query
+                .from(empty<X>())
+                .concat(map([1], v => ({ x: v }))); // There should be no type error here.
+        });
         it.each`
             type              | value         | error
             ${"undefined"}    | ${undefined}  | ${TypeError}

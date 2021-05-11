@@ -37,10 +37,11 @@
 */
 
 import { isMissing, isNumber } from "@esfx/internal-guards";
-import { maxInt32 as MAX_INT32 } from "@esfx/internal-integers";
 import { Tag } from "@esfx/internal-tag";
 import { WaitQueue } from "@esfx/async-waitqueue";
 import { Cancelable } from "@esfx/cancelable";
+
+const MAX_INT32 = (2 ** 31) - 1;
 
 /**
  * Limits the number of asynchronous operations that can access a resource

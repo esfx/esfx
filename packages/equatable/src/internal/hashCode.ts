@@ -24,10 +24,10 @@ let weakObjectHashes: WeakMap<object, number> | undefined;
 let globalSymbolHashes: Map<symbol, number> | undefined;
 let localSymbolHashes: Map<symbol, number> | undefined;
 
-const maxInt32 = (2 ** 31) - 1;
-const minInt32 = ~maxInt32;
-const maxUint32 = (2 ** 32) - 1;
-const minUint32 = 0;
+const MAX_INT32 = (2 ** 31) - 1;
+const MIN_INT32 = ~MAX_INT32;
+const MAX_UINT32 = (2 ** 32) - 1;
+const MIN_UINT32 = 0;
 const float64View = new DataView(new ArrayBuffer(8));
 const defaultObjectSeed = createSeed();
 const defaultStringSeed = createSeed();
@@ -46,8 +46,8 @@ function hashBoolean(x: boolean) {
 
 function isInt32(x: number) {
     return Number.isInteger(x)
-        && x >= minInt32
-        && x <= maxInt32;
+        && x >= MIN_INT32
+        && x <= MAX_INT32;
 }
 
 function hashInt32(x: number) {
@@ -56,8 +56,8 @@ function hashInt32(x: number) {
 
 function isUint32(x: number) {
     return Number.isInteger(x)
-        && x >= minUint32
-        && x <= maxUint32;
+        && x >= MIN_UINT32
+        && x <= MAX_UINT32;
 }
 
 function hashUint32(x: number) {
@@ -182,7 +182,6 @@ function hashObject(x: object) {
     return hash;
 }
 
-/* @internal */
 export function hashUnknown(x: unknown) {
     switch (typeof x) {
         case "boolean": return hashBoolean(x);
@@ -201,9 +200,7 @@ export function hashUnknown(x: unknown) {
 }
 
 // Test hooks
-/* @internal */
 export namespace hashUnknown {
-    /* @internal */
     export function getState() {
         return {
             weakPrototypeCounters,
@@ -220,7 +217,6 @@ export namespace hashUnknown {
         };
     }
 
-    /* @internal */
     export function setState(state: Partial<ReturnType<typeof hashUnknown["getState"]>>) {
         ({
             weakPrototypeCounters,
@@ -237,5 +233,3 @@ export namespace hashUnknown {
         } = state);
     }
 }
-
-

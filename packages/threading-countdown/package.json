@@ -17,8 +17,6 @@
     },
     "dependencies": {
         "@esfx/disposable": "^1.0.0-pre.17",
-        "@esfx/internal-integers": "^1.0.0-pre.17",
-        "@esfx/internal-threading": "^1.0.0-pre.17",
         "@esfx/threading-manualresetevent": "^1.0.0-pre.17",
         "@esfx/threading-spinwait": "^1.0.0-pre.17"
     },

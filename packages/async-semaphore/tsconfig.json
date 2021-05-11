@@ -9,7 +9,6 @@
         { "path": "../async-waitqueue" },
         { "path": "../cancelable" },
         { "path": "../../internal/guards" },
-        { "path": "../../internal/integers" },
         { "path": "../../internal/tag" },
     ]
 }

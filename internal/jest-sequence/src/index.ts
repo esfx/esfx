@@ -18,7 +18,6 @@ import { toEqualSequence } from "./toEqualSequence";
 import { toEqualSequenceAsync } from "./toEqualSequenceAsync";
 import { toStartWithSequence } from "./toStartWithSequence";
 import { toStartWithSequenceAsync } from "./toStartWithSequenceAsync";
-import { IteratedType, AsyncIteratedType, PromisedType } from "@esfx/type-model";
 
 expect.extend({
     toEqualSequence,
@@ -26,8 +25,6 @@ expect.extend({
     toStartWithSequence,
     toStartWithSequenceAsync,
 });
-
-type Unpromise<T> = T extends PromiseLike<infer U> ? U extends PromiseLike<infer V> ? V : U : T;
 
 declare global {
     namespace jest {

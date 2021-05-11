@@ -32,10 +32,12 @@ export function isObject(value: unknown): value is object {
         || typeof value === "function";
 }
 
+type AbstractInstanceType<T extends abstract new (...args: any) => any> = T extends abstract new (...args: any) => infer R ? R : any;
+
 /*@internal*/
 export function isInstance<C extends Constructor>(value: unknown, ctor: C): value is InstanceType<C>;
 /*@internal*/
-export function isInstance<C extends AbstractConstructor>(value: unknown, ctor: C): value is C["prototype"];
+export function isInstance<C extends AbstractConstructor>(value: unknown, ctor: C): value is AbstractInstanceType<C>;
 /*@internal*/
 export function isInstance(value: unknown, ctor: Function) {
     return !isMissing(value) && value instanceof ctor;

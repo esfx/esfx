@@ -5,11 +5,11 @@ import {
     IteratedType,
     GeneratorNextType,
     GeneratorReturnType,
-    // AsyncIteratedType,
-    // AsyncGeneratorNextType,
-    // AsyncGeneratorReturnType,
+    AsyncGeneratorNextType,
+    AsyncGeneratorReturnType,
     PromisedType,
     // UnionToIntersection,
+    Intersection,
     IsCallable,
     IsConstructable,
     IsUnknown,
@@ -32,13 +32,13 @@ import {
     MatchingKeys,
     FunctionKeys,
     Constructor,
-    // Await,
-    // AwaitAll,
-    // Shift,
-    // Unshift,
-    // Reverse,
-    // Pop,
-    // Push,
+    Await,
+    AwaitAll,
+    Shift,
+    Unshift,
+    Reverse,
+    Pop,
+    Push,
     Disjoin,
     Conjoin,
     DisjoinOverlaps,
@@ -46,7 +46,8 @@ import {
     Diff,
     Intersect,
     Assign,
-    AsyncIteratedType
+    AsyncIteratedType,
+    Union
 } from "..";
 
 it("type-model", () => {
@@ -97,28 +98,27 @@ it("type-model", () => {
     type _ = [
         __Test<__ExpectType<AsyncIteratedType<AsyncIterable<number>>, number>>,
         __Test<__ExpectType<AsyncIteratedType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: false, value: number }> } }>, number>>,
+        __Test<__ExpectType<AsyncIteratedType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: false, value: Promise<number> }> } }>, number>>,
+        __Test<__ExpectType<AsyncIteratedType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: false, value: Promise<Promise<number>> }> } }>, number>>,
     ];
 }
 // #endregion AsyncIteratedType tests
 
-// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
-// // #region AsyncGeneratorNextType tests
-// {
-//     type _ = [
-//         __Test<__ExpectType<AsyncGeneratorNextType<{ [Symbol.asyncIterator](): { next(value?: number): any } }>, number>>,
-//     ];
-// }
-// // #endregion AsyncGeneratorNextType tests
+// #region AsyncGeneratorNextType tests
+{
+    type _ = [
+        __Test<__ExpectType<AsyncGeneratorNextType<{ [Symbol.asyncIterator](): { next(value?: number): any } }>, number>>,
+    ];
+}
+// #endregion AsyncGeneratorNextType tests
 
-// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
-// // #region AsyncGeneratorReturnType tests
-// {
-//     type _ = [
-//         __Test<__ExpectType<AsyncGeneratorReturnType<AsyncIterable<number>>, number>>,
-//         __Test<__ExpectType<AsyncGeneratorReturnType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: true, value: number }> } }>, number>>,
-//     ];
-// }
-// // #endregion AsyncGeneratorReturnType tests
+// #region AsyncGeneratorReturnType tests
+{
+    type _ = [
+        __Test<__ExpectType<AsyncGeneratorReturnType<{ [Symbol.asyncIterator](): { next(): Promise<{ done: true, value: number }> } }>, number>>,
+    ];
+}
+// #endregion AsyncGeneratorReturnType tests
 
 // #region PromisedType tests
 {
@@ -140,6 +140,26 @@ it("type-model", () => {
 //     ];
 // }
 // // #endregion
+
+// #region Intersection tests
+{
+    type _ = [
+        __Test<__ExpectType<Intersection<[1, 2]>,        1 & 2>>,
+        __Test<__ExpectType<Intersection<[1, never]>,    never>>,
+        __Test<__ExpectType<Intersection<[1, unknown]>,  1>>,
+    ];
+}
+// #endregion
+
+// #region Union tests
+{
+    type _ = [
+        __Test<__ExpectType<Union<[1, 2]>,        1 | 2>>,
+        __Test<__ExpectType<Union<[1, never]>,    1>>,
+        __Test<__ExpectType<Union<[1, unknown]>,  unknown>>,
+    ];
+}
+// #endregion
 
 // #region IsAny tests
 {
@@ -620,90 +640,86 @@ it("type-model", () => {
 }
 // #endregion FunctionKeys tests
 
-// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
-// // #region Await tests
-// {
-//     type _ = [
-//         __Test<__ExpectType<Await<number>,                   number>>,
-//         __Test<__ExpectType<Await<Promise<number>>,          number>>,
-//         __Test<__ExpectType<Await<Promise<Promise<number>>>, number>>,
-//     ];
-// }
-// // #endregion Await tests
+// #region Await tests
+{
+    type _ = [
+        __Test<__ExpectType<Await<number>,                   number>>,
+        __Test<__ExpectType<Await<{ then(): any }>,          never>>,
+        __Test<__ExpectType<Await<{ then: number }>,         { then: number }>>,
+        __Test<__ExpectType<Await<Promise<number>>,          number>>,
+        __Test<__ExpectType<Await<Promise<Promise<number>>>, number>>,
+    ];
+}
+// #endregion Await tests
+
+// #region AwaitAll tests
+{
+    type _ = [
+        __Test<__ExpectType<AwaitAll<[]>,                          []>>,
+        __Test<__ExpectType<AwaitAll<[number]>,                    [number]>>,
+        __Test<__ExpectType<AwaitAll<[Promise<number>]>,           [number]>>,
+        __Test<__ExpectType<AwaitAll<[Promise<number>, number]>,   [number, number]>>,
+    ];
+}
+// #endregion AwaitAll tests
+
+// #region Shift tests
+{
+    type _ = [
+        __Test<__ExpectType<Shift<[1, 2, 3]>,  [1, [2, 3]]>>,
+        __Test<__ExpectType<Shift<[1, 2]>,     [1, [2]]>>,
+        __Test<__ExpectType<Shift<[1]>,        [1, []]>>,
+        __Test<__ExpectType<Shift<[]>,         [never, never]>>,
+    ];
+}
+// #endregion Shift tests
+
+// #region Unshift tests
+{
+    type _ = [
+        __Test<__ExpectType<Unshift<[1, 2], 3>,    [3, 1, 2]>>,
+        __Test<__ExpectType<Unshift<[1], 2>,       [2, 1]>>,
+        __Test<__ExpectType<Unshift<[], 1>,        [1]>>,
+        __Test<__ExpectType<Unshift<never, 1>,     never>>,
+    ];
+}
+// #endregion Unshift tests
+
+// #region Reverse tests
+{
+    type _ = [
+        __Test<__ExpectType<Reverse<[1, 2, 3]>,        [3, 2, 1]>>,
+        __Test<__ExpectType<Reverse<[1, 2]>,           [2, 1]>>,
+        __Test<__ExpectType<Reverse<[1]>,              [1]>>,
+        __Test<__ExpectType<Reverse<[]>,               []>>,
+        __Test<__ExpectType<Reverse<[1, ...number[]]>, [1]>>,
+        __Test<__ExpectType<Reverse<never>,            never>>,
+    ];
+}
+// #endregion Reverse tests
+
+// #region Pop tests
+{
+    type _ = [
+        __Test<__ExpectType<Pop<[1, 2, 3]>,   [3, [1, 2]]>>,
+        __Test<__ExpectType<Pop<[1, 2]>,      [2, [1]]>>,
+        __Test<__ExpectType<Pop<[1]>,         [1, []]>>,
+        __Test<__ExpectType<Pop<[]>,          [never, never]>>,
+    ];
+}
+// #endregion Pop tests
 
 // TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
-// // #region AwaitAll tests
-// {
-//     type _ = [
-//         __Test<__ExpectType<AwaitAll<[]>,                          []>>,
-//         __Test<__ExpectType<AwaitAll<[number]>,                    [number]>>,
-//         __Test<__ExpectType<AwaitAll<[Promise<number>]>,           [number]>>,
-//         __Test<__ExpectType<AwaitAll<[Promise<number>, number]>,   [number, number]>>,
-//     ];
-// }
-// // #endregion AwaitAll tests
-
-// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
-// // #region Shift tests
-// {
-//     type _ = [
-//         __Test<__ExpectType<Shift<[1, 2, 3]>,  [1, [2, 3]]>>,
-//         __Test<__ExpectType<Shift<[1, 2]>,     [1, [2]]>>,
-//         __Test<__ExpectType<Shift<[1]>,        [1, []]>>,
-//         __Test<__ExpectType<Shift<[]>,         [never, never]>>,
-//     ];
-// }
-// // #endregion Shift tests
-
-// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
-// // #region Unshift tests
-// {
-//     type _ = [
-//         __Test<__ExpectType<Unshift<[1, 2], 3>,    [3, 1, 2]>>,
-//         __Test<__ExpectType<Unshift<[1], 2>,       [2, 1]>>,
-//         __Test<__ExpectType<Unshift<[], 1>,        [1]>>,
-//         __Test<__ExpectType<Unshift<never, 1>,     never>>,
-//     ];
-// }
-// // #endregion Unshift tests
-
-// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
-// // #region Reverse tests
-// {
-//     type _ = [
-//         __Test<__ExpectType<Reverse<[1, 2, 3]>,        [3, 2, 1]>>,
-//         __Test<__ExpectType<Reverse<[1, 2]>,           [2, 1]>>,
-//         __Test<__ExpectType<Reverse<[1]>,              [1]>>,
-//         __Test<__ExpectType<Reverse<[]>,               []>>,
-//         __Test<__ExpectType<Reverse<[1, ...number[]]>, [1]>>,
-//         __Test<__ExpectType<Reverse<never>,            never>>,
-//     ];
-// }
-// // #endregion Reverse tests
-
-// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
-// // #region Pop tests
-// {
-//     type _ = [
-//         __Test<__ExpectType<Pop<[1, 2, 3]>,   [3, [1, 2]]>>,
-//         __Test<__ExpectType<Pop<[1, 2]>,      [2, [1]]>>,
-//         __Test<__ExpectType<Pop<[1]>,         [1, []]>>,
-//         __Test<__ExpectType<Pop<[]>,          [never, never]>>,
-//     ];
-// }
-// // #endregion Pop tests
-
-// TODO(rbuckton): Depends on recursion in object types, which is currently unsafe.
-// // #region Push tests
-// {
-//     type _ = [
-//         __Test<__ExpectType<Push<[1, 2], 3>,   [1, 2, 3]>>,
-//         __Test<__ExpectType<Push<[1], 2>,      [1, 2]>>,
-//         __Test<__ExpectType<Push<[], 1>,       [1]>>,
-//         __Test<__ExpectType<Push<never, 1>,    never>>,
-//     ]
-// }
-// // #endregion Push tests
+// #region Push tests
+{
+    type _ = [
+        __Test<__ExpectType<Push<[1, 2], 3>,   [1, 2, 3]>>,
+        __Test<__ExpectType<Push<[1], 2>,      [1, 2]>>,
+        __Test<__ExpectType<Push<[], 1>,       [1]>>,
+        __Test<__ExpectType<Push<never, 1>,    never>>,
+    ]
+}
+// #endregion Push tests
 
 // #region Disjoin tests
 {
@@ -836,10 +852,10 @@ declare const testSymbol: unique symbol;
 // #region Test helper types
 type __Test<T extends { pass: true }> = T;
 type __ExpectType<Actual, Expected> =
-    IsNever<Expected> extends true ? IsNever<Actual> extends true ? { pass: true } : { pass: false, Expected: Expected, Actual: Actual } :
-    IsNever<Actual> extends true ? { pass: false, Expected: Expected, Actual: Actual } :
-    IsAny<Expected> extends true ? IsAny<Actual> extends true ? { pass: true } : { pass: false, Expected: Expected, Actual: Actual } :
-    IsAny<Actual> extends true ? { pass: false, Expected: Expected, Actual: Actual } :
+    [IsNever<Expected>] extends [true] ? [IsNever<Actual>] extends [true] ? { pass: true } : { pass: false, Expected: Expected, Actual: Actual } :
+    [IsNever<Actual>] extends [true] ? { pass: false, Expected: Expected, Actual: Actual } :
+    [IsAny<Expected>] extends [true] ? [IsAny<Actual>] extends [true] ? { pass: true } : { pass: false, Expected: Expected, Actual: Actual } :
+    [IsAny<Actual>] extends [true] ? { pass: false, Expected: Expected, Actual: Actual } :
     [Expected, Actual] extends [Actual, Expected] ? { pass: true } :
     { pass: false, Expected: Expected, Actual: Actual };
 // #endregion Test helper types

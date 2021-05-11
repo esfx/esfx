@@ -45,7 +45,7 @@
    SOFTWARE.
 */
 
-import { maxInt32 } from '@esfx/internal-integers';
+const MAX_INT32 = (2 ** 31) - 1;
 
 const maxPrimeArrayLength = 2146435069;
 const hashPrime = 101;
@@ -103,7 +103,7 @@ export function getPrime(min: number) {
         const prime = primes[i];
         if (prime >= min) return prime;
     }
-    for (let i = min | 1; i < maxInt32; i += 2) {
+    for (let i = min | 1; i < MAX_INT32; i += 2) {
         if (isPrime(i) && (i - 1) % hashPrime) {
             return i;
         }

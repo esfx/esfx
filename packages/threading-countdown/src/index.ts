@@ -14,10 +14,10 @@
    limitations under the License.
 */
 
-import { maxInt32 } from "@esfx/internal-integers";
-import { waitOneArray } from "@esfx/internal-threading";
 import { SpinWait } from "@esfx/threading-spinwait";
 import { Disposable } from "@esfx/disposable";
+
+const MAX_INT32 = (2 ** 31) - 1;
 
 // NOTE: This must be a single bit, must be distinct from other threading coordination
 //       primitives, and must be a bit >= 16.
@@ -145,7 +145,7 @@ export class CountdownEvent implements Disposable {
         while (true) {
             const remainingCount = Atomics.load(array, REMAININGCOUNT_INDEX);
             if (remainingCount <= 0) return false;
-            if (remainingCount > maxInt32 - count) throw new Error("Operation would cause count to overflow.");
+            if (remainingCount > MAX_INT32 - count) throw new Error("Operation would cause count to overflow.");
             if (Atomics.compareExchange(array, REMAININGCOUNT_INDEX, remainingCount, remainingCount + count) === remainingCount) {
                 break;
             }

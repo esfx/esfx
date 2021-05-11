@@ -9,7 +9,7 @@ const { pickProperty } = require("../../utils");
  * @type {import("../../types").PackageVerifierRule}
  */
 function verifyPackageJsonModuleTypeProperty(context) {
-    if (context.basePath === context.paths.internalPath) return;
+    // if (context.basePath === context.paths.internalPath) return;
     const { packageJsonFile, packageJsonObject, formatLocation, addError } = context;
     const headerProp =
         pickProperty(packageJsonObject, "description") ||

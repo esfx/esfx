@@ -771,6 +771,14 @@ export class Query<T> implements Iterable<T> {
      * @param equaler An `Equaler` object used to compare equality.
      * @category Subquery
      */
+    intersect<T>(this: Query<T>, right: Iterable<T>, equaler?: Equaler<T>): Query<T>;
+    /**
+     * Creates a subquery for the set intersection of this `Query` and another `Iterable`.
+     *
+     * @param right A `Iterable` object.
+     * @param equaler An `Equaler` object used to compare equality.
+     * @category Subquery
+     */
     intersect(right: Iterable<T>, equaler?: Equaler<T>): Query<T>;
     intersect(right: Iterable<T>, equaler?: Equaler<T>): Query<T> | HierarchyQuery<T> {
         return this._from(fn.intersect(getSource(this), right, equaler));
@@ -786,6 +794,16 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     intersectBy<TNode, T extends TNode, K>(this: Query<T>, right: HierarchyIterable<TNode, T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): HierarchyQuery<TNode, T>;
+    /**
+     * Creates a subquery for the set intersection of this `Query` and another `Iterable`, where set identity is determined by the selected key.
+     *
+     * @param right A `Iterable` object.
+     * @param keySelector A callback used to select the key for each element.
+     * @param keySelector.element An element from which to select a key.
+     * @param keyEqualer An `Equaler` object used to compare key equality.
+     * @category Subquery
+     */
+    intersectBy<T, K>(this: Query<T>, right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T>;
     /**
      * Creates a subquery for the set intersection of this `Query` and another `Iterable`, where set identity is determined by the selected key.
      *
@@ -815,6 +833,14 @@ export class Query<T> implements Iterable<T> {
      * @param equaler An `Equaler` object used to compare equality.
      * @category Subquery
      */
+    union<T>(this: Query<T>, right: Iterable<T>, equaler?: Equaler<T>): Query<T>;
+    /**
+     * Creates a subquery for the set union of this `Query` and another `Iterable`.
+     *
+     * @param right A `Iterable` object.
+     * @param equaler An `Equaler` object used to compare equality.
+     * @category Subquery
+     */
     union(right: Iterable<T>, equaler?: Equaler<T>): Query<T>;
     union(right: Iterable<T>, equaler?: Equaler<T>): Query<T> | HierarchyQuery<T> {
         return this._from(fn.union(getSource(this), getSource(right), equaler));
@@ -830,6 +856,16 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     unionBy<TNode, T extends TNode, K>(this: Query<T>, right: HierarchyIterable<TNode, T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): HierarchyQuery<TNode, T>;
+    /**
+     * Creates a subquery for the set union of this `Query` and another `Iterable`, where set identity is determined by the selected key.
+     *
+     * @param right A `Iterable` object.
+     * @param keySelector A callback used to select the key for each element.
+     * @param keySelector.element An element from which to select a key.
+     * @param keyEqualer An `Equaler` object used to compare key equality.
+     * @category Subquery
+     */
+    unionBy<T, K>(this: Query<T>, right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T>;
     /**
      * Creates a subquery for the set union of this `Query` and another `Iterable`, where set identity is determined by the selected key.
      *
@@ -911,6 +947,14 @@ export class Query<T> implements Iterable<T> {
      * @param equaler An `Equaler` object used to compare equality.
      * @category Subquery
      */
+    symmetricDifference<T>(this: Query<T>, right: Iterable<T>, equaler?: Equaler<T>): Query<T>;
+    /**
+     * Creates a subquery for the symmetric difference between this and another `Iterable`.
+     *
+     * @param right A `Iterable` object.
+     * @param equaler An `Equaler` object used to compare equality.
+     * @category Subquery
+     */
     symmetricDifference(right: Iterable<T>, equaler?: Equaler<T>): Query<T>;
     symmetricDifference(right: Iterable<T>, equaler?: Equaler<T>): Query<T> | HierarchyQuery<T> {
         return this._from(fn.symmetricDifference(getSource(this), getSource(right), equaler));
@@ -935,6 +979,16 @@ export class Query<T> implements Iterable<T> {
      * @param keyEqualer An `Equaler` object used to compare key equality.
      * @category Subquery
      */
+    symmetricDifferenceBy<T, K>(this: Query<T>, right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T>;
+    /**
+     * Creates a subquery for the symmetric difference between this and another `Iterable`, where set identity is determined by the selected key.
+     *
+     * @param right A `Iterable` object.
+     * @param keySelector A callback used to select the key for each element.
+     * @param keySelector.element An element from which to select a key.
+     * @param keyEqualer An `Equaler` object used to compare key equality.
+     * @category Subquery
+     */
     symmetricDifferenceBy<K>(right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T>;
     symmetricDifferenceBy<K>(right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Query<T> | HierarchyQuery<T> {
         return this._from(fn.symmetricDifferenceBy(getSource(this), getSource(right), keySelector, keyEqualer));
@@ -947,6 +1001,13 @@ export class Query<T> implements Iterable<T> {
      * @category Subquery
      */
     concat<TNode, T extends TNode>(this: Query<T>, right: HierarchyIterable<TNode, T>): HierarchyQuery<TNode, T>;
+    /**
+     * Creates a subquery that concatenates this `Query` with another `Iterable`.
+     *
+     * @param right A `Iterable` object.
+     * @category Subquery
+     */
+    concat<T>(this: Query<T>, right: Iterable<T>): Query<T>;
     /**
      * Creates a subquery that concatenates this `Query` with another `Iterable`.
      *
@@ -1378,6 +1439,13 @@ export class Query<T> implements Iterable<T> {
      * @category Hierarchy
      */
     toHierarchy<TNode, T extends TNode>(this: Query<T>, provider: HierarchyProvider<TNode>): HierarchyQuery<TNode, T>;
+    /**
+     * Creates a `HierarchyQuery` using the provided `HierarchyProvider`.
+     *
+     * @param provider A `HierarchyProvider`.
+     * @category Hierarchy
+     */
+    toHierarchy<T>(this: Query<T>, provider: HierarchyProvider<T>): HierarchyQuery<T>;
     /**
      * Creates a `HierarchyQuery` using the provided `HierarchyProvider`.
      *

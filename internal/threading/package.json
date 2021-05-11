@@ -2,8 +2,10 @@
     "name": "@esfx/internal-threading",
     "version": "1.0.0-pre.17",
     "description": "This package provides internal utilities for '@esfx' and is not intended for use in user-code.",
-    "main": "dist",
-    "types": "dist",
+    "type": "commonjs",
+    "main": "./dist/index.js",
+    "exports": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {
