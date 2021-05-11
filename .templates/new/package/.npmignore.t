@@ -1,15 +1,10 @@
 ---
 to: <%=packagePath%>/.npmignore
 ---
-__tests__
+.vscode
+obj
 src
+__tests__
+api-extractor.json
 tsconfig.json
 tsconfig.tsbuildinfo
-api-extractor.json
-<% if (exportMap) { -%>
-/.exportmap.json
-/*.d.ts
-/*.js
-!/index.d.ts
-!/index.js
-<% } %>

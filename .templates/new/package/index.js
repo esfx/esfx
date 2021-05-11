@@ -73,12 +73,12 @@ module.exports = {
             initial: internal ? "This package provides internal utilities for '@esfx' and is not intended for use in user-code." : "",
         });
 
-        const { exportMap = false } = !internal ? await prompter.prompt({
+        const { exportMap = false } = await prompter.prompt({
             type: "confirm",
             name: "exportMap",
-            message: "will this package use a package.json 'exports' map?",
+            message: "will this package use a custom package.json 'exports' map?",
             initial: true
-        }) : {};
+        });
 
         const { dependenciesSelection } = await prompter.prompt([{
             type: "multiselect",
@@ -100,10 +100,6 @@ module.exports = {
                 version: pkg.version,
                 path: cleanPath(path.relative(resolvedPackagePath, pkg.location))
             }));
-
-        // const devDependencies = exportMap ?
-        //     packages.filter(pkg => pkg.name === "@esfx/internal-generate-export-map") :
-        //     undefined;
 
         return {
             ...args,

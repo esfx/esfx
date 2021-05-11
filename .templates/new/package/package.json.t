@@ -6,17 +6,24 @@ sh: cd <%= cwd %> && lerna bootstrap
     "name": "<%=packageName%>",
     "version": "<%=version%>",
     "description": "<%-description%>",
-    "main": "dist",
-    "types": "dist",
     "type": "commonjs",
-<% if (!internal && exportMap) { -%>
+    "main": "./dist/index.js",
+<% if (exportMap) { -%>
     "exports": {
         ".": "./dist/index.js",
-        "./": "./dist/"
+        "./index": "./dist/index.js",
+        "./index.js": "./dist/index.js"
     },
-    "scripts": {
-        "postinstall": "generate-export-map"
+    "types": "index",
+    "typesVersions": {
+        "*": {
+            "index": ["./dist/index.d.ts"],
+            "index.js": ["./dist/index.d.ts"]
+        }
     },
+<% } else { -%>
+    "exports": "./dist/index.js",
+    "types": "./dist/index.d.ts",
 <% } -%>
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
