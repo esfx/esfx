@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class Query
    | @esfx API Reference ">
-    <meta name="generator" content="docfx 2.52.0.0">
+    <meta name="generator" content="docfx 2.57.2.0">
     
     <link rel="shortcut icon" href="../../images/favicon-32x32.png">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
                 </div>
               </form>
             </div>
@@ -61,17 +61,17 @@
       <div class="container body-content">
         
         <div id="search-results">
-          <div class="search-list"></div>
+          <div class="search-list"> <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination"></ul>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
         
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
           <div class="sidetoggle collapse" id="sidetoggle">
             <div id="sidetoc"></div>
           </div>
@@ -705,7 +705,63 @@ evaluated.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_concat_member_2_" data-uid="@esfx/iter-query!Query#concat:member(2)">concat(right)</h4>
+  <h4 id="_esfx_iter_query_Query_concat_member_2_" data-uid="@esfx/iter-query!Query#concat:member(2)">concat(this, right)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery that concatenates this <code>Query</code> with another <code>Iterable</code><!-- -->.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">concat&lt;T&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>this</dt>
+        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>right</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        <p>A <code>Iterable</code> object.
+ Subquery</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_iter_query_Query_concat_member_3_" data-uid="@esfx/iter-query!Query#concat:member(3)">concat(right)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery that concatenates this <code>Query</code> with another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3816,7 +3872,74 @@ an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_intersect_member_2_" data-uid="@esfx/iter-query!Query#intersect:member(2)">intersect(right, equaler)</h4>
+  <h4 id="_esfx_iter_query_Query_intersect_member_2_" data-uid="@esfx/iter-query!Query#intersect:member(2)">intersect(this, right, equaler)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery for the set intersection of this <code>Query</code> and another <code>Iterable</code><!-- -->.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">intersect&lt;T&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;, equaler?: Equaler&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>this</dt>
+        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>right</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        <p>A <code>Iterable</code> object.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>equaler</dt>
+        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_iter_query_Query_intersect_member_3_" data-uid="@esfx/iter-query!Query#intersect:member(3)">intersect(right, equaler)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set intersection of this <code>Query</code> and another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -3959,7 +4082,94 @@ an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_intersectBy_member_2_" data-uid="@esfx/iter-query!Query#intersectBy:member(2)">intersectBy(right, keySelector, keyEqualer)</h4>
+  <h4 id="_esfx_iter_query_Query_intersectBy_member_2_" data-uid="@esfx/iter-query!Query#intersectBy:member(2)">intersectBy(this, right, keySelector, keyEqualer)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery for the set intersection of this <code>Query</code> and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">intersectBy&lt;T, K&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): Query&lt;T&gt;;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>K</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>this</dt>
+        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>right</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        <p>A <code>Iterable</code> object.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>keySelector</dt>
+        <dd><span class="xref">(element: T) =&gt; K</span></dd>
+      </dl>
+      <p>
+        <p>A callback used to select the key for each element.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>keyEqualer</dt>
+        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
+      </dl>
+      <p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_iter_query_Query_intersectBy_member_3_" data-uid="@esfx/iter-query!Query#intersectBy:member(3)">intersectBy(right, keySelector, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set intersection of this <code>Query</code> and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -6864,7 +7074,74 @@ with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_symmetricDifference_member_2_" data-uid="@esfx/iter-query!Query#symmetricDifference:member(2)">symmetricDifference(right, equaler)</h4>
+  <h4 id="_esfx_iter_query_Query_symmetricDifference_member_2_" data-uid="@esfx/iter-query!Query#symmetricDifference:member(2)">symmetricDifference(this, right, equaler)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">symmetricDifference&lt;T&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;, equaler?: Equaler&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>this</dt>
+        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>right</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        <p>A <code>Iterable</code> object.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>equaler</dt>
+        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_iter_query_Query_symmetricDifference_member_3_" data-uid="@esfx/iter-query!Query#symmetricDifference:member(3)">symmetricDifference(right, equaler)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -7007,7 +7284,94 @@ with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_symmetricDifferenceBy_member_2_" data-uid="@esfx/iter-query!Query#symmetricDifferenceBy:member(2)">symmetricDifferenceBy(right, keySelector, keyEqualer)</h4>
+  <h4 id="_esfx_iter_query_Query_symmetricDifferenceBy_member_2_" data-uid="@esfx/iter-query!Query#symmetricDifferenceBy:member(2)">symmetricDifferenceBy(this, right, keySelector, keyEqualer)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">symmetricDifferenceBy&lt;T, K&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): Query&lt;T&gt;;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>K</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>this</dt>
+        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>right</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        <p>A <code>Iterable</code> object.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>keySelector</dt>
+        <dd><span class="xref">(element: T) =&gt; K</span></dd>
+      </dl>
+      <p>
+        <p>A callback used to select the key for each element.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>keyEqualer</dt>
+        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
+      </dl>
+      <p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_iter_query_Query_symmetricDifferenceBy_member_3_" data-uid="@esfx/iter-query!Query#symmetricDifferenceBy:member(3)">symmetricDifferenceBy(right, keySelector, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -7970,7 +8334,63 @@ count.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_toHierarchy_member_4_" data-uid="@esfx/iter-query!Query#toHierarchy:member(4)">toHierarchy(provider)</h4>
+  <h4 id="_esfx_iter_query_Query_toHierarchy_member_4_" data-uid="@esfx/iter-query!Query#toHierarchy:member(4)">toHierarchy(this, provider)</h4>
+  <div class="markdown level1 summary"><p>Creates a <code>HierarchyQuery</code> using the provided <code>HierarchyProvider</code><!-- -->.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">toHierarchy&lt;T&gt;(this: Query&lt;T&gt;, provider: HierarchyProvider&lt;T&gt;): HierarchyQuery&lt;T&gt;;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>this</dt>
+        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>provider</dt>
+        <dd><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        <p>A <code>HierarchyProvider</code><!-- -->.
+ Hierarchy</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;T&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_iter_query_Query_toHierarchy_member_5_" data-uid="@esfx/iter-query!Query#toHierarchy:member(5)">toHierarchy(provider)</h4>
   <div class="markdown level1 summary"><p>Creates a <code>HierarchyQuery</code> using the provided <code>HierarchyProvider</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -9258,7 +9678,74 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   
   
-  <h4 id="_esfx_iter_query_Query_union_member_2_" data-uid="@esfx/iter-query!Query#union:member(2)">union(right, equaler)</h4>
+  <h4 id="_esfx_iter_query_Query_union_member_2_" data-uid="@esfx/iter-query!Query#union:member(2)">union(this, right, equaler)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery for the set union of this <code>Query</code> and another <code>Iterable</code><!-- -->.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">union&lt;T&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;, equaler?: Equaler&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>this</dt>
+        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>right</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        <p>A <code>Iterable</code> object.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>equaler</dt>
+        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_iter_query_Query_union_member_3_" data-uid="@esfx/iter-query!Query#union:member(3)">union(right, equaler)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set union of this <code>Query</code> and another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -9401,7 +9888,94 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   
   
-  <h4 id="_esfx_iter_query_Query_unionBy_member_2_" data-uid="@esfx/iter-query!Query#unionBy:member(2)">unionBy(right, keySelector, keyEqualer)</h4>
+  <h4 id="_esfx_iter_query_Query_unionBy_member_2_" data-uid="@esfx/iter-query!Query#unionBy:member(2)">unionBy(this, right, keySelector, keyEqualer)</h4>
+  <div class="markdown level1 summary"><p>Creates a subquery for the set union of this <code>Query</code> and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">unionBy&lt;T, K&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): Query&lt;T&gt;;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>K</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>this</dt>
+        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>right</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
+      </dl>
+      <p>
+        <p>A <code>Iterable</code> object.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>keySelector</dt>
+        <dd><span class="xref">(element: T) =&gt; K</span></dd>
+      </dl>
+      <p>
+        <p>A callback used to select the key for each element.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>keyEqualer</dt>
+        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
+      </dl>
+      <p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_iter_query_Query_unionBy_member_3_" data-uid="@esfx/iter-query!Query#unionBy:member(3)">unionBy(right, keySelector, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set union of this <code>Query</code> and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -10063,7 +10637,8 @@ using the supplied callback.</p>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5></h5>
+                <div></div>
               </nav>
             </div>
           </div>
@@ -10075,7 +10650,7 @@ using the supplied callback.</p>
         <div class="footer">
           <div class="container">
             <span class="pull-right">
-              <a href="#top">Back to top</a>
+              <a href="#top"></a>
             </span>
             
             <span>Generated by <strong>DocFX</strong></span>

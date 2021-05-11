@@ -269,6 +269,6 @@ exports.installDocFx = installDocFx;
 
 async function docfx(serve = false) {
     await del("docs");
-    await exec("./.docfx/bin/docfx", serve ? ["--serve"] : []);
+    await exec(path.resolve(".docfx/bin/docfx.exe"), serve ? ["--serve"] : [], { verbose: true });
 }
 exports.docfx = docfx;

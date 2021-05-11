@@ -5021,6 +5021,10 @@ references:
   name: HashGenerator
   href: api/equatable.html#_esfx_equatable_HashGenerator_type
   fullName: HashGenerator
+- uid: '@esfx/equatable!rawHash:function(1)'
+  name: rawHash(value)
+  href: api/equatable.html#_esfx_equatable_rawHash_function_1_
+  fullName: rawHash(value)
 - uid: '@esfx/equatable!StructuralComparable#[StructuralComparable.structuralCompareTo]:member(1)'
   name: '[StructuralComparable.structuralCompareTo](other, comparer)'
   href: api/equatable/structuralcomparable-interface.html#_esfx_equatable_StructuralComparable__StructuralComparable_structuralCompareTo__member_1_
@@ -9074,8 +9078,12 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_concat_member_1_
   fullName: concat(this, right)
 - uid: '@esfx/iter-query!Query#concat:member(2)'
-  name: concat(right)
+  name: concat(this, right)
   href: api/iter-query/query.html#_esfx_iter_query_Query_concat_member_2_
+  fullName: concat(this, right)
+- uid: '@esfx/iter-query!Query#concat:member(3)'
+  name: concat(right)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_concat_member_3_
   fullName: concat(right)
 - uid: '@esfx/iter-query!Query#copyTo:member(1)'
   name: copyTo(dest, start, count)
@@ -9266,16 +9274,24 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_intersect_member_1_
   fullName: intersect(this, right, equaler)
 - uid: '@esfx/iter-query!Query#intersect:member(2)'
-  name: intersect(right, equaler)
+  name: intersect(this, right, equaler)
   href: api/iter-query/query.html#_esfx_iter_query_Query_intersect_member_2_
+  fullName: intersect(this, right, equaler)
+- uid: '@esfx/iter-query!Query#intersect:member(3)'
+  name: intersect(right, equaler)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_intersect_member_3_
   fullName: intersect(right, equaler)
 - uid: '@esfx/iter-query!Query#intersectBy:member(1)'
   name: intersectBy(this, right, keySelector, keyEqualer)
   href: api/iter-query/query.html#_esfx_iter_query_Query_intersectBy_member_1_
   fullName: intersectBy(this, right, keySelector, keyEqualer)
 - uid: '@esfx/iter-query!Query#intersectBy:member(2)'
-  name: intersectBy(right, keySelector, keyEqualer)
+  name: intersectBy(this, right, keySelector, keyEqualer)
   href: api/iter-query/query.html#_esfx_iter_query_Query_intersectBy_member_2_
+  fullName: intersectBy(this, right, keySelector, keyEqualer)
+- uid: '@esfx/iter-query!Query#intersectBy:member(3)'
+  name: intersectBy(right, keySelector, keyEqualer)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_intersectBy_member_3_
   fullName: intersectBy(right, keySelector, keyEqualer)
 - uid: '@esfx/iter-query!Query#into:member(1)'
   name: into(callback)
@@ -9486,16 +9502,24 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifference_member_1_
   fullName: symmetricDifference(this, right, equaler)
 - uid: '@esfx/iter-query!Query#symmetricDifference:member(2)'
-  name: symmetricDifference(right, equaler)
+  name: symmetricDifference(this, right, equaler)
   href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifference_member_2_
+  fullName: symmetricDifference(this, right, equaler)
+- uid: '@esfx/iter-query!Query#symmetricDifference:member(3)'
+  name: symmetricDifference(right, equaler)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifference_member_3_
   fullName: symmetricDifference(right, equaler)
 - uid: '@esfx/iter-query!Query#symmetricDifferenceBy:member(1)'
   name: symmetricDifferenceBy(this, right, keySelector, keyEqualer)
   href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifferenceBy_member_1_
   fullName: symmetricDifferenceBy(this, right, keySelector, keyEqualer)
 - uid: '@esfx/iter-query!Query#symmetricDifferenceBy:member(2)'
-  name: symmetricDifferenceBy(right, keySelector, keyEqualer)
+  name: symmetricDifferenceBy(this, right, keySelector, keyEqualer)
   href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifferenceBy_member_2_
+  fullName: symmetricDifferenceBy(this, right, keySelector, keyEqualer)
+- uid: '@esfx/iter-query!Query#symmetricDifferenceBy:member(3)'
+  name: symmetricDifferenceBy(right, keySelector, keyEqualer)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifferenceBy_member_3_
   fullName: symmetricDifferenceBy(right, keySelector, keyEqualer)
 - uid: '@esfx/iter-query!Query#take:member(1)'
   name: take(count)
@@ -9574,8 +9598,12 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_toHierarchy_member_3_
   fullName: toHierarchy(this, provider)
 - uid: '@esfx/iter-query!Query#toHierarchy:member(4)'
-  name: toHierarchy(provider)
+  name: toHierarchy(this, provider)
   href: api/iter-query/query.html#_esfx_iter_query_Query_toHierarchy_member_4_
+  fullName: toHierarchy(this, provider)
+- uid: '@esfx/iter-query!Query#toHierarchy:member(5)'
+  name: toHierarchy(provider)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_toHierarchy_member_5_
   fullName: toHierarchy(provider)
 - uid: '@esfx/iter-query!Query#toJSON:member(1)'
   name: toJSON()
@@ -9646,16 +9674,24 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_union_member_1_
   fullName: union(this, right, equaler)
 - uid: '@esfx/iter-query!Query#union:member(2)'
-  name: union(right, equaler)
+  name: union(this, right, equaler)
   href: api/iter-query/query.html#_esfx_iter_query_Query_union_member_2_
+  fullName: union(this, right, equaler)
+- uid: '@esfx/iter-query!Query#union:member(3)'
+  name: union(right, equaler)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_union_member_3_
   fullName: union(right, equaler)
 - uid: '@esfx/iter-query!Query#unionBy:member(1)'
   name: unionBy(this, right, keySelector, keyEqualer)
   href: api/iter-query/query.html#_esfx_iter_query_Query_unionBy_member_1_
   fullName: unionBy(this, right, keySelector, keyEqualer)
 - uid: '@esfx/iter-query!Query#unionBy:member(2)'
-  name: unionBy(right, keySelector, keyEqualer)
+  name: unionBy(this, right, keySelector, keyEqualer)
   href: api/iter-query/query.html#_esfx_iter_query_Query_unionBy_member_2_
+  fullName: unionBy(this, right, keySelector, keyEqualer)
+- uid: '@esfx/iter-query!Query#unionBy:member(3)'
+  name: unionBy(right, keySelector, keyEqualer)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_unionBy_member_3_
   fullName: unionBy(right, keySelector, keyEqualer)
 - uid: '@esfx/iter-query!Query#unzip:member(1)'
   name: unzip()
