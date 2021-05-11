@@ -1093,75 +1093,75 @@ describe("Hierarchy", () => {
     });
     describe("root()", () => {
         it("gets root", () => expect(AsyncQuery.from([nodes.nodeAAAA]).toHierarchy(nodes.nodeHierarchy).root()).toEqualSequenceAsync([nodes.nodeA]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).root()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).root()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).root(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).root(value)).toThrow(error));
     });
     describe("ancestors()", () => {
         it("gets ancestors", () => expect(AsyncQuery.from([nodes.nodeAAAA]).toHierarchy(nodes.nodeHierarchy).ancestors()).toEqualSequenceAsync([nodes.nodeAAA, nodes.nodeAA, nodes.nodeA]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).ancestors()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).ancestors()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).ancestors(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).ancestors(value)).toThrow(error));
     });
     describe("ancestorsAndSelf()", () => {
         it("gets ancestors and self", () => expect(AsyncQuery.from([nodes.nodeAAAA]).toHierarchy(nodes.nodeHierarchy).ancestorsAndSelf()).toEqualSequenceAsync([nodes.nodeAAAA, nodes.nodeAAA, nodes.nodeAA, nodes.nodeA]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).ancestorsAndSelf()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).ancestorsAndSelf()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).ancestorsAndSelf(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).ancestorsAndSelf(value)).toThrow(error));
     });
     describe("parents()", () => {
         it("gets parents", () => expect(AsyncQuery.from([nodes.nodeAAA, nodes.nodeAAB, nodes.nodeAAC]).toHierarchy(nodes.nodeHierarchy).parents()).toEqualSequenceAsync([nodes.nodeAA, nodes.nodeAA, nodes.nodeAA]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).parents()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).parents()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).parents(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).parents(value)).toThrow(error));
     });
     describe("self()", () => {
         it("gets self", () => expect(AsyncQuery.from([nodes.nodeAAA, nodes.nodeAAB, nodes.nodeAAC]).toHierarchy(nodes.nodeHierarchy).self()).toEqualSequenceAsync([nodes.nodeAAA, nodes.nodeAAB, nodes.nodeAAC]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).self()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).self()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).self(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).self(value)).toThrow(error));
     });
     describe("siblings()", () => {
         it("gets siblings", () => expect(AsyncQuery.from([nodes.nodeAAA]).toHierarchy(nodes.nodeHierarchy).siblings()).toEqualSequenceAsync([nodes.nodeAAB, nodes.nodeAAC]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).siblings()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).siblings()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).siblings(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).siblings(value)).toThrow(error));
     });
     describe("siblingsAndSelf()", () => {
         it("gets siblings and self", () => expect(AsyncQuery.from([nodes.nodeAAA]).toHierarchy(nodes.nodeHierarchy).siblingsAndSelf()).toEqualSequenceAsync([nodes.nodeAAA, nodes.nodeAAB, nodes.nodeAAC]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).siblingsAndSelf()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).siblingsAndSelf()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).siblingsAndSelf(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).siblingsAndSelf(value)).toThrow(error));
     });
     describe("precedingSiblings()", () => {
         it("gets siblings before self", () => expect(AsyncQuery.from([nodes.nodeAAB]).toHierarchy(nodes.nodeHierarchy).precedingSiblings()).toEqualSequenceAsync([nodes.nodeAAA]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).precedingSiblings()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).precedingSiblings()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).precedingSiblings(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).precedingSiblings(value)).toThrow(error));
     });
     describe("preceding()", () => {
         it("gets nodes before self", () => expect(AsyncQuery.from([nodes.nodeAB]).toHierarchy(nodes.nodeHierarchy).preceding()).toEqualSequenceAsync([nodes.nodeAAC, nodes.nodeAAB, nodes.nodeAAAA, nodes.nodeAAA, nodes.nodeAA]));
@@ -1169,16 +1169,16 @@ describe("Hierarchy", () => {
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).preceding(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).preceding(value)).toThrow(error));
     });
     describe("followingSiblings()", () => {
         it("gets siblings after self", () => expect(AsyncQuery.from([nodes.nodeAAB]).toHierarchy(nodes.nodeHierarchy).followingSiblings()).toEqualSequenceAsync([nodes.nodeAAC]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).followingSiblings()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).followingSiblings()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).followingSiblings(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).followingSiblings(value)).toThrow(error));
     });
     describe("following()", () => {
         it("gets nodes after self", () => expect(AsyncQuery.from([nodes.nodeAB]).toHierarchy(nodes.nodeHierarchy).following()).toEqualSequenceAsync([nodes.nodeACA, nodes.nodeAC]));
@@ -1186,11 +1186,11 @@ describe("Hierarchy", () => {
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).following(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).following(value)).toThrow(error));
     });
     describe("children()", () => {
         it("gets children", () => expect(AsyncQuery.from([nodes.nodeAA, nodes.nodeAB, nodes.nodeAC]).toHierarchy(nodes.nodeHierarchy).children()).toEqualSequenceAsync([nodes.nodeAAA, nodes.nodeAAB, nodes.nodeAAC, nodes.nodeACA]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).children()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).children()).toEqualSequenceAsync([]));
         it("of undefined children", () => expect(AsyncQuery.from(books.books).toHierarchy(books.bookHierarchy).children()).toEqualSequenceAsync([]));
         it("of undefined child", () => expect(AsyncQuery.from([nodes.badNode]).toHierarchy(nodes.nodeHierarchy).children()).toEqualSequenceAsync([]));
         it("with predicate", () => expect(AsyncQuery.from([nodes.nodeAA]).toHierarchy(nodes.nodeHierarchy).children(x => !!x.marker)).toEqualSequenceAsync([nodes.nodeAAB]));
@@ -1198,13 +1198,13 @@ describe("Hierarchy", () => {
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).children(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).children(value)).toThrow(error));
     });
     describe("nthChild()", () => {
         it("gets nthChild(0)", () => expect(AsyncQuery.from([nodes.nodeAA]).toHierarchy(nodes.nodeHierarchy).nthChild(0)).toEqualSequenceAsync([nodes.nodeAAA]));
         it("gets nthChild(2)", () => expect(AsyncQuery.from([nodes.nodeAA]).toHierarchy(nodes.nodeHierarchy).nthChild(2)).toEqualSequenceAsync([nodes.nodeAAC]));
         it("gets nthChild(-1)", () => expect(AsyncQuery.from([nodes.nodeAA]).toHierarchy(nodes.nodeHierarchy).nthChild(-1)).toEqualSequenceAsync([nodes.nodeAAC]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).nthChild(0)).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).nthChild(0)).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"undefined"}    | ${undefined}  | ${TypeError}
@@ -1213,47 +1213,47 @@ describe("Hierarchy", () => {
             ${"float"}        | ${1.5}        | ${RangeError}
             ${"NaN"}          | ${NaN}        | ${RangeError}
             ${"Infinity"}     | ${Infinity}   | ${RangeError}
-        `("throws if 'offset' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).nthChild(value)).toThrow(error));
+        `("throws if 'offset' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).nthChild(value)).toThrow(error));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).nthChild(0, value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).nthChild(0, value)).toThrow(error));
     });
     describe("firstChild(", () => {
         it("gets firstChild()", () => expect(AsyncQuery.from([nodes.nodeAA]).toHierarchy(nodes.nodeHierarchy).firstChild()).toEqualSequenceAsync([nodes.nodeAAA]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).firstChild()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).firstChild()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).firstChild(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).firstChild(value)).toThrow(error));
     });
     describe("lastChild(", () => {
         it("gets lastChild()", () => expect(AsyncQuery.from([nodes.nodeAA]).toHierarchy(nodes.nodeHierarchy).lastChild()).toEqualSequenceAsync([nodes.nodeAAC]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).lastChild()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).lastChild()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).lastChild(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).lastChild(value)).toThrow(error));
     });
     describe("descendants()", () => {
         it("gets descendants", () => expect(AsyncQuery.from([nodes.nodeAA]).toHierarchy(nodes.nodeHierarchy).descendants()).toEqualSequenceAsync([nodes.nodeAAA, nodes.nodeAAAA, nodes.nodeAAB, nodes.nodeAAC]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).descendants()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).descendants()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).descendants(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).descendants(value)).toThrow(error));
     });
     describe("descendantsAndSelf()", () => {
         it("gets descendants and self", () => expect(AsyncQuery.from([nodes.nodeAA]).toHierarchy(nodes.nodeHierarchy).descendantsAndSelf()).toEqualSequenceAsync([nodes.nodeAA, nodes.nodeAAA, nodes.nodeAAAA, nodes.nodeAAB, nodes.nodeAAC]));
-        it("of undefined", () => expect(AsyncQuery.from([undefined!]).toHierarchy(nodes.nodeHierarchy).descendantsAndSelf()).toEqualSequenceAsync([]));
+        it("of undefined", () => expect(AsyncQuery.from<nodes.Node>([undefined!]).toHierarchy(nodes.nodeHierarchy).descendantsAndSelf()).toEqualSequenceAsync([]));
         it.each`
             type              | value         | error
             ${"null"}         | ${null}       | ${TypeError}
             ${"non-function"} | ${""}         | ${TypeError}
-        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from([]).toHierarchy(nodes.nodeHierarchy).descendantsAndSelf(value)).toThrow(error));
+        `("throws if 'predicate' is $type", ({ value, error }) => expect(() => AsyncQuery.from<nodes.Node>([]).toHierarchy(nodes.nodeHierarchy).descendantsAndSelf(value)).toThrow(error));
     });
 });

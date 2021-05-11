@@ -1,14 +1,19 @@
 /// <reference types="../../../../internal/jest-sequence" />
 
-import { Lookup } from "@esfx/iter-lookup";
-import { Query } from "../";
-import * as users from "./data/users";
-import * as nodes from "./data/nodes";
-import * as books from "./data/books";
-import { Comparable } from '@esfx/equatable';
-import { HashSet } from '@esfx/collections-hashset';
 import { HashMap } from '@esfx/collections-hashmap';
+import { HashSet } from '@esfx/collections-hashset';
+import { Comparable } from '@esfx/equatable';
 import { empty, map } from "@esfx/iter-fn";
+import { Grouping, HierarchyGrouping } from "@esfx/iter-grouping";
+import { HierarchyIterable, HierarchyProvider, OrderedHierarchyIterable } from "@esfx/iter-hierarchy";
+import { Lookup } from "@esfx/iter-lookup";
+import { OrderedIterable } from "@esfx/iter-ordered";
+import { HierarchyPage, Page } from "@esfx/iter-page";
+import type { GroupedQueryFlow, MergeQueryFlow, OrderedQueryFlow, PagedQueryFlow, QueryFlow, UnorderedQueryFlow, HierarchyQueryFlow } from "../";
+import { HierarchyQuery, OrderedHierarchyQuery, OrderedQuery, Query } from "../";
+import * as books from "./data/books";
+import * as nodes from "./data/nodes";
+import * as users from "./data/users";
 
 describe("Query", () => {
     // Query
@@ -327,10 +332,21 @@ describe("Query", () => {
         it("concat typing", () => {
             // Using `this` parameters in some query methods to work with `HierarchyQuery` objects breaks overloads, so we
             // need to make sure we have regular overloads that also use `this` parameters.
-            type X = { x: 1 };
+            type A = { kind: "a", a: 1 };
+            type B = { kind: "b", b: 2 };
+            type C = { kind: "c", c: 3 };
+            type X =
+                | { kind: "a", entry: A }
+                | { kind: "b", entry: B }
+                | { kind: "c", entry: C };
+            function* a() { yield { kind: "a", a: 1} as A; }
+            function* b() { yield { kind: "b", b: 2} as B; }
+            function* c() { yield { kind: "c", c: 3} as C; }
             Query
                 .from(empty<X>())
-                .concat(map([1], v => ({ x: v }))); // There should be no type error here.
+                .concat(map(a(), entry => ({ kind: "a", entry }))) // There should be no type error here.
+                .concat(map(b(), entry => ({ kind: "b", entry })))
+                .concat(map(c(), entry => ({ kind: "c", entry })));
         });
         it.each`
             type              | value         | error
@@ -1111,6 +1127,12 @@ describe("Query", () => {
     });
     // Hierarchy
     describe("toHierarchy()", () => {
+        it("is HierarchyQuery", () => {
+            const q = Query
+                .from([nodes.nodeAAAA])
+                .toHierarchy(nodes.nodeHierarchy);
+            expect(q).toBeInstanceOf(HierarchyQuery);
+        });
         it.each`
             type              | value         | error
             ${"undefined"}    | ${undefined}  | ${TypeError}
@@ -1150,6 +1172,23 @@ describe("OrderedQuery", () => {
             ${"non-function"} | ${""}         | ${TypeError}
             ${"non-comparer"} | ${{}}         | ${TypeError}
         `("throws if 'comparison' is $type", ({ value, error }) => expect(() => Query.from([]).orderBy(x => x).thenByDescending(x => x, value)).toThrow(error));
+    });
+    // Hierarchy
+    describe("toHierarchy()", () => {
+        it("is OrderedHierarchyQuery", () => {
+            const q = Query
+                .from([nodes.nodeAAAA])
+                .orderBy(node => node.name)
+                .toHierarchy(nodes.nodeHierarchy);
+            expect(q).toBeInstanceOf(OrderedHierarchyQuery);
+        });
+        it.each`
+            type              | value         | error
+            ${"undefined"}    | ${undefined}  | ${TypeError}
+            ${"null"}         | ${null}       | ${TypeError}
+            ${"non-object"}   | ${""}         | ${TypeError}
+            ${"non-provider"} | ${{}}         | ${TypeError}
+        `("throws if 'provider' is $type", ({ value, error }) => expect(() => Query.from([]).toHierarchy(value)).toThrow(error));
     });
 });
 describe("HierarchyQuery", () => {
@@ -1319,3 +1358,169 @@ describe("HierarchyQuery", () => {
         `("throws if 'predicate' is $type", ({ value, error }) => expect(() => Query.from([], nodes.nodeHierarchy).descendantsAndSelf(value)).toThrow(error));
     });
 });
+
+// #region QueryFlow type tests
+
+if (!1) {
+    // UnorderedQueryFlow
+    {
+        const r1 = (null! as Query<nodes.Node>).filter(Boolean);
+        const r2 = (null! as OrderedQuery<nodes.Node>).filter(Boolean);
+        const r3 = (null! as HierarchyQuery<nodes.Node>).filter(Boolean);
+        const r4 = (null! as OrderedHierarchyQuery<nodes.Node>).filter(Boolean);
+        type _ = [
+            __Test<__ExpectType<UnorderedQueryFlow<Query<number>, number>, Query<number>>>,
+            __Test<__ExpectType<UnorderedQueryFlow<OrderedQuery<number>, number>, Query<number>>>,
+            __Test<__ExpectType<UnorderedQueryFlow<HierarchyQuery<nodes.Node>, nodes.Node>, HierarchyQuery<nodes.Node, nodes.Node>>>,
+            __Test<__ExpectType<UnorderedQueryFlow<OrderedHierarchyQuery<nodes.Node>, nodes.Node>, HierarchyQuery<nodes.Node, nodes.Node>>>,
+            __Test<__ExpectType<typeof r1, Query<nodes.Node>>>,
+            __Test<__ExpectType<typeof r2, Query<nodes.Node>>>,
+            __Test<__ExpectType<typeof r3, HierarchyQuery<nodes.Node, nodes.Node>>>,
+            __Test<__ExpectType<typeof r4, HierarchyQuery<nodes.Node, nodes.Node>>>,
+        ];
+    }
+
+    // OrderedQueryFlow
+    {
+        const r1 = (null! as Query<nodes.Node>).orderBy(x => x);
+        const r2 = (null! as OrderedQuery<nodes.Node>).orderBy(x => x);
+        const r3 = (null! as HierarchyQuery<nodes.Node>).orderBy(x => x);
+        const r4 = (null! as OrderedHierarchyQuery<nodes.Node>).orderBy(x => x);
+        type _ = [
+            __Test<__ExpectType<OrderedQueryFlow<Query<number>, number>, OrderedQuery<number>>>,
+            __Test<__ExpectType<OrderedQueryFlow<OrderedQuery<number>, number>, OrderedQuery<number>>>,
+            __Test<__ExpectType<OrderedQueryFlow<HierarchyQuery<nodes.Node>, nodes.Node>, OrderedHierarchyQuery<nodes.Node, nodes.Node>>>,
+            __Test<__ExpectType<OrderedQueryFlow<OrderedHierarchyQuery<nodes.Node>, nodes.Node>, OrderedHierarchyQuery<nodes.Node, nodes.Node>>>,
+            __Test<__ExpectType<typeof r1, OrderedQuery<nodes.Node>>>,
+            __Test<__ExpectType<typeof r2, OrderedQuery<nodes.Node>>>,
+            __Test<__ExpectType<typeof r3, OrderedHierarchyQuery<nodes.Node, nodes.Node>>>,
+            __Test<__ExpectType<typeof r4, OrderedHierarchyQuery<nodes.Node, nodes.Node>>>,
+        ];
+    }
+
+    // QueryFlow
+    {
+        const r1 = (null! as Query<any>).through(null! as () => Iterable<nodes.Node>);
+        const r2 = (null! as Query<any>).through(null! as () => OrderedIterable<nodes.Node>);
+        const r3 = (null! as Query<any>).through(null! as () => HierarchyIterable<nodes.Node>);
+        const r4 = (null! as Query<any>).through(null! as () => OrderedHierarchyIterable<nodes.Node>);
+        type _ = [
+            __Test<__ExpectType<QueryFlow<Iterable<number>, number>, Query<number>>>,
+            __Test<__ExpectType<QueryFlow<OrderedIterable<number>, number>, OrderedQuery<number>>>,
+            __Test<__ExpectType<QueryFlow<HierarchyIterable<nodes.Node>, nodes.Node>, HierarchyQuery<nodes.Node>>>,
+            __Test<__ExpectType<QueryFlow<OrderedHierarchyIterable<nodes.Node>, nodes.Node>, OrderedHierarchyQuery<nodes.Node>>>,
+            __Test<__ExpectType<typeof r1, Query<nodes.Node>>>,
+            __Test<__ExpectType<typeof r2, OrderedQuery<nodes.Node>>>,
+            __Test<__ExpectType<typeof r3, HierarchyQuery<nodes.Node>>>,
+            __Test<__ExpectType<typeof r4, OrderedHierarchyQuery<nodes.Node>>>,
+        ];
+    }
+
+    // PagedQueryFlow
+    {
+        const r1 = (null! as Query<nodes.Node>).pageBy(1);
+        const r2 = (null! as OrderedQuery<nodes.Node>).pageBy(1);
+        const r3 = (null! as HierarchyQuery<nodes.Node>).pageBy(1);
+        const r4 = (null! as OrderedHierarchyQuery<nodes.Node>).pageBy(1);
+        type _ = [
+            __Test<__ExpectType<PagedQueryFlow<Iterable<number>, number>, Query<Page<number>>>>,
+            __Test<__ExpectType<PagedQueryFlow<OrderedIterable<number>, number>, Query<Page<number>>>>,
+            __Test<__ExpectType<PagedQueryFlow<HierarchyIterable<nodes.Node>, nodes.Node>, Query<HierarchyPage<nodes.Node, nodes.Node>>>>,
+            __Test<__ExpectType<PagedQueryFlow<OrderedHierarchyIterable<nodes.Node>, nodes.Node>, Query<HierarchyPage<nodes.Node, nodes.Node>>>>,
+            __Test<__ExpectType<typeof r1, Query<Page<nodes.Node>>>>,
+            __Test<__ExpectType<typeof r2, Query<Page<nodes.Node>>>>,
+            __Test<__ExpectType<typeof r3, Query<HierarchyPage<nodes.Node, nodes.Node>>>>,
+            __Test<__ExpectType<typeof r4, Query<HierarchyPage<nodes.Node, nodes.Node>>>>,
+        ];
+    }
+
+    // GroupedQueryFlow
+    {
+        const r1 = (null! as Query<nodes.Node>).spanMap(null! as () => string);
+        const r2 = (null! as OrderedQuery<nodes.Node>).spanMap(null! as () => string);
+        const r3 = (null! as HierarchyQuery<nodes.Node>).spanMap(null! as () => string);
+        const r4 = (null! as OrderedHierarchyQuery<nodes.Node>).spanMap(null! as () => string);
+        const r5 = (null! as Query<nodes.Node>).groupBy(null! as () => string);
+        const r6 = (null! as OrderedQuery<nodes.Node>).groupBy(null! as () => string);
+        const r7 = (null! as HierarchyQuery<nodes.Node>).groupBy(null! as () => string);
+        const r8 = (null! as OrderedHierarchyQuery<nodes.Node>).groupBy(null! as () => string);
+        type _ = [
+            __Test<__ExpectType<GroupedQueryFlow<Iterable<number>, string, number>, Query<Grouping<string, number>>>>,
+            __Test<__ExpectType<GroupedQueryFlow<OrderedIterable<number>, string, number>, Query<Grouping<string, number>>>>,
+            __Test<__ExpectType<GroupedQueryFlow<HierarchyIterable<nodes.Node>, string, nodes.Node>, Query<HierarchyGrouping<string, nodes.Node, nodes.Node>>>>,
+            __Test<__ExpectType<GroupedQueryFlow<OrderedHierarchyIterable<nodes.Node>, string, nodes.Node>, Query<HierarchyGrouping<string, nodes.Node, nodes.Node>>>>,
+            __Test<__ExpectType<typeof r1, Query<Grouping<string, nodes.Node>>>>,
+            __Test<__ExpectType<typeof r2, Query<Grouping<string, nodes.Node>>>>,
+            __Test<__ExpectType<typeof r3, Query<HierarchyGrouping<string, nodes.Node, nodes.Node>>>>,
+            __Test<__ExpectType<typeof r4, Query<HierarchyGrouping<string, nodes.Node, nodes.Node>>>>,
+            __Test<__ExpectType<typeof r5, Query<Grouping<string, nodes.Node>>>>,
+            __Test<__ExpectType<typeof r6, Query<Grouping<string, nodes.Node>>>>,
+            __Test<__ExpectType<typeof r7, Query<HierarchyGrouping<string, nodes.Node, nodes.Node>>>>,
+            __Test<__ExpectType<typeof r8, Query<HierarchyGrouping<string, nodes.Node, nodes.Node>>>>,
+        ];
+    }
+
+    // WithHierarchyQueryflow
+    {
+        interface DerivedNode extends nodes.Node {
+            derived: true;
+        }
+
+        const r1 = (null! as Query<DerivedNode>).toHierarchy(null! as HierarchyProvider<nodes.Node>);
+        const r2 = (null! as OrderedQuery<DerivedNode>).toHierarchy(null! as HierarchyProvider<nodes.Node>);
+        const r3 = (null! as HierarchyQuery<DerivedNode>).toHierarchy(null! as HierarchyProvider<nodes.Node>);
+        const r4 = (null! as OrderedHierarchyQuery<DerivedNode>).toHierarchy(null! as HierarchyProvider<nodes.Node>);
+        type _ = [
+            __Test<__ExpectType<HierarchyQueryFlow<Query<DerivedNode>, nodes.Node, DerivedNode>, HierarchyQuery<nodes.Node, DerivedNode>>>,
+            __Test<__ExpectType<HierarchyQueryFlow<OrderedQuery<DerivedNode>, nodes.Node, DerivedNode>, OrderedHierarchyQuery<nodes.Node, DerivedNode>>>,
+            __Test<__ExpectType<HierarchyQueryFlow<HierarchyQuery<nodes.Node, DerivedNode>, nodes.Node, DerivedNode>, HierarchyQuery<nodes.Node, DerivedNode>>>,
+            __Test<__ExpectType<HierarchyQueryFlow<OrderedHierarchyQuery<nodes.Node, DerivedNode>, nodes.Node, DerivedNode>, OrderedHierarchyQuery<nodes.Node, DerivedNode>>>,
+            __Test<__ExpectType<typeof r1, HierarchyQuery<nodes.Node, DerivedNode>>>,
+            __Test<__ExpectType<typeof r2, OrderedHierarchyQuery<nodes.Node, DerivedNode>>>,
+            __Test<__ExpectType<typeof r3, HierarchyQuery<nodes.Node, DerivedNode>>>,
+            __Test<__ExpectType<typeof r4, OrderedHierarchyQuery<nodes.Node, DerivedNode>>>,
+        ];
+    }
+
+    // MergeQueryFlow
+    {
+        interface DerivedNode1 extends nodes.Node {
+            derived1: true;
+        }
+        interface DerivedNode2 extends nodes.Node {
+            derived2: true;
+        }
+        interface DerivedNode3 extends DerivedNode1, DerivedNode2 {
+            derived3: true;
+        }
+        const r1 = (null! as Query<DerivedNode3>).intersect(null! as Iterable<DerivedNode3>);
+        const r2 = (null! as Query<DerivedNode3>).intersect(null! as HierarchyIterable<DerivedNode2, DerivedNode3>);
+        const r3 = (null! as HierarchyQuery<DerivedNode1, DerivedNode3>).intersect(null! as Iterable<DerivedNode3>);
+        const r4 = (null! as HierarchyQuery<DerivedNode1, DerivedNode3>).intersect(null! as HierarchyIterable<DerivedNode2, DerivedNode3>);
+        type _ = [
+            __Test<__ExpectType<MergeQueryFlow<Query<nodes.Node>, Iterable<nodes.Node>, nodes.Node>, Query<nodes.Node>>>,
+            __Test<__ExpectType<MergeQueryFlow<Query<nodes.Node>, HierarchyIterable<nodes.Node>, nodes.Node>, HierarchyQuery<nodes.Node>>>,
+            __Test<__ExpectType<MergeQueryFlow<HierarchyQuery<nodes.Node>, Iterable<nodes.Node>, nodes.Node>, HierarchyQuery<nodes.Node>>>,
+            __Test<__ExpectType<MergeQueryFlow<HierarchyQuery<DerivedNode1, DerivedNode3>, HierarchyQuery<DerivedNode2, DerivedNode3>, DerivedNode3>, HierarchyQuery<DerivedNode1 | DerivedNode2, DerivedNode3>>>,
+            __Test<__ExpectType<typeof r1, Query<DerivedNode3>>>,
+            __Test<__ExpectType<typeof r2, HierarchyQuery<DerivedNode2, DerivedNode3>>>,
+            __Test<__ExpectType<typeof r3, HierarchyQuery<DerivedNode1, DerivedNode3>>>,
+            __Test<__ExpectType<typeof r4, HierarchyQuery<DerivedNode1 | DerivedNode2, DerivedNode3>>>,
+        ];
+    }
+
+    // #endregion QueryFlow type tests
+
+    // #region Test helper types
+    type IsNever<A> = (A extends never ? true : false) extends true ? true : false;
+    type IsAny<A> = (1 | 2) extends (A extends never ? 1 : 2) ? true : false;
+    type __Test<T extends { pass: true }> = T;
+    type __ExpectType<Actual, Expected> =
+        [IsNever<Expected>] extends [true] ? [IsNever<Actual>] extends [true] ? { pass: true } : { pass: false, Expected: Expected, Actual: Actual } :
+        [IsNever<Actual>] extends [true] ? { pass: false, Expected: Expected, Actual: Actual } :
+        [IsAny<Expected>] extends [true] ? [IsAny<Actual>] extends [true] ? { pass: true } : { pass: false, Expected: Expected, Actual: Actual } :
+        [IsAny<Actual>] extends [true] ? { pass: false, Expected: Expected, Actual: Actual } :
+        [Expected, Actual] extends [Actual, Expected] ? { pass: true } :
+        { pass: false, Expected: Expected, Actual: Actual };
+    // #endregion Test helper types
+}

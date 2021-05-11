@@ -16,8 +16,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.19",
-        "tslib": "^2.1.0"
+        "@esfx/internal-guards": "^1.0.0-pre.19"
     },
     "publishConfig": {
         "access": "public"

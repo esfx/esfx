@@ -2,7 +2,7 @@ import { Worker } from "..";
 import { TSError } from 'ts-node';
 
 it("eval: typescript", () => new Promise((resolve, reject) => {
-    jest.setTimeout(10000);
+    jest.setTimeout(30000);
     const worker = new Worker(`
         import { parentPort } from "worker_threads";
         let x: number = 1;
@@ -19,7 +19,7 @@ it("eval: typescript", () => new Promise((resolve, reject) => {
 }));
 
 it("eval: typescript w/errors", async () => {
-    jest.setTimeout(10000);
+    jest.setTimeout(30000);
     const p = new Promise((resolve, reject) => {
         const worker = new Worker(`
             import { parentPort } from "worker_threads";

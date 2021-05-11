@@ -26,15 +26,54 @@ import { HashMap } from '@esfx/collections-hashmap';
 import { HashSet } from '@esfx/collections-hashset';
 import { Comparer, Comparison, Equaler, EqualityComparison } from '@esfx/equatable';
 import { Index } from "@esfx/interval";
-import { Grouping } from '@esfx/iter-grouping';
+import { Grouping, HierarchyGrouping } from '@esfx/iter-grouping';
 import { Hierarchical, HierarchyIterable, HierarchyProvider, OrderedHierarchyIterable } from '@esfx/iter-hierarchy';
 import { Lookup } from '@esfx/iter-lookup';
 import { OrderedIterable } from "@esfx/iter-ordered";
 import { HierarchyPage, Page } from '@esfx/iter-page';
-import { Query, OrderedQuery, HierarchyQuery, OrderedHierarchyQuery } from '@esfx/iter-query';
+import { Query, OrderedQuery, HierarchyQuery, OrderedHierarchyQuery, UnorderedQueryFlow } from '@esfx/iter-query';
 export { ConsumeAsyncOptions };
 
 const kSource = Symbol("[[Source]]");
+
+export type AsyncUnorderedQueryFlow<S, T> =
+    S extends Hierarchical<infer TNode> ?
+        AsyncHierarchyQuery<TNode, TNode & T> :
+        AsyncQuery<T>;
+
+export type AsyncOrderedQueryFlow<S, T> =
+    S extends Hierarchical<infer TNode> ?
+        AsyncOrderedHierarchyQuery<TNode, TNode & T> :
+        AsyncOrderedQuery<T>;
+
+export type AsyncQueryFlow<S, T> =
+    S extends AsyncOrderedIterable<any> | OrderedIterable<any> ?
+        AsyncOrderedQueryFlow<S, T> :
+        AsyncUnorderedQueryFlow<S, T>;
+
+export type AsyncPagedQueryFlow<S, T> =
+    S extends Hierarchical<infer TNode> ?
+        AsyncQuery<HierarchyPage<TNode, TNode & T>> :
+        AsyncQuery<Page<T>>;
+
+export type AsyncGroupedQueryFlow<S, K, T> =
+    S extends Hierarchical<infer TNode> ?
+        AsyncQuery<HierarchyGrouping<K, TNode, TNode & T>> :
+        AsyncQuery<Grouping<K, T>>;
+
+export type AsyncHierarchyQueryFlow<S, TNode extends (T extends TNode ? unknown : never), T> =
+    S extends AsyncOrderedIterable<any> | OrderedIterable<any> ?
+        AsyncOrderedHierarchyQuery<TNode, TNode & T> :
+        AsyncHierarchyQuery<TNode, TNode & T>;
+
+export type AsyncMergeQueryFlow<L, R, T> =
+    L extends Hierarchical<infer LTNode> ?
+        R extends Hierarchical<infer RTNode> ?
+            AsyncHierarchyQuery<LTNode | RTNode, LTNode & T | RTNode & T> :
+            AsyncHierarchyQuery<LTNode, LTNode & T> :
+    R extends Hierarchical<infer RTNode> ?
+        AsyncHierarchyQuery<RTNode, RTNode & T> :
+        AsyncQuery<T>;
 
 /**
  * Creates a `AsyncQuery` from an `AsyncIterable` or `Iterable` source.
@@ -74,9 +113,9 @@ function wrapResultSelector<I, O, R>(query: AsyncQuery<any>, selector: ((inner: 
     return selector;
 }
 
-function wrapPageSelector<T, R>(query: AsyncQuery<any>, selector: ((page: number, offset: number, values: Query<T>) => R)): (page: number, offset: number, values: Iterable<T>) => R;
-function wrapPageSelector<T, R>(query: AsyncQuery<any>, selector: ((page: number, offset: number, values: Query<T>) => R) | undefined): ((page: number, offset: number, values: Iterable<T>) => R) | undefined;
-function wrapPageSelector<T, R>(query: AsyncQuery<any>, selector: ((page: number, offset: number, values: Query<T>) => R) | undefined) {
+function wrapPageSelector<S extends AsyncQuery<any>, T, R>(query: S, selector: ((page: number, offset: number, values: Query<T>) => R)): (page: number, offset: number, values: Iterable<T>) => R;
+function wrapPageSelector<S extends AsyncQuery<any>, T, R>(query: S, selector: ((page: number, offset: number, values: Query<T>) => R) | undefined): ((page: number, offset: number, values: Iterable<T>) => R) | undefined;
+function wrapPageSelector<S extends AsyncQuery<any>, T, R>(query: S, selector: ((page: number, offset: number, values: Query<T>) => R) | undefined) {
     if (typeof selector === "function") {
         return (page: number, offset: number, values: Iterable<T>) => selector(page, offset, query["_fromSync"](values));
     }
@@ -229,7 +268,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    filter<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncQuery<U>;
+    filter<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncUnorderedQueryFlow<this, U>;
     /**
      * Creates a subquery whose elements match the supplied predicate.
      *
@@ -238,7 +277,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    filter(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncQuery<T>;
+    filter(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T>;
     filter(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
         return this._fromAsync(fn.filterAsync(getSource(this), predicate));
     }
@@ -253,8 +292,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    filterBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean): AsyncQuery<T> {
-        return this._fromAsync(fn.filterByAsync(getSource(this), keySelector, predicate));
+    filterBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.filterByAsync(getSource(this), keySelector, predicate)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -262,8 +301,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      *
      * @category Subquery
      */
-    filterDefined(): AsyncQuery<NonNullable<T>> {
-        return this._fromAsync(fn.filterDefinedAsync(getSource(this)));
+    filterDefined(): AsyncUnorderedQueryFlow<this, NonNullable<T>> {
+        return this._fromAsync(fn.filterDefinedAsync(getSource(this))) as AsyncUnorderedQueryFlow<this, NonNullable<T>>;
     }
 
     /**
@@ -273,8 +312,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keySelector.element The element from which to select a key.
      * @category Subquery
      */
-    filterDefinedBy<K>(keySelector: (element: T) => K): AsyncQuery<T> {
-        return this._fromAsync(fn.filterDefinedByAsync(getSource(this), keySelector));
+    filterDefinedBy<K>(keySelector: (element: T) => K): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.filterDefinedByAsync(getSource(this), keySelector)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -287,7 +326,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    where<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncQuery<U>;
+    where<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncUnorderedQueryFlow<this, U>;
     /**
      * Creates a subquery whose elements match the supplied predicate.
      *
@@ -298,7 +337,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    where(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncQuery<T>;
+    where(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T>;
     where(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
         return this.filter(predicate);
     }
@@ -315,7 +354,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    whereBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean) {
+    whereBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T> {
         return this.filterBy(keySelector, predicate);
     }
 
@@ -326,7 +365,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      *
      * @category Subquery
      */
-    whereDefined() {
+    whereDefined(): AsyncUnorderedQueryFlow<this, NonNullable<T>> {
         return this.filterDefined();
     }
 
@@ -339,8 +378,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keySelector.element The element from which to select a key.
      * @category Subquery
      */
-    whereDefinedBy<K>(keySelector: (element: T) => K) {
-        return this.filterDefinedBy(keySelector);
+    whereDefinedBy<K>(keySelector: (element: T) => K): AsyncUnorderedQueryFlow<this, T> {
+        return this.filterDefinedBy(keySelector) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -351,7 +390,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    filterNot<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncQuery<U>;
+    filterNot<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncUnorderedQueryFlow<this, U>;
     /**
      * Creates a subquery whose elements do not match the supplied predicate.
      *
@@ -360,7 +399,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    filterNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncQuery<T>;
+    filterNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T>;
     filterNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
         return this._fromAsync(fn.filterNotAsync(getSource(this), predicate));
     }
@@ -375,8 +414,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    filterNotBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean): AsyncQuery<T> {
-        return this._fromAsync(fn.filterNotByAsync(getSource(this), keySelector, predicate));
+    filterNotBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.filterNotByAsync(getSource(this), keySelector, predicate)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -386,8 +425,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keySelector.element The element from which to select a key.
      * @category Subquery
      */
-    filterNotDefinedBy<K>(keySelector: (element: T) => K): AsyncQuery<T> {
-        return this._fromAsync(fn.filterNotDefinedByAsync(getSource(this), keySelector));
+    filterNotDefinedBy<K>(keySelector: (element: T) => K): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.filterNotDefinedByAsync(getSource(this), keySelector)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -400,7 +439,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    whereNot<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncQuery<U>;
+    whereNot<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncUnorderedQueryFlow<this, U>;
     /**
      * Creates a subquery whose elements do not match the supplied predicate.
      *
@@ -411,7 +450,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    whereNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncQuery<T>;
+    whereNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T>;
     whereNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
         return this.filterNot(predicate);
     }
@@ -428,8 +467,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    whereNotBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean) {
-        return this.filterNotBy(keySelector, predicate);
+    whereNotBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T> {
+        return this.filterNotBy(keySelector, predicate) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -441,8 +480,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keySelector.element The element from which to select a key.
      * @category Subquery
      */
-    whereNotDefinedBy<K>(keySelector: (element: T) => K) {
-        return this.filterNotDefinedBy(keySelector);
+    whereNotDefinedBy<K>(keySelector: (element: T) => K): AsyncUnorderedQueryFlow<this, T> {
+        return this.filterNotDefinedBy(keySelector) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -453,7 +492,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param selector.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    map<U>(selector: (element: T, offset: number) => PromiseLike<U> | U) {
+    map<U>(selector: (element: T, offset: number) => PromiseLike<U> | U): AsyncQuery<U> {
         return this._fromAsync(fn.mapAsync(getSource(this), selector));
     }
 
@@ -467,7 +506,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param selector.offset The offset from the start of the source `Iterable`.
      * @category Subquery
      */
-    select<U>(selector: (element: T, offset: number) => PromiseLike<U> | U) {
+    select<U>(selector: (element: T, offset: number) => PromiseLike<U> | U): AsyncQuery<U> {
         return this.map(selector);
     }
 
@@ -529,8 +568,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param callback.offset The offset from the start of the source iterable.
      * @category Subquery
      */
-    tap(callback: (element: T, offset: number) => PromiseLike<void> | void): AsyncQuery<T> {
-        return this._fromAsync(fn.tapAsync(getSource(this), callback));
+    tap(callback: (element: T, offset: number) => PromiseLike<void> | void): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.tapAsync(getSource(this), callback)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -538,8 +577,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      *
      * @category Subquery
      */
-    reverse(): AsyncQuery<T> {
-        return this._fromAsync(fn.reverseAsync(getSource(this)));
+    reverse(): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.reverseAsync(getSource(this))) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -548,8 +587,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param values The values to exclude.
      * @category Subquery
      */
-    exclude(...values: [PromiseLike<T> | T, ...(PromiseLike<T> | T)[]]): AsyncQuery<T> {
-        return this._fromAsync(fn.excludeAsync(getSource(this), ...values));
+    exclude(...values: [PromiseLike<T> | T, ...(PromiseLike<T> | T)[]]): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.excludeAsync(getSource(this), ...values)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -559,8 +598,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param count The number of elements to drop.
      * @category Subquery
      */
-    drop(count: number): AsyncQuery<T> {
-        return this._fromAsync(fn.dropAsync(getSource(this), count));
+    drop(count: number): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.dropAsync(getSource(this), count)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -570,8 +609,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param count The number of elements to drop.
      * @category Subquery
      */
-    dropRight(count: number): AsyncQuery<T> {
-        return this._fromAsync(fn.dropRightAsync(getSource(this), count));
+    dropRight(count: number): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.dropRightAsync(getSource(this), count)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -582,8 +621,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.element The element to match.
      * @category Subquery
      */
-    dropWhile(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncQuery<T> {
-        return this._fromAsync(fn.dropWhileAsync(getSource(this), predicate));
+    dropWhile(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.dropWhileAsync(getSource(this), predicate)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -594,8 +633,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.element The element to match.
      * @category Subquery
      */
-    dropUntil(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncQuery<T> {
-        return this._fromAsync(fn.dropUntilAsync(getSource(this), predicate));
+    dropUntil(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.dropUntilAsync(getSource(this), predicate)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -607,7 +646,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param count The number of elements to skip.
      * @category Subquery
      */
-    skip(count: number) {
+    skip(count: number): AsyncUnorderedQueryFlow<this, T> {
         return this.drop(count);
     }
 
@@ -620,7 +659,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param count The number of elements to skip.
      * @category Subquery
      */
-    skipRight(count: number) {
+    skipRight(count: number): AsyncUnorderedQueryFlow<this, T> {
         return this.dropRight(count);
     }
 
@@ -634,7 +673,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.element The element to match.
      * @category Subquery
      */
-    skipWhile(predicate: (element: T) => PromiseLike<boolean> | boolean) {
+    skipWhile(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T> {
         return this.dropWhile(predicate);
     }
 
@@ -648,7 +687,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.element The element to match.
      * @category Subquery
      */
-    skipUntil(predicate: (element: T) => PromiseLike<boolean> | boolean) {
+    skipUntil(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T> {
         return this.dropUntil(predicate);
     }
 
@@ -659,8 +698,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param count The number of elements to take.
      * @category Subquery
      */
-    take(count: number): AsyncQuery<T> {
-        return this._fromAsync(fn.takeAsync(getSource(this), count));
+    take(count: number): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.takeAsync(getSource(this), count)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -670,8 +709,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param count The number of elements to take.
      * @category Subquery
      */
-    takeRight(count: number): AsyncQuery<T> {
-        return this._fromAsync(fn.takeRightAsync(getSource(this), count));
+    takeRight(count: number): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.takeRightAsync(getSource(this), count)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -681,14 +720,14 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.element The element to match.
      * @category Subquery
      */
-    takeWhile<U extends T>(predicate: (element: T) => element is U): AsyncQuery<U>;
+    takeWhile<U extends T>(predicate: (element: T) => element is U): AsyncUnorderedQueryFlow<this, U>;
     /**
      * Creates a subquery containing the first elements that match the supplied predicate.
      *
      * @param predicate A callback used to match each element.
      * @param predicate.element The element to match.
      */
-    takeWhile(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncQuery<T>;
+    takeWhile(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T>;
     takeWhile(predicate: (element: T) => PromiseLike<boolean> | boolean) {
         return this._fromAsync(fn.takeWhileAsync(getSource(this), predicate));
     }
@@ -700,8 +739,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate.element The element to match.
      * @category Subquery
      */
-    takeUntil(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncQuery<T> {
-        return this._fromAsync(fn.takeUntilAsync(getSource(this), predicate));
+    takeUntil(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.takeUntilAsync(getSource(this), predicate)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -711,7 +750,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param equaler An `Equaler` object used to compare equality.
      * @category Subquery
      */
-    intersect<TNode, T extends TNode>(this: AsyncQuery<T>, right: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T>;
+    intersect<R extends AsyncIterable<T> | Iterable<PromiseLike<T> | T>>(right: R, equaler?: Equaler<T>): AsyncMergeQueryFlow<this, R, T>;
     /**
      * Creates a subquery for the set intersection of this `AsyncQuery` and another `AsyncIterable` or `Iterable`.
      *
@@ -720,7 +759,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @category Subquery
      */
     intersect(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncQuery<T>;
-    intersect(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncQuery<T> | AsyncHierarchyQuery<T> {
+    intersect(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): any {
         return this._fromAsync(fn.intersectAsync(getSource(this), right, equaler));
     }
 
@@ -733,7 +772,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keyEqualer An `Equaler` object used to compare key equality.
      * @category Subquery
      */
-    intersectBy<TNode, T extends TNode, K>(this: AsyncQuery<T>, right: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T>;
+    intersectBy<K, R extends AsyncIterable<T> | Iterable<PromiseLike<T> | T>>(right: R, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncMergeQueryFlow<this, R, T>;
     /**
      * Creates a subquery for the set intersection of this `AsyncQuery` and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
      *
@@ -744,7 +783,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @category Subquery
      */
     intersectBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<T>;
-    intersectBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<T> | AsyncHierarchyQuery<T> {
+    intersectBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): any {
         return this._fromAsync(fn.intersectByAsync(getSource(this), getSource(right), keySelector, keyEqualer));
     }
 
@@ -755,7 +794,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param equaler An `Equaler` object used to compare equality.
      * @category Subquery
      */
-    union<TNode, T extends TNode>(this: AsyncQuery<T>, right: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T>;
+    union<R extends AsyncIterable<T> | Iterable<PromiseLike<T> | T>>(right: R, equaler?: Equaler<T>): AsyncMergeQueryFlow<this, R, T>;
     /**
      * Creates a subquery for the set union of this `AsyncQuery` and another `AsyncIterable` or `Iterable`.
      *
@@ -764,7 +803,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @category Subquery
      */
     union(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncQuery<T>;
-    union(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncQuery<T> | AsyncHierarchyQuery<T> {
+    union(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): any {
         return this._fromAsync(fn.unionAsync(getSource(this), getSource(right), equaler));
     }
 
@@ -777,7 +816,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keyEqualer An `Equaler` object used to compare key equality.
      * @category Subquery
      */
-    unionBy<TNode, T extends TNode, K>(this: AsyncQuery<T>, right: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T>;
+    unionBy<K, R extends AsyncIterable<T> | Iterable<PromiseLike<T> | T>>(right: R, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncMergeQueryFlow<this, R, T>;
     /**
      * Creates a subquery for the set union of this `AsyncQuery` and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
      *
@@ -788,7 +827,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @category Subquery
      */
     unionBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<T>;
-    unionBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<T> | AsyncHierarchyQuery<T> {
+    unionBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): any {
         return this._fromAsync(fn.unionByAsync(getSource(this), getSource(right), keySelector, keyEqualer));
     }
 
@@ -799,8 +838,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param equaler An `Equaler` object used to compare equality.
      * @category Subquery
      */
-    except(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncQuery<T> {
-        return this._fromAsync(fn.exceptAsync(getSource(this), getSource(right), equaler));
+    except(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.exceptAsync(getSource(this), getSource(right), equaler)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -812,8 +851,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keyEqualer An `Equaler` object used to compare key equality.
      * @category Subquery
      */
-    exceptBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<T> {
-        return this._fromAsync(fn.exceptByAsync(getSource(this), getSource(right), keySelector, keyEqualer));
+    exceptBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.exceptByAsync(getSource(this), getSource(right), keySelector, keyEqualer)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -825,7 +864,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param equaler An `Equaler` object used to compare equality.
      * @category Subquery
      */
-    relativeComplement(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>) {
+    relativeComplement(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncUnorderedQueryFlow<this, T> {
         return this.except(right, equaler);
     }
 
@@ -840,8 +879,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keyEqualer An `Equaler` object used to compare key equality.
      * @category Subquery
      */
-    relativeComplementBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>) {
-        return this.exceptBy(right, keySelector, keyEqualer);
+    relativeComplementBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncUnorderedQueryFlow<this, T> {
+        return this.exceptBy(right, keySelector, keyEqualer) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -851,7 +890,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param equaler An `Equaler` object used to compare equality.
      * @category Subquery
      */
-    symmetricDifference<TNode, T extends TNode>(this: AsyncQuery<T>, right: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T>;
+    symmetricDifference<R extends AsyncIterable<T> | Iterable<PromiseLike<T> | T>>(right: R, equaler?: Equaler<T>): AsyncMergeQueryFlow<this, R, T>;
     /**
      * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`.
      *
@@ -860,7 +899,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @category Subquery
      */
     symmetricDifference(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncQuery<T>;
-    symmetricDifference(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncQuery<T> | AsyncHierarchyQuery<T> {
+    symmetricDifference(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): any {
         return this._fromAsync(fn.symmetricDifferenceAsync(getSource(this), getSource(right), equaler));
     }
 
@@ -873,7 +912,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keyEqualer An `Equaler` object used to compare key equality.
      * @category Subquery
      */
-    symmetricDifferenceBy<TNode, T extends TNode, K>(this: AsyncQuery<T>, right: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T>;
+    symmetricDifferenceBy<K, R extends AsyncIterable<T> | Iterable<PromiseLike<T> | T>>(right: R, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncMergeQueryFlow<this, R, T>;
     /**
      * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
      *
@@ -884,61 +923,61 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @category Subquery
      */
     symmetricDifferenceBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<T>;
-    symmetricDifferenceBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<T> | AsyncHierarchyQuery<T> {
+    symmetricDifferenceBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): any {
         return this._fromAsync(fn.symmetricDifferenceByAsync(getSource(this), getSource(right), keySelector, keyEqualer));
     }
 
-    /**
-     * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`.
-     *
-     * NOTE: This is an alias for `symmetricDifference`.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param equaler An `Equaler` object used to compare equality.
-     * @category Subquery
-     */
-    xor<TNode, T extends TNode>(this: AsyncQuery<T>, right: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T>;
-    /**
-     * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`.
-     *
-     * NOTE: This is an alias for `symmetricDifference`.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param equaler An `Equaler` object used to compare equality.
-     * @category Subquery
-     */
-    xor(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncQuery<T>;
-    xor(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncQuery<T> | AsyncHierarchyQuery<T> {
-        return this.symmetricDifference(right, equaler);
-    }
+    // /**
+    //  * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`.
+    //  *
+    //  * NOTE: This is an alias for `symmetricDifference`.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param equaler An `Equaler` object used to compare equality.
+    //  * @category Subquery
+    //  */
+    // xor<TNode, T extends TNode>(this: AsyncQuery<T>, right: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T>;
+    // /**
+    //  * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`.
+    //  *
+    //  * NOTE: This is an alias for `symmetricDifference`.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param equaler An `Equaler` object used to compare equality.
+    //  * @category Subquery
+    //  */
+    // xor(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncQuery<T>;
+    // xor(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncQuery<T> | AsyncHierarchyQuery<T> {
+    //     return this.symmetricDifference(right, equaler);
+    // }
 
-    /**
-     * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
-     *
-     * NOTE: This is an alias for `symmetricDifferenceBy`.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element An element from which to select a key.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    xorBy<TNode, T extends TNode, K>(this: AsyncQuery<T>, right: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T>;
-    /**
-     * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
-     *
-     * NOTE: This is an alias for `symmetricDifferenceBy`.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element An element from which to select a key.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    xorBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<T>;
-    xorBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<T> | AsyncHierarchyQuery<T> {
-        return this.symmetricDifferenceBy(right, keySelector, keyEqualer);
-    }
+    // /**
+    //  * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
+    //  *
+    //  * NOTE: This is an alias for `symmetricDifferenceBy`.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param keyEqualer An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // xorBy<TNode, T extends TNode, K>(this: AsyncQuery<T>, right: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T>;
+    // /**
+    //  * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
+    //  *
+    //  * NOTE: This is an alias for `symmetricDifferenceBy`.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param keyEqualer An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // xorBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<T>;
+    // xorBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<T> | AsyncHierarchyQuery<T> {
+    //     return this.symmetricDifferenceBy(right, keySelector, keyEqualer);
+    // }
 
     /**
      * Creates a subquery that concatenates this `AsyncQuery` with another `AsyncIterable` or `Iterable`.
@@ -946,7 +985,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param right An `AsyncIterable` or `Iterable` object.
      * @category Subquery
      */
-    concat<TNode, T extends TNode>(this: AsyncQuery<T>, right: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>): AsyncHierarchyQuery<TNode, T>;
+    concat<R extends AsyncIterable<T> | Iterable<PromiseLike<T> | T>>(right: R): AsyncMergeQueryFlow<this, R, T>;
     /**
      * Creates a subquery that concatenates this `AsyncQuery` with another `AsyncIterable` or `Iterable`.
      *
@@ -954,7 +993,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @category Subquery
      */
     concat(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncQuery<T>;
-    concat(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncQuery<T> | AsyncHierarchyQuery<T> {
+    concat(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): any {
         return this._fromAsync(fn.concatAsync(getSource(this), getSource(right)));
     }
 
@@ -964,8 +1003,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param equaler An `Equaler` object used to compare key equality.
      * @category Subquery
      */
-    distinct(equaler?: Equaler<T>): AsyncQuery<T> {
-        return this._fromAsync(fn.distinctAsync(getSource(this), equaler));
+    distinct(equaler?: Equaler<T>): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.distinctAsync(getSource(this), equaler)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -976,8 +1015,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keyEqualer An `Equaler` object used to compare key equality.
      * @category Subquery
      */
-    distinctBy<K>(keySelector: (value: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<T> {
-        return this._fromAsync(fn.distinctByAsync(getSource(this), keySelector, keyEqualer));
+    distinctBy<K>(keySelector: (value: T) => K, keyEqualer?: Equaler<K>): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.distinctByAsync(getSource(this), keySelector, keyEqualer)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -986,8 +1025,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param value The value to append.
      * @category Subquery
      */
-    append(value: PromiseLike<T> | T): AsyncQuery<T> {
-        return this._fromAsync(fn.appendAsync(getSource(this), value));
+    append(value: PromiseLike<T> | T): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.appendAsync(getSource(this), value)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -996,8 +1035,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param value The value to prepend.
      * @category Subquery
      */
-    prepend(value: PromiseLike<T> | T): AsyncQuery<T> {
-        return this._fromAsync(fn.prependAsync(getSource(this), value));
+    prepend(value: PromiseLike<T> | T): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.prependAsync(getSource(this), value)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -1009,8 +1048,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param range The range to patch into the result.
      * @category Subquery
      */
-    patch(start: number, skipCount?: number, range?: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncQuery<T> {
-        return this._fromAsync(fn.patchAsync(getSource(this), start, skipCount, range && getSource(range)));
+    patch(start: number, skipCount?: number, range?: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.patchAsync(getSource(this), start, skipCount, range && getSource(range))) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -1020,8 +1059,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param defaultValue The default value.
      * @category Subquery
      */
-    defaultIfEmpty(defaultValue: PromiseLike<T> | T): AsyncQuery<T> {
-        return this._fromAsync(fn.defaultIfEmptyAsync(getSource(this), defaultValue));
+    defaultIfEmpty(defaultValue: PromiseLike<T> | T): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.defaultIfEmptyAsync(getSource(this), defaultValue)) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     /**
@@ -1032,7 +1071,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param pageSize The number of elements per page.
      * @category Subquery
      */
-    pageBy(pageSize: number): AsyncQuery<Page<T>>;
+    pageBy(pageSize: number): AsyncPagedQueryFlow<this, T>;
     /**
      * Creates a subquery that splits this `AsyncQuery` into one or more pages.
      * While advancing from page to page is evaluated lazily, the elements of the page are
@@ -1041,9 +1080,9 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param pageSize The number of elements per page.
      * @category Subquery
      */
-    pageBy<R>(pageSize: number, pageSelector: (page: number, offset: number, values: Query<T>) => R): AsyncQuery<R>;
-    pageBy<R>(pageSize: number, pageSelector?: (page: number, offset: number, values: Query<T>) => R) {
-        return this._fromAsync(fn.pageByAsync(getSource(this), pageSize, wrapPageSelector(this, pageSelector!)));
+    pageBy<R>(pageSize: number, pageSelector: (page: number, offset: number, values: UnorderedQueryFlow<this, T>) => R): AsyncQuery<R>;
+    pageBy<R>(pageSize: number, pageSelector?: (page: number, offset: number, values: UnorderedQueryFlow<this, T>) => R) {
+        return this._fromAsync(fn.pageByAsync(getSource(this), pageSize, wrapPageSelector(this, pageSelector as (page: number, offset: number, values: Query<T>) => R)));
     }
 
     /**
@@ -1053,7 +1092,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keySelector.element An element from which to select a key.
      * @category Subquery
      */
-    spanMap<K>(keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<Grouping<K, T>>;
+    spanMap<K>(keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncGroupedQueryFlow<this, K, T>;
     /**
      * Creates a subquery whose values are computed from each element of the contiguous ranges of elements that share the same key.
      *
@@ -1063,7 +1102,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param elementSelector.element An element from which to select a value.
      * @category Subquery
      */
-    spanMap<K, V>(keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, keyEqualer?: Equaler<K>): AsyncQuery<Grouping<K, V>>;
+    spanMap<K, V>(keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, keyEqualer?: Equaler<K>): AsyncGroupedQueryFlow<this, K, V>;
     /**
      * Creates a subquery whose values are computed from the contiguous ranges of elements that share the same key.
      *
@@ -1110,7 +1149,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keyEqualer An `Equaler` object used to compare key equality.
      * @category Subquery
      */
-    groupBy<K>(keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<Grouping<K, T>>;
+    groupBy<K>(keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncGroupedQueryFlow<this, K, T>;
     /**
      * Groups each element by its key.
      *
@@ -1121,7 +1160,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param keyEqualer An `Equaler` object used to compare key equality.
      * @category Subquery
      */
-    groupBy<K, V>(keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, keyEqualer?: Equaler<K>): AsyncQuery<Grouping<K, V>>;
+    groupBy<K, V>(keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, keyEqualer?: Equaler<K>): AsyncGroupedQueryFlow<this, K, V>;
     /**
      * Groups each element by its key.
      *
@@ -1223,33 +1262,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param callback.source The outer `AsyncQuery`.
      * @category Subquery
      */
-    through<RNode, R extends RNode>(callback: (source: this) => AsyncOrderedHierarchyIterable<RNode, R> | OrderedHierarchyIterable<RNode, R>): AsyncOrderedHierarchyQuery<RNode, R>;
-    /**
-     * Pass the entire `AsyncQuery` to the provided callback, creating a new `AsyncQuery` from the result.
-     *
-     * @param callback A callback function.
-     * @param callback.source The outer `AsyncQuery`.
-     * @category Subquery
-     */
-    through<RNode, R extends RNode>(callback: (source: this) => AsyncHierarchyIterable<RNode, R> | HierarchyIterable<RNode, R>): AsyncHierarchyQuery<RNode, R>;
-    /**
-     * Pass the entire `AsyncQuery` to the provided callback, creating a new `AsyncQuery` from the result.
-     *
-     * @param callback A callback function.
-     * @param callback.source The outer `AsyncQuery`.
-     * @category Subquery
-     */
-    through<R>(callback: (source: this) => AsyncOrderedIterable<R> | OrderedIterable<R>): AsyncOrderedQuery<R>;
-    /**
-     * Pass the entire `AsyncQuery` to the provided callback, creating a new `AsyncQuery` from the result.
-     *
-     * @param callback A callback function.
-     * @param callback.source The outer `AsyncQuery`.
-     * @category Subquery
-     */
-    through<R>(callback: (source: this) => AsyncIterable<R> | Iterable<PromiseLike<R> | R>): AsyncQuery<R>;
-    through<R>(callback: (source: this) => AsyncIterable<R> | Iterable<PromiseLike<R> | R>): AsyncQuery<R> | AsyncHierarchyQuery<R> {
-        return this._fromAsync(fn.intoAsync(this, callback));
+    through<R extends AsyncIterable<any> | Iterable<any>>(callback: (source: this) => R): AsyncQueryFlow<R, R extends AsyncIterable<infer U> ? U : R extends Iterable<infer U> ? U extends PromiseLike<infer P> ? P : U : unknown> {
+        return this._fromAsync(fn.intoAsync(this, callback)) as AsyncQueryFlow<R, R extends AsyncIterable<infer U> ? U : R extends Iterable<infer U> ? U extends PromiseLike<infer P> ? P : U : unknown>;
     }
 
     /**
@@ -1257,8 +1271,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      *
      * @category Subquery
      */
-    materialize(): AsyncQuery<T> {
-        return this._fromAsync(fn.materializeAsync(getSource(this)));
+    materialize(): AsyncUnorderedQueryFlow<this, T> {
+        return this._fromAsync(fn.materializeAsync(getSource(this))) as AsyncUnorderedQueryFlow<this, T>;
     }
 
     // #endregion Subquery
@@ -1339,8 +1353,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param comparer An optional callback used to compare two keys.
      * @category Order
      */
-    orderBy<K>(keySelector: (element: T) => K, comparer?: Comparison<K> | Comparer<K>): AsyncOrderedQuery<T> {
-        return this._fromAsync(fn.orderByAsync(getSource(this), keySelector, comparer));
+    orderBy<K>(keySelector: (element: T) => K, comparer?: Comparison<K> | Comparer<K>): AsyncOrderedQueryFlow<this, T> {
+        return this._fromAsync(fn.orderByAsync(getSource(this), keySelector, comparer)) as AsyncOrderedQueryFlow<this, T>;
     }
 
     /**
@@ -1350,9 +1364,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param comparer An optional callback used to compare two keys.
      * @category Order
      */
-    orderByDescending<K>(keySelector: (element: T) => K, comparer?: Comparison<K> | Comparer<K>): AsyncOrderedQuery<T>;
-    orderByDescending<K>(keySelector: (element: T) => K, comparer?: Comparison<K> | Comparer<K>) {
-        return this._fromAsync(fn.orderByDescendingAsync(getSource(this), keySelector, comparer));
+    orderByDescending<K>(keySelector: (element: T) => K, comparer?: Comparison<K> | Comparer<K>): AsyncOrderedQueryFlow<this, T> {
+        return this._fromAsync(fn.orderByDescendingAsync(getSource(this), keySelector, comparer)) as AsyncOrderedQueryFlow<this, T>;
     }
 
     // #endregion Order
@@ -1365,30 +1378,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param provider A `HierarchyProvider`.
      * @category Hierarchy
      */
-    toHierarchy<TNode, T extends TNode>(this: AsyncOrderedQuery<T>, provider: HierarchyProvider<TNode>): AsyncOrderedHierarchyQuery<TNode, T>;
-    /**
-     * Creates an `AsyncHierarchyQuery` using the provided `HierarchyProvider`.
-     *
-     * @param provider A `HierarchyProvider`.
-     * @category Hierarchy
-     */
-    toHierarchy(this: AsyncOrderedQuery<T>, provider: HierarchyProvider<T>): AsyncOrderedHierarchyQuery<T>;
-    /**
-     * Creates an `AsyncHierarchyQuery` using the provided `HierarchyProvider`.
-     *
-     * @param provider A `HierarchyProvider`.
-     * @category Hierarchy
-     */
-    toHierarchy<TNode, T extends TNode>(this: AsyncQuery<T>, provider: HierarchyProvider<TNode>): AsyncHierarchyQuery<TNode, T>;
-    /**
-     * Creates an `AsyncHierarchyQuery` using the provided `HierarchyProvider`.
-     *
-     * @param provider A `HierarchyProvider`.
-     * @category Hierarchy
-     */
-    toHierarchy(provider: HierarchyProvider<T>): AsyncHierarchyQuery<T>;
-    toHierarchy(provider: HierarchyProvider<unknown>): AsyncHierarchyQuery<unknown, T> | AsyncOrderedHierarchyQuery<unknown, T> {
-        return this._fromAsync(fn.toHierarchyAsync(getSource(this), provider));
+    toHierarchy<TNode extends (T extends TNode ? unknown : never)>(provider: HierarchyProvider<TNode>): AsyncHierarchyQueryFlow<this, TNode, T> {
+        return this._fromAsync(fn.toHierarchyAsync(getSource(this) as AsyncIterable<TNode & T>, provider)) as AsyncHierarchyQueryFlow<this, TNode, T>;
     }
 
     // #endregion Hierarchy
@@ -1804,7 +1795,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate The predicate used to match elements.
      * @category Scalar
      */
-    span<U extends T>(predicate: (element: T, offset: number) => element is U): Promise<[Query<U>, AsyncQuery<T>]>;
+    span<U extends T>(predicate: (element: T, offset: number) => element is U): Promise<[UnorderedQueryFlow<this, U>, AsyncUnorderedQueryFlow<this, T>]>;
     /**
      * Creates a tuple whose first element is a subquery containing the first span of
      * elements that match the supplied predicate, and whose second element is a subquery
@@ -1816,9 +1807,9 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate The predicate used to match elements.
      * @category Scalar
      */
-    span(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): Promise<[Query<T>, AsyncQuery<T>]>;
-    span(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): Promise<[Query<T>, AsyncQuery<T>]> {
-        return fn.spanAsync(getSource(this), predicate).then(wrapSpans(this));
+    span(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): Promise<[UnorderedQueryFlow<this, T>, AsyncUnorderedQueryFlow<this, T>]>;
+    span(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
+        return fn.spanAsync(getSource(this), predicate).then(wrapSpans(this)) as Promise<[UnorderedQueryFlow<this, T>, AsyncUnorderedQueryFlow<this, T>]>;
     }
 
     /**
@@ -1832,8 +1823,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate The predicate used to match elements.
      * @category Scalar
      */
-    spanUntil(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): Promise<[Query<T>, AsyncQuery<T>]> {
-        return fn.spanUntilAsync(getSource(this), predicate).then(wrapSpans(this));
+    spanUntil(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): Promise<[UnorderedQueryFlow<this, T>, AsyncUnorderedQueryFlow<this, T>]> {
+        return fn.spanUntilAsync(getSource(this), predicate).then(wrapSpans(this)) as Promise<[UnorderedQueryFlow<this, T>, AsyncUnorderedQueryFlow<this, T>]>;
     }
 
     /**
@@ -1849,7 +1840,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param predicate The predicate used to match elements.
      * @category Scalar
      */
-    break(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): Promise<[Query<T>, AsyncQuery<T>]> {
+    break(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): Promise<[UnorderedQueryFlow<this, T>, AsyncUnorderedQueryFlow<this, T>]> {
         return this.spanUntil(predicate);
     }
 
@@ -2336,7 +2327,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
     protected _fromAsync<T extends readonly unknown[] | []>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncQuery<T>;
     protected _fromAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncQuery<T>;
     protected _fromAsync<TNode, T extends TNode>(source: AsyncIterable<T> | Iterable<T>, provider?: HierarchyProvider<TNode>): AsyncQuery<T> {
-        return (this.constructor as typeof AsyncQuery).from(source, provider!);
+        return (this.constructor as typeof AsyncQuery).from(source, provider!) as any;
     }
 
     protected _fromSync<TNode, T extends TNode>(source: OrderedHierarchyIterable<TNode, T>): OrderedHierarchyQuery<TNode, T>;
@@ -2350,6 +2341,25 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
         return Query.from(source, provider!);
     }
 }
+
+// Inline aliases to simplify call stacks
+AsyncQuery.prototype.where = AsyncQuery.prototype.filter;
+AsyncQuery.prototype.whereBy = AsyncQuery.prototype.filterBy;
+AsyncQuery.prototype.whereDefined = AsyncQuery.prototype.filterDefined;
+AsyncQuery.prototype.whereDefinedBy = AsyncQuery.prototype.filterDefinedBy;
+AsyncQuery.prototype.whereNot = AsyncQuery.prototype.filterNot;
+AsyncQuery.prototype.whereNotBy = AsyncQuery.prototype.filterNotBy;
+AsyncQuery.prototype.whereNotDefinedBy = AsyncQuery.prototype.filterNotDefinedBy;
+AsyncQuery.prototype.select = AsyncQuery.prototype.map;
+AsyncQuery.prototype.selectMany = AsyncQuery.prototype.flatMap;
+AsyncQuery.prototype.skip = AsyncQuery.prototype.drop;
+AsyncQuery.prototype.skipRight = AsyncQuery.prototype.dropRight;
+AsyncQuery.prototype.skipWhile = AsyncQuery.prototype.dropWhile;
+AsyncQuery.prototype.skipUntil = AsyncQuery.prototype.dropUntil;
+AsyncQuery.prototype.relativeComplement = AsyncQuery.prototype.except;
+AsyncQuery.prototype.relativeComplementBy = AsyncQuery.prototype.exceptBy;
+AsyncQuery.prototype.nth = AsyncQuery.prototype.elementAt;
+AsyncQuery.prototype.break = AsyncQuery.prototype.spanUntil;
 
 /**
  * Represents an ordered sequence of elements.
@@ -2409,735 +2419,735 @@ export class AsyncHierarchyQuery<TNode, T extends TNode = TNode> extends AsyncQu
         super(source);
     }
 
-    // #region Subquery
+    // // #region Subquery
 
-    /**
-     * Creates a subquery whose elements match the supplied predicate.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to test.
-     * @param predicate.offset The offset from the start of the source iterable.
-     * @category Subquery
-     */
-    filter<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncHierarchyQuery<TNode, U>;
-    /**
-     * Creates a subquery whose elements match the supplied predicate.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to test.
-     * @param predicate.offset The offset from the start of the source iterable.
-     * @category Subquery
-     */
-    filter(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T>;
-    filter(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
-        return super.filter(predicate) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery whose elements match the supplied predicate.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to test.
+    //  * @param predicate.offset The offset from the start of the source iterable.
+    //  * @category Subquery
+    //  */
+    // filter<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncHierarchyQuery<TNode, U>;
+    // /**
+    //  * Creates a subquery whose elements match the supplied predicate.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to test.
+    //  * @param predicate.offset The offset from the start of the source iterable.
+    //  * @category Subquery
+    //  */
+    // filter(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T>;
+    // filter(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
+    //     return super.filter(predicate) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery where the selected key for each element matches the supplied predicate.
-     *
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element The element from which to select a key.
-     * @param predicate A callback used to match each key.
-     * @param predicate.key The key to test.
-     * @param predicate.offset The offset from the start of the source iterable.
-     * @category Subquery
-     */
-    filterBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T> {
-        return super.filterBy(keySelector, predicate) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery where the selected key for each element matches the supplied predicate.
+    //  *
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element The element from which to select a key.
+    //  * @param predicate A callback used to match each key.
+    //  * @param predicate.key The key to test.
+    //  * @param predicate.offset The offset from the start of the source iterable.
+    //  * @category Subquery
+    //  */
+    // filterBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T> {
+    //     return super.filterBy(keySelector, predicate) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery whose elements are neither `null` nor `undefined`.
-     *
-     * @category Subquery
-     */
-    filterDefined(): AsyncHierarchyQuery<TNode, NonNullable<T>> {
-        return super.filterDefined() as AsyncHierarchyQuery<TNode, NonNullable<T>>;
-    }
+    // /**
+    //  * Creates a subquery whose elements are neither `null` nor `undefined`.
+    //  *
+    //  * @category Subquery
+    //  */
+    // filterDefined(): AsyncHierarchyQuery<TNode, NonNullable<T>> {
+    //     return super.filterDefined() as AsyncHierarchyQuery<TNode, NonNullable<T>>;
+    // }
 
-    /**
-     * Creates a subquery where the selected key for each element is neither `null` nor `undefined`.
-     *
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element The element from which to select a key.
-     * @category Subquery
-     */
-    filterDefinedBy<K>(keySelector: (element: T) => K): AsyncHierarchyQuery<TNode, T> {
-        return super.filterDefinedBy(keySelector) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery where the selected key for each element is neither `null` nor `undefined`.
+    //  *
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element The element from which to select a key.
+    //  * @category Subquery
+    //  */
+    // filterDefinedBy<K>(keySelector: (element: T) => K): AsyncHierarchyQuery<TNode, T> {
+    //     return super.filterDefinedBy(keySelector) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery whose elements match the supplied predicate.
-     *
-     * NOTE: This is an alias for `filter`.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to test.
-     * @param predicate.offset The offset from the start of the source iterable.
-     * @category Subquery
-     */
-    where<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncHierarchyQuery<TNode, U>;
-    /**
-     * Creates a subquery whose elements match the supplied predicate.
-     *
-     * NOTE: This is an alias for `filter`.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to test.
-     * @param predicate.offset The offset from the start of the source iterable.
-     * @category Subquery
-     */
-    where(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T>;
-    where(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
-        return this.filter(predicate) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery whose elements match the supplied predicate.
+    //  *
+    //  * NOTE: This is an alias for `filter`.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to test.
+    //  * @param predicate.offset The offset from the start of the source iterable.
+    //  * @category Subquery
+    //  */
+    // where<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncHierarchyQuery<TNode, U>;
+    // /**
+    //  * Creates a subquery whose elements match the supplied predicate.
+    //  *
+    //  * NOTE: This is an alias for `filter`.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to test.
+    //  * @param predicate.offset The offset from the start of the source iterable.
+    //  * @category Subquery
+    //  */
+    // where(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T>;
+    // where(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
+    //     return this.filter(predicate) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery where the selected key for each element matches the supplied predicate.
-     *
-     * NOTE: This is an alias for `filterBy`.
-     *
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element The element from which to select a key.
-     * @param predicate A callback used to match each key.
-     * @param predicate.key The key to test.
-     * @param predicate.offset The offset from the start of the source iterable.
-     * @category Subquery
-     */
-    whereBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean) {
-        return this.filterBy(keySelector, predicate);
-    }
+    // /**
+    //  * Creates a subquery where the selected key for each element matches the supplied predicate.
+    //  *
+    //  * NOTE: This is an alias for `filterBy`.
+    //  *
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element The element from which to select a key.
+    //  * @param predicate A callback used to match each key.
+    //  * @param predicate.key The key to test.
+    //  * @param predicate.offset The offset from the start of the source iterable.
+    //  * @category Subquery
+    //  */
+    // whereBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean) {
+    //     return this.filterBy(keySelector, predicate);
+    // }
 
-    /**
-     * Creates a subquery whose elements are neither `null` nor `undefined`.
-     *
-     * NOTE: This is an alias for `filterDefined`.
-     *
-     * @category Subquery
-     */
-    whereDefined() {
-        return this.filterDefined();
-    }
+    // /**
+    //  * Creates a subquery whose elements are neither `null` nor `undefined`.
+    //  *
+    //  * NOTE: This is an alias for `filterDefined`.
+    //  *
+    //  * @category Subquery
+    //  */
+    // whereDefined() {
+    //     return this.filterDefined();
+    // }
 
-    /**
-     * Creates a subquery where the selected key for each element is neither `null` nor `undefined`.
-     *
-     * NOTE: This is an alias for `filterDefinedBy`.
-     *
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element The element from which to select a key.
-     * @category Subquery
-     */
-    whereDefinedBy<K>(keySelector: (element: T) => K) {
-        return this.filterDefinedBy(keySelector);
-    }
+    // /**
+    //  * Creates a subquery where the selected key for each element is neither `null` nor `undefined`.
+    //  *
+    //  * NOTE: This is an alias for `filterDefinedBy`.
+    //  *
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element The element from which to select a key.
+    //  * @category Subquery
+    //  */
+    // whereDefinedBy<K>(keySelector: (element: T) => K) {
+    //     return this.filterDefinedBy(keySelector);
+    // }
 
-    /**
-     * Creates a subquery whose elements do not match the supplied predicate.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to test.
-     * @param predicate.offset The offset from the start of the source iterable.
-     * @category Subquery
-     */
-    filterNot<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncHierarchyQuery<TNode, U>;
-    /**
-     * Creates a subquery whose elements do not match the supplied predicate.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to test.
-     * @param predicate.offset The offset from the start of the source iterable.
-     * @category Subquery
-     */
-    filterNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T>;
-    filterNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
-        return super.filterNot(predicate) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery whose elements do not match the supplied predicate.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to test.
+    //  * @param predicate.offset The offset from the start of the source iterable.
+    //  * @category Subquery
+    //  */
+    // filterNot<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncHierarchyQuery<TNode, U>;
+    // /**
+    //  * Creates a subquery whose elements do not match the supplied predicate.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to test.
+    //  * @param predicate.offset The offset from the start of the source iterable.
+    //  * @category Subquery
+    //  */
+    // filterNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T>;
+    // filterNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
+    //     return super.filterNot(predicate) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery where the selected key for each element does not match the supplied predicate.
-     *
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element The element from which to select a key.
-     * @param predicate A callback used to match each key.
-     * @param predicate.key The key to test.
-     * @param predicate.offset The offset from the start of the source iterable.
-     * @category Subquery
-     */
-    filterNotBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T> {
-        return super.filterNotBy(keySelector, predicate) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery where the selected key for each element does not match the supplied predicate.
+    //  *
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element The element from which to select a key.
+    //  * @param predicate A callback used to match each key.
+    //  * @param predicate.key The key to test.
+    //  * @param predicate.offset The offset from the start of the source iterable.
+    //  * @category Subquery
+    //  */
+    // filterNotBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T> {
+    //     return super.filterNotBy(keySelector, predicate) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery where the selected key for each element is neither `null` nor `undefined`.
-     *
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element The element from which to select a key.
-     * @category Subquery
-     */
-    filterNotDefinedBy<K>(keySelector: (element: T) => K): AsyncHierarchyQuery<TNode, T> {
-        return super.filterNotDefinedBy(keySelector) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery where the selected key for each element is neither `null` nor `undefined`.
+    //  *
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element The element from which to select a key.
+    //  * @category Subquery
+    //  */
+    // filterNotDefinedBy<K>(keySelector: (element: T) => K): AsyncHierarchyQuery<TNode, T> {
+    //     return super.filterNotDefinedBy(keySelector) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery whose elements do not match the supplied predicate.
-     *
-     * NOTE: This is an alias for `filterNot`.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to test.
-     * @param predicate.offset The offset from the start of the source iterable.
-     * @category Subquery
-     */
-    whereNot<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncHierarchyQuery<TNode, U>;
-    /**
-     * Creates a subquery whose elements do not match the supplied predicate.
-     *
-     * NOTE: This is an alias for `filterNot`.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to test.
-     * @param predicate.offset The offset from the start of the source iterable.
-     * @category Subquery
-     */
-    whereNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T>;
-    whereNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
-        return this.filterNot(predicate) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery whose elements do not match the supplied predicate.
+    //  *
+    //  * NOTE: This is an alias for `filterNot`.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to test.
+    //  * @param predicate.offset The offset from the start of the source iterable.
+    //  * @category Subquery
+    //  */
+    // whereNot<U extends T>(predicate: (element: T, offset: number) => element is U): AsyncHierarchyQuery<TNode, U>;
+    // /**
+    //  * Creates a subquery whose elements do not match the supplied predicate.
+    //  *
+    //  * NOTE: This is an alias for `filterNot`.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to test.
+    //  * @param predicate.offset The offset from the start of the source iterable.
+    //  * @category Subquery
+    //  */
+    // whereNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T>;
+    // whereNot(predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean) {
+    //     return this.filterNot(predicate) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery where the selected key for each element does not match the supplied predicate.
-     *
-     * NOTE: This is an alias for `filterNotBy`.
-     *
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element The element from which to select a key.
-     * @param predicate A callback used to match each key.
-     * @param predicate.key The key to test.
-     * @param predicate.offset The offset from the start of the source iterable.
-     * @category Subquery
-     */
-    whereNotBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean) {
-        return this.filterNotBy(keySelector, predicate);
-    }
+    // /**
+    //  * Creates a subquery where the selected key for each element does not match the supplied predicate.
+    //  *
+    //  * NOTE: This is an alias for `filterNotBy`.
+    //  *
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element The element from which to select a key.
+    //  * @param predicate A callback used to match each key.
+    //  * @param predicate.key The key to test.
+    //  * @param predicate.offset The offset from the start of the source iterable.
+    //  * @category Subquery
+    //  */
+    // whereNotBy<K>(keySelector: (element: T) => K, predicate: (key: K, offset: number) => PromiseLike<boolean> | boolean) {
+    //     return this.filterNotBy(keySelector, predicate);
+    // }
 
-    /**
-     * Creates a subquery where the selected key for each element is neither `null` nor `undefined`.
-     *
-     * NOTE: This is an alias for `filterNotDefinedBy`.
-     *
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element The element from which to select a key.
-     * @category Subquery
-     */
-    whereNotDefinedBy<K>(keySelector: (element: T) => K) {
-        return this.filterDefinedBy(keySelector);
-    }
+    // /**
+    //  * Creates a subquery where the selected key for each element is neither `null` nor `undefined`.
+    //  *
+    //  * NOTE: This is an alias for `filterNotDefinedBy`.
+    //  *
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element The element from which to select a key.
+    //  * @category Subquery
+    //  */
+    // whereNotDefinedBy<K>(keySelector: (element: T) => K) {
+    //     return this.filterDefinedBy(keySelector);
+    // }
 
-    /**
-     * Creates a subquery whose elements are in the reverse order.
-     *
-     * @category Subquery
-     */
-    reverse(): AsyncHierarchyQuery<TNode, T> {
-        return super.reverse() as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery whose elements are in the reverse order.
+    //  *
+    //  * @category Subquery
+    //  */
+    // reverse(): AsyncHierarchyQuery<TNode, T> {
+    //     return super.reverse() as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery with every instance of the specified value removed.
-     *
-     * @param values The values to exclude.
-     * @category Subquery
-     */
-    exclude(...values: [PromiseLike<T> | T, ...(PromiseLike<T> | T)[]]): AsyncHierarchyQuery<TNode, T> {
-        return super.exclude(...values) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery with every instance of the specified value removed.
+    //  *
+    //  * @param values The values to exclude.
+    //  * @category Subquery
+    //  */
+    // exclude(...values: [PromiseLike<T> | T, ...(PromiseLike<T> | T)[]]): AsyncHierarchyQuery<TNode, T> {
+    //     return super.exclude(...values) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery containing all elements except the first elements up to the supplied
-     * count.
-     *
-     * @param count The number of elements to drop.
-     * @category Subquery
-     */
-    drop(count: number): AsyncHierarchyQuery<TNode, T> {
-        return super.drop(count) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery containing all elements except the first elements up to the supplied
+    //  * count.
+    //  *
+    //  * @param count The number of elements to drop.
+    //  * @category Subquery
+    //  */
+    // drop(count: number): AsyncHierarchyQuery<TNode, T> {
+    //     return super.drop(count) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery containing all elements except the last elements up to the supplied
-     * count.
-     *
-     * @param count The number of elements to drop.
-     * @category Subquery
-     */
-    dropRight(count: number): AsyncHierarchyQuery<TNode, T> {
-        return super.dropRight(count) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery containing all elements except the last elements up to the supplied
+    //  * count.
+    //  *
+    //  * @param count The number of elements to drop.
+    //  * @category Subquery
+    //  */
+    // dropRight(count: number): AsyncHierarchyQuery<TNode, T> {
+    //     return super.dropRight(count) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery containing all elements except the first elements that match
-     * the supplied predicate.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to match.
-     * @category Subquery
-     */
-    dropWhile(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T> {
-        return super.dropWhile(predicate) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery containing all elements except the first elements that match
+    //  * the supplied predicate.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to match.
+    //  * @category Subquery
+    //  */
+    // dropWhile(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T> {
+    //     return super.dropWhile(predicate) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery containing all elements except the first elements that don't match
-     * the supplied predicate.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to match.
-     * @category Subquery
-     */
-    dropUntil(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T> {
-        return super.dropUntil(predicate) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery containing all elements except the first elements that don't match
+    //  * the supplied predicate.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to match.
+    //  * @category Subquery
+    //  */
+    // dropUntil(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T> {
+    //     return super.dropUntil(predicate) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery containing all elements except the first elements up to the supplied
-     * count.
-     *
-     * NOTE: This is an alias for `drop`.
-     *
-     * @param count The number of elements to skip.
-     * @category Subquery
-     */
-    skip(count: number) {
-        return this.drop(count);
-    }
+    // /**
+    //  * Creates a subquery containing all elements except the first elements up to the supplied
+    //  * count.
+    //  *
+    //  * NOTE: This is an alias for `drop`.
+    //  *
+    //  * @param count The number of elements to skip.
+    //  * @category Subquery
+    //  */
+    // skip(count: number) {
+    //     return this.drop(count);
+    // }
 
-    /**
-     * Creates a subquery containing all elements except the last elements up to the supplied
-     * count.
-     *
-     * NOTE: This is an alias for `dropRight`.
-     *
-     * @param count The number of elements to skip.
-     * @category Subquery
-     */
-    skipRight(count: number) {
-        return this.dropRight(count);
-    }
+    // /**
+    //  * Creates a subquery containing all elements except the last elements up to the supplied
+    //  * count.
+    //  *
+    //  * NOTE: This is an alias for `dropRight`.
+    //  *
+    //  * @param count The number of elements to skip.
+    //  * @category Subquery
+    //  */
+    // skipRight(count: number) {
+    //     return this.dropRight(count);
+    // }
 
-    /**
-     * Creates a subquery containing all elements except the first elements that match
-     * the supplied predicate.
-     *
-     * NOTE: This is an alias for `dropWhile`.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to match.
-     * @category Subquery
-     */
-    skipWhile(predicate: (element: T) => PromiseLike<boolean> | boolean) {
-        return this.dropWhile(predicate);
-    }
+    // /**
+    //  * Creates a subquery containing all elements except the first elements that match
+    //  * the supplied predicate.
+    //  *
+    //  * NOTE: This is an alias for `dropWhile`.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to match.
+    //  * @category Subquery
+    //  */
+    // skipWhile(predicate: (element: T) => PromiseLike<boolean> | boolean) {
+    //     return this.dropWhile(predicate);
+    // }
 
-    /**
-     * Creates a subquery containing all elements except the first elements that don't match
-     * the supplied predicate.
-     *
-     * NOTE: This is an alias for `dropUntil`.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to match.
-     * @category Subquery
-     */
-    skipUntil(predicate: (element: T) => PromiseLike<boolean> | boolean) {
-        return this.dropUntil(predicate);
-    }
+    // /**
+    //  * Creates a subquery containing all elements except the first elements that don't match
+    //  * the supplied predicate.
+    //  *
+    //  * NOTE: This is an alias for `dropUntil`.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to match.
+    //  * @category Subquery
+    //  */
+    // skipUntil(predicate: (element: T) => PromiseLike<boolean> | boolean) {
+    //     return this.dropUntil(predicate);
+    // }
 
-    /**
-     * Creates a subquery containing the first elements up to the supplied
-     * count.
-     *
-     * @param count The number of elements to take.
-     * @category Subquery
-     */
-    take(count: number): AsyncHierarchyQuery<TNode, T> {
-        return super.take(count) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery containing the first elements up to the supplied
+    //  * count.
+    //  *
+    //  * @param count The number of elements to take.
+    //  * @category Subquery
+    //  */
+    // take(count: number): AsyncHierarchyQuery<TNode, T> {
+    //     return super.take(count) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery containing the last elements up to the supplied
-     * count.
-     *
-     * @param count The number of elements to take.
-     * @category Subquery
-     */
-    takeRight(count: number): AsyncHierarchyQuery<TNode, T> {
-        return super.takeRight(count) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery containing the last elements up to the supplied
+    //  * count.
+    //  *
+    //  * @param count The number of elements to take.
+    //  * @category Subquery
+    //  */
+    // takeRight(count: number): AsyncHierarchyQuery<TNode, T> {
+    //     return super.takeRight(count) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery containing the first elements that match the supplied predicate.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to match.
-     * @category Subquery
-     */
-    takeWhile<U extends T>(predicate: (element: T) => element is U): AsyncHierarchyQuery<TNode, U>;
-    /**
-     * Creates a subquery containing the first elements that match the supplied predicate.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to match.
-     */
-    takeWhile(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T>;
-    takeWhile(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T> {
-        return super.takeWhile(predicate) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery containing the first elements that match the supplied predicate.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to match.
+    //  * @category Subquery
+    //  */
+    // takeWhile<U extends T>(predicate: (element: T) => element is U): AsyncHierarchyQuery<TNode, U>;
+    // /**
+    //  * Creates a subquery containing the first elements that match the supplied predicate.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to match.
+    //  */
+    // takeWhile(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T>;
+    // takeWhile(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T> {
+    //     return super.takeWhile(predicate) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery containing the first elements that do not match the supplied predicate.
-     *
-     * @param predicate A callback used to match each element.
-     * @param predicate.element The element to match.
-     * @category Subquery
-     */
-    takeUntil(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T> {
-        return super.takeUntil(predicate) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery containing the first elements that do not match the supplied predicate.
+    //  *
+    //  * @param predicate A callback used to match each element.
+    //  * @param predicate.element The element to match.
+    //  * @category Subquery
+    //  */
+    // takeUntil(predicate: (element: T) => PromiseLike<boolean> | boolean): AsyncHierarchyQuery<TNode, T> {
+    //     return super.takeUntil(predicate) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the set intersection of this `AsyncQuery` and another `AsyncIterable` or `Iterable`.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param equaler An `Equaler` object used to compare equality.
-     * @category Subquery
-     */
-    intersect(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T> {
-        return super.intersect(right, equaler) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the set intersection of this `AsyncQuery` and another `AsyncIterable` or `Iterable`.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param equaler An `Equaler` object used to compare equality.
+    //  * @category Subquery
+    //  */
+    // intersect(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T> {
+    //     return super.intersect(right, equaler) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the set intersection of this `AsyncQuery` and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element An element from which to select a key.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    intersectBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T> {
-        return super.intersectBy(right, keySelector, keyEqualer) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the set intersection of this `AsyncQuery` and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param keyEqualer An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // intersectBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T> {
+    //     return super.intersectBy(right, keySelector, keyEqualer) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the set union of this `AsyncQuery` and another `AsyncIterable` or `Iterable`.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param equaler An `Equaler` object used to compare equality.
-     * @category Subquery
-     */
-    union(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T> {
-        return super.union(right, equaler) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the set union of this `AsyncQuery` and another `AsyncIterable` or `Iterable`.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param equaler An `Equaler` object used to compare equality.
+    //  * @category Subquery
+    //  */
+    // union(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T> {
+    //     return super.union(right, equaler) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the set union of this `AsyncQuery` and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element An element from which to select a key.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    unionBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T> {
-        return super.unionBy(right, keySelector, keyEqualer) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the set union of this `AsyncQuery` and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param keyEqualer An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // unionBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T> {
+    //     return super.unionBy(right, keySelector, keyEqualer) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the set difference between this and another `AsyncIterable` or `Iterable`.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param equaler An `Equaler` object used to compare equality.
-     * @category Subquery
-     */
-    except(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T> {
-        return super.except(right, equaler) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the set difference between this and another `AsyncIterable` or `Iterable`.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param equaler An `Equaler` object used to compare equality.
+    //  * @category Subquery
+    //  */
+    // except(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T> {
+    //     return super.except(right, equaler) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the set difference between this and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element An element from which to select a key.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    exceptBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T> {
-        return super.exceptBy(right, keySelector, keyEqualer) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the set difference between this and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param keyEqualer An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // exceptBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T> {
+    //     return super.exceptBy(right, keySelector, keyEqualer) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the set difference between this and another `AsyncIterable` or `Iterable`.
-     *
-     * NOTE: This is an alias for `except`.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param equaler An `Equaler` object used to compare equality.
-     * @category Subquery
-     */
-    relativeComplement(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>) {
-        return this.except(right, equaler);
-    }
+    // /**
+    //  * Creates a subquery for the set difference between this and another `AsyncIterable` or `Iterable`.
+    //  *
+    //  * NOTE: This is an alias for `except`.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param equaler An `Equaler` object used to compare equality.
+    //  * @category Subquery
+    //  */
+    // relativeComplement(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>) {
+    //     return this.except(right, equaler);
+    // }
 
-    /**
-     * Creates a subquery for the set difference between this and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
-     *
-     * NOTE: This is an alias for `exceptBy`.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element An element from which to select a key.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    relativeComplementBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>) {
-        return this.exceptBy(right, keySelector, keyEqualer);
-    }
+    // /**
+    //  * Creates a subquery for the set difference between this and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
+    //  *
+    //  * NOTE: This is an alias for `exceptBy`.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param keyEqualer An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // relativeComplementBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>) {
+    //     return this.exceptBy(right, keySelector, keyEqualer);
+    // }
 
-    /**
-     * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param equaler An `Equaler` object used to compare equality.
-     * @category Subquery
-     */
-    symmetricDifference(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T> {
-        return super.symmetricDifference(right, equaler) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param equaler An `Equaler` object used to compare equality.
+    //  * @category Subquery
+    //  */
+    // symmetricDifference(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T> {
+    //     return super.symmetricDifference(right, equaler) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @param keySelector A callback used to select the key for each element.
-     * @param keySelector.element An element from which to select a key.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    symmetricDifferenceBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T> {
-        return super.symmetricDifferenceBy(right, keySelector, keyEqualer) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the symmetric difference between this and another `AsyncIterable` or `Iterable`, where set identity is determined by the selected key.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @param keySelector A callback used to select the key for each element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param keyEqualer An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // symmetricDifferenceBy<K>(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T> {
+    //     return super.symmetricDifferenceBy(right, keySelector, keyEqualer) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery that concatenates this `AsyncQuery` with another `AsyncIterable` or `Iterable`.
-     *
-     * @param right An `AsyncIterable` or `Iterable` object.
-     * @category Subquery
-     */
-    concat(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncHierarchyQuery<TNode, T> {
-        return super.concat(right) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery that concatenates this `AsyncQuery` with another `AsyncIterable` or `Iterable`.
+    //  *
+    //  * @param right An `AsyncIterable` or `Iterable` object.
+    //  * @category Subquery
+    //  */
+    // concat(right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncHierarchyQuery<TNode, T> {
+    //     return super.concat(right) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the distinct elements of this `AsyncQuery`.
-     * @param equaler An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    distinct(equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T> {
-        return super.distinct(equaler) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the distinct elements of this `AsyncQuery`.
+    //  * @param equaler An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // distinct(equaler?: Equaler<T>): AsyncHierarchyQuery<TNode, T> {
+    //     return super.distinct(equaler) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the distinct elements of this `AsyncQuery`.
-     *
-     * @param keySelector A callback used to select the key to determine uniqueness.
-     * @param keySelector.value An element from which to select a key.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    distinctBy<K>(keySelector: (value: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T> {
-        return super.distinctBy(keySelector, keyEqualer) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the distinct elements of this `AsyncQuery`.
+    //  *
+    //  * @param keySelector A callback used to select the key to determine uniqueness.
+    //  * @param keySelector.value An element from which to select a key.
+    //  * @param keyEqualer An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // distinctBy<K>(keySelector: (value: T) => K, keyEqualer?: Equaler<K>): AsyncHierarchyQuery<TNode, T> {
+    //     return super.distinctBy(keySelector, keyEqualer) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the elements of this `AsyncQuery` with the provided value appended to the end.
-     *
-     * @param value The value to append.
-     * @category Subquery
-     */
-    append(value: PromiseLike<T> | T): AsyncHierarchyQuery<TNode, T> {
-        return super.append(value) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the elements of this `AsyncQuery` with the provided value appended to the end.
+    //  *
+    //  * @param value The value to append.
+    //  * @category Subquery
+    //  */
+    // append(value: PromiseLike<T> | T): AsyncHierarchyQuery<TNode, T> {
+    //     return super.append(value) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the elements of this `AsyncQuery` with the provided value prepended to the beginning.
-     *
-     * @param value The value to prepend.
-     * @category Subquery
-     */
-    prepend(value: PromiseLike<T> | T): AsyncHierarchyQuery<TNode, T> {
-        return super.prepend(value) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the elements of this `AsyncQuery` with the provided value prepended to the beginning.
+    //  *
+    //  * @param value The value to prepend.
+    //  * @category Subquery
+    //  */
+    // prepend(value: PromiseLike<T> | T): AsyncHierarchyQuery<TNode, T> {
+    //     return super.prepend(value) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery for the elements of this `AsyncQuery` with the provided range
-     * patched into the results.
-     *
-     * @param start The offset at which to patch the range.
-     * @param skipCount The number of elements to skip from start.
-     * @param range The range to patch into the result.
-     * @category Subquery
-     */
-    patch(start: number, skipCount?: number, range?: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncHierarchyQuery<TNode, T> {
-        return super.patch(start, skipCount, range) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery for the elements of this `AsyncQuery` with the provided range
+    //  * patched into the results.
+    //  *
+    //  * @param start The offset at which to patch the range.
+    //  * @param skipCount The number of elements to skip from start.
+    //  * @param range The range to patch into the result.
+    //  * @category Subquery
+    //  */
+    // patch(start: number, skipCount?: number, range?: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncHierarchyQuery<TNode, T> {
+    //     return super.patch(start, skipCount, range) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery that contains the provided default value if this `AsyncQuery`
-     * contains no elements.
-     *
-     * @param defaultValue The default value.
-     * @category Subquery
-     */
-    defaultIfEmpty(defaultValue: PromiseLike<T> | T): AsyncHierarchyQuery<TNode, T> {
-        return super.defaultIfEmpty(defaultValue) as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Creates a subquery that contains the provided default value if this `AsyncQuery`
+    //  * contains no elements.
+    //  *
+    //  * @param defaultValue The default value.
+    //  * @category Subquery
+    //  */
+    // defaultIfEmpty(defaultValue: PromiseLike<T> | T): AsyncHierarchyQuery<TNode, T> {
+    //     return super.defaultIfEmpty(defaultValue) as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    /**
-     * Creates a subquery that splits this `AsyncQuery` into one or more pages.
-     * While advancing from page to page is evaluated lazily, the elements of the page are
-     * evaluated eagerly.
-     *
-     * @param pageSize The number of elements per page.
-     * @category Subquery
-     */
-    pageBy(pageSize: number): AsyncQuery<HierarchyPage<TNode, T>>;
-    /**
-     * Creates a subquery that splits this `AsyncQuery` into one or more pages.
-     * While advancing from page to page is evaluated lazily, the elements of the page are
-     * evaluated eagerly.
-     *
-     * @param pageSize The number of elements per page.
-     * @category Subquery
-     */
-    pageBy<R>(pageSize: number, pageSelector: (page: number, offset: number, values: HierarchyQuery<TNode, T>) => R): AsyncQuery<R>;
-    pageBy<R>(pageSize: number, pageSelector?: (page: number, offset: number, values: HierarchyQuery<TNode, T>) => R): AsyncQuery<R> {
-        return super.pageBy(pageSize, pageSelector as (page: number, offset: number, values: Query<T>) => R);
-    }
+    // /**
+    //  * Creates a subquery that splits this `AsyncQuery` into one or more pages.
+    //  * While advancing from page to page is evaluated lazily, the elements of the page are
+    //  * evaluated eagerly.
+    //  *
+    //  * @param pageSize The number of elements per page.
+    //  * @category Subquery
+    //  */
+    // pageBy(pageSize: number): AsyncQuery<HierarchyPage<TNode, T>>;
+    // /**
+    //  * Creates a subquery that splits this `AsyncQuery` into one or more pages.
+    //  * While advancing from page to page is evaluated lazily, the elements of the page are
+    //  * evaluated eagerly.
+    //  *
+    //  * @param pageSize The number of elements per page.
+    //  * @category Subquery
+    //  */
+    // pageBy<R>(pageSize: number, pageSelector: (page: number, offset: number, values: HierarchyQuery<TNode, T>) => R): AsyncQuery<R>;
+    // pageBy<R>(pageSize: number, pageSelector?: (page: number, offset: number, values: HierarchyQuery<TNode, T>) => R): AsyncQuery<R> {
+    //     return super.pageBy(pageSize, pageSelector as (page: number, offset: number, values: Query<T>) => R);
+    // }
 
-    /**
-     * Creates a subquery whose elements are the contiguous ranges of elements that share the same key.
-     *
-     * @param keySelector A callback used to select the key for an element.
-     * @param keySelector.element An element from which to select a key.
-     * @category Subquery
-     */
-    spanMap<K>(keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<Grouping<K, T> & Hierarchical<TNode>>;
-    /**
-     * Creates a subquery whose values are computed from each element of the contiguous ranges of elements that share the same key.
-     *
-     * @param keySelector A callback used to select the key for an element.
-     * @param keySelector.element An element from which to select a key.
-     * @param elementSelector A callback used to select a value for an element.
-     * @param elementSelector.element An element from which to select a value.
-     * @category Subquery
-     */
-    spanMap<K, V>(keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, keyEqualer?: Equaler<K>): AsyncQuery<Grouping<K, V>>;
-    /**
-     * Creates a subquery whose values are computed from the contiguous ranges of elements that share the same key.
-     *
-     * @param keySelector A callback used to select the key for an element.
-     * @param keySelector.element An element from which to select a key.
-     * @param elementSelector A callback used to select a value for an element.
-     * @param elementSelector.element An element from which to select a value.
-     * @param spanSelector A callback used to select a result from a contiguous range.
-     * @param spanSelector.key The key for the span.
-     * @param spanSelector.elements The elements for the span.
-     * @category Subquery
-     */
-    spanMap<K, V, R>(keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, spanSelector: (key: K, elements: Query<V>) => PromiseLike<R> | R, keyEqualer?: Equaler<K>): AsyncQuery<R>;
-    /**
-     * Creates a subquery whose values are computed from the contiguous ranges of elements that share the same key.
-     *
-     * @param keySelector A callback used to select the key for an element.
-     * @param keySelector.element An element from which to select a key.
-     * @param elementSelector A callback used to select a value for an element.
-     * @param elementSelector.element An element from which to select a value.
-     * @param spanSelector A callback used to select a result from a contiguous range.
-     * @param spanSelector.key The key for the span.
-     * @param spanSelector.elements The elements for the span.
-     * @category Subquery
-     */
-    spanMap<K, R>(keySelector: (element: T) => K, elementSelector: undefined, spanSelector: (key: K, elements: HierarchyQuery<TNode, T>) => PromiseLike<R> | R, keyEqualer?: Equaler<K>): AsyncQuery<R>;
-    spanMap<K, V, R>(keySelector: (element: T) => K, elementSelector?: ((element: T) => PromiseLike<T | V> | T | V) | Equaler<K>, spanSelector?: ((key: K, elements: Query<T | V>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R) | ((key: K, elements: HierarchyQuery<TNode, T>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R) | Equaler<K>, keyEqualer?: Equaler<K>) {
-        return super.spanMap(keySelector, elementSelector as (element: T) => PromiseLike<V> | V, spanSelector as (key: K, elements: Query<V>) => PromiseLike<R> | R, keyEqualer);
-    }
+    // /**
+    //  * Creates a subquery whose elements are the contiguous ranges of elements that share the same key.
+    //  *
+    //  * @param keySelector A callback used to select the key for an element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @category Subquery
+    //  */
+    // spanMap<K>(keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<Grouping<K, T> & Hierarchical<TNode>>;
+    // /**
+    //  * Creates a subquery whose values are computed from each element of the contiguous ranges of elements that share the same key.
+    //  *
+    //  * @param keySelector A callback used to select the key for an element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param elementSelector A callback used to select a value for an element.
+    //  * @param elementSelector.element An element from which to select a value.
+    //  * @category Subquery
+    //  */
+    // spanMap<K, V>(keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, keyEqualer?: Equaler<K>): AsyncQuery<Grouping<K, V>>;
+    // /**
+    //  * Creates a subquery whose values are computed from the contiguous ranges of elements that share the same key.
+    //  *
+    //  * @param keySelector A callback used to select the key for an element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param elementSelector A callback used to select a value for an element.
+    //  * @param elementSelector.element An element from which to select a value.
+    //  * @param spanSelector A callback used to select a result from a contiguous range.
+    //  * @param spanSelector.key The key for the span.
+    //  * @param spanSelector.elements The elements for the span.
+    //  * @category Subquery
+    //  */
+    // spanMap<K, V, R>(keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, spanSelector: (key: K, elements: Query<V>) => PromiseLike<R> | R, keyEqualer?: Equaler<K>): AsyncQuery<R>;
+    // /**
+    //  * Creates a subquery whose values are computed from the contiguous ranges of elements that share the same key.
+    //  *
+    //  * @param keySelector A callback used to select the key for an element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param elementSelector A callback used to select a value for an element.
+    //  * @param elementSelector.element An element from which to select a value.
+    //  * @param spanSelector A callback used to select a result from a contiguous range.
+    //  * @param spanSelector.key The key for the span.
+    //  * @param spanSelector.elements The elements for the span.
+    //  * @category Subquery
+    //  */
+    // spanMap<K, R>(keySelector: (element: T) => K, elementSelector: undefined, spanSelector: (key: K, elements: HierarchyQuery<TNode, T>) => PromiseLike<R> | R, keyEqualer?: Equaler<K>): AsyncQuery<R>;
+    // spanMap<K, V, R>(keySelector: (element: T) => K, elementSelector?: ((element: T) => PromiseLike<T | V> | T | V) | Equaler<K>, spanSelector?: ((key: K, elements: Query<T | V>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R) | ((key: K, elements: HierarchyQuery<TNode, T>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R) | Equaler<K>, keyEqualer?: Equaler<K>) {
+    //     return super.spanMap(keySelector, elementSelector as (element: T) => PromiseLike<V> | V, spanSelector as (key: K, elements: Query<V>) => PromiseLike<R> | R, keyEqualer);
+    // }
 
-    /**
-     * Groups each element of this `AsyncQuery` by its key.
-     *
-     * @param keySelector A callback used to select the key for an element.
-     * @param keySelector.element An element from which to select a key.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    groupBy<K>(keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<Grouping<K, T> & Hierarchical<TNode>>;
-    /**
-     * Groups each element by its key.
-     *
-     * @param keySelector A callback used to select the key for an element.
-     * @param keySelector.element An element from which to select a key.
-     * @param elementSelector A callback used to select a value for an element.
-     * @param elementSelector.element An element from which to select a value.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    groupBy<K, V>(keySelector: (element: T) => K, elementSelector: (element: T) => V, keyEqualer?: Equaler<K>): AsyncQuery<Grouping<K, V>>;
-    /**
-     * Groups each element by its key.
-     *
-     * @param keySelector A callback used to select the key for an element.
-     * @param keySelector.element An element from which to select a key.
-     * @param elementSelector A callback used to select a value for an element.
-     * @param elementSelector.element An element from which to select a value.
-     * @param resultSelector A callback used to select a result from a group.
-     * @param resultSelector.key The key for the group.
-     * @param resultSelector.elements The elements for the group.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    groupBy<K, V, R>(keySelector: (element: T) => K, elementSelector: (element: T) => V, resultSelector: (key: K, elements: Query<V>) => R, keyEqualer?: Equaler<K>): AsyncQuery<R>;
-    /**
-     * Groups each element by its key.
-     *
-     * @param keySelector A callback used to select the key for an element.
-     * @param keySelector.element An element from which to select a key.
-     * @param elementSelector A callback used to select a value for an element.
-     * @param elementSelector.element An element from which to select a value.
-     * @param resultSelector A callback used to select a result from a group.
-     * @param resultSelector.key The key for the group.
-     * @param resultSelector.elements The elements for the group.
-     * @param keyEqualer An `Equaler` object used to compare key equality.
-     * @category Subquery
-     */
-    groupBy<K, R>(keySelector: (element: T) => K, elementSelector: undefined, resultSelector: (key: K, elements: HierarchyQuery<TNode, T>) => R, keyEqualer?: Equaler<K>): AsyncQuery<R>;
-    groupBy<K, V, R>(keySelector: (element: T) => K, elementSelector?: ((element: T) => V) | Equaler<K>, resultSelector?: ((key: K, elements: Query<V>) => R) | ((key: K, elements: HierarchyQuery<TNode, T>) => R) | Equaler<K>, keyEqualer?: Equaler<K>) {
-        return super.groupBy(keySelector, elementSelector as (element: T) => V, resultSelector as (key: K, elements: Query<V>) => R, keyEqualer);
-    }
+    // /**
+    //  * Groups each element of this `AsyncQuery` by its key.
+    //  *
+    //  * @param keySelector A callback used to select the key for an element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param keyEqualer An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // groupBy<K>(keySelector: (element: T) => K, keyEqualer?: Equaler<K>): AsyncQuery<Grouping<K, T> & Hierarchical<TNode>>;
+    // /**
+    //  * Groups each element by its key.
+    //  *
+    //  * @param keySelector A callback used to select the key for an element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param elementSelector A callback used to select a value for an element.
+    //  * @param elementSelector.element An element from which to select a value.
+    //  * @param keyEqualer An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // groupBy<K, V>(keySelector: (element: T) => K, elementSelector: (element: T) => V, keyEqualer?: Equaler<K>): AsyncQuery<Grouping<K, V>>;
+    // /**
+    //  * Groups each element by its key.
+    //  *
+    //  * @param keySelector A callback used to select the key for an element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param elementSelector A callback used to select a value for an element.
+    //  * @param elementSelector.element An element from which to select a value.
+    //  * @param resultSelector A callback used to select a result from a group.
+    //  * @param resultSelector.key The key for the group.
+    //  * @param resultSelector.elements The elements for the group.
+    //  * @param keyEqualer An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // groupBy<K, V, R>(keySelector: (element: T) => K, elementSelector: (element: T) => V, resultSelector: (key: K, elements: Query<V>) => R, keyEqualer?: Equaler<K>): AsyncQuery<R>;
+    // /**
+    //  * Groups each element by its key.
+    //  *
+    //  * @param keySelector A callback used to select the key for an element.
+    //  * @param keySelector.element An element from which to select a key.
+    //  * @param elementSelector A callback used to select a value for an element.
+    //  * @param elementSelector.element An element from which to select a value.
+    //  * @param resultSelector A callback used to select a result from a group.
+    //  * @param resultSelector.key The key for the group.
+    //  * @param resultSelector.elements The elements for the group.
+    //  * @param keyEqualer An `Equaler` object used to compare key equality.
+    //  * @category Subquery
+    //  */
+    // groupBy<K, R>(keySelector: (element: T) => K, elementSelector: undefined, resultSelector: (key: K, elements: HierarchyQuery<TNode, T>) => R, keyEqualer?: Equaler<K>): AsyncQuery<R>;
+    // groupBy<K, V, R>(keySelector: (element: T) => K, elementSelector?: ((element: T) => V) | Equaler<K>, resultSelector?: ((key: K, elements: Query<V>) => R) | ((key: K, elements: HierarchyQuery<TNode, T>) => R) | Equaler<K>, keyEqualer?: Equaler<K>) {
+    //     return super.groupBy(keySelector, elementSelector as (element: T) => V, resultSelector as (key: K, elements: Query<V>) => R, keyEqualer);
+    // }
 
-    /**
-     * Eagerly evaluate the `AsyncQuery`, returning a new `AsyncQuery`.
-     * @category Subquery
-     */
-    materialize(): AsyncHierarchyQuery<TNode, T> {
-        return super.materialize() as AsyncHierarchyQuery<TNode, T>;
-    }
+    // /**
+    //  * Eagerly evaluate the `AsyncQuery`, returning a new `AsyncQuery`.
+    //  * @category Subquery
+    //  */
+    // materialize(): AsyncHierarchyQuery<TNode, T> {
+    //     return super.materialize() as AsyncHierarchyQuery<TNode, T>;
+    // }
 
-    // #endregion Subquery
+    // // #endregion Subquery
 
-    // #region Order
+    // // #region Order
 
     // /**
     //  * Creates an ordered subquery whose elements are sorted in ascending order by the provided key.
@@ -3161,7 +3171,7 @@ export class AsyncHierarchyQuery<TNode, T extends TNode = TNode> extends AsyncQu
     //     return super.orderByDescending(keySelector, comparer) as AsyncOrderedHierarchyQuery<TNode, T>;
     // }
 
-    // #endregion Order
+    // // #endregion Order
 
     // #region Hierarchy
 
@@ -3563,6 +3573,10 @@ export class AsyncHierarchyQuery<TNode, T extends TNode = TNode> extends AsyncQu
         return getSource(this)[Hierarchical.hierarchy]();
     }
 }
+
+// Inline aliases to simplify call stacks
+AsyncHierarchyQuery.prototype.siblingsBeforeSelf = AsyncHierarchyQuery.prototype.precedingSiblings;
+AsyncHierarchyQuery.prototype.siblingsAfterSelf = AsyncHierarchyQuery.prototype.followingSiblings;
 
 /**
  * Represents an ordered sequence of hierarchically organized values.
