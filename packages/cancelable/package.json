@@ -1,6 +1,6 @@
 {
     "name": "@esfx/cancelable",
-    "version": "1.0.0-pre.17",
+    "version": "1.0.0-pre.19",
     "description": "A low-level Symbol-based API for defining a common cancellation protocol.",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -20,9 +20,9 @@
     },
     "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b",
     "dependencies": {
-        "@esfx/disposable": "^1.0.0-pre.17",
-        "@esfx/internal-deprecate": "^1.0.0-pre.17",
-        "@esfx/internal-guards": "^1.0.0-pre.17",
-        "@esfx/internal-tag": "^1.0.0-pre.6"
+        "@esfx/disposable": "^1.0.0-pre.19",
+        "@esfx/internal-deprecate": "^1.0.0-pre.19",
+        "@esfx/internal-guards": "^1.0.0-pre.19",
+        "@esfx/internal-tag": "^1.0.0-pre.19"
     }
 }

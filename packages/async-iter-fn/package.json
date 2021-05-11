@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-fn",
-    "version": "1.0.0-pre.18",
+    "version": "1.0.0-pre.19",
     "description": "An fp-style async iteration API for ECMAScript iterables.",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -26,22 +26,54 @@
     "types": "index",
     "typesVersions": {
         "*": {
-            "index": ["./dist/index.d.ts"],
-            "index.js": ["./dist/index.d.ts"],
-            "grouping": ["./dist/grouping.d.ts"],
-            "grouping.js": ["./dist/grouping.d.ts"],
-            "hierarchy": ["./dist/hierarchy.d.ts"],
-            "hierarchy.js": ["./dist/hierarchy.d.ts"],
-            "joins": ["./dist/joins.d.ts"],
-            "joins.js": ["./dist/joins.d.ts"],
-            "ordering": ["./dist/ordering.d.ts"],
-            "ordering.js": ["./dist/ordering.d.ts"],
-            "queries": ["./dist/queries.d.ts"],
-            "queries.js": ["./dist/queries.d.ts"],
-            "scalars": ["./dist/scalars.d.ts"],
-            "scalars.js": ["./dist/scalars.d.ts"],
-            "subqueries": ["./dist/subqueries.d.ts"],
-            "subqueries.js": ["./dist/subqueries.d.ts"]
+            "index": [
+                "./dist/index.d.ts"
+            ],
+            "index.js": [
+                "./dist/index.d.ts"
+            ],
+            "grouping": [
+                "./dist/grouping.d.ts"
+            ],
+            "grouping.js": [
+                "./dist/grouping.d.ts"
+            ],
+            "hierarchy": [
+                "./dist/hierarchy.d.ts"
+            ],
+            "hierarchy.js": [
+                "./dist/hierarchy.d.ts"
+            ],
+            "joins": [
+                "./dist/joins.d.ts"
+            ],
+            "joins.js": [
+                "./dist/joins.d.ts"
+            ],
+            "ordering": [
+                "./dist/ordering.d.ts"
+            ],
+            "ordering.js": [
+                "./dist/ordering.d.ts"
+            ],
+            "queries": [
+                "./dist/queries.d.ts"
+            ],
+            "queries.js": [
+                "./dist/queries.d.ts"
+            ],
+            "scalars": [
+                "./dist/scalars.d.ts"
+            ],
+            "scalars.js": [
+                "./dist/scalars.d.ts"
+            ],
+            "subqueries": [
+                "./dist/subqueries.d.ts"
+            ],
+            "subqueries.js": [
+                "./dist/subqueries.d.ts"
+            ]
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
@@ -54,29 +86,29 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-iter-fromsync": "^1.0.0-pre.17",
-        "@esfx/async-iter-hierarchy": "^1.0.0-pre.17",
-        "@esfx/async-iter-ordered": "^1.0.0-pre.17",
-        "@esfx/async-iter-ordered-fromsync": "^1.0.0-pre.17",
-        "@esfx/collection-core": "^1.0.0-pre.17",
-        "@esfx/collections-hashmap": "^1.0.0-pre.17",
-        "@esfx/collections-hashset": "^1.0.0-pre.17",
-        "@esfx/equatable": "^1.0.0-pre.17",
-        "@esfx/fn": "^1.0.0-pre.17",
-        "@esfx/internal-assert": "^1.0.0-pre.17",
-        "@esfx/internal-binarysearch": "^1.0.0-pre.17",
-        "@esfx/internal-guards": "^1.0.0-pre.17",
-        "@esfx/interval": "^1.0.0-pre.17",
-        "@esfx/iter-fn": "^1.0.0-pre.18",
-        "@esfx/iter-grouping": "^1.0.0-pre.18",
-        "@esfx/iter-hierarchy": "^1.0.0-pre.17",
-        "@esfx/iter-lookup": "^1.0.0-pre.18",
-        "@esfx/iter-ordered": "^1.0.0-pre.17",
-        "@esfx/iter-page": "^1.0.0-pre.17",
+        "@esfx/async-iter-fromsync": "^1.0.0-pre.19",
+        "@esfx/async-iter-hierarchy": "^1.0.0-pre.19",
+        "@esfx/async-iter-ordered": "^1.0.0-pre.19",
+        "@esfx/async-iter-ordered-fromsync": "^1.0.0-pre.19",
+        "@esfx/collection-core": "^1.0.0-pre.19",
+        "@esfx/collections-hashmap": "^1.0.0-pre.19",
+        "@esfx/collections-hashset": "^1.0.0-pre.19",
+        "@esfx/equatable": "^1.0.0-pre.19",
+        "@esfx/fn": "^1.0.0-pre.19",
+        "@esfx/internal-assert": "^1.0.0-pre.19",
+        "@esfx/internal-binarysearch": "^1.0.0-pre.19",
+        "@esfx/internal-guards": "^1.0.0-pre.19",
+        "@esfx/interval": "^1.0.0-pre.19",
+        "@esfx/iter-fn": "^1.0.0-pre.19",
+        "@esfx/iter-grouping": "^1.0.0-pre.19",
+        "@esfx/iter-hierarchy": "^1.0.0-pre.19",
+        "@esfx/iter-lookup": "^1.0.0-pre.19",
+        "@esfx/iter-ordered": "^1.0.0-pre.19",
+        "@esfx/iter-page": "^1.0.0-pre.19",
         "tslib": "^2.1.0"
     },
     "devDependencies": {
-        "@esfx/internal-jest-sequence": "^1.0.0-pre.17"
+        "@esfx/internal-jest-sequence": "^1.0.0-pre.19"
     },
     "publishConfig": {
         "access": "public"

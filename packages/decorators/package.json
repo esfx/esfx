@@ -1,6 +1,6 @@
 {
     "name": "@esfx/decorators",
-    "version": "1.0.0-pre.17",
+    "version": "1.0.0-pre.19",
     "description": "A set of decorators for common tasks.",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -32,30 +32,78 @@
     "types": "index",
     "typesVersions": {
         "*": {
-            "index": ["./dist/index.d.ts"],
-            "index.js": ["./dist/index.d.ts"],
-            "autobind": ["./dist/autobind.d.ts"],
-            "autobind.js": ["./dist/autobind.d.ts"],
-            "autoproperty": ["./dist/autoproperty.d.ts"],
-            "autoproperty.js": ["./dist/autoproperty.d.ts"],
-            "configurable": ["./dist/configurable.d.ts"],
-            "configurable.js": ["./dist/configurable.d.ts"],
-            "enumerable": ["./dist/enumerable.d.ts"],
-            "enumerable.js": ["./dist/enumerable.d.ts"],
-            "lazyinit": ["./dist/lazyinit.d.ts"],
-            "lazyinit.js": ["./dist/lazyinit.d.ts"],
-            "mixin": ["./dist/mixin.d.ts"],
-            "mixin.js": ["./dist/mixin.d.ts"],
-            "nonconfigurable": ["./dist/nonconfigurable.d.ts"],
-            "nonconfigurable.js": ["./dist/nonconfigurable.d.ts"],
-            "nonenumerable": ["./dist/nonenumerable.d.ts"],
-            "nonenumerable.js": ["./dist/nonenumerable.d.ts"],
-            "obsolete": ["./dist/obsolete.d.ts"],
-            "obsolete.js": ["./dist/obsolete.d.ts"],
-            "readonly": ["./dist/readonly.d.ts"],
-            "readonly.js": ["./dist/readonly.d.ts"],
-            "writable": ["./dist/writable.d.ts"],
-            "writable.js": ["./dist/writable.d.ts"]
+            "index": [
+                "./dist/index.d.ts"
+            ],
+            "index.js": [
+                "./dist/index.d.ts"
+            ],
+            "autobind": [
+                "./dist/autobind.d.ts"
+            ],
+            "autobind.js": [
+                "./dist/autobind.d.ts"
+            ],
+            "autoproperty": [
+                "./dist/autoproperty.d.ts"
+            ],
+            "autoproperty.js": [
+                "./dist/autoproperty.d.ts"
+            ],
+            "configurable": [
+                "./dist/configurable.d.ts"
+            ],
+            "configurable.js": [
+                "./dist/configurable.d.ts"
+            ],
+            "enumerable": [
+                "./dist/enumerable.d.ts"
+            ],
+            "enumerable.js": [
+                "./dist/enumerable.d.ts"
+            ],
+            "lazyinit": [
+                "./dist/lazyinit.d.ts"
+            ],
+            "lazyinit.js": [
+                "./dist/lazyinit.d.ts"
+            ],
+            "mixin": [
+                "./dist/mixin.d.ts"
+            ],
+            "mixin.js": [
+                "./dist/mixin.d.ts"
+            ],
+            "nonconfigurable": [
+                "./dist/nonconfigurable.d.ts"
+            ],
+            "nonconfigurable.js": [
+                "./dist/nonconfigurable.d.ts"
+            ],
+            "nonenumerable": [
+                "./dist/nonenumerable.d.ts"
+            ],
+            "nonenumerable.js": [
+                "./dist/nonenumerable.d.ts"
+            ],
+            "obsolete": [
+                "./dist/obsolete.d.ts"
+            ],
+            "obsolete.js": [
+                "./dist/obsolete.d.ts"
+            ],
+            "readonly": [
+                "./dist/readonly.d.ts"
+            ],
+            "readonly.js": [
+                "./dist/readonly.d.ts"
+            ],
+            "writable": [
+                "./dist/writable.d.ts"
+            ],
+            "writable.js": [
+                "./dist/writable.d.ts"
+            ]
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
@@ -68,8 +116,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/decorators-stage1-core": "^1.0.0-pre.17",
-        "@esfx/internal-guards": "^1.0.0-pre.17",
+        "@esfx/decorators-stage1-core": "^1.0.0-pre.19",
+        "@esfx/internal-guards": "^1.0.0-pre.19",
         "tslib": "^2.1.0"
     },
     "publishConfig": {

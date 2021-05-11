@@ -1,6 +1,6 @@
 {
     "name": "@esfx/equatable",
-    "version": "1.0.0-pre.17",
+    "version": "1.0.0-pre.19",
     "description": "A low-level API for defining equality.",
     "main": "./dist/index.js",
     "type": "commonjs",

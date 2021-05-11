@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-hierarchy",
-    "version": "1.0.0-pre.17",
+    "version": "1.0.0-pre.19",
     "description": "A Symbol-based API for defining an ECMAScript AsyncIterable with an inherent hierarchy.",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -14,12 +14,24 @@
     "types": "index",
     "typesVersions": {
         "*": {
-            "index": ["./dist/index.d.ts"],
-            "index.js": ["./dist/index.d.ts"],
-            "hierarchy": ["./dist/hierarchy.d.ts"],
-            "hierarchy.js": ["./dist/hierarchy.d.ts"],
-            "ordered": ["./dist/ordered.d.ts"],
-            "ordered.js": ["./dist/ordered.d.ts"]
+            "index": [
+                "./dist/index.d.ts"
+            ],
+            "index.js": [
+                "./dist/index.d.ts"
+            ],
+            "hierarchy": [
+                "./dist/hierarchy.d.ts"
+            ],
+            "hierarchy.js": [
+                "./dist/hierarchy.d.ts"
+            ],
+            "ordered": [
+                "./dist/ordered.d.ts"
+            ],
+            "ordered.js": [
+                "./dist/ordered.d.ts"
+            ]
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
@@ -32,14 +44,14 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-iter-fromsync": "^1.0.0-pre.17",
-        "@esfx/async-iter-ordered": "^1.0.0-pre.17",
-        "@esfx/async-iter-ordered-fromsync": "^1.0.0-pre.17",
-        "@esfx/equatable": "^1.0.0-pre.17",
-        "@esfx/internal-assert": "^1.0.0-pre.17",
-        "@esfx/internal-guards": "^1.0.0-pre.17",
-        "@esfx/iter-hierarchy": "^1.0.0-pre.17",
-        "@esfx/iter-ordered": "^1.0.0-pre.17",
+        "@esfx/async-iter-fromsync": "^1.0.0-pre.19",
+        "@esfx/async-iter-ordered": "^1.0.0-pre.19",
+        "@esfx/async-iter-ordered-fromsync": "^1.0.0-pre.19",
+        "@esfx/equatable": "^1.0.0-pre.19",
+        "@esfx/internal-assert": "^1.0.0-pre.19",
+        "@esfx/internal-guards": "^1.0.0-pre.19",
+        "@esfx/iter-hierarchy": "^1.0.0-pre.19",
+        "@esfx/iter-ordered": "^1.0.0-pre.19",
         "tslib": "^2.1.0"
     },
     "publishConfig": {
