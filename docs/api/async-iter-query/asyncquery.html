@@ -867,7 +867,7 @@ these operations is deferred until the either a scalar value is requested from t
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">append(value: PromiseLike&lt;T&gt; | T): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">append(value: PromiseLike&lt;T&gt; | T): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -887,7 +887,7 @@ these operations is deferred until the either a scalar value is requested from t
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -967,7 +967,7 @@ evaluated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">break(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): Promise&lt;[Query&lt;T&gt;, AsyncQuery&lt;T&gt;]&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">break(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): Promise&lt;[UnorderedQueryFlow&lt;this, T&gt;, AsyncUnorderedQueryFlow&lt;this, T&gt;]&gt;;</code></pre>
   </div>
   
   
@@ -987,7 +987,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;[<a class="xref" href="../iter-query/query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;, <a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;]&gt;</div>
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;[<a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;, <a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;]&gt;</div>
     <p>
   </div>
   
@@ -997,28 +997,19 @@ evaluated.</p>
   
   
   
-  <h4 id="_esfx_async_iter_query_AsyncQuery_concat_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#concat:member(1)">concat(this, right)</h4>
+  <h4 id="_esfx_async_iter_query_AsyncQuery_concat_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#concat:member(1)">concat(right)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery that concatenates this <code>AsyncQuery</code> with another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">concat&lt;TNode, T extends TNode&gt;(this: AsyncQuery&lt;T&gt;, right: AsyncHierarchyIterable&lt;TNode, T&gt; | HierarchyIterable&lt;TNode, T&gt;): AsyncHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">concat&lt;R extends AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;&gt;(right: R): AsyncMergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -1029,18 +1020,8 @@ evaluated.</p>
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface">AsyncHierarchyIterable</a>&lt;TNode, T&gt; | <a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.
@@ -1052,7 +1033,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncMergeQueryFlow_type">AsyncMergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -1578,7 +1559,7 @@ contains no elements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">defaultIfEmpty(defaultValue: PromiseLike&lt;T&gt; | T): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">defaultIfEmpty(defaultValue: PromiseLike&lt;T&gt; | T): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1598,7 +1579,7 @@ contains no elements.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1614,7 +1595,7 @@ contains no elements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">distinct(equaler?: Equaler&lt;T&gt;): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">distinct(equaler?: Equaler&lt;T&gt;): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1634,7 +1615,7 @@ contains no elements.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1650,7 +1631,7 @@ contains no elements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">distinctBy&lt;K&gt;(keySelector: (value: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">distinctBy&lt;K&gt;(keySelector: (value: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -1691,7 +1672,7 @@ contains no elements.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1708,7 +1689,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">drop(count: number): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">drop(count: number): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1728,7 +1709,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1745,7 +1726,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">dropRight(count: number): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">dropRight(count: number): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1765,7 +1746,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1782,7 +1763,7 @@ the supplied predicate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">dropUntil(predicate: (element: T) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">dropUntil(predicate: (element: T) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1801,7 +1782,7 @@ the supplied predicate.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1818,7 +1799,7 @@ the supplied predicate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">dropWhile(predicate: (element: T) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">dropWhile(predicate: (element: T) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1837,7 +1818,7 @@ the supplied predicate.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2067,7 +2048,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">except(right: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;, equaler?: Equaler&lt;T&gt;): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">except(right: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;, equaler?: Equaler&lt;T&gt;): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -2098,7 +2079,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2114,7 +2095,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">exceptBy&lt;K&gt;(right: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">exceptBy&lt;K&gt;(right: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2166,7 +2147,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2182,7 +2163,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">exclude(...values: [PromiseLike&lt;T&gt; | T, ...(PromiseLike&lt;T&gt; | T)[]]): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">exclude(...values: [PromiseLike&lt;T&gt; | T, ...(PromiseLike&lt;T&gt; | T)[]]): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -2202,7 +2183,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2218,7 +2199,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filter&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): AsyncQuery&lt;U&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filter&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): AsyncUnorderedQueryFlow&lt;this, U&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2247,7 +2228,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;U&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, U&gt;</div>
     <p>
   </div>
   
@@ -2263,7 +2244,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filter(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filter(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -2282,7 +2263,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2298,7 +2279,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2338,7 +2319,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2355,14 +2336,14 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterDefined(): AsyncQuery&lt;NonNullable&lt;T&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterDefined(): AsyncUnorderedQueryFlow&lt;this, NonNullable&lt;T&gt;&gt;;</code></pre>
   </div>
   
   
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;<span class="xref">NonNullable</span>&lt;T&gt;&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, <span class="xref">NonNullable</span>&lt;T&gt;&gt;</div>
     <p>
   </div>
   
@@ -2378,7 +2359,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2407,7 +2388,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2423,7 +2404,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterNot&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): AsyncQuery&lt;U&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterNot&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): AsyncUnorderedQueryFlow&lt;this, U&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2452,7 +2433,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;U&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, U&gt;</div>
     <p>
   </div>
   
@@ -2468,7 +2449,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterNot(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterNot(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -2487,7 +2468,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2503,7 +2484,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterNotBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterNotBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2543,7 +2524,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2559,7 +2540,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterNotDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterNotDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2588,7 +2569,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -3359,7 +3340,7 @@ times.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">groupBy&lt;K&gt;(keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncQuery&lt;Grouping&lt;K, T&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">groupBy&lt;K&gt;(keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncGroupedQueryFlow&lt;this, K, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -3400,7 +3381,7 @@ times.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;<a class="xref" href="../iter-grouping/grouping.html#_esfx_iter_grouping_Grouping_class">Grouping</a>&lt;K, T&gt;&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncGroupedQueryFlow_type">AsyncGroupedQueryFlow</a>&lt;this, K, T&gt;</div>
     <p>
   </div>
   
@@ -3416,7 +3397,7 @@ times.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">groupBy&lt;K, V&gt;(keySelector: (element: T) =&gt; K, elementSelector: (element: T) =&gt; PromiseLike&lt;V&gt; | V, keyEqualer?: Equaler&lt;K&gt;): AsyncQuery&lt;Grouping&lt;K, V&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">groupBy&lt;K, V&gt;(keySelector: (element: T) =&gt; K, elementSelector: (element: T) =&gt; PromiseLike&lt;V&gt; | V, keyEqualer?: Equaler&lt;K&gt;): AsyncGroupedQueryFlow&lt;this, K, V&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -3477,7 +3458,7 @@ times.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;<a class="xref" href="../iter-grouping/grouping.html#_esfx_iter_grouping_Grouping_class">Grouping</a>&lt;K, V&gt;&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncGroupedQueryFlow_type">AsyncGroupedQueryFlow</a>&lt;this, K, V&gt;</div>
     <p>
   </div>
   
@@ -3990,28 +3971,19 @@ an exact sequence of elements from another <code>AsyncIterable</code> or <code>I
   
   
   
-  <h4 id="_esfx_async_iter_query_AsyncQuery_intersect_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#intersect:member(1)">intersect(this, right, equaler)</h4>
+  <h4 id="_esfx_async_iter_query_AsyncQuery_intersect_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#intersect:member(1)">intersect(right, equaler)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set intersection of this <code>AsyncQuery</code> and another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">intersect&lt;TNode, T extends TNode&gt;(this: AsyncQuery&lt;T&gt;, right: AsyncHierarchyIterable&lt;TNode, T&gt; | HierarchyIterable&lt;TNode, T&gt;, equaler?: Equaler&lt;T&gt;): AsyncHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">intersect&lt;R extends AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;&gt;(right: R, equaler?: Equaler&lt;T&gt;): AsyncMergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -4022,18 +3994,8 @@ an exact sequence of elements from another <code>AsyncIterable</code> or <code>I
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface">AsyncHierarchyIterable</a>&lt;TNode, T&gt; | <a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.</p>
@@ -4056,7 +4018,7 @@ an exact sequence of elements from another <code>AsyncIterable</code> or <code>I
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncMergeQueryFlow_type">AsyncMergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -4113,37 +4075,28 @@ an exact sequence of elements from another <code>AsyncIterable</code> or <code>I
   
   
   
-  <h4 id="_esfx_async_iter_query_AsyncQuery_intersectBy_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#intersectBy:member(1)">intersectBy(this, right, keySelector, keyEqualer)</h4>
+  <h4 id="_esfx_async_iter_query_AsyncQuery_intersectBy_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#intersectBy:member(1)">intersectBy(right, keySelector, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set intersection of this <code>AsyncQuery</code> and another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">intersectBy&lt;TNode, T extends TNode, K&gt;(this: AsyncQuery&lt;T&gt;, right: AsyncHierarchyIterable&lt;TNode, T&gt; | HierarchyIterable&lt;TNode, T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">intersectBy&lt;K, R extends AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;&gt;(right: R, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncMergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>K</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -4154,18 +4107,8 @@ an exact sequence of elements from another <code>AsyncIterable</code> or <code>I
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface">AsyncHierarchyIterable</a>&lt;TNode, T&gt; | <a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.</p>
@@ -4199,7 +4142,7 @@ an exact sequence of elements from another <code>AsyncIterable</code> or <code>I
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncMergeQueryFlow_type">AsyncMergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -4566,14 +4509,14 @@ callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">materialize(): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">materialize(): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -4907,7 +4850,7 @@ last element.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">orderBy&lt;K&gt;(keySelector: (element: T) =&gt; K, comparer?: Comparison&lt;K&gt; | Comparer&lt;K&gt;): AsyncOrderedQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">orderBy&lt;K&gt;(keySelector: (element: T) =&gt; K, comparer?: Comparison&lt;K&gt; | Comparer&lt;K&gt;): AsyncOrderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -4948,7 +4891,7 @@ last element.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_class">AsyncOrderedQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncOrderedQueryFlow_type">AsyncOrderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -4964,7 +4907,7 @@ last element.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">orderByDescending&lt;K&gt;(keySelector: (element: T) =&gt; K, comparer?: Comparison&lt;K&gt; | Comparer&lt;K&gt;): AsyncOrderedQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">orderByDescending&lt;K&gt;(keySelector: (element: T) =&gt; K, comparer?: Comparison&lt;K&gt; | Comparer&lt;K&gt;): AsyncOrderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -5005,7 +4948,7 @@ last element.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_class">AsyncOrderedQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncOrderedQueryFlow_type">AsyncOrderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -5023,7 +4966,7 @@ evaluated eagerly.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">pageBy(pageSize: number): AsyncQuery&lt;Page&lt;T&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">pageBy(pageSize: number): AsyncPagedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -5043,7 +4986,7 @@ evaluated eagerly.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;<a class="xref" href="../iter-page/page.html#_esfx_iter_page_Page_class">Page</a>&lt;T&gt;&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncPagedQueryFlow_type">AsyncPagedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -5061,7 +5004,7 @@ evaluated eagerly.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">pageBy&lt;R&gt;(pageSize: number, pageSelector: (page: number, offset: number, values: Query&lt;T&gt;) =&gt; R): AsyncQuery&lt;R&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">pageBy&lt;R&gt;(pageSize: number, pageSelector: (page: number, offset: number, values: UnorderedQueryFlow&lt;this, T&gt;) =&gt; R): AsyncQuery&lt;R&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -5091,7 +5034,7 @@ evaluated eagerly.</p>
     <div class="property">
       <dl class="parameter">
         <dt>pageSelector</dt>
-        <dd>(page: number, offset: number, values: <a class="xref" href="../iter-query/query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;) =&gt; R</dd>
+        <dd>(page: number, offset: number, values: <a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;) =&gt; R</dd>
       </dl>
       <p>
         
@@ -5118,7 +5061,7 @@ patched into the results.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">patch(start: number, skipCount?: number, range?: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">patch(start: number, skipCount?: number, range?: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -5160,7 +5103,7 @@ patched into the results.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -5176,7 +5119,7 @@ patched into the results.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">prepend(value: PromiseLike&lt;T&gt; | T): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">prepend(value: PromiseLike&lt;T&gt; | T): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -5196,7 +5139,7 @@ patched into the results.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -5630,7 +5573,7 @@ patched into the results.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">relativeComplement(right: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;, equaler?: Equaler&lt;T&gt;): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">relativeComplement(right: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;, equaler?: Equaler&lt;T&gt;): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -5661,7 +5604,7 @@ patched into the results.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -5678,7 +5621,7 @@ patched into the results.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">relativeComplementBy&lt;K&gt;(right: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">relativeComplementBy&lt;K&gt;(right: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -5730,7 +5673,7 @@ patched into the results.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -5804,14 +5747,14 @@ patched into the results.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">reverse(): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">reverse(): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -6253,7 +6196,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">skip(count: number): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">skip(count: number): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -6273,7 +6216,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -6291,7 +6234,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">skipRight(count: number): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">skipRight(count: number): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -6311,7 +6254,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -6329,7 +6272,7 @@ the supplied predicate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">skipUntil(predicate: (element: T) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">skipUntil(predicate: (element: T) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -6348,7 +6291,7 @@ the supplied predicate.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -6366,7 +6309,7 @@ the supplied predicate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">skipWhile(predicate: (element: T) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">skipWhile(predicate: (element: T) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -6385,7 +6328,7 @@ the supplied predicate.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -6442,7 +6385,7 @@ evaluated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">span&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): Promise&lt;[Query&lt;U&gt;, AsyncQuery&lt;T&gt;]&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">span&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): Promise&lt;[UnorderedQueryFlow&lt;this, U&gt;, AsyncUnorderedQueryFlow&lt;this, T&gt;]&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -6472,7 +6415,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;[<a class="xref" href="../iter-query/query.html#_esfx_iter_query_Query_class">Query</a>&lt;U&gt;, <a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;]&gt;</div>
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;[<a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, U&gt;, <a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;]&gt;</div>
     <p>
   </div>
   
@@ -6492,7 +6435,7 @@ evaluated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">span(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): Promise&lt;[Query&lt;T&gt;, AsyncQuery&lt;T&gt;]&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">span(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): Promise&lt;[UnorderedQueryFlow&lt;this, T&gt;, AsyncUnorderedQueryFlow&lt;this, T&gt;]&gt;;</code></pre>
   </div>
   
   
@@ -6512,7 +6455,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;[<a class="xref" href="../iter-query/query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;, <a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;]&gt;</div>
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;[<a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;, <a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;]&gt;</div>
     <p>
   </div>
   
@@ -6528,7 +6471,7 @@ evaluated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">spanMap&lt;K&gt;(keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncQuery&lt;Grouping&lt;K, T&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">spanMap&lt;K&gt;(keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncGroupedQueryFlow&lt;this, K, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -6567,7 +6510,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;<a class="xref" href="../iter-grouping/grouping.html#_esfx_iter_grouping_Grouping_class">Grouping</a>&lt;K, T&gt;&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncGroupedQueryFlow_type">AsyncGroupedQueryFlow</a>&lt;this, K, T&gt;</div>
     <p>
   </div>
   
@@ -6583,7 +6526,7 @@ evaluated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">spanMap&lt;K, V&gt;(keySelector: (element: T) =&gt; K, elementSelector: (element: T) =&gt; PromiseLike&lt;V&gt; | V, keyEqualer?: Equaler&lt;K&gt;): AsyncQuery&lt;Grouping&lt;K, V&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">spanMap&lt;K, V&gt;(keySelector: (element: T) =&gt; K, elementSelector: (element: T) =&gt; PromiseLike&lt;V&gt; | V, keyEqualer?: Equaler&lt;K&gt;): AsyncGroupedQueryFlow&lt;this, K, V&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -6642,7 +6585,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;<a class="xref" href="../iter-grouping/grouping.html#_esfx_iter_grouping_Grouping_class">Grouping</a>&lt;K, V&gt;&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncGroupedQueryFlow_type">AsyncGroupedQueryFlow</a>&lt;this, K, V&gt;</div>
     <p>
   </div>
   
@@ -6843,7 +6786,7 @@ evaluated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">spanUntil(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): Promise&lt;[Query&lt;T&gt;, AsyncQuery&lt;T&gt;]&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">spanUntil(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): Promise&lt;[UnorderedQueryFlow&lt;this, T&gt;, AsyncUnorderedQueryFlow&lt;this, T&gt;]&gt;;</code></pre>
   </div>
   
   
@@ -6863,7 +6806,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;[<a class="xref" href="../iter-query/query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;, <a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;]&gt;</div>
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;[<a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;, <a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;]&gt;</div>
     <p>
   </div>
   
@@ -7038,28 +6981,19 @@ with the same sequence of elements in another <code>AsyncIterable</code> or <cod
   
   
   
-  <h4 id="_esfx_async_iter_query_AsyncQuery_symmetricDifference_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#symmetricDifference:member(1)">symmetricDifference(this, right, equaler)</h4>
+  <h4 id="_esfx_async_iter_query_AsyncQuery_symmetricDifference_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#symmetricDifference:member(1)">symmetricDifference(right, equaler)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">symmetricDifference&lt;TNode, T extends TNode&gt;(this: AsyncQuery&lt;T&gt;, right: AsyncHierarchyIterable&lt;TNode, T&gt; | HierarchyIterable&lt;TNode, T&gt;, equaler?: Equaler&lt;T&gt;): AsyncHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">symmetricDifference&lt;R extends AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;&gt;(right: R, equaler?: Equaler&lt;T&gt;): AsyncMergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -7070,18 +7004,8 @@ with the same sequence of elements in another <code>AsyncIterable</code> or <cod
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface">AsyncHierarchyIterable</a>&lt;TNode, T&gt; | <a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.</p>
@@ -7104,7 +7028,7 @@ with the same sequence of elements in another <code>AsyncIterable</code> or <cod
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncMergeQueryFlow_type">AsyncMergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -7161,37 +7085,28 @@ with the same sequence of elements in another <code>AsyncIterable</code> or <cod
   
   
   
-  <h4 id="_esfx_async_iter_query_AsyncQuery_symmetricDifferenceBy_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#symmetricDifferenceBy:member(1)">symmetricDifferenceBy(this, right, keySelector, keyEqualer)</h4>
+  <h4 id="_esfx_async_iter_query_AsyncQuery_symmetricDifferenceBy_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#symmetricDifferenceBy:member(1)">symmetricDifferenceBy(right, keySelector, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">symmetricDifferenceBy&lt;TNode, T extends TNode, K&gt;(this: AsyncQuery&lt;T&gt;, right: AsyncHierarchyIterable&lt;TNode, T&gt; | HierarchyIterable&lt;TNode, T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">symmetricDifferenceBy&lt;K, R extends AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;&gt;(right: R, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncMergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>K</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -7202,18 +7117,8 @@ with the same sequence of elements in another <code>AsyncIterable</code> or <cod
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface">AsyncHierarchyIterable</a>&lt;TNode, T&gt; | <a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.</p>
@@ -7247,7 +7152,7 @@ with the same sequence of elements in another <code>AsyncIterable</code> or <cod
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncMergeQueryFlow_type">AsyncMergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -7332,7 +7237,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">take(count: number): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">take(count: number): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -7352,7 +7257,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -7369,7 +7274,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">takeRight(count: number): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">takeRight(count: number): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -7389,7 +7294,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -7405,7 +7310,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">takeUntil(predicate: (element: T) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">takeUntil(predicate: (element: T) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -7424,7 +7329,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -7440,7 +7345,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">takeWhile&lt;U extends T&gt;(predicate: (element: T) =&gt; element is U): AsyncQuery&lt;U&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">takeWhile&lt;U extends T&gt;(predicate: (element: T) =&gt; element is U): AsyncUnorderedQueryFlow&lt;this, U&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -7469,7 +7374,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;U&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, U&gt;</div>
     <p>
   </div>
   
@@ -7485,7 +7390,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">takeWhile(predicate: (element: T) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">takeWhile(predicate: (element: T) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -7504,7 +7409,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -7520,7 +7425,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">tap(callback: (element: T, offset: number) =&gt; PromiseLike&lt;void&gt; | void): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">tap(callback: (element: T, offset: number) =&gt; PromiseLike&lt;void&gt; | void): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -7539,7 +7444,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -7555,115 +7460,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">through&lt;RNode, R extends RNode&gt;(callback: (source: this) =&gt; AsyncOrderedHierarchyIterable&lt;RNode, R&gt; | OrderedHierarchyIterable&lt;RNode, R&gt;): AsyncOrderedHierarchyQuery&lt;RNode, R&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>RNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>R</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>callback</dt>
-        <dd>(source: this) =&gt; <a class="xref" href="../async-iter-hierarchy/asyncorderedhierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncOrderedHierarchyIterable_interface">AsyncOrderedHierarchyIterable</a>&lt;RNode, R&gt; | <a class="xref" href="../iter-hierarchy/orderedhierarchyiterable-interface.html#_esfx_iter_hierarchy_OrderedHierarchyIterable_interface">OrderedHierarchyIterable</a>&lt;RNode, R&gt;</dd>
-      </dl>
-      <p>
-        <p>A callback function.</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_class">AsyncOrderedHierarchyQuery</a>&lt;RNode, R&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_async_iter_query_AsyncQuery_through_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#through:member(2)">through(callback)</h4>
-  <div class="markdown level1 summary"><p>Pass the entire <code>AsyncQuery</code> to the provided callback, creating a new <code>AsyncQuery</code> from the result.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">through&lt;RNode, R extends RNode&gt;(callback: (source: this) =&gt; AsyncHierarchyIterable&lt;RNode, R&gt; | HierarchyIterable&lt;RNode, R&gt;): AsyncHierarchyQuery&lt;RNode, R&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>RNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>R</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>callback</dt>
-        <dd>(source: this) =&gt; <a class="xref" href="../async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface">AsyncHierarchyIterable</a>&lt;RNode, R&gt; | <a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;RNode, R&gt;</dd>
-      </dl>
-      <p>
-        <p>A callback function.</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;RNode, R&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_async_iter_query_AsyncQuery_through_member_3_" data-uid="@esfx/async-iter-query!AsyncQuery#through:member(3)">through(callback)</h4>
-  <div class="markdown level1 summary"><p>Pass the entire <code>AsyncQuery</code> to the provided callback, creating a new <code>AsyncQuery</code> from the result.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">through&lt;R&gt;(callback: (source: this) =&gt; AsyncOrderedIterable&lt;R&gt; | OrderedIterable&lt;R&gt;): AsyncOrderedQuery&lt;R&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">through&lt;R extends AsyncIterable&lt;any&gt; | Iterable&lt;any&gt;&gt;(callback: (source: this) =&gt; R): AsyncQueryFlow&lt;R, R extends AsyncIterable&lt;infer U&gt; ? U : R extends Iterable&lt;infer U&gt; ? U extends PromiseLike&lt;infer P&gt; ? P : U : unknown&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -7681,7 +7478,7 @@ count.</p>
     <div class="property">
       <dl class="parameter">
         <dt>callback</dt>
-        <dd>(source: this) =&gt; <a class="xref" href="../async-iter-ordered/asyncorderediterable-interface.html#_esfx_async_iter_ordered_AsyncOrderedIterable_interface">AsyncOrderedIterable</a>&lt;R&gt; | <a class="xref" href="../iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;R&gt;</dd>
+        <dd><span class="xref">(source: this) =&gt; R</span></dd>
       </dl>
       <p>
         <p>A callback function.</p>
@@ -7692,52 +7489,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_class">AsyncOrderedQuery</a>&lt;R&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_async_iter_query_AsyncQuery_through_member_4_" data-uid="@esfx/async-iter-query!AsyncQuery#through:member(4)">through(callback)</h4>
-  <div class="markdown level1 summary"><p>Pass the entire <code>AsyncQuery</code> to the provided callback, creating a new <code>AsyncQuery</code> from the result.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">through&lt;R&gt;(callback: (source: this) =&gt; AsyncIterable&lt;R&gt; | Iterable&lt;PromiseLike&lt;R&gt; | R&gt;): AsyncQuery&lt;R&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>R</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>callback</dt>
-        <dd>(source: this) =&gt; <a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;R&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;R&gt; | R&gt;</dd>
-      </dl>
-      <p>
-        <p>A callback function.</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;R&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncQueryFlow_type">AsyncQueryFlow</a>&lt;R, R extends <a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;infer U&gt; ? U : R extends <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;infer U&gt; ? U extends <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;infer P&gt; ? P : U : unknown&gt;</div>
     <p>
   </div>
   
@@ -8044,13 +7796,13 @@ count.</p>
   
   
   
-  <h4 id="_esfx_async_iter_query_AsyncQuery_toHierarchy_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#toHierarchy:member(1)">toHierarchy(this, provider)</h4>
+  <h4 id="_esfx_async_iter_query_AsyncQuery_toHierarchy_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#toHierarchy:member(1)">toHierarchy(provider)</h4>
   <div class="markdown level1 summary"><p>Creates an <code>AsyncHierarchyQuery</code> using the provided <code>HierarchyProvider</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHierarchy&lt;TNode, T extends TNode&gt;(this: AsyncOrderedQuery&lt;T&gt;, provider: HierarchyProvider&lt;TNode&gt;): AsyncOrderedHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">toHierarchy&lt;TNode extends (T extends TNode ? unknown : never)&gt;(provider: HierarchyProvider&lt;TNode&gt;): AsyncHierarchyQueryFlow&lt;this, TNode, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -8063,27 +7815,8 @@ count.</p>
         
       </p>
     </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
   
   <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_class">AsyncOrderedQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
     <div class="property">
       <dl class="parameter">
         <dt>provider</dt>
@@ -8099,154 +7832,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_class">AsyncOrderedHierarchyQuery</a>&lt;TNode, T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_async_iter_query_AsyncQuery_toHierarchy_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#toHierarchy:member(2)">toHierarchy(this, provider)</h4>
-  <div class="markdown level1 summary"><p>Creates an <code>AsyncHierarchyQuery</code> using the provided <code>HierarchyProvider</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHierarchy(this: AsyncOrderedQuery&lt;T&gt;, provider: HierarchyProvider&lt;T&gt;): AsyncOrderedHierarchyQuery&lt;T&gt;;</code></pre>
-  </div>
-  
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_class">AsyncOrderedQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>provider</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>HierarchyProvider</code><!-- -->.
- Hierarchy</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery_class">AsyncOrderedHierarchyQuery</a>&lt;T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_async_iter_query_AsyncQuery_toHierarchy_member_3_" data-uid="@esfx/async-iter-query!AsyncQuery#toHierarchy:member(3)">toHierarchy(this, provider)</h4>
-  <div class="markdown level1 summary"><p>Creates an <code>AsyncHierarchyQuery</code> using the provided <code>HierarchyProvider</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHierarchy&lt;TNode, T extends TNode&gt;(this: AsyncQuery&lt;T&gt;, provider: HierarchyProvider&lt;TNode&gt;): AsyncHierarchyQuery&lt;TNode, T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>provider</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>HierarchyProvider</code><!-- -->.
- Hierarchy</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;TNode, T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_async_iter_query_AsyncQuery_toHierarchy_member_4_" data-uid="@esfx/async-iter-query!AsyncQuery#toHierarchy:member(4)">toHierarchy(provider)</h4>
-  <div class="markdown level1 summary"><p>Creates an <code>AsyncHierarchyQuery</code> using the provided <code>HierarchyProvider</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHierarchy(provider: HierarchyProvider&lt;T&gt;): AsyncHierarchyQuery&lt;T&gt;;</code></pre>
-  </div>
-  
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>provider</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>HierarchyProvider</code><!-- -->.
- Hierarchy</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncHierarchyQueryFlow_type">AsyncHierarchyQueryFlow</a>&lt;this, TNode, T&gt;</div>
     <p>
   </div>
   
@@ -9410,28 +8996,19 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   
   
-  <h4 id="_esfx_async_iter_query_AsyncQuery_union_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#union:member(1)">union(this, right, equaler)</h4>
+  <h4 id="_esfx_async_iter_query_AsyncQuery_union_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#union:member(1)">union(right, equaler)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set union of this <code>AsyncQuery</code> and another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">union&lt;TNode, T extends TNode&gt;(this: AsyncQuery&lt;T&gt;, right: AsyncHierarchyIterable&lt;TNode, T&gt; | HierarchyIterable&lt;TNode, T&gt;, equaler?: Equaler&lt;T&gt;): AsyncHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">union&lt;R extends AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;&gt;(right: R, equaler?: Equaler&lt;T&gt;): AsyncMergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -9442,18 +9019,8 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface">AsyncHierarchyIterable</a>&lt;TNode, T&gt; | <a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.</p>
@@ -9476,7 +9043,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncMergeQueryFlow_type">AsyncMergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -9533,37 +9100,28 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   
   
-  <h4 id="_esfx_async_iter_query_AsyncQuery_unionBy_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#unionBy:member(1)">unionBy(this, right, keySelector, keyEqualer)</h4>
+  <h4 id="_esfx_async_iter_query_AsyncQuery_unionBy_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#unionBy:member(1)">unionBy(right, keySelector, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set union of this <code>AsyncQuery</code> and another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">unionBy&lt;TNode, T extends TNode, K&gt;(this: AsyncQuery&lt;T&gt;, right: AsyncHierarchyIterable&lt;TNode, T&gt; | HierarchyIterable&lt;TNode, T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">unionBy&lt;K, R extends AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;&gt;(right: R, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncMergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>K</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -9574,18 +9132,8 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface">AsyncHierarchyIterable</a>&lt;TNode, T&gt; | <a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.</p>
@@ -9619,7 +9167,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncMergeQueryFlow_type">AsyncMergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -9781,7 +9329,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">where&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): AsyncQuery&lt;U&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">where&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): AsyncUnorderedQueryFlow&lt;this, U&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -9810,7 +9358,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;U&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, U&gt;</div>
     <p>
   </div>
   
@@ -9827,7 +9375,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">where(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">where(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -9846,7 +9394,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -9863,7 +9411,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -9903,7 +9451,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -9921,14 +9469,14 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereDefined(): AsyncQuery&lt;NonNullable&lt;T&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereDefined(): AsyncUnorderedQueryFlow&lt;this, NonNullable&lt;T&gt;&gt;;</code></pre>
   </div>
   
   
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;<span class="xref">NonNullable</span>&lt;T&gt;&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, <span class="xref">NonNullable</span>&lt;T&gt;&gt;</div>
     <p>
   </div>
   
@@ -9945,7 +9493,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -9974,7 +9522,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -9991,7 +9539,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereNot&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): AsyncQuery&lt;U&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereNot&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): AsyncUnorderedQueryFlow&lt;this, U&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -10020,7 +9568,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;U&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, U&gt;</div>
     <p>
   </div>
   
@@ -10037,7 +9585,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereNot(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereNot(predicate: (element: T, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -10056,7 +9604,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -10073,7 +9621,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereNotBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereNotBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; PromiseLike&lt;boolean&gt; | boolean): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -10113,7 +9661,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -10130,7 +9678,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereNotDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): AsyncQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereNotDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): AsyncUnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -10159,298 +9707,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_async_iter_query_AsyncQuery_xor_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#xor:member(1)">xor(this, right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
-<p>NOTE: This is an alias for <code>symmetricDifference</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">xor&lt;TNode, T extends TNode&gt;(this: AsyncQuery&lt;T&gt;, right: AsyncHierarchyIterable&lt;TNode, T&gt; | HierarchyIterable&lt;TNode, T&gt;, equaler?: Equaler&lt;T&gt;): AsyncHierarchyQuery&lt;TNode, T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>right</dt>
-        <dd><a class="xref" href="../async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface">AsyncHierarchyIterable</a>&lt;TNode, T&gt; | <a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>equaler</dt>
-        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>Equaler</code> object used to compare equality.
- Subquery</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;TNode, T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_async_iter_query_AsyncQuery_xor_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#xor:member(2)">xor(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
-<p>NOTE: This is an alias for <code>symmetricDifference</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">xor(right: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;, equaler?: Equaler&lt;T&gt;): AsyncQuery&lt;T&gt;;</code></pre>
-  </div>
-  
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>right</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;T&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>equaler</dt>
-        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>Equaler</code> object used to compare equality.
- Subquery</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_async_iter_query_AsyncQuery_xorBy_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#xorBy:member(1)">xorBy(this, right, keySelector, keyEqualer)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
-<p>NOTE: This is an alias for <code>symmetricDifferenceBy</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">xorBy&lt;TNode, T extends TNode, K&gt;(this: AsyncQuery&lt;T&gt;, right: AsyncHierarchyIterable&lt;TNode, T&gt; | HierarchyIterable&lt;TNode, T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncHierarchyQuery&lt;TNode, T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>K</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>right</dt>
-        <dd><a class="xref" href="../async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface">AsyncHierarchyIterable</a>&lt;TNode, T&gt; | <a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>keySelector</dt>
-        <dd><span class="xref">(element: T) =&gt; K</span></dd>
-      </dl>
-      <p>
-        <p>A callback used to select the key for each element.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>keyEqualer</dt>
-        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>Equaler</code> object used to compare key equality.
- Subquery</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class">AsyncHierarchyQuery</a>&lt;TNode, T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_async_iter_query_AsyncQuery_xorBy_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#xorBy:member(2)">xorBy(right, keySelector, keyEqualer)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
-<p>NOTE: This is an alias for <code>symmetricDifferenceBy</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">xorBy&lt;K&gt;(right: AsyncIterable&lt;T&gt; | Iterable&lt;PromiseLike&lt;T&gt; | T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): AsyncQuery&lt;T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>K</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>right</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;T&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>keySelector</dt>
-        <dd><span class="xref">(element: T) =&gt; K</span></dd>
-      </dl>
-      <p>
-        <p>A callback used to select the key for each element.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>keyEqualer</dt>
-        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>Equaler</code> object used to compare key equality.
- Subquery</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="asyncquery.html#_esfx_async_iter_query_AsyncQuery_class">AsyncQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type">AsyncUnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   

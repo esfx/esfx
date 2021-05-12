@@ -447,6 +447,273 @@ these operations is deferred until the either a scalar value is requested from t
   
   
   
+    <h3 id="typealiases">Type Aliases
+  </h3>
+  
+  
+        <h4 id="_esfx_iter_query_GroupedQueryFlow_type" data-uid="@esfx/iter-query!GroupedQueryFlow:type">GroupedQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type GroupedQueryFlow&lt;S, K, T&gt; = S extends Hierarchical&lt;infer TNode&gt; ? Query&lt;HierarchyGrouping&lt;K, TNode, TNode &amp; T&gt;&gt; : Query&lt;Grouping&lt;K, T&gt;&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>S</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>K</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_iter_query_HierarchyQueryFlow_type" data-uid="@esfx/iter-query!HierarchyQueryFlow:type">HierarchyQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type HierarchyQueryFlow&lt;S, TNode extends (T extends TNode ? unknown : never), T&gt; = S extends OrderedIterable&lt;any&gt; ? OrderedHierarchyQuery&lt;TNode, TNode &amp; T&gt; : HierarchyQuery&lt;TNode, TNode &amp; T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>S</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TNode</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_iter_query_MergeQueryFlow_type" data-uid="@esfx/iter-query!MergeQueryFlow:type">MergeQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type MergeQueryFlow&lt;L, R, T&gt; = L extends Hierarchical&lt;infer LTNode&gt; ? R extends Hierarchical&lt;infer RTNode&gt; ? HierarchyQuery&lt;LTNode | RTNode, LTNode &amp; T | RTNode &amp; T&gt; : HierarchyQuery&lt;LTNode, LTNode &amp; T&gt; : R extends Hierarchical&lt;infer RTNode&gt; ? HierarchyQuery&lt;RTNode, RTNode &amp; T&gt; : Query&lt;T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>L</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>R</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_iter_query_OrderedQueryFlow_type" data-uid="@esfx/iter-query!OrderedQueryFlow:type">OrderedQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type OrderedQueryFlow&lt;S, T&gt; = S extends Hierarchical&lt;infer TNode&gt; ? OrderedHierarchyQuery&lt;TNode, TNode &amp; T&gt; : OrderedQuery&lt;T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>S</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_iter_query_PagedQueryFlow_type" data-uid="@esfx/iter-query!PagedQueryFlow:type">PagedQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type PagedQueryFlow&lt;S, T&gt; = S extends Hierarchical&lt;infer TNode&gt; ? Query&lt;HierarchyPage&lt;TNode, TNode &amp; T&gt;&gt; : Query&lt;Page&lt;T&gt;&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>S</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_iter_query_QueryFlow_type" data-uid="@esfx/iter-query!QueryFlow:type">QueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type QueryFlow&lt;S, T&gt; = S extends OrderedIterable&lt;any&gt; ? OrderedQueryFlow&lt;S, T&gt; : UnorderedQueryFlow&lt;S, T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>S</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_iter_query_UnorderedQueryFlow_type" data-uid="@esfx/iter-query!UnorderedQueryFlow:type">UnorderedQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type UnorderedQueryFlow&lt;S, T&gt; = S extends Hierarchical&lt;infer TNode&gt; ? HierarchyQuery&lt;TNode, TNode &amp; T&gt; : Query&lt;T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>S</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
 </article>
           </div>
           

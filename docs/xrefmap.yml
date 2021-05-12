@@ -1273,6 +1273,10 @@ references:
   name: '@esfx/async-iter-query'
   href: api/async-iter-query.html
   fullName: '@esfx/async-iter-query'
+- uid: '@esfx/async-iter-query!AsyncGroupedQueryFlow:type'
+  name: AsyncGroupedQueryFlow
+  href: api/async-iter-query.html#_esfx_async_iter_query_AsyncGroupedQueryFlow_type
+  fullName: AsyncGroupedQueryFlow
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery#[Hierarchical.hierarchy]:member(1)'
   name: '[Hierarchical.hierarchy]()'
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery__Hierarchical_hierarchy__member_1_
@@ -1293,10 +1297,6 @@ references:
   name: ancestorsAndSelf(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_ancestorsAndSelf_member_2_
   fullName: ancestorsAndSelf(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#append:member(1)'
-  name: append(value)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_append_member_1_
-  fullName: append(value)
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery#bottomMost:member(1)'
   name: bottomMost(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_bottomMost_member_1_
@@ -1313,14 +1313,6 @@ references:
   name: children(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_children_member_2_
   fullName: children(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#concat:member(1)'
-  name: concat(right)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_concat_member_1_
-  fullName: concat(right)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#defaultIfEmpty:member(1)'
-  name: defaultIfEmpty(defaultValue)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_defaultIfEmpty_member_1_
-  fullName: defaultIfEmpty(defaultValue)
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery#descendants:member(1)'
   name: descendants(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_descendants_member_1_
@@ -1337,78 +1329,6 @@ references:
   name: descendantsAndSelf(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_descendantsAndSelf_member_2_
   fullName: descendantsAndSelf(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#distinct:member(1)'
-  name: distinct(equaler)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_distinct_member_1_
-  fullName: distinct(equaler)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#distinctBy:member(1)'
-  name: distinctBy(keySelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_distinctBy_member_1_
-  fullName: distinctBy(keySelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#drop:member(1)'
-  name: drop(count)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_drop_member_1_
-  fullName: drop(count)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#dropRight:member(1)'
-  name: dropRight(count)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_dropRight_member_1_
-  fullName: dropRight(count)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#dropUntil:member(1)'
-  name: dropUntil(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_dropUntil_member_1_
-  fullName: dropUntil(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#dropWhile:member(1)'
-  name: dropWhile(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_dropWhile_member_1_
-  fullName: dropWhile(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#except:member(1)'
-  name: except(right, equaler)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_except_member_1_
-  fullName: except(right, equaler)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#exceptBy:member(1)'
-  name: exceptBy(right, keySelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_exceptBy_member_1_
-  fullName: exceptBy(right, keySelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#exclude:member(1)'
-  name: exclude(values)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_exclude_member_1_
-  fullName: exclude(values)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filter:member(1)'
-  name: filter(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filter_member_1_
-  fullName: filter(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filter:member(2)'
-  name: filter(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filter_member_2_
-  fullName: filter(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterBy:member(1)'
-  name: filterBy(keySelector, predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterBy_member_1_
-  fullName: filterBy(keySelector, predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterDefined:member(1)'
-  name: filterDefined()
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterDefined_member_1_
-  fullName: filterDefined()
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterDefinedBy:member(1)'
-  name: filterDefinedBy(keySelector)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterDefinedBy_member_1_
-  fullName: filterDefinedBy(keySelector)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterNot:member(1)'
-  name: filterNot(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterNot_member_1_
-  fullName: filterNot(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterNot:member(2)'
-  name: filterNot(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterNot_member_2_
-  fullName: filterNot(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterNotBy:member(1)'
-  name: filterNotBy(keySelector, predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterNotBy_member_1_
-  fullName: filterNotBy(keySelector, predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#filterNotDefinedBy:member(1)'
-  name: filterNotDefinedBy(keySelector)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_filterNotDefinedBy_member_1_
-  fullName: filterNotDefinedBy(keySelector)
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery#firstChild:member(1)'
   name: firstChild(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_firstChild_member_1_
@@ -1433,30 +1353,6 @@ references:
   name: followingSiblings(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_followingSiblings_member_2_
   fullName: followingSiblings(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#groupBy:member(1)'
-  name: groupBy(keySelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_groupBy_member_1_
-  fullName: groupBy(keySelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#groupBy:member(2)'
-  name: groupBy(keySelector, elementSelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_groupBy_member_2_
-  fullName: groupBy(keySelector, elementSelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#groupBy:member(3)'
-  name: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_groupBy_member_3_
-  fullName: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#groupBy:member(4)'
-  name: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_groupBy_member_4_
-  fullName: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#intersect:member(1)'
-  name: intersect(right, equaler)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_intersect_member_1_
-  fullName: intersect(right, equaler)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#intersectBy:member(1)'
-  name: intersectBy(right, keySelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_intersectBy_member_1_
-  fullName: intersectBy(right, keySelector, keyEqualer)
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery#lastChild:member(1)'
   name: lastChild(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_lastChild_member_1_
@@ -1465,10 +1361,6 @@ references:
   name: lastChild(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_lastChild_member_2_
   fullName: lastChild(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#materialize:member(1)'
-  name: materialize()
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_materialize_member_1_
-  fullName: materialize()
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery#nthChild:member(1)'
   name: nthChild(offset, predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_nthChild_member_1_
@@ -1477,14 +1369,6 @@ references:
   name: nthChild(offset, predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_nthChild_member_2_
   fullName: nthChild(offset, predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#pageBy:member(1)'
-  name: pageBy(pageSize)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_pageBy_member_1_
-  fullName: pageBy(pageSize)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#pageBy:member(2)'
-  name: pageBy(pageSize, pageSelector)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_pageBy_member_2_
-  fullName: pageBy(pageSize, pageSelector)
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery#parents:member(1)'
   name: parents(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_parents_member_1_
@@ -1493,10 +1377,6 @@ references:
   name: parents(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_parents_member_2_
   fullName: parents(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#patch:member(1)'
-  name: patch(start, skipCount, range)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_patch_member_1_
-  fullName: patch(start, skipCount, range)
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery#preceding:member(1)'
   name: preceding(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_preceding_member_1_
@@ -1513,22 +1393,6 @@ references:
   name: precedingSiblings(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_precedingSiblings_member_2_
   fullName: precedingSiblings(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#prepend:member(1)'
-  name: prepend(value)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_prepend_member_1_
-  fullName: prepend(value)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#relativeComplement:member(1)'
-  name: relativeComplement(right, equaler)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_relativeComplement_member_1_
-  fullName: relativeComplement(right, equaler)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#relativeComplementBy:member(1)'
-  name: relativeComplementBy(right, keySelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_relativeComplementBy_member_1_
-  fullName: relativeComplementBy(right, keySelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#reverse:member(1)'
-  name: reverse()
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_reverse_member_1_
-  fullName: reverse()
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery#root:member(1)'
   name: root(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_root_member_1_
@@ -1581,66 +1445,6 @@ references:
   name: siblingsBeforeSelf(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_siblingsBeforeSelf_member_2_
   fullName: siblingsBeforeSelf(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#skip:member(1)'
-  name: skip(count)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_skip_member_1_
-  fullName: skip(count)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#skipRight:member(1)'
-  name: skipRight(count)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_skipRight_member_1_
-  fullName: skipRight(count)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#skipUntil:member(1)'
-  name: skipUntil(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_skipUntil_member_1_
-  fullName: skipUntil(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#skipWhile:member(1)'
-  name: skipWhile(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_skipWhile_member_1_
-  fullName: skipWhile(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#spanMap:member(1)'
-  name: spanMap(keySelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_spanMap_member_1_
-  fullName: spanMap(keySelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#spanMap:member(2)'
-  name: spanMap(keySelector, elementSelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_spanMap_member_2_
-  fullName: spanMap(keySelector, elementSelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#spanMap:member(3)'
-  name: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_spanMap_member_3_
-  fullName: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#spanMap:member(4)'
-  name: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_spanMap_member_4_
-  fullName: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#symmetricDifference:member(1)'
-  name: symmetricDifference(right, equaler)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_symmetricDifference_member_1_
-  fullName: symmetricDifference(right, equaler)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#symmetricDifferenceBy:member(1)'
-  name: symmetricDifferenceBy(right, keySelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_symmetricDifferenceBy_member_1_
-  fullName: symmetricDifferenceBy(right, keySelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#take:member(1)'
-  name: take(count)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_take_member_1_
-  fullName: take(count)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#takeRight:member(1)'
-  name: takeRight(count)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_takeRight_member_1_
-  fullName: takeRight(count)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#takeUntil:member(1)'
-  name: takeUntil(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_takeUntil_member_1_
-  fullName: takeUntil(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#takeWhile:member(1)'
-  name: takeWhile(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_takeWhile_member_1_
-  fullName: takeWhile(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#takeWhile:member(2)'
-  name: takeWhile(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_takeWhile_member_2_
-  fullName: takeWhile(predicate)
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery#topMost:member(1)'
   name: topMost(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_topMost_member_1_
@@ -1649,50 +1453,6 @@ references:
   name: topMost(predicate)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_topMost_member_2_
   fullName: topMost(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#union:member(1)'
-  name: union(right, equaler)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_union_member_1_
-  fullName: union(right, equaler)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#unionBy:member(1)'
-  name: unionBy(right, keySelector, keyEqualer)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_unionBy_member_1_
-  fullName: unionBy(right, keySelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#where:member(1)'
-  name: where(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_where_member_1_
-  fullName: where(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#where:member(2)'
-  name: where(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_where_member_2_
-  fullName: where(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereBy:member(1)'
-  name: whereBy(keySelector, predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereBy_member_1_
-  fullName: whereBy(keySelector, predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereDefined:member(1)'
-  name: whereDefined()
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereDefined_member_1_
-  fullName: whereDefined()
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereDefinedBy:member(1)'
-  name: whereDefinedBy(keySelector)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereDefinedBy_member_1_
-  fullName: whereDefinedBy(keySelector)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereNot:member(1)'
-  name: whereNot(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereNot_member_1_
-  fullName: whereNot(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereNot:member(2)'
-  name: whereNot(predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereNot_member_2_
-  fullName: whereNot(predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereNotBy:member(1)'
-  name: whereNotBy(keySelector, predicate)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereNotBy_member_1_
-  fullName: whereNotBy(keySelector, predicate)
-- uid: '@esfx/async-iter-query!AsyncHierarchyQuery#whereNotDefinedBy:member(1)'
-  name: whereNotDefinedBy(keySelector)
-  href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_whereNotDefinedBy_member_1_
-  fullName: whereNotDefinedBy(keySelector)
 - uid: '@esfx/async-iter-query!AsyncHierarchyQuery:class'
   name: AsyncHierarchyQuery
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_class
@@ -1705,6 +1465,14 @@ references:
   name: constructor(source, provider)
   href: api/async-iter-query/asynchierarchyquery.html#_esfx_async_iter_query_AsyncHierarchyQuery_constructor_2_
   fullName: constructor(source, provider)
+- uid: '@esfx/async-iter-query!AsyncHierarchyQueryFlow:type'
+  name: AsyncHierarchyQueryFlow
+  href: api/async-iter-query.html#_esfx_async_iter_query_AsyncHierarchyQueryFlow_type
+  fullName: AsyncHierarchyQueryFlow
+- uid: '@esfx/async-iter-query!AsyncMergeQueryFlow:type'
+  name: AsyncMergeQueryFlow
+  href: api/async-iter-query.html#_esfx_async_iter_query_AsyncMergeQueryFlow_type
+  fullName: AsyncMergeQueryFlow
 - uid: '@esfx/async-iter-query!AsyncOrderedHierarchyQuery#[AsyncOrderedIterable.thenByAsync]:member(1)'
   name: '[AsyncOrderedIterable.thenByAsync](keySelector, comparison, descending)'
   href: api/async-iter-query/asyncorderedhierarchyquery.html#_esfx_async_iter_query_AsyncOrderedHierarchyQuery__AsyncOrderedIterable_thenByAsync__member_1_
@@ -1749,6 +1517,14 @@ references:
   name: constructor(source)
   href: api/async-iter-query/asyncorderedquery.html#_esfx_async_iter_query_AsyncOrderedQuery_constructor_1_
   fullName: constructor(source)
+- uid: '@esfx/async-iter-query!AsyncOrderedQueryFlow:type'
+  name: AsyncOrderedQueryFlow
+  href: api/async-iter-query.html#_esfx_async_iter_query_AsyncOrderedQueryFlow_type
+  fullName: AsyncOrderedQueryFlow
+- uid: '@esfx/async-iter-query!AsyncPagedQueryFlow:type'
+  name: AsyncPagedQueryFlow
+  href: api/async-iter-query.html#_esfx_async_iter_query_AsyncPagedQueryFlow_type
+  fullName: AsyncPagedQueryFlow
 - uid: '@esfx/async-iter-query!AsyncQuery#[Symbol.asyncIterator]:member(1)'
   name: '[Symbol.asyncIterator]()'
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery__Symbol_asyncIterator__member_1_
@@ -1826,9 +1602,9 @@ references:
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_break_member_1_
   fullName: break(predicate)
 - uid: '@esfx/async-iter-query!AsyncQuery#concat:member(1)'
-  name: concat(this, right)
+  name: concat(right)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_concat_member_1_
-  fullName: concat(this, right)
+  fullName: concat(right)
 - uid: '@esfx/async-iter-query!AsyncQuery#concat:member(2)'
   name: concat(right)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_concat_member_2_
@@ -2010,17 +1786,17 @@ references:
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_includesSequence_member_2_
   fullName: includesSequence(right, equaler)
 - uid: '@esfx/async-iter-query!AsyncQuery#intersect:member(1)'
-  name: intersect(this, right, equaler)
+  name: intersect(right, equaler)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_intersect_member_1_
-  fullName: intersect(this, right, equaler)
+  fullName: intersect(right, equaler)
 - uid: '@esfx/async-iter-query!AsyncQuery#intersect:member(2)'
   name: intersect(right, equaler)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_intersect_member_2_
   fullName: intersect(right, equaler)
 - uid: '@esfx/async-iter-query!AsyncQuery#intersectBy:member(1)'
-  name: intersectBy(this, right, keySelector, keyEqualer)
+  name: intersectBy(right, keySelector, keyEqualer)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_intersectBy_member_1_
-  fullName: intersectBy(this, right, keySelector, keyEqualer)
+  fullName: intersectBy(right, keySelector, keyEqualer)
 - uid: '@esfx/async-iter-query!AsyncQuery#intersectBy:member(2)'
   name: intersectBy(right, keySelector, keyEqualer)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_intersectBy_member_2_
@@ -2230,17 +2006,17 @@ references:
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_sum_member_2_
   fullName: sum(elementSelector)
 - uid: '@esfx/async-iter-query!AsyncQuery#symmetricDifference:member(1)'
-  name: symmetricDifference(this, right, equaler)
+  name: symmetricDifference(right, equaler)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_symmetricDifference_member_1_
-  fullName: symmetricDifference(this, right, equaler)
+  fullName: symmetricDifference(right, equaler)
 - uid: '@esfx/async-iter-query!AsyncQuery#symmetricDifference:member(2)'
   name: symmetricDifference(right, equaler)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_symmetricDifference_member_2_
   fullName: symmetricDifference(right, equaler)
 - uid: '@esfx/async-iter-query!AsyncQuery#symmetricDifferenceBy:member(1)'
-  name: symmetricDifferenceBy(this, right, keySelector, keyEqualer)
+  name: symmetricDifferenceBy(right, keySelector, keyEqualer)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_symmetricDifferenceBy_member_1_
-  fullName: symmetricDifferenceBy(this, right, keySelector, keyEqualer)
+  fullName: symmetricDifferenceBy(right, keySelector, keyEqualer)
 - uid: '@esfx/async-iter-query!AsyncQuery#symmetricDifferenceBy:member(2)'
   name: symmetricDifferenceBy(right, keySelector, keyEqualer)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_symmetricDifferenceBy_member_2_
@@ -2273,18 +2049,6 @@ references:
   name: through(callback)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_through_member_1_
   fullName: through(callback)
-- uid: '@esfx/async-iter-query!AsyncQuery#through:member(2)'
-  name: through(callback)
-  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_through_member_2_
-  fullName: through(callback)
-- uid: '@esfx/async-iter-query!AsyncQuery#through:member(3)'
-  name: through(callback)
-  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_through_member_3_
-  fullName: through(callback)
-- uid: '@esfx/async-iter-query!AsyncQuery#through:member(4)'
-  name: through(callback)
-  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_through_member_4_
-  fullName: through(callback)
 - uid: '@esfx/async-iter-query!AsyncQuery#toArray:member(1)'
   name: toArray()
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toArray_member_1_
@@ -2310,20 +2074,8 @@ references:
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHashSet_member_2_
   fullName: toHashSet(elementSelector, equaler)
 - uid: '@esfx/async-iter-query!AsyncQuery#toHierarchy:member(1)'
-  name: toHierarchy(this, provider)
-  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHierarchy_member_1_
-  fullName: toHierarchy(this, provider)
-- uid: '@esfx/async-iter-query!AsyncQuery#toHierarchy:member(2)'
-  name: toHierarchy(this, provider)
-  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHierarchy_member_2_
-  fullName: toHierarchy(this, provider)
-- uid: '@esfx/async-iter-query!AsyncQuery#toHierarchy:member(3)'
-  name: toHierarchy(this, provider)
-  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHierarchy_member_3_
-  fullName: toHierarchy(this, provider)
-- uid: '@esfx/async-iter-query!AsyncQuery#toHierarchy:member(4)'
   name: toHierarchy(provider)
-  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHierarchy_member_4_
+  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toHierarchy_member_1_
   fullName: toHierarchy(provider)
 - uid: '@esfx/async-iter-query!AsyncQuery#toLookup:member(1)'
   name: toLookup(keySelector, keyEqualer)
@@ -2386,17 +2138,17 @@ references:
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_toSet_member_2_
   fullName: toSet(elementSelector)
 - uid: '@esfx/async-iter-query!AsyncQuery#union:member(1)'
-  name: union(this, right, equaler)
+  name: union(right, equaler)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_union_member_1_
-  fullName: union(this, right, equaler)
+  fullName: union(right, equaler)
 - uid: '@esfx/async-iter-query!AsyncQuery#union:member(2)'
   name: union(right, equaler)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_union_member_2_
   fullName: union(right, equaler)
 - uid: '@esfx/async-iter-query!AsyncQuery#unionBy:member(1)'
-  name: unionBy(this, right, keySelector, keyEqualer)
+  name: unionBy(right, keySelector, keyEqualer)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_unionBy_member_1_
-  fullName: unionBy(this, right, keySelector, keyEqualer)
+  fullName: unionBy(right, keySelector, keyEqualer)
 - uid: '@esfx/async-iter-query!AsyncQuery#unionBy:member(2)'
   name: unionBy(right, keySelector, keyEqualer)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_unionBy_member_2_
@@ -2445,22 +2197,6 @@ references:
   name: whereNotDefinedBy(keySelector)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_whereNotDefinedBy_member_1_
   fullName: whereNotDefinedBy(keySelector)
-- uid: '@esfx/async-iter-query!AsyncQuery#xor:member(1)'
-  name: xor(this, right, equaler)
-  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_xor_member_1_
-  fullName: xor(this, right, equaler)
-- uid: '@esfx/async-iter-query!AsyncQuery#xor:member(2)'
-  name: xor(right, equaler)
-  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_xor_member_2_
-  fullName: xor(right, equaler)
-- uid: '@esfx/async-iter-query!AsyncQuery#xorBy:member(1)'
-  name: xorBy(this, right, keySelector, keyEqualer)
-  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_xorBy_member_1_
-  fullName: xorBy(this, right, keySelector, keyEqualer)
-- uid: '@esfx/async-iter-query!AsyncQuery#xorBy:member(2)'
-  name: xorBy(right, keySelector, keyEqualer)
-  href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_xorBy_member_2_
-  fullName: xorBy(right, keySelector, keyEqualer)
 - uid: '@esfx/async-iter-query!AsyncQuery#zip:member(1)'
   name: zip(right)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_zip_member_1_
@@ -2537,6 +2273,14 @@ references:
   name: constructor(source)
   href: api/async-iter-query/asyncquery.html#_esfx_async_iter_query_AsyncQuery_constructor_1_
   fullName: constructor(source)
+- uid: '@esfx/async-iter-query!AsyncQueryFlow:type'
+  name: AsyncQueryFlow
+  href: api/async-iter-query.html#_esfx_async_iter_query_AsyncQueryFlow_type
+  fullName: AsyncQueryFlow
+- uid: '@esfx/async-iter-query!AsyncUnorderedQueryFlow:type'
+  name: AsyncUnorderedQueryFlow
+  href: api/async-iter-query.html#_esfx_async_iter_query_AsyncUnorderedQueryFlow_type
+  fullName: AsyncUnorderedQueryFlow
 - uid: '@esfx/async-iter-query!fromAsync:function(1)'
   name: fromAsync(source)
   href: api/async-iter-query.html#_esfx_async_iter_query_fromAsync_function_1_
@@ -8565,6 +8309,10 @@ references:
   name: from(source)
   href: api/iter-query.html#_esfx_iter_query_from_function_7_
   fullName: from(source)
+- uid: '@esfx/iter-query!GroupedQueryFlow:type'
+  name: GroupedQueryFlow
+  href: api/iter-query.html#_esfx_iter_query_GroupedQueryFlow_type
+  fullName: GroupedQueryFlow
 - uid: '@esfx/iter-query!HierarchyQuery#[Hierarchical.hierarchy]:member(1)'
   name: '[Hierarchical.hierarchy]()'
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery__Hierarchical_hierarchy__member_1_
@@ -8585,10 +8333,6 @@ references:
   name: ancestorsAndSelf(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_ancestorsAndSelf_member_2_
   fullName: ancestorsAndSelf(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#append:member(1)'
-  name: append(value)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_append_member_1_
-  fullName: append(value)
 - uid: '@esfx/iter-query!HierarchyQuery#bottomMost:member(1)'
   name: bottomMost(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_bottomMost_member_1_
@@ -8605,14 +8349,6 @@ references:
   name: children(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_children_member_2_
   fullName: children(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#concat:member(1)'
-  name: concat(right)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_concat_member_1_
-  fullName: concat(right)
-- uid: '@esfx/iter-query!HierarchyQuery#defaultIfEmpty:member(1)'
-  name: defaultIfEmpty(defaultValue)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_defaultIfEmpty_member_1_
-  fullName: defaultIfEmpty(defaultValue)
 - uid: '@esfx/iter-query!HierarchyQuery#descendants:member(1)'
   name: descendants(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_descendants_member_1_
@@ -8629,62 +8365,6 @@ references:
   name: descendantsAndSelf(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_descendantsAndSelf_member_2_
   fullName: descendantsAndSelf(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#distinct:member(1)'
-  name: distinct(equaler)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_distinct_member_1_
-  fullName: distinct(equaler)
-- uid: '@esfx/iter-query!HierarchyQuery#distinctBy:member(1)'
-  name: distinctBy(keySelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_distinctBy_member_1_
-  fullName: distinctBy(keySelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#drop:member(1)'
-  name: drop(count)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_drop_member_1_
-  fullName: drop(count)
-- uid: '@esfx/iter-query!HierarchyQuery#dropRight:member(1)'
-  name: dropRight(count)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_dropRight_member_1_
-  fullName: dropRight(count)
-- uid: '@esfx/iter-query!HierarchyQuery#dropUntil:member(1)'
-  name: dropUntil(predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_dropUntil_member_1_
-  fullName: dropUntil(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#dropWhile:member(1)'
-  name: dropWhile(predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_dropWhile_member_1_
-  fullName: dropWhile(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#except:member(1)'
-  name: except(right, equaler)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_except_member_1_
-  fullName: except(right, equaler)
-- uid: '@esfx/iter-query!HierarchyQuery#exceptBy:member(1)'
-  name: exceptBy(right, keySelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_exceptBy_member_1_
-  fullName: exceptBy(right, keySelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#exclude:member(1)'
-  name: exclude(values)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_exclude_member_1_
-  fullName: exclude(values)
-- uid: '@esfx/iter-query!HierarchyQuery#filter:member(1)'
-  name: filter(predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_filter_member_1_
-  fullName: filter(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#filter:member(2)'
-  name: filter(predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_filter_member_2_
-  fullName: filter(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#filterBy:member(1)'
-  name: filterBy(keySelector, predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_filterBy_member_1_
-  fullName: filterBy(keySelector, predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#filterDefined:member(1)'
-  name: filterDefined()
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_filterDefined_member_1_
-  fullName: filterDefined()
-- uid: '@esfx/iter-query!HierarchyQuery#filterDefinedBy:member(1)'
-  name: filterDefinedBy(keySelector)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_filterDefinedBy_member_1_
-  fullName: filterDefinedBy(keySelector)
 - uid: '@esfx/iter-query!HierarchyQuery#firstChild:member(1)'
   name: firstChild(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_firstChild_member_1_
@@ -8709,30 +8389,6 @@ references:
   name: followingSiblings(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_followingSiblings_member_2_
   fullName: followingSiblings(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#groupBy:member(1)'
-  name: groupBy(keySelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_groupBy_member_1_
-  fullName: groupBy(keySelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#groupBy:member(2)'
-  name: groupBy(keySelector, elementSelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_groupBy_member_2_
-  fullName: groupBy(keySelector, elementSelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#groupBy:member(3)'
-  name: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_groupBy_member_3_
-  fullName: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#groupBy:member(4)'
-  name: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_groupBy_member_4_
-  fullName: groupBy(keySelector, elementSelector, resultSelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#intersect:member(1)'
-  name: intersect(right, equaler)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_intersect_member_1_
-  fullName: intersect(right, equaler)
-- uid: '@esfx/iter-query!HierarchyQuery#intersectBy:member(1)'
-  name: intersectBy(right, keySelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_intersectBy_member_1_
-  fullName: intersectBy(right, keySelector, keyEqualer)
 - uid: '@esfx/iter-query!HierarchyQuery#lastChild:member(1)'
   name: lastChild(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_lastChild_member_1_
@@ -8741,10 +8397,6 @@ references:
   name: lastChild(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_lastChild_member_2_
   fullName: lastChild(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#materialize:member(1)'
-  name: materialize()
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_materialize_member_1_
-  fullName: materialize()
 - uid: '@esfx/iter-query!HierarchyQuery#nthChild:member(1)'
   name: nthChild(offset, predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_nthChild_member_1_
@@ -8753,22 +8405,6 @@ references:
   name: nthChild(offset, predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_nthChild_member_2_
   fullName: nthChild(offset, predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#orderBy:member(1)'
-  name: orderBy(keySelector, comparer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_orderBy_member_1_
-  fullName: orderBy(keySelector, comparer)
-- uid: '@esfx/iter-query!HierarchyQuery#orderByDescending:member(1)'
-  name: orderByDescending(keySelector, comparer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_orderByDescending_member_1_
-  fullName: orderByDescending(keySelector, comparer)
-- uid: '@esfx/iter-query!HierarchyQuery#pageBy:member(1)'
-  name: pageBy(pageSize)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_pageBy_member_1_
-  fullName: pageBy(pageSize)
-- uid: '@esfx/iter-query!HierarchyQuery#pageBy:member(2)'
-  name: pageBy(pageSize, pageSelector)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_pageBy_member_2_
-  fullName: pageBy(pageSize, pageSelector)
 - uid: '@esfx/iter-query!HierarchyQuery#parents:member(1)'
   name: parents(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_parents_member_1_
@@ -8777,10 +8413,6 @@ references:
   name: parents(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_parents_member_2_
   fullName: parents(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#patch:member(1)'
-  name: patch(start, skipCount, range)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_patch_member_1_
-  fullName: patch(start, skipCount, range)
 - uid: '@esfx/iter-query!HierarchyQuery#preceding:member(1)'
   name: preceding(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_preceding_member_1_
@@ -8797,22 +8429,6 @@ references:
   name: precedingSiblings(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_precedingSiblings_member_2_
   fullName: precedingSiblings(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#prepend:member(1)'
-  name: prepend(value)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_prepend_member_1_
-  fullName: prepend(value)
-- uid: '@esfx/iter-query!HierarchyQuery#relativeComplement:member(1)'
-  name: relativeComplement(right, equaler)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_relativeComplement_member_1_
-  fullName: relativeComplement(right, equaler)
-- uid: '@esfx/iter-query!HierarchyQuery#relativeComplementBy:member(1)'
-  name: relativeComplementBy(right, keySelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_relativeComplementBy_member_1_
-  fullName: relativeComplementBy(right, keySelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#reverse:member(1)'
-  name: reverse()
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_reverse_member_1_
-  fullName: reverse()
 - uid: '@esfx/iter-query!HierarchyQuery#root:member(1)'
   name: root(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_root_member_1_
@@ -8865,66 +8481,6 @@ references:
   name: siblingsBeforeSelf(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_siblingsBeforeSelf_member_2_
   fullName: siblingsBeforeSelf(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#skip:member(1)'
-  name: skip(count)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_skip_member_1_
-  fullName: skip(count)
-- uid: '@esfx/iter-query!HierarchyQuery#skipRight:member(1)'
-  name: skipRight(count)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_skipRight_member_1_
-  fullName: skipRight(count)
-- uid: '@esfx/iter-query!HierarchyQuery#skipUntil:member(1)'
-  name: skipUntil(predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_skipUntil_member_1_
-  fullName: skipUntil(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#skipWhile:member(1)'
-  name: skipWhile(predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_skipWhile_member_1_
-  fullName: skipWhile(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#spanMap:member(1)'
-  name: spanMap(keySelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_spanMap_member_1_
-  fullName: spanMap(keySelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#spanMap:member(2)'
-  name: spanMap(keySelector, elementSelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_spanMap_member_2_
-  fullName: spanMap(keySelector, elementSelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#spanMap:member(3)'
-  name: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_spanMap_member_3_
-  fullName: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#spanMap:member(4)'
-  name: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_spanMap_member_4_
-  fullName: spanMap(keySelector, elementSelector, spanSelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#symmetricDifference:member(1)'
-  name: symmetricDifference(right, equaler)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_symmetricDifference_member_1_
-  fullName: symmetricDifference(right, equaler)
-- uid: '@esfx/iter-query!HierarchyQuery#symmetricDifferenceBy:member(1)'
-  name: symmetricDifferenceBy(right, keySelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_symmetricDifferenceBy_member_1_
-  fullName: symmetricDifferenceBy(right, keySelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#take:member(1)'
-  name: take(count)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_take_member_1_
-  fullName: take(count)
-- uid: '@esfx/iter-query!HierarchyQuery#takeRight:member(1)'
-  name: takeRight(count)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_takeRight_member_1_
-  fullName: takeRight(count)
-- uid: '@esfx/iter-query!HierarchyQuery#takeUntil:member(1)'
-  name: takeUntil(predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_takeUntil_member_1_
-  fullName: takeUntil(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#takeWhile:member(1)'
-  name: takeWhile(predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_takeWhile_member_1_
-  fullName: takeWhile(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#takeWhile:member(2)'
-  name: takeWhile(predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_takeWhile_member_2_
-  fullName: takeWhile(predicate)
 - uid: '@esfx/iter-query!HierarchyQuery#topMost:member(1)'
   name: topMost(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_topMost_member_1_
@@ -8933,42 +8489,6 @@ references:
   name: topMost(predicate)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_topMost_member_2_
   fullName: topMost(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#union:member(1)'
-  name: union(right, equaler)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_union_member_1_
-  fullName: union(right, equaler)
-- uid: '@esfx/iter-query!HierarchyQuery#unionBy:member(1)'
-  name: unionBy(right, keySelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_unionBy_member_1_
-  fullName: unionBy(right, keySelector, keyEqualer)
-- uid: '@esfx/iter-query!HierarchyQuery#where:member(1)'
-  name: where(predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_where_member_1_
-  fullName: where(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#where:member(2)'
-  name: where(predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_where_member_2_
-  fullName: where(predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#whereBy:member(1)'
-  name: whereBy(keySelector, predicate)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_whereBy_member_1_
-  fullName: whereBy(keySelector, predicate)
-- uid: '@esfx/iter-query!HierarchyQuery#whereDefined:member(1)'
-  name: whereDefined()
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_whereDefined_member_1_
-  fullName: whereDefined()
-- uid: '@esfx/iter-query!HierarchyQuery#whereDefinedBy:member(1)'
-  name: whereDefinedBy(keySelector)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_whereDefinedBy_member_1_
-  fullName: whereDefinedBy(keySelector)
-- uid: '@esfx/iter-query!HierarchyQuery#xor:member(1)'
-  name: xor(right, equaler)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_xor_member_1_
-  fullName: xor(right, equaler)
-- uid: '@esfx/iter-query!HierarchyQuery#xorBy:member(1)'
-  name: xorBy(right, keySelector, keyEqualer)
-  href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_xorBy_member_1_
-  fullName: xorBy(right, keySelector, keyEqualer)
 - uid: '@esfx/iter-query!HierarchyQuery:class'
   name: HierarchyQuery
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class
@@ -8981,6 +8501,14 @@ references:
   name: constructor(source, provider)
   href: api/iter-query/hierarchyquery.html#_esfx_iter_query_HierarchyQuery_constructor_2_
   fullName: constructor(source, provider)
+- uid: '@esfx/iter-query!HierarchyQueryFlow:type'
+  name: HierarchyQueryFlow
+  href: api/iter-query.html#_esfx_iter_query_HierarchyQueryFlow_type
+  fullName: HierarchyQueryFlow
+- uid: '@esfx/iter-query!MergeQueryFlow:type'
+  name: MergeQueryFlow
+  href: api/iter-query.html#_esfx_iter_query_MergeQueryFlow_type
+  fullName: MergeQueryFlow
 - uid: '@esfx/iter-query!OrderedHierarchyQuery#[OrderedIterable.thenBy]:member(1)'
   name: '[OrderedIterable.thenBy](keySelector, comparison, descending)'
   href: api/iter-query/orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery__OrderedIterable_thenBy__member_1_
@@ -9025,6 +8553,14 @@ references:
   name: constructor(source)
   href: api/iter-query/orderedquery.html#_esfx_iter_query_OrderedQuery_constructor_1_
   fullName: constructor(source)
+- uid: '@esfx/iter-query!OrderedQueryFlow:type'
+  name: OrderedQueryFlow
+  href: api/iter-query.html#_esfx_iter_query_OrderedQueryFlow_type
+  fullName: OrderedQueryFlow
+- uid: '@esfx/iter-query!PagedQueryFlow:type'
+  name: PagedQueryFlow
+  href: api/iter-query.html#_esfx_iter_query_PagedQueryFlow_type
+  fullName: PagedQueryFlow
 - uid: '@esfx/iter-query!Query#[Symbol.iterator]:member(1)'
   name: '[Symbol.iterator]()'
   href: api/iter-query/query.html#_esfx_iter_query_Query__Symbol_iterator__member_1_
@@ -9074,16 +8610,12 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_break_member_1_
   fullName: break(predicate)
 - uid: '@esfx/iter-query!Query#concat:member(1)'
-  name: concat(this, right)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_concat_member_1_
-  fullName: concat(this, right)
-- uid: '@esfx/iter-query!Query#concat:member(2)'
-  name: concat(this, right)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_concat_member_2_
-  fullName: concat(this, right)
-- uid: '@esfx/iter-query!Query#concat:member(3)'
   name: concat(right)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_concat_member_3_
+  href: api/iter-query/query.html#_esfx_iter_query_Query_concat_member_1_
+  fullName: concat(right)
+- uid: '@esfx/iter-query!Query#concat:member(2)'
+  name: concat(right)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_concat_member_2_
   fullName: concat(right)
 - uid: '@esfx/iter-query!Query#copyTo:member(1)'
   name: copyTo(dest, start, count)
@@ -9270,28 +8802,20 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_includesSequence_member_2_
   fullName: includesSequence(right, equaler)
 - uid: '@esfx/iter-query!Query#intersect:member(1)'
-  name: intersect(this, right, equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_intersect_member_1_
-  fullName: intersect(this, right, equaler)
-- uid: '@esfx/iter-query!Query#intersect:member(2)'
-  name: intersect(this, right, equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_intersect_member_2_
-  fullName: intersect(this, right, equaler)
-- uid: '@esfx/iter-query!Query#intersect:member(3)'
   name: intersect(right, equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_intersect_member_3_
+  href: api/iter-query/query.html#_esfx_iter_query_Query_intersect_member_1_
+  fullName: intersect(right, equaler)
+- uid: '@esfx/iter-query!Query#intersect:member(2)'
+  name: intersect(right, equaler)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_intersect_member_2_
   fullName: intersect(right, equaler)
 - uid: '@esfx/iter-query!Query#intersectBy:member(1)'
-  name: intersectBy(this, right, keySelector, keyEqualer)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_intersectBy_member_1_
-  fullName: intersectBy(this, right, keySelector, keyEqualer)
-- uid: '@esfx/iter-query!Query#intersectBy:member(2)'
-  name: intersectBy(this, right, keySelector, keyEqualer)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_intersectBy_member_2_
-  fullName: intersectBy(this, right, keySelector, keyEqualer)
-- uid: '@esfx/iter-query!Query#intersectBy:member(3)'
   name: intersectBy(right, keySelector, keyEqualer)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_intersectBy_member_3_
+  href: api/iter-query/query.html#_esfx_iter_query_Query_intersectBy_member_1_
+  fullName: intersectBy(right, keySelector, keyEqualer)
+- uid: '@esfx/iter-query!Query#intersectBy:member(2)'
+  name: intersectBy(right, keySelector, keyEqualer)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_intersectBy_member_2_
   fullName: intersectBy(right, keySelector, keyEqualer)
 - uid: '@esfx/iter-query!Query#into:member(1)'
   name: into(callback)
@@ -9498,28 +9022,20 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_sum_member_2_
   fullName: sum(elementSelector)
 - uid: '@esfx/iter-query!Query#symmetricDifference:member(1)'
-  name: symmetricDifference(this, right, equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifference_member_1_
-  fullName: symmetricDifference(this, right, equaler)
-- uid: '@esfx/iter-query!Query#symmetricDifference:member(2)'
-  name: symmetricDifference(this, right, equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifference_member_2_
-  fullName: symmetricDifference(this, right, equaler)
-- uid: '@esfx/iter-query!Query#symmetricDifference:member(3)'
   name: symmetricDifference(right, equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifference_member_3_
+  href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifference_member_1_
+  fullName: symmetricDifference(right, equaler)
+- uid: '@esfx/iter-query!Query#symmetricDifference:member(2)'
+  name: symmetricDifference(right, equaler)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifference_member_2_
   fullName: symmetricDifference(right, equaler)
 - uid: '@esfx/iter-query!Query#symmetricDifferenceBy:member(1)'
-  name: symmetricDifferenceBy(this, right, keySelector, keyEqualer)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifferenceBy_member_1_
-  fullName: symmetricDifferenceBy(this, right, keySelector, keyEqualer)
-- uid: '@esfx/iter-query!Query#symmetricDifferenceBy:member(2)'
-  name: symmetricDifferenceBy(this, right, keySelector, keyEqualer)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifferenceBy_member_2_
-  fullName: symmetricDifferenceBy(this, right, keySelector, keyEqualer)
-- uid: '@esfx/iter-query!Query#symmetricDifferenceBy:member(3)'
   name: symmetricDifferenceBy(right, keySelector, keyEqualer)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifferenceBy_member_3_
+  href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifferenceBy_member_1_
+  fullName: symmetricDifferenceBy(right, keySelector, keyEqualer)
+- uid: '@esfx/iter-query!Query#symmetricDifferenceBy:member(2)'
+  name: symmetricDifferenceBy(right, keySelector, keyEqualer)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_symmetricDifferenceBy_member_2_
   fullName: symmetricDifferenceBy(right, keySelector, keyEqualer)
 - uid: '@esfx/iter-query!Query#take:member(1)'
   name: take(count)
@@ -9549,18 +9065,6 @@ references:
   name: through(callback)
   href: api/iter-query/query.html#_esfx_iter_query_Query_through_member_1_
   fullName: through(callback)
-- uid: '@esfx/iter-query!Query#through:member(2)'
-  name: through(callback)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_through_member_2_
-  fullName: through(callback)
-- uid: '@esfx/iter-query!Query#through:member(3)'
-  name: through(callback)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_through_member_3_
-  fullName: through(callback)
-- uid: '@esfx/iter-query!Query#through:member(4)'
-  name: through(callback)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_through_member_4_
-  fullName: through(callback)
 - uid: '@esfx/iter-query!Query#toArray:member(1)'
   name: toArray()
   href: api/iter-query/query.html#_esfx_iter_query_Query_toArray_member_1_
@@ -9586,24 +9090,8 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_toHashSet_member_2_
   fullName: toHashSet(elementSelector, equaler)
 - uid: '@esfx/iter-query!Query#toHierarchy:member(1)'
-  name: toHierarchy(this, provider)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_toHierarchy_member_1_
-  fullName: toHierarchy(this, provider)
-- uid: '@esfx/iter-query!Query#toHierarchy:member(2)'
-  name: toHierarchy(this, provider)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_toHierarchy_member_2_
-  fullName: toHierarchy(this, provider)
-- uid: '@esfx/iter-query!Query#toHierarchy:member(3)'
-  name: toHierarchy(this, provider)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_toHierarchy_member_3_
-  fullName: toHierarchy(this, provider)
-- uid: '@esfx/iter-query!Query#toHierarchy:member(4)'
-  name: toHierarchy(this, provider)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_toHierarchy_member_4_
-  fullName: toHierarchy(this, provider)
-- uid: '@esfx/iter-query!Query#toHierarchy:member(5)'
   name: toHierarchy(provider)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_toHierarchy_member_5_
+  href: api/iter-query/query.html#_esfx_iter_query_Query_toHierarchy_member_1_
   fullName: toHierarchy(provider)
 - uid: '@esfx/iter-query!Query#toJSON:member(1)'
   name: toJSON()
@@ -9670,28 +9158,20 @@ references:
   href: api/iter-query/query.html#_esfx_iter_query_Query_toSet_member_2_
   fullName: toSet(elementSelector)
 - uid: '@esfx/iter-query!Query#union:member(1)'
-  name: union(this, right, equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_union_member_1_
-  fullName: union(this, right, equaler)
-- uid: '@esfx/iter-query!Query#union:member(2)'
-  name: union(this, right, equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_union_member_2_
-  fullName: union(this, right, equaler)
-- uid: '@esfx/iter-query!Query#union:member(3)'
   name: union(right, equaler)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_union_member_3_
+  href: api/iter-query/query.html#_esfx_iter_query_Query_union_member_1_
+  fullName: union(right, equaler)
+- uid: '@esfx/iter-query!Query#union:member(2)'
+  name: union(right, equaler)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_union_member_2_
   fullName: union(right, equaler)
 - uid: '@esfx/iter-query!Query#unionBy:member(1)'
-  name: unionBy(this, right, keySelector, keyEqualer)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_unionBy_member_1_
-  fullName: unionBy(this, right, keySelector, keyEqualer)
-- uid: '@esfx/iter-query!Query#unionBy:member(2)'
-  name: unionBy(this, right, keySelector, keyEqualer)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_unionBy_member_2_
-  fullName: unionBy(this, right, keySelector, keyEqualer)
-- uid: '@esfx/iter-query!Query#unionBy:member(3)'
   name: unionBy(right, keySelector, keyEqualer)
-  href: api/iter-query/query.html#_esfx_iter_query_Query_unionBy_member_3_
+  href: api/iter-query/query.html#_esfx_iter_query_Query_unionBy_member_1_
+  fullName: unionBy(right, keySelector, keyEqualer)
+- uid: '@esfx/iter-query!Query#unionBy:member(2)'
+  name: unionBy(right, keySelector, keyEqualer)
+  href: api/iter-query/query.html#_esfx_iter_query_Query_unionBy_member_2_
   fullName: unionBy(right, keySelector, keyEqualer)
 - uid: '@esfx/iter-query!Query#unzip:member(1)'
   name: unzip()
@@ -9813,6 +9293,14 @@ references:
   name: constructor(source)
   href: api/iter-query/query.html#_esfx_iter_query_Query_constructor_1_
   fullName: constructor(source)
+- uid: '@esfx/iter-query!QueryFlow:type'
+  name: QueryFlow
+  href: api/iter-query.html#_esfx_iter_query_QueryFlow_type
+  fullName: QueryFlow
+- uid: '@esfx/iter-query!UnorderedQueryFlow:type'
+  name: UnorderedQueryFlow
+  href: api/iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type
+  fullName: UnorderedQueryFlow
 - uid: '@esfx/lazy!'
   name: '@esfx/lazy'
   href: api/lazy.html

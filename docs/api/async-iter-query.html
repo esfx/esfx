@@ -447,6 +447,273 @@ these operations is deferred until the either a scalar value is requested from t
   
   
   
+    <h3 id="typealiases">Type Aliases
+  </h3>
+  
+  
+        <h4 id="_esfx_async_iter_query_AsyncGroupedQueryFlow_type" data-uid="@esfx/async-iter-query!AsyncGroupedQueryFlow:type">AsyncGroupedQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AsyncGroupedQueryFlow&lt;S, K, T&gt; = S extends Hierarchical&lt;infer TNode&gt; ? AsyncQuery&lt;HierarchyGrouping&lt;K, TNode, TNode &amp; T&gt;&gt; : AsyncQuery&lt;Grouping&lt;K, T&gt;&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>S</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>K</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_async_iter_query_AsyncHierarchyQueryFlow_type" data-uid="@esfx/async-iter-query!AsyncHierarchyQueryFlow:type">AsyncHierarchyQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AsyncHierarchyQueryFlow&lt;S, TNode extends (T extends TNode ? unknown : never), T&gt; = S extends AsyncOrderedIterable&lt;any&gt; | OrderedIterable&lt;any&gt; ? AsyncOrderedHierarchyQuery&lt;TNode, TNode &amp; T&gt; : AsyncHierarchyQuery&lt;TNode, TNode &amp; T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>S</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TNode</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_async_iter_query_AsyncMergeQueryFlow_type" data-uid="@esfx/async-iter-query!AsyncMergeQueryFlow:type">AsyncMergeQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AsyncMergeQueryFlow&lt;L, R, T&gt; = L extends Hierarchical&lt;infer LTNode&gt; ? R extends Hierarchical&lt;infer RTNode&gt; ? AsyncHierarchyQuery&lt;LTNode | RTNode, LTNode &amp; T | RTNode &amp; T&gt; : AsyncHierarchyQuery&lt;LTNode, LTNode &amp; T&gt; : R extends Hierarchical&lt;infer RTNode&gt; ? AsyncHierarchyQuery&lt;RTNode, RTNode &amp; T&gt; : AsyncQuery&lt;T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>L</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>R</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_async_iter_query_AsyncOrderedQueryFlow_type" data-uid="@esfx/async-iter-query!AsyncOrderedQueryFlow:type">AsyncOrderedQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AsyncOrderedQueryFlow&lt;S, T&gt; = S extends Hierarchical&lt;infer TNode&gt; ? AsyncOrderedHierarchyQuery&lt;TNode, TNode &amp; T&gt; : AsyncOrderedQuery&lt;T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>S</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_async_iter_query_AsyncPagedQueryFlow_type" data-uid="@esfx/async-iter-query!AsyncPagedQueryFlow:type">AsyncPagedQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AsyncPagedQueryFlow&lt;S, T&gt; = S extends Hierarchical&lt;infer TNode&gt; ? AsyncQuery&lt;HierarchyPage&lt;TNode, TNode &amp; T&gt;&gt; : AsyncQuery&lt;Page&lt;T&gt;&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>S</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_async_iter_query_AsyncQueryFlow_type" data-uid="@esfx/async-iter-query!AsyncQueryFlow:type">AsyncQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AsyncQueryFlow&lt;S, T&gt; = S extends AsyncOrderedIterable&lt;any&gt; | OrderedIterable&lt;any&gt; ? AsyncOrderedQueryFlow&lt;S, T&gt; : AsyncUnorderedQueryFlow&lt;S, T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>S</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_async_iter_query_AsyncUnorderedQueryFlow_type" data-uid="@esfx/async-iter-query!AsyncUnorderedQueryFlow:type">AsyncUnorderedQueryFlow</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AsyncUnorderedQueryFlow&lt;S, T&gt; = S extends Hierarchical&lt;infer TNode&gt; ? AsyncHierarchyQuery&lt;TNode, TNode &amp; T&gt; : AsyncQuery&lt;T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>S</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
 </article>
           </div>
           

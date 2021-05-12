@@ -510,7 +510,7 @@ these operations is deferred until the either a scalar value is requested from t
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">append(value: T): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">append(value: T): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -530,7 +530,7 @@ these operations is deferred until the either a scalar value is requested from t
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -610,7 +610,7 @@ evaluated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">break(predicate: (element: T, offset: number) =&gt; boolean): [Query&lt;T&gt;, Query&lt;T&gt;];</code></pre>
+    <pre><code class="lang-typeScript hljs">break(predicate: (element: T, offset: number) =&gt; boolean): [UnorderedQueryFlow&lt;this, T&gt;, UnorderedQueryFlow&lt;this, T&gt;];</code></pre>
   </div>
   
   
@@ -630,7 +630,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div>[<a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;, <a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;]</div>
+    <div>[<a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;, <a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;]</div>
     <p>
   </div>
   
@@ -640,28 +640,19 @@ evaluated.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_concat_member_1_" data-uid="@esfx/iter-query!Query#concat:member(1)">concat(this, right)</h4>
+  <h4 id="_esfx_iter_query_Query_concat_member_1_" data-uid="@esfx/iter-query!Query#concat:member(1)">concat(right)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery that concatenates this <code>Query</code> with another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">concat&lt;TNode, T extends TNode&gt;(this: Query&lt;T&gt;, right: HierarchyIterable&lt;TNode, T&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">concat&lt;R extends Iterable&lt;T&gt;&gt;(right: R): MergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -672,18 +663,8 @@ evaluated.</p>
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>A <code>Iterable</code> object.
@@ -695,7 +676,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_MergeQueryFlow_type">MergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -705,63 +686,7 @@ evaluated.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_concat_member_2_" data-uid="@esfx/iter-query!Query#concat:member(2)">concat(this, right)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery that concatenates this <code>Query</code> with another <code>Iterable</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">concat&lt;T&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;): Query&lt;T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>right</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>Iterable</code> object.
- Subquery</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_concat_member_3_" data-uid="@esfx/iter-query!Query#concat:member(3)">concat(right)</h4>
+  <h4 id="_esfx_iter_query_Query_concat_member_2_" data-uid="@esfx/iter-query!Query#concat:member(2)">concat(right)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery that concatenates this <code>Query</code> with another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1337,7 +1262,7 @@ contains no elements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">defaultIfEmpty(defaultValue: T): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">defaultIfEmpty(defaultValue: T): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1357,7 +1282,7 @@ contains no elements.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1373,7 +1298,7 @@ contains no elements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">distinct(equaler?: Equaler&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">distinct(equaler?: Equaler&lt;T&gt;): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1393,7 +1318,7 @@ contains no elements.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1409,7 +1334,7 @@ contains no elements.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">distinctBy&lt;K&gt;(keySelector: (value: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">distinctBy&lt;K&gt;(keySelector: (value: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -1450,7 +1375,7 @@ contains no elements.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1467,7 +1392,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">drop(count: number): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">drop(count: number): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1487,7 +1412,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1504,7 +1429,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">dropRight(count: number): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">dropRight(count: number): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1524,7 +1449,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1541,7 +1466,7 @@ the supplied predicate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">dropUntil(predicate: (element: T) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">dropUntil(predicate: (element: T) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1560,7 +1485,7 @@ the supplied predicate.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1577,7 +1502,7 @@ the supplied predicate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">dropWhile(predicate: (element: T) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">dropWhile(predicate: (element: T) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1596,7 +1521,7 @@ the supplied predicate.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1873,7 +1798,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">except(right: Iterable&lt;T&gt;, equaler?: Equaler&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">except(right: Iterable&lt;T&gt;, equaler?: Equaler&lt;T&gt;): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -1904,7 +1829,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1920,7 +1845,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">exceptBy&lt;K&gt;(right: Iterable&lt;T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">exceptBy&lt;K&gt;(right: Iterable&lt;T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -1972,7 +1897,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -1988,7 +1913,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">exclude(...values: [T, ...T[]]): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">exclude(...values: [T, ...T[]]): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -2008,7 +1933,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2024,7 +1949,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filter&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): Query&lt;U&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filter&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): UnorderedQueryFlow&lt;this, U&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2053,7 +1978,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;U&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, U&gt;</div>
     <p>
   </div>
   
@@ -2069,7 +1994,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filter(predicate: (element: T, offset: number) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filter(predicate: (element: T, offset: number) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -2088,7 +2013,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2104,7 +2029,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2144,7 +2069,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2161,14 +2086,14 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterDefined(): Query&lt;NonNullable&lt;T&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterDefined(): UnorderedQueryFlow&lt;this, NonNullable&lt;T&gt;&gt;;</code></pre>
   </div>
   
   
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;<span class="xref">NonNullable</span>&lt;T&gt;&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, <span class="xref">NonNullable</span>&lt;T&gt;&gt;</div>
     <p>
   </div>
   
@@ -2184,7 +2109,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2213,7 +2138,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2229,7 +2154,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterNot&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): Query&lt;U&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterNot&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): UnorderedQueryFlow&lt;this, U&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2258,7 +2183,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;U&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, U&gt;</div>
     <p>
   </div>
   
@@ -2274,7 +2199,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterNot(predicate: (element: T, offset: number) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterNot(predicate: (element: T, offset: number) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -2293,7 +2218,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2309,7 +2234,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterNotBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterNotBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2349,7 +2274,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -2365,7 +2290,7 @@ match the supplied callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">filterNotDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">filterNotDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -2394,7 +2319,7 @@ match the supplied callback.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -3165,7 +3090,7 @@ times.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">groupBy&lt;K&gt;(keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): Query&lt;Grouping&lt;K, T&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">groupBy&lt;K&gt;(keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): GroupedQueryFlow&lt;this, K, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -3206,7 +3131,7 @@ times.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;<a class="xref" href="../iter-grouping/grouping.html#_esfx_iter_grouping_Grouping_class">Grouping</a>&lt;K, T&gt;&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_GroupedQueryFlow_type">GroupedQueryFlow</a>&lt;this, K, T&gt;</div>
     <p>
   </div>
   
@@ -3222,7 +3147,7 @@ times.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">groupBy&lt;K, V&gt;(keySelector: (element: T) =&gt; K, elementSelector: (element: T) =&gt; V, keyEqualer?: Equaler&lt;K&gt;): Query&lt;Grouping&lt;K, V&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">groupBy&lt;K, V&gt;(keySelector: (element: T) =&gt; K, elementSelector: (element: T) =&gt; V, keyEqualer?: Equaler&lt;K&gt;): GroupedQueryFlow&lt;this, K, V&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -3283,7 +3208,7 @@ times.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;<a class="xref" href="../iter-grouping/grouping.html#_esfx_iter_grouping_Grouping_class">Grouping</a>&lt;K, V&gt;&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_GroupedQueryFlow_type">GroupedQueryFlow</a>&lt;this, K, V&gt;</div>
     <p>
   </div>
   
@@ -3796,28 +3721,19 @@ an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_intersect_member_1_" data-uid="@esfx/iter-query!Query#intersect:member(1)">intersect(this, right, equaler)</h4>
+  <h4 id="_esfx_iter_query_Query_intersect_member_1_" data-uid="@esfx/iter-query!Query#intersect:member(1)">intersect(right, equaler)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set intersection of this <code>Query</code> and another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">intersect&lt;TNode, T extends TNode&gt;(this: Query&lt;T&gt;, right: HierarchyIterable&lt;TNode, T&gt;, equaler?: Equaler&lt;T&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">intersect&lt;R extends Iterable&lt;T&gt;&gt;(right: R, equaler?: Equaler&lt;T&gt;): MergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -3828,18 +3744,8 @@ an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>A <code>Iterable</code> object.</p>
@@ -3862,7 +3768,7 @@ an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_MergeQueryFlow_type">MergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -3872,76 +3778,8 @@ an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_intersect_member_2_" data-uid="@esfx/iter-query!Query#intersect:member(2)">intersect(this, right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the set intersection of this <code>Query</code> and another <code>Iterable</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">intersect&lt;T&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;, equaler?: Equaler&lt;T&gt;): Query&lt;T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>right</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>Iterable</code> object.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>equaler</dt>
-        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>Equaler</code> object used to compare equality.
- Subquery</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_intersect_member_3_" data-uid="@esfx/iter-query!Query#intersect:member(3)">intersect(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the set intersection of this <code>Query</code> and another <code>Iterable</code><!-- -->.</p>
-</div>
+  <h4 id="_esfx_iter_query_Query_intersect_member_2_" data-uid="@esfx/iter-query!Query#intersect:member(2)">intersect(right, equaler)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -3956,8 +3794,7 @@ an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
         <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>A <code>Iterable</code> object.</p>
-
+        
         
       </p>
     </div>
@@ -3967,9 +3804,7 @@ an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare equality.
- Subquery</p>
-
+        
         
       </p>
     </div>
@@ -3986,37 +3821,28 @@ an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_intersectBy_member_1_" data-uid="@esfx/iter-query!Query#intersectBy:member(1)">intersectBy(this, right, keySelector, keyEqualer)</h4>
+  <h4 id="_esfx_iter_query_Query_intersectBy_member_1_" data-uid="@esfx/iter-query!Query#intersectBy:member(1)">intersectBy(right, keySelector, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set intersection of this <code>Query</code> and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">intersectBy&lt;TNode, T extends TNode, K&gt;(this: Query&lt;T&gt;, right: HierarchyIterable&lt;TNode, T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">intersectBy&lt;K, R extends Iterable&lt;T&gt;&gt;(right: R, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): MergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>K</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -4027,18 +3853,8 @@ an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>A <code>Iterable</code> object.</p>
@@ -4072,7 +3888,7 @@ an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_MergeQueryFlow_type">MergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -4082,94 +3898,7 @@ an exact sequence of elements from another <code>Iterable</code><!-- -->.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_intersectBy_member_2_" data-uid="@esfx/iter-query!Query#intersectBy:member(2)">intersectBy(this, right, keySelector, keyEqualer)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the set intersection of this <code>Query</code> and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">intersectBy&lt;T, K&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): Query&lt;T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>K</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>right</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>Iterable</code> object.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>keySelector</dt>
-        <dd><span class="xref">(element: T) =&gt; K</span></dd>
-      </dl>
-      <p>
-        <p>A callback used to select the key for each element.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>keyEqualer</dt>
-        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>Equaler</code> object used to compare key equality.
- Subquery</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_intersectBy_member_3_" data-uid="@esfx/iter-query!Query#intersectBy:member(3)">intersectBy(right, keySelector, keyEqualer)</h4>
+  <h4 id="_esfx_iter_query_Query_intersectBy_member_2_" data-uid="@esfx/iter-query!Query#intersectBy:member(2)">intersectBy(right, keySelector, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set intersection of this <code>Query</code> and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -4526,14 +4255,14 @@ callback.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">materialize(): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">materialize(): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -4867,7 +4596,7 @@ last element.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">orderBy&lt;K&gt;(keySelector: (element: T) =&gt; K, comparer?: Comparison&lt;K&gt; | Comparer&lt;K&gt;): OrderedQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">orderBy&lt;K&gt;(keySelector: (element: T) =&gt; K, comparer?: Comparison&lt;K&gt; | Comparer&lt;K&gt;): OrderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -4908,7 +4637,7 @@ last element.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_OrderedQueryFlow_type">OrderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -4924,7 +4653,7 @@ last element.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">orderByDescending&lt;K&gt;(keySelector: (element: T) =&gt; K, comparer?: Comparison&lt;K&gt; | Comparer&lt;K&gt;): OrderedQuery&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">orderByDescending&lt;K&gt;(keySelector: (element: T) =&gt; K, comparer?: Comparison&lt;K&gt; | Comparer&lt;K&gt;): OrderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -4965,7 +4694,7 @@ last element.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_OrderedQueryFlow_type">OrderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -4983,7 +4712,7 @@ evaluated eagerly.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">pageBy(pageSize: number): Query&lt;Page&lt;T&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">pageBy(pageSize: number): PagedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -5003,7 +4732,7 @@ evaluated eagerly.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;<a class="xref" href="../iter-page/page.html#_esfx_iter_page_Page_class">Page</a>&lt;T&gt;&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_PagedQueryFlow_type">PagedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -5021,7 +4750,7 @@ evaluated eagerly.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">pageBy&lt;R&gt;(pageSize: number, pageSelector: (page: number, offset: number, values: Query&lt;T&gt;) =&gt; R): Query&lt;R&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">pageBy&lt;R&gt;(pageSize: number, pageSelector: (page: number, offset: number, values: UnorderedQueryFlow&lt;this, T&gt;) =&gt; R): Query&lt;R&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -5051,7 +4780,7 @@ evaluated eagerly.</p>
     <div class="property">
       <dl class="parameter">
         <dt>pageSelector</dt>
-        <dd>(page: number, offset: number, values: <a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;) =&gt; R</dd>
+        <dd>(page: number, offset: number, values: <a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;) =&gt; R</dd>
       </dl>
       <p>
         
@@ -5078,7 +4807,7 @@ patched into the results.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">patch(start: number, skipCount?: number, range?: Iterable&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">patch(start: number, skipCount?: number, range?: Iterable&lt;T&gt;): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -5120,7 +4849,7 @@ patched into the results.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -5136,7 +4865,7 @@ patched into the results.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">prepend(value: T): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">prepend(value: T): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -5156,7 +4885,7 @@ patched into the results.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -5590,7 +5319,7 @@ patched into the results.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">relativeComplement(right: Iterable&lt;T&gt;, equaler?: Equaler&lt;T&gt;): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">relativeComplement(right: Iterable&lt;T&gt;, equaler?: Equaler&lt;T&gt;): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -5621,7 +5350,7 @@ patched into the results.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -5638,7 +5367,7 @@ patched into the results.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">relativeComplementBy&lt;K&gt;(right: Iterable&lt;T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">relativeComplementBy&lt;K&gt;(right: Iterable&lt;T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -5690,7 +5419,7 @@ patched into the results.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -5764,14 +5493,14 @@ patched into the results.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">reverse(): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">reverse(): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -6213,7 +5942,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">skip(count: number): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">skip(count: number): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -6233,7 +5962,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -6251,7 +5980,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">skipRight(count: number): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">skipRight(count: number): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -6271,7 +6000,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -6289,7 +6018,7 @@ the supplied predicate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">skipUntil(predicate: (element: T) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">skipUntil(predicate: (element: T) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -6308,7 +6037,7 @@ the supplied predicate.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -6326,7 +6055,7 @@ the supplied predicate.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">skipWhile(predicate: (element: T) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">skipWhile(predicate: (element: T) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -6345,7 +6074,7 @@ the supplied predicate.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -6402,7 +6131,7 @@ evaluated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">span&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): [Query&lt;U&gt;, Query&lt;T&gt;];</code></pre>
+    <pre><code class="lang-typeScript hljs">span&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): [UnorderedQueryFlow&lt;this, U&gt;, UnorderedQueryFlow&lt;this, T&gt;];</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -6432,7 +6161,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div>[<a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;U&gt;, <a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;]</div>
+    <div>[<a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, U&gt;, <a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;]</div>
     <p>
   </div>
   
@@ -6452,7 +6181,7 @@ evaluated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">span(predicate: (element: T, offset: number) =&gt; boolean): [Query&lt;T&gt;, Query&lt;T&gt;];</code></pre>
+    <pre><code class="lang-typeScript hljs">span(predicate: (element: T, offset: number) =&gt; boolean): [UnorderedQueryFlow&lt;this, T&gt;, UnorderedQueryFlow&lt;this, T&gt;];</code></pre>
   </div>
   
   
@@ -6472,7 +6201,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div>[<a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;, <a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;]</div>
+    <div>[<a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;, <a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;]</div>
     <p>
   </div>
   
@@ -6488,7 +6217,7 @@ evaluated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">spanMap&lt;K&gt;(keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): Query&lt;Grouping&lt;K, T&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">spanMap&lt;K&gt;(keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): GroupedQueryFlow&lt;this, K, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -6527,7 +6256,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;<a class="xref" href="../iter-grouping/grouping.html#_esfx_iter_grouping_Grouping_class">Grouping</a>&lt;K, T&gt;&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_GroupedQueryFlow_type">GroupedQueryFlow</a>&lt;this, K, T&gt;</div>
     <p>
   </div>
   
@@ -6543,7 +6272,7 @@ evaluated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">spanMap&lt;K, V&gt;(keySelector: (element: T) =&gt; K, elementSelector: (element: T) =&gt; V, keyEqualer?: Equaler&lt;K&gt;): Query&lt;Grouping&lt;K, V&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">spanMap&lt;K, V&gt;(keySelector: (element: T) =&gt; K, elementSelector: (element: T) =&gt; V, keyEqualer?: Equaler&lt;K&gt;): GroupedQueryFlow&lt;this, K, V&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -6602,7 +6331,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;<a class="xref" href="../iter-grouping/grouping.html#_esfx_iter_grouping_Grouping_class">Grouping</a>&lt;K, V&gt;&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_GroupedQueryFlow_type">GroupedQueryFlow</a>&lt;this, K, V&gt;</div>
     <p>
   </div>
   
@@ -6803,7 +6532,7 @@ evaluated.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">spanUntil(predicate: (element: T, offset: number) =&gt; boolean): [Query&lt;T&gt;, Query&lt;T&gt;];</code></pre>
+    <pre><code class="lang-typeScript hljs">spanUntil(predicate: (element: T, offset: number) =&gt; boolean): [UnorderedQueryFlow&lt;this, T&gt;, UnorderedQueryFlow&lt;this, T&gt;];</code></pre>
   </div>
   
   
@@ -6823,7 +6552,7 @@ evaluated.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div>[<a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;, <a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;]</div>
+    <div>[<a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;, <a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;]</div>
     <p>
   </div>
   
@@ -6998,28 +6727,19 @@ with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_symmetricDifference_member_1_" data-uid="@esfx/iter-query!Query#symmetricDifference:member(1)">symmetricDifference(this, right, equaler)</h4>
+  <h4 id="_esfx_iter_query_Query_symmetricDifference_member_1_" data-uid="@esfx/iter-query!Query#symmetricDifference:member(1)">symmetricDifference(right, equaler)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">symmetricDifference&lt;TNode, T extends TNode&gt;(this: Query&lt;T&gt;, right: HierarchyIterable&lt;TNode, T&gt;, equaler?: Equaler&lt;T&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">symmetricDifference&lt;R extends Iterable&lt;T&gt;&gt;(right: R, equaler?: Equaler&lt;T&gt;): MergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -7030,18 +6750,8 @@ with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>A <code>Iterable</code> object.</p>
@@ -7064,7 +6774,7 @@ with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_MergeQueryFlow_type">MergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -7074,74 +6784,7 @@ with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_symmetricDifference_member_2_" data-uid="@esfx/iter-query!Query#symmetricDifference:member(2)">symmetricDifference(this, right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">symmetricDifference&lt;T&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;, equaler?: Equaler&lt;T&gt;): Query&lt;T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>right</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>Iterable</code> object.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>equaler</dt>
-        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>Equaler</code> object used to compare equality.
- Subquery</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_symmetricDifference_member_3_" data-uid="@esfx/iter-query!Query#symmetricDifference:member(3)">symmetricDifference(right, equaler)</h4>
+  <h4 id="_esfx_iter_query_Query_symmetricDifference_member_2_" data-uid="@esfx/iter-query!Query#symmetricDifference:member(2)">symmetricDifference(right, equaler)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -7188,37 +6831,28 @@ with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_symmetricDifferenceBy_member_1_" data-uid="@esfx/iter-query!Query#symmetricDifferenceBy:member(1)">symmetricDifferenceBy(this, right, keySelector, keyEqualer)</h4>
+  <h4 id="_esfx_iter_query_Query_symmetricDifferenceBy_member_1_" data-uid="@esfx/iter-query!Query#symmetricDifferenceBy:member(1)">symmetricDifferenceBy(right, keySelector, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">symmetricDifferenceBy&lt;TNode, T extends TNode, K&gt;(this: Query&lt;T&gt;, right: HierarchyIterable&lt;TNode, T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">symmetricDifferenceBy&lt;K, R extends Iterable&lt;T&gt;&gt;(right: R, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): MergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>K</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -7229,18 +6863,8 @@ with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>A <code>Iterable</code> object.</p>
@@ -7274,7 +6898,7 @@ with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_MergeQueryFlow_type">MergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -7284,94 +6908,7 @@ with the same sequence of elements in another <code>Iterable</code><!-- -->.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_symmetricDifferenceBy_member_2_" data-uid="@esfx/iter-query!Query#symmetricDifferenceBy:member(2)">symmetricDifferenceBy(this, right, keySelector, keyEqualer)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">symmetricDifferenceBy&lt;T, K&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): Query&lt;T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>K</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>right</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>Iterable</code> object.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>keySelector</dt>
-        <dd><span class="xref">(element: T) =&gt; K</span></dd>
-      </dl>
-      <p>
-        <p>A callback used to select the key for each element.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>keyEqualer</dt>
-        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>Equaler</code> object used to compare key equality.
- Subquery</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_symmetricDifferenceBy_member_3_" data-uid="@esfx/iter-query!Query#symmetricDifferenceBy:member(3)">symmetricDifferenceBy(right, keySelector, keyEqualer)</h4>
+  <h4 id="_esfx_iter_query_Query_symmetricDifferenceBy_member_2_" data-uid="@esfx/iter-query!Query#symmetricDifferenceBy:member(2)">symmetricDifferenceBy(right, keySelector, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between this and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -7446,7 +6983,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">take(count: number): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">take(count: number): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -7466,7 +7003,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -7483,7 +7020,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">takeRight(count: number): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">takeRight(count: number): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -7503,7 +7040,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -7519,7 +7056,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">takeUntil(predicate: (element: T) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">takeUntil(predicate: (element: T) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -7538,7 +7075,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -7554,7 +7091,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">takeWhile&lt;U extends T&gt;(predicate: (element: T) =&gt; element is U): Query&lt;U&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">takeWhile&lt;U extends T&gt;(predicate: (element: T) =&gt; element is U): UnorderedQueryFlow&lt;this, U&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -7583,7 +7120,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;U&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, U&gt;</div>
     <p>
   </div>
   
@@ -7599,7 +7136,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">takeWhile(predicate: (element: T) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">takeWhile(predicate: (element: T) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -7618,7 +7155,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -7634,7 +7171,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">tap(callback: (element: T, offset: number) =&gt; void): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">tap(callback: (element: T, offset: number) =&gt; void): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -7653,7 +7190,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -7669,115 +7206,7 @@ count.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">through&lt;RNode, R extends RNode&gt;(callback: (source: this) =&gt; OrderedHierarchyIterable&lt;RNode, R&gt;): OrderedHierarchyQuery&lt;RNode, R&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>RNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>R</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>callback</dt>
-        <dd>(source: this) =&gt; <a class="xref" href="../iter-hierarchy/orderedhierarchyiterable-interface.html#_esfx_iter_hierarchy_OrderedHierarchyIterable_interface">OrderedHierarchyIterable</a>&lt;RNode, R&gt;</dd>
-      </dl>
-      <p>
-        <p>A callback function.</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_class">OrderedHierarchyQuery</a>&lt;RNode, R&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_through_member_2_" data-uid="@esfx/iter-query!Query#through:member(2)">through(callback)</h4>
-  <div class="markdown level1 summary"><p>Pass the entire <code>Query</code> to the provided callback, creating a new <code>Query</code> from the result.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">through&lt;RNode, R extends RNode&gt;(callback: (source: this) =&gt; HierarchyIterable&lt;RNode, R&gt;): HierarchyQuery&lt;RNode, R&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>RNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>R</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>callback</dt>
-        <dd>(source: this) =&gt; <a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;RNode, R&gt;</dd>
-      </dl>
-      <p>
-        <p>A callback function.</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;RNode, R&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_through_member_3_" data-uid="@esfx/iter-query!Query#through:member(3)">through(callback)</h4>
-  <div class="markdown level1 summary"><p>Pass the entire <code>Query</code> to the provided callback, creating a new <code>Query</code> from the result.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">through&lt;R&gt;(callback: (source: this) =&gt; OrderedIterable&lt;R&gt;): OrderedQuery&lt;R&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">through&lt;R extends Iterable&lt;any&gt;&gt;(callback: (source: this) =&gt; R): QueryFlow&lt;R, R extends Iterable&lt;infer U&gt; ? U : unknown&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -7795,7 +7224,7 @@ count.</p>
     <div class="property">
       <dl class="parameter">
         <dt>callback</dt>
-        <dd>(source: this) =&gt; <a class="xref" href="../iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a>&lt;R&gt;</dd>
+        <dd><span class="xref">(source: this) =&gt; R</span></dd>
       </dl>
       <p>
         <p>A callback function.</p>
@@ -7806,52 +7235,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a>&lt;R&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_through_member_4_" data-uid="@esfx/iter-query!Query#through:member(4)">through(callback)</h4>
-  <div class="markdown level1 summary"><p>Pass the entire <code>Query</code> to the provided callback, creating a new <code>Query</code> from the result.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">through&lt;R&gt;(callback: (source: this) =&gt; Iterable&lt;R&gt;): Query&lt;R&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>R</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>callback</dt>
-        <dd>(source: this) =&gt; <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;R&gt;</dd>
-      </dl>
-      <p>
-        <p>A callback function.</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;R&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_QueryFlow_type">QueryFlow</a>&lt;R, R extends <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;infer U&gt; ? U : unknown&gt;</div>
     <p>
   </div>
   
@@ -8158,13 +7542,13 @@ count.</p>
   
   
   
-  <h4 id="_esfx_iter_query_Query_toHierarchy_member_1_" data-uid="@esfx/iter-query!Query#toHierarchy:member(1)">toHierarchy(this, provider)</h4>
+  <h4 id="_esfx_iter_query_Query_toHierarchy_member_1_" data-uid="@esfx/iter-query!Query#toHierarchy:member(1)">toHierarchy(provider)</h4>
   <div class="markdown level1 summary"><p>Creates a <code>HierarchyQuery</code> using the provided <code>HierarchyProvider</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHierarchy&lt;TNode, T extends TNode&gt;(this: OrderedQuery&lt;T&gt;, provider: HierarchyProvider&lt;TNode&gt;): OrderedHierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">toHierarchy&lt;TNode extends (T extends TNode ? unknown : never)&gt;(provider: HierarchyProvider&lt;TNode&gt;): HierarchyQueryFlow&lt;this, TNode, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -8177,27 +7561,8 @@ count.</p>
         
       </p>
     </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
   
   <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
     <div class="property">
       <dl class="parameter">
         <dt>provider</dt>
@@ -8213,210 +7578,7 @@ count.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_class">OrderedHierarchyQuery</a>&lt;TNode, T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_toHierarchy_member_2_" data-uid="@esfx/iter-query!Query#toHierarchy:member(2)">toHierarchy(this, provider)</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>HierarchyQuery</code> using the provided <code>HierarchyProvider</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHierarchy(this: OrderedQuery&lt;T&gt;, provider: HierarchyProvider&lt;T&gt;): OrderedHierarchyQuery&lt;T&gt;;</code></pre>
-  </div>
-  
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="orderedquery.html#_esfx_iter_query_OrderedQuery_class">OrderedQuery</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>provider</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>HierarchyProvider</code><!-- -->.
- Hierarchy</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="orderedhierarchyquery.html#_esfx_iter_query_OrderedHierarchyQuery_class">OrderedHierarchyQuery</a>&lt;T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_toHierarchy_member_3_" data-uid="@esfx/iter-query!Query#toHierarchy:member(3)">toHierarchy(this, provider)</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>HierarchyQuery</code> using the provided <code>HierarchyProvider</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHierarchy&lt;TNode, T extends TNode&gt;(this: Query&lt;T&gt;, provider: HierarchyProvider&lt;TNode&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>provider</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>HierarchyProvider</code><!-- -->.
- Hierarchy</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_toHierarchy_member_4_" data-uid="@esfx/iter-query!Query#toHierarchy:member(4)">toHierarchy(this, provider)</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>HierarchyQuery</code> using the provided <code>HierarchyProvider</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHierarchy&lt;T&gt;(this: Query&lt;T&gt;, provider: HierarchyProvider&lt;T&gt;): HierarchyQuery&lt;T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>provider</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>HierarchyProvider</code><!-- -->.
- Hierarchy</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_toHierarchy_member_5_" data-uid="@esfx/iter-query!Query#toHierarchy:member(5)">toHierarchy(provider)</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>HierarchyQuery</code> using the provided <code>HierarchyProvider</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">toHierarchy(provider: HierarchyProvider&lt;T&gt;): HierarchyQuery&lt;T&gt;;</code></pre>
-  </div>
-  
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>provider</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>HierarchyProvider</code><!-- -->.
- Hierarchy</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_HierarchyQueryFlow_type">HierarchyQueryFlow</a>&lt;this, TNode, T&gt;</div>
     <p>
   </div>
   
@@ -9602,28 +8764,19 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   
   
-  <h4 id="_esfx_iter_query_Query_union_member_1_" data-uid="@esfx/iter-query!Query#union:member(1)">union(this, right, equaler)</h4>
+  <h4 id="_esfx_iter_query_Query_union_member_1_" data-uid="@esfx/iter-query!Query#union:member(1)">union(right, equaler)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set union of this <code>Query</code> and another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">union&lt;TNode, T extends TNode&gt;(this: Query&lt;T&gt;, right: HierarchyIterable&lt;TNode, T&gt;, equaler?: Equaler&lt;T&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">union&lt;R extends Iterable&lt;T&gt;&gt;(right: R, equaler?: Equaler&lt;T&gt;): MergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -9634,18 +8787,8 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>A <code>Iterable</code> object.</p>
@@ -9668,7 +8811,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_MergeQueryFlow_type">MergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -9678,74 +8821,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   
   
-  <h4 id="_esfx_iter_query_Query_union_member_2_" data-uid="@esfx/iter-query!Query#union:member(2)">union(this, right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the set union of this <code>Query</code> and another <code>Iterable</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">union&lt;T&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;, equaler?: Equaler&lt;T&gt;): Query&lt;T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>right</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>Iterable</code> object.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>equaler</dt>
-        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>Equaler</code> object used to compare equality.
- Subquery</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_union_member_3_" data-uid="@esfx/iter-query!Query#union:member(3)">union(right, equaler)</h4>
+  <h4 id="_esfx_iter_query_Query_union_member_2_" data-uid="@esfx/iter-query!Query#union:member(2)">union(right, equaler)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set union of this <code>Query</code> and another <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -9792,37 +8868,28 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   
   
-  <h4 id="_esfx_iter_query_Query_unionBy_member_1_" data-uid="@esfx/iter-query!Query#unionBy:member(1)">unionBy(this, right, keySelector, keyEqualer)</h4>
+  <h4 id="_esfx_iter_query_Query_unionBy_member_1_" data-uid="@esfx/iter-query!Query#unionBy:member(1)">unionBy(right, keySelector, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set union of this <code>Query</code> and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">unionBy&lt;TNode, T extends TNode, K&gt;(this: Query&lt;T&gt;, right: HierarchyIterable&lt;TNode, T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): HierarchyQuery&lt;TNode, T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">unionBy&lt;K, R extends Iterable&lt;T&gt;&gt;(right: R, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): MergeQueryFlow&lt;this, R, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>TNode</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>K</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>R</dt>
         <dd></dd>
       </dl>
       <p>
@@ -9833,18 +8900,8 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
         <dt>right</dt>
-        <dd><a class="xref" href="../iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
+        <dd><span class="xref">R</span></dd>
       </dl>
       <p>
         <p>A <code>Iterable</code> object.</p>
@@ -9878,7 +8935,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="hierarchyquery.html#_esfx_iter_query_HierarchyQuery_class">HierarchyQuery</a>&lt;TNode, T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_MergeQueryFlow_type">MergeQueryFlow</a>&lt;this, R, T&gt;</div>
     <p>
   </div>
   
@@ -9888,94 +8945,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   
   
-  <h4 id="_esfx_iter_query_Query_unionBy_member_2_" data-uid="@esfx/iter-query!Query#unionBy:member(2)">unionBy(this, right, keySelector, keyEqualer)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the set union of this <code>Query</code> and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">unionBy&lt;T, K&gt;(this: Query&lt;T&gt;, right: Iterable&lt;T&gt;, keySelector: (element: T) =&gt; K, keyEqualer?: Equaler&lt;K&gt;): Query&lt;T&gt;;</code></pre>
-  </div>
-  
-  <h5 class="typeParameters">Type Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>T</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>K</dt>
-        <dd></dd>
-      </dl>
-      <p>
-        
-      </p>
-    </div>
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>this</dt>
-        <dd><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>right</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
-      </dl>
-      <p>
-        <p>A <code>Iterable</code> object.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>keySelector</dt>
-        <dd><span class="xref">(element: T) =&gt; K</span></dd>
-      </dl>
-      <p>
-        <p>A callback used to select the key for each element.</p>
-
-        
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>keyEqualer</dt>
-        <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>Equaler</code> object used to compare key equality.
- Subquery</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_iter_query_Query_unionBy_member_3_" data-uid="@esfx/iter-query!Query#unionBy:member(3)">unionBy(right, keySelector, keyEqualer)</h4>
+  <h4 id="_esfx_iter_query_Query_unionBy_member_2_" data-uid="@esfx/iter-query!Query#unionBy:member(2)">unionBy(right, keySelector, keyEqualer)</h4>
   <div class="markdown level1 summary"><p>Creates a subquery for the set union of this <code>Query</code> and another <code>Iterable</code><!-- -->, where set identity is determined by the selected key.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -10127,7 +9097,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">where&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): Query&lt;U&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">where&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): UnorderedQueryFlow&lt;this, U&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -10156,7 +9126,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;U&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, U&gt;</div>
     <p>
   </div>
   
@@ -10173,7 +9143,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">where(predicate: (element: T, offset: number) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">where(predicate: (element: T, offset: number) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -10192,7 +9162,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -10209,7 +9179,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -10249,7 +9219,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -10267,14 +9237,14 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereDefined(): Query&lt;NonNullable&lt;T&gt;&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereDefined(): UnorderedQueryFlow&lt;this, NonNullable&lt;T&gt;&gt;;</code></pre>
   </div>
   
   
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;<span class="xref">NonNullable</span>&lt;T&gt;&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, <span class="xref">NonNullable</span>&lt;T&gt;&gt;</div>
     <p>
   </div>
   
@@ -10291,7 +9261,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -10320,7 +9290,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -10337,7 +9307,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereNot&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): Query&lt;U&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereNot&lt;U extends T&gt;(predicate: (element: T, offset: number) =&gt; element is U): UnorderedQueryFlow&lt;this, U&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -10366,7 +9336,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;U&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, U&gt;</div>
     <p>
   </div>
   
@@ -10383,7 +9353,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereNot(predicate: (element: T, offset: number) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereNot(predicate: (element: T, offset: number) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   
@@ -10402,7 +9372,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -10419,7 +9389,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereNotBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; boolean): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereNotBy&lt;K&gt;(keySelector: (element: T) =&gt; K, predicate: (key: K, offset: number) =&gt; boolean): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -10459,7 +9429,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
@@ -10476,7 +9446,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">whereNotDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): Query&lt;T&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">whereNotDefinedBy&lt;K&gt;(keySelector: (element: T) =&gt; K): UnorderedQueryFlow&lt;this, T&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -10505,7 +9475,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="query.html#_esfx_iter_query_Query_class">Query</a>&lt;T&gt;</div>
+    <div><a class="xref" href="../iter-query.html#_esfx_iter_query_UnorderedQueryFlow_type">UnorderedQueryFlow</a>&lt;this, T&gt;</div>
     <p>
   </div>
   
