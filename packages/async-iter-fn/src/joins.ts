@@ -14,14 +14,14 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
+import { toAsyncIterable } from '@esfx/async-iter-fromsync';
 import { Equaler } from "@esfx/equatable";
+import { identity, tuple } from '@esfx/fn';
+import * as assert from "@esfx/internal-assert";
+import { defaultIfEmpty, empty, map, union } from "@esfx/iter-fn";
 import { Grouping } from "@esfx/iter-grouping";
 import { Lookup } from "@esfx/iter-lookup";
-import { identity, tuple } from '@esfx/fn';
-import { empty, union, map, defaultIfEmpty } from "@esfx/iter-fn";
 import { createGroupingsAsync } from './internal/utils';
-import { toAsyncIterable } from '@esfx/async-iter-fromsync/dist';
 
 class AsyncGroupJoinIterable<O, I, K, R> implements AsyncIterable<R> {
     private _outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>;

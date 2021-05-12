@@ -14,19 +14,19 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
 import { AsyncHierarchyIterable, AsyncOrderedHierarchyIterable } from '@esfx/async-iter-hierarchy';
-import { AsyncOrderedIterable } from '@esfx/async-iter-ordered/dist';
+import { AsyncOrderedIterable } from '@esfx/async-iter-ordered';
 import { HashMap } from '@esfx/collections-hashmap';
 import { HashSet } from '@esfx/collections-hashset';
 import { Equaler } from '@esfx/equatable';
 import { T } from '@esfx/fn';
+import * as assert from "@esfx/internal-assert";
 import { isAsyncIterable, isIterable, isPrimitive } from '@esfx/internal-guards';
-import { Hierarchical, HierarchyIterable, HierarchyProvider } from "@esfx/iter-hierarchy";
-import { OrderedIterable } from '@esfx/iter-ordered';
-import { Axis } from '@esfx/iter-hierarchy/axis';
-import { toArrayAsync } from './scalars';
 import { Index } from '@esfx/interval';
+import { Hierarchical, HierarchyIterable, HierarchyProvider } from "@esfx/iter-hierarchy";
+import { Axis } from '@esfx/iter-hierarchy/axis';
+import { OrderedIterable } from '@esfx/iter-ordered';
+import { toArrayAsync } from './scalars';
 
 function isHierarchyElement<T>(provider: HierarchyProvider<T>, value: T) {
     return value !== undefined && (provider.owns === undefined || provider.owns(value));
