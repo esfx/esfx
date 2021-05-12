@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-page",
-    "version": "1.0.0-pre.19",
+    "version": "1.0.0-pre.20",
     "description": "A Symbol-based API for defining a paged Iterable.",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -16,8 +16,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/internal-assert": "^1.0.0-pre.19",
-        "@esfx/iter-hierarchy": "^1.0.0-pre.19",
+        "@esfx/internal-assert": "^1.0.0-pre.20",
+        "@esfx/iter-hierarchy": "^1.0.0-pre.20",
         "tslib": "^2.1.0"
     },
     "publishConfig": {

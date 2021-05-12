@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-mutex",
-    "version": "1.0.0-pre.19",
+    "version": "1.0.0-pre.20",
     "description": "Provides 'Mutex', a thread synchronization primitive for use with Workers",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -20,7 +20,7 @@
         "@esfx/threading-lockable": "^1.0.0-pre.19"
     },
     "devDependencies": {
-        "@esfx/internal-ts-worker": "^1.0.0-pre.19"
+        "@esfx/internal-ts-worker": "^1.0.0-pre.20"
     },
     "publishConfig": {
         "access": "public"

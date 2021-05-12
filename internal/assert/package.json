@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-assert",
-    "version": "1.0.0-pre.19",
+    "version": "1.0.0-pre.20",
     "description": "This package provides internal utilities for '@esfx' and is not intended for use in user-code.",
     "type": "commonjs",
     "main": "./dist/index.js",
