@@ -14,11 +14,11 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
 import { toAsyncIterable } from "@esfx/async-iter-fromsync";
 import { AsyncHierarchyIterable } from "@esfx/async-iter-hierarchy";
 import { Equaler } from "@esfx/equatable";
 import { identity } from "@esfx/fn";
+import * as assert from "@esfx/internal-assert";
 import { Grouping, HierarchyGrouping } from "@esfx/iter-grouping";
 import { HierarchyIterable } from "@esfx/iter-hierarchy";
 import { HierarchyPage, Page } from "@esfx/iter-page";

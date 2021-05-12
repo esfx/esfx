@@ -14,20 +14,20 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
-import { Equaler, Comparer, Comparison, EqualityComparison } from "@esfx/equatable";
-import { IndexedCollection } from '@esfx/collection-core';
-import { HashSet } from "@esfx/collections-hashset";
-import { HashMap } from "@esfx/collections-hashmap";
-import { Lookup } from "@esfx/iter-lookup";
-import { identity, T } from '@esfx/fn';
 import { toAsyncIterable } from '@esfx/async-iter-fromsync';
-import { consumeAsync, emptyAsync, ConsumeAsyncOptions } from './queries';
-import { prependAsync, takeRightAsync } from './subqueries';
-import { createGroupingsAsync, flowHierarchy } from './internal/utils';
 import { AsyncHierarchyIterable } from '@esfx/async-iter-hierarchy';
-import { HierarchyIterable } from '@esfx/iter-hierarchy';
+import { IndexedCollection } from '@esfx/collection-core';
+import { HashMap } from "@esfx/collections-hashmap";
+import { HashSet } from "@esfx/collections-hashset";
+import { Comparer, Comparison, Equaler, EqualityComparison } from "@esfx/equatable";
+import { identity, T } from '@esfx/fn';
+import * as assert from "@esfx/internal-assert";
 import { Index } from "@esfx/interval";
+import { HierarchyIterable } from '@esfx/iter-hierarchy';
+import { Lookup } from "@esfx/iter-lookup";
+import { createGroupingsAsync, flowHierarchy } from './internal/utils';
+import { consumeAsync, ConsumeAsyncOptions, emptyAsync } from './queries';
+import { prependAsync, takeRightAsync } from './subqueries';
 
 /**
  * Computes a scalar value by applying an accumulator callback over each element.

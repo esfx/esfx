@@ -15,10 +15,11 @@
 */
 
 export * from "@esfx/fn";
-export * from "./queries";
-export * from "./subqueries";
 export * from "./grouping";
-export * from "./ordering";
-export * from "./joins";
-export * from "./scalars";
 export * from "./hierarchy";
+export * from "./joins";
+export * from "./ordering";
+export * from "./queries";
+export * from "./scalars";
+export * from "./subqueries";
+

@@ -14,12 +14,12 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
 import { AsyncHierarchyIterable } from '@esfx/async-iter-hierarchy';
 import { HashMap } from "@esfx/collections-hashmap";
 import { HashSet } from "@esfx/collections-hashset";
 import { Equaler } from "@esfx/equatable";
 import { identity, isDefined } from '@esfx/fn';
+import * as assert from "@esfx/internal-assert";
 import { isPrimitive } from "@esfx/internal-guards";
 import { HierarchyIterable } from '@esfx/iter-hierarchy';
 import { flowHierarchy } from './internal/utils';
@@ -203,6 +203,20 @@ export function filterByAsync<T, K>(source: AsyncIterable<T> | Iterable<PromiseL
 }
 
 export { filterByAsync as whereByAsync };
+export { filterAsync as whereAsync };
+export { filterDefinedAsync as whereDefinedAsync };
+export { filterDefinedByAsync as whereDefinedByAsync };
+export { filterNotByAsync as whereNotByAsync };
+export { filterNotAsync as whereNotAsync };
+export { filterNotDefinedByAsync as whereNotDefinedByAsync };
+export { mapAsync as selectAsync };
+export { flatMapAsync as selectManyAsync };
+export { dropAsync as skipAsync };
+export { dropRightAsync as skipRightAsync };
+export { dropWhileAsync as skipWhileAsync };
+export { dropUntilAsync as skipUntilAsync, dropUntilAsync as dropWhileNotAsync, dropUntilAsync as skipWhileNotAsync };
+export { exceptByAsync as relativeComplementByAsync };
+export { exceptAsync as relativeComplementAsync };
 
 /**
  * Creates an `AsyncIterable` whose elements match the supplied predicate.
@@ -242,7 +256,6 @@ export function filterAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T
     return filterByAsync(source, identity, predicate);
 }
 
-export { filterAsync as whereAsync };
 
 /**
  * Creates an `AsyncIterable` whose elements are neither `null` nor `undefined`.
@@ -262,7 +275,6 @@ export function filterDefinedAsync<T>(source: AsyncIterable<T> | Iterable<Promis
     return filterByAsync(source, identity, isDefined);
 }
 
-export { filterDefinedAsync as whereDefinedAsync };
 
 /**
  * Creates an `AsyncIterable` where the selected key for each element is neither `null` nor `undefined`.
@@ -284,7 +296,6 @@ export function filterDefinedByAsync<T, K>(source: AsyncIterable<T> | Iterable<P
     return filterByAsync(source, keySelector, isDefined);
 }
 
-export { filterDefinedByAsync as whereDefinedByAsync };
 
 /**
  * Creates an `AsyncIterable` where the selected key for each element does not match the supplied predicate.
@@ -311,7 +322,6 @@ export function filterNotByAsync<T, K>(source: AsyncIterable<T> | Iterable<Promi
     return flowHierarchy(new AsyncFilterByIterable(source, keySelector, predicate, /*invert*/ false), source);
 }
 
-export { filterNotByAsync as whereNotByAsync };
 
 /**
  * Creates an `AsyncIterable` whose elements do not match the supplied predicate.
@@ -351,7 +361,6 @@ export function filterNotAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLik
     return filterNotByAsync(source, identity, predicate);
 }
 
-export { filterNotAsync as whereNotAsync };
 
 /**
  * Creates an `AsyncIterable` where the selected key for each element is either `null` or `undefined`.
@@ -373,7 +382,6 @@ export function filterNotDefinedByAsync<T, K>(source: AsyncIterable<T> | Iterabl
     return filterNotByAsync(source, keySelector, isDefined);
 }
 
-export { filterNotDefinedByAsync as whereNotDefinedByAsync };
 
 class AsyncMapIterable<T, U> implements AsyncIterable<U> {
     private _source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>;
@@ -406,7 +414,6 @@ export function mapAsync<T, U>(source: AsyncIterable<T> | Iterable<PromiseLike<T
     return new AsyncMapIterable(source, selector);
 }
 
-export { mapAsync as selectAsync };
 
 class AsyncFlatMapIterable<T, U, R> implements AsyncIterable<U | R> {
     private _source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>;
@@ -458,7 +465,6 @@ export function flatMapAsync<T, U, R>(source: AsyncIterable<T> | Iterable<Promis
     return new AsyncFlatMapIterable(source, projection, resultSelector);
 }
 
-export { flatMapAsync as selectManyAsync };
 
 class AsyncDropIterable<T> implements AsyncIterable<T> {
     private _source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>;
@@ -511,7 +517,6 @@ export function dropAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> 
     return flowHierarchy(new AsyncDropIterable(source, count), source);
 }
 
-export { dropAsync as skipAsync };
 
 class AsyncDropRightIterable<T> implements AsyncIterable<T> {
     private _source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>;
@@ -563,7 +568,6 @@ export function dropRightAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLik
     return flowHierarchy(new AsyncDropRightIterable(source, count), source);
 }
 
-export { dropRightAsync as skipRightAsync };
 
 class AsyncDropWhileIterable<T> implements AsyncIterable<T> {
     private _source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>;
@@ -618,7 +622,6 @@ export function dropWhileAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLik
     return flowHierarchy(new AsyncDropWhileIterable(source, predicate, /*invert*/ false), source);
 }
 
-export { dropWhileAsync as skipWhileAsync };
 
 /**
  * Creates an `AsyncIterable` containing all elements except the first elements that do not match
@@ -644,7 +647,6 @@ export function dropUntilAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLik
     return flowHierarchy(new AsyncDropWhileIterable(source, predicate, /*invert*/ true), source);
 }
 
-export { dropUntilAsync as skipUntilAsync, dropUntilAsync as dropWhileNotAsync, dropUntilAsync as skipWhileNotAsync };
 
 class AsyncTakeIterable<T> implements AsyncIterable<T> {
     private _source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>;
@@ -1095,7 +1097,6 @@ export function exceptByAsync<T, K>(left: AsyncIterable<T> | Iterable<PromiseLik
     return flowHierarchy(new AsyncExceptByIterable(left, right, keySelector, keyEqualer), left);
 }
 
-export { exceptByAsync as relativeComplementByAsync };
 
 /**
  * Creates an `AsyncIterable` for the set difference between two `AsyncIterable` or `Iterable` objects.
@@ -1122,7 +1123,6 @@ export function exceptAsync<T>(left: AsyncIterable<T> | Iterable<PromiseLike<T> 
     return exceptByAsync(left, right, identity, equaler);
 }
 
-export { exceptAsync as relativeComplementAsync };
 
 /**
  * Creates an `AsyncIterable` with every instance of the specified value removed.

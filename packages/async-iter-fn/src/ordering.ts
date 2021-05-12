@@ -14,15 +14,15 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
-import { Comparer, Comparison } from "@esfx/equatable";
-import { AsyncOrderedIterable } from "@esfx/async-iter-ordered";
-import { OrderedIterable } from "@esfx/iter-ordered";
 import { AsyncHierarchyIterable, AsyncOrderedHierarchyIterable } from '@esfx/async-iter-hierarchy';
-import { HierarchyIterable, OrderedHierarchyIterable } from '@esfx/iter-hierarchy';
+import { AsyncOrderedIterable } from "@esfx/async-iter-ordered";
 import { toAsyncOrderedIterable } from "@esfx/async-iter-ordered-fromsync";
-import { toArrayAsync } from './scalars';
+import { Comparer, Comparison } from "@esfx/equatable";
+import * as assert from "@esfx/internal-assert";
+import { HierarchyIterable, OrderedHierarchyIterable } from '@esfx/iter-hierarchy';
+import { OrderedIterable } from "@esfx/iter-ordered";
 import { flowHierarchy } from './internal/utils';
+import { toArrayAsync } from './scalars';
 
 class AsyncReverseIterable<T> implements AsyncIterable<T> {
     private _source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>;
