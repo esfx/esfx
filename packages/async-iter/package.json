@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter",
-    "version": "1.0.0-pre.21",
+    "version": "1.0.0-pre.22",
     "description": "An iteration and query API for ECMAScript async iterables.",
     "main": "./dist/index.js",
     "type": "commonjs",
@@ -16,10 +16,10 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-iter-fn": "^1.0.0-pre.21",
+        "@esfx/async-iter-fn": "^1.0.0-pre.22",
         "@esfx/async-iter-hierarchy": "^1.0.0-pre.20",
         "@esfx/async-iter-ordered": "^1.0.0-pre.19",
-        "@esfx/async-iter-query": "^1.0.0-pre.21",
+        "@esfx/async-iter-query": "^1.0.0-pre.22",
         "@esfx/collection-core": "^1.0.0-pre.19",
         "@esfx/collections-hashmap": "^1.0.0-pre.19",
         "@esfx/collections-hashset": "^1.0.0-pre.19",
