@@ -1,9 +1,12 @@
 .vscode
 __tests__
+__perf__
 obj
-docsrc
 src
-internal
+dist/types/internal/*.d.ts
+dist/types/internal/*.d.ts.map
+dist/cjs/internal/murmur3.*
+dist/esm/internal/murmur3.*
 api-extractor.json
 tsconfig*.json
 *.tsbuildinfo

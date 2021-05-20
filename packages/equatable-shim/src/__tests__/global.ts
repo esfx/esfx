@@ -1,29 +1,5 @@
-import "..";
-import { Equatable, Comparable } from '@esfx/equatable';
-import { pathToFileURL, fileURLToPath, URL } from "url";
-
-let hashUnknown: typeof import("@esfx/equatable/src/internal/hashCode").hashUnknown;
-
-beforeEach(async () => {
-    // Import `hashUnknown` via the explicit path to hashCode to bypass `"exports"` maps.
-    if (!hashUnknown) {
-        const hashCodePath = fileURLToPath(new URL("./internal/hashCode.js", pathToFileURL(require.resolve("@esfx/equatable"))));
-        const hashCode = (await import(hashCodePath)) as typeof import("@esfx/equatable/src/internal/hashCode");
-        hashUnknown = hashCode.hashUnknown;
-    }
-
-    const state = hashUnknown.getState();
-    hashUnknown.setState({
-        objectSeed: 0x1dc8529e,
-        stringSeed: 0x6744b005,
-        bigIntSeed: 0x6c9503bc,
-        localSymbolSeed: 0x78819b01,
-        globalSymbolSeed: 0x1875c170,
-    });
-    afterEach(() => {
-        hashUnknown.setState(state);
-    });
-});
+import "../index.js";
+import { Equatable, Comparable, rawHash } from '@esfx/equatable';
 
 describe("Object", () => {
     describe("Equatable", () => {
@@ -35,7 +11,7 @@ describe("Object", () => {
         });
         it("Equatable.hash", () => {
             const a = {};
-            expect(a[Equatable.hash]()).toBe(-467054833);
+            expect(a[Equatable.hash]()).toBe(rawHash(a));
         });
     });
 });
@@ -47,7 +23,7 @@ describe("String", () => {
             expect("a"[Equatable.equals]("b")).toBe(false);
         });
         it("Equatable.hash", () => {
-            expect("abc"[Equatable.hash]()).toBe(38704718);
+            expect("abc"[Equatable.hash]()).toBe(rawHash("abc"));
         });
     });
     describe("Comparable", () => {
@@ -69,7 +45,7 @@ describe("Symbol", () => {
         });
         it("Equatable.hash", () => {
             const a = Symbol("a");
-            expect(a[Equatable.hash]()).toBe(767180218);
+            expect(a[Equatable.hash]()).toBe(rawHash(a));
         });
     });
 });
@@ -81,7 +57,7 @@ describe("Number", () => {
             expect(1[Equatable.equals](0)).toBe(false);
         });
         it("Equatable.hash", () => {
-            expect(1[Equatable.hash]()).toBe(1);
+            expect(1[Equatable.hash]()).toBe(rawHash(1));
         });
     });
     describe("Comparable", () => {
@@ -100,7 +76,7 @@ describe("Boolean", () => {
             expect(true[Equatable.equals](false)).toBe(false);
         });
         it("Equatable.hash", () => {
-            expect(true[Equatable.hash]()).toBe(1);
+            expect(true[Equatable.hash]()).toBe(rawHash(true));
         });
     });
     describe("Comparable", () => {
@@ -120,7 +96,7 @@ if (typeof BigInt === "function") {
                 expect(BigInt(1)[Equatable.equals](BigInt(0))).toBe(false);
             });
             it("Equatable.hash", () => {
-                expect(BigInt(123)[Equatable.hash]()).toBe(251);
+                expect(BigInt(123)[Equatable.hash]()).toBe(rawHash(BigInt(123)));
             });
         });
         describe("Comparable", () => {

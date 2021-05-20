@@ -4,6 +4,8 @@
         "rootDir": "src",
         "outDir": "dist/cjs",
         "declarationDir": "dist/types",
+        "lib": ["es2020"],
+        "stripInternal": true
     },
     "include": ["src/**/*.ts"],
     "references": [

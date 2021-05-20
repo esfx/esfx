@@ -1,0 +1,392 @@
+[
+  {
+    "date": "Sat, 15 May 2021 01:14:46 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 58
+    },
+    "tests": [
+      {
+        "name": "normalizePathUsingRegExp",
+        "samplesCount": 94,
+        "errorPc": 0.8273099535098385,
+        "opsForSeconds": 52199.842183032066,
+        "durationMicroSeconds": 19.1571460406648,
+        "runSlowerRatio": 4.435320969957298
+      },
+      {
+        "name": "normalizePathUsingIndexOfAndRegExp",
+        "samplesCount": 91,
+        "errorPc": 1.1536013084021326,
+        "opsForSeconds": 48657.795832804186,
+        "durationMicroSeconds": 20.551691314505014,
+        "runSlowerRatio": 4.758190351622445
+      },
+      {
+        "name": "normalizePathUsingIndexOf",
+        "samplesCount": 83,
+        "errorPc": 3.462679363898852,
+        "opsForSeconds": 90200.75825670776,
+        "durationMicroSeconds": 11.086381304623181,
+        "runSlowerRatio": 2.5667528648036226
+      },
+      {
+        "name": "normalizePathUsingIndexOfAndArray",
+        "samplesCount": 96,
+        "errorPc": 1.674353220664647,
+        "opsForSeconds": 231523.0546628637,
+        "durationMicroSeconds": 4.319224283975379,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Sat, 15 May 2021 01:18:18 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 59
+    },
+    "tests": [
+      {
+        "name": "normalizePathUsingRegExp",
+        "samplesCount": 56,
+        "errorPc": 2.3732882590277513,
+        "opsForSeconds": 42.34962473821063,
+        "durationMicroSeconds": 23612.960119047617,
+        "runSlowerRatio": 4.199912570287785
+      },
+      {
+        "name": "normalizePathUsingIndexOfAndRegExp",
+        "samplesCount": 54,
+        "errorPc": 1.0313808091398955,
+        "opsForSeconds": 41.11984151905426,
+        "durationMicroSeconds": 24319.15987654321,
+        "runSlowerRatio": 4.325520593326261
+      },
+      {
+        "name": "normalizePathUsingIndexOf",
+        "samplesCount": 69,
+        "errorPc": 2.441162072862616,
+        "opsForSeconds": 66.1960146017855,
+        "durationMicroSeconds": 15106.649637681163,
+        "runSlowerRatio": 2.6869400273560253
+      },
+      {
+        "name": "normalizePathUsingIndexOfAndArray",
+        "samplesCount": 81,
+        "errorPc": 1.0714102811792214,
+        "opsForSeconds": 177.8647212849814,
+        "durationMicroSeconds": 5622.250397805213,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Sat, 15 May 2021 01:19:59 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 59
+    },
+    "tests": [
+      {
+        "name": "normalizePathUsingRegExp",
+        "samplesCount": 57,
+        "errorPc": 2.1270475992173514,
+        "opsForSeconds": 43.13203444700834,
+        "durationMicroSeconds": 23184.623976608193,
+        "runSlowerRatio": 4.220162725813946
+      },
+      {
+        "name": "normalizePathUsingIndexOfAndRegExp",
+        "samplesCount": 55,
+        "errorPc": 0.7902718430029334,
+        "opsForSeconds": 41.756592018280585,
+        "durationMicroSeconds": 23948.31454545454,
+        "runSlowerRatio": 4.359172893757696
+      },
+      {
+        "name": "normalizePathUsingIndexOfAndRegExp2",
+        "samplesCount": 53,
+        "errorPc": 1.606586529296179,
+        "opsForSeconds": 39.73787895347222,
+        "durationMicroSeconds": 25164.906289308175,
+        "runSlowerRatio": 4.580622037600796
+      },
+      {
+        "name": "normalizePathUsingIndexOf",
+        "samplesCount": 70,
+        "errorPc": 1.970170633959432,
+        "opsForSeconds": 68.6517196998341,
+        "durationMicroSeconds": 14566.277499999997,
+        "runSlowerRatio": 2.651415068080626
+      },
+      {
+        "name": "normalizePathUsingIndexOfAndArray",
+        "samplesCount": 84,
+        "errorPc": 0.974887175592107,
+        "opsForSeconds": 182.0242040617877,
+        "durationMicroSeconds": 5493.774880952383,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Sat, 15 May 2021 04:30:45 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 59
+    },
+    "tests": [
+      {
+        "name": "normalizeSlashesUsingRegExp",
+        "samplesCount": 53,
+        "errorPc": 4.70190834002914,
+        "opsForSeconds": 40.979143806511445,
+        "durationMicroSeconds": 24402.657232704394,
+        "runSlowerRatio": 4.364393768621323
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndRegExp",
+        "samplesCount": 52,
+        "errorPc": 2.1088643421738684,
+        "opsForSeconds": 39.45609070773148,
+        "durationMicroSeconds": 25344.629487179493,
+        "runSlowerRatio": 4.53286467727858
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndRegExp2",
+        "samplesCount": 50,
+        "errorPc": 2.554594072702885,
+        "opsForSeconds": 37.40713771579897,
+        "durationMicroSeconds": 26732.866,
+        "runSlowerRatio": 4.781149555771502
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOf",
+        "samplesCount": 67,
+        "errorPc": 2.976034802373737,
+        "opsForSeconds": 64.69929678060723,
+        "durationMicroSeconds": 15456.118532338314,
+        "runSlowerRatio": 2.7643131961549128
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndArray",
+        "samplesCount": 82,
+        "errorPc": 0.8474377029075657,
+        "opsForSeconds": 178.84911987257564,
+        "durationMicroSeconds": 5591.305121951221,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndSharedArray",
+        "samplesCount": 78,
+        "errorPc": 0.9857704393357237,
+        "opsForSeconds": 92.87488195959712,
+        "durationMicroSeconds": 10767.173846153848,
+        "runSlowerRatio": 1.9256995658996308
+      }
+    ]
+  },
+  {
+    "date": "Sat, 15 May 2021 04:37:29 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 59
+    },
+    "tests": [
+      {
+        "name": "normalizeSlashesUsingRegExp",
+        "samplesCount": 54,
+        "errorPc": 2.7578845667281757,
+        "opsForSeconds": 40.933516641369586,
+        "durationMicroSeconds": 24429.85802469136,
+        "runSlowerRatio": 4.751345137625327
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndRegExp",
+        "samplesCount": 53,
+        "errorPc": 2.319203059989839,
+        "opsForSeconds": 39.321671003838745,
+        "durationMicroSeconds": 25431.26918238993,
+        "runSlowerRatio": 4.946108857909164
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndRegExp2",
+        "samplesCount": 50,
+        "errorPc": 3.60416998283981,
+        "opsForSeconds": 37.04073059235794,
+        "durationMicroSeconds": 26997.30766666668,
+        "runSlowerRatio": 5.25068653208484
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOf",
+        "samplesCount": 65,
+        "errorPc": 2.8056560196317437,
+        "opsForSeconds": 62.31739057144112,
+        "durationMicroSeconds": 16046.885,
+        "runSlowerRatio": 3.1209468733597374
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndCharCodeAt",
+        "samplesCount": 82,
+        "errorPc": 1.6618388749767705,
+        "opsForSeconds": 194.48926525987676,
+        "durationMicroSeconds": 5141.671951219513,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndArray",
+        "samplesCount": 84,
+        "errorPc": 0.924685527490321,
+        "opsForSeconds": 183.28066232569327,
+        "durationMicroSeconds": 5456.112976190476,
+        "runSlowerRatio": 1.061155403914165
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndSharedArray",
+        "samplesCount": 67,
+        "errorPc": 3.8991644808993224,
+        "opsForSeconds": 91.0495864745214,
+        "durationMicroSeconds": 10983.026268656718,
+        "runSlowerRatio": 2.136080709320971
+      }
+    ]
+  },
+  {
+    "date": "Sat, 15 May 2021 04:38:43 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 59
+    },
+    "tests": [
+      {
+        "name": "normalizeSlashesUsingRegExp",
+        "samplesCount": 61,
+        "errorPc": 0.6105259647212417,
+        "opsForSeconds": 46.50791743924662,
+        "durationMicroSeconds": 21501.71530054645,
+        "runSlowerRatio": 4.266181942304869
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndRegExp",
+        "samplesCount": 58,
+        "errorPc": 0.7804859907785243,
+        "opsForSeconds": 44.02034357169785,
+        "durationMicroSeconds": 22716.76954022988,
+        "runSlowerRatio": 4.50726235769511
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndRegExp2",
+        "samplesCount": 55,
+        "errorPc": 0.9853898423456303,
+        "opsForSeconds": 41.81869133803872,
+        "durationMicroSeconds": 23912.752121212114,
+        "runSlowerRatio": 4.7445587416802475
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOf",
+        "samplesCount": 65,
+        "errorPc": 3.1833922250080846,
+        "opsForSeconds": 63.00157736564623,
+        "durationMicroSeconds": 15872.618461538463,
+        "runSlowerRatio": 3.1493058721686893
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndCharCodeAt",
+        "samplesCount": 83,
+        "errorPc": 0.6036787241077484,
+        "opsForSeconds": 198.41123755351964,
+        "durationMicroSeconds": 5040.037108433735,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndArray",
+        "samplesCount": 83,
+        "errorPc": 0.963190120714779,
+        "opsForSeconds": 180.4588777918999,
+        "durationMicroSeconds": 5541.428674698796,
+        "runSlowerRatio": 1.0994817211615484
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndSharedArray",
+        "samplesCount": 79,
+        "errorPc": 0.6695033791533731,
+        "opsForSeconds": 93.50281377188978,
+        "durationMicroSeconds": 10694.865316455696,
+        "runSlowerRatio": 2.1219814629061893
+      }
+    ]
+  },
+  {
+    "date": "Sat, 15 May 2021 04:42:42 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 59
+    },
+    "tests": [
+      {
+        "name": "normalizeSlashesUsingRegExp",
+        "samplesCount": 60,
+        "errorPc": 0.6718756882049843,
+        "opsForSeconds": 45.92233986363463,
+        "durationMicroSeconds": 21775.893888888888,
+        "runSlowerRatio": 4.224427864630244
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndRegExp",
+        "samplesCount": 58,
+        "errorPc": 0.7858634329622762,
+        "opsForSeconds": 43.713425335020055,
+        "durationMicroSeconds": 22876.26724137932,
+        "runSlowerRatio": 4.437895466717019
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOfAndRegExp2",
+        "samplesCount": 54,
+        "errorPc": 1.5142235257171757,
+        "opsForSeconds": 41.10525118822722,
+        "durationMicroSeconds": 24327.791975308635,
+        "runSlowerRatio": 4.7194848959959605
+      },
+      {
+        "name": "normalizeSlashesUsingIndexOf",
+        "samplesCount": 64,
+        "errorPc": 2.3754677895461827,
+        "opsForSeconds": 62.202728362313216,
+        "durationMicroSeconds": 16076.465234374997,
+        "runSlowerRatio": 3.118763714012496
+      },
+      {
+        "name": "normalizeSlashesUsingCharCodeAt",
+        "samplesCount": 82,
+        "errorPc": 1.516978264486192,
+        "opsForSeconds": 193.99561212895838,
+        "durationMicroSeconds": 5154.755764966741,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "normalizeSlashesUsingCharCodeAtAndArray",
+        "samplesCount": 77,
+        "errorPc": 6.419033007736971,
+        "opsForSeconds": 160.5675533345982,
+        "durationMicroSeconds": 6227.908311688309,
+        "runSlowerRatio": 1.2081868852090014
+      },
+      {
+        "name": "normalizeSlashesUsingCharCodeAtAndSharedArray",
+        "samplesCount": 69,
+        "errorPc": 7.006458063410561,
+        "opsForSeconds": 81.5953195221863,
+        "durationMicroSeconds": 12255.604927536235,
+        "runSlowerRatio": 2.3775335799280706
+      }
+    ]
+  }
+]

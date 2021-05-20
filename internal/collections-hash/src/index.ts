@@ -140,7 +140,8 @@ export interface HashData<K, V> {
     freeSize: number;
     freeList: number;
     size: number;
-    equaler: Equaler<K>;
+    equals: Equaler<K>["equals"];
+    hash: Equaler<K>["hash"];
     head: HashEntry<K, V>;
     tail: HashEntry<K, V>;
 }
@@ -167,7 +168,8 @@ export function createHashData<K, V>(equaler: Equaler<K>, capacity: number) {
         freeSize: 0,
         freeList: 0,
         size: 0,
-        equaler,
+        equals: equaler.equals.bind(equaler),
+        hash: equaler.hash.bind(equaler),
         head,
         tail: head
     };
@@ -207,13 +209,18 @@ export function resizeHashData<K, V>(hashData: HashData<K, V>, newSize: number) 
 /*@internal*/
 export function findEntryIndex<K, V>(hashData: HashData<K, V>, key: K) {
     let i = -1;
-    const { buckets, entries, equaler } = hashData;
+    const { buckets, entries, equals, hash } = hashData;
     if (buckets && entries) {
-        let hashCode = equaler.hash(key) & MAX_INT32;
+        let hashCode = hash(key) & MAX_INT32;
         // Value in _buckets is 1-based
         i = buckets[hashCode % buckets.length] - 1;
-        while ((i >>> 0) < entries.length && !(entries[i].hashCode === hashCode && equaler.equals(entries[i].key, key))) {
-            i = entries[i].next;
+        const length = entries.length;
+        while (i < length) {
+            const entry = entries[i];
+            if (entry.hashCode === hashCode && equals(entry.key, key)) {
+                break;
+            }
+            i = entry.next;
         }
     }
     return i;
@@ -228,15 +235,16 @@ export function findEntryValue<K, V>(hashData: HashData<K, V>, key: K) {
 /*@internal*/
 export function insertEntry<K, V>(hashData: HashData<K, V>, key: K, value: V) {
     if (!hashData.buckets) initializeHashData(hashData, 0);
-    if (!hashData.buckets || !hashData.entries) throw new Error();
+    const { buckets, entries, equals, hash } = hashData;
+    if (!buckets || !entries) throw new Error();
 
-    const hashCode = hashData.equaler.hash(key) & MAX_INT32;
-    let bucket = hashCode % hashData.buckets.length;
+    const hashCode = hash(key) & MAX_INT32;
+    let bucket = hashCode % buckets.length;
     // Value in _buckets is 1-based
-    let i = hashData.buckets[bucket] - 1;
-    while ((i >>> 0) < hashData.entries.length) {
-        const entry = hashData.entries[i];
-        if (entry.hashCode === hashCode && hashData.equaler.equals(entry.key, key)) {
+    let i = buckets[bucket] - 1;
+    while (i < entries.length) {
+        const entry = entries[i];
+        if (entry.hashCode === hashCode && equals(entry.key, key)) {
             entry.value = value;
             return;
         }
@@ -251,19 +259,19 @@ export function insertEntry<K, V>(hashData: HashData<K, V>, key: K, value: V) {
     }
     else {
         const size = hashData.size;
-        if (size === hashData.entries.length) {
+        if (size === entries.length) {
             resizeHashData(hashData, expandPrime(hashData.size));
-            if (!hashData.buckets || !hashData.entries) throw new Error();
+            if (!hashData.buckets || !entries) throw new Error();
             bucket = hashCode % hashData.buckets.length;
         }
         index = size;
         hashData.size = size + 1;
     }
-    const entry = hashData.entries[index] || (hashData.entries[index] = createHashEntry<K, V>());
+    const entry = entries[index] || (entries[index] = createHashEntry<K, V>());
     if (updateFreeList) hashData.freeList = entry.next;
     entry.hashCode = hashCode;
     // Value in _buckets is 1-based
-    entry.next = hashData.buckets[bucket] - 1;
+    entry.next = buckets[bucket] - 1;
     entry.key = key;
     entry.value = value;
     entry.skipNextEntry = false;
@@ -272,26 +280,27 @@ export function insertEntry<K, V>(hashData: HashData<K, V>, key: K, value: V) {
     entry.prevEntry = tail;
     hashData.tail = entry;
     // Value in _buckets is 1-based
-    hashData.buckets[bucket] = index + 1;
+    buckets[bucket] = index + 1;
 }
 
 /*@internal*/
 export function deleteEntry<K, V>(hashData: HashData<K, V>, key: K) {
-    if (hashData.buckets && hashData.entries) {
-        const hashCode = hashData.equaler.hash(key) & MAX_INT32;
-        const bucket = hashCode % hashData.buckets.length;
+    const { buckets, entries, equals, hash } = hashData;
+    if (buckets && entries) {
+        const hashCode = hash(key) & MAX_INT32;
+        const bucket = hashCode % buckets.length;
         let last = -1;
         let entry: HashEntry<K, V> | undefined;
         // Value in _buckets is 1-based
-        for (let i = hashData.buckets[bucket] - 1; i >= 0; i = entry.next) {
-            entry = hashData.entries[i];
-            if (entry.hashCode === hashCode && hashData.equaler.equals(entry.key, key)) {
+        for (let i = buckets[bucket] - 1; i >= 0; i = entry.next) {
+            entry = entries[i];
+            if (entry.hashCode === hashCode && equals(entry.key, key)) {
                 if (last < 0) {
                     // Value in _buckets is 1-based
-                    hashData.buckets[bucket] = entry.next + 1;
+                    buckets[bucket] = entry.next + 1;
                 }
                 else {
-                    hashData.entries[last]!.next = entry.next;
+                    entries[last]!.next = entry.next;
                 }
 
                 const prevEntry = entry.prevEntry!;

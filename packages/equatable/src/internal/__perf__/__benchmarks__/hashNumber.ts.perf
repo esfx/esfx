@@ -1,0 +1,1164 @@
+[
+  {
+    "date": "Thu, 13 May 2021 20:38:31 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 33
+    },
+    "tests": [
+      {
+        "name": "hashNumber",
+        "samplesCount": 51,
+        "errorPc": 12.084674839026505,
+        "opsForSeconds": 82.37236927456541,
+        "durationMicroSeconds": 12139.993165266107,
+        "runSlowerRatio": 296.75196562371934
+      },
+      {
+        "name": "hashFloat64",
+        "samplesCount": 58,
+        "errorPc": 3.407808405727754,
+        "opsForSeconds": 10065.36142861711,
+        "durationMicroSeconds": 99.35063008834159,
+        "runSlowerRatio": 2.428542945890872
+      },
+      {
+        "name": "hashFloat64Array",
+        "samplesCount": 73,
+        "errorPc": 1.6288544108898149,
+        "opsForSeconds": 24444.162495310153,
+        "durationMicroSeconds": 40.90956277155577,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 20:39:29 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 35
+    },
+    "tests": [
+      {
+        "name": "hashNumber",
+        "samplesCount": 51,
+        "errorPc": 8.087746557901596,
+        "opsForSeconds": 81.44452454347402,
+        "durationMicroSeconds": 12278.296246498598,
+        "runSlowerRatio": 344.8491386993563
+      },
+      {
+        "name": "hashFloat64",
+        "samplesCount": 58,
+        "errorPc": 7.09093941116775,
+        "opsForSeconds": 13160.816484818248,
+        "durationMicroSeconds": 75.98312773022532,
+        "runSlowerRatio": 2.1340677588654535
+      },
+      {
+        "name": "hashFloat64Array",
+        "samplesCount": 54,
+        "errorPc": 9.90368379952863,
+        "opsForSeconds": 28086.0741405956,
+        "durationMicroSeconds": 35.604833733405286,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 20:40:07 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 35
+    },
+    "tests": [
+      {
+        "name": "hashNumber",
+        "samplesCount": 49,
+        "errorPc": 8.117549579583736,
+        "opsForSeconds": 84.16292310182371,
+        "durationMicroSeconds": 11881.71659378037,
+        "runSlowerRatio": 427.93586846882073
+      },
+      {
+        "name": "hashFloat64",
+        "samplesCount": 65,
+        "errorPc": 5.858116136109052,
+        "opsForSeconds": 14052.317244649985,
+        "durationMicroSeconds": 71.16264048057421,
+        "runSlowerRatio": 2.5630173987258713
+      },
+      {
+        "name": "hashFloat64Array",
+        "samplesCount": 71,
+        "errorPc": 4.429710674162709,
+        "opsForSeconds": 36016.333590453505,
+        "durationMicroSeconds": 27.765180414284593,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 20:41:51 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 35
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 46,
+        "errorPc": 10.648187024260093,
+        "opsForSeconds": 69.26099000461745,
+        "durationMicroSeconds": 14438.141873706,
+        "runSlowerRatio": 498.9510336390902
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 55,
+        "errorPc": 7.523963339002101,
+        "opsForSeconds": 88.70042314479264,
+        "durationMicroSeconds": 11273.903376623377,
+        "runSlowerRatio": 389.6017778546457
+      },
+      {
+        "name": "hashNumberFloat64DataViewOnly",
+        "samplesCount": 52,
+        "errorPc": 10.784507232562056,
+        "opsForSeconds": 11699.093823265706,
+        "durationMicroSeconds": 85.47670572667124,
+        "runSlowerRatio": 2.9538905385087366
+      },
+      {
+        "name": "hashNumberFloat64TypedArrayOnly",
+        "samplesCount": 66,
+        "errorPc": 6.179988587826842,
+        "opsForSeconds": 34557.842553670576,
+        "durationMicroSeconds": 28.936991608979497,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 20:42:41 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 35
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 52,
+        "errorPc": 7.656018480392671,
+        "opsForSeconds": 99.50828131624746,
+        "durationMicroSeconds": 10049.414850427353,
+        "runSlowerRatio": 371.1649436049971
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 52,
+        "errorPc": 6.617384658814375,
+        "opsForSeconds": 103.56042042038844,
+        "durationMicroSeconds": 9656.19872863248,
+        "runSlowerRatio": 356.64190501590326
+      },
+      {
+        "name": "hashNumberFloat64DataViewOnly",
+        "samplesCount": 65,
+        "errorPc": 5.382356025667834,
+        "opsForSeconds": 14784.266453084709,
+        "durationMicroSeconds": 67.63947356964417,
+        "runSlowerRatio": 2.4981953443668474
+      },
+      {
+        "name": "hashNumberFloat64TypedArrayOnly",
+        "samplesCount": 62,
+        "errorPc": 5.325263457503341,
+        "opsForSeconds": 36933.98562297518,
+        "durationMicroSeconds": 27.07533408953133,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 20:46:58 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 36
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 58,
+        "errorPc": 7.410483368017013,
+        "opsForSeconds": 121.26360072915944,
+        "durationMicroSeconds": 8246.497662835249,
+        "runSlowerRatio": 191.96571752521706
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 49,
+        "errorPc": 9.653002360337751,
+        "opsForSeconds": 101.03490673550237,
+        "durationMicroSeconds": 9897.569387755102,
+        "runSlowerRatio": 230.40011492864352
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 43,
+        "errorPc": 11.485649403036753,
+        "opsForSeconds": 10693.66917495779,
+        "durationMicroSeconds": 93.51327253902515,
+        "runSlowerRatio": 2.1768444247534346
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 43,
+        "errorPc": 11.708640852826848,
+        "opsForSeconds": 23278.454123664524,
+        "durationMicroSeconds": 42.95817903919209,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiments",
+        "samplesCount": 56,
+        "errorPc": 11.37234738408011,
+        "opsForSeconds": 62.93266063713341,
+        "durationMicroSeconds": 15890.000357142855,
+        "runSlowerRatio": 369.8946443387629
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 20:50:28 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 36
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 59,
+        "errorPc": 9.95711962549299,
+        "opsForSeconds": 121.30871792571796,
+        "durationMicroSeconds": 8243.430621468928,
+        "runSlowerRatio": 322.11091759537715
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 53,
+        "errorPc": 8.978512431392986,
+        "opsForSeconds": 114.11340892625905,
+        "durationMicroSeconds": 8763.21204851752,
+        "runSlowerRatio": 342.4213053579204
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 63,
+        "errorPc": 6.5784696880029765,
+        "opsForSeconds": 15471.407338945612,
+        "durationMicroSeconds": 64.63536109496233,
+        "runSlowerRatio": 2.5256178437633174
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 66,
+        "errorPc": 5.573010878202405,
+        "opsForSeconds": 39074.862443371785,
+        "durationMicroSeconds": 25.591900712362676,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiments",
+        "samplesCount": 55,
+        "errorPc": 7.586916177809211,
+        "opsForSeconds": 123.04578039068022,
+        "durationMicroSeconds": 8127.0564242424225,
+        "runSlowerRatio": 317.56361184679366
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 20:54:27 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 36
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 56,
+        "errorPc": 7.739065156557744,
+        "opsForSeconds": 106.3425555766027,
+        "durationMicroSeconds": 9403.573146967123,
+        "runSlowerRatio": 364.30715802757925
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 55,
+        "errorPc": 9.007701535858937,
+        "opsForSeconds": 107.28499582921454,
+        "durationMicroSeconds": 9320.967878787877,
+        "runSlowerRatio": 361.10691807430226
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 61,
+        "errorPc": 6.140909878124088,
+        "opsForSeconds": 16750.984978100867,
+        "durationMicroSeconds": 59.69798201761473,
+        "runSlowerRatio": 2.312780666339915
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 63,
+        "errorPc": 5.616397137422586,
+        "opsForSeconds": 38741.35419950203,
+        "durationMicroSeconds": 25.81221076708913,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiments",
+        "samplesCount": 72,
+        "errorPc": 5.470954460192681,
+        "opsForSeconds": 5746.049833354882,
+        "durationMicroSeconds": 174.03260135252623,
+        "runSlowerRatio": 6.742258651258955
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:02:56 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 36
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 39,
+        "errorPc": 6.07735607172704,
+        "opsForSeconds": 81.79479537060472,
+        "durationMicroSeconds": 12225.716752136756,
+        "runSlowerRatio": 439.9412761500967
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 52,
+        "errorPc": 9.12017425718209,
+        "opsForSeconds": 115.15606863303657,
+        "durationMicroSeconds": 8683.867136752138,
+        "runSlowerRatio": 312.4881483445877
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 58,
+        "errorPc": 9.197129118701325,
+        "opsForSeconds": 14638.490733976172,
+        "durationMicroSeconds": 68.31305345427339,
+        "runSlowerRatio": 2.458238852059954
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 64,
+        "errorPc": 3.7516990844466553,
+        "opsForSeconds": 35984.90665777986,
+        "durationMicroSeconds": 27.789428759954895,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiments",
+        "samplesCount": 74,
+        "errorPc": 4.838722288001905,
+        "opsForSeconds": 8534.125780303062,
+        "durationMicroSeconds": 117.1766184074789,
+        "runSlowerRatio": 4.216589675867417
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:05:13 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 36
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 55,
+        "errorPc": 7.945832816921349,
+        "opsForSeconds": 111.70661148085381,
+        "durationMicroSeconds": 8952.021610389615,
+        "runSlowerRatio": 316.49723696557294
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 56,
+        "errorPc": 6.630446561876961,
+        "opsForSeconds": 123.40051577805917,
+        "durationMicroSeconds": 8103.693843537417,
+        "runSlowerRatio": 286.50474968892416
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 64,
+        "errorPc": 4.916477346340053,
+        "opsForSeconds": 15404.940647882873,
+        "durationMicroSeconds": 64.91423906507758,
+        "runSlowerRatio": 2.295032138883044
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 60,
+        "errorPc": 7.817611759814283,
+        "opsForSeconds": 35354.83388447698,
+        "durationMicroSeconds": 28.284675393116853,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiments",
+        "samplesCount": 68,
+        "errorPc": 6.531164748255909,
+        "opsForSeconds": 8358.936987666102,
+        "durationMicroSeconds": 119.63243669327024,
+        "runSlowerRatio": 4.229584926485778
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:10:36 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 36
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 54,
+        "errorPc": 7.271580852569687,
+        "opsForSeconds": 112.24080269293121,
+        "durationMicroSeconds": 8909.415970017637,
+        "runSlowerRatio": 325.28023894255426
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 65,
+        "errorPc": 4.484956103123779,
+        "opsForSeconds": 131.18594058074098,
+        "durationMicroSeconds": 7622.768076923077,
+        "runSlowerRatio": 278.3050909071322
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 79,
+        "errorPc": 2.817884503751338,
+        "opsForSeconds": 22477.27806564562,
+        "durationMicroSeconds": 44.48937264910224,
+        "runSlowerRatio": 1.6242943212444563
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 58,
+        "errorPc": 6.769214765644787,
+        "opsForSeconds": 36509.715119060755,
+        "durationMicroSeconds": 27.389969950160648,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 59,
+        "errorPc": 5.609318347186908,
+        "opsForSeconds": 7066.841578255758,
+        "durationMicroSeconds": 141.50593145839568,
+        "runSlowerRatio": 5.1663412452033635
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 63,
+        "errorPc": 7.113897240697126,
+        "opsForSeconds": 7897.386802080343,
+        "durationMicroSeconds": 126.62416379764738,
+        "runSlowerRatio": 4.6230121474413925
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 60,
+        "errorPc": 6.768975648735758,
+        "opsForSeconds": 7573.890657600154,
+        "durationMicroSeconds": 132.03253720022119,
+        "runSlowerRatio": 4.8204703196268675
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:11:45 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 36
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 57,
+        "errorPc": 6.689552139130396,
+        "opsForSeconds": 123.1869554609782,
+        "durationMicroSeconds": 8117.74263157895,
+        "runSlowerRatio": 346.5149843642796
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 56,
+        "errorPc": 7.3015051114900125,
+        "opsForSeconds": 116.5733618335774,
+        "durationMicroSeconds": 8578.289107142858,
+        "runSlowerRatio": 366.173929223931
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 67,
+        "errorPc": 5.742712036077918,
+        "opsForSeconds": 18599.047875320244,
+        "durationMicroSeconds": 53.76619312469949,
+        "runSlowerRatio": 2.2950704913279916
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 71,
+        "errorPc": 5.5417885560365345,
+        "opsForSeconds": 42686.125945444066,
+        "durationMicroSeconds": 23.426815571834084,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 67,
+        "errorPc": 7.398556498539327,
+        "opsForSeconds": 8351.256311240913,
+        "durationMicroSeconds": 119.74246301768817,
+        "runSlowerRatio": 5.111341857390716
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 67,
+        "errorPc": 5.554386970712626,
+        "opsForSeconds": 8177.059504918002,
+        "durationMicroSeconds": 122.2933499992951,
+        "runSlowerRatio": 5.220229340360183
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 62,
+        "errorPc": 4.082171770611271,
+        "opsForSeconds": 7358.288535061172,
+        "durationMicroSeconds": 135.9011671308003,
+        "runSlowerRatio": 5.801094336278186
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:15:07 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 37
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 57,
+        "errorPc": 9.236433064373438,
+        "opsForSeconds": 118.07704448434576,
+        "durationMicroSeconds": 8469.046666666665,
+        "runSlowerRatio": 297.130728119993
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 48,
+        "errorPc": 7.814834953400205,
+        "opsForSeconds": 110.6174220492749,
+        "durationMicroSeconds": 9040.167285353538,
+        "runSlowerRatio": 317.16810563766387
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 57,
+        "errorPc": 6.324622967595886,
+        "opsForSeconds": 16988.777449643436,
+        "durationMicroSeconds": 58.86238741805334,
+        "runSlowerRatio": 2.065146730297937
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 58,
+        "errorPc": 8.090492640608282,
+        "opsForSeconds": 35084.31820189046,
+        "durationMicroSeconds": 28.502762808316923,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 60,
+        "errorPc": 6.862835984036993,
+        "opsForSeconds": 7242.991732297147,
+        "durationMicroSeconds": 138.06449557865858,
+        "runSlowerRatio": 4.843898695265157
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 67,
+        "errorPc": 6.653495561303313,
+        "opsForSeconds": 8688.577845323562,
+        "durationMicroSeconds": 115.09363417146896,
+        "runSlowerRatio": 4.037981684283791
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 65,
+        "errorPc": 4.89382895855974,
+        "opsForSeconds": 8415.608133257852,
+        "durationMicroSeconds": 118.82682560373445,
+        "runSlowerRatio": 4.1689581604019645
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:15:56 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 38
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 55,
+        "errorPc": 5.060111726077121,
+        "opsForSeconds": 108.36049477480718,
+        "durationMicroSeconds": 9228.455463203467,
+        "runSlowerRatio": 356.0041617173712
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 58,
+        "errorPc": 6.96856745171347,
+        "opsForSeconds": 124.53717114269043,
+        "durationMicroSeconds": 8029.731130268201,
+        "runSlowerRatio": 309.76122832744323
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 61,
+        "errorPc": 5.684832947762212,
+        "opsForSeconds": 21354.129943521177,
+        "durationMicroSeconds": 46.82934882595856,
+        "runSlowerRatio": 1.8065258199521712
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 65,
+        "errorPc": 8.031957412546234,
+        "opsForSeconds": 38576.78710558481,
+        "durationMicroSeconds": 25.922324668018526,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 66,
+        "errorPc": 5.687878502115307,
+        "opsForSeconds": 8104.941641922553,
+        "durationMicroSeconds": 123.38151761976074,
+        "runSlowerRatio": 4.7596625379814705
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 67,
+        "errorPc": 7.150322280954412,
+        "opsForSeconds": 8031.746403282504,
+        "durationMicroSeconds": 124.5059230942985,
+        "runSlowerRatio": 4.803038488593068
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 67,
+        "errorPc": 4.890239725119246,
+        "opsForSeconds": 8251.823432945988,
+        "durationMicroSeconds": 121.18533656542253,
+        "runSlowerRatio": 4.674940929002947
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:16:53 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 39
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 50,
+        "errorPc": 8.852026150566575,
+        "opsForSeconds": 108.1283645447179,
+        "durationMicroSeconds": 9248.267133333335,
+        "runSlowerRatio": 363.5152683150573
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 47,
+        "errorPc": 6.6769227227183094,
+        "opsForSeconds": 101.65916083896765,
+        "durationMicroSeconds": 9836.791802600474,
+        "runSlowerRatio": 386.64800226124527
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 62,
+        "errorPc": 8.943030372601612,
+        "opsForSeconds": 16337.961679006225,
+        "durationMicroSeconds": 61.20714564320279,
+        "runSlowerRatio": 2.405827129613656
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 67,
+        "errorPc": 4.8203342967247975,
+        "opsForSeconds": 39306.31144994146,
+        "durationMicroSeconds": 25.441206847240036,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 67,
+        "errorPc": 6.3041618474763235,
+        "opsForSeconds": 8620.23104013968,
+        "durationMicroSeconds": 116.00617145219766,
+        "runSlowerRatio": 4.559774705215388
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 61,
+        "errorPc": 5.976177280991425,
+        "opsForSeconds": 7815.741821283916,
+        "durationMicroSeconds": 127.94690803076284,
+        "runSlowerRatio": 5.02912101611418
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 61,
+        "errorPc": 4.427427389447116,
+        "opsForSeconds": 7537.208612253182,
+        "durationMicroSeconds": 132.67511242481834,
+        "runSlowerRatio": 5.214969290625907
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:27:52 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 39
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 52,
+        "errorPc": 6.440506967845133,
+        "opsForSeconds": 85.91616442295658,
+        "durationMicroSeconds": 11639.253296703298,
+        "runSlowerRatio": 479.0161838712198
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 49,
+        "errorPc": 7.7457214788034525,
+        "opsForSeconds": 89.69589225534166,
+        "durationMicroSeconds": 11148.78256802721,
+        "runSlowerRatio": 458.8307466475535
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 66,
+        "errorPc": 5.10592126920925,
+        "opsForSeconds": 16444.59961165567,
+        "durationMicroSeconds": 60.81023701490524,
+        "runSlowerRatio": 2.502659486191853
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 72,
+        "errorPc": 2.8938584323672862,
+        "opsForSeconds": 41155.23321473692,
+        "durationMicroSeconds": 24.29824646557752,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 69,
+        "errorPc": 2.843583503520492,
+        "opsForSeconds": 7999.615638734138,
+        "durationMicroSeconds": 125.00600593333512,
+        "runSlowerRatio": 5.1446513274291945
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 61,
+        "errorPc": 6.457656941646935,
+        "opsForSeconds": 6733.394335472216,
+        "durationMicroSeconds": 148.51350599383386,
+        "runSlowerRatio": 6.112107974714462
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 62,
+        "errorPc": 7.052698328962656,
+        "opsForSeconds": 6101.832632118426,
+        "durationMicroSeconds": 163.88518995690995,
+        "runSlowerRatio": 6.74473321311809
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:28:50 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 40
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 53,
+        "errorPc": 5.212756967154018,
+        "opsForSeconds": 103.83673599360269,
+        "durationMicroSeconds": 9630.503024109013,
+        "runSlowerRatio": 369.25397968955093
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 45,
+        "errorPc": 6.750563062814728,
+        "opsForSeconds": 74.64265880093701,
+        "durationMicroSeconds": 13397.164785714287,
+        "runSlowerRatio": 513.6758070993274
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 59,
+        "errorPc": 6.780877218231147,
+        "opsForSeconds": 16995.074288752177,
+        "durationMicroSeconds": 58.84057833520789,
+        "runSlowerRatio": 2.256072986335043
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 64,
+        "errorPc": 5.74179549488578,
+        "opsForSeconds": 38342.12800361103,
+        "durationMicroSeconds": 26.080972863734136,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 63,
+        "errorPc": 5.996768893419736,
+        "opsForSeconds": 6181.693359074005,
+        "durationMicroSeconds": 161.76797228741808,
+        "runSlowerRatio": 6.202528300328786
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 59,
+        "errorPc": 6.657488093673806,
+        "opsForSeconds": 5428.651504108044,
+        "durationMicroSeconds": 184.20780911120676,
+        "runSlowerRatio": 7.0629193962066354
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 62,
+        "errorPc": 5.0491868880089825,
+        "opsForSeconds": 5576.0961839020065,
+        "durationMicroSeconds": 179.33693519974867,
+        "runSlowerRatio": 6.87615972520406
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:31:40 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 41
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 52,
+        "errorPc": 7.636727668592617,
+        "opsForSeconds": 111.98140281773634,
+        "durationMicroSeconds": 8930.054230769232,
+        "runSlowerRatio": 259.75573984316026
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 62,
+        "errorPc": 5.904160136656247,
+        "opsForSeconds": 124.62252029834663,
+        "durationMicroSeconds": 8024.231877240145,
+        "runSlowerRatio": 233.40734939367104
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 67,
+        "errorPc": 5.948875987636743,
+        "opsForSeconds": 19081.842769102386,
+        "durationMicroSeconds": 52.405840049118076,
+        "runSlowerRatio": 1.524371230261654
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 52,
+        "errorPc": 9.917001003842959,
+        "opsForSeconds": 29087.812137596055,
+        "durationMicroSeconds": 34.378659875470596,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 62,
+        "errorPc": 6.983365523493138,
+        "opsForSeconds": 7334.104721470936,
+        "durationMicroSeconds": 136.349293878018,
+        "runSlowerRatio": 3.9661026454176627
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 65,
+        "errorPc": 5.709142054901035,
+        "opsForSeconds": 8218.585894415135,
+        "durationMicroSeconds": 121.67543332236035,
+        "runSlowerRatio": 3.5392721462414123
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 57,
+        "errorPc": 5.413342965840202,
+        "opsForSeconds": 7264.266516211782,
+        "durationMicroSeconds": 137.66014748609288,
+        "runSlowerRatio": 4.004232508909236
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:35:13 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 41
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 49,
+        "errorPc": 8.37556093750261,
+        "opsForSeconds": 107.46357652138852,
+        "durationMicroSeconds": 9305.47849206349,
+        "runSlowerRatio": 321.6515129916214
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 51,
+        "errorPc": 5.9147665406938055,
+        "opsForSeconds": 103.05829718005981,
+        "durationMicroSeconds": 9703.245904139434,
+        "runSlowerRatio": 335.40067054672295
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 65,
+        "errorPc": 5.296090774283519,
+        "opsForSeconds": 16895.472091941305,
+        "durationMicroSeconds": 59.18745534651107,
+        "runSlowerRatio": 2.04586304493276
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 61,
+        "errorPc": 3.6835012758302996,
+        "opsForSeconds": 34565.82197959551,
+        "durationMicroSeconds": 28.93031158322543,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 62,
+        "errorPc": 4.920969981480056,
+        "opsForSeconds": 7051.269814686875,
+        "durationMicroSeconds": 141.81842792586528,
+        "runSlowerRatio": 4.902070533111555
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 62,
+        "errorPc": 8.056596155842692,
+        "opsForSeconds": 7228.407443312452,
+        "durationMicroSeconds": 138.34305935883233,
+        "runSlowerRatio": 4.7819415619100125
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 60,
+        "errorPc": 5.506152217273233,
+        "opsForSeconds": 7012.59840337296,
+        "durationMicroSeconds": 142.6004944927424,
+        "runSlowerRatio": 4.929103306838424
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:36:51 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 42
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 51,
+        "errorPc": 7.171650071662931,
+        "opsForSeconds": 99.7497008666201,
+        "durationMicroSeconds": 10025.092720199189,
+        "runSlowerRatio": 384.5881676224436
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 51,
+        "errorPc": 5.948677664591591,
+        "opsForSeconds": 95.53887944849403,
+        "durationMicroSeconds": 10466.94294273265,
+        "runSlowerRatio": 401.53867094350784
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 63,
+        "errorPc": 5.624644721801403,
+        "opsForSeconds": 18020.61644498811,
+        "durationMicroSeconds": 55.491997349409196,
+        "runSlowerRatio": 2.128814782462655
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 63,
+        "errorPc": 7.574032826475895,
+        "opsForSeconds": 38362.554677180306,
+        "durationMicroSeconds": 26.067085688504548,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 64,
+        "errorPc": 5.632763116404994,
+        "opsForSeconds": 7961.971279950741,
+        "durationMicroSeconds": 125.5970368190259,
+        "runSlowerRatio": 4.818223192261709
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 63,
+        "errorPc": 5.2758955507256715,
+        "opsForSeconds": 7395.477120665567,
+        "durationMicroSeconds": 135.21778023025018,
+        "runSlowerRatio": 5.187299487409923
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 62,
+        "errorPc": 8.454827023971545,
+        "opsForSeconds": 7658.957982212447,
+        "durationMicroSeconds": 130.56606425083552,
+        "runSlowerRatio": 5.008847778806915
+      }
+    ]
+  },
+  {
+    "date": "Thu, 13 May 2021 21:56:37 GMT",
+    "git": {
+      "branch": "master -> origin/master",
+      "commit": "05511df29038d74b62876647fbbf81418ed533de",
+      "changes": 42
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 58,
+        "errorPc": 6.434495054853337,
+        "opsForSeconds": 117.44175034619039,
+        "durationMicroSeconds": 8514.859469074989,
+        "runSlowerRatio": 298.3171239391267
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 56,
+        "errorPc": 5.214180144336628,
+        "opsForSeconds": 114.27659096391446,
+        "durationMicroSeconds": 8750.6985600907,
+        "runSlowerRatio": 306.5797194170375
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 59,
+        "errorPc": 5.029956477244946,
+        "opsForSeconds": 17382.77234023779,
+        "durationMicroSeconds": 57.528222795922574,
+        "runSlowerRatio": 2.0154946810500074
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 62,
+        "errorPc": 5.238997906059381,
+        "opsForSeconds": 35034.88519365245,
+        "durationMicroSeconds": 28.54297921835856,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 69,
+        "errorPc": 4.96562383634523,
+        "opsForSeconds": 7564.64467871819,
+        "durationMicroSeconds": 132.1939155732358,
+        "runSlowerRatio": 4.631398655407702
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 61,
+        "errorPc": 4.857550426780826,
+        "opsForSeconds": 7710.966579879814,
+        "durationMicroSeconds": 129.6854278436759,
+        "runSlowerRatio": 4.543514075792885
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 61,
+        "errorPc": 4.922828773185451,
+        "opsForSeconds": 7507.498979932328,
+        "durationMicroSeconds": 133.2001512984573,
+        "runSlowerRatio": 4.6666520085185885
+      }
+    ]
+  }
+]

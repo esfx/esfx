@@ -92,6 +92,22 @@ const test = () => {
 // gulp.task("test", gulp.series(build, test));
 gulp.task("test", gulp.series(gulp.task("internal/jest-sequence"), test));
 
+const perf = () => {
+    const args = new ArgsBuilder();
+    args.addSwitch("--config", "./jest.perf.config.js");
+    args.addSwitch("--testNamePattern", argv.testNamePattern);
+    args.addSwitch("--testPathPattern", argv.testPathPattern);
+    args.addSwitch("--testPathIgnorePatterns", argv.testPathIgnorePatterns);
+    args.addSwitch("--maxWorkers", argv.maxWorkers);
+    args.addSwitch("--onlyChanged", argv.onlyChanged, false);
+    args.addSwitch("--onlyFailures", argv.onlyFailures, false);
+    args.addSwitch("--runInBand", argv.runInBand, false);
+    args.addSwitch("--watch", argv.watch, false);
+    args.addSwitch("--watchAll", argv.watchAll, false);
+    return exec(process.execPath, [require.resolve("jest/bin/jest"), ...args], { verbose: true });
+};
+gulp.task("perf", perf);
+
 // const watch = () => spawn('node', [require.resolve("jest/bin/jest"), "--watch"], { stdio: "inherit" });
 // gulp.task("watch", watch);
 

@@ -256,7 +256,7 @@ export namespace Equaler {
             Equatable.hasInstance(y) ? y[Equatable.equals](x) :
             Object.is(x, y),
         (x) => Equatable.hasInstance(x) ? x[Equatable.hash]() :
-            hashUnknown(x)
+            rawHash(x)
     );
 
     /**

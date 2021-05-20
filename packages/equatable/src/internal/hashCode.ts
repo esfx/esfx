@@ -14,125 +14,126 @@
    limitations under the License.
 */
 
-import { createSeed, hash } from './murmur3.js';
+import { createSeed, hash } from './marvin32';
 
-const defaultObjectSeed = createSeed();
-const defaultStringSeed = createSeed();
-const defaultLocalSymbolSeed = createSeed();
-const defaultGlobalSymbolSeed = createSeed();
-const defaultBigIntSeed = createSeed();
+// TODO: See if we can use native apis to compute hashes in NodeJS
 
-let objectSeed = defaultObjectSeed;
-let stringSeed = defaultStringSeed;
-let bigIntSeed = defaultBigIntSeed;
-let localSymbolSeed = defaultLocalSymbolSeed;
-let globalSymbolSeed = defaultGlobalSymbolSeed;
+export function createHashUnknown() {
+    const defaultStringSeed = createSeed();
+    const defaultGlobalSymbolSeed = createSeed();
+    const defaultLocalSymbolSeed = createSeed();
+    const defaultBigIntSeed = createSeed();
+    const [defaultObjectSeed] = createSeed();
+    
+    let objectSeed = defaultObjectSeed;
+    let stringSeed = defaultStringSeed;
+    let bigIntSeed = defaultBigIntSeed;
+    let localSymbolSeed = defaultLocalSymbolSeed;
+    let globalSymbolSeed = defaultGlobalSymbolSeed;
+    
+    const endianness = (new Uint16Array(new Uint8Array([0x01, 0x02]).buffer))[0] == 0x0102 ? "big-endian" : "little-endian";
+    const [lo, hi] = endianness === "little-endian" ? [0, 1] : [1, 0];
+    
+    class Counter { next = 1; }
+    
+    let objectCounter: Counter | undefined;
+    let localSymbolCounter: Counter | undefined;
+    let weakObjectHashes: WeakMap<object, number> | undefined;
+    let globalSymbolHashes: Map<symbol, number> | undefined;
+    let localSymbolHashes: Map<symbol, number> | undefined;
+    let buffer4k: Buffer | undefined;
+    
+    const buffer64 = new ArrayBuffer(8);
+    const float64Array = new Float64Array(buffer64);
+    const uint32Array = new Uint32Array(buffer64);
 
-interface Counter { next: number; }
-let weakPrototypeCounters: WeakMap<object, Counter> | undefined;
-let nullPrototypeCounter: Counter | undefined;
-let localSymbolCounter: Counter | undefined;
-let weakObjectHashes: WeakMap<object, number> | undefined;
-let globalSymbolHashes: Map<symbol, number> | undefined;
-let localSymbolHashes: Map<symbol, number> | undefined;
-
-function createHashUnknown() {
-    const MAX_INT32 = (2 ** 31) - 1;
-    const MIN_INT32 = ~MAX_INT32;
-    const MAX_UINT32 = (2 ** 32) - 1;
-    const MIN_UINT32 = 0;
-    const float64View = new DataView(new ArrayBuffer(8));
-
-    function hashBoolean(x: boolean) {
-        return x ? 1 : 0;
-    }
-    
-    function isInt32(x: number) {
-        return Number.isInteger(x)
-            && x >= MIN_INT32
-            && x <= MAX_INT32;
-    }
-    
-    function hashInt32(x: number) {
-        return x;
-    }
-    
-    function isUint32(x: number) {
-        return Number.isInteger(x)
-            && x >= MIN_UINT32
-            && x <= MAX_UINT32;
-    }
-    
-    function hashUint32(x: number) {
-        return x >> 0;
-    }
-    
-    function hashFloat64(x: number) {
-        float64View.setFloat64(0, x);
-        return float64View.getInt32(0, /*littleEndian*/ true) ^ float64View.getInt32(4, /*littleEndian*/ true);
-    }
-    
+    // see __perf__/hashNumber.ts for microbenchmarks
+    // current winner: hashNumberByFloat64TypedArrayOnly
+    // however, we are using hashNumberByTypeUsingTypedArray for consistency with integers
     function hashNumber(x: number) {
-        return isInt32(x) ? hashInt32(x) :
-            isUint32(x) ? hashUint32(x) :
-            hashFloat64(x);
+        const i = x >> 0;
+        return i === x ? x : x >>> 0 === x ? i : (float64Array[0] = x, uint32Array[lo] ^ uint32Array[hi]);
     }
-    
-    function hashBuffer(buffer: Buffer, seed: number) {
-        const arrayBuffer = buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
-        return hash(arrayBuffer, seed);
-    }
-    
-    function hashStringWithSeed(x: string, encoding: string, seed: number) {
-        if (!Buffer.isEncoding(encoding)) throw new RangeError(`Invalid encoding: ${encoding}`);
-        return hashBuffer(Buffer.from(x, encoding), seed);
-    }
-    
-    function combineHashes(x: number, y: number) {
-        return ((x << 7) | (x >>> 25)) ^ y;
-    }
-    
-    function getRealBigIntHasher() {
-        const ZERO = BigInt(0);
-        const UINT32_MASK = BigInt(0xffffffff);
-        const SIZEOF_UINT32 = BigInt(32);
-        function hashBigInt(x: bigint) {
-            if (x === ZERO) return 0;
-            let hash = x < ZERO ? -1 : x > ZERO ? 1 : 0;
-            if (x < ZERO) x = -x;
-            while (x !== ZERO) {
-                hash = combineHashes(hash, Number(x & UINT32_MASK));
-                x = x >> SIZEOF_UINT32;
-            }
-            return hash;
+
+    // see __perf__/hashBigInt.ts for microbenchmarks
+    // current winner: hashBigIntUsingBigUint64Array
+    const hashBigInt = (typeof BigInt === "function" && typeof BigInt(0) === "bigint" ? typeof BigUint64Array === "function" ?
+        () => {
+            // Native BigInt and BigUint64Array
+            const ZERO = BigInt(0);
+            const UINT32_MASK = BigInt(0xffffffff);
+            const SIZEOF_UINT32 = BigInt(32);
+            const bigUint64Array = new BigUint64Array(buffer64);
+            return function hashBigInt(x: bigint) {
+                if (x === ZERO) return 0;
+                const negative = x < ZERO;
+                if (negative) x = -x;
+                let hash = negative ? -1 : 0;
+                while (x > ZERO) {
+                    bigUint64Array[0] = x & UINT32_MASK;
+                    hash = ((hash << 7) | (hash >>> 25)) ^ uint32Array[lo];
+                    x = x >> SIZEOF_UINT32;
+                }
+                return hash;
+            };
+        } :
+        () => {
+            // Native BigInt
+            const ZERO = BigInt(0);
+            const UINT32_MASK = BigInt(0xffffffff);
+            const SIZEOF_UINT32 = BigInt(32);
+            return function hashBigInt(x: bigint) {
+                if (x === ZERO) return 0;
+                const negative = x < ZERO;
+                if (negative) x = -x;
+                let hash = negative ? -1 : 0;
+                while (x > ZERO) {
+                    hash = ((hash << 7) | (hash >>> 25)) ^ Number(x & UINT32_MASK);
+                    x = x >> SIZEOF_UINT32;
+                }
+                return hash;
+            };
+        } :
+        () => {
+            // Pseudo-BigInt
+            return function hashBigInt(x: bigint) {
+                return hashStringWithSeed(x.toString(), "ascii", bigIntSeed);
+            };
+        })();
+
+    // see __perf__/hashString.ts for microbenchmarks
+    // current winner: hashStringUsingMarvin32WithDataViewReuseBuffer
+    function hashStringWithSeed(x: string, encoding: BufferEncoding, [hi, lo]: readonly [number, number]) {
+        let buffer: ArrayBuffer;
+        let byteLength: number;
+        if (x.length < 1024) {
+            buffer4k ??= Buffer.alloc(4096);
+            byteLength = buffer4k.write(x, 0, encoding);
+            buffer = buffer4k.buffer;
         }
-        return hashBigInt;
-    }
-    
-    function getPseudoBigIntHasher() {
-        function hashBigInt(x: bigint) {
-            return hashStringWithSeed(x.toString(), "ascii", bigIntSeed);
+        else {
+            buffer = Buffer.from(x, "utf8").buffer;
+            byteLength = buffer.byteLength;
         }
-        return hashBigInt;
+        return hash(buffer, byteLength, lo, hi);
     }
-    
-    const hashBigInt = typeof BigInt === "function" ? getRealBigIntHasher() : getPseudoBigIntHasher();
-    
+
     function hashString(x: string) {
         return hashStringWithSeed(x, "utf8", stringSeed);
     }
-    
+
     function hashGlobalSymbol(symbol: symbol, key: string) {
-        let hash = globalSymbolHashes && globalSymbolHashes.get(symbol);
+        let hash = globalSymbolHashes?.get(symbol);
         if (hash === undefined) {
             hash = hashStringWithSeed(key, "utf8", globalSymbolSeed);
-            if (!globalSymbolHashes) globalSymbolHashes = new Map();
+            globalSymbolHashes ??= new Map();
             globalSymbolHashes.set(symbol, hash);
         }
         return hash;
     }
-    
-    const getDescription = "description" in Symbol.prototype ? (symbol: symbol) => symbol.description :
+
+    const getDescription = "description" in Symbol.prototype ?
+        (symbol: symbol) => symbol.description :
         (symbol: symbol) => {
             const s = symbol.toString();
             if (s.startsWith("Symbol(") && s.endsWith(")")) {
@@ -140,46 +141,31 @@ function createHashUnknown() {
             }
             return s;
         };
-    
+
     function hashLocalSymbol(symbol: symbol) {
-        let hash = localSymbolHashes && localSymbolHashes.get(symbol);
+        let hash = localSymbolHashes?.get(symbol);
         if (hash === undefined) {
-            if (!localSymbolCounter) localSymbolCounter = { next: 1 };
-            hash = combineHashes(localSymbolSeed, localSymbolCounter.next++);
+            localSymbolCounter ??= new Counter();
             const description = getDescription(symbol);
-            if (description) hash = hashStringWithSeed(description, "utf8", hash);
-            if (!localSymbolHashes) localSymbolHashes = new Map();
+            hash = hashStringWithSeed(`${localSymbolCounter.next++}#${description}`, "utf8", localSymbolSeed);
+            localSymbolHashes ??= new Map();
             localSymbolHashes.set(symbol, hash);
         }
         return hash;
     }
-    
+
     function hashSymbol(x: symbol) {
         const key = Symbol.keyFor(x);
         return key !== undefined ? hashGlobalSymbol(x, key) : hashLocalSymbol(x);
     }
-    
-    function getPrototypeCounter(prototype: object | null) {
-        let counter: Counter | undefined;
-        if (prototype === null) {
-            counter = nullPrototypeCounter || (nullPrototypeCounter = { next: 1 });
-        }
-        else {
-            counter = weakPrototypeCounters && weakPrototypeCounters.get(prototype);
-            if (!counter) {
-                if (!weakPrototypeCounters) weakPrototypeCounters = new WeakMap();
-                weakPrototypeCounters.set(prototype, counter = { next: 1 });
-            }
-        }
-        return counter;
-    }
-    
+
     function hashObject(x: object) {
-        let hash = weakObjectHashes && weakObjectHashes.get(x);
+        let hash = weakObjectHashes?.get(x);
         if (hash === undefined) {
-            if (!weakObjectHashes) weakObjectHashes = new WeakMap();
-            hash = getPrototypeCounter(Object.getPrototypeOf(x)).next++;
-            hash = combineHashes(objectSeed, hash);
+            weakObjectHashes ??= new WeakMap();
+            objectCounter ??= new Counter();
+            hash = objectCounter.next++;
+            hash = ((hash << 7) | (hash >>> 25)) ^ objectSeed;
             weakObjectHashes.set(x, hash);
         }
         return hash;
@@ -187,22 +173,58 @@ function createHashUnknown() {
 
     function hashUnknown(x: unknown) {
         switch (typeof x) {
-            case "boolean": return hashBoolean(x);
-            case "number": return hashNumber(x);
-            case "bigint": return hashBigInt(x);
-            case "string": return hashString(x);
-            case "symbol": return hashSymbol(x);
-            case "function": return hashObject(x);
+            case "boolean":
+                return x ? 1 : 0;
+            case "number":
+                return hashNumber(x);
+            case "bigint":
+                return hashBigInt(x);
+            case "string":
+                return hashString(x);
+            case "symbol":
+                return hashSymbol(x);
+            case "function":
+                return hashObject(x);
             case "object":
-                if (x !== null) return hashObject(x);
-                // fall through
-            case "undefined":
+                return x === null ? 0 : hashObject(x);
+            // case "undefined":
             default:
                 return 0;
         }
     }
 
-    return hashUnknown;
+    // Test hooks
+    function getState() {
+        return {
+            nullPrototypeCounter: objectCounter,
+            localSymbolCounter,
+            weakObjectHashes,
+            globalSymbolHashes,
+            localSymbolHashes,
+            objectSeed,
+            stringSeed,
+            bigIntSeed,
+            localSymbolSeed,
+            globalSymbolSeed
+        };
+    };
+
+    function setState(state: Partial<ReturnType<typeof getState>>) {
+        ({
+            nullPrototypeCounter: objectCounter,
+            localSymbolCounter,
+            weakObjectHashes,
+            globalSymbolHashes,
+            localSymbolHashes,
+            objectSeed = defaultObjectSeed,
+            stringSeed = defaultStringSeed,
+            bigIntSeed = defaultBigIntSeed,
+            localSymbolSeed = defaultLocalSymbolSeed,
+            globalSymbolSeed = defaultGlobalSymbolSeed
+        } = state);
+    };
+
+    return { hashUnknown, getState, setState };
 }
 
 // We attach a copy of `hashUnknown` to the global object so that we can share the same hash code
@@ -217,50 +239,16 @@ const root = typeof globalThis === "object" ? globalThis :
     typeof self === "object" ? self :
     undefined;
 
-let hashUnknownCore: (x: unknown) => number;
+let hashUnknownCore: ReturnType<typeof createHashUnknown>["hashUnknown"];
 if (root && kHashUnknown in root) {
     hashUnknownCore = (root as any)[kHashUnknown];
 }
 else {
-    hashUnknownCore = createHashUnknown();
+    const { hashUnknown } = createHashUnknown();
+    hashUnknownCore = hashUnknown;
     Object.defineProperty(root, kHashUnknown, { value: hashUnknownCore });
 }
 
 export function hashUnknown(x: unknown) {
     return hashUnknownCore(x);
-}
-
-// Test hooks
-export namespace hashUnknown {
-    export function getState() {
-        return {
-            weakPrototypeCounters,
-            nullPrototypeCounter,
-            localSymbolCounter,
-            weakObjectHashes,
-            globalSymbolHashes,
-            localSymbolHashes,
-            objectSeed,
-            stringSeed,
-            bigIntSeed,
-            localSymbolSeed,
-            globalSymbolSeed
-        };
-    }
-
-    export function setState(state: Partial<ReturnType<typeof hashUnknown["getState"]>>) {
-        ({
-            weakPrototypeCounters,
-            nullPrototypeCounter,
-            localSymbolCounter,
-            weakObjectHashes,
-            globalSymbolHashes,
-            localSymbolHashes,
-            objectSeed = defaultObjectSeed,
-            stringSeed = defaultStringSeed,
-            bigIntSeed = defaultBigIntSeed,
-            localSymbolSeed = defaultLocalSymbolSeed,
-            globalSymbolSeed = defaultGlobalSymbolSeed
-        } = state);
-    }
 }
