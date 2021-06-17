@@ -14,6 +14,7 @@ module.exports = {
         '/dist/',
         '/workers/',
         '/data/',
+        '/test\\.ts$'
     ],
     globals: {
         'ts-jest': {
