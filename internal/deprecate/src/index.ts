@@ -14,12 +14,16 @@
    limitations under the License.
 */
 
-let deprecateCore: typeof deprecate;
-try {
-    const util = require('util') as typeof import('util');
-    deprecateCore = util.deprecate;
+function tryGetNodeDeprecate() {
+    try {
+        const util = require('util') as typeof import('util');
+        return util.deprecate;
+    }
+    catch {
+    }
 }
-catch (_) {
+
+function createDeprecateCore() {
     const emitWarning: (warning: string | Error, type?: string, ctor?: Function) => void = 
         typeof process === "object" && typeof process.emitWarning === "function" ? function emitWarning(warning, type = "Warning", ctor = emitWarning) {
             process.emitWarning(warning, type, ctor);
@@ -41,7 +45,7 @@ catch (_) {
             }
         };
 
-    deprecateCore = (fn, msg) => {
+    return <T extends Function>(fn: T, msg: string): T => {
         let warned = false;
         function deprecated(this: unknown, ...args: any[]) {
             if (!warned) {
@@ -55,6 +59,8 @@ catch (_) {
         return deprecated as Function as typeof fn;
     };
 }
+
+const deprecateCore = tryGetNodeDeprecate() || createDeprecateCore();
 
 /** @internal */
 export function deprecate<T extends Function>(fn: T, message: string): T {
