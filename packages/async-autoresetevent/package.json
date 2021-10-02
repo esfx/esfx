@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-autoresetevent",
-    "version": "1.0.0-pre.19",
+    "version": "1.0.0-pre.23",
     "description": "Provides 'AsyncAutoResetEvent', an async coordination primitive.",
     "main": "./dist/index.js",
     "type": "commonjs",
@@ -16,12 +16,12 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "devDependencies": {
-        "@esfx/async-canceltoken": "^1.0.0-pre.19"
+        "@esfx/async-canceltoken": "^1.0.0-pre.23"
     },
     "dependencies": {
-        "@esfx/async-waitqueue": "^1.0.0-pre.19",
-        "@esfx/cancelable": "^1.0.0-pre.19",
-        "@esfx/internal-guards": "^1.0.0-pre.19",
+        "@esfx/async-waitqueue": "^1.0.0-pre.23",
+        "@esfx/cancelable": "^1.0.0-pre.23",
+        "@esfx/internal-guards": "^1.0.0-pre.23",
         "@esfx/internal-tag": "^1.0.0-pre.19",
         "tslib": "^2.1.0"
     },

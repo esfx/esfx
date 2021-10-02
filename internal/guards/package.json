@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-guards",
-    "version": "1.0.0-pre.19",
+    "version": "1.0.0-pre.23",
     "description": "This package provides internal utilities for @esfx and is not intended for use in user-code.",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -20,6 +20,6 @@
     },
     "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b",
     "dependencies": {
-        "@esfx/type-model": "^1.0.0-pre.19"
+        "@esfx/type-model": "^1.0.0-pre.23"
     }
 }

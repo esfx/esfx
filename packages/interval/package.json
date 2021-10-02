@@ -1,6 +1,6 @@
 {
     "name": "@esfx/interval",
-    "version": "1.0.0-pre.20",
+    "version": "1.0.0-pre.23",
     "description": "An implementation of Index and Interval types for ECMAScript",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -17,8 +17,8 @@
     },
     "dependencies": {
         "@esfx/equatable": "^1.0.0-pre.19",
-        "@esfx/internal-assert": "^1.0.0-pre.20",
-        "@esfx/internal-guards": "^1.0.0-pre.19",
+        "@esfx/internal-assert": "^1.0.0-pre.23",
+        "@esfx/internal-guards": "^1.0.0-pre.23",
         "tslib": "^2.1.0"
     },
     "publishConfig": {

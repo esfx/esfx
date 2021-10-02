@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-stack",
-    "version": "1.0.0-pre.19",
+    "version": "1.0.0-pre.23",
     "description": "Provides 'AsyncStack', an async coordination primitive.",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -16,9 +16,9 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-waitqueue": "^1.0.0-pre.19",
-        "@esfx/cancelable": "^1.0.0-pre.19",
-        "@esfx/internal-guards": "^1.0.0-pre.19",
+        "@esfx/async-waitqueue": "^1.0.0-pre.23",
+        "@esfx/cancelable": "^1.0.0-pre.23",
+        "@esfx/internal-guards": "^1.0.0-pre.23",
         "@esfx/internal-tag": "^1.0.0-pre.19",
         "tslib": "^2.1.0"
     },

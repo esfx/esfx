@@ -1,6 +1,6 @@
 {
     "name": "@esfx/struct-type",
-    "version": "1.0.0-pre.19",
+    "version": "1.0.0-pre.23",
     "description": "Define structured types using ArrayBuffer and SharedArrayBuffer",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -16,7 +16,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/type-model": "^1.0.0-pre.19",
+        "@esfx/type-model": "^1.0.0-pre.23",
         "tslib": "^2.1.0"
     },
     "publishConfig": {
