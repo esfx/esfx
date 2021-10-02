@@ -14,8 +14,7 @@
    limitations under the License.
 */
 
-import { isFunction, isFunctionOrUndefined } from '@esfx/internal-guards';
-import { isObject } from 'util';
+import { isObject, isFunction, isFunctionOrUndefined } from '@esfx/internal-guards';
 
 /**
  * Describes an object that defines the relationships between parents and children of an element.
