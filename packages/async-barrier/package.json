@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-barrier",
-    "version": "1.0.0-pre.23",
+    "version": "1.0.0-pre.24",
     "description": "Provides 'AsyncBarrier', an async coordination primitive.",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -16,11 +16,11 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "devDependencies": {
-        "@esfx/async-canceltoken": "^1.0.0-pre.23"
+        "@esfx/async-canceltoken": "^1.0.0-pre.24"
     },
     "dependencies": {
-        "@esfx/async-waitqueue": "^1.0.0-pre.23",
-        "@esfx/cancelable": "^1.0.0-pre.23",
+        "@esfx/async-waitqueue": "^1.0.0-pre.24",
+        "@esfx/cancelable": "^1.0.0-pre.24",
         "@esfx/internal-guards": "^1.0.0-pre.23",
         "@esfx/internal-tag": "^1.0.0-pre.19",
         "tslib": "^2.1.0"

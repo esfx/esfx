@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-conditionvariable",
-    "version": "1.0.0-pre.23",
+    "version": "1.0.0-pre.24",
     "description": "Provides 'AsyncConditionVariable', an async coordination primitive.",
     "main": "./dist/index.js",
     "type": "commonjs",
@@ -16,12 +16,12 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "devDependencies": {
-        "@esfx/async-mutex": "^1.0.0-pre.23"
+        "@esfx/async-mutex": "^1.0.0-pre.24"
     },
     "dependencies": {
-        "@esfx/async-lockable": "^1.0.0-pre.23",
-        "@esfx/cancelable": "^1.0.0-pre.23",
-        "@esfx/collections-linkedlist": "^1.0.0-pre.23",
+        "@esfx/async-lockable": "^1.0.0-pre.24",
+        "@esfx/cancelable": "^1.0.0-pre.24",
+        "@esfx/collections-linkedlist": "^1.0.0-pre.24",
         "@esfx/internal-guards": "^1.0.0-pre.23",
         "@esfx/internal-tag": "^1.0.0-pre.19",
         "tslib": "^2.1.0"
