@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AsyncDisposable
+   | @esfx API Reference </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AsyncDisposable
+   | @esfx API Reference ">
+    <meta name="generator" content="docfx 2.57.2.0">
+    
+    <link rel="shortcut icon" href="../../images/favicon-32x32.png">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="../toc.html">
+    
+    <meta property="docfx:rel" content="../../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/esfx-logo-white-38x38.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+        
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="@esfx/disposable!AsyncDisposable:class">
+  
+  
+  <h1 id="_esfx_disposable_AsyncDisposable_class" data-uid="@esfx/disposable!AsyncDisposable:class">Class AsyncDisposable
+  </h1>
+  <h6><strong>Package</strong>: <a class="xref" href="../disposable.html">@esfx/disposable</a></h6>
+  <div class="markdown level0 summary"><p>Indicates an object that has resources that can be explicitly disposed asynchronously.</p>
+<p>NOTE: It is not necessary to subclass <code>Disposable</code><!-- -->. Merely having a <code>[Disposable.dispose]()</code> method is sufficient.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <h4 id="_esfx_disposable_AsyncDisposable_constructor_1_" data-uid="@esfx/disposable!AsyncDisposable:constructor(1)">constructor(dispose)</h4>
+  <div class="markdown level1 summary"><p>Creates an <code>AsyncDisposable</code> wrapper around a callback used to dispose resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">constructor(dispose: () =&gt; void | PromiseLike&lt;void&gt;);</code></pre>
+  </div>
+  
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>dispose</dt>
+        <dd>() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;</dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+  
+  
+  
+  
+  
+  
+  <h3 id="properties">Properties
+  </h3>
+  
+  
+  <h4 id="_esfx_disposable_AsyncDisposable_asyncDispose_member" data-uid="@esfx/disposable!AsyncDisposable.asyncDispose:member">asyncDispose</h4>
+  <div class="markdown level1 summary"><p>A well-known symbol used to define an async explicit resource disposal method on an object.</p>
+<p>Uses <code>Symbol.asyncDispose</code> if present.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">static readonly asyncDispose: unique symbol;</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <div class="property">
+    <div><span class="xref">unique symbol</span></div>
+    <p>
+  </div>
+  
+  
+  
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <h4 id="_esfx_disposable_AsyncDisposable__Symbol_hasInstance__member_1_" data-uid="@esfx/disposable!AsyncDisposable.[Symbol.hasInstance]:member(1)">[Symbol.hasInstance](value)</h4>
+  <div class="markdown level1 summary"><p>Determines whether a value is <code>AsyncDisposable</code><!-- -->.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">static [Symbol.hasInstance](value: unknown): value is AsyncDisposable;</code></pre>
+  </div>
+  
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>value</dt>
+        <dd><span class="xref">unknown</span></dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><span class="xref">value</span> is <a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_AsyncDisposable_from_member_1_" data-uid="@esfx/disposable!AsyncDisposable.from:member(1)">from(resources)</h4>
+  <div class="markdown level1 summary"><p>Creates an <code>AsyncDisposable</code> wrapper around a set of other disposables.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">static from(resources: AsyncIterable&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined&gt; | Iterable&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined | PromiseLike&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined&gt;&gt;): Promise&lt;AsyncDisposable&gt;;</code></pre>
+  </div>
+  
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>resources</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined&gt;&gt;</dd>
+      </dl>
+      <p>
+        <p>An <code>Iterable</code> of <code>AsyncDisposable</code> or <code>Disposable</code> objects.</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a>&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_AsyncDisposable_hasInstance_member_1_" data-uid="@esfx/disposable!AsyncDisposable.hasInstance:member(1)">hasInstance(value)</h4>
+  <div class="markdown level1 summary"><p>Determines whether a value is <code>AsyncDisposable</code><!-- -->.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">static hasInstance(value: unknown): value is AsyncDisposable;</code></pre>
+  </div>
+  
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>value</dt>
+        <dd><span class="xref">unknown</span></dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><span class="xref">value</span> is <a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_AsyncDisposable_scope_member_1_" data-uid="@esfx/disposable!AsyncDisposable.scope:member(1)">scope()</h4>
+  <div class="markdown level1 summary"><p>Emulate <code>using await const</code> using <code>for..await..of</code><!-- -->.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">static scope(): AsyncGenerator&lt;AsyncDisposableScope, void, undefined&gt;;</code></pre>
+  </div>
+  
+  
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-asyncgenerator-objects">AsyncGenerator</a>&lt;<a class="xref" href="asyncdisposablescope.html#_esfx_disposable_AsyncDisposableScope_interface">AsyncDisposableScope</a>, void, undefined&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_AsyncDisposable_use_member_1_" data-uid="@esfx/disposable!AsyncDisposable.use:member(1)">use(resource, callback)</h4>
+  <div class="markdown level1 summary"><p>Executes a callback with the provided <code>AsyncDisposable</code> resource, disposing the resource when the callback completes asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">static use&lt;T extends AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined, U&gt;(resource: T, callback: (resource: T) =&gt; U | PromiseLike&lt;U&gt;): Promise&lt;U | undefined&gt;;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>U</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>resource</dt>
+        <dd><span class="xref">T</span></dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>callback</dt>
+        <dd>(resource: T) =&gt; U | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;U&gt;</dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;U | undefined&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_AsyncDisposable_usingEach_member_1_" data-uid="@esfx/disposable!AsyncDisposable.usingEach:member(1)">usingEach(iterable)</h4>
+  <div class="markdown level1 summary"><p>Yields each disposable in the iterable, disposing it when the generator resumes.</p>
+<p>This emulates <code>for (using await const x of expr)</code><!-- -->.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">static usingEach(iterable: AsyncIterable&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined&gt; | Iterable&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined | PromiseLike&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined&gt;&gt;): AsyncGenerator&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | (() =&gt; void | PromiseLike&lt;void&gt;) | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined, void, unknown&gt;;</code></pre>
+  </div>
+  
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>iterable</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined&gt;&gt;</dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-asyncgenerator-objects">AsyncGenerator</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined, void, unknown&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5></h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top"></a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

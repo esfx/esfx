@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface CancelSubscription
+    <title>Interface DisposableScope
    | @esfx API Reference </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface CancelSubscription
+    <meta name="title" content="Interface DisposableScope
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.57.2.0">
     
@@ -78,38 +78,88 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="@esfx/cancelable!CancelSubscription:interface">
+            <article class="content wrap" id="_content" data-uid="@esfx/disposable!DisposableScope:interface">
   
   
-  <h1 id="_esfx_cancelable_CancelSubscription_interface" data-uid="@esfx/cancelable!CancelSubscription:interface">Interface CancelSubscription
+  <h1 id="_esfx_disposable_DisposableScope_interface" data-uid="@esfx/disposable!DisposableScope:interface">Interface DisposableScope
   </h1>
-  <h6><strong>Package</strong>: <a class="xref" href="../cancelable.html">@esfx/cancelable</a></h6>
-  <div class="markdown level0 summary"><p>An object used to unsubscribe from a cancellation signal</p>
+  <h6><strong>Package</strong>: <a class="xref" href="../disposable.html">@esfx/disposable</a></h6>
+  <div class="markdown level0 summary"><p>Used to aproximate <code>using const</code> via <code>for..of</code><!-- -->. See .</p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-      <div class="level0"><a class="xref" href="../disposable/disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a></div>
-      <div class="level1"><span class="xref">CancelSubscription</span></div>
-  </div>
   <h3 id="methods">Methods
   </h3>
   
   
-  <h4 id="_esfx_cancelable_CancelSubscription_unsubscribe_member_1_" data-uid="@esfx/cancelable!CancelSubscription#unsubscribe:member(1)">unsubscribe()</h4>
-  <div class="markdown level1 summary"><p>Unsubscribes from a cancellation signal.</p>
+  <h4 id="_esfx_disposable_DisposableScope_fail_member_1_" data-uid="@esfx/disposable!DisposableScope#fail:member(1)">fail(error)</h4>
+  <div class="markdown level1 summary"><p>Tracks an exception from the body of a <code>for..of</code> statement. See .</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">unsubscribe(): void;</code></pre>
+    <pre><code class="lang-typeScript hljs">fail(error: unknown): void;</code></pre>
   </div>
   
   
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>error</dt>
+        <dd><span class="xref">unknown</span></dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><span class="xref">void</span></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_DisposableScope_using_member_1_" data-uid="@esfx/disposable!DisposableScope#using:member(1)">using(value)</h4>
+  <div class="markdown level1 summary"><p>Tracks a resource to be disposed at the end of a <code>for..of</code> statement. See .</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">using&lt;T extends Disposable | (() =&gt; void) | null | undefined&gt;(value: T): T;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>value</dt>
+        <dd><span class="xref">T</span></dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><span class="xref">T</span></div>
     <p>
   </div>
   

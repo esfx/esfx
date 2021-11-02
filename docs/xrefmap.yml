@@ -4525,34 +4525,46 @@ references:
   name: '[AsyncDisposable.asyncDispose]()'
   href: api/disposable/asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable__AsyncDisposable_asyncDispose__member_1_
   fullName: '[AsyncDisposable.asyncDispose]()'
-- uid: '@esfx/disposable!AsyncDisposable.asyncDispose:var'
+- uid: '@esfx/disposable!AsyncDisposable.[Symbol.hasInstance]:member(1)'
+  name: '[Symbol.hasInstance](value)'
+  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable__Symbol_hasInstance__member_1_
+  fullName: '[Symbol.hasInstance](value)'
+- uid: '@esfx/disposable!AsyncDisposable.asyncDispose:member'
   name: asyncDispose
-  href: api/disposable/asyncdisposable-namespace.html
-  fullName: AsyncDisposable.asyncDispose
+  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_asyncDispose_member
+  fullName: asyncDispose
 - uid: '@esfx/disposable!AsyncDisposable.create:function(1)'
   name: create(dispose)
   href: api/disposable/asyncdisposable-namespace.html
   fullName: AsyncDisposable.create(dispose)
-- uid: '@esfx/disposable!AsyncDisposable.from:function(1)'
+- uid: '@esfx/disposable!AsyncDisposable.from:member(1)'
   name: from(resources)
-  href: api/disposable/asyncdisposable-namespace.html
-  fullName: AsyncDisposable.from(resources)
-- uid: '@esfx/disposable!AsyncDisposable.hasInstance:function(1)'
+  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_from_member_1_
+  fullName: from(resources)
+- uid: '@esfx/disposable!AsyncDisposable.hasInstance:member(1)'
   name: hasInstance(value)
-  href: api/disposable/asyncdisposable-namespace.html
-  fullName: AsyncDisposable.hasInstance(value)
-- uid: '@esfx/disposable!AsyncDisposable.isAsyncDisposable:function(1)'
-  name: isAsyncDisposable(value)
-  href: api/disposable/asyncdisposable-namespace.html
-  fullName: AsyncDisposable.isAsyncDisposable(value)
-- uid: '@esfx/disposable!AsyncDisposable.name:var'
-  name: name
-  href: api/disposable/asyncdisposable-namespace.html
-  fullName: AsyncDisposable.name
-- uid: '@esfx/disposable!AsyncDisposable.use:function(1)'
+  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_hasInstance_member_1_
+  fullName: hasInstance(value)
+- uid: '@esfx/disposable!AsyncDisposable.scope:member(1)'
+  name: scope()
+  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_scope_member_1_
+  fullName: scope()
+- uid: '@esfx/disposable!AsyncDisposable.use:member(1)'
   name: use(resource, callback)
-  href: api/disposable/asyncdisposable-namespace.html
-  fullName: AsyncDisposable.use(resource, callback)
+  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_use_member_1_
+  fullName: use(resource, callback)
+- uid: '@esfx/disposable!AsyncDisposable.usingEach:member(1)'
+  name: usingEach(iterable)
+  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_usingEach_member_1_
+  fullName: usingEach(iterable)
+- uid: '@esfx/disposable!AsyncDisposable:class'
+  name: AsyncDisposable
+  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class
+  fullName: AsyncDisposable
+- uid: '@esfx/disposable!AsyncDisposable:constructor(1)'
+  name: constructor(dispose)
+  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_constructor_1_
+  fullName: constructor(dispose)
 - uid: '@esfx/disposable!AsyncDisposable:interface'
   name: AsyncDisposable
   href: api/disposable/asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface
@@ -4561,38 +4573,94 @@ references:
   name: AsyncDisposable
   href: api/disposable/asyncdisposable-namespace.html#_esfx_disposable_AsyncDisposable_namespace
   fullName: AsyncDisposable
+- uid: '@esfx/disposable!AsyncDisposableScope#fail:member(1)'
+  name: fail(error)
+  href: api/disposable/asyncdisposablescope.html#_esfx_disposable_AsyncDisposableScope_fail_member_1_
+  fullName: fail(error)
+- uid: '@esfx/disposable!AsyncDisposableScope#using:member(1)'
+  name: using(value)
+  href: api/disposable/asyncdisposablescope.html#_esfx_disposable_AsyncDisposableScope_using_member_1_
+  fullName: using(value)
+- uid: '@esfx/disposable!AsyncDisposableScope:interface'
+  name: AsyncDisposableScope
+  href: api/disposable/asyncdisposablescope.html#_esfx_disposable_AsyncDisposableScope_interface
+  fullName: AsyncDisposableScope
+- uid: '@esfx/disposable!AsyncDisposableStack#[AsyncDisposable.asyncDispose]:member(1)'
+  name: '[AsyncDisposable.asyncDispose]()'
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack__AsyncDisposable_asyncDispose__member_1_
+  fullName: '[AsyncDisposable.asyncDispose]()'
+- uid: '@esfx/disposable!AsyncDisposableStack#[Symbol.toStringTag]:member'
+  name: '[Symbol.toStringTag]'
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack__Symbol_toStringTag__member
+  fullName: '[Symbol.toStringTag]'
+- uid: '@esfx/disposable!AsyncDisposableStack#disposeAsync:member(1)'
+  name: disposeAsync()
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_disposeAsync_member_1_
+  fullName: disposeAsync()
+- uid: '@esfx/disposable!AsyncDisposableStack#enter:member(1)'
+  name: enter(value)
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_enter_member_1_
+  fullName: enter(value)
+- uid: '@esfx/disposable!AsyncDisposableStack#enter:member(2)'
+  name: enter(value, onDispose)
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_enter_member_2_
+  fullName: enter(value, onDispose)
+- uid: '@esfx/disposable!AsyncDisposableStack#move:member(1)'
+  name: move()
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_move_member_1_
+  fullName: move()
+- uid: '@esfx/disposable!AsyncDisposableStack:class'
+  name: AsyncDisposableStack
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_class
+  fullName: AsyncDisposableStack
+- uid: '@esfx/disposable!AsyncDisposableStack:constructor(1)'
+  name: constructor()
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_constructor_1_
+  fullName: constructor()
 - uid: '@esfx/disposable!Disposable#[Disposable.dispose]:member(1)'
   name: '[Disposable.dispose]()'
   href: api/disposable/disposable-interface.html#_esfx_disposable_Disposable__Disposable_dispose__member_1_
   fullName: '[Disposable.dispose]()'
+- uid: '@esfx/disposable!Disposable.[Symbol.hasInstance]:member(1)'
+  name: '[Symbol.hasInstance](value)'
+  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable__Symbol_hasInstance__member_1_
+  fullName: '[Symbol.hasInstance](value)'
 - uid: '@esfx/disposable!Disposable.create:function(1)'
   name: create(dispose)
   href: api/disposable/disposable-namespace.html
   fullName: Disposable.create(dispose)
-- uid: '@esfx/disposable!Disposable.dispose:var'
+- uid: '@esfx/disposable!Disposable.dispose:member'
   name: dispose
-  href: api/disposable/disposable-namespace.html
-  fullName: Disposable.dispose
-- uid: '@esfx/disposable!Disposable.from:function(1)'
+  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_dispose_member
+  fullName: dispose
+- uid: '@esfx/disposable!Disposable.from:member(1)'
   name: from(disposables)
-  href: api/disposable/disposable-namespace.html
-  fullName: Disposable.from(disposables)
-- uid: '@esfx/disposable!Disposable.hasInstance:function(1)'
+  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_from_member_1_
+  fullName: from(disposables)
+- uid: '@esfx/disposable!Disposable.hasInstance:member(1)'
   name: hasInstance(value)
-  href: api/disposable/disposable-namespace.html
-  fullName: Disposable.hasInstance(value)
-- uid: '@esfx/disposable!Disposable.isDisposable:function(1)'
-  name: isDisposable(value)
-  href: api/disposable/disposable-namespace.html
-  fullName: Disposable.isDisposable(value)
-- uid: '@esfx/disposable!Disposable.name:var'
-  name: name
-  href: api/disposable/disposable-namespace.html
-  fullName: Disposable.name
-- uid: '@esfx/disposable!Disposable.use:function(1)'
+  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_hasInstance_member_1_
+  fullName: hasInstance(value)
+- uid: '@esfx/disposable!Disposable.scope:member(1)'
+  name: scope()
+  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_scope_member_1_
+  fullName: scope()
+- uid: '@esfx/disposable!Disposable.use:member(1)'
   name: use(resource, callback)
-  href: api/disposable/disposable-namespace.html
-  fullName: Disposable.use(resource, callback)
+  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_use_member_1_
+  fullName: use(resource, callback)
+- uid: '@esfx/disposable!Disposable.usingEach:member(1)'
+  name: usingEach(disposables)
+  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_usingEach_member_1_
+  fullName: usingEach(disposables)
+- uid: '@esfx/disposable!Disposable:class'
+  name: Disposable
+  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_class
+  fullName: Disposable
+- uid: '@esfx/disposable!Disposable:constructor(1)'
+  name: constructor(dispose)
+  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_constructor_1_
+  fullName: constructor(dispose)
 - uid: '@esfx/disposable!Disposable:interface'
   name: Disposable
   href: api/disposable/disposable-interface.html#_esfx_disposable_Disposable_interface
@@ -4601,6 +4669,50 @@ references:
   name: Disposable
   href: api/disposable/disposable-namespace.html#_esfx_disposable_Disposable_namespace
   fullName: Disposable
+- uid: '@esfx/disposable!DisposableScope#fail:member(1)'
+  name: fail(error)
+  href: api/disposable/disposablescope.html#_esfx_disposable_DisposableScope_fail_member_1_
+  fullName: fail(error)
+- uid: '@esfx/disposable!DisposableScope#using:member(1)'
+  name: using(value)
+  href: api/disposable/disposablescope.html#_esfx_disposable_DisposableScope_using_member_1_
+  fullName: using(value)
+- uid: '@esfx/disposable!DisposableScope:interface'
+  name: DisposableScope
+  href: api/disposable/disposablescope.html#_esfx_disposable_DisposableScope_interface
+  fullName: DisposableScope
+- uid: '@esfx/disposable!DisposableStack#[Disposable.dispose]:member(1)'
+  name: '[Disposable.dispose]()'
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack__Disposable_dispose__member_1_
+  fullName: '[Disposable.dispose]()'
+- uid: '@esfx/disposable!DisposableStack#[Symbol.toStringTag]:member'
+  name: '[Symbol.toStringTag]'
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack__Symbol_toStringTag__member
+  fullName: '[Symbol.toStringTag]'
+- uid: '@esfx/disposable!DisposableStack#dispose:member(1)'
+  name: dispose()
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_dispose_member_1_
+  fullName: dispose()
+- uid: '@esfx/disposable!DisposableStack#enter:member(1)'
+  name: enter(value)
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_enter_member_1_
+  fullName: enter(value)
+- uid: '@esfx/disposable!DisposableStack#enter:member(2)'
+  name: enter(value, onDispose)
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_enter_member_2_
+  fullName: enter(value, onDispose)
+- uid: '@esfx/disposable!DisposableStack#move:member(1)'
+  name: move()
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_move_member_1_
+  fullName: move()
+- uid: '@esfx/disposable!DisposableStack:class'
+  name: DisposableStack
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_class
+  fullName: DisposableStack
+- uid: '@esfx/disposable!DisposableStack:constructor(1)'
+  name: constructor()
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_constructor_1_
+  fullName: constructor()
 - uid: '@esfx/equatable!'
   name: '@esfx/equatable'
   href: api/equatable.html

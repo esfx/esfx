@@ -15,7 +15,7 @@
 */
 
 import { AsyncDisposable } from "./asyncDisposable";
-import type { Disposable } from "./disposable";
+import { Disposable } from "./disposable";
 import { weakAsyncDisposableResourceStack, weakAsyncDisposableState } from "./internal/asyncDisposable";
 import { AddDisposableResource } from "./internal/utils";
 

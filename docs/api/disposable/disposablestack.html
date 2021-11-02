@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Interface LockHandle
+    <title>Class DisposableStack
    | @esfx API Reference </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Interface LockHandle
+    <meta name="title" content="Class DisposableStack
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.57.2.0">
     
@@ -78,32 +78,45 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="@esfx/async-lockable!LockHandle:interface">
+            <article class="content wrap" id="_content" data-uid="@esfx/disposable!DisposableStack:class">
   
   
-  <h1 id="_esfx_async_lockable_LockHandle_interface" data-uid="@esfx/async-lockable!LockHandle:interface">Interface LockHandle
+  <h1 id="_esfx_disposable_DisposableStack_class" data-uid="@esfx/disposable!DisposableStack:class">Class DisposableStack
   </h1>
-  <h6><strong>Package</strong>: <a class="xref" href="../async-lockable.html">@esfx/async-lockable</a></h6>
-  <div class="markdown level0 summary"><p>An object used to release a held lock.</p>
+  <h6><strong>Package</strong>: <a class="xref" href="../disposable.html">@esfx/disposable</a></h6>
+  <div class="markdown level0 summary"><p>Emulates Python&#39;s <code>ExitStack</code></p>
 </div>
   <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-      <div class="level0"><a class="xref" href="../disposable/disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a></div>
-      <div class="level0"><a class="xref" href="asynclockable-interface.html#_esfx_async_lockable_AsyncLockable_interface">AsyncLockable</a></div>
-      <div class="level1"><span class="xref">LockHandle</span></div>
+  <h3 id="constructors">Constructors
+  </h3>
+  
+  
+  <h4 id="_esfx_disposable_DisposableStack_constructor_1_" data-uid="@esfx/disposable!DisposableStack:constructor(1)">constructor()</h4>
+  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>DisposableStack</code> class</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">constructor();</code></pre>
   </div>
+  
+  
+  
+  
+  
+  
+  
+  
   <h3 id="properties">Properties
   </h3>
   
   
-  <h4 id="_esfx_async_lockable_LockHandle_mutex_member" data-uid="@esfx/async-lockable!LockHandle#mutex:member">mutex</h4>
-  <div class="markdown level1 summary"><p>Gets the associated <code>AsyncLockable</code> object.</p>
-</div>
+  <h4 id="_esfx_disposable_DisposableStack__Symbol_toStringTag__member" data-uid="@esfx/disposable!DisposableStack#[Symbol.toStringTag]:member">[Symbol.toStringTag]</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">readonly mutex: TMutex;</code></pre>
+    <pre><code class="lang-typeScript hljs">[Symbol.toStringTag]: string;</code></pre>
   </div>
   
   
@@ -112,30 +125,7 @@
   
   <h5 class="propertyValue">Property Value</h5>
   <div class="property">
-    <div><span class="xref">TMutex</span></div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  <h4 id="_esfx_async_lockable_LockHandle_ownsLock_member" data-uid="@esfx/async-lockable!LockHandle#ownsLock:member">ownsLock</h4>
-  <div class="markdown level1 summary"><p>Indicates whether this handle owns its associated <code>mutex</code><!-- -->.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">readonly ownsLock: boolean;</code></pre>
-  </div>
-  
-  
-  
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <div class="property">
-    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-string-objects">string</a></div>
     <p>
   </div>
   
@@ -145,32 +135,20 @@
   </h3>
   
   
-  <h4 id="_esfx_async_lockable_LockHandle_lock_member_1_" data-uid="@esfx/async-lockable!LockHandle#lock:member(1)">lock(cancelable)</h4>
-  <div class="markdown level1 summary"><p>Reacquires the lock. If this handle already owns the lock, an <code>Error</code> is thrown.</p>
+  <h4 id="_esfx_disposable_DisposableStack__Disposable_dispose__member_1_" data-uid="@esfx/disposable!DisposableStack#[Disposable.dispose]:member(1)">[Disposable.dispose]()</h4>
+  <div class="markdown level1 summary"><p>Dispose this object&#39;s resources.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">lock(cancelable?: Cancelable): Promise&lt;this&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">[Disposable.dispose](): void;</code></pre>
   </div>
   
   
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>cancelable</dt>
-        <dd><a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></dd>
-      </dl>
-      <p>
-        <p>A Cancelable used to cancel the request.</p>
-
-        
-      </p>
-    </div>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;this&gt;</div>
+    <div><span class="xref">void</span></div>
     <p>
   </div>
   
@@ -180,13 +158,13 @@
   
   
   
-  <h4 id="_esfx_async_lockable_LockHandle_unlock_member_1_" data-uid="@esfx/async-lockable!LockHandle#unlock:member(1)">unlock()</h4>
-  <div class="markdown level1 summary"><p>Releases the lock. If this handle does not own the lock, an <code>Error</code> is thrown.</p>
+  <h4 id="_esfx_disposable_DisposableStack_dispose_member_1_" data-uid="@esfx/disposable!DisposableStack#dispose:member(1)">dispose()</h4>
+  <div class="markdown level1 summary"><p>Dispose this object&#39;s resources.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">unlock(): void;</code></pre>
+    <pre><code class="lang-typeScript hljs">dispose(): void;</code></pre>
   </div>
   
   
@@ -194,6 +172,132 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><span class="xref">void</span></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_DisposableStack_enter_member_1_" data-uid="@esfx/disposable!DisposableStack#enter:member(1)">enter(value)</h4>
+  <div class="markdown level1 summary"><p>Pushes a new disposable resource onto the disposable stack stack. Resources are disposed in the reverse order they were entered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">enter&lt;T extends Disposable | (() =&gt; void) | null | undefined&gt;(value: T): T;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>value</dt>
+        <dd><span class="xref">T</span></dd>
+      </dl>
+      <p>
+        <p>The resource to add.</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><span class="xref">T</span></div>
+    <p><p>The resource provided.</p>
+</p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_DisposableStack_enter_member_2_" data-uid="@esfx/disposable!DisposableStack#enter:member(2)">enter(value, onDispose)</h4>
+  <div class="markdown level1 summary"><p>Pushes a new disposable resource onto the disposable stack stack. Resources are disposed in the reverse order they were entered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">enter&lt;T&gt;(value: T, onDispose: (value: NonNullable&lt;T&gt;) =&gt; void): T;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>value</dt>
+        <dd><span class="xref">T</span></dd>
+      </dl>
+      <p>
+        <p>The resource to add.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>onDispose</dt>
+        <dd>(value: <span class="xref">NonNullable</span>&lt;T&gt;) =&gt; void</dd>
+      </dl>
+      <p>
+        <p>The operation to perform when the resource is disposed. Not invoked if <code>value</code> is <code>null</code> or <code>undefined</code><!-- -->.</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><span class="xref">T</span></div>
+    <p><p>The resource provided.</p>
+</p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_DisposableStack_move_member_1_" data-uid="@esfx/disposable!DisposableStack#move:member(1)">move()</h4>
+  <div class="markdown level1 summary"><p>Moves all resources out of this <code>DisposableStack</code> and into a new <code>DisposableStack</code> and returns it.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">move(): DisposableStack;</code></pre>
+  </div>
+  
+  
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="disposablestack.html#_esfx_disposable_DisposableStack_class">DisposableStack</a></div>
     <p>
   </div>
   

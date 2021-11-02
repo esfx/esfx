@@ -70,5 +70,3 @@ Adapter packages provide functionality to simplify interoperability scenarios wi
 # Documentation
 
 You can read more about the API [here](https://esfx.github.io/esfx/).
-
-<!-- -->

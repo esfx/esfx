@@ -1,6 +1,6 @@
 {
   "homepages": [],
-  "source_base_path": "C:/dev/esfx",
+  "source_base_path": "C:/dev/esfx-bugfix",
   "xrefmap": "xrefmap.yml",
   "files": [
     {
@@ -30,7 +30,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "FSAMYusTMnhxWLe9bRzCIEs830+YtFo4w0qYdf8/ZhU="
+          "hash": "3CSKYA4By2OdcrlO6NtT1KIoraZxUT2TzMFg8U+H64A="
         }
       },
       "is_incremental": false,
@@ -179,7 +179,7 @@
       "output": {
         ".html": {
           "relative_path": "api/async-canceltoken/cancelsource.html",
-          "hash": "Rc+puGH7tS12ZZTAUH2E/0VHtXz5auHbe8VvMFEwbd4="
+          "hash": "D7t6ryfcPxwxEq5qBUYhvyQUdNPVxuGDm+GomyMbx1E="
         }
       },
       "is_incremental": false,
@@ -287,7 +287,7 @@
       "output": {
         ".html": {
           "relative_path": "api/async-iter-fn.html",
-          "hash": "qQaQiWgIaKEnk/vFLE5+Pz9xNjqxcxxORTEYoQFyTQc="
+          "hash": "HtDFJ9G6zWgPWfde79QYwaBogEWRF6ekM4vJD9603QM="
         }
       },
       "is_incremental": false,
@@ -563,7 +563,7 @@
       "output": {
         ".html": {
           "relative_path": "api/async-lockable/lockhandle.html",
-          "hash": "6WGjSWTlHgon/zmqPPtZDQaVKoD6zl9857AT/3adE6k="
+          "hash": "rHUljTiI+I+fzcM+w8WzwPeauNJ9rqHrQgmhIZrD1+8="
         }
       },
       "is_incremental": false,
@@ -935,7 +935,7 @@
       "output": {
         ".html": {
           "relative_path": "api/cancelable/cancelsubscription-interface.html",
-          "hash": "5anvqQDjEI80NoKXNIvkXt020FVze+M3MmwqNY01GDk="
+          "hash": "b6MWJ5IMOHqDzzBhSKHqBz/J6WOMO+p09w3TCQrZAC4="
         }
       },
       "is_incremental": false,
@@ -1547,7 +1547,19 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable.html",
-          "hash": "3fjHdeIs9H0e0+4Wm3QUyw4dj6lHzvEOCog/bo2UGNM="
+          "hash": "CTq+bnpZ5Db7bjS8kQwaLiitrl9KYczVXIvSS7SVY80="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/disposable/asyncdisposable-class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/disposable/asyncdisposable-class.html",
+          "hash": "GiXeHdxmu0lOwxSBm4YQKaQq6fQiJEErEMc+YyAk330="
         }
       },
       "is_incremental": false,
@@ -1571,7 +1583,43 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/asyncdisposable-namespace.html",
-          "hash": "j0j1dJbvYRHjlHksK3fZyNSGbMXxKJzhjKrcoUoHo3o="
+          "hash": "tFqLMPSM1RDSbpPTMr5TGGcEB5E1zGVbMhAjEh44pKI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/disposable/asyncdisposablescope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/disposable/asyncdisposablescope.html",
+          "hash": "x45szu/DdBSTxcyc3R8Se2GhUGYTTTxXn0dnv+6psiQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/disposable/asyncdisposablestack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/disposable/asyncdisposablestack.html",
+          "hash": "LLOoiIkVQcC1HzL3PwtUmowyGpehps5hdtELmnFr35k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/disposable/disposable-class.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/disposable/disposable-class.html",
+          "hash": "7mxachtdqAu7ZboPPkmcKNQ4WpOnPeAsLu9mee8wxEw="
         }
       },
       "is_incremental": false,
@@ -1595,7 +1643,31 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/disposable-namespace.html",
-          "hash": "FcTO909r+R/N5REkkkuTANjNDpyrM2uHgldDqwy3r0U="
+          "hash": "bP2oH507HOEg7r4T3lP4z0IXpcpLj5mN9jrouyQSLXk="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/disposable/disposablescope.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/disposable/disposablescope.html",
+          "hash": "/BLnQidZ2/D1d+48f8vACe84/prDd/0cNpwhsIy7qXw="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/disposable/disposablestack.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/disposable/disposablestack.html",
+          "hash": "iLxNwwrYdle64mcCW/YlApGhx8sGeh9X7wO/lgRfQ2I="
         }
       },
       "is_incremental": false,
@@ -2831,7 +2903,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "HpOYdHxUM5EbOn3GmgZlwUA/SmuG9Aa20Y+P7havkD4="
+          "hash": "25AcExpW37PxuKBsjd/pznZKfIw4Mxy3d+oGA/Atx00="
         }
       },
       "is_incremental": false,
@@ -2841,17 +2913,19 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": true,
+        "can_incremental": false,
+        "details": "Cannot build incrementally because last build info is missing.",
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0
+        "skipped_file_count": 0,
+        "full_build_reason_code": "NoAvailableBuildCache"
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": true,
+          "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 1,
-          "skipped_file_count": 1
+          "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
