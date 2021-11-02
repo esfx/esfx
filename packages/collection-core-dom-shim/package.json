@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collection-core-dom-shim",
-    "version": "1.0.0-pre.24",
+    "version": "1.0.0-pre.25",
     "description": "A global shim to add default @esfx/collection-core behaviors to global DOM objects.",
     "type": "commonjs",
     "main": "./dist/index.js",
