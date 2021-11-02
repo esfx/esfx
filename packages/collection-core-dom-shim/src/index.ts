@@ -36,9 +36,6 @@ if (typeof CSSRuleList === "function") makeReadonlyIndexedCollection(CSSRuleList
 declare global { interface CSSStyleDeclaration extends ReadonlyIndexedCollection<string> {} }
 if (typeof CSSStyleDeclaration === "function") makeReadonlyIndexedCollection(CSSStyleDeclaration.prototype);
 
-declare global { interface ClientRectList extends ReadonlyIndexedCollection<ClientRect> {} }
-if (typeof ClientRectList === "function") makeReadonlyIndexedCollection(ClientRectList.prototype);
-
 declare global { interface DOMRectList extends ReadonlyIndexedCollection<DOMRect> {} }
 if (typeof DOMRectList === "function") makeReadonlyIndexedCollection(DOMRectList.prototype);
 
@@ -104,9 +101,6 @@ if (typeof SVGStringList === "function") makeReadonlyIndexedCollection(SVGString
 declare global { interface SourceBufferList extends ReadonlyIndexedCollection<SourceBuffer> {} }
 if (typeof SourceBufferList === "function") makeReadonlyIndexedCollection(SourceBufferList.prototype);
 
-declare global { interface SpeechGrammarList extends ReadonlyIndexedCollection<SpeechGrammar> {} }
-if (typeof SpeechGrammarList === "function") makeReadonlyIndexedCollection(SpeechGrammarList.prototype);
-
 declare global { interface SpeechRecognitionResult extends ReadonlyIndexedCollection<SpeechRecognitionAlternative> {} }
 if (typeof SpeechRecognitionResult === "function") makeReadonlyIndexedCollection(SpeechRecognitionResult.prototype);
 
@@ -125,7 +119,6 @@ if (typeof TextTrackList === "function") makeReadonlyIndexedCollection(TextTrack
 declare global { interface TouchList extends ReadonlyIndexedCollection<Touch> {} }
 if (typeof TouchList === "function") makeReadonlyIndexedCollection(TouchList.prototype);
 
-// declare global { interface VideoTrackList extends ReadonlyIndexedCollection<VideoTrack> {} }
 declare var VideoTrackList: any;
 if (typeof VideoTrackList === "function") makeReadonlyIndexedCollection(VideoTrackList.prototype);
 

@@ -14,7 +14,16 @@
    limitations under the License.
 */
 
-export { Disposable, DisposableScope } from "./disposable";
-export { AsyncDisposable, AsyncDisposableScope } from "./asyncDisposable";
-export { DisposableStack } from "./disposableStack";
-export { AsyncDisposableStack } from "./asyncDisposableStack";
+/* @internal */
+import { DisposableResourceRecord } from "./utils";
+
+/* @internal */
+import type { AsyncDisposable } from "../asyncDisposable";
+
+export {};
+
+/* @internal */
+export const weakAsyncDisposableState = new WeakMap<AsyncDisposable, "pending" | "pending-one" | "pending-stack" | "disposed">();
+
+/* @internal */
+export const weakAsyncDisposableResourceStack = new WeakMap<AsyncDisposable, DisposableResourceRecord<"async">[]>();

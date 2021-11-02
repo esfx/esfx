@@ -6,9 +6,9 @@ const primitiveTypes = new Set<object>();
 
 function createPrimitiveType<K extends string, N extends NumberType>(name: K, nt: N): StructPrimitiveType<K, NumberTypeToType[N]> {
     const typeInfo = new PrimitiveTypeInfo(nt);
-    const type: StructPrimitiveType<K, NumberTypeToType[N]> = Object.defineProperties(function (value: number | bigint) {
+    const type = Object.defineProperties(function (value: number | bigint) {
         return coerceValue(nt, value);
-    }, {
+    } as StructPrimitiveType<K, NumberTypeToType[N]>, {
         name: { value: name },
         SIZE: { value: typeInfo.size },
     });

@@ -28,7 +28,7 @@ class MyFileResouce {
         fs.closeSync(this.handle);
         this.handle = undefined;
     }
-    
+
     // provide low-level 'dispose' primitive for interop
     [Disposable.dispose]() {
         this.close();
