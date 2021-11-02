@@ -15,37 +15,32 @@
 */
 
 import { Disposable, DisposableScope } from "../disposable";
-import { isOwn, isNonWritable, isNonEnumerable, isConfigurable, hasOwnMethod, isWritable, isObject } from "../internal/testUtils";
+import "../internal/testUtils";
 
 describe("The Disposable constructor", () => {
-    it("is function [spec]", () => expect(typeof Disposable === "function").toBe(true));
-    it("[[Prototype]] is Function [spec]", () => expect(Object.getPrototypeOf(Disposable)).toBe(Function.prototype));
-    it(".length is 1 [spec]", () => expect(Disposable.length).toBe(1));
-    describe(".name", () => {
-        it("is own [spec]", () => expect(isOwn(Disposable, "name")).toBe(true));
-        it("is non-writable [spec]", () => expect(isNonWritable(Disposable, "name")).toBe(true));
-        it("is non-enumerable [spec]", () => expect(isNonEnumerable(Disposable, "name")).toBe(true));
-        it("is configurable [spec]", () => expect(isConfigurable(Disposable, "name")).toBe(true));
-        it("is 'Disposable' [spec]", () => expect(Disposable.name).toBe("Disposable"));
-    });
+    it("is a function [spec]", () => expect(Disposable).toBeTypeof("function"));
+    it("[[Prototype]] is %Function.prototype% [spec]", () => expect(Object.getPrototypeOf(Disposable)).toBe(Function.prototype));
+    it("length is 1 [spec]", () => expect(Disposable.length).toBe(1));
+    it("name is 'Disposable' [spec]", () => expect(Disposable.name).toBe("Disposable"));
     describe("Disposable(onDispose)", () => {
         it("returns instance of Disposable [spec]", () => expect(new Disposable(() => {})).toBeInstanceOf(Disposable));
-        it("throws on call [spec]", () => expect(() => Disposable.call(null, () => {})).toThrow(TypeError));
         it("Adds 'onDispose' as resource callback [spec]", () => {
             const fn = jest.fn();
             const disposable = new Disposable(fn);
             disposable[Disposable.dispose]();
             expect(fn).toHaveBeenCalled();
         });
+        it("throws on call [spec]", () => expect(() => Disposable.call(null, () => {})).toThrow(TypeError));
     });
 });
 
 describe("Properties of the Disposable constructor", () => {
+    it("Disposable.dispose [non-spec]", () => expect(Disposable.dispose).toBeTypeof("symbol"));
     describe("Disposable.from(iterable)", () => {
-        it("is own method [spec]", () => expect(hasOwnMethod(Disposable, "from")).toBe(true));
-        it("is writable [spec]", () => expect(isWritable(Disposable, "from")).toBe(true));
-        it("is non-enumerable [spec]", () => expect(isNonEnumerable(Disposable, "from")).toBe(true));
-        it("is configurable [spec]", () => expect(isConfigurable(Disposable, "from")).toBe(true));
+        it("is an own method [spec]", () => expect(Disposable).toHaveOwnMethod("from"));
+        it("is writable [spec]", () => expect(Disposable).toHaveWritableProperty("from"));
+        it("is non-enumerable [spec]", () => expect(Disposable).toHaveNonEnumerableProperty("from"));
+        it("is configurable [spec]", () => expect(Disposable).toHaveConfigurableProperty("from"));
         it("returns instance of Dispose [spec]", () => expect(Disposable.from([])).toBeInstanceOf(Disposable));
         it("disposes resources [spec]", () => {
             const fn1 = jest.fn();
@@ -386,9 +381,8 @@ describe("Properties of the Disposable constructor", () => {
             expect(fn).toHaveBeenCalled();
         });
     });
-    it("Disposable.dispose [non-spec]", () => expect(typeof Disposable.dispose).toBe("symbol"));
     describe("Disposable.scope() [non-spec]", () => {
-        it("is own method", () => expect(hasOwnMethod(Disposable, "scope")).toBe(true));
+        it("is an own method", () => expect(Disposable).toHaveOwnMethod("scope"));
         it("disposes single resource", () => {
             const fn = jest.fn();
             const disposable = new Disposable(fn);
@@ -546,7 +540,7 @@ describe("Properties of the Disposable constructor", () => {
         });
     });
     describe("Disposable.usingEach(iterable) [non-spec]", () => {
-        it("is own method", () => expect(hasOwnMethod(Disposable, "usingEach")).toBe(true));
+        it("is an own method", () => expect(Disposable).toHaveOwnMethod("usingEach"));
         it("disposes each", () => {
             const fn1 = jest.fn();
             const fn2 = jest.fn();
@@ -577,7 +571,7 @@ describe("Properties of the Disposable constructor", () => {
         })
     });
     describe("Disposable.use(resource, callback) [non-spec]", () => {
-        it("is own method", () => expect(hasOwnMethod(Disposable, "use")).toBe(true));
+        it("is an own method", () => expect(Disposable).toHaveOwnMethod("use"));
         it("disposes", () => {
             const fn = jest.fn();
             Disposable.use(fn, () => {});
@@ -597,25 +591,24 @@ describe("Properties of the Disposable constructor", () => {
         });
     });
     describe("Disposable.hasInstance(value) [non-spec]", () => {
-        it("is own method", () => expect(hasOwnMethod(Disposable, "hasInstance")).toBe(true));
+        it("is an own method", () => expect(Disposable).toHaveOwnMethod("hasInstance"));
         it("returns true if value is disposable", () => expect(Disposable.hasInstance({ [Disposable.dispose]() {} })).toBe(true));
         it("returns false if value is not disposable", () => expect(Disposable.hasInstance({ })).toBe(false));
     });
     describe("Disposable[Symbol.hasInstance](value) [non-spec]", () => {
-        it("is own method", () => expect(hasOwnMethod(Disposable, Symbol.hasInstance)).toBe(true));
+        it("is an own method", () => expect(Disposable).toHaveOwnMethod(Symbol.hasInstance));
         it("returns true if value is disposable", () => expect(Disposable[Symbol.hasInstance]({ [Disposable.dispose]() {} })).toBe(true));
         it("returns false if value is not disposable", () => expect(Disposable[Symbol.hasInstance]({ })).toBe(false));
     });
 });
 
 describe("Properties of the Disposable.prototype object", () => {
-    it("is object [spec]", () => expect(isObject(Disposable.prototype)).toBe(true));
+    it("is an object [spec]", () => expect(Disposable.prototype).toBeTypeof("object"));
     describe("Disposable.prototype[Disposable.dispose]()", () => {
-        it("is own method [spec]", () => expect(hasOwnMethod(Disposable.prototype, Disposable.dispose)).toBe(true));
-        it("is writable [spec]", () => expect(isWritable(Disposable.prototype, Disposable.dispose)).toBe(true));
-        it("is non-enumerable [spec]", () => expect(isNonEnumerable(Disposable.prototype, Disposable.dispose)).toBe(true));
-        it("is configurable [spec]", () => expect(isConfigurable(Disposable.prototype, Disposable.dispose)).toBe(true));
-        it("throws on non instance [spec]", () => expect(() => Disposable.prototype[Disposable.dispose].call({})).toThrow());
+        it("is an own method [spec]", () => expect(Disposable.prototype).toHaveOwnMethod(Disposable.dispose));
+        it("is writable [spec]", () => expect(Disposable.prototype).toHaveWritableProperty(Disposable.dispose));
+        it("is non-enumerable [spec]", () => expect(Disposable.prototype).toHaveNonEnumerableProperty(Disposable.dispose));
+        it("is configurable [spec]", () => expect(Disposable.prototype).toHaveConfigurableProperty(Disposable.dispose));
         it("disposes resource stack [spec]", () => {
             const fn = jest.fn();
             const disposable = new Disposable(fn);
@@ -629,12 +622,13 @@ describe("Properties of the Disposable.prototype object", () => {
             disposable[Disposable.dispose]();
             expect(fn).toHaveBeenCalledTimes(1);
         });
+        it("throws on non instance [spec]", () => expect(() => Disposable.prototype[Disposable.dispose].call({})).toThrow());
     });
     describe("Disposable.prototype[Symbol.toStringTag]", () => {
-        it("is own [spec]", () => expect(isOwn(Disposable.prototype, Symbol.toStringTag)).toBe(true));
-        it("is non-writable [spec]", () => expect(isNonWritable(Disposable.prototype, Symbol.toStringTag)).toBe(true));
-        it("is non-enumerable [spec]", () => expect(isNonEnumerable(Disposable.prototype, Symbol.toStringTag)).toBe(true));
-        it("is configurable [spec]", () => expect(isConfigurable(Disposable.prototype, Symbol.toStringTag)).toBe(true));
+        it("is an own property [spec]", () => expect(Disposable.prototype).toHaveOwnProperty(Symbol.toStringTag));
+        it("is non-writable [spec]", () => expect(Disposable.prototype).toHaveNonWritableProperty(Symbol.toStringTag));
+        it("is non-enumerable [spec]", () => expect(Disposable.prototype).toHaveNonEnumerableProperty(Symbol.toStringTag));
+        it("is configurable [spec]", () => expect(Disposable.prototype).toHaveConfigurableProperty(Symbol.toStringTag));
         it("is 'Disposable' [spec]", () => expect((Disposable.prototype as any)[Symbol.toStringTag]).toBe("Disposable"));
     });
 });

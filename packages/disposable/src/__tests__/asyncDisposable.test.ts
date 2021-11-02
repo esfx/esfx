@@ -15,37 +15,32 @@
 */
 
 import { AsyncDisposable, AsyncDisposableScope } from "../asyncDisposable";
-import { isOwn, isNonWritable, isNonEnumerable, isConfigurable, hasOwnMethod, isWritable, isObject } from "../internal/testUtils";
+import "../internal/testUtils";
 
 describe("The AsyncDisposable constructor", () => {
-    it("is function [spec]", () => expect(typeof AsyncDisposable === "function").toBe(true));
-    it("[[Prototype]] is Function [spec]", () => expect(Object.getPrototypeOf(AsyncDisposable)).toBe(Function.prototype));
-    it(".length is 1 [spec]", () => expect(AsyncDisposable.length).toBe(1));
-    describe(".name", () => {
-        it("is own [spec]", () => expect(isOwn(AsyncDisposable, "name")).toBe(true));
-        it("is non-writable [spec]", () => expect(isNonWritable(AsyncDisposable, "name")).toBe(true));
-        it("is non-enumerable [spec]", () => expect(isNonEnumerable(AsyncDisposable, "name")).toBe(true));
-        it("is configurable [spec]", () => expect(isConfigurable(AsyncDisposable, "name")).toBe(true));
-        it("is 'AsyncDisposable' [spec]", () => expect(AsyncDisposable.name).toBe("AsyncDisposable"));
-    });
+    it("is a function [spec]", () => expect(AsyncDisposable).toBeTypeof("function"));
+    it("[[Prototype]] is %Function.prototype% [spec]", () => expect(Object.getPrototypeOf(AsyncDisposable)).toBe(Function.prototype));
+    it("length is 1 [spec]", () => expect(AsyncDisposable.length).toBe(1));
+    it("name is 'AsyncDisposable' [spec]", () => expect(AsyncDisposable.name).toBe("AsyncDisposable"));
     describe("AsyncDisposable(onDispose)", () => {
-        it("returns instance of Dispose [spec]", () => expect(new AsyncDisposable(() => {})).toBeInstanceOf(AsyncDisposable));
-        it("throws on call [spec]", () => expect(() => AsyncDisposable.call(null, () => {})).toThrow(TypeError));
+        it("returns instance of AsyncDisposable [spec]", () => expect(new AsyncDisposable(() => {})).toBeInstanceOf(AsyncDisposable));
         it("Adds 'onDispose' as resource callback [spec]", async () => {
             const fn = jest.fn();
             const disposable = new AsyncDisposable(fn);
             await disposable[AsyncDisposable.asyncDispose]();
             expect(fn).toHaveBeenCalled();
         });
+        it("throws on call [spec]", () => expect(() => AsyncDisposable.call(null, () => {})).toThrow(TypeError));
     });
 });
 
 describe("Properties of the AsyncDisposable constructor", () => {
+    it("AsyncDisposable.asyncDispose [non-spec]", () => expect(AsyncDisposable.asyncDispose).toBeTypeof("symbol"));
     describe("AsyncDisposable.from(iterable)", () => {
-        it("is own method [spec]", () => expect(hasOwnMethod(AsyncDisposable, "from")).toBe(true));
-        it("is writable [spec]", () => expect(isWritable(AsyncDisposable, "from")).toBe(true));
-        it("is non-enumerable [spec]", () => expect(isNonEnumerable(AsyncDisposable, "from")).toBe(true));
-        it("is configurable [spec]", () => expect(isConfigurable(AsyncDisposable, "from")).toBe(true));
+        it("is an own method [spec]", () => expect(AsyncDisposable).toHaveOwnMethod("from"));
+        it("is writable [spec]", () => expect(AsyncDisposable).toHaveWritableProperty("from"));
+        it("is non-enumerable [spec]", () => expect(AsyncDisposable).toHaveNonEnumerableProperty("from"));
+        it("is configurable [spec]", () => expect(AsyncDisposable).toHaveConfigurableProperty("from"));
         it("returns instance of Dispose [spec]", () => expect(AsyncDisposable.from([])).resolves.toBeInstanceOf(AsyncDisposable));
         it("disposes elements [spec]", async () => {
             const fn1 = jest.fn();
@@ -216,7 +211,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             const e1 = new Error();
             const disposable1 = new AsyncDisposable(() => { throw e1; });
             const disposable = await AsyncDisposable.from([disposable1]);
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 await disposable[AsyncDisposable.asyncDispose]();
@@ -224,7 +219,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion).toBeDefined();
             expect(throwCompletion.cause).toBeInstanceOf(AggregateError);
             expect((throwCompletion.cause as AggregateError & { cause: unknown }).cause).toBeUndefined();
@@ -237,7 +232,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             const e2 = new Error();
             const disposable2 = new AsyncDisposable(() => { throw e2; });
             const disposable = await AsyncDisposable.from([disposable1, disposable2]);
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 await disposable[AsyncDisposable.asyncDispose]();
@@ -245,7 +240,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion).toBeDefined();
             expect(throwCompletion.cause).toBeInstanceOf(AggregateError);
             expect((throwCompletion.cause as AggregateError & { cause: unknown }).cause).toBeUndefined();
@@ -259,7 +254,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
                 next() { throw e; },
                 [Symbol.iterator]() { return this; }
             };
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 await AsyncDisposable.from(iter);
@@ -267,7 +262,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion).toBeDefined();
             expect(throwCompletion.cause).toBe(e);
         });
@@ -279,7 +274,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
                 },
                 [Symbol.iterator]() { return this; }
             };
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 await AsyncDisposable.from(iter);
@@ -287,7 +282,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion).toBeDefined();
             expect(throwCompletion.cause).toBe(e);
         });
@@ -299,7 +294,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
                 },
                 [Symbol.iterator]() { return this; }
             };
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 await AsyncDisposable.from(iter);
@@ -307,7 +302,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion).toBeDefined();
             expect(throwCompletion.cause).toBe(e);
         });
@@ -324,7 +319,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
                 },
                 [Symbol.iterator]() { return this; }
             };
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 await AsyncDisposable.from(iter);
@@ -332,7 +327,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion.cause).toBeInstanceOf(AggregateError);
             expect((throwCompletion.cause as AggregateError & { cause: unknown }).cause).toBe(eCause);
             expect((throwCompletion.cause as AggregateError & { cause: unknown }).errors.length).toBe(1);
@@ -351,7 +346,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
                 },
                 [Symbol.iterator]() { return this; }
             };
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 await AsyncDisposable.from(iter);
@@ -359,7 +354,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion.cause).toBeInstanceOf(AggregateError);
             expect((throwCompletion.cause as AggregateError & { cause: unknown }).cause).toBe(eCause);
             expect((throwCompletion.cause as AggregateError & { cause: unknown }).errors.length).toBe(1);
@@ -378,7 +373,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
                 },
                 [Symbol.iterator]() { return this; }
             };
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 await AsyncDisposable.from(iter);
@@ -386,7 +381,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion.cause).toBeInstanceOf(AggregateError);
             expect((throwCompletion.cause as AggregateError & { cause: unknown }).cause).toBe(eCause);
             expect((throwCompletion.cause as AggregateError & { cause: unknown }).errors.length).toBe(1);
@@ -399,9 +394,8 @@ describe("Properties of the AsyncDisposable constructor", () => {
             expect(fn).toHaveBeenCalled();
         });
     });
-    it("AsyncDisposable.asyncDispose [non-spec]", () => expect(typeof AsyncDisposable.asyncDispose).toBe("symbol"));
     describe("AsyncDisposable.scope() [non-spec]", () => {
-        it("is own method", () => expect(hasOwnMethod(AsyncDisposable, "scope")).toBe(true));
+        it("is an own method", () => expect(AsyncDisposable).toHaveOwnMethod("scope"));
         it("disposes single resource", async () => {
             const fn = jest.fn();
             const disposable = new AsyncDisposable(fn);
@@ -426,12 +420,12 @@ describe("Properties of the AsyncDisposable constructor", () => {
             const steps: string[] = [];
             const disposable1 = new AsyncDisposable(() => { steps.push("disposable1"); });
             const disposable2 = new AsyncDisposable(() => { steps.push("disposable2"); });
-    
+
             for await (const { using, fail } of AsyncDisposable.scope()) try {
                 using(disposable1);
                 using(disposable2);
             } catch (e) { fail(e); }
-    
+
             expect(steps).toEqual(["disposable2", "disposable1"]);
         });
         it("allows null or undefined", async () => {
@@ -449,7 +443,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
         });
         it("error from invalid disposable not wrapped if no errors during dispose", async () => {
             const disposable1 = new AsyncDisposable(() => { });
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 for await (const { using, fail } of AsyncDisposable.scope()) try {
@@ -460,14 +454,14 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion).toBeDefined();
             expect(throwCompletion.cause).toBeInstanceOf(TypeError);
         });
         it("error from invalid disposable wrapped if errors during dispose", async () => {
             const e1 = new Error();
             const disposable1 = new AsyncDisposable(() => { throw e1; });
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 for await (const { using, fail } of AsyncDisposable.scope()) try {
@@ -478,7 +472,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion).toBeDefined();
             expect(throwCompletion.cause).toBeInstanceOf(AggregateError);
             expect((throwCompletion.cause as AggregateError & { cause: unknown }).cause).toBeInstanceOf(TypeError);
@@ -488,7 +482,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
         it("error from body not wrapped if no errors during dispose", async () => {
             const e = new Error();
             const disposable1 = new AsyncDisposable(() => { });
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 for await (const { using, fail } of AsyncDisposable.scope()) try {
@@ -499,14 +493,14 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion).toBeDefined();
             expect(throwCompletion.cause).toBe(e);
         });
         it("single error from dispose wrapped in AggregateError", async () => {
             const e = new Error();
             const disposable1 = new AsyncDisposable(() => { throw e; });
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 for await (const { using, fail } of AsyncDisposable.scope()) try {
@@ -516,7 +510,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion).toBeDefined();
             expect(throwCompletion.cause).toBeInstanceOf(AggregateError);
             expect((throwCompletion.cause as AggregateError & { cause: unknown }).cause).toBeUndefined();
@@ -528,7 +522,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             const disposable1 = new AsyncDisposable(() => { throw e1; });
             const e2 = new Error();
             const disposable2 = new AsyncDisposable(() => { throw e2; });
-    
+
             let throwCompletion!: { cause: unknown };
             try {
                 for await (const { using, fail } of AsyncDisposable.scope()) try {
@@ -539,7 +533,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
             catch (e) {
                 throwCompletion = { cause: e };
             }
-    
+
             expect(throwCompletion).toBeDefined();
             expect(throwCompletion.cause).toBeInstanceOf(AggregateError);
             expect((throwCompletion.cause as AggregateError & { cause: unknown }).cause).toBeUndefined();
@@ -559,7 +553,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
         });
     });
     describe("AsyncDisposable.usingEach(iterable) [non-spec]", () => {
-        it("is own method", () => expect(hasOwnMethod(AsyncDisposable, "usingEach")).toBe(true));
+        it("is an own method", () => expect(AsyncDisposable).toHaveOwnMethod("usingEach"));
         it("disposes each", async () => {
             const fn1 = jest.fn();
             const fn2 = jest.fn();
@@ -590,7 +584,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
         })
     });
     describe("AsyncDisposable.use(resource, callback) [non-spec]", () => {
-        it("is own method", () => expect(hasOwnMethod(AsyncDisposable, "use")).toBe(true));
+        it("is an own method", () => expect(AsyncDisposable).toHaveOwnMethod("use"));
         it("disposes", async () => {
             const fn = jest.fn();
             await AsyncDisposable.use(fn, () => {});
@@ -610,25 +604,24 @@ describe("Properties of the AsyncDisposable constructor", () => {
         });
     });
     describe("AsyncDisposable.hasInstance(value) [non-spec]", () => {
-        it("is own method", () => expect(hasOwnMethod(AsyncDisposable, "hasInstance")).toBe(true));
+        it("is an own method", () => expect(AsyncDisposable).toHaveOwnMethod("hasInstance"));
         it("returns true if value is disposable", () => expect(AsyncDisposable.hasInstance({ [AsyncDisposable.asyncDispose]() {} })).toBe(true));
         it("returns false if value is not disposable", () => expect(AsyncDisposable.hasInstance({ })).toBe(false));
     });
     describe("AsyncDisposable[Symbol.hasInstance](value) [non-spec]", () => {
-        it("is own method", () => expect(hasOwnMethod(AsyncDisposable, Symbol.hasInstance)).toBe(true));
+        it("is an own method", () => expect(AsyncDisposable).toHaveOwnMethod(Symbol.hasInstance));
         it("returns true if value is disposable", () => expect(AsyncDisposable[Symbol.hasInstance]({ [AsyncDisposable.asyncDispose]() {} })).toBe(true));
         it("returns false if value is not disposable", () => expect(AsyncDisposable[Symbol.hasInstance]({ })).toBe(false));
     });
 });
 
 describe("Properties of the AsyncDisposable.prototype object", () => {
-    it("is object [spec]", () => expect(isObject(AsyncDisposable.prototype)).toBe(true));
+    it("is an object [spec]", () => expect(AsyncDisposable.prototype).toBeTypeof("object"));
     describe("AsyncDisposable.prototype[AsyncDisposable.asyncDispose]()", () => {
-        it("is own method [spec]", () => expect(hasOwnMethod(AsyncDisposable.prototype, AsyncDisposable.asyncDispose)).toBe(true));
-        it("is writable [spec]", () => expect(isWritable(AsyncDisposable.prototype, AsyncDisposable.asyncDispose)).toBe(true));
-        it("is non-enumerable [spec]", () => expect(isNonEnumerable(AsyncDisposable.prototype, AsyncDisposable.asyncDispose)).toBe(true));
-        it("is configurable [spec]", () => expect(isConfigurable(AsyncDisposable.prototype, AsyncDisposable.asyncDispose)).toBe(true));
-        it("throws on non instance [spec]", () => expect(AsyncDisposable.prototype[AsyncDisposable.asyncDispose].call({})).rejects.toThrow());
+        it("is an own method [spec]", () => expect(AsyncDisposable.prototype).toHaveOwnMethod(AsyncDisposable.asyncDispose));
+        it("is writable [spec]", () => expect(AsyncDisposable.prototype).toHaveWritableProperty(AsyncDisposable.asyncDispose));
+        it("is non-enumerable [spec]", () => expect(AsyncDisposable.prototype).toHaveNonEnumerableProperty(AsyncDisposable.asyncDispose));
+        it("is configurable [spec]", () => expect(AsyncDisposable.prototype).toHaveConfigurableProperty(AsyncDisposable.asyncDispose));
         it("disposes resource stack [spec]", async () => {
             const fn = jest.fn();
             const disposable = new AsyncDisposable(fn);
@@ -642,12 +635,13 @@ describe("Properties of the AsyncDisposable.prototype object", () => {
             await disposable[AsyncDisposable.asyncDispose]();
             expect(fn).toHaveBeenCalledTimes(1);
         });
+        it("throws on non instance [spec]", () => expect(AsyncDisposable.prototype[AsyncDisposable.asyncDispose].call({})).rejects.toThrow());
     });
     describe("AsyncDisposable.prototype[Symbol.toStringTag]", () => {
-        it("is own [spec]", () => expect(isOwn(AsyncDisposable.prototype, Symbol.toStringTag)).toBe(true));
-        it("is non-writable [spec]", () => expect(isNonWritable(AsyncDisposable.prototype, Symbol.toStringTag)).toBe(true));
-        it("is non-enumerable [spec]", () => expect(isNonEnumerable(AsyncDisposable.prototype, Symbol.toStringTag)).toBe(true));
-        it("is configurable [spec]", () => expect(isConfigurable(AsyncDisposable.prototype, Symbol.toStringTag)).toBe(true));
+        it("is an own property [spec]", () => expect(AsyncDisposable.prototype).toHaveOwnProperty(Symbol.toStringTag));
+        it("is non-writable [spec]", () => expect(AsyncDisposable.prototype).toHaveNonWritableProperty(Symbol.toStringTag));
+        it("is non-enumerable [spec]", () => expect(AsyncDisposable.prototype).toHaveNonEnumerableProperty(Symbol.toStringTag));
+        it("is configurable [spec]", () => expect(AsyncDisposable.prototype).toHaveConfigurableProperty(Symbol.toStringTag));
         it("is 'AsyncDisposable' [spec]", () => expect((AsyncDisposable.prototype as any)[Symbol.toStringTag]).toBe("AsyncDisposable"));
     });
 });

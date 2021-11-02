@@ -35,29 +35,28 @@ export class AsyncDisposableStack implements AsyncDisposable {
     }
 
     /**
-     * Dispose this object's resources.
-     */
-    async [AsyncDisposable.asyncDispose]() {
-        if (!weakAsyncDisposable.has(this)) throw new TypeError("Wrong target");
-        const disposable = weakAsyncDisposable.get(this)!;
-        const state = weakAsyncDisposableState.get(disposable)!;
-        if (state === "disposed") return;
-        await disposable[AsyncDisposable.asyncDispose]();
-    }
-
-    /**
      * Pushes a new disposable resource onto the disposable stack stack. Resources are disposed in the reverse order they were entered.
      * @param value The resource to add.
      * @returns The resource provided.
      */
-    enter<T extends AsyncDisposable | Disposable | (() => void | PromiseLike<void>) | null | undefined>(value: T): T {
+    enter<T extends AsyncDisposable | Disposable | (() => void | PromiseLike<void>) | null | undefined>(value: T): T;
+    /**
+     * Pushes a new disposable resource onto the disposable stack stack. Resources are disposed in the reverse order they were entered.
+     * @param value The resource to add.
+     * @param onDispose The operation to perform when the resource is disposed. Not invoked if `value` is `null` or `undefined`.
+     * @returns The resource provided.
+     */
+    enter<T>(value: T, onDispose: (value: NonNullable<T>) => void | PromiseLike<void>): T;
+    enter<T>(value: T, onDispose: ((value: NonNullable<T>) => void | PromiseLike<void>) | undefined = undefined): T {
         if (!weakAsyncDisposable.has(this)) throw new TypeError("Wrong target");
         const disposable = weakAsyncDisposable.get(this)!;
         const state = weakAsyncDisposableState.get(disposable)!;
         const stack = weakAsyncDisposableResourceStack.get(disposable)!;
         if (state === "disposed") throw new ReferenceError("Object is disposed");
         if (state !== "pending-stack") throw new ReferenceError("Wrong target");
-        AddDisposableResource(stack, value, "async");
+        if (value !== null && value !== undefined) {
+            AddDisposableResource(stack, onDispose ? () => onDispose(value!) : value, "async");
+        }
         return value;
     }
 
@@ -80,6 +79,25 @@ export class AsyncDisposableStack implements AsyncDisposable {
         stack.length = 0;
         return newExitStack;
     }
+
+    /**
+     * Dispose this object's resources.
+     */
+    async disposeAsync() {
+        if (!weakAsyncDisposable.has(this)) throw new TypeError("Wrong target");
+        const disposable = weakAsyncDisposable.get(this)!;
+        const state = weakAsyncDisposableState.get(disposable)!;
+        if (state === "disposed") return;
+        await disposable[AsyncDisposable.asyncDispose]();
+    }
+
+    /**
+     * Dispose this object's resources.
+     */
+    async [AsyncDisposable.asyncDispose]() {
+        await this.disposeAsync();
+    }
 }
 
 Object.defineProperty(AsyncDisposableStack.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncDisposableStack" });
+Object.defineProperty(AsyncDisposableStack.prototype, AsyncDisposable.asyncDispose, Object.getOwnPropertyDescriptor(AsyncDisposableStack.prototype, "disposeAsync")!);

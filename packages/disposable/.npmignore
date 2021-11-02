@@ -2,6 +2,7 @@
 obj
 src
 __tests__
+internal/testUtils.ts
 api-extractor.json
 tsconfig.json
 tsconfig.tsbuildinfo
