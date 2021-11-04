@@ -14,14 +14,21 @@
    limitations under the License.
 */
 
+import { Disposable } from "@esfx/disposable";
+
 const symContext = Symbol.for("@esfx/events:Event.context");
 const symListener = Symbol.for("@esfx/events:EventListener.listener");
+const symListenerToken = Symbol.for("@esfx/events:EventListener.token");
+
+const bind = Function.prototype.call.bind(Function.prototype.bind);
 
 export type EventListener<F extends (...args: any[]) => void> = (this: ThisParameterType<F>, ...args: Parameters<F>) => void;
+export type EventOwner<F extends (...args: any[]) => void> = ThisParameterType<F> extends undefined ? void : ThisParameterType<F>;
 
 interface EventListenerLike<F extends (...args: any[]) => void> {
     (this: ThisParameterType<F>, ...args: Parameters<F>): void;
     [symListener]?: EventListener<F>;
+    [symListenerToken]?: object;
 }
 
 interface OnceListenerRecord<F extends (...args: any[]) => void> {
@@ -37,19 +44,19 @@ function onceListener<F extends (...args: any[]) => void>(this: OnceListenerReco
     Reflect.apply(this.listener, this.context.owner, args);
 }
 
-function createOnceListener<F extends (...args: any[]) => void>(context: EventContext<F>, listener: EventListener<F>) {
-    const fn: EventListenerLike<F> = onceListener.bind({ context, listener, done: false });
+function createListenerWrap<F extends (...args: any[]) => void>(context: EventContext<F>, listener: EventListener<F>, options?: { token?: object, once?: boolean }) {
+    const fn: EventListenerLike<F> = options?.once ?
+        bind(onceListener, { context, listener, done: false }) :
+        bind(listener, context.owner);
     fn[symListener] = listener;
+    fn[symListenerToken] = options?.token;
     return fn;
 }
 
 class EventContext<F extends (...args: any[]) => void> {
     readonly owner: ThisParameterType<F>;
-    // @ts-ignore
-    readonly event: Event<F> = new Event<F>(this);
-    // @ts-ignore
-    readonly source: EventSource<F> = new EventSource<F>(this);
-
+    readonly event: Event<F> = createEvent(this);
+    readonly source: EventSource<F> = createEventSource<F>(this);
     private _list?: EventListenerLike<F> | EventListenerLike<F>[] = undefined;
 
     constructor(owner: ThisParameterType<F>) {
@@ -86,17 +93,25 @@ class EventContext<F extends (...args: any[]) => void> {
         }
     }
 
+    unsubscribe(token: object) {
+        this._removeListener(currentListener => !!currentListener[symListenerToken] && currentListener[symListenerToken] === token);
+    }
+
     removeListener(listener: EventListener<F>) {
+        this._removeListener(currentListener => currentListener === listener || currentListener[symListener] === listener);
+    }
+
+    private _removeListener(match: (listener: EventListenerLike<F>) => boolean) {
         const listeners = this._list;
         if (typeof listeners === "function") {
-            if (listeners === listener || listeners[symListener] === listener) {
+            if (match(listeners)) {
                 this._list = undefined;
             }
         }
         else if (listeners) {
             for (let i = 0; i < listeners.length; i++) {
                 const currentListener = listeners[i];
-                if (currentListener === listener || currentListener[symListener] === listener) {
+                if (match(currentListener)) {
                     listeners.splice(i, 1);
                     if (listeners.length === 1) {
                         this._list = listeners[0];
@@ -148,35 +163,52 @@ class EventContext<F extends (...args: any[]) => void> {
     }
 }
 
+let createEventSource: <F extends (...args: any[]) => void>(context: EventContext<F>) => EventSource<F>;
 export class EventSource<F extends (...args: any[]) => void> {
+    static {
+        createEventSource = context => new EventSource(context);
+    }
+
     private [symContext]: EventContext<F>;
 
     private constructor(context: EventContext<F>) {
         this[symContext] = context;
     }
 
+    /**
+     * Gets the {@link Event} raised by this source.
+     */
     get event(): Event<F> {
         return this[symContext].event;
     }
 
+    /**
+     * Gets the owner of the {@link Event}.
+     */
     get owner() {
         return this[symContext].owner;
     }
 
+    /**
+     * Emits the linked {@link Event} for this source.
+     * @param args The arguments for th eevent.
+     * @returns `true` if there were any listeners for the event; otherwise, `false`.
+     */
     emit(...args: Parameters<F>) {
         return this[symContext].emit(...args);
     }
 }
 
-export interface Event<F extends (...args: any[]) => void> extends Function {
-    (listener: EventListener<F>): ThisParameterType<F>;
-}
-
+let createEvent: <F extends (...args: any[]) => void>(context: EventContext<F>) => Event<F>;
 export class Event<F extends (...args: any[]) => void> {
+    static {
+        createEvent = context => new Event(context);
+    }
+
     private [symContext]: EventContext<F>;
 
     private constructor(context: EventContext<F>) {
-        const self = function Event(listener: EventListener<F>) { return self.addListener(listener); } as Event<F>;
+        const self = function Event(listener: EventListener<F>) { return self.subscribe(listener); } as Event<F>;
         Object.setPrototypeOf(self, new.target.prototype);
         self[symContext] = context;
         return self;
@@ -196,9 +228,22 @@ export class Event<F extends (...args: any[]) => void> {
         return new EventContext<F>(owner as ThisParameterType<F>).source;
     }
 
+    subscribe(listener: EventListener<F>, options?: { once?: boolean, prepend?: boolean }): EventSubscription<ThisParameterType<F>> {
+        const context = this[symContext];
+        const token = {};
+        listener = createListenerWrap(context, listener, { once: options?.once, token });
+        if (options?.prepend) {
+            context.prependListener(listener);
+        }
+        else {
+            context.addListener(listener);
+        }
+        return createEventSubscription(context, token);
+    }
+
     addListener(listener: EventListener<F>) {
         this[symContext].addListener(listener);
-        return this.owner;
+        return this.owner as EventOwner<F>;
     }
 
     on(listener: EventListener<F>) {
@@ -206,22 +251,22 @@ export class Event<F extends (...args: any[]) => void> {
     }
 
     once(listener: EventListener<F>) {
-        this.addListener(createOnceListener(this[symContext], listener));
-        return this.owner;
+        this.addListener(createListenerWrap(this[symContext], listener, { once: true }));
+        return this.owner as EventOwner<F>;
     }
 
     prependListener(listener: EventListener<F>) {
         this[symContext].prependListener(listener);
-        return this.owner;
+        return this.owner as EventOwner<F>;
     }
 
     prependOnceListener(listener: EventListener<F>) {
-        return this.prependListener(createOnceListener(this[symContext], listener));
+        return this.prependListener(createListenerWrap(this[symContext], listener, { once: true }));
     }
 
     removeListener(listener: EventListener<F>) {
         this[symContext].removeListener(listener);
-        return this.owner;
+        return this.owner as EventOwner<F>;
     }
 
     off(listener: EventListener<F>) {
@@ -230,7 +275,7 @@ export class Event<F extends (...args: any[]) => void> {
 
     removeAllListeners() {
         this[symContext].removeAllListeners();
-        return this.owner;
+        return this.owner as EventOwner<F>;
     }
 
     listeners() {
@@ -242,5 +287,32 @@ export class Event<F extends (...args: any[]) => void> {
     }
 }
 
+export interface Event<F extends (...args: any[]) => void> extends Function {
+    (listener: EventListener<F>): EventSubscription<ThisParameterType<F>>;
+}
+
 Object.setPrototypeOf(Event, Function);
 Object.setPrototypeOf(Event.prototype, Function.prototype);
+
+let createEventSubscription: <F extends (...args: any[]) => void>(context: EventContext<F>, token: object) => EventSubscription<ThisParameterType<F>>;
+export class EventSubscription<TOwner> implements Disposable {
+    static {
+        createEventSubscription = (context, token) => new EventSubscription(context, token);
+    }
+
+    private [symContext]?: EventContext<(this: TOwner, ...args: any[]) => void>;
+    private _token: object;
+
+    private constructor(context: EventContext<(this: TOwner, ...args: any[]) => void>, token: object) {
+        this[symContext] = context;
+        this._token = token;
+    }
+
+    [Disposable.dispose]() {
+        const context = this[symContext];
+        this[symContext] = undefined;
+        if (context) {
+            context.unsubscribe(this._token);
+        }
+    }
+}
