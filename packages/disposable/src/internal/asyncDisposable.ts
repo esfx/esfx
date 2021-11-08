@@ -23,7 +23,7 @@ import type { AsyncDisposable } from "../asyncDisposable";
 export {};
 
 /* @internal */
-export const weakAsyncDisposableState = new WeakMap<AsyncDisposable, "pending" | "pending-one" | "pending-stack" | "disposed">();
+export const weakAsyncDisposableState = new WeakMap<AsyncDisposable, "pending" | "pending-one" | "disposed">();
 
 /* @internal */
 export const weakAsyncDisposableResourceStack = new WeakMap<AsyncDisposable, DisposableResourceRecord<"async">[]>();

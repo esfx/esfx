@@ -4562,9 +4562,9 @@ references:
   href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class
   fullName: AsyncDisposable
 - uid: '@esfx/disposable!AsyncDisposable:constructor(1)'
-  name: constructor(dispose)
+  name: constructor(onDispose)
   href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_constructor_1_
-  fullName: constructor(dispose)
+  fullName: constructor(onDispose)
 - uid: '@esfx/disposable!AsyncDisposable:interface'
   name: AsyncDisposable
   href: api/disposable/asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface
@@ -4609,6 +4609,18 @@ references:
   name: move()
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_move_member_1_
   fullName: move()
+- uid: '@esfx/disposable!AsyncDisposableStack#use:member(1)'
+  name: use(value)
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_use_member_1_
+  fullName: use(value)
+- uid: '@esfx/disposable!AsyncDisposableStack#use:member(2)'
+  name: use(value, onDispose)
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_use_member_2_
+  fullName: use(value, onDispose)
+- uid: '@esfx/disposable!AsyncDisposableStack.from:member(1)'
+  name: from(disposables)
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_from_member_1_
+  fullName: from(disposables)
 - uid: '@esfx/disposable!AsyncDisposableStack:class'
   name: AsyncDisposableStack
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_class
@@ -4658,9 +4670,9 @@ references:
   href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_class
   fullName: Disposable
 - uid: '@esfx/disposable!Disposable:constructor(1)'
-  name: constructor(dispose)
+  name: constructor(onDispose)
   href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_constructor_1_
-  fullName: constructor(dispose)
+  fullName: constructor(onDispose)
 - uid: '@esfx/disposable!Disposable:interface'
   name: Disposable
   href: api/disposable/disposable-interface.html#_esfx_disposable_Disposable_interface
@@ -4705,6 +4717,18 @@ references:
   name: move()
   href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_move_member_1_
   fullName: move()
+- uid: '@esfx/disposable!DisposableStack#use:member(1)'
+  name: use(value)
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_use_member_1_
+  fullName: use(value)
+- uid: '@esfx/disposable!DisposableStack#use:member(2)'
+  name: use(value, onDispose)
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_use_member_2_
+  fullName: use(value, onDispose)
+- uid: '@esfx/disposable!DisposableStack.from:member(1)'
+  name: from(disposables)
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_from_member_1_
+  fullName: from(disposables)
 - uid: '@esfx/disposable!DisposableStack:class'
   name: DisposableStack
   href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_class
@@ -5013,6 +5037,10 @@ references:
   name: removeListener(listener)
   href: api/events/event-class.html#_esfx_events_Event_removeListener_member_1_
   fullName: removeListener(listener)
+- uid: '@esfx/events!Event#subscribe:member(1)'
+  name: subscribe(listener, options)
+  href: api/events/event-class.html#_esfx_events_Event_subscribe_member_1_
+  fullName: subscribe(listener, options)
 - uid: '@esfx/events!Event.create:member(1)'
   name: create()
   href: api/events/event-class.html#_esfx_events_Event_create_member_1_
@@ -5033,6 +5061,10 @@ references:
   name: EventListener
   href: api/events.html#_esfx_events_EventListener_type
   fullName: EventListener
+- uid: '@esfx/events!EventOwner:type'
+  name: EventOwner
+  href: api/events.html#_esfx_events_EventOwner_type
+  fullName: EventOwner
 - uid: '@esfx/events!EventSource#emit:member(1)'
   name: emit(args)
   href: api/events/eventsource.html#_esfx_events_EventSource_emit_member_1_
@@ -5049,6 +5081,14 @@ references:
   name: EventSource
   href: api/events/eventsource.html#_esfx_events_EventSource_class
   fullName: EventSource
+- uid: '@esfx/events!EventSubscription#[Disposable.dispose]:member(1)'
+  name: '[Disposable.dispose]()'
+  href: api/events/eventsubscription.html#_esfx_events_EventSubscription__Disposable_dispose__member_1_
+  fullName: '[Disposable.dispose]()'
+- uid: '@esfx/events!EventSubscription:class'
+  name: EventSubscription
+  href: api/events/eventsubscription.html#_esfx_events_EventSubscription_class
+  fullName: EventSubscription
 - uid: '@esfx/fn!'
   name: '@esfx/fn'
   href: api/fn.html

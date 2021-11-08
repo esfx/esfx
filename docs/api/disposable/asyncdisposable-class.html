@@ -92,20 +92,20 @@
   </h3>
   
   
-  <h4 id="_esfx_disposable_AsyncDisposable_constructor_1_" data-uid="@esfx/disposable!AsyncDisposable:constructor(1)">constructor(dispose)</h4>
+  <h4 id="_esfx_disposable_AsyncDisposable_constructor_1_" data-uid="@esfx/disposable!AsyncDisposable:constructor(1)">constructor(onDispose)</h4>
   <div class="markdown level1 summary"><p>Creates an <code>AsyncDisposable</code> wrapper around a callback used to dispose resources.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">constructor(dispose: () =&gt; void | PromiseLike&lt;void&gt;);</code></pre>
+    <pre><code class="lang-typeScript hljs">constructor(onDispose: () =&gt; void | PromiseLike&lt;void&gt;);</code></pre>
   </div>
   
   
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>dispose</dt>
+        <dt>onDispose</dt>
         <dd>() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;</dd>
       </dl>
       <p>
@@ -189,7 +189,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">static from(resources: AsyncIterable&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined&gt; | Iterable&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined | PromiseLike&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined&gt;&gt;): Promise&lt;AsyncDisposable&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">static from(resources: AsyncIterable&lt;AsyncDisposableLike | null | undefined&gt; | Iterable&lt;AsyncDisposableLike | null | undefined | PromiseLike&lt;AsyncDisposableLike | null | undefined&gt;&gt;): Promise&lt;AsyncDisposable&gt;;</code></pre>
   </div>
   
   
@@ -197,7 +197,7 @@
     <div class="property">
       <dl class="parameter">
         <dt>resources</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined&gt;&gt;</dd>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;<span class="xref">AsyncDisposableLike</span> | null | undefined&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<span class="xref">AsyncDisposableLike</span> | null | undefined | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;<span class="xref">AsyncDisposableLike</span> | null | undefined&gt;&gt;</dd>
       </dl>
       <p>
         <p>An <code>Iterable</code> of <code>AsyncDisposable</code> or <code>Disposable</code> objects.</p>
@@ -281,7 +281,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">static use&lt;T extends AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined, U&gt;(resource: T, callback: (resource: T) =&gt; U | PromiseLike&lt;U&gt;): Promise&lt;U | undefined&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">static use&lt;T extends AsyncDisposableLike | null | undefined, U&gt;(resource: T, callback: (resource: T) =&gt; U | PromiseLike&lt;U&gt;): Promise&lt;U | undefined&gt;;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -345,7 +345,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">static usingEach(iterable: AsyncIterable&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined&gt; | Iterable&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined | PromiseLike&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined&gt;&gt;): AsyncGenerator&lt;AsyncDisposable | Disposable | (() =&gt; void | PromiseLike&lt;void&gt;) | (() =&gt; void | PromiseLike&lt;void&gt;) | (() =&gt; void | PromiseLike&lt;void&gt;) | null | undefined, void, unknown&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">static usingEach(iterable: AsyncIterable&lt;AsyncDisposableLike | null | undefined&gt; | Iterable&lt;AsyncDisposableLike | null | undefined | PromiseLike&lt;AsyncDisposableLike | null | undefined&gt;&gt;): AsyncGenerator&lt;AsyncDisposableLike | null | undefined, void, unknown&gt;;</code></pre>
   </div>
   
   
@@ -353,7 +353,7 @@
     <div class="property">
       <dl class="parameter">
         <dt>iterable</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined&gt;&gt;</dd>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;<span class="xref">AsyncDisposableLike</span> | null | undefined&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<span class="xref">AsyncDisposableLike</span> | null | undefined | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;<span class="xref">AsyncDisposableLike</span> | null | undefined&gt;&gt;</dd>
       </dl>
       <p>
         
@@ -363,7 +363,7 @@
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-asyncgenerator-objects">AsyncGenerator</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | (() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;) | null | undefined, void, unknown&gt;</div>
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-asyncgenerator-objects">AsyncGenerator</a>&lt;<span class="xref">AsyncDisposableLike</span> | null | undefined, void, unknown&gt;</div>
     <p>
   </div>
   

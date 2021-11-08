@@ -40,14 +40,14 @@ describe("Properties of the DisposableStack prototype [non-spec]", () => {
         it("disposes", () => {
             const fn = jest.fn();
             const stack = new DisposableStack();
-            stack.enter(new Disposable(fn));
+            stack.use({ [Disposable.dispose]: fn });
             stack.dispose();
             expect(fn).toHaveBeenCalled();
         });
         it("disposes once", () => {
             const fn = jest.fn();
             const stack = new DisposableStack();
-            stack.enter(new Disposable(fn));
+            stack.use({ [Disposable.dispose]: fn });
             stack.dispose();
             stack.dispose();
             expect(fn).toHaveBeenCalledTimes(1);
@@ -55,45 +55,45 @@ describe("Properties of the DisposableStack prototype [non-spec]", () => {
         it("disposes in reverse order", () => {
             const steps: string[] = [];
             const stack = new DisposableStack();
-            stack.enter(new Disposable(() => steps.push("step 1")));
-            stack.enter(new Disposable(() => steps.push("step 2")));
+            stack.use({ [Disposable.dispose]() { steps.push("step 1"); } });
+            stack.use({ [Disposable.dispose]() { steps.push("step 2"); } });
             stack.dispose();
             expect(steps).toEqual(["step 2", "step 1"]);
         });
         it("throws if wrong target", () => expect(() => DisposableStack.prototype.dispose.call({})).toThrow());
     });
-    describe("DisposableStack.prototype.enter()", () => {
-        it("is an own method", () => expect(DisposableStack.prototype).toHaveOwnMethod("enter"));
-        it("is writable", () => expect(DisposableStack.prototype).toHaveWritableProperty("enter"));
-        it("is non-enumerable", () => expect(DisposableStack.prototype).toHaveNonEnumerableProperty("enter"));
-        it("is configurable", () => expect(DisposableStack.prototype).toHaveConfigurableProperty("enter"));
-        it("length is 1", () => expect(DisposableStack.prototype.enter.length).toBe(1));
-        it("name is 'enter'", () => expect(DisposableStack.prototype.enter.name).toBe("enter"));
+    describe("DisposableStack.prototype.use()", () => {
+        it("is an own method", () => expect(DisposableStack.prototype).toHaveOwnMethod("use"));
+        it("is writable", () => expect(DisposableStack.prototype).toHaveWritableProperty("use"));
+        it("is non-enumerable", () => expect(DisposableStack.prototype).toHaveNonEnumerableProperty("use"));
+        it("is configurable", () => expect(DisposableStack.prototype).toHaveConfigurableProperty("use"));
+        it("length is 1", () => expect(DisposableStack.prototype.use.length).toBe(1));
+        it("name is 'use'", () => expect(DisposableStack.prototype.use.name).toBe("use"));
         it("returns resource", () => {
             const stack = new DisposableStack();
-            const disposable = new Disposable(() => {});
-            const result = stack.enter(disposable);
+            const disposable = { [Disposable.dispose]() {} };
+            const result = stack.use(disposable);
             expect(result).toBe(disposable);
         });
         it("disposes", () => {
             const fn = jest.fn();
             const stack = new DisposableStack();
-            stack.enter(new Disposable(fn));
+            stack.use({ [Disposable.dispose]: fn });
             stack.dispose();
             expect(fn).toHaveBeenCalled();
         });
         it("disposes in reverse order", () => {
             const steps: string[] = [];
             const stack = new DisposableStack();
-            stack.enter(new Disposable(() => steps.push("step 1")));
-            stack.enter(new Disposable(() => steps.push("step 2")));
+            stack.use({ [Disposable.dispose]() { steps.push("step 1"); } });
+            stack.use({ [Disposable.dispose]() { steps.push("step 2"); } });
             stack.dispose();
             expect(steps).toEqual(["step 2", "step 1"]);
         });
         it("treats non-disposable function as disposable", () => {
             const fn = jest.fn();
             const stack = new DisposableStack();
-            stack.enter(fn);
+            stack.use(fn);
             stack.dispose();
             expect(fn).toHaveBeenCalled();
         });
@@ -101,23 +101,23 @@ describe("Properties of the DisposableStack prototype [non-spec]", () => {
             const fn = jest.fn();
             const resource = {};
             const stack = new DisposableStack();
-            const result = stack.enter(resource, fn);
+            const result = stack.use(resource, fn);
             stack.dispose();
             expect(result).toBe(resource);
             expect(fn).toHaveBeenCalled();
         });
-        it("custom dispose not invoked if resource is null/undefined", () => {
+        it("custom dispose invoked even if resource is null/undefined", () => {
             const fn = jest.fn();
             const stack = new DisposableStack();
-            stack.enter(null, fn);
+            stack.use(null, fn);
             stack.dispose();
-            expect(fn).not.toHaveBeenCalled();
+            expect(fn).toHaveBeenCalled();
         });
-        it("throws if wrong target", () => expect(() => DisposableStack.prototype.enter.call({}, undefined!, undefined!)).toThrow());
-        it("throws if enter after disposed", () => {
+        it("throws if wrong target", () => expect(() => DisposableStack.prototype.use.call({}, undefined!, undefined!)).toThrow());
+        it("throws if called after disposed", () => {
             const stack = new DisposableStack();
             stack.dispose();
-            expect(() => stack.enter(new Disposable(() => {}))).toThrow(ReferenceError);
+            expect(() => stack.use({ [Disposable.dispose]() {} })).toThrow(ReferenceError);
         });
     });
     describe("DisposableStack.prototype.move()", () => {
@@ -135,14 +135,14 @@ describe("Properties of the DisposableStack prototype [non-spec]", () => {
         });
         it("resources from initial stack not disposed after move", () => {
             const stack = new DisposableStack();
-            const fn = stack.enter(jest.fn());
+            const fn = stack.use(jest.fn());
             stack.move();
             stack.dispose();
             expect(fn).not.toHaveBeenCalled();
         });
         it("resources from initial stack disposed only after moved stack is disposed", () => {
             const stack = new DisposableStack();
-            const fn = stack.enter(jest.fn());
+            const fn = stack.use(jest.fn());
             const newStack = stack.move();
             newStack.dispose();
             expect(fn).toHaveBeenCalled();

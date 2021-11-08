@@ -18,6 +18,7 @@ import { weakDisposableResourceStack, weakDisposableState } from "./internal/dis
 import { AddDisposableResource, disposeSym, createDeprecation, CreateScope, DisposableResourceRecord, DisposeResources, ThrowCompletion } from "./internal/utils";
 
 const reportDisposableCreateDeprecation = createDeprecation("Use 'new Disposable(dispose)' instead.");
+const reportDisposableUseDeprecation = createDeprecation("Use 'Disposable.scope()' instead.");
 
 /**
  * Indicates an object that has resources that can be explicitly disposed.
@@ -28,6 +29,11 @@ export interface Disposable {
      */
     [Disposable.dispose](): void;
 }
+
+export type DisposableLike =
+    | Disposable
+    | (() => void)
+    ;
 
 /**
  * Indicates an object that has resources that can be explicitly disposed.
@@ -45,26 +51,28 @@ export class Disposable {
     /**
      * Creates a `Disposable` wrapper around a callback used to dispose of a resource.
      */
-    constructor(dispose: () => void) {
-        if (typeof dispose !== "function") throw new TypeError("Function expected: dispose");
+    constructor(onDispose: () => void) {
+        if (typeof onDispose !== "function") throw new TypeError("Function expected: dispose");
         weakDisposableState.set(this, "pending-one");
-        weakDisposableResourceStack.set(this, [{ hint: "sync", resource: null, dispose }]);
+        weakDisposableResourceStack.set(this, [{ hint: "sync", resource: null, dispose: onDispose }]);
     }
 
     /* @internal */
     [disposeSym]() {
-        if (!weakDisposableState.has(this) || !weakDisposableResourceStack.has(this)) throw new TypeError("Wrong target");
-        const state = weakDisposableState.get(this);
-        if (state === "disposed") return;
+        const disposableState = weakDisposableState.get(this);
+        if (disposableState === "disposed") return;
+        if (disposableState !== "pending" && disposableState !== "pending-one") throw new TypeError("Wrong target");
         weakDisposableState.set(this, "disposed");
-        DisposeResources("sync", weakDisposableResourceStack.get(this), state === "pending-one", /*completion*/ undefined);
+
+        DisposeResources("sync", weakDisposableResourceStack.get(this), disposableState === "pending-one", /*completion*/ undefined);
     }
 
     /**
      * Creates a `Disposable` wrapper around a set of other disposables.
      * @param disposables An `Iterable` of `Disposable` objects.
+     * @deprecated Use `DisposableStack.from()` instead.
      */
-    static from(disposables: Iterable<Disposable | (() => void) | null | undefined>) {
+    static from(disposables: Iterable<DisposableLike | null | undefined>) {
         const disposableResourceStack: DisposableResourceRecord<"sync">[] = [];
         const errors: unknown[] = [];
 
@@ -88,7 +96,7 @@ export class Disposable {
             }
         }
 
-        const disposable: Disposable = Object.create(Disposable.prototype);
+        const disposable: Disposable = Object.create(__Disposable_prototype__);
         weakDisposableState.set(disposable, "pending");
         weakDisposableResourceStack.set(disposable, disposableResourceStack);
         return disposable;
@@ -119,7 +127,7 @@ export class Disposable {
      * }
      * ```
      */
-    static* scope(): Generator<DisposableScope, void, undefined> {
+    static * scope(): Generator<DisposableScope, void, undefined> {
         const context = CreateScope("sync");
         try {
             context.state = "initialized";
@@ -161,8 +169,10 @@ export class Disposable {
 
     /**
      * Executes a callback with the provided `Disposable` resource, disposing the resource when the callback completes.
+     * @deprecated Use `Disposable.scope()` instead.
      */
     static use<T extends Disposable | (() => void) | null | undefined, U>(resource: T, callback: (resource: T) => U) {
+        reportDisposableUseDeprecation();
         // using const x = resource;
         // return callback(x);
         for (const { using, fail } of Disposable.scope()) {
@@ -192,7 +202,11 @@ export class Disposable {
     }
 }
 
-Object.defineProperty(Disposable.prototype, Symbol.toStringTag, { configurable: true, value: "Disposable" });
+/* @internal */
+export const __Disposable_prototype__ = Disposable.prototype;
+
+Object.defineProperty(__Disposable_prototype__, Symbol.toStringTag, { configurable: true, value: "Disposable" });
+Object.defineProperty(Disposable, Symbol.hasInstance, Object.getOwnPropertyDescriptor(Disposable, "hasInstance")!);
 
 export namespace Disposable {
     /**

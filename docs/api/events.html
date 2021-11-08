@@ -91,6 +91,8 @@
         <section></section>
         <h4><a class="xref" href="events/eventsource.html#_esfx_events_EventSource_class">EventSource</a></h4>
         <section></section>
+        <h4><a class="xref" href="events/eventsubscription.html#_esfx_events_EventSubscription_class">EventSubscription</a></h4>
+        <section></section>
     <h3 id="interfaces">Interfaces
   </h3>
         <h4><a class="xref" href="events/event-interface.html#_esfx_events_Event_interface">Event</a></h4>
@@ -105,6 +107,31 @@
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">export declare type EventListener&lt;F extends (...args: any[]) =&gt; void&gt; = (this: ThisParameterType&lt;F&gt;, ...args: Parameters&lt;F&gt;) =&gt; void;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>F</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_events_EventOwner_type" data-uid="@esfx/events!EventOwner:type">EventOwner</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type EventOwner&lt;F extends (...args: any[]) =&gt; void&gt; = ThisParameterType&lt;F&gt; extends undefined ? void : ThisParameterType&lt;F&gt;;</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>

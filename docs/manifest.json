@@ -1559,7 +1559,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/asyncdisposable-class.html",
-          "hash": "GiXeHdxmu0lOwxSBm4YQKaQq6fQiJEErEMc+YyAk330="
+          "hash": "8DfBCGSbv7vAx26W3uYfEzaEGMl18mfTx70CpM5pmf4="
         }
       },
       "is_incremental": false,
@@ -1595,7 +1595,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/asyncdisposablescope.html",
-          "hash": "x45szu/DdBSTxcyc3R8Se2GhUGYTTTxXn0dnv+6psiQ="
+          "hash": "5bx5+mJBpTqp+ntrLtGJ3+Hkh7wZPkvL0shj3Ei7WHE="
         }
       },
       "is_incremental": false,
@@ -1607,7 +1607,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/asyncdisposablestack.html",
-          "hash": "LLOoiIkVQcC1HzL3PwtUmowyGpehps5hdtELmnFr35k="
+          "hash": "SGT8PG29BgXgKlKy06XSLB1zxBiGjswdCjqMU7ZYsa0="
         }
       },
       "is_incremental": false,
@@ -1619,7 +1619,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/disposable-class.html",
-          "hash": "7mxachtdqAu7ZboPPkmcKNQ4WpOnPeAsLu9mee8wxEw="
+          "hash": "d1ReNCjdU7Pjqy2GfcLzsrP7qzl6pq14iO0ekB/gHsc="
         }
       },
       "is_incremental": false,
@@ -1667,7 +1667,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/disposablestack.html",
-          "hash": "iLxNwwrYdle64mcCW/YlApGhx8sGeh9X7wO/lgRfQ2I="
+          "hash": "cEZ9wt1gDZQHT53QSDdGRrUZHH1OXO0vBjgKIfcGAMw="
         }
       },
       "is_incremental": false,
@@ -1847,7 +1847,7 @@
       "output": {
         ".html": {
           "relative_path": "api/events.html",
-          "hash": "Zf9ddiJ+uCuHOKhQW05nErzuNizVKxoAmNJDyKNvYNA="
+          "hash": "TpilB8pP4R+qHBbNM0OvV9uU+fuzqKh/1f7/Tx9RgC0="
         }
       },
       "is_incremental": false,
@@ -1859,7 +1859,7 @@
       "output": {
         ".html": {
           "relative_path": "api/events/event-class.html",
-          "hash": "ec9bxXcbMhHsmQLFjjjZnpFOPDX4EzfhMpwINUfZ8UU="
+          "hash": "WZTvmLU/DlMrYJNcHe10eQ8nYXd9N0wYe0O1Fjgzeg0="
         }
       },
       "is_incremental": false,
@@ -1883,7 +1883,19 @@
       "output": {
         ".html": {
           "relative_path": "api/events/eventsource.html",
-          "hash": "aIM2ryaM+B6DcJpwJBTODRcReZExYUXWfSavdEvdqbU="
+          "hash": "eSAZfWq3m7B1tACah3CxDO7Nt/IkZICugf0SIuYwJnc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/events/eventsubscription.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/events/eventsubscription.html",
+          "hash": "rX6SCBLpyLdw4z/tWMKHBd96hVgqmfY2vF4kkuoMFGA="
         }
       },
       "is_incremental": false,
@@ -2903,7 +2915,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "25AcExpW37PxuKBsjd/pznZKfIw4Mxy3d+oGA/Atx00="
+          "hash": "EmmQ1SyJ2c2GMODMd8n4EYdLBWPjqotgbUcgLbf9rsQ="
         }
       },
       "is_incremental": false,
@@ -2913,19 +2925,17 @@
   "incremental_info": [
     {
       "status": {
-        "can_incremental": false,
-        "details": "Cannot build incrementally because last build info is missing.",
+        "can_incremental": true,
         "incrementalPhase": "build",
         "total_file_count": 0,
-        "skipped_file_count": 0,
-        "full_build_reason_code": "NoAvailableBuildCache"
+        "skipped_file_count": 0
       },
       "processors": {
         "ConceptualDocumentProcessor": {
-          "can_incremental": false,
+          "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 1,
-          "skipped_file_count": 0
+          "skipped_file_count": 1
         },
         "ResourceDocumentProcessor": {
           "can_incremental": false,
