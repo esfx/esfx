@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-delay",
-    "version": "1.0.0-pre.29",
+    "version": "1.0.0-pre.30",
     "description": "Provides 'delay', an async coordination function.",
     "main": "./dist/index.js",
     "type": "commonjs",
@@ -16,7 +16,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/cancelable": "^1.0.0-pre.29"
+        "@esfx/cancelable": "^1.0.0-pre.30"
     },
     "publishConfig": {
         "access": "public"

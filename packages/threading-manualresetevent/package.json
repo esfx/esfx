@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-manualresetevent",
-    "version": "1.0.0-pre.29",
+    "version": "1.0.0-pre.30",
     "description": "Provides 'ManualResetEvent', a thread synchronization primitive for use with Workers",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -16,7 +16,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.0.0-pre.29"
+        "@esfx/disposable": "^1.0.0-pre.30"
     },
     "devDependencies": {
         "@esfx/internal-ts-worker": "^1.0.0-pre.20"
