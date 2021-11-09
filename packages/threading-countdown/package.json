@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-countdown",
-    "version": "1.0.0-pre.28",
+    "version": "1.0.0-pre.29",
     "description": "Provides 'CountdownEvent', a thread synchronization primitive for use with Workers",
     "type": "commonjs",
     "main": "./dist/index.js",
@@ -16,8 +16,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.0.0-pre.28",
-        "@esfx/threading-manualresetevent": "^1.0.0-pre.28",
+        "@esfx/disposable": "^1.0.0-pre.29",
+        "@esfx/threading-manualresetevent": "^1.0.0-pre.29",
         "@esfx/threading-spinwait": "^1.0.0-pre.23"
     },
     "devDependencies": {
