@@ -14,8 +14,8 @@
    limitations under the License.
 */
 
-import { Disposable, DisposableScope } from "../disposable";
-import "../internal/testUtils";
+import { Disposable, DisposableScope, reportDisposableFromDeprecation, reportDisposableUseDeprecation } from "../disposable";
+import { disableDeprecations } from "../internal/testUtils";
 
 describe("The Disposable constructor", () => {
     it("is a function [spec]", () => expect(Disposable).toBeTypeof("function"));
@@ -37,11 +37,14 @@ describe("The Disposable constructor", () => {
 describe("Properties of the Disposable constructor", () => {
     it("Disposable.dispose [non-spec]", () => expect(Disposable.dispose).toBeTypeof("symbol"));
     describe("Disposable.from(iterable)", () => {
+        disableDeprecations([reportDisposableFromDeprecation]);
         it("is an own method [spec]", () => expect(Disposable).toHaveOwnMethod("from"));
         it("is writable [spec]", () => expect(Disposable).toHaveWritableProperty("from"));
         it("is non-enumerable [spec]", () => expect(Disposable).toHaveNonEnumerableProperty("from"));
         it("is configurable [spec]", () => expect(Disposable).toHaveConfigurableProperty("from"));
-        it("returns instance of Dispose [spec]", () => expect(Disposable.from([])).toBeInstanceOf(Disposable));
+        it("returns instance of Dispose [spec]", () => {
+            expect(Disposable.from([])).toBeInstanceOf(Disposable);
+        });
         it("disposes resources [spec]", () => {
             const fn1 = jest.fn();
             const disposable1 = new Disposable(fn1);
@@ -572,6 +575,7 @@ describe("Properties of the Disposable constructor", () => {
     });
     describe("Disposable.use(resource, callback) [non-spec]", () => {
         it("is an own method", () => expect(Disposable).toHaveOwnMethod("use"));
+        disableDeprecations([reportDisposableUseDeprecation]);
         it("disposes", () => {
             const fn = jest.fn();
             Disposable.use(fn, () => {});

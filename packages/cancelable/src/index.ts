@@ -19,13 +19,11 @@ import { isFunction, isMissing, isObject } from "@esfx/internal-guards";
 import { defineTag } from "@esfx/internal-tag";
 import { deprecateProperty } from "@esfx/internal-deprecate";
 
-const disposablePrototype = Object.getPrototypeOf(Disposable.create(() => {}));
-
 const cancelSubscriptionPrototype: Disposable = defineTag(Object.setPrototypeOf({
     [Disposable.dispose](this: CancelSubscription) {
         this.unsubscribe();
     },
-}, disposablePrototype), "CancelSubscription");
+}, Disposable.prototype), "CancelSubscription");
 
 function createCancelSubscription(unsubscribe: () => void): CancelSubscription {
     return Object.setPrototypeOf({

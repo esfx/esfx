@@ -237,17 +237,23 @@ function GetSymbol(builtInSymbolName: string, customSymbolName: string) {
 }
 
 /* @internal */
+export interface Deprecation {
+    (): void;
+    reported?: boolean;
+}
+
+/* @internal */
 export function createDeprecation(message: string) {
-    let hasReportedWarning = false;
-    return () => {
-        if (!hasReportedWarning) {
-            hasReportedWarning = true;
+    const deprecation: Deprecation = () => {
+        if (!deprecation.reported) {
+            deprecation.reported = true;
             if (typeof process === "object" && process.emitWarning) {
-                process.emitWarning(message, "Deprecation");
+                process.emitWarning(message, "DeprecationWarning", deprecation);
             }
             else if (typeof console === "object") {
                 console.warn(`Deprecation: ${message}`)
             }
         }
     }
+    return deprecation;
 }

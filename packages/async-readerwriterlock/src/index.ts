@@ -44,8 +44,6 @@ import { Disposable } from "@esfx/disposable";
 
 export { LockHandle, UpgradeableLockHandle } from "@esfx/async-lockable";
 
-const disposablePrototype: object = Object.getPrototypeOf(Disposable.create(() => { }));
-
 const lockHandlePrototype: object = {
     get mutex() {
         return this;
@@ -65,7 +63,7 @@ const lockHandlePrototype: object = {
 };
 
 defineTag(lockHandlePrototype, "LockHandle");
-Object.setPrototypeOf(lockHandlePrototype, disposablePrototype);
+Object.setPrototypeOf(lockHandlePrototype, Disposable.prototype);
 
 const readerPrototype: object = {};
 defineTag(readerPrototype, "AsyncReaderWriterLockReader");

@@ -102,8 +102,6 @@ export class AsyncMutex implements AsyncLockable {
     // #endregion AsyncLockable
 }
 
-const disposablePrototype: object = Object.getPrototypeOf(Disposable.create(() => {}));
-
 const mutexLockHandlePrototype: object = {
     [AsyncLockable.lock](this: LockHandle, cancelable?: Cancelable) {
         return this.lock(cancelable);
@@ -119,7 +117,7 @@ const mutexLockHandlePrototype: object = {
 };
 
 defineTag(mutexLockHandlePrototype, "MutexLockHandle");
-Object.setPrototypeOf(mutexLockHandlePrototype, disposablePrototype);
+Object.setPrototypeOf(mutexLockHandlePrototype, Disposable.prototype);
 
 function createLockHandle(mutex: AsyncMutex): LockHandle<AsyncMutex> {
     const handle: LockHandle<AsyncMutex> = Object.setPrototypeOf({

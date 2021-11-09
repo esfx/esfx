@@ -18,9 +18,12 @@ import { Disposable } from "./disposable";
 import { weakAsyncDisposableResourceStack, weakAsyncDisposableState } from "./internal/asyncDisposable";
 import { AddDisposableResource, asyncDisposeSym, createDeprecation, CreateScope, DisposableResourceRecord, DisposeResources, ThrowCompletion } from "./internal/utils";
 
-const reportAsyncDisposableCreateDeprecation = createDeprecation("Use 'new AsyncDisposable(dispose)' instead.");
-const reportAsyncDisposableUseDeprecation = createDeprecation("Use 'AsyncDisposable.scope()' instead.");
-const reportAsyncDisposableFromDeprecation = createDeprecation("'AsyncDisposable.from()' is unsafe. Use 'new AsyncDisposableStack' and 'AsyncDisposableStack.prototype.use' instead.");
+/* @internal */
+export const reportAsyncDisposableCreateDeprecation = createDeprecation("Use 'new AsyncDisposable(dispose)' instead.");
+/* @internal */
+export const reportAsyncDisposableUseDeprecation = createDeprecation("Use 'AsyncDisposable.scope()' instead.");
+/* @internal */
+export const reportAsyncDisposableFromDeprecation = createDeprecation("'AsyncDisposable.from()' is unsafe. Use 'new AsyncDisposableStack' and 'AsyncDisposableStack.prototype.use' instead.");
 
 /**
  * Indicates an object that has resources that can be explicitly disposed asynchronously.

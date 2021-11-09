@@ -17,9 +17,12 @@
 import { weakDisposableResourceStack, weakDisposableState } from "./internal/disposable";
 import { AddDisposableResource, createDeprecation, CreateScope, DisposableResourceRecord, DisposeResources, disposeSym, ThrowCompletion } from "./internal/utils";
 
-const reportDisposableCreateDeprecation = createDeprecation("Use 'new Disposable(dispose)' instead.");
-const reportDisposableUseDeprecation = createDeprecation("Use 'Disposable.scope()' instead.");
-const reportDisposableFromDeprecation = createDeprecation("'Disposable.from()' is unsafe. Use 'new DisposableStack' and 'DisposableStack.prototype.use' instead.");
+/* @internal */
+export const reportDisposableCreateDeprecation = createDeprecation("Use 'new Disposable(dispose)' instead.");
+/* @internal */
+export const reportDisposableUseDeprecation = createDeprecation("Use 'Disposable.scope()' instead.");
+/* @internal */
+export const reportDisposableFromDeprecation = createDeprecation("'Disposable.from()' is unsafe. Use 'new DisposableStack' and 'DisposableStack.prototype.use' instead.");
 
 /**
  * Indicates an object that has resources that can be explicitly disposed.

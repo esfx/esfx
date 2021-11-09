@@ -14,8 +14,8 @@
    limitations under the License.
 */
 
-import { AsyncDisposable, AsyncDisposableScope } from "../asyncDisposable";
-import "../internal/testUtils";
+import { AsyncDisposable, AsyncDisposableScope, reportAsyncDisposableFromDeprecation, reportAsyncDisposableUseDeprecation } from "../asyncDisposable";
+import { disableDeprecations } from "../internal/testUtils";
 
 describe("The AsyncDisposable constructor", () => {
     it("is a function [spec]", () => expect(AsyncDisposable).toBeTypeof("function"));
@@ -37,6 +37,7 @@ describe("The AsyncDisposable constructor", () => {
 describe("Properties of the AsyncDisposable constructor", () => {
     it("AsyncDisposable.asyncDispose [non-spec]", () => expect(AsyncDisposable.asyncDispose).toBeTypeof("symbol"));
     describe("AsyncDisposable.from(iterable)", () => {
+        disableDeprecations([reportAsyncDisposableFromDeprecation]);
         it("is an own method [spec]", () => expect(AsyncDisposable).toHaveOwnMethod("from"));
         it("is writable [spec]", () => expect(AsyncDisposable).toHaveWritableProperty("from"));
         it("is non-enumerable [spec]", () => expect(AsyncDisposable).toHaveNonEnumerableProperty("from"));
@@ -584,6 +585,7 @@ describe("Properties of the AsyncDisposable constructor", () => {
         })
     });
     describe("AsyncDisposable.use(resource, callback) [non-spec]", () => {
+        disableDeprecations([reportAsyncDisposableUseDeprecation]);
         it("is an own method", () => expect(AsyncDisposable).toHaveOwnMethod("use"));
         it("disposes", async () => {
             const fn = jest.fn();

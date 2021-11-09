@@ -72,14 +72,12 @@ function canBeSignaled(signal: CancelSignal) {
     return signal !== Cancelable.none && (!(signal instanceof CancelToken) || signal.canBeSignaled);
 }
 
-const disposablePrototype: object = Object.getPrototypeOf(Disposable.create(() => { }));
-
 const cancelSourcePrototype: object = {
     [Cancelable.cancelSignal](this: CancelSource) { return this.token; },
     [CancelableSource.cancel](this: CancelSource) { this.cancel(); },
 };
 
-Object.setPrototypeOf(cancelSourcePrototype, disposablePrototype);
+Object.setPrototypeOf(cancelSourcePrototype, Disposable.prototype);
 defineTag(cancelSourcePrototype, "CancelSource");
 
 function createCancelSource(links: CancelLinks | undefined): CancelSource {
