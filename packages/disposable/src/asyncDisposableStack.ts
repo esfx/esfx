@@ -14,11 +14,12 @@
    limitations under the License.
 */
 
-import { AsyncDisposable, AsyncDisposableLike, __AsyncDisposable_prototype__ } from "./asyncDisposable";
+import { AsyncDisposable, AsyncDisposableLike } from "./asyncDisposable";
 import { weakAsyncDisposableResourceStack, weakAsyncDisposableState } from "./internal/asyncDisposable";
-import { AddDisposableResource, createDeprecation, DisposableResourceRecord, DisposeResources, ThrowCompletion } from "./internal/utils";
+import { AddDisposableResource, createDeprecation, DisposeResources } from "./internal/utils";
 
 const weakAsyncDisposable = new WeakMap<AsyncDisposableStack, AsyncDisposable>();
+const weakDisposeAsync = new WeakMap<AsyncDisposableStack, (() => Promise<void>) | null>();
 const reportAsyncDisposableStackEnterDeprecation = createDeprecation("Use 'AsyncDisposableStack.use()' instead.");
 
 /**
@@ -32,44 +33,30 @@ export class AsyncDisposableStack implements AsyncDisposable {
         weakAsyncDisposableState.set(disposable, "pending");
         weakAsyncDisposableResourceStack.set(disposable, []);
         weakAsyncDisposable.set(this, disposable);
+        weakDisposeAsync.set(this, null);
     }
 
     /**
-     * Creates an `AsyncDisposableStack` from an iterable of other disposables.
-     * @param disposables An `Iterable` of `AsyncDisposable` or `Disposable` objects.
+     * Dispose this object's resources.
+     *
+     * NOTE: `disposeAsync` returns a bound method, so it can be extracted from `AsyncDisposableStack` and called independently:
+     *
+     * ```ts
+     * const stack = new AsyncDisposableStack();
+     * for (const f of files) stack.use(openFile(f));
+     * const closeFiles = stack.disposeAsync;
+     * ...
+     * closeFiles();
+     * ```
      */
-    static async from(disposables: AsyncIterable<AsyncDisposableLike | null | undefined> | Iterable<AsyncDisposableLike | null | undefined | PromiseLike<AsyncDisposableLike | null | undefined>>) {
-        const disposableResourceStack: DisposableResourceRecord<"async">[] = [];
-        const errors: unknown[] = [];
-
-        let throwCompletion: ThrowCompletion | undefined;
-        try {
-            for await (const resource of disposables) {
-                try {
-                    AddDisposableResource(disposableResourceStack, resource, "async");
-                }
-                catch (e) {
-                    errors.push(e);
-                }
-            }
+    get disposeAsync() {
+        let disposeAsync = weakDisposeAsync.get(this);
+        if (disposeAsync === undefined) throw new TypeError("Wrong target");
+        if (disposeAsync === null) {
+            disposeAsync = __AsyncDisposableStack_prototype_disposeAsync__.bind(this);
+            weakDisposeAsync.set(this, disposeAsync);
         }
-        catch (e) {
-            throwCompletion = { cause: e };
-        }
-        finally {
-            if (errors.length || throwCompletion) {
-                await DisposeResources("async", disposableResourceStack, /*suppress*/ false, throwCompletion, errors);
-            }
-        }
-
-        const disposable: AsyncDisposable = Object.create(__AsyncDisposable_prototype__);
-        weakAsyncDisposableState.set(disposable, "pending");
-        weakAsyncDisposableResourceStack.set(disposable, disposableResourceStack);
-
-        const disposableStack: AsyncDisposableStack = Object.create(__AsyncDisposableStack_prototype__);
-        weakAsyncDisposable.set(disposableStack, disposable);
-        return disposableStack;
-
+        return disposeAsync;
     }
 
     /**
@@ -141,13 +128,14 @@ export class AsyncDisposableStack implements AsyncDisposable {
 
         const newDisposableStack = Object.create(__AsyncDisposableStack_prototype__) as AsyncDisposableStack;
         weakAsyncDisposable.set(newDisposableStack, newDisposable);
+        weakDisposeAsync.set(newDisposableStack, null);
         return newDisposableStack;
     }
 
     /**
      * Dispose this object's resources.
      */
-    async disposeAsync() {
+    async [AsyncDisposable.asyncDispose]() {
         const disposable = weakAsyncDisposable.get(this)!;
         if (!disposable) throw new TypeError("Wrong target");
 
@@ -158,16 +146,9 @@ export class AsyncDisposableStack implements AsyncDisposable {
 
         await DisposeResources("async", weakAsyncDisposableResourceStack.get(disposable), /*suppress*/ false, /*completion*/ undefined);
     }
-
-    /**
-     * Dispose this object's resources.
-     */
-    [AsyncDisposable.asyncDispose]() {
-        return this.disposeAsync();
-    }
 }
 
 const __AsyncDisposableStack_prototype__ = AsyncDisposableStack.prototype;
+const __AsyncDisposableStack_prototype_disposeAsync__ = AsyncDisposableStack.prototype[AsyncDisposable.asyncDispose];
 
 Object.defineProperty(__AsyncDisposableStack_prototype__, Symbol.toStringTag, { configurable: true, value: "AsyncDisposableStack" });
-Object.defineProperty(__AsyncDisposableStack_prototype__, AsyncDisposable.asyncDispose, Object.getOwnPropertyDescriptor(__AsyncDisposableStack_prototype__, "disposeAsync")!);

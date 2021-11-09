@@ -16,9 +16,10 @@
 
 import { Disposable, DisposableLike, __Disposable_prototype__ } from "./disposable";
 import { weakDisposableResourceStack, weakDisposableState } from "./internal/disposable";
-import { AddDisposableResource, createDeprecation, DisposableResourceRecord, DisposeResources, ThrowCompletion } from "./internal/utils";
+import { AddDisposableResource, createDeprecation, DisposeResources } from "./internal/utils";
 
 const weakDisposable = new WeakMap<DisposableStack, Disposable>();
+const weakDispose = new WeakMap<DisposableStack, (() => void) | null>();
 const reportDisposableStackEnterDeprecation = createDeprecation("Use 'DisposableStack.use()' instead.");
 
 /**
@@ -35,43 +36,30 @@ export class DisposableStack {
         weakDisposableState.set(disposable, "pending");
         weakDisposableResourceStack.set(disposable, []);
         weakDisposable.set(this, disposable);
+        weakDispose.set(this, null);
     }
 
     /**
-     * Creates a `DisposableStack` from an interable of other disposables.
-     * @param disposables An `Iterable` of `Disposable` objects.
+     * Dispose this object's resources.
+     *
+     * NOTE: `dispose` returns a bound method, so it can be extracted from `DisposableStack` and called independently:
+     * 
+     * ```ts
+     * const stack = new DisposableStack();
+     * for (const f of files) stack.use(openFile(f));
+     * const closeFiles = stack.disposeAsync;
+     * ...
+     * closeFiles();
+     * ```
      */
-     static from(disposables: Iterable<DisposableLike | null | undefined>) {
-        const disposableResourceStack: DisposableResourceRecord<"sync">[] = [];
-        const errors: unknown[] = [];
-
-        let throwCompletion: ThrowCompletion | undefined;
-        try {
-            for (const resource of disposables) {
-                try {
-                    AddDisposableResource(disposableResourceStack, resource, "sync");
-                }
-                catch (e) {
-                    errors.push(e);
-                }
-            }
+    get dispose() {
+        let dispose = weakDispose.get(this);
+        if (dispose === undefined) throw new TypeError("Wrong target");
+        if (dispose === null) {
+            dispose = __DisposableStack_prototype_dispose__.bind(this);
+            weakDispose.set(this, dispose);
         }
-        catch (e) {
-            throwCompletion = { cause: e };
-        }
-        finally {
-            if (errors.length || throwCompletion) {
-                DisposeResources("sync", disposableResourceStack, /*suppress*/ false, throwCompletion, errors);
-            }
-        }
-
-        const disposable: Disposable = Object.create(__Disposable_prototype__);
-        weakDisposableState.set(disposable, "pending");
-        weakDisposableResourceStack.set(disposable, disposableResourceStack);
-
-        const disposableStack: DisposableStack = Object.create(__DisposableStack_prototype__);
-        weakDisposable.set(disposableStack, disposable);
-        return disposableStack;
+        return dispose;
     }
 
     /**
@@ -93,7 +81,7 @@ export class DisposableStack {
 
         const disposableState = weakDisposableState.get(disposable);
         if (disposableState === "disposed") throw new ReferenceError("Object is disposed");
-        if (disposableState !== "pending") throw new ReferenceError("Wrong target");
+        if (disposableState !== "pending") throw new TypeError("Wrong target");
 
         if (value !== null && value !== undefined || onDispose) {
             const disposableResourceStack = weakDisposableResourceStack.get(disposable)!;
@@ -132,7 +120,7 @@ export class DisposableStack {
 
         const disposableState = weakDisposableState.get(disposable);
         if (disposableState === "disposed") throw new ReferenceError("Object is disposed");
-        if (disposableState !== "pending") throw new ReferenceError("Wrong target");
+        if (disposableState !== "pending") throw new TypeError("Wrong target");
 
         const disposableResourceStack = weakDisposableResourceStack.get(disposable)!;
 
@@ -143,33 +131,27 @@ export class DisposableStack {
 
         const newDisposableStack = Object.create(__DisposableStack_prototype__) as DisposableStack;
         weakDisposable.set(newDisposableStack, newDisposable);
+        weakDispose.set(newDisposableStack, null);
         return newDisposableStack;
     }
 
     /**
      * Dispose this object's resources.
      */
-    dispose() {
+    [Disposable.dispose]() {
         const disposable = weakDisposable.get(this);
         if (!disposable) throw new TypeError("Wrong target");
 
         const disposableState = weakDisposableState.get(disposable);
         if (disposableState === "disposed") return;
-        if (disposableState !== "pending") throw new ReferenceError("Wrong target");
+        if (disposableState !== "pending") throw new TypeError("Wrong target");
         weakDisposableState.set(disposable, "disposed");
 
         DisposeResources("sync", weakDisposableResourceStack.get(disposable), /*suppress*/ false, /*completion*/ undefined);
     }
-
-    /**
-     * Dispose this object's resources.
-     */
-    [Disposable.dispose]() {
-        this.dispose();
-    }
 }
 
 const __DisposableStack_prototype__ = DisposableStack.prototype;
+const __DisposableStack_prototype_dispose__ = DisposableStack.prototype[Disposable.dispose];
 
 Object.defineProperty(__DisposableStack_prototype__, Symbol.toStringTag, { configurable: true, value: "DisposableStack" });
-Object.defineProperty(__DisposableStack_prototype__, Disposable.dispose, Object.getOwnPropertyDescriptor(__DisposableStack_prototype__, "dispose")!);

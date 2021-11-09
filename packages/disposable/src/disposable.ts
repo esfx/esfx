@@ -15,10 +15,11 @@
 */
 
 import { weakDisposableResourceStack, weakDisposableState } from "./internal/disposable";
-import { AddDisposableResource, disposeSym, createDeprecation, CreateScope, DisposableResourceRecord, DisposeResources, ThrowCompletion } from "./internal/utils";
+import { AddDisposableResource, createDeprecation, CreateScope, DisposableResourceRecord, DisposeResources, disposeSym, ThrowCompletion } from "./internal/utils";
 
 const reportDisposableCreateDeprecation = createDeprecation("Use 'new Disposable(dispose)' instead.");
 const reportDisposableUseDeprecation = createDeprecation("Use 'Disposable.scope()' instead.");
+const reportDisposableFromDeprecation = createDeprecation("'Disposable.from()' is unsafe. Use 'new DisposableStack' and 'DisposableStack.prototype.use' instead.");
 
 /**
  * Indicates an object that has resources that can be explicitly disposed.
@@ -70,9 +71,18 @@ export class Disposable {
     /**
      * Creates a `Disposable` wrapper around a set of other disposables.
      * @param disposables An `Iterable` of `Disposable` objects.
-     * @deprecated Use `DisposableStack.from()` instead.
+     * @deprecated Use `new DisposableStack` and `DisposableStack.prototype.use()` instead. Creating a disposable object from an array is
+     * considered unsafe, as an exception raised when allocating a later disposable could result in an earlier disposable not being disposed:
+     * ```js
+     * Disposable.from([getResourceX(), getResourceY()])
+     * //               ^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^
+     * //               |               |
+     * //               allocated, but  throws
+     * //               not disposed
+     * ```
      */
     static from(disposables: Iterable<DisposableLike | null | undefined>) {
+        reportDisposableFromDeprecation();
         const disposableResourceStack: DisposableResourceRecord<"sync">[] = [];
         const errors: unknown[] = [];
 

@@ -131,6 +131,35 @@
   
   
   
+  
+  
+  <h4 id="_esfx_disposable_AsyncDisposableStack_disposeAsync_member" data-uid="@esfx/disposable!AsyncDisposableStack#disposeAsync:member">disposeAsync</h4>
+  <div class="markdown level1 summary"><p>Dispose this object&#39;s resources.</p>
+<p>NOTE: <code>disposeAsync</code> returns a bound method, so it can be extracted from <code>AsyncDisposableStack</code> and called independently:</p>
+<pre><code class="lang-ts">const stack = new AsyncDisposableStack();
+for (const f of files) stack.use(openFile(f));
+const closeFiles = stack.disposeAsync;
+...
+closeFiles();
+</code></pre></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">get disposeAsync(): () =&gt; Promise&lt;void&gt;;</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <div class="property">
+    <div>() =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;void&gt;</div>
+    <p>
+  </div>
+  
+  
+  
   <h3 id="methods">Methods
   </h3>
   
@@ -142,29 +171,6 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">[AsyncDisposable.asyncDispose](): Promise&lt;void&gt;;</code></pre>
-  </div>
-  
-  
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;void&gt;</div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_disposable_AsyncDisposableStack_disposeAsync_member_1_" data-uid="@esfx/disposable!AsyncDisposableStack#disposeAsync:member(1)">disposeAsync()</h4>
-  <div class="markdown level1 summary"><p>Dispose this object&#39;s resources.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">disposeAsync(): Promise&lt;void&gt;;</code></pre>
   </div>
   
   
@@ -276,41 +282,6 @@
     <div><span class="xref">T</span></div>
     <p><p>The resource provided.</p>
 </p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_disposable_AsyncDisposableStack_from_member_1_" data-uid="@esfx/disposable!AsyncDisposableStack.from:member(1)">from(disposables)</h4>
-  <div class="markdown level1 summary"><p>Creates an <code>AsyncDisposableStack</code> from an iterable of other disposables.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">static from(disposables: AsyncIterable&lt;AsyncDisposableLike | null | undefined&gt; | Iterable&lt;AsyncDisposableLike | null | undefined | PromiseLike&lt;AsyncDisposableLike | null | undefined&gt;&gt;): Promise&lt;AsyncDisposableStack&gt;;</code></pre>
-  </div>
-  
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>disposables</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;<span class="xref">AsyncDisposableLike</span> | null | undefined&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<span class="xref">AsyncDisposableLike</span> | null | undefined | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;<span class="xref">AsyncDisposableLike</span> | null | undefined&gt;&gt;</dd>
-      </dl>
-      <p>
-        <p>An <code>Iterable</code> of <code>AsyncDisposable</code> or <code>Disposable</code> objects.</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;<a class="xref" href="asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_class">AsyncDisposableStack</a>&gt;</div>
-    <p>
   </div>
   
   

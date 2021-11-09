@@ -4593,10 +4593,10 @@ references:
   name: '[Symbol.toStringTag]'
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack__Symbol_toStringTag__member
   fullName: '[Symbol.toStringTag]'
-- uid: '@esfx/disposable!AsyncDisposableStack#disposeAsync:member(1)'
-  name: disposeAsync()
-  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_disposeAsync_member_1_
-  fullName: disposeAsync()
+- uid: '@esfx/disposable!AsyncDisposableStack#disposeAsync:member'
+  name: disposeAsync
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_disposeAsync_member
+  fullName: disposeAsync
 - uid: '@esfx/disposable!AsyncDisposableStack#enter:member(1)'
   name: enter(value)
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_enter_member_1_
@@ -4617,10 +4617,6 @@ references:
   name: use(value, onDispose)
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_use_member_2_
   fullName: use(value, onDispose)
-- uid: '@esfx/disposable!AsyncDisposableStack.from:member(1)'
-  name: from(disposables)
-  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_from_member_1_
-  fullName: from(disposables)
 - uid: '@esfx/disposable!AsyncDisposableStack:class'
   name: AsyncDisposableStack
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_class
@@ -4701,10 +4697,10 @@ references:
   name: '[Symbol.toStringTag]'
   href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack__Symbol_toStringTag__member
   fullName: '[Symbol.toStringTag]'
-- uid: '@esfx/disposable!DisposableStack#dispose:member(1)'
-  name: dispose()
-  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_dispose_member_1_
-  fullName: dispose()
+- uid: '@esfx/disposable!DisposableStack#dispose:member'
+  name: dispose
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_dispose_member
+  fullName: dispose
 - uid: '@esfx/disposable!DisposableStack#enter:member(1)'
   name: enter(value)
   href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_enter_member_1_
@@ -4725,10 +4721,6 @@ references:
   name: use(value, onDispose)
   href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_use_member_2_
   fullName: use(value, onDispose)
-- uid: '@esfx/disposable!DisposableStack.from:member(1)'
-  name: from(disposables)
-  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_from_member_1_
-  fullName: from(disposables)
 - uid: '@esfx/disposable!DisposableStack:class'
   name: DisposableStack
   href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_class

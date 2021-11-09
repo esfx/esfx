@@ -4,8 +4,13 @@
     "description": "A low-level API for defining explicit resource management.",
     "type": "commonjs",
     "main": "./dist/index.js",
-    "exports": "./dist/index.js",
     "types": "./dist/index.d.ts",
+    "exports": {
+        ".": "./dist/index.js",
+        "./*": "./dist/*",
+        "./*.json": null,
+        "./internal/*": null
+    },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {

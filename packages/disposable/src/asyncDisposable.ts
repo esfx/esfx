@@ -14,12 +14,13 @@
    limitations under the License.
 */
 
-import { AddDisposableResource, asyncDisposeSym, createDeprecation, CreateScope, DisposableResourceRecord, DisposeResources, ThrowCompletion } from "./internal/utils";
-import { weakAsyncDisposableResourceStack, weakAsyncDisposableState } from "./internal/asyncDisposable";
 import { Disposable } from "./disposable";
+import { weakAsyncDisposableResourceStack, weakAsyncDisposableState } from "./internal/asyncDisposable";
+import { AddDisposableResource, asyncDisposeSym, createDeprecation, CreateScope, DisposableResourceRecord, DisposeResources, ThrowCompletion } from "./internal/utils";
 
 const reportAsyncDisposableCreateDeprecation = createDeprecation("Use 'new AsyncDisposable(dispose)' instead.");
 const reportAsyncDisposableUseDeprecation = createDeprecation("Use 'AsyncDisposable.scope()' instead.");
+const reportAsyncDisposableFromDeprecation = createDeprecation("'AsyncDisposable.from()' is unsafe. Use 'new AsyncDisposableStack' and 'AsyncDisposableStack.prototype.use' instead.");
 
 /**
  * Indicates an object that has resources that can be explicitly disposed asynchronously.
@@ -68,9 +69,18 @@ export class AsyncDisposable {
     /**
      * Creates an `AsyncDisposable` wrapper around a set of other disposables.
      * @param resources An `Iterable` of `AsyncDisposable` or `Disposable` objects.
-     * @deprecated Use `AsyncDisposableStack.from()` instead.
+     * @deprecated Use `new AsyncDisposableStack` and `AsyncDisposableStack.prototype.use()` instead. Creating a disposable object from an array is
+     * considered unsafe, as an exception raised when allocating a later disposable could result in an earlier disposable not being disposed:
+     * ```js
+     * AsyncDisposable.from([getResourceX(), getResourceY()])
+     * //                    ^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^
+     * //                    |               |
+     * //                    allocated, but  throws
+     * //                    not disposed
+     * ```
      */
     static async from(resources: AsyncIterable<AsyncDisposableLike | null | undefined> | Iterable<AsyncDisposableLike | null | undefined | PromiseLike<AsyncDisposableLike | null | undefined>>) {
+        reportAsyncDisposableFromDeprecation();
         const disposableResourceStack: DisposableResourceRecord<"async">[] = [];
         const errors: unknown[] = [];
 

@@ -1607,7 +1607,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/asyncdisposablestack.html",
-          "hash": "SGT8PG29BgXgKlKy06XSLB1zxBiGjswdCjqMU7ZYsa0="
+          "hash": "1ImydMJeWXOCovp82S9WRPnvz50MQRhF33GbUG2gtco="
         }
       },
       "is_incremental": false,
@@ -1667,7 +1667,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/disposablestack.html",
-          "hash": "cEZ9wt1gDZQHT53QSDdGRrUZHH1OXO0vBjgKIfcGAMw="
+          "hash": "QIr4pt24xBr3t69Y4GC9fSJH58wX6lIFGr9rngBaOjs="
         }
       },
       "is_incremental": false,
