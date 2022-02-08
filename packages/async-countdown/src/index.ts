@@ -36,15 +36,12 @@
    limitations under the License.
 */
 
-import { isMissing, isNumber } from "@esfx/internal-guards";
-import { Tag } from "@esfx/internal-tag";
 import { Cancelable } from "@esfx/cancelable";
 import { AsyncManualResetEvent } from "@esfx/async-manualresetevent";
 
 /**
  * An event that is set when all participants have signaled.
  */
-@Tag()
 export class AsyncCountdownEvent {
     private _initialCount: number;
     private _remainingCount: number;
@@ -56,7 +53,7 @@ export class AsyncCountdownEvent {
      * @param initialCount The initial participant count.
      */
     constructor(initialCount: number) {
-        if (!isNumber(initialCount)) throw new TypeError("Number expected: initialCount.");
+        if (typeof initialCount !== "number") throw new TypeError("Number expected: initialCount.");
         if ((initialCount |= 0) < 0) throw new RangeError("Argument out of range: initialCount.");
 
         this._initialCount = initialCount;
@@ -83,9 +80,8 @@ export class AsyncCountdownEvent {
      *
      * @param count An optional count specifying the additional number of signals for which the event will wait.
      */
-    add(count?: number): void {
-        if (isMissing(count)) count = 1;
-        if (!isNumber(count)) throw new TypeError("Number expected: count.");
+    add(count: number = 1): void {
+        if (typeof count !== "number") throw new TypeError("Number expected: count.");
         if ((count |= 0) <= 0) throw new RangeError("Argument out of range: count.");
         if (this._remainingCount === 0) throw new Error("The event is already signaled and cannot be incremented.");
 
@@ -99,9 +95,8 @@ export class AsyncCountdownEvent {
      *
      * @param count An optional count specifying the number of required signals.
      */
-    reset(count?: number): void {
-        if (isMissing(count)) count = this._initialCount;
-        if (!isNumber(count)) throw new TypeError("Number expected: count.");
+    reset(count: number = this._initialCount): void {
+        if (typeof count !== "number") throw new TypeError("Number expected: count.");
         if ((count |= 0) < 0) throw new RangeError("Argument out of range: count.");
 
         this._remainingCount = count;
@@ -119,9 +114,8 @@ export class AsyncCountdownEvent {
      *
      * @param count An optional count specifying the number of signals to register.
      */
-    signal(count?: number): boolean {
-        if (isMissing(count)) count = 1;
-        if (!isNumber(count)) throw new TypeError("Number expected: count.");
+    signal(count: number = 1): boolean {
+        if (typeof count !== "number") throw new TypeError("Number expected: count.");
         if ((count |= 0) <= 0) throw new RangeError("Argument out of range: count.");
         if (count > this._remainingCount) throw new Error("Invalid attempt to decrement the event's count below zero.");
 
@@ -143,3 +137,5 @@ export class AsyncCountdownEvent {
         return this._event.wait(cancelable);
     }
 }
+
+Object.defineProperty(AsyncCountdownEvent.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncCountdownEvent" });

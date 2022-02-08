@@ -8,7 +8,5 @@
     "references": [
         { "path": "../cancelable" },
         { "path": "../async-manualresetevent" },
-        { "path": "../../internal/guards" },
-        { "path": "../../internal/tag" },
     ]
 }
