@@ -36,15 +36,12 @@
    limitations under the License.
 */
 
-import { isMissing, isBoolean } from "@esfx/internal-guards";
-import { Tag } from "@esfx/internal-tag";
 import { Cancelable } from "@esfx/cancelable";
 import { WaitQueue } from "@esfx/async-waitqueue";
 
 /**
  * Asynchronously notifies one or more waiting Promises that an event has occurred.
  */
-@Tag()
 export class AsyncManualResetEvent {
     private _signaled: boolean;
     private _waiters = new WaitQueue<void>();
@@ -54,9 +51,8 @@ export class AsyncManualResetEvent {
      *
      * @param initialState A value indicating whether to set the initial state to signaled.
      */
-    constructor(initialState?: boolean) {
-        if (isMissing(initialState)) initialState = false;
-        if (!isBoolean(initialState)) throw new TypeError("Boolean expected: initialState.");
+    constructor(initialState: boolean = false) {
+        if (typeof initialState !== "boolean") throw new TypeError("Boolean expected: initialState.");
         this._signaled = !!initialState;
     }
 
@@ -97,3 +93,5 @@ export class AsyncManualResetEvent {
         await this._waiters.wait(cancelable);
     }
 }
+
+Object.defineProperty(AsyncManualResetEvent.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncManualResetEvent" });
