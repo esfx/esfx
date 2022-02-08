@@ -30,9 +30,6 @@
    limitations under the License.
 */
 
-import { isFunction } from "@esfx/internal-guards";
-import { Tag } from "@esfx/internal-tag";
-
 type LazyFactoryState<T> = { state: "factory", factory: (...args: any) => T | PromiseLike<T>, args: any[] | undefined };
 type LazyValueState<T> = { state: "value", value: Promise<T> };
 type LazyResolvingState = { state: "resolving" };
@@ -62,12 +59,11 @@ function createErrorState(error: unknown): LazyErrorState {
 /**
  * A lazy-initialized asynchronous value.
  */
-@Tag()
 export class AsyncLazy<T> {
     private _state: LazyState<T>;
 
     constructor(factory: () => T | PromiseLike<T>) {
-        if (!isFunction(factory)) throw new TypeError("Function expected: factory");
+        if (typeof factory !== "function") throw new TypeError("Function expected: factory");
         this._state = factory === noop
             ? noopFactoryState
             : createFactoryState(factory, /*args*/ undefined);
@@ -110,3 +106,5 @@ export class AsyncLazy<T> {
         return lazy;
     }
 }
+
+Object.defineProperty(AsyncLazy.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncLazy" });
