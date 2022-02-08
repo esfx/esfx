@@ -36,8 +36,6 @@
    limitations under the License.
 */
 
-import { isBoolean } from "@esfx/internal-guards";
-import { Tag } from "@esfx/internal-tag";
 import { Cancelable } from "@esfx/cancelable";
 import { WaitQueue } from "@esfx/async-waitqueue";
 
@@ -45,7 +43,6 @@ import { WaitQueue } from "@esfx/async-waitqueue";
  * Represents a synchronization event that, when signaled, resets automatically after releasing a
  * single waiting asynchronous operation.
  */
-@Tag()
 export class AsyncAutoResetEvent {
     private _signaled: boolean;
     private _waiters = new WaitQueue<void>();
@@ -55,7 +52,7 @@ export class AsyncAutoResetEvent {
      * @param initialState A value indicating whether to set the initial state to signaled.
      */
     constructor(initialState = false) {
-        if (!isBoolean(initialState)) throw new TypeError("Boolean expected: initialState.");
+        if (typeof initialState !== "boolean") throw new TypeError("Boolean expected: initialState.");
         this._signaled = initialState;
     }
 
@@ -95,3 +92,5 @@ export class AsyncAutoResetEvent {
         await this._waiters.wait(cancelable);
     }
 }
+
+Object.defineProperty(AsyncAutoResetEvent.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncAutoResetEvent" });

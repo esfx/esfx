@@ -10,8 +10,6 @@
         { "path": "../async-canceltoken" },
 
         // dependencies:
-        { "path": "../../internal/guards" },
-        { "path": "../../internal/tag" },
         { "path": "../async-waitqueue" },
         { "path": "../cancelable" },
     ]
