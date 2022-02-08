@@ -16,19 +16,65 @@
 
 /// <reference lib="dom" />
 
-import { Cancelable } from "@esfx/cancelable";
+import { Cancelable, CancelSignal, CancelSubscription } from "@esfx/cancelable";
+
+const weakAbortSignal = new WeakMap<Cancelable, AbortSignal>();
 
 export function toAbortSignal(cancelable: Cancelable): AbortSignal;
 export function toAbortSignal(cancelable: Cancelable | AbortController | AbortSignal) {
     if (cancelable instanceof AbortSignal) return cancelable;
     if (cancelable instanceof AbortController) return cancelable.signal;
-    const adapter = new AbortController();
-    const signal = cancelable[Cancelable.cancelSignal]();
-    if (signal.signaled) {
-        adapter.abort();
+    let abortSignal = weakAbortSignal.get(cancelable);
+    if (!abortSignal) {
+        const adapter = new AbortController();
+        const signal = cancelable[Cancelable.cancelSignal]();
+        if (signal.signaled) {
+            adapter.abort();
+        }
+        else {
+            signal.subscribe(() => adapter.abort());
+        }
+        abortSignal = adapter.signal;
+        weakAbortSignal.set(cancelable, abortSignal);
     }
-    else {
-        signal.subscribe(() => adapter.abort());
+    return abortSignal;
+}
+
+const weakCancelable = new WeakMap<AbortSignal, Cancelable>();
+
+export function wrapAbortSignal(signal: AbortController | AbortSignal): Cancelable {
+    if (signal instanceof AbortController) return wrapAbortSignal(signal.signal);
+    if (Cancelable.hasInstance(signal)) return signal;
+    let cancelable = weakCancelable.get(signal);
+    if (!cancelable) {
+        const cancelSignal: CancelSignal = {
+            get signaled() {
+                return signal.aborted;
+            },
+            subscribe(onSignaled: () => void) {
+                let subscribed = true;
+                const unsubscribe = () => {
+                    if (subscribed) {
+                        subscribed = false;
+                        signal.removeEventListener("abort", callback);
+                    }
+                };
+                const callback = () => {
+                    if (subscribed) {
+                        unsubscribe();
+                        onSignaled();
+                    }
+                };
+                signal.addEventListener("abort", callback);
+                return CancelSubscription.create(unsubscribe);
+            }
+        };
+        cancelable = {
+            [Cancelable.cancelSignal]() {
+                return cancelSignal;
+            }
+        };
+        weakCancelable.set(signal, cancelable);
     }
-    return adapter.signal;
+    return cancelable;
 }
