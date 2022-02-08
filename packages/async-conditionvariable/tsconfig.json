@@ -12,8 +12,5 @@
         // dependencies:
         { "path": "../async-lockable" },
         { "path": "../cancelable" },
-        { "path": "../collections-linkedlist" },
-        { "path": "../../internal/guards" },
-        { "path": "../../internal/tag" },
     ]
 }

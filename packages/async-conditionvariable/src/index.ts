@@ -14,11 +14,8 @@
    limitations under the License.
 */
 
-import { isMissing, isFunction } from "@esfx/internal-guards";
-import { Tag } from "@esfx/internal-tag";
 import { AsyncLockable } from "@esfx/async-lockable";
 import { Cancelable, CancelError } from "@esfx/cancelable";
-import { LinkedList } from "@esfx/collections-linkedlist";
 
 interface Entry {
     cancelable: Cancelable | undefined;
@@ -28,9 +25,8 @@ interface Entry {
     unsubscribe(): void;
 }
 
-@Tag()
 export class AsyncConditionVariable {
-    private _waiters = new LinkedList<Entry>();
+    private _waiters: List<Entry> = { head: null };
 
     /**
      * Releases `lock`, waiting until notified before reacquiring `lock`.
@@ -48,8 +44,8 @@ export class AsyncConditionVariable {
     async wait(lock: AsyncLockable, condition?: (() => boolean) | Cancelable, cancelable?: Cancelable) {
         if (Cancelable.hasInstance(condition)) cancelable = condition, condition = undefined;
         if (!AsyncLockable.hasInstance(lock)) throw new TypeError("AsyncLockable expected: lock");
-        if (!isMissing(condition) && !isFunction(condition)) throw new TypeError("Function expected: condition");
-        if (!isMissing(cancelable) && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+        if (condition !== null && condition !== undefined && typeof condition !== "function") throw new TypeError("Function expected: condition");
+        if (cancelable !== null && cancelable !== undefined && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
         Cancelable.throwIfSignaled(cancelable);
         if (condition) {
             while (!condition()) {
@@ -65,9 +61,9 @@ export class AsyncConditionVariable {
      * Notifies one waiter to reacquire its lock.
      */
     notifyOne() {
-        const entry = this._waiters.shift();
-        if (entry) {
-            this._notifyOne(entry);
+        const head = this._waiters.head;
+        if (head && listRemove(this._waiters, head)) {
+            this._notifyOne(head.value);
         }
     }
 
@@ -75,8 +71,15 @@ export class AsyncConditionVariable {
      * Notifies all current waiters to reacquire their locks.
      */
     notifyAll() {
-        const entries = [...this._waiters];
-        this._waiters.clear();
+        const entries: Entry[] = [];
+        while (this._waiters.head) {
+            const head = this._waiters.head;
+            if (listRemove(this._waiters, head)) {
+                entries.push(head.value);
+                head.value = undefined!;
+            }
+        }
+
         for (const entry of entries) {
             this._notifyOne(entry);
         }
@@ -86,7 +89,7 @@ export class AsyncConditionVariable {
         return new Promise<void>((resolve, reject) => {
             lock[AsyncLockable.unlock]();
 
-            const node = this._waiters.push({
+            const node = listAdd(this._waiters, {
                 lock,
                 cancelable,
                 unsubscribe() {
@@ -97,8 +100,9 @@ export class AsyncConditionVariable {
             });
 
             const subscription = Cancelable.subscribe(cancelable, () => {
-                if (node.detachSelf()) {
-                    reject(new CancelError());
+                if (listRemove(this._waiters, node)) {
+                    node.value.reject(new CancelError());
+                    node.value = undefined!;
                 }
             });
         });
@@ -115,4 +119,50 @@ export class AsyncConditionVariable {
             entry.reject(e);
         }
     }
+}
+
+Object.defineProperty(AsyncConditionVariable.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncConditionVariable" });
+
+interface List<T> {
+    head: Node<T> | null;
+}
+
+interface Node<T> {
+    value: T;
+    prev: Node<T> | null;
+    next: Node<T> | null;
+}
+
+function listAdd<T>(list: List<T>, value: T) {
+    const node: Node<T> = { value, next: null, prev: null };
+    if (!list.head) {
+        list.head = node.next = node.prev = node;
+    }
+    else {
+        const tail = list.head.prev;
+        if (!tail?.next) throw new Error("Illegal state");
+        node.prev = tail;
+        node.next = tail.next;
+        tail.next = tail.next.prev = node;
+    }
+    return node;
+}
+
+function listRemove<T>(list: List<T>, node: Node<T>) {
+    if (!node.next || !node.prev) {
+        return false;
+    }
+    if (node.next === node) {
+        if (list.head !== node) throw new Error("Illegal state");
+        list.head = null;
+    }
+    else {
+        node.next.prev = node.next;
+        node.prev.next = node.prev;
+        if (list.head === node) {
+            list.head = node.next;
+        }
+    }
+    node.next = node.prev = null;
+    return true;
 }

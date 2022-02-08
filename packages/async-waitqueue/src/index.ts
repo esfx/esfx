@@ -38,17 +38,6 @@
 
 import { Cancelable, CancelError } from "@esfx/cancelable";
 
-interface List<T> {
-    size: number;
-    head: Node<T> | null;
-}
-
-interface Node<T> {
-    value: T;
-    prev: Node<T> | null;
-    next: Node<T> | null;
-}
-
 interface Entry<T> {
     resolve(value: T | PromiseLike<T>): void;
     reject(reason: any): void;
@@ -189,6 +178,17 @@ export class WaitQueue<T> {
 }
 
 Object.defineProperty(WaitQueue.prototype, Symbol.toStringTag, { configurable: true, value: "WaitQueue" });
+
+interface List<T> {
+    size: number;
+    head: Node<T> | null;
+}
+
+interface Node<T> {
+    value: T;
+    prev: Node<T> | null;
+    next: Node<T> | null;
+}
 
 function listAdd<T>(list: List<T>, value: T) {
     const node: Node<T> = { value, next: null, prev: null };

@@ -112,14 +112,19 @@ function createCancelSource(links: CancelLinks | undefined): CancelSource {
                 currentLinks.unlink();
             }
             if (currentSubscriptions) {
-                for (let node = currentSubscriptions.head, next = node && node.next; node; node = next, next = node && node.next) {
+                const callbacks: (() => void)[] = [];
+                while (currentSubscriptions.head) {
                     // The registration for each callback holds onto the node, the node holds onto the
                     // list, and the list holds all other nodes and callbacks. By removing the node from
                     // the list, the GC can collect any otherwise unreachable nodes.
-                    if (listRemove(currentSubscriptions, node)) {
-                        executeCallback(node.value);
-                        node.value = undefined!;
+                    const head = currentSubscriptions.head;
+                    if (listRemove(currentSubscriptions, head)) {
+                        callbacks.push(head.value);
+                        head.value = undefined!;
                     }
+                }
+                for (const callback of callbacks) {
+                    executeCallback(callback);
                 }
             }
         },
@@ -136,9 +141,10 @@ function createCancelSource(links: CancelLinks | undefined): CancelSource {
                 currentLinks.unlink();
             }
             if (currentSubscriptions) {
-                for (let node = currentSubscriptions.head, next = node && node.next; node; node = next, next = node && node.next) {
-                    if (listRemove(currentSubscriptions, node)) {
-                        node.value = undefined!;
+                while (currentSubscriptions.head) {
+                    const head = currentSubscriptions.head;
+                    if (listRemove(currentSubscriptions, head)) {
+                        head.value = undefined!;
                     }
                 }
             }
