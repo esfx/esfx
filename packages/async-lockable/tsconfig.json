@@ -8,8 +8,5 @@
     "references": [
         { "path": "../cancelable" },
         { "path": "../disposable" },
-        { "path": "../../internal/deprecate" },
-        { "path": "../../internal/guards" },
-        { "path": "../../internal/tag" },
     ]
 }

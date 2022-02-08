@@ -17,10 +17,7 @@
     },
     "dependencies": {
         "@esfx/cancelable": "^1.0.0-pre.30",
-        "@esfx/disposable": "^1.0.0-pre.30",
-        "@esfx/internal-deprecate": "^1.0.0-pre.24",
-        "@esfx/internal-guards": "^1.0.0-pre.23",
-        "@esfx/internal-tag": "^1.0.0-pre.19"
+        "@esfx/disposable": "^1.0.0-pre.30"
     },
     "publishConfig": {
         "access": "public"

@@ -16,8 +16,6 @@
 
 import { Cancelable } from "@esfx/cancelable";
 import { Disposable } from "@esfx/disposable";
-import { deprecateProperty } from "@esfx/internal-deprecate";
-import { isObject } from "@esfx/internal-guards";
 
 /**
  * Represents a value that can be used to synchronize access to a resource.
@@ -71,7 +69,8 @@ export namespace AsyncLockable {
      * Determines whether a value is `AsyncLockable`.
      */
     export function hasInstance(value: unknown): value is AsyncLockable {
-        return isObject(value)
+        return typeof value === "object"
+            && value !== null
             && AsyncLockable.lock in value
             && AsyncLockable.unlock in value;
     }
@@ -110,5 +109,3 @@ export interface UpgradeableLockHandle<TMutex extends AsyncLockable = AsyncLocka
      */
     upgrade(cancelable?: Cancelable): Promise<LockHandle<TUpgradedMutex>>;
 }
-
-deprecateProperty(AsyncLockable, "isAsyncLockable", "Use 'AsyncLockable.hasInstance' instead.");
