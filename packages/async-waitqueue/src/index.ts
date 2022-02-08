@@ -36,9 +36,18 @@
    limitations under the License.
 */
 
-import { Tag } from "@esfx/internal-tag";
-import { LinkedList } from "@esfx/collections-linkedlist";
 import { Cancelable, CancelError } from "@esfx/cancelable";
+
+interface List<T> {
+    size: number;
+    head: Node<T> | null;
+}
+
+interface Node<T> {
+    value: T;
+    prev: Node<T> | null;
+    next: Node<T> | null;
+}
 
 interface Entry<T> {
     resolve(value: T | PromiseLike<T>): void;
@@ -49,15 +58,14 @@ interface Entry<T> {
 /**
  * An async coordination primitive that provides a queue of Promises.
  */
-@Tag()
 export class WaitQueue<T> {
-    private _pending = new LinkedList<Entry<T>>();
+    private _list: List<Entry<T>> = { size: 0, head: null };
 
     /**
      * Gets the number of pending entries in the queue.
      */
     get size() {
-        return this._pending ? this._pending.size : 0;
+        return this._list.size;
     }
 
     /**
@@ -68,7 +76,7 @@ export class WaitQueue<T> {
         return new Promise<T>((resolve, reject) => {
             Cancelable.throwIfSignaled(cancelable);
 
-            const node = this._pending.push({
+            const node = listAdd(this._list, {
                 unsubscribe() {
                     subscription.unsubscribe();
                 },
@@ -77,8 +85,9 @@ export class WaitQueue<T> {
             });
 
             const subscription = Cancelable.subscribe(cancelable, () => {
-                if (node.detachSelf()) {
-                    reject(new CancelError());
+                const entry = node.value;
+                if (listRemove(this._list, node)) {
+                    entry.reject(new CancelError());
                 }
             });
         });
@@ -99,9 +108,10 @@ export class WaitQueue<T> {
      * @returns `true` if a pending `wait()` operation was resolved; otherwise, `false`.
      */
     resolveOne(value?: T | PromiseLike<T>) {
-        if (this._pending !== undefined) {
-            const pending = this._pending.shift();
-            if (pending) {
+        const node = this._list.head;
+        if (node) {
+            const pending = node.value;
+            if (listRemove(this._list, node)) {
                 pending.unsubscribe();
                 pending.resolve(value!);
                 return true;
@@ -137,9 +147,10 @@ export class WaitQueue<T> {
      * @returns `true` if a pending `wait()` operation was rejected; otherwise, `false`.
      */
     rejectOne(reason: unknown) {
-        if (this._pending !== undefined) {
-            const pending = this._pending.shift();
-            if (pending) {
+        const node = this._list.head;
+        if (node) {
+            const pending = node.value;
+            if (listRemove(this._list, node)) {
                 pending.unsubscribe();
                 pending.reject(reason);
                 return true;
@@ -175,4 +186,46 @@ export class WaitQueue<T> {
     cancelAll() {
         return this.rejectAll(new CancelError());
     }
+}
+
+Object.defineProperty(WaitQueue.prototype, Symbol.toStringTag, { configurable: true, value: "WaitQueue" });
+
+function listAdd<T>(list: List<T>, value: T) {
+    const node: Node<T> = { value, next: null, prev: null };
+    if (!list.head) {
+        node.prev = node;
+        node.next = node;
+        list.head = node;
+    }
+    else {
+        const tail = list.head.prev;
+        if (!tail?.next) throw new Error("Illegal state");
+        node.prev = tail;
+        node.next = tail.next;
+        tail.next.prev = node;
+        tail.next = node;
+    }
+    list.size++;
+    return node;
+}
+
+function listRemove<T>(list: List<T>, node: Node<T>) {
+    if (!node.next || !node.prev) {
+        return false;
+    }
+    if (node.next === node) {
+        if (list.head !== node) throw new Error("Illegal state");
+        list.head = null;
+    }
+    else {
+        node.next.prev = node.next;
+        node.prev.next = node.prev;
+        if (list.head === node) {
+            list.head = node.next;
+        }
+    }
+    node.next = null;
+    node.prev = null;
+    list.size--;
+    return true;
 }
