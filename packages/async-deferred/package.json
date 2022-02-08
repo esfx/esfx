@@ -20,7 +20,6 @@
     },
     "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b",
     "dependencies": {
-        "@esfx/internal-tag": "^1.0.0-pre.19",
         "tslib": "^2.1.0"
     }
 }

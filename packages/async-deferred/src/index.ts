@@ -36,12 +36,9 @@
    limitations under the License.
 */
 
-import { Tag } from "@esfx/internal-tag";
-
 /**
  * Encapsulates a Promise and exposes its resolve and reject callbacks.
  */
-@Tag()
 export class Deferred<T> {
     private _promise: Promise<T>;
     private _resolve!: (value: PromiseLike<T> | T) => void;
@@ -104,3 +101,5 @@ export class Deferred<T> {
 
 function identity<A extends any[]>(...args: A): A[0];
 function identity<T>(value: T) { return value; }
+
+Object.defineProperty(Deferred.prototype, Symbol.toStringTag, { configurable: true, value: "Deferred" });
