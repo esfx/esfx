@@ -8,7 +8,5 @@
     "references": [
         { "path": "../async-waitqueue" },
         { "path": "../cancelable" },
-        { "path": "../../internal/guards" },
-        { "path": "../../internal/tag" },
     ]
 }
