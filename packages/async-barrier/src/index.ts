@@ -36,8 +36,6 @@
    limitations under the License.
 */
 
-import { isMissing, isNumber, isFunction } from "@esfx/internal-guards";
-import { Tag } from "@esfx/internal-tag";
 import { Cancelable } from "@esfx/cancelable";
 import { WaitQueue } from "@esfx/async-waitqueue";
 
@@ -45,7 +43,6 @@ import { WaitQueue } from "@esfx/async-waitqueue";
  * Enables multiple tasks to cooperatively work on an algorithm through
  * multiple phases.
  */
-@Tag()
 export class AsyncBarrier {
     private _isExecutingPostPhaseAction = false;
     private _postPhaseAction: ((barrier: AsyncBarrier) => void | PromiseLike<void>) | undefined;
@@ -61,9 +58,9 @@ export class AsyncBarrier {
      * @param postPhaseAction An action to execute between each phase.
      */
     constructor(participantCount: number, postPhaseAction?: (barrier: AsyncBarrier) => void | PromiseLike<void>) {
-        if (!isNumber(participantCount)) throw new TypeError("Number expected: participantCount.");
+        if (typeof participantCount !== "number") throw new TypeError("Number expected: participantCount.");
         if ((participantCount |= 0) < 0) throw new RangeError("Argument out of range: participantCount.");
-        if (!isMissing(postPhaseAction) && !isFunction(postPhaseAction)) throw new TypeError("Function expected: postPhaseAction.");
+        if (postPhaseAction !== undefined && typeof postPhaseAction !== "function") throw new TypeError("Function expected: postPhaseAction.");
 
         this._participantCount = participantCount;
         this._remainingParticipants = participantCount;
@@ -96,9 +93,8 @@ export class AsyncBarrier {
      *
      * @param participantCount The number of additional participants.
      */
-    add(participantCount?: number) {
-        if (isMissing(participantCount)) participantCount = 1;
-        if (!isNumber(participantCount)) throw new TypeError("Number expected: participantCount.");
+    add(participantCount: number = 1) {
+        if (typeof participantCount !== "number") throw new TypeError("Number expected: participantCount.");
         if ((participantCount |= 0) <= 0) throw new RangeError("Argument out of range: participantCount.");
         if (this._isExecutingPostPhaseAction) throw new Error("This method may not be called from within the postPhaseAction.");
 
@@ -111,9 +107,8 @@ export class AsyncBarrier {
      *
      * @param participantCount The number of participants to remove.
      */
-    remove(participantCount?: number) {
-        if (isMissing(participantCount)) participantCount = 1;
-        if (!isNumber(participantCount)) throw new TypeError("Number expected: participantCount.");
+    remove(participantCount: number = 1) {
+        if (typeof participantCount !== "number") throw new TypeError("Number expected: participantCount.");
         if ((participantCount |= 0) <= 0) throw new RangeError("Argument out of range: participantCount.");
         if (this._participantCount < participantCount) throw new RangeError("Argument out of range: participantCount.");
         if (this._isExecutingPostPhaseAction) throw new Error("This method may not be called from within the postPhaseAction.");
@@ -179,3 +174,5 @@ export class AsyncBarrier {
         this._waiters.rejectAll(error);
     }
 }
+
+Object.defineProperty(AsyncBarrier.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncBarrier" });
