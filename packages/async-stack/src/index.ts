@@ -36,8 +36,6 @@
    limitations under the License.
 */
 
-import { isMissing, isIterable } from "@esfx/internal-guards";
-import { Tag } from "@esfx/internal-tag";
 import { WaitQueue } from "@esfx/async-waitqueue";
 import { Cancelable } from "@esfx/cancelable";
 
@@ -51,7 +49,6 @@ const enum State {
 /**
  * An asynchronous Stack.
  */
-@Tag()
 export class AsyncStack<T> {
     private _state = State.Open;
     private _available: Array<Promise<T>> | undefined = undefined;
@@ -63,8 +60,8 @@ export class AsyncStack<T> {
      * @param iterable An optional iterable of values or promises.
      */
     constructor(iterable?: Iterable<T | PromiseLike<T>>) {
-        if (!isMissing(iterable) && !isIterable(iterable)) throw new TypeError("Object not iterable: iterable.");
-        if (!isMissing(iterable)) {
+        if (iterable !== null && iterable !== undefined) {
+            if (typeof iterable !== "object" || !(Symbol.iterator in iterable)) throw new TypeError("Object not iterable: iterable.");
             this._available = [];
             for (const value of iterable) {
                 this._available.push(Promise.resolve(value));
@@ -200,3 +197,5 @@ export class AsyncStack<T> {
         }
     }
 }
+
+Object.defineProperty(AsyncStack.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncStack" });
