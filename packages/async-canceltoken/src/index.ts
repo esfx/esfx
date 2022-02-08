@@ -36,10 +36,7 @@
    limitations under the License.
 */
 
-import { isIterable, isFunction, isMissing } from "@esfx/internal-guards";
-import { defineTag, Tag } from "@esfx/internal-tag";
 import { CancelableSource, Cancelable, CancelSignal, CancelSubscription, CancelError } from "@esfx/cancelable";
-import { LinkedList, LinkedListNode } from "@esfx/collections-linkedlist";
 import { Disposable } from "@esfx/disposable";
 
 export { CancelSubscription, CancelError } from "@esfx/cancelable";
@@ -78,12 +75,12 @@ const cancelSourcePrototype: object = {
 };
 
 Object.setPrototypeOf(cancelSourcePrototype, Disposable.prototype);
-defineTag(cancelSourcePrototype, "CancelSource");
+Object.defineProperty(cancelSourcePrototype, Symbol.toStringTag, { configurable: true, value: "CancelSource" });
 
 function createCancelSource(links: CancelLinks | undefined): CancelSource {
     let state: "unsignaled" | "signaled" | "closed" = "unsignaled";
     let token: CancelToken | undefined;
-    let subscriptions: LinkedList<() => void> | undefined;
+    let subscriptions: List<() => void> | undefined;
     const source: CancelSource = Object.setPrototypeOf({
         get token() {
             return token || (token = createCancelToken({
@@ -97,8 +94,8 @@ function createCancelSource(links: CancelLinks | undefined): CancelSource {
                     if (state === "signaled") {
                         return Cancelable.canceled.subscribe(onSignaled);
                     }
-                    const list = subscriptions || (subscriptions = new LinkedList());
-                    return createCancelSubscription(list.push(onSignaled));
+                    const list = subscriptions || (subscriptions = { head: null });
+                    return createCancelSubscription(list, listAdd(list, onSignaled));
                 }
             }));
         },
@@ -115,11 +112,11 @@ function createCancelSource(links: CancelLinks | undefined): CancelSource {
                 currentLinks.unlink();
             }
             if (currentSubscriptions) {
-                for (const node of [...currentSubscriptions.nodes()]) {
+                for (let node = currentSubscriptions.head, next = node && node.next; node; node = next, next = node && node.next) {
                     // The registration for each callback holds onto the node, the node holds onto the
                     // list, and the list holds all other nodes and callbacks. By removing the node from
                     // the list, the GC can collect any otherwise unreachable nodes.
-                    if (node.detachSelf()) {
+                    if (listRemove(currentSubscriptions, node)) {
                         executeCallback(node.value);
                         node.value = undefined!;
                     }
@@ -139,8 +136,8 @@ function createCancelSource(links: CancelLinks | undefined): CancelSource {
                 currentLinks.unlink();
             }
             if (currentSubscriptions) {
-                for (const node of [...currentSubscriptions.nodes()]) {
-                    if (node.detachSelf()) {
+                for (let node = currentSubscriptions.head, next = node && node.next; node; node = next, next = node && node.next) {
+                    if (listRemove(currentSubscriptions, node)) {
                         node.value = undefined!;
                     }
                 }
@@ -151,9 +148,9 @@ function createCancelSource(links: CancelLinks | undefined): CancelSource {
     return source;
 }
 
-function createCancelSubscription(node: LinkedListNode<() => void>): CancelSubscription {
+function createCancelSubscription(list: List<() => void>, node: Node<() => void>): CancelSubscription {
     return CancelSubscription.create(() => {
-        if (node.detachSelf()) {
+        if (listRemove(list, node)) {
             node.value = undefined!;
         }
     });
@@ -197,7 +194,6 @@ export interface CancelSource extends CancelableSource, Disposable {
 /**
  * Propagates notifications that operations should be canceled.
  */
-@Tag()
 export class CancelToken implements Cancelable, CancelSignal {
     static readonly none = closedSource.token;
     static readonly canceled = canceledSource.token;
@@ -233,10 +229,10 @@ export class CancelToken implements Cancelable, CancelSignal {
      * Gets a CancelToken from a cancelable.
      */
     static from(cancelable: Cancelable | null | undefined) {
-        if (!isMissing(cancelable) && !Cancelable.hasInstance(cancelable)) {
+        if (cancelable !== null && cancelable !== undefined && !Cancelable.hasInstance(cancelable)) {
             throw new TypeError("Cancelable exepected: cancelable");
         }
-        if (cancelable === Cancelable.none || isMissing(cancelable)) {
+        if (cancelable === Cancelable.none || cancelable === null || cancelable === undefined) {
             return CancelToken.none;
         }
         if (cancelable === Cancelable.canceled) {
@@ -278,7 +274,7 @@ export class CancelToken implements Cancelable, CancelSignal {
      * @param cancelables An iterable of Cancelable objects.
      */
     static race(cancelables: Iterable<Cancelable>) {
-        if (!isIterable(cancelables)) {
+        if (typeof cancelables !== "object" || cancelables === null || !(Symbol.iterator in cancelables)) {
             throw new TypeError("Object not iterable: cancelables");
         }
         const signals: CancelSignal[] = [];
@@ -318,7 +314,7 @@ export class CancelToken implements Cancelable, CancelSignal {
      * @param cancelables An iterable of Cancelable objects.
      */
     static all(cancelables: Iterable<Cancelable>) {
-        if (!isIterable(cancelables)) {
+        if (typeof cancelables !== "object" || cancelables === null || !(Symbol.iterator in cancelables)) {
             throw new TypeError("Object not iterable: cancelables");
         }
         const signals: CancelSignal[] = [];
@@ -380,7 +376,7 @@ export class CancelToken implements Cancelable, CancelSignal {
      * Subscribes to notifications for when the object becomes signaled.
      */
     subscribe(onSignaled: () => void): CancelSubscription {
-        if (!isFunction(onSignaled)) throw new TypeError("Function expected: onSignaled");
+        if (typeof onSignaled !== "function") throw new TypeError("Function expected: onSignaled");
         return this._state.subscribe(onSignaled);
     }
 
@@ -391,4 +387,50 @@ export class CancelToken implements Cancelable, CancelSignal {
     // #endregion Cancelable
 }
 
+Object.defineProperty(CancelToken.prototype, Symbol.toStringTag, { configurable: true, value: "CancelToken" });
+
 const throwIfSignaledMethod = CancelToken.prototype.throwIfSignaled;
+
+interface List<T> {
+    head: Node<T> | null;
+}
+
+interface Node<T> {
+    value: T;
+    prev: Node<T> | null;
+    next: Node<T> | null;
+}
+
+function listAdd<T>(list: List<T>, value: T) {
+    const node: Node<T> = { value, next: null, prev: null };
+    if (!list.head) {
+        list.head = node.next = node.prev = node;
+    }
+    else {
+        const tail = list.head.prev;
+        if (!tail?.next) throw new Error("Illegal state");
+        node.prev = tail;
+        node.next = tail.next;
+        tail.next = tail.next.prev = node;
+    }
+    return node;
+}
+
+function listRemove<T>(list: List<T>, node: Node<T>) {
+    if (!node.next || !node.prev) {
+        return false;
+    }
+    if (node.next === node) {
+        if (list.head !== node) throw new Error("Illegal state");
+        list.head = null;
+    }
+    else {
+        node.next.prev = node.next;
+        node.prev.next = node.prev;
+        if (list.head === node) {
+            list.head = node.next;
+        }
+    }
+    node.next = node.prev = null;
+    return true;
+}

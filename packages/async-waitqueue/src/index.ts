@@ -193,17 +193,14 @@ Object.defineProperty(WaitQueue.prototype, Symbol.toStringTag, { configurable: t
 function listAdd<T>(list: List<T>, value: T) {
     const node: Node<T> = { value, next: null, prev: null };
     if (!list.head) {
-        node.prev = node;
-        node.next = node;
-        list.head = node;
+        list.head = node.next = node.prev = node;
     }
     else {
         const tail = list.head.prev;
         if (!tail?.next) throw new Error("Illegal state");
         node.prev = tail;
         node.next = tail.next;
-        tail.next.prev = node;
-        tail.next = node;
+        tail.next = tail.next.prev = node;
     }
     list.size++;
     return node;
@@ -224,8 +221,7 @@ function listRemove<T>(list: List<T>, node: Node<T>) {
             list.head = node.next;
         }
     }
-    node.next = null;
-    node.prev = null;
+    node.next = node.prev = null;
     list.size--;
     return true;
 }
