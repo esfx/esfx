@@ -14,7 +14,6 @@
    limitations under the License.
 */
 
-import { Tag, defineTag } from "@esfx/internal-tag";
 import { AsyncLockable, LockHandle } from "@esfx/async-lockable";
 import { WaitQueue } from "@esfx/async-waitqueue";
 import { Cancelable } from "@esfx/cancelable";
@@ -23,7 +22,6 @@ import { Disposable } from "@esfx/disposable";
 /**
  * An async coordination primitive used to coordinate access to a protected resource.
  */
-@Tag()
 export class AsyncMutex implements AsyncLockable {
     private _waiters = new WaitQueue<void>();
     private _handle: LockHandle<AsyncMutex> | undefined;
@@ -102,6 +100,8 @@ export class AsyncMutex implements AsyncLockable {
     // #endregion AsyncLockable
 }
 
+Object.defineProperty(AsyncMutex.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncMutex" });
+
 const mutexLockHandlePrototype: object = {
     [AsyncLockable.lock](this: LockHandle, cancelable?: Cancelable) {
         return this.lock(cancelable);
@@ -116,8 +116,8 @@ const mutexLockHandlePrototype: object = {
     }
 };
 
-defineTag(mutexLockHandlePrototype, "MutexLockHandle");
 Object.setPrototypeOf(mutexLockHandlePrototype, Disposable.prototype);
+Object.defineProperty(mutexLockHandlePrototype, Symbol.toStringTag, { configurable: true, value: "MutexLockHandle" });
 
 function createLockHandle(mutex: AsyncMutex): LockHandle<AsyncMutex> {
     const handle: LockHandle<AsyncMutex> = Object.setPrototypeOf({
