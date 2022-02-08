@@ -36,7 +36,6 @@
    limitations under the License.
 */
 
-import { Tag, defineTag } from "@esfx/internal-tag";
 import { WaitQueue } from "@esfx/async-waitqueue";
 import { LockHandle, UpgradeableLockHandle, AsyncLockable } from "@esfx/async-lockable";
 import { Cancelable } from "@esfx/cancelable";
@@ -44,47 +43,9 @@ import { Disposable } from "@esfx/disposable";
 
 export { LockHandle, UpgradeableLockHandle } from "@esfx/async-lockable";
 
-const lockHandlePrototype: object = {
-    get mutex() {
-        return this;
-    },
-    async [AsyncLockable.lock](this: LockHandle, cancelable?: Cancelable) {
-        await this.lock(cancelable);
-        return this;
-    },
-    [AsyncLockable.unlock](this: LockHandle) {
-        this.unlock();
-    },
-    [Disposable.dispose](this: LockHandle) {
-        if (this.ownsLock) {
-            this.unlock();
-        }
-    }
-};
-
-defineTag(lockHandlePrototype, "LockHandle");
-Object.setPrototypeOf(lockHandlePrototype, Disposable.prototype);
-
-const readerPrototype: object = {};
-defineTag(readerPrototype, "AsyncReaderWriterLockReader");
-Object.setPrototypeOf(readerPrototype, lockHandlePrototype);
-
-const writerPrototype: object = {};
-defineTag(writerPrototype, "AsyncReaderWriterLockWriter");
-Object.setPrototypeOf(writerPrototype, lockHandlePrototype);
-
-const upgradeableReaderPrototype: object = {};
-defineTag(upgradeableReaderPrototype, "AsyncReaderWriterLockUpgradeableReader");
-Object.setPrototypeOf(upgradeableReaderPrototype, readerPrototype);
-
-const upgradedWriterPrototype: object = {};
-defineTag(upgradedWriterPrototype, "AsyncReaderWriterLockUpgradedWriter");
-Object.setPrototypeOf(upgradedWriterPrototype, writerPrototype);
-
 /**
  * Coordinates readers and writers for a resource.
  */
-@Tag()
 export class AsyncReaderWriterLock {
     private _readerQueue = new WaitQueue<void>();
     private _writerQueue = new WaitQueue<void>();
@@ -311,6 +272,8 @@ export class AsyncReaderWriterLock {
     }
 }
 
+Object.defineProperty(AsyncReaderWriterLock.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLock" });
+
 export interface AsyncReaderWriterLockReader extends LockHandle<AsyncReaderWriterLockReader> {
     /**
      * Gets the `AsyncReaderWriterLock` that owns this object.
@@ -348,3 +311,40 @@ export interface AsyncReaderWriterLockUpgradeableReader extends UpgradeableLockH
      */
     upgrade(cancelable?: Cancelable): Promise<AsyncReaderWriterLockUpgradedWriter>;
 }
+
+const lockHandlePrototype: object = {
+    get mutex() {
+        return this;
+    },
+    async [AsyncLockable.lock](this: LockHandle, cancelable?: Cancelable) {
+        await this.lock(cancelable);
+        return this;
+    },
+    [AsyncLockable.unlock](this: LockHandle) {
+        this.unlock();
+    },
+    [Disposable.dispose](this: LockHandle) {
+        if (this.ownsLock) {
+            this.unlock();
+        }
+    }
+};
+
+Object.setPrototypeOf(lockHandlePrototype, Disposable.prototype);
+Object.defineProperty(lockHandlePrototype, Symbol.toStringTag, { configurable: true, value: "LockHandle" });
+
+const readerPrototype: object = {};
+Object.setPrototypeOf(readerPrototype, lockHandlePrototype);
+Object.defineProperty(readerPrototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLockReader" });
+
+const writerPrototype: object = {};
+Object.setPrototypeOf(writerPrototype, lockHandlePrototype);
+Object.defineProperty(writerPrototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLockWriter" });
+
+const upgradeableReaderPrototype: object = {};
+Object.setPrototypeOf(upgradeableReaderPrototype, readerPrototype);
+Object.defineProperty(upgradeableReaderPrototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLockUpgradeableReader" });
+
+const upgradedWriterPrototype: object = {};
+Object.setPrototypeOf(upgradedWriterPrototype, writerPrototype);
+Object.defineProperty(upgradedWriterPrototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLockUpgradedWriter" });

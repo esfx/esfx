@@ -10,6 +10,5 @@
         { "path": "../async-waitqueue" },
         { "path": "../cancelable" },
         { "path": "../disposable" },
-        { "path": "../../internal/tag" },
     ]
 }
