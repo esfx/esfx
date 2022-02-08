@@ -36,8 +36,6 @@
    limitations under the License.
 */
 
-import { isMissing, isNumber } from "@esfx/internal-guards";
-import { Tag } from "@esfx/internal-tag";
 import { WaitQueue } from "@esfx/async-waitqueue";
 import { Cancelable } from "@esfx/cancelable";
 
@@ -47,7 +45,6 @@ const MAX_INT32 = (2 ** 31) - 1;
  * Limits the number of asynchronous operations that can access a resource
  * or pool of resources.
  */
-@Tag()
 export class AsyncSemaphore {
     private _maxCount: number;
     private _currentCount: number;
@@ -59,10 +56,9 @@ export class AsyncSemaphore {
      * @param initialCount The initial number of entries.
      * @param maxCount The maximum number of entries.
      */
-    constructor(initialCount: number, maxCount?: number) {
-        if (isMissing(maxCount)) maxCount = MAX_INT32;
-        if (!isNumber(initialCount)) throw new TypeError("Number expected: initialCount.");
-        if (!isNumber(maxCount)) throw new TypeError("Number expected: maxCount.");
+    constructor(initialCount: number, maxCount: number = MAX_INT32) {
+        if (typeof initialCount !== "number") throw new TypeError("Number expected: initialCount.");
+        if (typeof maxCount !== "number") throw new TypeError("Number expected: maxCount.");
         if ((initialCount |= 0) < 0) throw new RangeError("Argument out of range: initialCount.");
         if ((maxCount |= 0) < 1) throw new RangeError("Argument out of range: maxCount.");
         if (initialCount > maxCount) throw new RangeError("Argument out of range: initialCount.");
@@ -82,7 +78,7 @@ export class AsyncSemaphore {
     /**
      * Asynchronously waits for the event to become signaled.
      *
-     * @param cancelable An optional [[Cancelable]] used to cancel the request.
+     * @param cancelable An optional Cancelable used to cancel the request.
      */
     async wait(cancelable?: Cancelable): Promise<void> {
         Cancelable.throwIfSignaled(cancelable);
@@ -94,13 +90,12 @@ export class AsyncSemaphore {
     }
 
     /**
-     * Releases the [[Semaphore]] one or more times.
+     * Releases the Semaphore one or more times.
      *
-     * @param count The number of times to release the [[Semaphore]].
+     * @param count The number of times to release the Semaphore.
      */
-    release(count?: number): void {
-        if (isMissing(count)) count = 1;
-        if (!isNumber(count)) throw new TypeError("Number expected: count.");
+    release(count: number = 1): void {
+        if (typeof count !== "number") throw new TypeError("Number expected: count.");
         if ((count |= 0) < 1) throw new RangeError("Argument out of range: count.");
         if (this._maxCount - this._currentCount < count) throw new RangeError("Argument out of range: count.");
 
@@ -112,3 +107,5 @@ export class AsyncSemaphore {
         }
     }
 }
+
+Object.defineProperty(AsyncSemaphore.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncSemaphore" });
