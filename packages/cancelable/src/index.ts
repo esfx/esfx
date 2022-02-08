@@ -15,15 +15,13 @@
 */
 
 import { Disposable } from "@esfx/disposable";
-import { isFunction, isMissing, isObject } from "@esfx/internal-guards";
-import { defineTag } from "@esfx/internal-tag";
-import { deprecateProperty } from "@esfx/internal-deprecate";
 
-const cancelSubscriptionPrototype: Disposable = defineTag(Object.setPrototypeOf({
+const cancelSubscriptionPrototype: Disposable = {
     [Disposable.dispose](this: CancelSubscription) {
         this.unsubscribe();
     },
-}, Disposable.prototype), "CancelSubscription");
+};
+Object.defineProperty(cancelSubscriptionPrototype, Symbol.toStringTag, { configurable: true, value: "CancelSubscription" });
 
 function createCancelSubscription(unsubscribe: () => void): CancelSubscription {
     return Object.setPrototypeOf({
@@ -38,7 +36,7 @@ function createCancelSubscription(unsubscribe: () => void): CancelSubscription {
  */
 export interface Cancelable {
     /**
-     * Gets the [[CancelSignal]] for this [[Cancelable]].
+     * Gets the CancelSignal for this Cancelable.
      */
     [Cancelable.cancelSignal](): CancelSignal;
 }
@@ -51,11 +49,12 @@ export namespace Cancelable {
     export const cancelSignal = Symbol.for("@esfx/cancelable:Cancelable.cancelSignal");
     // #endregion Cancelable
 
-    const cancelSignalPrototype: Cancelable = defineTag({
+    const cancelSignalPrototype: Cancelable = {
         [Cancelable.cancelSignal](this: CancelableCancelSignal) {
             return this;
         }
-    }, "CancelSignal");
+    };
+    Object.defineProperty(cancelSignalPrototype, Symbol.toStringTag, { configurable: true, value: "CancelSignal" });
 
     const emptySubscription: CancelSubscription = createCancelSubscription(() => { });
     Object.freeze(emptySubscription);
@@ -90,27 +89,19 @@ export namespace Cancelable {
     Object.freeze(none);
 
     /**
-     * Determines whether a value is a `Cancelable` object.
-     * @deprecated Use `Cancelable.hasInstance` instead.
-     */
-    export function isCancelable(value: unknown): value is Cancelable {
-        return Cancelable.hasInstance(value);
-    }
-
-    /**
      * Determines whether `cancelable` is in the signaled state.
      */
-    export function isSignaled(cancelable: Cancelable | undefined) {
-        if (!isMissing(cancelable) && !isCancelable(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+    export function isSignaled(cancelable: Cancelable | null | undefined) {
+        if (cancelable !== null && cancelable !== undefined && !hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
         if (cancelable === Cancelable.canceled) return true;
-        if (cancelable === Cancelable.none || isMissing(cancelable)) return false;
+        if (cancelable === Cancelable.none || cancelable === null || cancelable === undefined) return false;
         return cancelable[Cancelable.cancelSignal]().signaled;
     }
 
     /**
      * Throws a `CancelError` exception if the provided `cancelable` is in the signaled state.
      */
-    export function throwIfSignaled(cancelable: Cancelable | undefined) {
+    export function throwIfSignaled(cancelable: Cancelable | null | undefined) {
         if (isSignaled(cancelable)) {
             throw new CancelError();
         }
@@ -119,10 +110,10 @@ export namespace Cancelable {
     /**
      * Subscribes to be notified when a `cancelable` becomes signaled.
      */
-    export function subscribe(cancelable: Cancelable | undefined, onSignaled: () => void) {
-        if (!isMissing(cancelable) && !isCancelable(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+    export function subscribe(cancelable: Cancelable | null | undefined, onSignaled: () => void) {
+        if (cancelable !== null && cancelable !== undefined && !hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
         if (cancelable === Cancelable.canceled) return Cancelable.canceled.subscribe(onSignaled);
-        if (cancelable === Cancelable.none || isMissing(cancelable)) return Cancelable.none.subscribe(onSignaled);
+        if (cancelable === Cancelable.none || cancelable === null || cancelable === undefined) return Cancelable.none.subscribe(onSignaled);
         return cancelable[Cancelable.cancelSignal]().subscribe(onSignaled);
     }
 
@@ -132,7 +123,8 @@ export namespace Cancelable {
      * Determines whether a value is a `Cancelable` object.
      */
     export function hasInstance(value: unknown): value is Cancelable {
-        return isObject(value)
+        return typeof value === "object"
+            && value !== null
             && Cancelable.cancelSignal in value;
     }
 }
@@ -168,7 +160,7 @@ export namespace CancelSubscription {
      * @param unsubscribe The callback to execute when the `unsubscribe()` method is called.
      */
     export function create(unsubscribe: () => void): CancelSubscription {
-        if (!isFunction(unsubscribe)) throw new TypeError("Function expected: unsubscribe");
+        if (typeof unsubscribe !== "function") throw new TypeError("Function expected: unsubscribe");
         return createCancelSubscription(unsubscribe);
     }
 }
@@ -182,7 +174,7 @@ export interface CancelableCancelSignal extends CancelSignal {
  */
 export interface CancelableSource extends Cancelable {
     /**
-     * Cancels the source, notifying the associated [[CancelSignal]].
+     * Cancels the source, notifying the associated CancelSignal.
      */
     [CancelableSource.cancel](): void;
 }
@@ -190,20 +182,11 @@ export interface CancelableSource extends Cancelable {
 export namespace CancelableSource {
     // #region Cancelable
     export import cancelSignal = Cancelable.cancelSignal;
-    export import isCancelable = Cancelable.isCancelable;
     // #endregion Cancelable
     
     // #region CancelableSource
     export const cancel = Symbol.for("@esfx/cancelable:CancelableSource.cancel");
     // #endregion CancelableSource
-
-    /**
-     * Determines whether a value is a `CancelableSource` object.
-     * @deprecated Use `CancelableSource.hasInstance` instead.
-     */
-    export function isCancelableSource(value: unknown): value is CancelableSource {
-        return CancelableSource.hasInstance(value);
-    }
 
     export const name = "CancelableSource";
 
@@ -211,14 +194,14 @@ export namespace CancelableSource {
      * Determines whether a value is a `CancelableSource` object.
      */
     export function hasInstance(value: unknown): value is CancelableSource {
-        return isCancelable(value)
+        return Cancelable.hasInstance(value)
             && CancelableSource.cancel in value;
     }
 }
 
 export class CancelError extends Error {
-    constructor(message?: string) {
-        super(message || "Operation was canceled");
+    constructor(message?: string, options?: ErrorOptions) {
+        super(message || "Operation was canceled", options);
     }
 }
 
@@ -228,7 +211,3 @@ Object.defineProperty(CancelError.prototype, "name", {
     writable: true,
     value: "CancelError",
 });
-
-deprecateProperty(Cancelable, 'isCancelable', "Use 'Cancelable.hasInstance' instead.");
-deprecateProperty(CancelableSource, 'isCancelable', "Use 'Cancelable.hasInstance' instead.");
-deprecateProperty(CancelableSource, 'isCancelableSource', "Use 'CancelableSource.hasInstance' instead.");
