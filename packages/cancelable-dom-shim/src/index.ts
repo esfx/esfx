@@ -14,16 +14,12 @@
    limitations under the License.
 */
 
-/// <reference lib="dom" />
-
-import { Cancelable, CancelSignal, CancelSubscription, CancelableSource } from "@esfx/cancelable";
+import { Cancelable, CancelableSource } from "@esfx/cancelable";
+import { wrapAbortSignal } from "@esfx/cancelable-dom";
 
 //
 // DOM augmentations
 //
-
-const accessorBase: PropertyDescriptor = { enumerable: false, configurable: true };
-const methodBase: PropertyDescriptor = { ...accessorBase, writable: true };
 
 declare global {
     interface AbortSignal extends Cancelable {}
@@ -31,52 +27,33 @@ declare global {
 }
 
 if (typeof AbortSignal === "function" && typeof AbortController === "function") {
-    const weakCancelSignal = new WeakMap<AbortSignal, CancelSignal>();
-
-    function createCancelSignal(abortSignal: AbortSignal): CancelSignal {
-        return {
-            get signaled() {
-                return abortSignal.aborted;
-            },
-            subscribe(onCancellationRequested): CancelSubscription {
-                let callback = () => onCancellationRequested();
-                abortSignal.addEventListener("abort", callback);
-                return CancelSubscription.create(() => {
-                    if (callback && abortSignal) {
-                        abortSignal.removeEventListener("abort", callback);
-                        callback = undefined!;
-                    }
-                });
-            }
-        };
-    }
-
-    function getOrCreateCancelSignal(abortSignal: AbortSignal) {
-        let cancelSignal = weakCancelSignal.get(abortSignal);
-        if (!cancelSignal) weakCancelSignal.set(abortSignal, cancelSignal = createCancelSignal(abortSignal));
-        return cancelSignal;
-    }
+    const uncurryThis = Function.prototype.bind.bind(Function.prototype.call) as <T, A extends unknown[], R>(f: (this: T, ...args: A) => R) => (this_: T, ...args: A) => R;
+    const AbortControllerAbort: (obj: AbortController, reason?: unknown) => void = uncurryThis(AbortController.prototype.abort);
+    const AbortControllerGetSignal: (obj: AbortController) => AbortSignal = uncurryThis(Object.getOwnPropertyDescriptor(AbortController.prototype, "signal")!.get!);
 
     Object.defineProperties(AbortSignal.prototype, {
         [Cancelable.cancelSignal]: {
-            ...methodBase,
+            configurable: true,
+            writable: true,
             value(this: AbortSignal) {
-                return getOrCreateCancelSignal(this);
+                return wrapAbortSignal(this);
             }
         }
     });
 
     Object.defineProperties(AbortController.prototype, {
         [CancelableSource.cancelSignal]: {
-            ...methodBase,
+            configurable: true,
+            writable: true,
             value(this: AbortController) {
-                return getOrCreateCancelSignal(this.signal);
+                return wrapAbortSignal(AbortControllerGetSignal(this));
             }
         },
         [CancelableSource.cancel]: {
-            ...methodBase,
-            value(this: AbortController) {
-                this.abort();
+            configurable: true,
+            writable: true,
+            value(this: AbortController, reason?: unknown) {
+                AbortControllerAbort(this, reason);
             }
         }
     });

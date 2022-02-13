@@ -135,7 +135,7 @@ interface Node<T> {
 
 function listAdd<T>(list: List<T>, value: T) {
     const node: Node<T> = { value, next: null, prev: null };
-    if (!list.head) {
+    if (list.head === null) {
         list.head = node.next = node.prev = node;
     }
     else {
@@ -149,16 +149,13 @@ function listAdd<T>(list: List<T>, value: T) {
 }
 
 function listRemove<T>(list: List<T>, node: Node<T>) {
-    if (!node.next || !node.prev) {
-        return false;
-    }
+    if (node.next === null || node.prev === null) return false;
     if (node.next === node) {
-        if (list.head !== node) throw new Error("Illegal state");
         list.head = null;
     }
     else {
-        node.next.prev = node.next;
-        node.prev.next = node.prev;
+        node.next.prev = node.prev;
+        node.prev.next = node.next;
         if (list.head === node) {
             list.head = node.next;
         }

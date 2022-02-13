@@ -98,3 +98,35 @@ it("signaled", async () => {
     await Promise.all([waitForEvent(), skipAturn()]);
     expect(steps).toEqual(["before wait", "before skip", "after wait", "after skip"]);
 });
+
+it("multiple waiters", async () => {
+    const steps: string[] = [];
+    const event = new AsyncManualResetEvent();
+
+    async function operation1() {
+        await event.wait();
+        steps.push("operation1");
+    }
+
+    async function operation2() {
+        await event.wait();
+        steps.push("operation2");
+    }
+
+    async function operation3() {
+        await event.wait();
+        steps.push("operation3");
+    }
+
+    async function operation4() {
+        await event.wait();
+        steps.push("operation4");
+    }
+
+    async function start() {
+        event.set();
+    }
+
+    await Promise.all([operation1(), operation2(), operation3(), operation4(), start()]);
+    expect(steps).toEqual(["operation1", "operation2", "operation3", "operation4"]);
+});

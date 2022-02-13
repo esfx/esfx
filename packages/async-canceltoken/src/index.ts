@@ -41,14 +41,612 @@ import { Disposable } from "@esfx/disposable";
 
 export { CancelSubscription, CancelError } from "@esfx/cancelable";
 
-interface CancelState {
-    getState(): "unsignaled" | "signaled" | "closed";
-    subscribe(onSignaled: () => void): CancelSubscription;
-}
+const emptySubscription = Cancelable.none.subscribe(() => {});
+const defaultReason = Cancelable.canceled.reason;
 
 interface CancelLinks {
     getLinkedState(): "unsignaled" | "signaled" | "closed";
     unlink(): void;
+}
+
+class CancelState {
+    static createCancelToken: (cancelState: CancelState) => CancelToken;
+
+    static closed: CancelState;
+    static canceled: CancelState;
+
+    static {
+        this.closed = new CancelState();
+        this.closed.close();
+
+        this.canceled = new CancelState();
+        this.canceled.cancel(new CancelError());
+    }
+
+    private _links: CancelLinks | undefined;
+    private _state: "unsignaled" | "signaled" | "closed" = "unsignaled";
+    private _reason: unknown;
+    private _source: CancelSource | undefined;
+    private _token: CancelToken | undefined;
+    private _subscriptions: List<() => void> | undefined;
+    private _abortController: AbortController | undefined;
+    private _pendingCancelAfters: ReturnType<typeof setTimeout>[] = [];
+
+    constructor(links?: CancelLinks) {
+        this._links = links;
+    }
+
+    get state() {
+        return this._state === "unsignaled" && this._links ? this._links.getLinkedState() : this._state;
+    }
+
+    get source() {
+        return this._source ??= new CancelSource(this);
+    }
+
+    get token() {
+        return this._token ??= CancelState.createCancelToken(this);
+    }
+
+    get reason() {
+        return this._reason;
+    }
+
+    get abortController() {
+        if (!this._abortController && typeof AbortController === "function") {
+            this._abortController = new AbortController();
+            if (this._state === "signaled") {
+                AbortControllerAbort!(this._abortController, this._reason);
+            }
+        }
+        return this._abortController;
+    }
+
+    get abortSignal() {
+        const abortController = this.abortController;
+        return abortController ? AbortControllerGetSignal!(abortController) : undefined;
+    }
+
+    cancel(reason: unknown) {
+        if (this._state !== "unsignaled") return;
+
+        const links = this._links;
+        const subscriptions = this._subscriptions;
+        const abortController = this._abortController;
+        const pendingCancelAfters = this._pendingCancelAfters.splice(0, this._pendingCancelAfters.length);
+
+        this._state = "signaled";
+        this._reason = reason;
+        this._links = undefined;
+        this._subscriptions = undefined;
+        this._abortController = undefined;
+
+        for (const timeout of pendingCancelAfters) {
+            clearTimeout(timeout);
+        }
+
+        try {
+            links?.unlink();
+
+            if (subscriptions) {
+                const callbacks: (() => void)[] = [];
+                while (subscriptions.head) {
+                    // The registration for each callback holds onto the node, the node holds onto the
+                    // list, and the list holds all other nodes and callbacks. By removing the node from
+                    // the list, the GC can collect any otherwise unreachable nodes.
+                    const head = subscriptions.head;
+                    if (listRemove(subscriptions, head)) {
+                        callbacks.push(head.value);
+                        head.value = undefined!;
+                    }
+                }
+
+                for (const callback of callbacks) {
+                    executeCallback(callback);
+                }
+            }
+        }
+        finally {
+            if (abortController) {
+                AbortControllerAbort!(abortController, this._reason);
+            }
+        }
+    }
+
+    cancelAfter(ms: number, reason: unknown) {
+        if (this._state === "unsignaled") {
+            this._pendingCancelAfters.push(setTimeout(() => this.cancel(reason), ms));
+        }
+    }
+
+    close() {
+        if (this._state !== "unsignaled") return;
+
+        const currentLinks = this._links;
+        const currentSubscriptions = this._subscriptions;
+        const pendingCancelAfters = this._pendingCancelAfters.splice(0, this._pendingCancelAfters.length);
+
+        this._state = "closed";
+        this._reason = undefined;
+        this._links = undefined;
+        this._subscriptions = undefined;
+        this._abortController = undefined;
+
+        for (const timeout of pendingCancelAfters) {
+            clearTimeout(timeout);
+        }
+
+        currentLinks?.unlink();
+        if (currentSubscriptions) {
+            while (currentSubscriptions.head) {
+                const head = currentSubscriptions.head;
+                if (listRemove(currentSubscriptions, head)) {
+                    head.value = undefined!;
+                }
+            }
+        }
+    }
+
+    subscribe(onSignaled: () => void): CancelSubscription {
+        if (this.state !== "unsignaled") {
+            throw new Error("Illegal state");
+        }
+
+        const list = this._subscriptions ??= { head: null };
+        return createCancelSubscription(list, listAdd(list, onSignaled));
+    }
+}
+
+/**
+ * Signals a CancelToken when cancellation has been requested.
+ */
+export interface CancelSource extends CancelableSource, Disposable {
+    /**
+     * Gets the CancelToken linked to this source.
+     */
+    readonly token: CancelToken;
+
+    /**
+     * Cancels the source, evaluating any subscribed callbacks. If any callback raises an exception,
+     * the exception is propagated to a host specific unhandled exception mechanism.
+     */
+    cancel(reason?: unknown): void;
+
+    /**
+     * Closes the source, preventing the possibility of future cancellation.
+     */
+    close(): void;
+}
+
+const weakCancelSourceState = new WeakMap<CancelSource, CancelState>();
+
+const CancelSource = class implements CancelSource {
+    static {
+        this.constructor = Object;
+        Object.defineProperty(this, Symbol.toStringTag, { configurable: true, value: "CancelSource" });
+    }
+
+    constructor(cancel: CancelState) {
+        weakCancelSourceState.set(this, cancel);
+        Object.freeze(this);
+    }
+
+    get token() {
+        const cancel = weakCancelSourceState.get(this);
+        if (!cancel) throw new TypeError("Value of 'this' must be of type CancelSource");
+        return cancel.token;
+    }
+
+    cancel(reason?: unknown) {
+        const cancel = weakCancelSourceState.get(this);
+        if (!cancel) throw new TypeError("Value of 'this' must be of type CancelSource");
+        if (cancel.state === "unsignaled") {
+            cancel.cancel(reason ?? new CancelError());
+        }
+    }
+
+    cancelAfter(timeout: number, reason?: unknown) {
+        const cancel = weakCancelSourceState.get(this);
+        if (!cancel) throw new TypeError("Value of 'this' must be of type CancelSource");
+        if (cancel.state === "unsignaled") {
+            cancel.cancelAfter(timeout, reason ?? new CancelError("Operation timed out"));
+        }
+    }
+
+    close() {
+        const cancel = weakCancelSourceState.get(this);
+        if (!cancel) throw new TypeError("Value of 'this' must be of type CancelSource");
+        cancel.close();
+    }
+
+    [CancelableSource.cancelSignal]() {
+        return this.token;
+    }
+
+    [CancelableSource.cancel](reason?: unknown) {
+        this.cancel(reason);
+    }
+
+    [Disposable.dispose]() {
+        this.close();
+    }
+};
+
+const weakCancelTokenState = new WeakMap<CancelToken, CancelState>();
+
+/**
+ * Propagates notifications that operations should be canceled.
+ */
+export class CancelToken implements Cancelable, CancelSignal {
+    static {
+        CancelState.createCancelToken = cancelState => {
+            // If it is available, make the token an `AbortSignal` instance with a `CancelToken` prototype.
+            // This gives the token the same internal state as an `AbortSignal` and allows the token to be
+            // used in `fetch` and other DOM apis.
+            const abortSignal = cancelState.abortSignal;
+            const token: CancelToken = abortSignal ?
+                Object.setPrototypeOf(abortSignal, CancelToken.prototype) :
+                Object.create(CancelToken.prototype);
+            weakCancelTokenState.set(token, cancelState);
+            Object.freeze(token);
+            return token;
+        }
+
+        Object.defineProperty(this, Symbol.toStringTag, { configurable: true, value: "CancelToken" });
+    }
+
+    static readonly none = CancelState.closed.token;
+    static readonly canceled = CancelState.canceled.token;
+
+    private constructor() {
+        throw new TypeError("Object not creatable.");
+    }
+
+    /**
+     * Gets a value indicating whether the token is signaled.
+     */
+    get signaled() {
+        const cancel = weakCancelTokenState.get(this);
+        if (!cancel) throw new TypeError("Value of 'this' must be of type CancelToken");
+        return cancel.state === "signaled";
+    }
+
+    /**
+     * Gets the reason for cancellation.
+     */
+    get reason() {
+        const cancel = weakCancelTokenState.get(this);
+        if (!cancel) throw new TypeError("Value of 'this' must be of type CancelToken");
+        return cancel.reason;
+    }
+
+    /**
+     * Gets a value indicating whether the token can be signaled.
+     */
+    get canBeSignaled() {
+        const cancel = weakCancelTokenState.get(this);
+        if (!cancel) throw new TypeError("Value of 'this' must be of type CancelToken");
+        return cancel.state !== "closed";
+    }
+
+    /**
+     * Creates a new CancelSource.
+     */
+    static source(): CancelSource {
+        return new CancelState().source;
+    }
+
+    /**
+     * Gets a CancelToken from a cancelable.
+     */
+    static from(cancelable: Cancelable | DOMAbortSignal | null | undefined) {
+        if (cancelable === Cancelable.none || cancelable === null || cancelable === undefined) {
+            return CancelToken.none;
+        }
+        if (cancelable === Cancelable.canceled) {
+            return CancelToken.canceled;
+        }
+        if (cancelable instanceof CancelSource) {
+            return cancelable.token;
+        }
+        if (cancelable instanceof CancelToken) {
+            return cancelable;
+        }
+        if (typeof AbortSignal === "function" && cancelable instanceof AbortSignal) {
+            return getCancelTokenFromAbortSignal(cancelable);
+        }
+        if (Cancelable.hasInstance(cancelable)) {
+            return getCancelTokenFromCancelable(cancelable);
+        }
+        throw new TypeError("Cancelable exepected: cancelable");
+    }
+
+    /**
+     * Returns a `CancelToken` that becomes signaled when **any** of the provided cancelables are signaled.
+     * @param cancelables An iterable of `Cancelable` objects.
+     */
+    static race(cancelables: Iterable<Cancelable | DOMAbortSignal | null | undefined>) {
+        if (typeof cancelables !== "object" || cancelables === null || !(Symbol.iterator in cancelables)) {
+            throw new TypeError("Object not iterable: cancelables");
+        }
+
+        const signals = getCancelSignalArrayFromCancelables(cancelables);
+        if (!signals) {
+            throw new TypeError("Cancelable element expected: cancelables");
+        }
+
+        if (!signals.some(canBeSignaled)) {
+            return CancelToken.none;
+        }
+
+        const subscriptions: CancelSubscription[] = [];
+        const cancelState = new CancelState({
+            getLinkedState() {
+                return signals.some(isSignaled) ? "signaled" :
+                    signals.some(canBeSignaled) ? "unsignaled" :
+                    "closed";
+            },
+            unlink() {
+                if (subscriptions.length > 0) {
+                    for (const subscription of subscriptions.splice(0, subscriptions.length)) {
+                        subscription.unsubscribe();
+                    }
+                }
+            }
+        });
+
+        for (const signal of signals) {
+            let signaled = false;
+            const onSignaled = () => {
+                if (!signaled) {
+                    signaled = true;
+                    cancelState.cancel(signal.reason ?? defaultReason);
+                }
+            };
+
+            if (signal.signaled) {
+                onSignaled();
+                break;
+            }
+            else {
+                subscriptions.push(signal.subscribe(onSignaled));
+            }
+        }
+
+        return cancelState.token;
+    }
+
+    /**
+     * Returns a `CancelToken` that becomes signaled when **all** of the provided cancelables are signaled.
+     * @param cancelables An iterable of `Cancelable` objects.
+     */
+    static all(cancelables: Iterable<Cancelable | DOMAbortSignal | null | undefined>) {
+        if (typeof cancelables !== "object" || cancelables === null || !(Symbol.iterator in cancelables)) {
+            throw new TypeError("Object not iterable: cancelables");
+        }
+
+        const signals = getCancelSignalArrayFromCancelables(cancelables);
+        if (!signals) {
+            throw new TypeError("Cancelable element expected: cancelables");
+        }
+
+        if (!signals.some(canBeSignaled)) {
+            return CancelToken.none;
+        }
+
+        const reasons: unknown[] = [];
+        const subscriptions: CancelSubscription[] = [];
+        const cancelState = new CancelState({
+            getLinkedState() {
+                return signals.every(isSignaled) ? "signaled" :
+                    signals.some(canBeSignaled) ? "unsignaled" :
+                    "closed";
+            },
+            unlink() {
+                if (subscriptions.length > 0) {
+                    for (const subscription of subscriptions.splice(0, subscriptions.length)) {
+                        subscription.unsubscribe();
+                    }
+                }
+            }
+        });
+
+        let signalsRemaining = signals.length;
+        for (let i = 0; i < signals.length; i++) {
+            let signaled = false;
+            const signal = signals[i];
+            const onSignaled = () => {
+                if (!signaled) {
+                    signaled = true;
+                    signalsRemaining--;
+                    reasons[i] = signal.reason ?? defaultReason;
+                    if (signalsRemaining === 0) {
+                        const error = new CancelError();
+                        if (!reasons.every(reason => reason === defaultReason)) {
+                            Object.defineProperty(error, "cause", { enumerable: false, configurable: true, writable: true, value: new AggregateError(reasons) });
+                        }
+                        cancelState.cancel(error);
+                    }
+                }
+            };
+
+            if (signal.signaled) {
+                onSignaled();
+            }
+            else {
+                subscriptions.push(signal.subscribe(onSignaled));
+            }
+        }
+
+        return cancelState.token;
+    }
+
+    /**
+     * Gets a `CancelToken` that is already canceled with the provided reason.
+     */
+    static canceledWith(reason: unknown) {
+        const cancelState = new CancelState();
+        cancelState.cancel(reason ?? new CancelError());
+        return cancelState.token;
+    }
+
+    /**
+     * Gets a `CancelToken` that will be canceled with the provided reason after a timeout has elapsed.
+     */
+    static timeout(ms: number, reason?: unknown) {
+        const cancelState = new CancelState();
+        cancelState.cancelAfter(ms, reason ?? new CancelError("Operation timed out"));
+        return cancelState.token;
+    }
+
+    /**
+     * Throws a CancelError if the token was signaled.
+     */
+    throwIfSignaled() {
+        const cancel = weakCancelTokenState.get(this);
+        if (!cancel) throw new TypeError("Value of 'this' must be of type CancelToken");
+        if (cancel.state === "signaled") {
+            throw cancel.reason;
+        }
+    }
+
+    /**
+     * Subscribes to notifications for when the object becomes signaled.
+     */
+    subscribe(onSignaled: () => void): CancelSubscription {
+        if (typeof onSignaled !== "function") throw new TypeError("Function expected: onSignaled");
+        const cancel = weakCancelTokenState.get(this);
+        if (!cancel) throw new TypeError("Value of 'this' must be of type CancelToken");
+        if (cancel.state === "closed") return emptySubscription;
+        if (cancel.state === "signaled") return onSignaled(), emptySubscription;
+        return cancel.subscribe(onSignaled);
+    }
+
+    // #region Cancelable
+    [Cancelable.cancelSignal](): CancelToken {
+        return this;
+    }
+    // #endregion Cancelable
+}
+
+// helpers
+
+const weakCancelTokenFromCancelSignal = new WeakMap<CancelSignal, CancelToken>();
+const weakCancelTokenFromAbortSignal = typeof AbortSignal === "function" ? new WeakMap<AbortSignal, CancelToken>() : undefined;
+const weakCancelSignalFromAbortSignal = typeof AbortSignal === "function" ? new WeakMap<AbortSignal, CancelSignal>() : undefined;
+
+function getCancelSignalArrayFromCancelables(cancelables: Iterable<Cancelable | DOMAbortSignal | null | undefined>): CancelSignal[] | undefined {
+    const signals: CancelSignal[] = [];
+    for (const cancelable of cancelables) {
+        const signal: CancelSignal | undefined =
+            cancelable === null || cancelable === undefined ? CancelToken.none :
+            cancelable instanceof CancelToken ? cancelable :
+            typeof AbortSignal === "function" && cancelable instanceof AbortSignal ? getCancelSignalFromAbortSignal(cancelable) :
+            Cancelable.hasInstance(cancelable) ? cancelable[Cancelable.cancelSignal]() :
+            undefined;
+
+        if (!signal) {
+            return undefined;
+        }
+
+        signals.push(signal);
+    }
+
+    return signals;
+}
+
+function getCancelTokenFromCancelSignal(cancelSignal: CancelSignal): CancelToken {
+    if (cancelSignal instanceof CancelToken) {
+        return cancelSignal;
+    }
+
+    let cancelToken = weakCancelTokenFromCancelSignal?.get(cancelSignal);
+    if (!cancelToken) {
+        let subscription: CancelSubscription | undefined;
+
+        const cancelState = new CancelState({
+            getLinkedState() {
+                return isSignaled(cancelSignal) ? "signaled" :
+                    canBeSignaled(cancelSignal) ? "unsignaled" :
+                    "closed";
+            },
+            unlink() {
+                if (subscription) {
+                    subscription.unsubscribe();
+                    subscription = undefined;
+                }
+            }
+        });
+
+        subscription = cancelSignal.subscribe(() => {
+            cancelState.cancel(cancelSignal.reason ?? defaultReason);
+        });
+
+        cancelToken = cancelState.token;
+        weakCancelTokenFromCancelSignal?.set(cancelSignal, cancelToken);
+    }
+    return cancelToken;
+}
+
+function getCancelTokenFromCancelable(cancelable: Cancelable) {
+    if (cancelable instanceof CancelToken) {
+        return cancelable;
+    }
+
+    return getCancelTokenFromCancelSignal(cancelable[Cancelable.cancelSignal]());
+}
+
+function getCancelSignalFromAbortSignal(abortSignal: AbortSignal): CancelSignal {
+    if (abortSignal instanceof CancelToken) {
+        return abortSignal;
+    }
+
+    let cancelSignal = weakCancelSignalFromAbortSignal?.get(abortSignal);
+    if (!cancelSignal) {
+        cancelSignal = {
+            get signaled() {
+                return AbortSignalGetAborted!(abortSignal);
+            },
+            get reason() {
+                return AbortSignalGetReason?.(abortSignal) ?? defaultReason;
+            },
+            subscribe(onSignaled) {
+                let subscribed = true;
+                const onAbort = () => {
+                    if (subscribed) {
+                        subscribed = false;
+                        AbortSignalRemoveEventListener!(abortSignal, "abort", onAbort);
+                        onSignaled();
+                        onSignaled = undefined!;
+                    }
+                };
+                AbortSignalAddEventListener!(abortSignal, "abort", onAbort);
+                return CancelSubscription.create(() => {
+                    if (subscribed) {
+                        subscribed = false;
+                        AbortSignalRemoveEventListener!(abortSignal, "abort", onAbort);
+                        onSignaled = undefined!;
+                    }
+                });
+            }
+        };
+        weakCancelSignalFromAbortSignal?.set(abortSignal, cancelSignal);
+    }
+    return cancelSignal;
+}
+
+function getCancelTokenFromAbortSignal(abortSignal: AbortSignal): CancelToken {
+    if (abortSignal instanceof CancelToken) {
+        return abortSignal;
+    }
+
+    let cancelToken = weakCancelTokenFromAbortSignal?.get(abortSignal);
+    if (!cancelToken) {
+        cancelToken = getCancelTokenFromCancelSignal(getCancelSignalFromAbortSignal(abortSignal));
+        weakCancelTokenFromAbortSignal?.set(abortSignal, cancelToken);
+    }
+
+    return cancelToken;
 }
 
 function executeCallback(callback: () => void) {
@@ -69,333 +667,17 @@ function canBeSignaled(signal: CancelSignal) {
     return signal !== Cancelable.none && (!(signal instanceof CancelToken) || signal.canBeSignaled);
 }
 
-const cancelSourcePrototype: object = {
-    [Cancelable.cancelSignal](this: CancelSource) { return this.token; },
-    [CancelableSource.cancel](this: CancelSource) { this.cancel(); },
-};
-
-Object.setPrototypeOf(cancelSourcePrototype, Disposable.prototype);
-Object.defineProperty(cancelSourcePrototype, Symbol.toStringTag, { configurable: true, value: "CancelSource" });
-
-function createCancelSource(links: CancelLinks | undefined): CancelSource {
-    let state: "unsignaled" | "signaled" | "closed" = "unsignaled";
-    let token: CancelToken | undefined;
-    let subscriptions: List<() => void> | undefined;
-    const source: CancelSource = Object.setPrototypeOf({
-        get token() {
-            return token || (token = createCancelToken({
-                getState() {
-                    return state === "unsignaled" && links ? links.getLinkedState() : state;
-                },
-                subscribe(onSignaled) {
-                    if (state === "closed") {
-                        return Cancelable.none.subscribe(onSignaled);
-                    }
-                    if (state === "signaled") {
-                        return Cancelable.canceled.subscribe(onSignaled);
-                    }
-                    const list = subscriptions || (subscriptions = { head: null });
-                    return createCancelSubscription(list, listAdd(list, onSignaled));
-                }
-            }));
-        },
-        cancel() {
-            if (state !== "unsignaled") {
-                return;
-            }
-            const currentLinks = links;
-            const currentSubscriptions = subscriptions;
-            state = "signaled";
-            links = undefined;
-            subscriptions = undefined;
-            if (currentLinks) {
-                currentLinks.unlink();
-            }
-            if (currentSubscriptions) {
-                const callbacks: (() => void)[] = [];
-                while (currentSubscriptions.head) {
-                    // The registration for each callback holds onto the node, the node holds onto the
-                    // list, and the list holds all other nodes and callbacks. By removing the node from
-                    // the list, the GC can collect any otherwise unreachable nodes.
-                    const head = currentSubscriptions.head;
-                    if (listRemove(currentSubscriptions, head)) {
-                        callbacks.push(head.value);
-                        head.value = undefined!;
-                    }
-                }
-                for (const callback of callbacks) {
-                    executeCallback(callback);
-                }
-            }
-        },
-        close() {
-            if (state !== "unsignaled") {
-                return;
-            }
-            const currentLinks = links;
-            const currentSubscriptions = subscriptions;
-            state = "closed";
-            links = undefined;
-            subscriptions = undefined;
-            if (currentLinks) {
-                currentLinks.unlink();
-            }
-            if (currentSubscriptions) {
-                while (currentSubscriptions.head) {
-                    const head = currentSubscriptions.head;
-                    if (listRemove(currentSubscriptions, head)) {
-                        head.value = undefined!;
-                    }
-                }
-            }
-        },
-    }, cancelSourcePrototype);
-    Object.freeze(source);
-    return source;
-}
-
-function createCancelSubscription(list: List<() => void>, node: Node<() => void>): CancelSubscription {
+function createCancelSubscription(list: List<(reason: unknown) => void>, node: Node<(reason: unknown) => void>): CancelSubscription {
     return CancelSubscription.create(() => {
-        if (listRemove(list, node)) {
+        if (list && node && listRemove(list, node)) {
             node.value = undefined!;
+            node = undefined!;
+            list = undefined!;
         }
     });
 }
 
-function createCancelToken(source: CancelState): CancelToken {
-    const token = Object.create(CancelToken.prototype, {
-        _state: { value: source }
-    });
-    Object.freeze(token);
-    return token;
-}
-
-// A source that cannot be canceled.
-const closedSource = createCancelSource(/*links*/ undefined);
-closedSource.close();
-
-// A source that is already canceled.
-const canceledSource = createCancelSource(/*links*/ undefined);
-canceledSource.cancel();
-
-/**
- * Signals a CancelToken when cancellation has been requested.
- */
-export interface CancelSource extends CancelableSource, Disposable {
-    /**
-     * Gets the CancelToken linked to this source.
-     */
-    readonly token: CancelToken;
-    /**
-     * Cancels the source, evaluating any subscribed callbacks. If any callback raises an exception,
-     * the exception is propagated to a host specific unhanedle exception mechanism.
-     */
-    cancel(): void;
-    /**
-     * Closes the source, preventing the possibility of future cancellation.
-     */
-    close(): void;
-}
-
-/**
- * Propagates notifications that operations should be canceled.
- */
-export class CancelToken implements Cancelable, CancelSignal {
-    static readonly none = closedSource.token;
-    static readonly canceled = canceledSource.token;
-
-    private _state!: CancelState;
-
-    private constructor() {
-        throw new TypeError("Object not creatable.");
-    }
-
-    /**
-     * Gets a value indicating whether the token is signaled.
-     */
-    get signaled() {
-        return this._state.getState() === "signaled";
-    }
-
-    /**
-     * Gets a value indicating whether the token can be signaled.
-     */
-    get canBeSignaled() {
-        return this._state.getState() !== "closed";
-    }
-
-    /**
-     * Creates a new CancelSource.
-     */
-    static source(): CancelSource {
-        return createCancelSource(/*links*/ undefined);
-    }
-
-    /**
-     * Gets a CancelToken from a cancelable.
-     */
-    static from(cancelable: Cancelable | null | undefined) {
-        if (cancelable !== null && cancelable !== undefined && !Cancelable.hasInstance(cancelable)) {
-            throw new TypeError("Cancelable exepected: cancelable");
-        }
-        if (cancelable === Cancelable.none || cancelable === null || cancelable === undefined) {
-            return CancelToken.none;
-        }
-        if (cancelable === Cancelable.canceled) {
-            return CancelToken.canceled;
-        }
-        if (cancelable instanceof CancelToken) {
-            return cancelable;
-        }
-        if (cancelSourcePrototype.isPrototypeOf(cancelable)) {
-            return (cancelable as CancelSource).token;
-        }
-        const signal = cancelable[Cancelable.cancelSignal]();
-        if (!canBeSignaled(signal)) {
-            return CancelToken.none;
-        }
-        if (isSignaled(signal)) {
-            return CancelToken.canceled;
-        }
-        let subscription: CancelSubscription | undefined;
-        const source = createCancelSource({
-            getLinkedState() {
-                return isSignaled(signal) ? "signaled" :
-                    canBeSignaled(signal) ? "unsignaled" :
-                    "closed";
-            },
-            unlink() {
-                if (subscription) {
-                    subscription.unsubscribe();
-                    subscription = undefined;
-                }
-            }
-        })
-        subscription = signal.subscribe(source.cancel);
-        return source.token;
-    }
-
-    /**
-     * Returns a CancelToken that becomes signaled when **any** of the provided cancelables are signaled.
-     * @param cancelables An iterable of Cancelable objects.
-     */
-    static race(cancelables: Iterable<Cancelable>) {
-        if (typeof cancelables !== "object" || cancelables === null || !(Symbol.iterator in cancelables)) {
-            throw new TypeError("Object not iterable: cancelables");
-        }
-        const signals: CancelSignal[] = [];
-        for (const cancelable of cancelables) {
-            if (!Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable element expected: cancelables");
-            signals.push(cancelable[Cancelable.cancelSignal]());
-        }
-        if (!signals.some(canBeSignaled)) {
-            return CancelToken.none;
-        }
-        if (signals.some(isSignaled)) {
-            return CancelToken.canceled;
-        }
-        const subscriptions: CancelSubscription[] = [];
-        const source = createCancelSource({
-            getLinkedState() {
-                if (signals.some(isSignaled)) return "signaled";
-                if (signals.every(canBeSignaled)) return "unsignaled";
-                return "closed";
-            },
-            unlink() {
-                if (subscriptions.length > 0) {
-                    for (const subscription of subscriptions.splice(0, subscriptions.length)) {
-                        subscription.unsubscribe();
-                    }
-                }
-            }
-        });
-        for (const signal of signals) {
-            subscriptions.push(signal.subscribe(source.cancel));
-        }
-        return source.token;
-    }
-
-    /**
-     * Returns a CancelToken that becomes signaled when **all** of the provided cancelables are signaled.
-     * @param cancelables An iterable of Cancelable objects.
-     */
-    static all(cancelables: Iterable<Cancelable>) {
-        if (typeof cancelables !== "object" || cancelables === null || !(Symbol.iterator in cancelables)) {
-            throw new TypeError("Object not iterable: cancelables");
-        }
-        const signals: CancelSignal[] = [];
-        for (const cancelable of cancelables) {
-            if (!Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable element expected: cancelables");
-            signals.push(cancelable[Cancelable.cancelSignal]());
-        }
-        if (!signals.some(canBeSignaled)) {
-            return CancelToken.none;
-        }
-        if (signals.every(isSignaled)) {
-            return CancelToken.canceled;
-        }
-        let signalsRemaining = signals.length;
-        const subscriptions: CancelSubscription[] = [];
-        const source = createCancelSource({
-            getLinkedState() {
-                if (signals.every(isSignaled)) return "signaled";
-                if (signals.every(canBeSignaled)) return "unsignaled";
-                return "closed";
-            },
-            unlink() {
-                if (subscriptions.length > 0) {
-                    for (const subscription of subscriptions.splice(0, subscriptions.length)) {
-                        subscription.unsubscribe();
-                    }
-                }
-            }
-        });
-        for (const signal of signals) {
-            let signaled = false;
-            subscriptions.push(signal.subscribe(() => {
-                if (!signaled) {
-                    signaled = true;
-                    signalsRemaining--;
-                    if (signalsRemaining === 0) {
-                        source.cancel();
-                    }
-                }
-            }));
-        }
-        return source.token;
-    }
-
-    /**
-     * Throws a CancelError if the token was signaled.
-     */
-    throwIfSignaled() {
-        if (this.signaled) {
-            const error = new CancelError();
-            if (Error.captureStackTrace) {
-                Error.captureStackTrace(error, throwIfSignaledMethod);
-            }
-            throw error;
-        }
-    }
-
-    /**
-     * Subscribes to notifications for when the object becomes signaled.
-     */
-    subscribe(onSignaled: () => void): CancelSubscription {
-        if (typeof onSignaled !== "function") throw new TypeError("Function expected: onSignaled");
-        return this._state.subscribe(onSignaled);
-    }
-
-    // #region Cancelable
-    [Cancelable.cancelSignal](): CancelToken {
-        return this;
-    }
-    // #endregion Cancelable
-}
-
-Object.defineProperty(CancelToken.prototype, Symbol.toStringTag, { configurable: true, value: "CancelToken" });
-
-const throwIfSignaledMethod = CancelToken.prototype.throwIfSignaled;
+// inlined linked list implementation
 
 interface List<T> {
     head: Node<T> | null;
@@ -409,7 +691,7 @@ interface Node<T> {
 
 function listAdd<T>(list: List<T>, value: T) {
     const node: Node<T> = { value, next: null, prev: null };
-    if (!list.head) {
+    if (list.head === null) {
         list.head = node.next = node.prev = node;
     }
     else {
@@ -423,20 +705,54 @@ function listAdd<T>(list: List<T>, value: T) {
 }
 
 function listRemove<T>(list: List<T>, node: Node<T>) {
-    if (!node.next || !node.prev) {
-        return false;
-    }
+    if (node.next === null || node.prev === null) return false;
     if (node.next === node) {
-        if (list.head !== node) throw new Error("Illegal state");
         list.head = null;
     }
     else {
-        node.next.prev = node.next;
-        node.prev.next = node.prev;
+        node.next.prev = node.prev;
+        node.prev.next = node.next;
         if (list.head === node) {
             list.head = node.next;
         }
     }
     node.next = node.prev = null;
     return true;
+}
+
+// DOM AbortController/AbortSignal compatibility
+
+type DOMAbortSignal = (typeof globalThis) extends { AbortSignal: Function & { prototype: infer TAbortSignal } } ? TAbortSignal : never;
+
+interface AbortController {
+    readonly signal: AbortSignal;
+    abort(reason?: unknown): void
+}
+
+declare var AbortController: { new(): AbortController; prototype: AbortController };
+
+interface AbortSignal {
+    readonly aborted: boolean;
+    readonly reason?: unknown;
+    addEventListener(event: string, listener: () => void): void;
+    removeEventListener(event: string, listener: () => void): void;
+}
+
+declare var AbortSignal: { new(): AbortSignal; prototype: AbortSignal };
+
+let AbortControllerAbort: ((obj: AbortController, reason?: unknown) => void) | undefined;
+let AbortControllerGetSignal: ((obj: AbortController) => AbortSignal) | undefined;
+let AbortSignalAddEventListener: ((obj: AbortSignal, event: string, listener: () => void) => void) | undefined;
+let AbortSignalRemoveEventListener: ((obj: AbortSignal, event: string, listener: () => void) => void) | undefined;
+let AbortSignalGetAborted: ((obj: AbortSignal) => boolean) | undefined;
+let AbortSignalGetReason: ((obj: AbortSignal) => unknown) | undefined;
+
+if (typeof AbortController === "function" && typeof AbortSignal === "function") {
+    const uncurryThis = Function.prototype.bind.bind(Function.prototype.call) as <T, A extends unknown[], R>(f: (this: T, ...args: A) => R) => (this_: T, ...args: A) => R;
+    AbortControllerAbort = uncurryThis(AbortController.prototype.abort);
+    AbortControllerGetSignal = uncurryThis(Object.getOwnPropertyDescriptor(AbortController.prototype, "signal")!.get!);
+    AbortSignalAddEventListener = uncurryThis(AbortSignal.prototype.addEventListener);
+    AbortSignalRemoveEventListener = uncurryThis(AbortSignal.prototype.removeEventListener);
+    AbortSignalGetAborted = uncurryThis(Object.getOwnPropertyDescriptor(AbortSignal.prototype, "aborted")!.get!);
+    AbortSignalGetReason = "reason" in AbortSignal.prototype ? uncurryThis(Object.getOwnPropertyDescriptor(AbortSignal.prototype, "reason")!.get!) : undefined;
 }

@@ -16,19 +16,59 @@
 
 import { Disposable } from "@esfx/disposable";
 
-const cancelSubscriptionPrototype: Disposable = {
-    [Disposable.dispose](this: CancelSubscription) {
-        this.unsubscribe();
-    },
-};
-Object.defineProperty(cancelSubscriptionPrototype, Symbol.toStringTag, { configurable: true, value: "CancelSubscription" });
+// Dynamically infer `ErrorOptions` based on whether the es2022 lib is loaded.
+type ErrorOptions =
+    2 extends ConstructorParameters<typeof Error>["length"] ?
+        ConstructorParameters<typeof Error> extends [message?: string, options?: infer O] ?
+            NonNullable<O> :
+            never :
+        never;
 
-function createCancelSubscription(unsubscribe: () => void): CancelSubscription {
-    return Object.setPrototypeOf({
-        unsubscribe() {
-            unsubscribe();
-        },
-    }, cancelSubscriptionPrototype);
+type CancelErrorExtraArgs = [ErrorOptions] extends [never] ? [] : [options?: ErrorOptions];
+
+export class CancelError extends Error {
+    static {
+        Object.defineProperty(this.prototype, "name", { configurable: true, writable: true, value: "CancelError" });
+    }
+
+    constructor(message?: string, options?: ErrorOptions);
+    constructor(message = "Operation was canceled", ...args: CancelErrorExtraArgs) {
+        super(message, ...args);
+    }
+}
+
+
+/**
+ * An object used to unsubscribe from a cancellation signal
+ */
+ export interface CancelSubscription extends Disposable {
+    /**
+     * Unsubscribes from a cancellation signal.
+     */
+    unsubscribe(): void;
+}
+
+export namespace CancelSubscription {
+    const CancelSubscriptionPrototype: Disposable = {
+        [Disposable.dispose](this: CancelSubscription) {
+            this.unsubscribe();
+        }
+    };
+
+    Object.defineProperty(CancelSubscriptionPrototype, Symbol.toStringTag, { configurable: true, value: "CancelSubscription" });
+
+    /**
+     * Creates a `CancelSubscription` object for an `unsubscribe` callback.
+     * @param unsubscribe The callback to execute when the `unsubscribe()` method is called.
+     */
+    export function create(unsubscribe: () => void): CancelSubscription {
+        if (typeof unsubscribe !== "function") throw new TypeError("Function expected: unsubscribe");
+        return Object.setPrototypeOf({
+            unsubscribe() {
+                unsubscribe();
+            },
+        }, CancelSubscriptionPrototype);
+    }
 }
 
 /**
@@ -43,21 +83,27 @@ export interface Cancelable {
 
 export namespace Cancelable {
     // #region Cancelable
+
     /**
      * A well-known symbol used to define a method to retrieve the `CancelSignal` for an object.
      */
     export const cancelSignal = Symbol.for("@esfx/cancelable:Cancelable.cancelSignal");
+
     // #endregion Cancelable
 
-    const cancelSignalPrototype: Cancelable = {
+    const CancelSignalPrototype: Cancelable = {
         [Cancelable.cancelSignal](this: CancelableCancelSignal) {
             return this;
         }
     };
-    Object.defineProperty(cancelSignalPrototype, Symbol.toStringTag, { configurable: true, value: "CancelSignal" });
 
-    const emptySubscription: CancelSubscription = createCancelSubscription(() => { });
+    Object.defineProperty(CancelSignalPrototype, Symbol.toStringTag, { configurable: true, value: "CancelSignal" });
+
+    const emptySubscription: CancelSubscription = CancelSubscription.create(() => { });
     Object.freeze(emptySubscription);
+
+    const canceledReason = new CancelError();
+    Object.freeze(canceledReason);
 
     /**
      * A `Cancelable` that is already signaled.
@@ -66,12 +112,14 @@ export namespace Cancelable {
         get signaled() {
             return true;
         },
+        get reason() {
+            return canceledReason;
+        },
         subscribe(onSignaled: () => void) {
             onSignaled();
             return emptySubscription;
         }
-    }, cancelSignalPrototype);
-
+    }, CancelSignalPrototype);
     Object.freeze(canceled);
 
     /**
@@ -81,11 +129,13 @@ export namespace Cancelable {
         get signaled() {
             return false;
         },
+        get reason() {
+            return undefined;
+        },
         subscribe(_onSignaled: () => void) {
             return emptySubscription;
         },
-    }, cancelSignalPrototype);
-
+    }, CancelSignalPrototype);
     Object.freeze(none);
 
     /**
@@ -99,11 +149,21 @@ export namespace Cancelable {
     }
 
     /**
+     * Gets the reason for cancelation.
+     */
+    export function getReason(cancelable: Cancelable | null | undefined) {
+        if (cancelable !== null && cancelable !== undefined && !hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+        if (cancelable === Cancelable.canceled) return canceledReason;
+        if (cancelable === Cancelable.none || cancelable === null || cancelable === undefined) return undefined;
+        return cancelable[Cancelable.cancelSignal]().reason;
+    }
+
+    /**
      * Throws a `CancelError` exception if the provided `cancelable` is in the signaled state.
      */
     export function throwIfSignaled(cancelable: Cancelable | null | undefined) {
         if (isSignaled(cancelable)) {
-            throw new CancelError();
+            throw getReason(cancelable) ?? new CancelError();
         }
     }
 
@@ -112,8 +172,8 @@ export namespace Cancelable {
      */
     export function subscribe(cancelable: Cancelable | null | undefined, onSignaled: () => void) {
         if (cancelable !== null && cancelable !== undefined && !hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
-        if (cancelable === Cancelable.canceled) return Cancelable.canceled.subscribe(onSignaled);
-        if (cancelable === Cancelable.none || cancelable === null || cancelable === undefined) return Cancelable.none.subscribe(onSignaled);
+        if (cancelable === Cancelable.none || cancelable === null || cancelable === undefined) return emptySubscription;
+        if (cancelable === Cancelable.canceled) return onSignaled(), emptySubscription;
         return cancelable[Cancelable.cancelSignal]().subscribe(onSignaled);
     }
 
@@ -139,30 +199,14 @@ export interface CancelSignal {
     readonly signaled: boolean;
 
     /**
+     * Gets the reason cancellation was signaled.
+     */
+    readonly reason: unknown;
+
+    /**
      * Subscribes to notifications for when the object becomes signaled.
      */
     subscribe(onSignaled: () => void): CancelSubscription;
-}
-
-/**
- * An object used to unsubscribe from a cancellation signal
- */
-export interface CancelSubscription extends Disposable {
-    /**
-     * Unsubscribes from a cancellation signal.
-     */
-    unsubscribe(): void;
-}
-
-export namespace CancelSubscription {
-    /**
-     * Creates a `CancelSubscription` object for an `unsubscribe` callback.
-     * @param unsubscribe The callback to execute when the `unsubscribe()` method is called.
-     */
-    export function create(unsubscribe: () => void): CancelSubscription {
-        if (typeof unsubscribe !== "function") throw new TypeError("Function expected: unsubscribe");
-        return createCancelSubscription(unsubscribe);
-    }
 }
 
 export interface CancelableCancelSignal extends CancelSignal {
@@ -176,14 +220,14 @@ export interface CancelableSource extends Cancelable {
     /**
      * Cancels the source, notifying the associated CancelSignal.
      */
-    [CancelableSource.cancel](): void;
+    [CancelableSource.cancel](reason?: unknown): void;
 }
 
 export namespace CancelableSource {
     // #region Cancelable
     export import cancelSignal = Cancelable.cancelSignal;
     // #endregion Cancelable
-    
+
     // #region CancelableSource
     export const cancel = Symbol.for("@esfx/cancelable:CancelableSource.cancel");
     // #endregion CancelableSource
@@ -198,16 +242,3 @@ export namespace CancelableSource {
             && CancelableSource.cancel in value;
     }
 }
-
-export class CancelError extends Error {
-    constructor(message?: string, options?: ErrorOptions) {
-        super(message || "Operation was canceled", options);
-    }
-}
-
-Object.defineProperty(CancelError.prototype, "name", {
-    enumerable: false,
-    configurable: true,
-    writable: true,
-    value: "CancelError",
-});
