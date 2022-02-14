@@ -92,7 +92,7 @@ export namespace incrementer {
      * Returns a function that produces a monotonically increasing number value each time it is called.
      */
     export function step(count: number, start = 0) {
-        return count > 0 ? (() => start += count) :
+        return count > 0 ? (() => { const x = start; return start += count, x; }) :
             fail(new Error("Count must be a positive number"));
     }
 }
@@ -109,7 +109,7 @@ export namespace decrementer {
      * Returns a function that produces a monotonically decreasing number value each time it is called.
      */
     export function step(count: number, start = 0) {
-        return count > 0 ? (() => start -= count) :
+        return count > 0 ? (() => { const x = start; return start -= count, x; }) :
             fail(new Error("Count must be a positive number"));
     }
 }
@@ -117,7 +117,7 @@ export namespace decrementer {
 /**
  * Makes a "tuple" from the provided arguments.
  */
-export function tuple<A extends readonly [unknown?, ...unknown[]]>(...args: A): A {
+export function tuple<A extends readonly unknown[]>(...args: A): A {
     return args;
 }
 
@@ -130,7 +130,7 @@ export function nAry<T, A, B, R>(f: (this: T, a: A, b: B) => R, length: 2): (thi
 export function nAry<T, A, B, C, R>(f: (this: T, a: A, b: B, c: C) => R, length: 3): (this: T, a: A, b: B, c: C) => R;
 export function nAry<T, A, B, C, D, R>(f: (this: T, a: A, b: B, c: C, d: D) => R, length: 4): (this: T, a: A, b: B, c: C, d: D) => R;
 export function nAry<T, A, R>(f: (this: T, ...args: A[]) => R, length: number): (this: T, ...args: A[]) => R {
-    return function(...args) { return f.call(this, ...args.slice(0, length)); };
+    return Object.defineProperty(function(...args) { return f.call(this, ...args.slice(0, length)); }, "length", { configurable: true, value: length });
 }
 
 /**
@@ -441,7 +441,7 @@ export function either<A extends unknown[], R1, R2>(a: (...args: A) => R1, b: (.
 export function fallback<A extends unknown[], T, U>(a: (...args: A) => T, b: (...args: A) => U): (...args: A) => NonNullable<T> | U {
     return (...args) => {
         const result = a(...args);
-        return result !== null && result !== undefined ? result! : b(...args);
+        return isDefined(result) ? result : b(...args);
     };
 }
 
