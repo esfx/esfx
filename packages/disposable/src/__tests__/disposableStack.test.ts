@@ -18,7 +18,7 @@ import { Disposable } from "../disposable";
 import { DisposableStack } from "../disposableStack";
 import "../internal/testUtils";
 
-describe("The DisposableStack constructor [non-spec]", () => {
+describe("The DisposableStack constructor [spec]", () => {
     it("is a function", () => expect(DisposableStack).toBeTypeof("function"));
     it("[[Prototype]] is %Function.prototype%", () => expect(Object.getPrototypeOf(DisposableStack)).toBe(Function.prototype));
     it("length is 0", () => expect(DisposableStack.length).toBe(0));
@@ -29,7 +29,7 @@ describe("The DisposableStack constructor [non-spec]", () => {
     });
 });
 
-describe("Properties of the DisposableStack prototype [non-spec]", () => {
+describe("Properties of the DisposableStack prototype [spec]", () => {
     describe("DisposableStack.prototype.use()", () => {
         it("is an own method", () => expect(DisposableStack.prototype).toHaveOwnMethod("use"));
         it("is writable", () => expect(DisposableStack.prototype).toHaveWritableProperty("use"));

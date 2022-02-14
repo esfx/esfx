@@ -15,15 +15,7 @@
 */
 
 import { Disposable } from "./disposable";
-import { weakAsyncDisposableResourceStack, weakAsyncDisposableState } from "./internal/asyncDisposable";
-import { AddDisposableResource, asyncDisposeSym, createDeprecation, CreateScope, DisposableResourceRecord, DisposeResources, ThrowCompletion } from "./internal/utils";
-
-/* @internal */
-export const reportAsyncDisposableCreateDeprecation = createDeprecation("Use 'new AsyncDisposable(dispose)' instead.");
-/* @internal */
-export const reportAsyncDisposableUseDeprecation = createDeprecation("Use 'AsyncDisposable.scope()' instead.");
-/* @internal */
-export const reportAsyncDisposableFromDeprecation = createDeprecation("'AsyncDisposable.from()' is unsafe. Use 'new AsyncDisposableStack' and 'AsyncDisposableStack.prototype.use' instead.");
+import { CreateScope, DisposeResources } from "./internal/utils";
 
 /**
  * Indicates an object that has resources that can be explicitly disposed asynchronously.
@@ -35,86 +27,36 @@ export interface AsyncDisposable {
     [AsyncDisposable.asyncDispose](): Promise<void>;
 }
 
-export type AsyncDisposableLike = AsyncDisposable | Disposable | (() => void | PromiseLike<void>);
-
 /**
  * Indicates an object that has resources that can be explicitly disposed asynchronously.
  *
- * NOTE: It is not necessary to subclass `Disposable`. Merely having a `[Disposable.dispose]()` method is sufficient.
+ * NOTE: It is not necessary to subclass `AsyncDisposable`. Merely having an `[AsyncDisposable.asyncDispose]()` method is sufficient.
  */
 export class AsyncDisposable {
     /**
+     * Creates an `AsyncDisposable` wrapper around a callback used to dispose resources.
+     * @deprecated Use `AsyncDisposableStack` or `{ [AsyncDisposable.asyncDispose]() { ... } }` instead.
+     */
+    constructor(dispose: () => void | PromiseLike<void>) {
+        return AsyncDisposable.create(dispose);
+    }
+}
+
+export namespace AsyncDisposable {
+    /**
      * A well-known symbol used to define an async explicit resource disposal method on an object.
      *
-     * Uses `Symbol.asyncDispose` if present.
+     * NOTE: Uses `Symbol.asyncDispose` if present.
      */
-    static readonly asyncDispose: unique symbol = asyncDisposeSym;
-
-    /**
-     * Creates an `AsyncDisposable` wrapper around a callback used to dispose resources.
-     */
-    constructor(onDispose: () => void | PromiseLike<void>) {
-        if (typeof onDispose !== "function") throw new TypeError("Function expected: dispose");
-        weakAsyncDisposableState.set(this, "pending-one");
-        weakAsyncDisposableResourceStack.set(this, [{ hint: "async", resource: null, dispose: onDispose }]);
-    }
-
-    /* @internal */
-    async [asyncDisposeSym]() {
-        const disposableState = weakAsyncDisposableState.get(this);
-        if (disposableState === "disposed") return;
-        if (disposableState !== "pending" && disposableState !== "pending-one") throw new TypeError("Wrong target");
-        weakAsyncDisposableState.set(this, "disposed");
-
-        await DisposeResources("async", weakAsyncDisposableResourceStack.get(this), disposableState === "pending-one", /*completion*/ undefined);
-    }
-
-    /**
-     * Creates an `AsyncDisposable` wrapper around a set of other disposables.
-     * @param resources An `Iterable` of `AsyncDisposable` or `Disposable` objects.
-     * @deprecated Use `new AsyncDisposableStack` and `AsyncDisposableStack.prototype.use()` instead. Creating a disposable object from an array is
-     * considered unsafe, as an exception raised when allocating a later disposable could result in an earlier disposable not being disposed:
-     * ```js
-     * AsyncDisposable.from([getResourceX(), getResourceY()])
-     * //                    ^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^
-     * //                    |               |
-     * //                    allocated, but  throws
-     * //                    not disposed
-     * ```
-     */
-    static async from(resources: AsyncIterable<AsyncDisposableLike | null | undefined> | Iterable<AsyncDisposableLike | null | undefined | PromiseLike<AsyncDisposableLike | null | undefined>>) {
-        reportAsyncDisposableFromDeprecation();
-        const disposableResourceStack: DisposableResourceRecord<"async">[] = [];
-        const errors: unknown[] = [];
-
-        let throwCompletion: ThrowCompletion | undefined;
-        try {
-            for await (const resource of resources) {
-                try {
-                    AddDisposableResource(disposableResourceStack, resource, "async");
-                }
-                catch (e) {
-                    errors.push(e);
-                }
-            }
-        }
-        catch (e) {
-            throwCompletion = { cause: e };
-        }
-        finally {
-            if (errors.length || throwCompletion) {
-                await DisposeResources("async", disposableResourceStack, /*suppress*/ false, throwCompletion, errors);
-            }
-        }
-
-        const disposable: AsyncDisposable = Object.create(__AsyncDisposable_prototype__);
-        weakAsyncDisposableState.set(disposable, "pending");
-        weakAsyncDisposableResourceStack.set(disposable, disposableResourceStack);
-        return disposable;
-    }
+    export const asyncDispose: unique symbol =
+        typeof (Symbol as any)["asyncDispose"] === "symbol" ?
+            (Symbol as any)["asyncDispose"] :
+            Symbol.for("@esfx/disposable:AsyncDisposable.asyncDispose");
 
     /**
      * Emulate `using await const` using `for..await..of`.
+     *
+     * NOTE: This is not spec-compliant and will not be standardized.
      *
      * @example
      * ```ts
@@ -138,7 +80,7 @@ export class AsyncDisposable {
      * }
      * ```
      */
-    static async * scope(): AsyncGenerator<AsyncDisposableScope, void, undefined> {
+    export async function * scope(): AsyncGenerator<AsyncDisposableScope, void, undefined> {
         const context = CreateScope("async");
         try {
             context.state = "initialized";
@@ -147,7 +89,7 @@ export class AsyncDisposable {
         }
         finally {
             context.state = "done";
-            await DisposeResources("async", context.disposables, /*suppress*/ false, context.throwCompletion);
+            await DisposeResources("async", context.disposables, context.throwCompletion);
         }
     }
 
@@ -155,6 +97,8 @@ export class AsyncDisposable {
      * Yields each disposable in the iterable, disposing it when the generator resumes.
      *
      * This emulates `for (using await const x of expr)`.
+     *
+     * NOTE: This is not spec-compliant and will not be standardized.
      *
      * @example
      * ```ts
@@ -172,7 +116,7 @@ export class AsyncDisposable {
      * }
      * ```
      */
-    static async * usingEach(iterable: AsyncIterable<AsyncDisposableLike | null | undefined> | Iterable<AsyncDisposableLike | null | undefined | PromiseLike<AsyncDisposableLike | null | undefined>>) {
+    export async function * usingEach(iterable: AsyncIterable<AsyncDisposable | Disposable | null | undefined> | Iterable<AsyncDisposable | Disposable | null | undefined | PromiseLike<AsyncDisposable | Disposable | null | undefined>>) {
         for await (const disposable of iterable) {
             for await (const { using, fail } of AsyncDisposable.scope()) try {
                 yield using(disposable);
@@ -180,61 +124,50 @@ export class AsyncDisposable {
         }
     }
 
-    /**
-     * Executes a callback with the provided `AsyncDisposable` resource, disposing the resource when the callback completes asynchronously.
-     * @deprecated Use `AsyncDisposable.scope()` instead.
-     */
-    static async use<T extends AsyncDisposableLike | null | undefined, U>(resource: T, callback: (resource: T) => U | PromiseLike<U>) {
-        reportAsyncDisposableUseDeprecation();
-        for await (const { using, fail } of AsyncDisposable.scope()) {
-            try {
-                return callback(using(resource));
-            }
-            catch (e) {
-                fail(e);
-            }
-        }
-    }
+    const asyncDisposablePrototype = AsyncDisposable.prototype;
+    Object.defineProperty(asyncDisposablePrototype, Symbol.toStringTag, { configurable: true, value: "AsyncDisposable" });
 
-    /**
-     * Determines whether a value is `AsyncDisposable`.
-     */
-    static hasInstance(value: unknown): value is AsyncDisposable {
-        return typeof value === "object"
-            && value !== null
-            && asyncDisposeSym in value;
-    }
-
-    /**
-     * Determines whether a value is `AsyncDisposable`.
-     */
-    static [Symbol.hasInstance](value: unknown): value is AsyncDisposable {
-        return AsyncDisposable.hasInstance(value);
-    }
-}
-
-/* @internal */
-export const __AsyncDisposable_prototype__ = AsyncDisposable.prototype;
-
-Object.defineProperty(__AsyncDisposable_prototype__, Symbol.toStringTag, { configurable: true, value: "AsyncDisposable" });
-Object.defineProperty(AsyncDisposable, Symbol.hasInstance, Object.getOwnPropertyDescriptor(AsyncDisposable, "hasInstance")!);
-
-export namespace AsyncDisposable {
     /**
      * Creates an `AsyncDisposable` wrapper around a callback used to dispose resources.
-     * @deprecated Use `new AsyncDisposable(dispose)` instead.
+     *
+     * NOTE: This is not spec-compliant and will not be standardized. It is preferred to use an `AsyncDisposableStack`
+     * or to implement `AsyncDisposable.asyncDispose` yourself instead.
      */
-    export function create(dispose: () => void | PromiseLike<void>): AsyncDisposable {
-        reportAsyncDisposableCreateDeprecation();
-        return new AsyncDisposable(dispose);
+    export function create(disposeAsync: () => void | PromiseLike<void>): AsyncDisposable {
+        if (typeof disposeAsync !== "function") throw new TypeError("Function expected: disposeAsync");
+
+        let disposed = false;
+        return Object.setPrototypeOf({
+            async [AsyncDisposable.asyncDispose]() {
+                if (!disposed) {
+                    disposed = true;
+                    const cb = disposeAsync;
+                    disposeAsync = undefined!;
+                    await cb();
+                }
+            }
+        }, asyncDisposablePrototype);
+    }
+
+    /**
+     * Determines whether a value is `AsyncDisposable`.
+     *
+     * NOTE: This is not spec-compliant and will not be standardized.
+     */
+    export function hasInstance(value: unknown): value is AsyncDisposable {
+        return typeof value === "object"
+            && value !== null
+            && AsyncDisposable.asyncDispose in value;
     }
 }
+
+Object.defineProperty(AsyncDisposable, Symbol.hasInstance, Object.getOwnPropertyDescriptor(AsyncDisposable, "hasInstance")!);
 
 export interface AsyncDisposableScope {
     /**
      * Tracks a resource to be disposed at the end of a `for..of` statement. See {@link AsyncDisposable.scope}.
      */
-    using<T extends AsyncDisposableLike | null | undefined>(value: T): T;
+    using<T extends Disposable | AsyncDisposable | null | undefined>(value: T): T;
 
     /**
      * Tracks an exception from the body of a `for..of` statement. See {@link AsyncDisposable.scope}.

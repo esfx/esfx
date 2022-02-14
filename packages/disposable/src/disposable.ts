@@ -14,15 +14,7 @@
    limitations under the License.
 */
 
-import { weakDisposableResourceStack, weakDisposableState } from "./internal/disposable";
-import { AddDisposableResource, createDeprecation, CreateScope, DisposableResourceRecord, DisposeResources, disposeSym, ThrowCompletion } from "./internal/utils";
-
-/* @internal */
-export const reportDisposableCreateDeprecation = createDeprecation("Use 'new Disposable(dispose)' instead.");
-/* @internal */
-export const reportDisposableUseDeprecation = createDeprecation("Use 'Disposable.scope()' instead.");
-/* @internal */
-export const reportDisposableFromDeprecation = createDeprecation("'Disposable.from()' is unsafe. Use 'new DisposableStack' and 'DisposableStack.prototype.use' instead.");
+import { CreateScope, DisposeResources } from "./internal/utils";
 
 /**
  * Indicates an object that has resources that can be explicitly disposed.
@@ -34,89 +26,36 @@ export interface Disposable {
     [Disposable.dispose](): void;
 }
 
-export type DisposableLike =
-    | Disposable
-    | (() => void)
-    ;
-
 /**
  * Indicates an object that has resources that can be explicitly disposed.
- *
- * NOTE: It is not necessary to subclass `Disposable`. Merely having a `[Disposable.dispose]()` method is sufficient.
  */
 export class Disposable {
     /**
+     * Creates a `Disposable` wrapper around a callback used to dispose of a resource.
+     * @deprecated Use `DisposableStack` or `{ [Disposable.dispose]() { ... } }` instead.
+     */
+    constructor(dispose: () => void) {
+        return Disposable.create(dispose);
+    }
+}
+
+/**
+ * Indicates an object that has resources that can be explicitly disposed.
+ */
+export namespace Disposable {
+    /**
      * A well-known symbol used to define an explicit resource disposal method on an object.
      *
-     * Uses `Symbol.dispose` if present.
+     * NOTE: Uses `Symbol.dispose` if present.
      */
-    static readonly dispose: unique symbol = disposeSym;
-
-    /**
-     * Creates a `Disposable` wrapper around a callback used to dispose of a resource.
-     */
-    constructor(onDispose: () => void) {
-        if (typeof onDispose !== "function") throw new TypeError("Function expected: dispose");
-        weakDisposableState.set(this, "pending-one");
-        weakDisposableResourceStack.set(this, [{ hint: "sync", resource: null, dispose: onDispose }]);
-    }
-
-    /* @internal */
-    [disposeSym]() {
-        const disposableState = weakDisposableState.get(this);
-        if (disposableState === "disposed") return;
-        if (disposableState !== "pending" && disposableState !== "pending-one") throw new TypeError("Wrong target");
-        weakDisposableState.set(this, "disposed");
-
-        DisposeResources("sync", weakDisposableResourceStack.get(this), disposableState === "pending-one", /*completion*/ undefined);
-    }
-
-    /**
-     * Creates a `Disposable` wrapper around a set of other disposables.
-     * @param disposables An `Iterable` of `Disposable` objects.
-     * @deprecated Use `new DisposableStack` and `DisposableStack.prototype.use()` instead. Creating a disposable object from an array is
-     * considered unsafe, as an exception raised when allocating a later disposable could result in an earlier disposable not being disposed:
-     * ```js
-     * Disposable.from([getResourceX(), getResourceY()])
-     * //               ^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^
-     * //               |               |
-     * //               allocated, but  throws
-     * //               not disposed
-     * ```
-     */
-    static from(disposables: Iterable<DisposableLike | null | undefined>) {
-        reportDisposableFromDeprecation();
-        const disposableResourceStack: DisposableResourceRecord<"sync">[] = [];
-        const errors: unknown[] = [];
-
-        let throwCompletion: ThrowCompletion | undefined;
-        try {
-            for (const resource of disposables) {
-                try {
-                    AddDisposableResource(disposableResourceStack, resource, "sync");
-                }
-                catch (e) {
-                    errors.push(e);
-                }
-            }
-        }
-        catch (e) {
-            throwCompletion = { cause: e };
-        }
-        finally {
-            if (errors.length || throwCompletion) {
-                DisposeResources("sync", disposableResourceStack, /*suppress*/ false, throwCompletion, errors);
-            }
-        }
-
-        const disposable: Disposable = Object.create(__Disposable_prototype__);
-        weakDisposableState.set(disposable, "pending");
-        weakDisposableResourceStack.set(disposable, disposableResourceStack);
-        return disposable;
-    }
+    export const dispose: unique symbol = typeof (Symbol as any)["dispose"] === "symbol" ?
+        (Symbol as any)["dispose"] :
+        Symbol.for("@esfx/disposable:Disposable.dispose");
 
     /**
      * Emulate `using const` using `for..of`.
+     *
+     * NOTE: This is not spec-compliant and will not be standardized.
      *
      * @example
      * ```ts
@@ -140,7 +79,7 @@ export class Disposable {
      * }
      * ```
      */
-    static * scope(): Generator<DisposableScope, void, undefined> {
+    export function * scope(): Generator<DisposableScope, void, undefined> {
         const context = CreateScope("sync");
         try {
             context.state = "initialized";
@@ -149,7 +88,7 @@ export class Disposable {
         }
         finally {
             context.state = "done";
-            DisposeResources("sync", context.disposables, /*suppress*/ false, context.throwCompletion);
+            DisposeResources("sync", context.disposables, context.throwCompletion);
         }
     }
 
@@ -157,6 +96,8 @@ export class Disposable {
      * Yields each disposable in the iterable, disposing it when the generator resumes.
      *
      * This emulates `for (using const x of expr)`.
+     *
+     * NOTE: This is not spec-compliant and will not be standardized.
      *
      * @example
      * ```ts
@@ -171,7 +112,7 @@ export class Disposable {
      * }
      * ```
      */
-    static * usingEach(disposables: Iterable<Disposable | (() => void) | null | undefined>) {
+    export function * usingEach(disposables: Iterable<Disposable | null | undefined>) {
         // for (using const disposable of disposables) yield disposable;
         for (const disposable of disposables) {
             for (const { using, fail } of Disposable.scope()) try {
@@ -180,66 +121,56 @@ export class Disposable {
         }
     }
 
+    const disposablePrototype = Disposable.prototype;
+    Object.defineProperty(disposablePrototype, Symbol.toStringTag, { configurable: true, value: "Disposable" });
+
     /**
-     * Executes a callback with the provided `Disposable` resource, disposing the resource when the callback completes.
-     * @deprecated Use `Disposable.scope()` instead.
+     * Creates a `Disposable` wrapper around a callback used to dispose of a resource.
+     *
+     * NOTE: This is not spec-compliant and will not be standardized. It is preferred to use a `DisposableStack`
+     * or to implement `Disposable.dispose` yourself instead.
      */
-    static use<T extends Disposable | (() => void) | null | undefined, U>(resource: T, callback: (resource: T) => U) {
-        reportDisposableUseDeprecation();
-        // using const x = resource;
-        // return callback(x);
-        for (const { using, fail } of Disposable.scope()) {
-            try {
-                return callback(using(resource));
+    export function create(dispose: () => void): Disposable {
+        if (typeof dispose !== "function") throw new TypeError("Function expected: dispose");
+
+        let disposed = false;
+        return Object.setPrototypeOf({
+            [Disposable.dispose]() {
+                if (!disposed) {
+                    disposed = true;
+                    const cb = dispose;
+                    dispose = undefined!;
+                    cb();
+
+                }
             }
-            catch (e) {
-                fail(e);
-            }
-        }
+        }, disposablePrototype);
     }
 
     /**
      * Determines whether a value is Disposable.
+     *
+     * NOTE: This is not spec-compliant and will not be standardized.
      */
-    static hasInstance(value: unknown): value is Disposable {
+    export function hasInstance(value: unknown): value is Disposable {
         return typeof value === "object"
             && value != null
-            && disposeSym in value;
-    }
-
-    /**
-     * Determines whether a value is `Disposable`.
-     */
-    static [Symbol.hasInstance](value: unknown): value is Disposable {
-        return Disposable.hasInstance(value);
+            && Disposable.dispose in value;
     }
 }
 
-/* @internal */
-export const __Disposable_prototype__ = Disposable.prototype;
-
-Object.defineProperty(__Disposable_prototype__, Symbol.toStringTag, { configurable: true, value: "Disposable" });
 Object.defineProperty(Disposable, Symbol.hasInstance, Object.getOwnPropertyDescriptor(Disposable, "hasInstance")!);
-
-export namespace Disposable {
-    /**
-     * Creates a `Disposable` wrapper around a callback used to dispose of a resource.
-     * @deprecated Use `new Disposable(dispose)` instead.
-     */
-    export function create(dispose: () => void): Disposable {
-        reportDisposableCreateDeprecation();
-        return new Disposable(dispose);
-    }
-}
 
 /**
  * Used to aproximate `using const` via `for..of`. See {@link Disposable.scope}.
+ *
+ * NOTE: This is not spec-compliant and will not be standardized.
  */
 export interface DisposableScope {
     /**
      * Tracks a resource to be disposed at the end of a `for..of` statement. See {@link Disposable.scope}.
      */
-    using<T extends Disposable | (() => void) | null | undefined>(value: T): T;
+    using<T extends Disposable | null | undefined>(value: T): T;
 
     /**
      * Tracks an exception from the body of a `for..of` statement. See {@link Disposable.scope}.

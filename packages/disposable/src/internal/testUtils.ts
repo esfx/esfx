@@ -1,5 +1,4 @@
 import { matcherHint, printReceived, printExpected } from "jest-matcher-utils";
-import { Deprecation } from "./utils";
 
 /* @internal */
 export const isObject = (value: unknown) => typeof value === "object" && value !== null;
@@ -102,19 +101,4 @@ declare global {
             toHaveNonConfigurableProperty(key: WeakAnyKeyOf<T>): R;
         }
     }
-}
-
-export function disableDeprecations(deprecations: Deprecation[]) {
-    beforeEach(() => {
-        const reports = deprecations.map(dep => dep.reported);
-        for (const dep of deprecations) {
-            dep.reported = true;
-        }
-        afterEach(() => {
-            for (let i = 0; i < reports.length; i++) {
-                deprecations[i].reported = reports[i];
-            }
-        });
-    });
-
 }

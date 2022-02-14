@@ -18,7 +18,7 @@ import { AsyncDisposable } from "../asyncDisposable";
 import { AsyncDisposableStack } from "../asyncDisposableStack";
 import "../internal/testUtils";
 
-describe("The AsyncDisposableStack constructor [non-spec]", () => {
+describe("The AsyncDisposableStack constructor [spec]", () => {
     it("is a function", () => expect(AsyncDisposableStack).toBeTypeof("function"));
     it("[[Prototype]] is %Function.prototype%", () => expect(Object.getPrototypeOf(AsyncDisposableStack)).toBe(Function.prototype));
     it("length is 0", () => expect(AsyncDisposableStack.length).toBe(0));
@@ -29,7 +29,7 @@ describe("The AsyncDisposableStack constructor [non-spec]", () => {
     });
 });
 
-describe("Properties of the AsyncDisposableStack prototype [non-spec]", () => {
+describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
     describe("AsyncDisposableStack.prototype.use()", () => {
         it("is an own method", () => expect(AsyncDisposableStack.prototype).toHaveOwnMethod("use"));
         it("is writable", () => expect(AsyncDisposableStack.prototype).toHaveWritableProperty("use"));
