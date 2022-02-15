@@ -68,19 +68,6 @@ export namespace Equatable {
     Object.defineProperty(Equatable, Symbol.hasInstance, { configurable: true, writable: true, value: hasInstance });
 }
 
-/* @internal */
-export namespace Equatable {
-    const reportIsEquatableDeprecation = createDeprecation("Use 'Equatable.hasInstance' instead.");
-
-    /**
-     * @deprecated Use `Equatable.hasInstance` instead.
-     */
-    export function isEquatable(value: unknown): value is Equatable {
-        reportIsEquatableDeprecation();
-        return Equatable.hasInstance(value);
-    }
-}
-
 /**
  * Represents a value that can compare itself relationally with another value.
  */
@@ -125,19 +112,6 @@ export namespace Comparable {
     }
 
     Object.defineProperty(Comparable, Symbol.hasInstance, { configurable: true, writable: true, value: hasInstance });
-}
-
-/* @internal */
-export namespace Comparable {
-    const reportIsComparableDeprecation = createDeprecation("Use 'Comparable.hasInstance' instead.");
-
-    /**
-     * @deprecated Use `Comparable.hasInstance` instead.
-     */
-    export function isComparable(value: unknown): value is Comparable {
-        reportIsComparableDeprecation();
-        return Comparable.hasInstance(value);
-    }
 }
 
 /**
@@ -194,19 +168,6 @@ export namespace StructuralEquatable {
     Object.defineProperty(StructuralEquatable, Symbol.hasInstance, { configurable: true, writable: true, value: hasInstance });
 }
 
-/* @internal */
-export namespace StructuralEquatable {
-    const reportIsStructuralEquatableDeprecation = createDeprecation("Use 'StructuralEquatable.hasInstance' instead.");
-
-    /**
-     * @deprecated Use `StructuralEquatable.hasInstance` instead.
-     */
-    export function isStructuralEquatable(value: unknown): value is StructuralEquatable {
-        reportIsStructuralEquatableDeprecation();
-        return StructuralEquatable.hasInstance(value);
-    }
-}
-
 /**
  * Represents a value that can compare its structure relationally with another value.
  */
@@ -249,19 +210,6 @@ export namespace StructuralComparable {
     }
 
     Object.defineProperty(StructuralComparable, Symbol.hasInstance, { configurable: true, writable: true, value: hasInstance });
-}
-
-/* @internal */
-export namespace StructuralComparable {
-    const reportIsStructuralComparableDeprecation = createDeprecation("Use 'StructuralComparable.hasInstance' instead.");
-
-    /**
-     * @deprecated Use `StructuralComparable.hasInstance` instead.
-     */
-    export function isStructuralComparable(value: unknown): value is StructuralComparable {
-        reportIsStructuralComparableDeprecation();
-        return StructuralComparable.hasInstance(value);
-    }
 }
 
 /**
@@ -563,19 +511,4 @@ export import tupleStructuralComparer = Comparer.tupleStructuralComparer;
  */
 export function rawHash(value: unknown): number {
     return hashUnknown(value);
-}
-
-function createDeprecation(message: string) {
-    let hasReportedWarning = false;
-    return () => {
-        if (!hasReportedWarning) {
-            hasReportedWarning = true;
-            if (typeof process === "object" && process.emitWarning) {
-                process.emitWarning(message, "Deprecation");
-            }
-            else if (typeof console === "object") {
-                console.warn(`Deprecation: ${message}`)
-            }
-        }
-    }
 }
