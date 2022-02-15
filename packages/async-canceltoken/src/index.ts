@@ -41,6 +41,45 @@ import { Disposable } from "@esfx/disposable";
 
 export { CancelSubscription, CancelError } from "@esfx/cancelable";
 
+// #region DOM AbortController/AbortSignal compatibility
+
+type DOMAbortSignal = (typeof globalThis) extends { AbortSignal: Function & { prototype: infer TAbortSignal } } ? TAbortSignal : never;
+
+interface AbortController {
+    readonly signal: AbortSignal;
+    abort(reason?: unknown): void
+}
+
+declare var AbortController: { new(): AbortController; prototype: AbortController };
+
+interface AbortSignal {
+    readonly aborted: boolean;
+    readonly reason?: unknown;
+    addEventListener(event: string, listener: () => void): void;
+    removeEventListener(event: string, listener: () => void): void;
+}
+
+declare var AbortSignal: { new(): AbortSignal; prototype: AbortSignal };
+
+let AbortControllerAbort: ((obj: AbortController, reason?: unknown) => void) | undefined;
+let AbortControllerGetSignal: ((obj: AbortController) => AbortSignal) | undefined;
+let AbortSignalAddEventListener: ((obj: AbortSignal, event: string, listener: () => void) => void) | undefined;
+let AbortSignalRemoveEventListener: ((obj: AbortSignal, event: string, listener: () => void) => void) | undefined;
+let AbortSignalGetAborted: ((obj: AbortSignal) => boolean) | undefined;
+let AbortSignalGetReason: ((obj: AbortSignal) => unknown) | undefined;
+
+if (typeof AbortController === "function" && typeof AbortSignal === "function") {
+    const uncurryThis = Function.prototype.bind.bind(Function.prototype.call) as <T, A extends unknown[], R>(f: (this: T, ...args: A) => R) => (this_: T, ...args: A) => R;
+    AbortControllerAbort = uncurryThis(AbortController.prototype.abort);
+    AbortControllerGetSignal = uncurryThis(Object.getOwnPropertyDescriptor(AbortController.prototype, "signal")!.get!);
+    AbortSignalAddEventListener = uncurryThis(AbortSignal.prototype.addEventListener);
+    AbortSignalRemoveEventListener = uncurryThis(AbortSignal.prototype.removeEventListener);
+    AbortSignalGetAborted = uncurryThis(Object.getOwnPropertyDescriptor(AbortSignal.prototype, "aborted")!.get!);
+    AbortSignalGetReason = "reason" in AbortSignal.prototype ? uncurryThis(Object.getOwnPropertyDescriptor(AbortSignal.prototype, "reason")!.get!) : undefined;
+}
+
+// #endregion DOM AbortController/AbortSignal compatibility
+
 const emptySubscription = Cancelable.none.subscribe(() => {});
 const defaultReason = Cancelable.canceled.reason;
 
@@ -718,41 +757,4 @@ function listRemove<T>(list: List<T>, node: Node<T>) {
     }
     node.next = node.prev = null;
     return true;
-}
-
-// DOM AbortController/AbortSignal compatibility
-
-type DOMAbortSignal = (typeof globalThis) extends { AbortSignal: Function & { prototype: infer TAbortSignal } } ? TAbortSignal : never;
-
-interface AbortController {
-    readonly signal: AbortSignal;
-    abort(reason?: unknown): void
-}
-
-declare var AbortController: { new(): AbortController; prototype: AbortController };
-
-interface AbortSignal {
-    readonly aborted: boolean;
-    readonly reason?: unknown;
-    addEventListener(event: string, listener: () => void): void;
-    removeEventListener(event: string, listener: () => void): void;
-}
-
-declare var AbortSignal: { new(): AbortSignal; prototype: AbortSignal };
-
-let AbortControllerAbort: ((obj: AbortController, reason?: unknown) => void) | undefined;
-let AbortControllerGetSignal: ((obj: AbortController) => AbortSignal) | undefined;
-let AbortSignalAddEventListener: ((obj: AbortSignal, event: string, listener: () => void) => void) | undefined;
-let AbortSignalRemoveEventListener: ((obj: AbortSignal, event: string, listener: () => void) => void) | undefined;
-let AbortSignalGetAborted: ((obj: AbortSignal) => boolean) | undefined;
-let AbortSignalGetReason: ((obj: AbortSignal) => unknown) | undefined;
-
-if (typeof AbortController === "function" && typeof AbortSignal === "function") {
-    const uncurryThis = Function.prototype.bind.bind(Function.prototype.call) as <T, A extends unknown[], R>(f: (this: T, ...args: A) => R) => (this_: T, ...args: A) => R;
-    AbortControllerAbort = uncurryThis(AbortController.prototype.abort);
-    AbortControllerGetSignal = uncurryThis(Object.getOwnPropertyDescriptor(AbortController.prototype, "signal")!.get!);
-    AbortSignalAddEventListener = uncurryThis(AbortSignal.prototype.addEventListener);
-    AbortSignalRemoveEventListener = uncurryThis(AbortSignal.prototype.removeEventListener);
-    AbortSignalGetAborted = uncurryThis(Object.getOwnPropertyDescriptor(AbortSignal.prototype, "aborted")!.get!);
-    AbortSignalGetReason = "reason" in AbortSignal.prototype ? uncurryThis(Object.getOwnPropertyDescriptor(AbortSignal.prototype, "reason")!.get!) : undefined;
 }
