@@ -13,16 +13,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-/// <reference lib="dom" />
-/// <reference lib="dom.iterable" />
+
 import { ReadonlyCollection, ReadonlyKeyedCollection, KeyedCollection, ReadonlyIndexedCollection } from "@esfx/collection-core";
 
 //
 // Global augmentations
 //
-
-const accessorBase: PropertyDescriptor = { enumerable: false, configurable: true };
-const methodBase: PropertyDescriptor = { ...accessorBase, writable: true };
 
 // Collections
 
@@ -157,7 +153,7 @@ function makeKeyedCollection<K, V>(prototype: MapLike<K, V>, overrides?: Propert
     Object.defineProperties(prototype, {
         // ReadonlyKeyedCollection<K, V>
         [KeyedCollection.size]: {
-            ...accessorBase,
+            configurable: true,
             get: "size" in prototype 
                 ? function (this: MapLike<K, V>) {
                     return this.size!;
@@ -169,26 +165,26 @@ function makeKeyedCollection<K, V>(prototype: MapLike<K, V>, overrides?: Propert
                 }
         },
         [KeyedCollection.has]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: MapLike<K, V>, key: K) {
                 return this.has(key);
             }
         },
         [KeyedCollection.get]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: MapLike<K, V>, key: K): V | undefined {
                 const result = this.get(key);
                 return result === null ? undefined : result;
             }
         },
         [KeyedCollection.keys]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: MapLike<K, V>) {
                 return this.keys();
             }
         },
         [KeyedCollection.values]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: MapLike<K, V>) {
                 return this.values();
             }
@@ -196,13 +192,13 @@ function makeKeyedCollection<K, V>(prototype: MapLike<K, V>, overrides?: Propert
     
         // KeyedCollection<K, V>
         [KeyedCollection.set]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: MapLike<K, V>, key: K, value: V) {
                 this.set(key, value);
             }
         },
         [KeyedCollection.delete]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: MapLike<K, V>, key: K) {
                 if (this.has(key)) {
                     this.delete(key);
@@ -212,7 +208,7 @@ function makeKeyedCollection<K, V>(prototype: MapLike<K, V>, overrides?: Propert
             }
         },
         [KeyedCollection.clear]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: MapLike<K, V>) {
                 const keys = new Set(this.keys());
                 for (const key of keys) {
@@ -228,29 +224,29 @@ function makeReadonlyKeyedCollection<K, V>(prototype: ReadonlyMap<K, V>, overrid
     Object.defineProperties(prototype, {
         // ReadonlyKeyedCollection<K, V>
         [ReadonlyKeyedCollection.size]: {
-            ...accessorBase,
+            configurable: true,
             get(this: ReadonlyMap<K, V>) { return this.size; }
         },
         [ReadonlyKeyedCollection.has]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: ReadonlyMap<K, V>, key: K) {
                 return this.has(key);
             }
         },
         [ReadonlyKeyedCollection.get]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: ReadonlyMap<K, V>, key: K) {
                 return asUndefinedIfNull(this.get(key));
             }
         },
         [ReadonlyKeyedCollection.keys]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: ReadonlyMap<K, V>) {
                 return this.keys();
             }
         },
         [ReadonlyKeyedCollection.values]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: ReadonlyMap<K, V>) {
                 return this.values();
             }
@@ -263,11 +259,11 @@ function makeReadonlyCollection<T>(prototype: ArrayLike<T>, overrides?: Property
     Object.defineProperties(prototype, {
         // ReadonlyCollection<T>
         [ReadonlyCollection.size]: {
-            ...accessorBase,
+            configurable: true,
             get(this: ArrayLike<T>) { return this.length; }
         },
         [ReadonlyCollection.has]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: ArrayLike<T>, value: T) {
                 return Array.prototype.indexOf.call(this, value) !== -1;
             }
@@ -280,13 +276,13 @@ function makeReadonlyIndexedCollection<T>(prototype: ArrayLike<T>, overrides?: P
     makeReadonlyCollection(prototype, {
         // ReadonlyIndexedCollection<T>
         [ReadonlyIndexedCollection.indexOf]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: ArrayLike<T>, value: T, fromIndex?: number) {
                 return Array.prototype.indexOf.call(this, value, fromIndex);
             }
         },
         [ReadonlyIndexedCollection.getAt]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: ArrayLike<T>, index: number) {
                 return asUndefinedIfNull(this[index]);
             }

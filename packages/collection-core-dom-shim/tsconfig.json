@@ -2,11 +2,11 @@
     "extends": "../tsconfig-base",
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "dist"
+        "outDir": "dist",
+        "lib": ["esnext", "dom", "dom.iterable"]
     },
     "include": ["src/**/*.ts"],
     "references": [
         { "path": "../collection-core" },
-        { "path": "../type-model" },
     ]
 }

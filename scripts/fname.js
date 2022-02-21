@@ -4,6 +4,6 @@
  * @returns {Function}
  */
 function fname(name, fn) {
-    return Object.defineProperty(fn, "name", { value: name });
+    return Object.defineProperty(fn, "name", { ...Object.getOwnPropertyDescriptor(fn, "name"), value: name });
 }
 exports.fname = fname;

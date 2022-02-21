@@ -2,13 +2,13 @@
     "extends": "../tsconfig-base",
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "dist"
+        "outDir": "dist",
+        "emitDeclarationOnly": true
     },
     "include": ["src/**/*.ts"],
     "references": [
         { "path": "../collection-core" },
         { "path": "../equatable" },
-        { "path": "../../internal/guards" },
         { "path": "../../internal/collections-hash" },
     ]
 }

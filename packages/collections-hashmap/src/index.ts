@@ -46,7 +46,6 @@
 
 import { KeyedCollection, ReadonlyKeyedCollection } from "@esfx/collection-core";
 import { Equaler } from "@esfx/equatable";
-import { isIterable } from '@esfx/internal-guards';
 import { HashData, createHashData, findEntryIndex, findEntryValue, insertEntry, deleteEntry, clearEntries, ensureCapacity, trimExcessEntries, iterateEntries, selectEntryKey, selectEntryValue, selectEntryEntry, forEachEntry } from '@esfx/internal-collections-hash/dist/hashData';
 
 export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, V> {
@@ -65,14 +64,15 @@ export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, 
                 capacity = arg0;
                 if (args.length > 1) equaler = args[1];
             }
-            else if (isIterable(arg0) || arg0 === undefined) {
-                iterable = arg0;
+            else if (typeof arg0 === "object" && arg0 !== null && Symbol.iterator in arg0 || arg0 === undefined) {
+                iterable = arg0 as Iterable<[K, V]> | undefined;
                 if (args.length > 1) equaler = args[1];
             }
             else {
-                equaler = arg0;
+                equaler = arg0 as Equaler<K>;
             }
         }
+
         if (capacity === undefined) capacity = 0;
         if (equaler === undefined) equaler = Equaler.defaultEqualer;
         if (capacity < 0) throw new RangeError();

@@ -15,11 +15,15 @@
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
     },
+    "scripts": {
+        "bundle": "esbuild src/index.ts --bundle --platform=node --outdir=dist --format=cjs --external:@esfx/collection-core --external:@esfx/equatable --sourcemap"
+    },
     "dependencies": {
         "@esfx/collection-core": "^1.0.0-pre.24",
-        "@esfx/equatable": "^1.0.0-pre.19",
-        "@esfx/internal-collections-hash": "^1.0.0-pre.19",
-        "@esfx/internal-guards": "^1.0.0-pre.23"
+        "@esfx/equatable": "^1.0.0-pre.19"
+    },
+    "devDependencies": {
+        "@esfx/internal-collections-hash": "^1.0.0-pre.19"
     },
     "publishConfig": {
         "access": "public"

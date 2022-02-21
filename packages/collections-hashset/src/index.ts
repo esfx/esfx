@@ -46,7 +46,6 @@
 
 import { Collection, ReadonlyCollection } from "@esfx/collection-core";
 import { Equaler } from "@esfx/equatable";
-import { isIterable } from '@esfx/internal-guards';
 import { HashData, createHashData, findEntryIndex, insertEntry, deleteEntry, clearEntries, ensureCapacity, trimExcessEntries, iterateEntries, selectEntryKey, selectEntryValue, selectEntryEntry, forEachEntry } from '@esfx/internal-collections-hash/dist/hashData';
 
 export class HashSet<T> implements Collection<T> {
@@ -65,12 +64,12 @@ export class HashSet<T> implements Collection<T> {
                 capacity = arg0;
                 if (args.length > 1) equaler = args[1];
             }
-            else if (isIterable(arg0)) {
-                iterable = arg0;
+            else if (typeof arg0 === "object" && arg0 !== null && Symbol.iterator in arg0 || arg0 === undefined) {
+                iterable = arg0 as Iterable<T> | undefined;
                 if (args.length > 1) equaler = args[1];
             }
             else {
-                equaler = arg0;
+                equaler = arg0 as Equaler<T>;
             }
         }
         if (capacity === undefined) capacity = 0;

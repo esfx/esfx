@@ -38,6 +38,7 @@
 
 import { CancelableSource, Cancelable, CancelSignal, CancelSubscription, CancelError } from "@esfx/cancelable";
 import { Disposable } from "@esfx/disposable";
+import { LinkedList, LinkedListNode, listAdd, listCreate, listRemove } from "@esfx/internal-linked-list";
 
 export { CancelSubscription, CancelError } from "@esfx/cancelable";
 
@@ -107,7 +108,7 @@ class CancelState {
     private _reason: unknown;
     private _source: CancelSource | undefined;
     private _token: CancelToken | undefined;
-    private _subscriptions: List<() => void> | undefined;
+    private _subscriptions: LinkedList<() => void> | undefined;
     private _abortController: AbortController | undefined;
     private _pendingCancelAfters: ReturnType<typeof setTimeout>[] = [];
 
@@ -231,7 +232,7 @@ class CancelState {
             throw new Error("Illegal state");
         }
 
-        const list = this._subscriptions ??= { head: null };
+        const list = this._subscriptions ??= listCreate();
         return createCancelSubscription(list, listAdd(list, onSignaled));
     }
 }
@@ -706,7 +707,7 @@ function canBeSignaled(signal: CancelSignal) {
     return signal !== Cancelable.none && (!(signal instanceof CancelToken) || signal.canBeSignaled);
 }
 
-function createCancelSubscription(list: List<(reason: unknown) => void>, node: Node<(reason: unknown) => void>): CancelSubscription {
+function createCancelSubscription(list: LinkedList<(reason: unknown) => void>, node: LinkedListNode<(reason: unknown) => void>): CancelSubscription {
     return CancelSubscription.create(() => {
         if (list && node && listRemove(list, node)) {
             node.value = undefined!;
@@ -714,47 +715,4 @@ function createCancelSubscription(list: List<(reason: unknown) => void>, node: N
             list = undefined!;
         }
     });
-}
-
-// inlined linked list implementation
-
-interface List<T> {
-    head: Node<T> | null;
-}
-
-interface Node<T> {
-    value: T;
-    prev: Node<T> | null;
-    next: Node<T> | null;
-}
-
-function listAdd<T>(list: List<T>, value: T) {
-    const node: Node<T> = { value, next: null, prev: null };
-    if (list.head === null) {
-        list.head = node.next = node.prev = node;
-    }
-    else {
-        const tail = list.head.prev;
-        if (!tail?.next) throw new Error("Illegal state");
-        node.prev = tail;
-        node.next = tail.next;
-        tail.next = tail.next.prev = node;
-    }
-    return node;
-}
-
-function listRemove<T>(list: List<T>, node: Node<T>) {
-    if (node.next === null || node.prev === null) return false;
-    if (node.next === node) {
-        list.head = null;
-    }
-    else {
-        node.next.prev = node.prev;
-        node.prev.next = node.next;
-        if (list.head === node) {
-            list.head = node.next;
-        }
-    }
-    node.next = node.prev = null;
-    return true;
 }

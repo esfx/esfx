@@ -7,5 +7,6 @@
     "include": ["src/**/*.ts"],
     "references": [
         { "path": "../cancelable" },
+        { "path": "../../internal/linked-list" },
     ]
 }

@@ -4,6 +4,8 @@ const del = require("del");
 const path = require("path");
 const { buildProject, cleanProject } = require("./scripts/build");
 const { exec, ArgsBuilder } = require("./scripts/exec");
+const { apiExtractor, apiDocumenter, docfx, installDocFx } = require("./scripts/docs");
+const { fname } = require("./scripts/fname");
 const yargs = require("yargs")
     .option("testNamePattern", { type: "string", alias: ["tests", "test", "T", "t"] })
     .option("testPathPattern", { type: "string", alias: ["files", "file", "F"] })
@@ -21,8 +23,6 @@ const yargs = require("yargs")
     ;
 
 const { argv } = yargs;
-const { apiExtractor, apiDocumenter, docfx, installDocFx } = require("./scripts/docs");
-const { fname } = require("./scripts/fname");
 
 const internalPackages = fs.readdirSync("internal")
     .map(name => `internal/${name}`)

@@ -1,11 +1,10 @@
 {
-    "name": "@esfx/collection-core-dom-shim",
-    "version": "1.0.0-pre.25",
-    "description": "A global shim to add default @esfx/collection-core behaviors to global DOM objects.",
+    "name": "@esfx/internal-linked-list",
+    "version": "1.0.0-pre.30",
+    "private": true,
+    "description": "This package provides internal utilities for @esfx and is not intended for use in user-code.",
     "type": "commonjs",
-    "main": "./dist/index.js",
-    "exports": "./dist/index.js",
-    "types": "./dist/index.d.ts",
+    "main": "dist",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {
@@ -16,7 +15,6 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.0.0-pre.24"
     },
     "publishConfig": {
         "access": "public"

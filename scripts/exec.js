@@ -1,3 +1,4 @@
+const path = require("path");
 const { spawn } = require("child_process");
 const { default: chalk } = require("chalk");
 const log = require("fancy-log");
@@ -10,15 +11,23 @@ const isWindows = /^win/.test(process.platform);
  * @param {boolean} [options.ignoreExitCode]
  * @param {boolean} [options.verbose]
  * @param {string} [options.cwd]
+ * @param {typeof process.env} [options.env]
  * @param {import("child_process").StdioOptions} [options.stdio]
  * @returns {Promise<{ exitCode: number, stdout: string, stderr: string }>}
  */
-function exec(cmd, args = [], { ignoreExitCode, verbose, cwd, stdio = "inherit" } = {}) {
+function exec(cmd, args = [], { ignoreExitCode, verbose, cwd, env, stdio = "inherit" } = {}) {
     return new Promise((resolve, reject) => {
         const shell = isWindows ? "cmd" : "/bin/sh";
         const shellArgs = isWindows ? ["/c", cmd.includes(" ") >= 0 ? `"${cmd}"` : cmd, ...args] : ["-c", `${cmd} ${args.join(" ")}`];
-        if (verbose) log(`> ${chalk.green(cmd)} ${args.join(" ")}`);
-        const child = spawn(shell, shellArgs, { stdio, cwd, windowsVerbatimArguments: true, windowsHide: true });
+        if (verbose) {
+            let prefix = "";
+            if (cwd && cwd !== process.cwd()) {
+                prefix = path.relative(process.cwd(), cwd).replace(/\\/g, "/");
+                if (prefix) prefix = chalk.gray(`${prefix} `);
+            }
+            log(`${prefix}$ ${chalk.green(cmd)} ${args.join(" ")}`);
+        }
+        const child = spawn(shell, shellArgs, { stdio, cwd, env, windowsVerbatimArguments: true, windowsHide: true });
         let stdout = "";
         let stderr = "";
         child.stdout?.setEncoding("utf-8").on("data", data => stdout += data);

@@ -15,13 +15,17 @@
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
     },
-    "devDependencies": {
-        "@esfx/async-mutex": "^1.0.0-pre.30"
+    "scripts": {
+        "bundle": "esbuild src/index.ts --bundle --platform=node --outdir=dist --format=cjs --external:@esfx/cancelable --external:@esfx/async-lockable --external:@esfx/async-mutex --external:tslib --sourcemap"
     },
     "dependencies": {
         "@esfx/async-lockable": "^1.0.0-pre.30",
         "@esfx/cancelable": "^1.0.0-pre.30",
         "tslib": "^2.1.0"
+    },
+    "devDependencies": {
+        "@esfx/async-mutex": "^1.0.0-pre.30",
+        "@esfx/internal-linked-list": "^1.0.0-pre.30"
     },
     "publishConfig": {
         "access": "public"

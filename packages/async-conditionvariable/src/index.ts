@@ -16,6 +16,7 @@
 
 import { AsyncLockable } from "@esfx/async-lockable";
 import { Cancelable, CancelError } from "@esfx/cancelable";
+import { LinkedList, listAdd, listCreate, listRemove } from "@esfx/internal-linked-list";
 
 interface Entry {
     cancelable: Cancelable | undefined;
@@ -26,7 +27,7 @@ interface Entry {
 }
 
 export class AsyncConditionVariable {
-    private _waiters: List<Entry> = { head: null };
+    private _waiters: LinkedList<Entry> = listCreate();
 
     /**
      * Releases `lock`, waiting until notified before reacquiring `lock`.
@@ -122,44 +123,3 @@ export class AsyncConditionVariable {
 }
 
 Object.defineProperty(AsyncConditionVariable.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncConditionVariable" });
-
-interface List<T> {
-    head: Node<T> | null;
-}
-
-interface Node<T> {
-    value: T;
-    prev: Node<T> | null;
-    next: Node<T> | null;
-}
-
-function listAdd<T>(list: List<T>, value: T) {
-    const node: Node<T> = { value, next: null, prev: null };
-    if (list.head === null) {
-        list.head = node.next = node.prev = node;
-    }
-    else {
-        const tail = list.head.prev;
-        if (!tail?.next) throw new Error("Illegal state");
-        node.prev = tail;
-        node.next = tail.next;
-        tail.next = tail.next.prev = node;
-    }
-    return node;
-}
-
-function listRemove<T>(list: List<T>, node: Node<T>) {
-    if (node.next === null || node.prev === null) return false;
-    if (node.next === node) {
-        list.head = null;
-    }
-    else {
-        node.next.prev = node.prev;
-        node.prev.next = node.next;
-        if (list.head === node) {
-            list.head = node.next;
-        }
-    }
-    node.next = node.prev = null;
-    return true;
-}

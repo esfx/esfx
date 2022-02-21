@@ -20,9 +20,6 @@ import { ReadonlyCollection, Collection, ReadonlyKeyedCollection, KeyedCollectio
 // Global augmentations
 //
 
-const accessorBase: PropertyDescriptor = { enumerable: false, configurable: true };
-const methodBase: PropertyDescriptor = { ...accessorBase, writable: true };
-
 // #region Array augmentations
 
 declare global {
@@ -33,11 +30,11 @@ declare global {
 Object.defineProperties(Array.prototype, {
     // ReadonlyCollection<T>
     [Collection.size]: {
-        ...accessorBase,
+        configurable: true,
         get(this: any[]) { return this.length; }
     },
     [Collection.has]: {
-        ...methodBase,
+        configurable: true, writable: true,
         value(this: any[], value: any) {
             return this.includes(value);
         }
@@ -45,13 +42,13 @@ Object.defineProperties(Array.prototype, {
 
     // Collection<T>
     [Collection.add]: {
-        ...methodBase,
+        configurable: true, writable: true,
         value(this: any[], value: any) {
             this.push(value);
         }
     },
     [Collection.delete]: {
-        ...methodBase,
+        configurable: true, writable: true,
         value(this: any[], value: any) {
             const index = this.indexOf(value);
             if (index >= 0) {
@@ -62,7 +59,7 @@ Object.defineProperties(Array.prototype, {
         }
     },
     [Collection.clear]: {
-        ...methodBase,
+        configurable: true, writable: true,
         value(this: any[]) {
             this.length = 0;
         }
@@ -70,13 +67,13 @@ Object.defineProperties(Array.prototype, {
 
     // ReadonlyIndexedCollection<T>
     [IndexedCollection.indexOf]: {
-        ...methodBase,
+        configurable: true, writable: true,
         value(this: any[], value: any, fromIndex?: number) {
             return this.indexOf(value, fromIndex);
         }
     },
     [IndexedCollection.getAt]: {
-        ...methodBase,
+        configurable: true, writable: true,
         value(this: any[], index: number) {
             return this[index];
         }
@@ -84,7 +81,7 @@ Object.defineProperties(Array.prototype, {
 
     // FixedSizeIndexedCollection<T>
     [IndexedCollection.setAt]: {
-        ...methodBase,
+        configurable: true, writable: true,
         value(this: any[], index: number, value: any) {
             this[index] = value;
             return true;
@@ -93,13 +90,13 @@ Object.defineProperties(Array.prototype, {
 
     // IndexedCollection<T>
     [IndexedCollection.insertAt]: {
-        ...methodBase,
+        configurable: true, writable: true,
         value(this: any[], index: number, value: any) {
             this.splice(index, 0, value);
         }
     },
     [IndexedCollection.removeAt]: {
-        ...methodBase,
+        configurable: true, writable: true,
         value(this: any[], index: number) {
             this.splice(index, 1);
         }
@@ -132,11 +129,11 @@ for (const TypedArray of typedArrays) {
     Object.defineProperties(TypedArray.prototype, {
         // ReadonlyCollection<T>
         [Collection.size]: {
-            ...accessorBase,
+            configurable: true,
             get(this: InstanceType<typeof TypedArray>) { return this.length; }
         },
         [Collection.has]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: InstanceType<typeof TypedArray>, value: any) {
                 return this.includes(value);
             }
@@ -144,13 +141,13 @@ for (const TypedArray of typedArrays) {
 
         // ReadonlyIndexedCollection<T>
         [IndexedCollection.indexOf]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: InstanceType<typeof TypedArray>, value: any, fromIndex?: number) {
                 return this.indexOf(value, fromIndex);
             }
         },
         [IndexedCollection.getAt]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: InstanceType<typeof TypedArray>, index: number) {
                 return this[index];
             }
@@ -158,7 +155,7 @@ for (const TypedArray of typedArrays) {
 
         // FixedSizeIndexedCollection<T>
         [IndexedCollection.setAt]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: InstanceType<typeof TypedArray>, index: number, value: any) {
                 if (index >= 0 && index < this.length) {
                     this[index] = value;
@@ -178,11 +175,11 @@ for (const TypedArray of bigIntTypedArrays) {
     Object.defineProperties(TypedArray.prototype, {
         // ReadonlyCollection<T>
         [Collection.size]: {
-            ...accessorBase,
+            configurable: true,
             get(this: InstanceType<typeof TypedArray>) { return this.length; }
         },
         [Collection.has]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: InstanceType<typeof TypedArray>, value: any) {
                 return this.includes(value);
             }
@@ -190,13 +187,13 @@ for (const TypedArray of bigIntTypedArrays) {
 
         // ReadonlyIndexedCollection<T>
         [IndexedCollection.indexOf]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: InstanceType<typeof TypedArray>, value: any, fromIndex?: number) {
                 return this.indexOf(value, fromIndex);
             }
         },
         [IndexedCollection.getAt]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: InstanceType<typeof TypedArray>, index: number) {
                 return this[index];
             }
@@ -204,7 +201,7 @@ for (const TypedArray of bigIntTypedArrays) {
 
         // FixedSizeIndexedCollection<T>
         [IndexedCollection.setAt]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: InstanceType<typeof TypedArray>, index: number, value: any) {
                 if (index >= 0 && index < this.length) {
                     this[index] = value;
@@ -229,11 +226,11 @@ if (typeof Set === "function") {
     Object.defineProperties(Set.prototype, {
         // ReadonlyCollection<T>
         [Collection.size]: {
-            ...accessorBase,
+            configurable: true,
             get(this: Set<any>) { return this.size; }
         },
         [Collection.has]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: Set<any>, value: any) {
                 return this.has(value);
             }
@@ -241,19 +238,19 @@ if (typeof Set === "function") {
 
         // Collection<T>
         [Collection.add]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: Set<any>, value: any) {
                 this.add(value);
             }
         },
         [Collection.delete]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: Set<any>, value: any) {
                 return this.delete(value);
             }
         },
         [Collection.clear]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: Set<any>) {
                 this.clear();
             }
@@ -274,29 +271,29 @@ if (typeof Map === "function") {
     Object.defineProperties(Map.prototype, {
         // ReadonlyKeyedCollection<K, V>
         [KeyedCollection.size]: {
-            ...accessorBase,
+            configurable: true,
             get(this: Map<any, any>) { return this.size; }
         },
         [KeyedCollection.has]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: Map<any, any>, key: any) {
                 return this.has(key);
             }
         },
         [KeyedCollection.get]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: Map<any, any>, key: any) {
                 return this.get(key);
             }
         },
         [KeyedCollection.keys]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: Map<any, any>) {
                 return this.keys();
             }
         },
         [KeyedCollection.values]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: Map<any, any>) {
                 return this.values();
             }
@@ -304,23 +301,24 @@ if (typeof Map === "function") {
 
         // KeyedCollection<K, V>
         [KeyedCollection.set]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: Map<any, any>, key: any, value: any) {
                 this.set(key, value);
             }
         },
         [KeyedCollection.delete]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: Map<any, any>, key: any) {
                 return this.delete(key);
             }
         },
         [KeyedCollection.clear]: {
-            ...methodBase,
+            configurable: true, writable: true,
             value(this: Map<any, any>) {
                 this.clear();
             }
         },
     });
 }
+
 // #endregion Map augmentations

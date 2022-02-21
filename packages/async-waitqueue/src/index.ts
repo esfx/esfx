@@ -37,6 +37,7 @@
 */
 
 import { Cancelable, CancelError } from "@esfx/cancelable";
+import { LinkedList, listAdd, listCreate, listRemove } from "@esfx/internal-linked-list";
 
 interface Entry<T> {
     resolve(value: T | PromiseLike<T>): void;
@@ -48,7 +49,11 @@ interface Entry<T> {
  * An async coordination primitive that provides a queue of Promises.
  */
 export class WaitQueue<T> {
-    private _list: List<Entry<T>> = { size: 0, head: null };
+    private _list: LinkedList<Entry<T>> = listCreate();
+
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "WaitQueue" });        
+    }
 
     /**
      * Gets the number of pending entries in the queue.
@@ -175,50 +180,4 @@ export class WaitQueue<T> {
     cancelAll() {
         return this.rejectAll(new CancelError());
     }
-}
-
-Object.defineProperty(WaitQueue.prototype, Symbol.toStringTag, { configurable: true, value: "WaitQueue" });
-
-interface List<T> {
-    size: number;
-    head: Node<T> | null;
-}
-
-interface Node<T> {
-    value: T;
-    prev: Node<T> | null;
-    next: Node<T> | null;
-}
-
-function listAdd<T>(list: List<T>, value: T) {
-    const node: Node<T> = { value, next: null, prev: null };
-    if (list.head === null) {
-        list.head = node.next = node.prev = node;
-    }
-    else {
-        const tail = list.head.prev;
-        if (!tail?.next) throw new Error("Illegal state");
-        node.prev = tail;
-        node.next = tail.next;
-        tail.next = tail.next.prev = node;
-    }
-    list.size++;
-    return node;
-}
-
-function listRemove<T>(list: List<T>, node: Node<T>) {
-    if (node.next === null || node.prev === null) return false;
-    if (node.next === node) {
-        list.head = null;
-    }
-    else {
-        node.next.prev = node.prev;
-        node.prev.next = node.next;
-        if (list.head === node) {
-            list.head = node.next;
-        }
-    }
-    node.next = node.prev = null;
-    list.size--;
-    return true;
 }
