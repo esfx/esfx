@@ -3,13 +3,13 @@ const ts = require("typescript");
 const fs = require("fs");
 const path = require("path");
 const assert = require("assert");
-const { pickProperty } = require("../../utils");
+const { pickProperty, isDefinedAndNot } = require("../../utils");
 
 /**
  * @type {import("../../types").PackageVerifierRule}
  */
 function verifyTslibUsage(context) {
-    const { packageTsconfigJsonFile, packageJsonFile, dependencies, devDependencies, formatLocation, addError, addWarning } = context;
+    const { packageTsconfigJsonFile, packageJsonFile, packageLockJsonFile, dependencies, devDependencies, formatLocation, addError, addWarning } = context;
 
     const parsedCommandLine = ts.getParsedCommandLineOfConfigFile(
         packageTsconfigJsonFile.fileName,
@@ -23,9 +23,28 @@ function verifyTslibUsage(context) {
             onUnRecoverableConfigFileDiagnostic: diagnostic => {}
         });
 
+    const packageLockJsonObject = packageLockJsonFile?.statements[0].expression;
+    if (packageLockJsonObject && !ts.isObjectLiteralExpression(packageLockJsonObject)) {
+        addError({
+            message: `Invalid package lock file: Expected an object.`,
+            location: formatLocation(packageLockJsonFile, packageLockJsonObject)
+        });
+        return "continue";
+    }
+
+    const lockDependencies = pickProperty(packageLockJsonObject, "dependencies");
+    if (isDefinedAndNot(lockDependencies, ts.isObjectLiteralExpression)) {
+        addError({
+            message: `Invalid package lock file: Expected 'dependencies' property to be an object.`,
+            location: formatLocation(packageLockJsonFile, lockDependencies)
+        });
+        return "continue";
+    }
 
     const tslibDependency = dependencies && pickProperty(dependencies, "tslib");
     const tslibDevDependency = devDependencies && pickProperty(devDependencies, "tslib");
+    const tslibLockDependency = lockDependencies && pickProperty(lockDependencies, "tslib");
+
     /** @type {{ file: ts.SourceFile, range: ts.TextRange} | undefined} */
     let tslibReference;
     /** @type {{ file: ts.SourceFile, range: ts.TextRange} | undefined} */
@@ -120,17 +139,25 @@ function verifyTslibUsage(context) {
                     }
                 }
             }
-            else if (tslibDependency) {
-                addWarning({
-                    message: `'tslib' should be removed as a 'dependency' as it is not referenced by shipping code.`,
-                    location: formatLocation(packageJsonFile, tslibDependency)
-                });
-            }
-            else if (tslibDevDependency) {
-                addWarning({
-                    message: `'tslib' should be removed as a 'devDependency' as it is not referenced by non-shipping test code.`,
-                    location: formatLocation(packageJsonFile, tslibDevDependency)
-                });
+            else {
+                if (tslibDependency) {
+                    addWarning({
+                        message: `'tslib' should be removed as a 'dependency' as it is not referenced by shipping code.`,
+                        location: formatLocation(packageJsonFile, tslibDependency)
+                    });
+                }
+                else if (tslibDevDependency) {
+                    addWarning({
+                        message: `'tslib' should be removed as a 'devDependency' as it is not referenced by non-shipping test code.`,
+                        location: formatLocation(packageJsonFile, tslibDevDependency)
+                    });
+                }
+                if (tslibLockDependency && (tslibDependency || tslibDevDependency)) {
+                    addWarning({
+                        message: `'tslib' should be removed as a lockfile 'dependency' as it is not referenced by shipping code.`,
+                        location: formatLocation(packageLockJsonFile, tslibLockDependency)
+                    });
+                }
             }
         }
         else {
@@ -140,7 +167,45 @@ function verifyTslibUsage(context) {
             });
         }
     }
+    else {
+        if (tslibDependency) {
+            addWarning({
+                message: `'tslib' should be removed as a 'dependency' as it is not referenced by shipping code.`,
+                location: formatLocation(packageJsonFile, tslibDependency)
+            });
+        }
+        else if (tslibDevDependency) {
+            addWarning({
+                message: `'tslib' should be removed as a 'devDependency' as it is not referenced by non-shipping test code.`,
+                location: formatLocation(packageJsonFile, tslibDevDependency)
+            });
+        }
+        if (tslibLockDependency && (tslibDependency || tslibDevDependency)) {
+            addWarning({
+                message: `'tslib' should be removed as a lockfile 'dependency' as it is not referenced by shipping code.`,
+                location: formatLocation(packageLockJsonFile, tslibLockDependency),
+                fixes: [{
+                    action: "removeProperty",
+                    property: tslibLockDependency.parent,
+                    object: lockDependencies,
+                    file: packageLockJsonFile
+                }]
+            });
+        }
+    }
 
+    if (tslibLockDependency && !(tslibDependency || tslibDevDependency)) {
+        addWarning({
+            message: `'tslib' should be removed as a lockfile 'dependency' as it is referenced as a 'dependency' or 'devDependency' in package.json.`,
+            location: formatLocation(packageLockJsonFile, tslibLockDependency),
+            fixes: [{
+                action: "removeProperty",
+                property: tslibLockDependency.parent,
+                object: lockDependencies,
+                file: packageLockJsonFile
+            }]
+        });
+    }
 }
 exports.verifyTslibUsage = verifyTslibUsage;
 

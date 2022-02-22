@@ -20,7 +20,7 @@ exports.formatLocation = formatLocation;
  * @returns {import("./types").PropertyAssignmentInitializer | undefined}
  */
 function pickProperty(expr, name) {
-    if (ts.isObjectLiteralExpression(expr)) {
+    if (expr && ts.isObjectLiteralExpression(expr)) {
         for (const property of expr.properties) {
             if (ts.isPropertyAssignment(property) && ts.isStringLiteral(property.name) && property.name.text === name) {
                 return /** @type {import("./types").PropertyAssignmentInitializer} */(property.initializer);
@@ -46,7 +46,7 @@ exports.tryCast = tryCast;
  * @template U
  * @param {T | U | undefined} value 
  * @param {(value: T | U) => value is U} test 
- * @returns {value is T | undefined}
+ * @returns {value is Exclude<T, U>}
  */
 function isDefinedAndNot(value, test) {
     return value !== undefined && !test(value);

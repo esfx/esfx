@@ -20,10 +20,13 @@
  * @property {string} packageName
  * @property {string} packagePath
  * @property {string} baseRelativePackageJsonPath
+ * @property {string} [baseRelativePackageLockJsonPath]
  * @property {string} baseRelativePackageTsconfigJsonPath
  * @property {Map<string, import("typescript").JsonSourceFile>} expectedContainerProjects
  * @property {import("typescript").JsonSourceFile} packageJsonFile
  * @property {import("typescript").ObjectLiteralExpression} [packageJsonObject]
+ * @property {import("typescript").JsonSourceFile} [packageLockJsonFile]
+ * @property {import("typescript").ObjectLiteralExpression} [packageLockJsonObject]
  * @property {import("./codeFix").AppendPropertyCodeFix} [dependenciesFix]
  * @property {import("typescript").ObjectLiteralExpression} [dependencies]
  * @property {import("./codeFix").AppendPropertyCodeFix} [devDependenciesFix]

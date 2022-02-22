@@ -12,10 +12,7 @@ const types = require("./types");
 const { trackChanges, applyChanges, createPatch } = require("./textChanges");
 const { applyFix, getFixDescription } = require("./codeFix");
 const { formatLocation, pickProperty, tryReadJsonFile } = require("./utils");
-const { verifyContainerTsconfigJsonStructure } = require("./rules/container/verifyContainerTsconfigJsonStructure");
-const { verifyContainerPackages } = require("./rules/container/verifyContainerPackages");
-const { verifyContainerMissingReferences } = require("./rules/container/verifyContainerMissingReferences");
-const { verifyContainerExtraneousReferences } = require("./rules/container/verifyContainerExtraneousReferences");
+const { verifyContainer } = require("./rules/container");
 const argv = require("yargs")
     .option("fix", { type: "boolean" })
     .option("interactive", { type: "boolean", default: true })
@@ -64,11 +61,7 @@ for (const base of [internalPath, packagesPath]) {
         formatLocation: (sourceFile, location) => formatLocation(basePath, sourceFile, location)
     };
 
-    const result =
-        verifyContainerTsconfigJsonStructure(context) ||
-        verifyContainerPackages(context) ||
-        verifyContainerMissingReferences(context) ||
-        verifyContainerExtraneousReferences(context);
+    const result = verifyContainer(context);
     if (result === "continue") continue;
     if (result === "break") break;
 }

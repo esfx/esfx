@@ -3,16 +3,7 @@ const ts = require("typescript");
 const fs = require("fs");
 const path = require("path");
 const { pickProperty, tryReadJsonFile } = require("../../utils");
-const { verifyPackageJsonDependencies } = require("../package/verifyPackageJsonDependenciesExists");
-const { verifyPackageTsconfigJsonStructure } = require("../package/verifyPackageTsconfigJsonStructure");
-const { verifyExpectedReferences } = require("../package/verifyExpectedReferences");
-const { verifyExpectedDependencies } = require("../package/verifyExpectedDependencies");
-const { verifyTslibUsage } = require("../package/verifyTslibUsage");
-const { verifyPackageJsonModuleTypeProperty } = require("../package/verifyPackageJsonModuleTypeProperty");
-const { verifyPackageJsonMainProperty } = require("../package/verifyPackageJsonMainProperty");
-const { verifyPackageJsonExportsProperty } = require("../package/verifyPackageJsonExportsProperty");
-const { verifyPackageJsonTypesProperty } = require("../package/verifyPackageJsonTypesProperty");
-const { verifyPackageJsonTypesVersionsProperty } = require("../package/verifyPackageJsonTypesVersionsProperty");
+const { verifyPackage } = require("../package");
 
 /**
  * @type {import("../../types").ContainerVerifierRule}
@@ -27,6 +18,9 @@ function verifyContainerPackages(context) {
         const packageJsonPath = path.resolve(packagePath, "package.json");
         if (!fs.existsSync(packageJsonPath)) continue;
 
+        const packageLockJsonPath = path.resolve(packagePath, "package-lock.json");
+        const hasPackageLock = fs.existsSync(packageLockJsonPath);
+
         const packageTsconfigJsonPath = path.resolve(packagePath, "tsconfig.json");
         if (!fs.existsSync(packageTsconfigJsonPath)) continue;
 
@@ -34,6 +28,9 @@ function verifyContainerPackages(context) {
         if (!packageJsonFile) continue;
 
         knownFiles.set(packageJsonFile.fileName, packageJsonFile);
+
+        const packageLockJsonFile = hasPackageLock ? tryReadJsonFile(packageLockJsonPath, addError) : undefined;
+        if (packageLockJsonFile) knownFiles.set(packageLockJsonFile.fileName, packageLockJsonFile);
 
         /** @type {import("typescript").JsonSourceFile} */
         const packageTsconfigJsonFile = tryReadJsonFile(packageTsconfigJsonPath, addError);
@@ -54,29 +51,21 @@ function verifyContainerPackages(context) {
             packageName,
             packagePath,
             packageJsonFile,
+            packageLockJsonFile,
             packageTsconfigJsonFile,
             expectedContainerProjects,
             get expectedProjects() { return _expectedProjects ||= collectPackageDependencies(context, context.packageJsonFile); },
             get actualProjects() { return _actualProjects || collectProjectReferences(context.packageTsconfigJsonFile); },
             get exportMapEntries() { return _exportMapEntries || collectExportMapEntries(context.packagePath); },
             baseRelativePackageJsonPath: path.relative(basePath, packageJsonPath),
+            baseRelativePackageLockJsonPath: hasPackageLock ? path.relative(basePath, packageLockJsonPath) : undefined,
             baseRelativePackageTsconfigJsonPath: path.relative(basePath, packageTsconfigJsonPath),
             addWarning,
             addError,
             formatLocation
         };
 
-        const result =
-            verifyPackageJsonDependencies(context) ||
-            verifyPackageTsconfigJsonStructure(context) ||
-            verifyExpectedReferences(context) ||
-            verifyExpectedDependencies(context) ||
-            verifyTslibUsage(context) ||
-            verifyPackageJsonModuleTypeProperty(context) ||
-            verifyPackageJsonMainProperty(context) ||
-            verifyPackageJsonExportsProperty(context) ||
-            verifyPackageJsonTypesProperty(context) ||
-            verifyPackageJsonTypesVersionsProperty(context);
+        const result = verifyPackage(context);
         if (result === "continue") continue;
         if (result === "break") break;
     }
