@@ -16,11 +16,10 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "scripts": {
-        "bundle": "esbuild src/index.ts --bundle --platform=node --outdir=dist --format=cjs --external:@esfx/cancelable --external:tslib --sourcemap"
+        "bundle": "node esbuild.cjs"
     },
     "dependencies": {
-        "@esfx/cancelable": "^1.0.0-pre.30",
-        "tslib": "^2.1.0"
+        "@esfx/cancelable": "^1.0.0-pre.30"
     },
     "devDependencies": {
         "@esfx/internal-linked-list": "^1.0.0-pre.30"

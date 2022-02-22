@@ -17,8 +17,7 @@
     },
     "dependencies": {
         "@esfx/async-waitqueue": "^1.0.0-pre.30",
-        "@esfx/cancelable": "^1.0.0-pre.30",
-        "tslib": "^2.1.0"
+        "@esfx/cancelable": "^1.0.0-pre.30"
     },
     "publishConfig": {
         "access": "public"

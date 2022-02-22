@@ -16,7 +16,6 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "tslib": "^2.1.0"
     },
     "publishConfig": {
         "access": "public"

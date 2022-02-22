@@ -23,8 +23,8 @@ async function doSomeActivity() {
     while (true) {
         // do some work asynchronously...
 
-        // indicate 'waitForActivity' can resume. Event is immediately reset to 
-        // the signaled state.
+        // indicate 'waitForActivity' can resume. Event is immediately reset to
+        // the unsignaled state.
         event.set();
     }
 }
