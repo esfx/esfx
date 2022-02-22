@@ -41,7 +41,7 @@ export class CancelError extends Error {
 /**
  * An object used to unsubscribe from a cancellation signal
  */
- export interface CancelSubscription extends Disposable {
+export interface CancelSubscription extends Disposable {
     /**
      * Unsubscribes from a cancellation signal.
      */

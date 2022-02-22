@@ -94,11 +94,14 @@ async function execBundleTask(project, args) {
 async function buildProjectWorker(projects, force) {
     const stages = composeBuildStages(projects);
     for (const stage of stages) {
-        await exec(process.execPath, [require.resolve("typescript/lib/tsc.js"), "-b", ...(force ? ["--force"] : []), ...stage.projects.map(info => info.project)]);
         if (stage.kind === "bundle") {
             for (const project of stage.projects) {
                 await execBundleTask(project, []);
+                await exec(process.execPath, [require.resolve("typescript/lib/tsc.js"), ...(force ? ["--force"] : []), "--emitDeclarationOnly", "-p", project.project], { verbose: true });
             }
+        }
+        else {
+            await exec(process.execPath, [require.resolve("typescript/lib/tsc.js"), "-b", ...(force ? ["--force"] : []), ...stage.projects.map(info => info.project)], { verbose: true });
         }
     }
 }
