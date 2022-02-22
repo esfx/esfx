@@ -1,6 +1,6 @@
 // @ts-check
 const fs = require("fs");
-const assert = /** @type {((condition: any, message?: string) => asserts condition) & typeof import("assert")} */(require("assert"));
+const assert = require("assert");
 const path = require("path");
 const ts = require("typescript");
 const chalk = /** @type {typeof import("chalk").default} */(/** @type {*} */(require("chalk")));

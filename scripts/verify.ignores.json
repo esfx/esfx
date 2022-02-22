@@ -23,5 +23,10 @@
         "Expected.*to have an 'exports' property",
         "Expected.*to have a 'types' property",
         "Expected.*to have a 'typesVersions' property"
+    ],
+    "internal/linked-list/package.json": [
+        "Expected.*to have a 'main' property",
+        "Expected.*to have an 'exports' property",
+        "Expected.*to have a 'types' property"
     ]
 }
