@@ -61,7 +61,7 @@ exports.isDefinedAndNot = isDefinedAndNot;
  function tryReadJsonFile(file, addError) {
     try {
         const data = fs.readFileSync(file, "utf8");
-        return /** @type {ts.JsonSourceFile} */(ts.createSourceFile(file, data, ts.ScriptTarget.JSON, true, ts.ScriptKind.JSON));
+        return /** @type {ts.JsonSourceFile} */(ts.createSourceFile(file, data, ts.ScriptTarget.JSON, /*setParentNodes*/ true, ts.ScriptKind.JSON));
     }
     catch (e) {
         addError({ message: `Error parsing package.json: ${e}` });

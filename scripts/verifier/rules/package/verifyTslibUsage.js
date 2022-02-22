@@ -109,7 +109,11 @@ function verifyTslibUsage(context) {
                         addError({
                             message: `'tslib' should be a 'dependency', not a 'devDependency' as it is referenced by shipping code.`,
                             location: formatLocation(packageJsonFile, tslibDevDependency),
-                            relatedLocation: formatLocation(tslibReference.file, tslibReference.range)
+                            relatedLocation: formatLocation(tslibReference.file, tslibReference.range),
+                            fixes: [
+                                { action: "removeProperty", property: tslibDevDependency },
+                                { action: "appendProperty", object: dependencies, property: ts.factory.createPropertyAssignment(tslibDevDependency.parent.name.getText(), ts.factory.createStringLiteral(tslibDevDependency.getText())) }
+                            ]
                         });
                     }
                     else {
@@ -127,7 +131,11 @@ function verifyTslibUsage(context) {
                         addError({
                             message: `'tslib' should be a 'devDependency', not a 'dependency', as it is only referenced by non-shipping test code.`,
                             location: formatLocation(packageJsonFile, tslibDependency),
-                            relatedLocation: formatLocation(tslibTestReference.file, tslibTestReference.range)
+                            relatedLocation: formatLocation(tslibTestReference.file, tslibTestReference.range),
+                            fixes: [
+                                { action: "removeProperty", property: tslibDependency },
+                                { action: "appendProperty", object: dependencies, property: ts.factory.createPropertyAssignment(tslibDependency.parent.name.getText(), ts.factory.createStringLiteral(tslibDependency.getText())) }
+                            ]
                         });
                     }
                     else {
@@ -143,19 +151,31 @@ function verifyTslibUsage(context) {
                 if (tslibDependency) {
                     addWarning({
                         message: `'tslib' should be removed as a 'dependency' as it is not referenced by shipping code.`,
-                        location: formatLocation(packageJsonFile, tslibDependency)
+                        location: formatLocation(packageJsonFile, tslibDependency),
+                        fixes: [{
+                            action: "removeProperty",
+                            property: tslibDependency
+                        }]
                     });
                 }
                 else if (tslibDevDependency) {
                     addWarning({
                         message: `'tslib' should be removed as a 'devDependency' as it is not referenced by non-shipping test code.`,
-                        location: formatLocation(packageJsonFile, tslibDevDependency)
+                        location: formatLocation(packageJsonFile, tslibDevDependency),
+                        fixes: [{
+                            action: "removeProperty",
+                            property: tslibDevDependency
+                        }]
                     });
                 }
                 if (tslibLockDependency && (tslibDependency || tslibDevDependency)) {
                     addWarning({
                         message: `'tslib' should be removed as a lockfile 'dependency' as it is not referenced by shipping code.`,
-                        location: formatLocation(packageLockJsonFile, tslibLockDependency)
+                        location: formatLocation(packageLockJsonFile, tslibLockDependency),
+                        fixes: [{
+                            action: "removeProperty",
+                            property: tslibLockDependency
+                        }]
                     });
                 }
             }
@@ -171,13 +191,21 @@ function verifyTslibUsage(context) {
         if (tslibDependency) {
             addWarning({
                 message: `'tslib' should be removed as a 'dependency' as it is not referenced by shipping code.`,
-                location: formatLocation(packageJsonFile, tslibDependency)
+                location: formatLocation(packageJsonFile, tslibDependency),
+                fixes: [{
+                    action: "removeProperty",
+                    property: tslibDependency
+                }]
             });
         }
         else if (tslibDevDependency) {
             addWarning({
                 message: `'tslib' should be removed as a 'devDependency' as it is not referenced by non-shipping test code.`,
-                location: formatLocation(packageJsonFile, tslibDevDependency)
+                location: formatLocation(packageJsonFile, tslibDevDependency),
+                fixes: [{
+                    action: "removeProperty",
+                    property: tslibDevDependency
+                }]
             });
         }
         if (tslibLockDependency && (tslibDependency || tslibDevDependency)) {
@@ -186,9 +214,7 @@ function verifyTslibUsage(context) {
                 location: formatLocation(packageLockJsonFile, tslibLockDependency),
                 fixes: [{
                     action: "removeProperty",
-                    property: tslibLockDependency.parent,
-                    object: lockDependencies,
-                    file: packageLockJsonFile
+                    property: tslibLockDependency
                 }]
             });
         }

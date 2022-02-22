@@ -1,15 +1,30 @@
 // @ts-check
 const ts = require("typescript");
 const assert = require("assert");
+const { tryCast } = require("./utils");
 
 /**
  * @typedef CodeFixBase
+ * @property {ts.JsonSourceFile} [file]
+ * @property {string} [description]
+ */
+
+/**
+ * @typedef ResolvedCodeFixBase
  * @property {ts.JsonSourceFile} file
  * @property {string} [description]
  */
 
 /**
  * @typedef RemovePropertyCodeFixBase
+ * @property {"removeProperty"} action
+ * @property {ts.ObjectLiteralExpression} [object]
+ * @property {ts.PropertyAssignment | import("./types").PropertyAssignmentInitializer} property
+ * @property {never} [antecedent]
+ */
+
+/**
+ * @typedef ResolvedRemovePropertyCodeFixBase
  * @property {"removeProperty"} action
  * @property {ts.ObjectLiteralExpression} object
  * @property {ts.PropertyAssignment} property
@@ -18,10 +33,19 @@ const assert = require("assert");
 
 /**
  * @typedef {CodeFixBase & RemovePropertyCodeFixBase} RemovePropertyCodeFix
+ * @typedef {ResolvedCodeFixBase & ResolvedRemovePropertyCodeFixBase} ResolvedRemovePropertyCodeFix
  */
 
 /**
  * @typedef RemoveElementCodeFixBase
+ * @property {"removeElement"} action
+ * @property {ts.ArrayLiteralExpression} [array]
+ * @property {ts.ObjectLiteralExpression} element
+ * @property {never} [antecedent]
+ */
+
+/**
+ * @typedef ResolvedRemoveElementCodeFixBase
  * @property {"removeElement"} action
  * @property {ts.ArrayLiteralExpression} array
  * @property {ts.ObjectLiteralExpression} element
@@ -30,6 +54,7 @@ const assert = require("assert");
 
 /**
  * @typedef {CodeFixBase & RemoveElementCodeFixBase} RemoveElementCodeFix
+ * @typedef {ResolvedCodeFixBase & ResolvedRemoveElementCodeFixBase} ResolvedRemoveElementCodeFix
  */
 
 /**
@@ -42,6 +67,7 @@ const assert = require("assert");
 
 /**
  * @typedef {CodeFixBase & AppendPropertyCodeFixBase} AppendPropertyCodeFix
+ * @typedef {ResolvedCodeFixBase & AppendPropertyCodeFixBase} ResolvedAppendPropertyCodeFix
  */
 
 /**
@@ -54,6 +80,7 @@ const assert = require("assert");
 
 /**
  * @typedef {CodeFixBase & InsertPropertyCodeFixBase} InsertPropertyCodeFix
+ * @typedef {ResolvedCodeFixBase & InsertPropertyCodeFixBase} ResolvedInsertPropertyCodeFix
  */
 
 /**
@@ -66,6 +93,7 @@ const assert = require("assert");
 
 /**
  * @typedef {CodeFixBase & AppendElementCodeFixBase} AppendElementCodeFix
+ * @typedef {ResolvedCodeFixBase & AppendElementCodeFixBase} ResolvedAppendElementCodeFix
  */
 
 /**
@@ -78,10 +106,15 @@ const assert = require("assert");
 
 /**
  * @typedef {CodeFixBase & ReplaceValueCodeFixBase} ReplaceValueCodeFix
+ * @typedef {ResolvedCodeFixBase & ReplaceValueCodeFixBase} ResolvedReplaceValueCodeFix
  */
 
 /**
  * @typedef {RemovePropertyCodeFix | RemoveElementCodeFix | AppendPropertyCodeFix | AppendElementCodeFix | InsertPropertyCodeFix | ReplaceValueCodeFix} CodeFix
+ */
+
+/**
+ * @typedef {ResolvedRemovePropertyCodeFix | ResolvedRemoveElementCodeFix | ResolvedAppendPropertyCodeFix | ResolvedAppendElementCodeFix | ResolvedInsertPropertyCodeFix | ResolvedReplaceValueCodeFix} ResolvedCodeFix
  */
 
 /**
@@ -360,12 +393,53 @@ function chainAntecedent(antecedent, tracker) {
 }
 
 /**
+ * @param {ts.Node} node
+ */
+function getJsonSourceFile(node) {
+    const sourceFile = node.getSourceFile();
+    if (sourceFile.languageVersion !== ts.ScriptTarget.JSON) throw new TypeError();
+    return /** @type {ts.JsonSourceFile} */(sourceFile);
+}
+
+/**
+ * @param {CodeFix} fix
+ * @returns {asserts fix is ResolvedCodeFix}
+ */
+function resolveFix(fix) {
+    switch (fix.action) {
+        case "removeProperty":
+            if (!ts.isPropertyAssignment(fix.property)) fix.property = fix.property.parent;
+            fix.file ??= getJsonSourceFile(fix.property);
+            fix.object ??= fix.property.parent;
+            break;
+        case "removeElement":
+            fix.file ??= getJsonSourceFile(fix.element);
+            fix.array ??= tryCast(fix.element.parent, ts.isArrayLiteralExpression) ?? assert.fail("Parent was not an array literal");
+            break;
+        case "appendProperty":
+            fix.file ??= getJsonSourceFile(fix.object);
+            break;
+        case "appendElement":
+            fix.file ??= getJsonSourceFile(fix.array);
+            break;
+        case "insertProperty":
+            fix.file ??= getJsonSourceFile(fix.afterProperty);
+            break;
+        case "replaceValue":
+            fix.file ??= getJsonSourceFile(fix.oldValue);
+            break;
+    }
+}
+
+/**
  * @param {CodeFix} fix
  * @param {import("./textChanges").ChangeTracker} tracker
  * @param {Set<CodeFix>} fixed
  */
 function applyFix(fix, tracker, fixed) {
     if (fixed.has(fix)) return;
+    resolveFix(fix);
+
     const originalTracker = tracker;
     fixed.add(fix);
 
