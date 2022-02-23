@@ -1,5 +1,4 @@
-const { build } = require('esbuild');
-build({
+module.exports = {
     entryPoints: ["src/index.ts"],
     bundle: true,
     platform: "node",
@@ -8,7 +7,5 @@ build({
     sourcemap: true,
     external: [
         "@esfx/cancelable",
-        "@esfx/async-lockable",
-        "@esfx/async-mutex"
     ]
-}).catch(e => { console.error(e); process.exit(1); });
+};

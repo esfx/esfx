@@ -15,9 +15,6 @@
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
     },
-    "scripts": {
-        "bundle": "node esbuild.cjs"
-    },
     "dependencies": {
         "@esfx/cancelable": "^1.0.0-pre.30"
     },

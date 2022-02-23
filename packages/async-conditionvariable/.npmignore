@@ -5,4 +5,4 @@ __tests__
 api-extractor.json
 tsconfig*.json
 tsconfig*.tsbuildinfo
-esbuild.cjs
+esbuild.config.js

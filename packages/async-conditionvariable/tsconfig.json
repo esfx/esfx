@@ -3,7 +3,6 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist",
-        "emitDeclarationOnly": true
     },
     "include": ["src/**/*.ts"],
     "references": [
