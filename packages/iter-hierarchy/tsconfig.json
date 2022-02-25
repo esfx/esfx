@@ -6,10 +6,13 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../internal/assert" },
-        { "path": "../../internal/guards" },
+        // dependencies
         { "path": "../equatable" },
         { "path": "../interval" },
         { "path": "../iter-ordered" },
+
+        // devDependencies
+        { "path": "../../internal/assert" },
+        { "path": "../../internal/guards" },
     ]
 }

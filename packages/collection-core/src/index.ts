@@ -14,6 +14,8 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isIterable } from "@esfx/internal-guards";
+
 export interface ReadonlyCollection<T> extends Iterable<T> {
     /**
      * Gets the number of elements in the collection.
@@ -55,8 +57,7 @@ export namespace ReadonlyCollection {
      * Tests whether a value supports the minimal representation of a `ReadonlyCollection`.
      */
     export function hasInstance(value: any): value is ReadonlyCollection<unknown> {
-        return typeof value === "object" && value !== null
-            && Symbol.iterator in value
+        return isIterable(value)
             && ReadonlyCollection.size in value
             && ReadonlyCollection.has in value;
     }
@@ -388,8 +389,7 @@ export namespace ReadonlyKeyedCollection {
      * Tests whether a value supports the minimal representation of a `ReadonlyKeyedCollection`.
      */
     export function hasInstance(value: unknown): value is ReadonlyKeyedCollection<unknown, unknown> {
-        return typeof value === "object" && value !== null
-            && Symbol.iterator in value
+        return isIterable(value)
             && ReadonlyKeyedCollection.size in value
             && ReadonlyKeyedCollection.has in value
             && ReadonlyKeyedCollection.get in value
@@ -553,8 +553,7 @@ export namespace ReadonlyKeyedMultiCollection {
      * Tests whether a value supports the minimal representation of a `ReadonlyKeyedMultiCollection`.
      */
     export function hasInstance(value: unknown): value is ReadonlyKeyedMultiCollection<unknown, unknown> {
-        return typeof value === "object" && value !== null
-            && Symbol.iterator in value
+        return isIterable(value)
             && ReadonlyKeyedMultiCollection.size in value
             && ReadonlyKeyedMultiCollection.has in value
             && ReadonlyKeyedMultiCollection.hasValue in value

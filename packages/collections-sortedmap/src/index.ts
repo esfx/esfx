@@ -14,15 +14,19 @@
    limitations under the License.
 */
 
-import /*#__INLINE__*/ { isIterable } from '@esfx/internal-guards';
-import /*#__INLINE__*/ { binarySearch } from '@esfx/internal-binarysearch';
 import { KeyedCollection, ReadonlyKeyedCollection } from "@esfx/collection-core";
-import { Comparison, Comparer } from "@esfx/equatable";
+import { Comparer, Comparison } from "@esfx/equatable";
+import /*#__INLINE__*/ { binarySearch } from '@esfx/internal-binarysearch';
+import /*#__INLINE__*/ { isIterable, isMissing } from '@esfx/internal-guards';
 
 export class SortedMap<K, V> implements KeyedCollection<K, V> {
     private _keys: K[] = [];
     private _values: V[] = [];
     private _comparer: Comparer<K>;
+
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "SortedMap" });
+    }
 
     constructor(comparer?: Comparison<K> | Comparer<K>);
     constructor(iterable?: Iterable<[K, V]>, comparer?: Comparison<K> | Comparer<K>);
@@ -31,7 +35,7 @@ export class SortedMap<K, V> implements KeyedCollection<K, V> {
         let comparer: Comparison<K> | Comparer<K> | undefined;
         if (args.length > 0) {
             const arg0 = args[0];
-            if (isIterable(arg0) || arg0 === undefined) {
+            if (isIterable(arg0) || isMissing(arg0)) {
                 iterable = arg0;
                 if (args.length > 1) comparer = args[1];
             }
@@ -116,7 +120,7 @@ export class SortedMap<K, V> implements KeyedCollection<K, V> {
         }
     }
 
-    [Symbol.toStringTag]: string;
+    declare [Symbol.toStringTag]: string;
 
     get [KeyedCollection.size]() { return this.size; }
     [KeyedCollection.has](key: K) { return this.has(key); }
@@ -127,13 +131,6 @@ export class SortedMap<K, V> implements KeyedCollection<K, V> {
     [KeyedCollection.keys]() { return this.keys(); }
     [KeyedCollection.values]() { return this.values(); }
 }
-
-Object.defineProperty(SortedMap, Symbol.toStringTag, {
-    enumerable: false,
-    configurable: true,
-    writable: true,
-    value: "SortedMap"
-});
 
 export interface ReadonlySortedMap<K, V> extends ReadonlyMap<K, V>, ReadonlyKeyedCollection<K, V> {
     readonly comparer: Comparer<K>;

@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import { isObject, isFunction, isDefined } from "@esfx/internal-guards";
+import /*#__INLINE__*/ { isObject, isFunction, isDefined } from "@esfx/internal-guards";
 
 export interface Lockable {
     /**

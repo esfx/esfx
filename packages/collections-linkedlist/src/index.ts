@@ -38,6 +38,7 @@
 
 import { Collection, ReadonlyCollection } from "@esfx/collection-core";
 import { Equaler, EqualityComparison } from "@esfx/equatable";
+import /*#__INLINE__*/ { isIterable, isMissing } from "@esfx/internal-guards";
 
 const kList = Symbol("LinkedListNode.list");
 const kPrevious = Symbol("LinkedListNode.previous");
@@ -134,12 +135,12 @@ export class LinkedList<T> implements Collection<T> {
         let equaler: EqualityComparison<T> | Equaler<T> | undefined;
         if (args.length > 0) {
             const arg0 = args[0];
-            if (arg0 === null || arg0 === undefined || (typeof arg0 === "object" && Symbol.iterator in arg0)) {
-                iterable = arg0 as Iterable<T> | undefined;
+            if (isMissing(arg0) || isIterable(arg0)) {
+                iterable = arg0;
                 if (args.length > 1) equaler = args[1];
             }
             else {
-                equaler = arg0 as EqualityComparison<T> | Equaler<T>;
+                equaler = arg0;
             }
         }
 

@@ -6,8 +6,11 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
+        // dependencies
         { "path": "../collection-core" },
         { "path": "../equatable" },
+
+        // devDependencies
         { "path": "../../internal/binarysearch" },
         { "path": "../../internal/guards" },
     ]

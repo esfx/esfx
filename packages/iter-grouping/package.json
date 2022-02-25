@@ -17,8 +17,7 @@
     },
     "dependencies": {
         "@esfx/internal-assert": "^1.0.0-pre.23",
-        "@esfx/iter-hierarchy": "^1.0.0-pre.23",
-        "tslib": "^2.1.0"
+        "@esfx/iter-hierarchy": "^1.0.0-pre.23"
     },
     "publishConfig": {
         "access": "public"

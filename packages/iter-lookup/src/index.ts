@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ * as assert from "@esfx/internal-assert";
 import { HashMap } from '@esfx/collections-hashmap';
 import { Equaler } from '@esfx/equatable';
 import { Grouping } from '@esfx/iter-grouping';

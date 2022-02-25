@@ -6,8 +6,12 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
+        // dependencies
         { "path": "../collection-core" },
         { "path": "../equatable" },
+
+        // devDependencies
         { "path": "../../internal/collections-hash" },
+        { "path": "../../internal/guards" },
     ]
 }

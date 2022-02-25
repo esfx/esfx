@@ -21,8 +21,7 @@
         "@esfx/collections-linkedlist": "^1.0.0-pre.24",
         "@esfx/collections-multimap": "^1.0.0-pre.24",
         "@esfx/collections-sortedmap": "^1.0.0-pre.24",
-        "@esfx/collections-sortedset": "^1.0.0-pre.24",
-        "tslib": "^2.1.0"
+        "@esfx/collections-sortedset": "^1.0.0-pre.24"
     },
     "publishConfig": {
         "access": "public"

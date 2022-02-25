@@ -18,8 +18,7 @@
     "dependencies": {
         "@esfx/equatable": "^1.0.0-pre.19",
         "@esfx/internal-assert": "^1.0.0-pre.23",
-        "@esfx/internal-guards": "^1.0.0-pre.23",
-        "tslib": "^2.1.0"
+        "@esfx/internal-guards": "^1.0.0-pre.23"
     },
     "publishConfig": {
         "access": "public"

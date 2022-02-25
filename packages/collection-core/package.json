@@ -17,6 +17,9 @@
     },
     "dependencies": {
     },
+    "devDependencies": {
+        "@esfx/internal-guards": "*"
+    },
     "publishConfig": {
         "access": "public"
     },

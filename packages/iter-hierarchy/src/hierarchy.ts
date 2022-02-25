@@ -14,12 +14,12 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
+import { Comparer, Comparison } from '@esfx/equatable';
+import /*#__INLINE__*/ * as assert from "@esfx/internal-assert";
 import { isIterable } from '@esfx/internal-guards';
 import { OrderedIterable } from '@esfx/iter-ordered';
-import { HierarchyProvider } from './provider';
-import { Comparison, Comparer } from '@esfx/equatable';
 import { OrderedHierarchyIterable } from './ordered';
+import { HierarchyProvider } from './provider';
 
 /**
  * Describes an object that has a navigable hierarchy.

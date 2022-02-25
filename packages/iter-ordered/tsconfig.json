@@ -6,7 +6,10 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
+        // dependencies
+        { "path": "../equatable" },
+
+        // devDependencies
         { "path": "../../internal/guards" },
-        { "path": "../equatable" }
     ]
 }

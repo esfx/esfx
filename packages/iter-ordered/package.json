@@ -16,7 +16,9 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.0.0-pre.19",
+        "@esfx/equatable": "^1.0.0-pre.19"
+    },
+    "devDependencies": {
         "@esfx/internal-guards": "^1.0.0-pre.23"
     },
     "publishConfig": {

@@ -14,8 +14,8 @@
    limitations under the License.
 */
 
+import { Equaler, Equatable } from "@esfx/equatable";
 import /*#__INLINE__*/ * as assert from "@esfx/internal-assert";
-import { Equatable, Equaler } from "@esfx/equatable";
 
 /**
  * Represents an ordinal index within an indexed collection.

@@ -20,7 +20,8 @@
         "@esfx/equatable": "^1.0.0-pre.19"
     },
     "devDependencies": {
-        "@esfx/internal-collections-hash": "^1.0.0-pre.19"
+        "@esfx/internal-collections-hash": "^1.0.0-pre.19",
+        "@esfx/internal-guards": "^1.0.0-pre.23"
     },
     "publishConfig": {
         "access": "public"

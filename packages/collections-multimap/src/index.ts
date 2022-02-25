@@ -18,6 +18,7 @@ import { Equaler } from "@esfx/equatable";
 import { KeyedMultiCollection, ReadonlyKeyedMultiCollection } from "@esfx/collection-core";
 import { HashMap } from "@esfx/collections-hashmap";
 import { HashSet, ReadonlyHashSet } from "@esfx/collections-hashset";
+import /*#__INLINE__*/ { isIterable, isMissing, isObject } from "@esfx/internal-guards";
 
 export interface MultiMapOptions<K, V> {
     keyEqualer?: Equaler<K>;
@@ -205,14 +206,14 @@ type MultiMapOverloads<K, V> =
 
 function isIterableKeyEqualerValueEqualerOverload<K, V>(args: MultiMapOverloads<K, V>): args is IterableOptionsOverload<K, V> {
     const [arg0, arg1] = args;
-    return (arg0 === null || arg0 === undefined || typeof arg0 === "object" && Symbol.iterator in arg0)
-        && (arg1 === null || arg1 === undefined || typeof arg1 === "object");
+    return (isMissing(arg0) || isIterable(arg0))
+        && (isMissing(arg1) || isObject(arg1));
 }
 
 function isCapacityKeyEqualerValueEqualerOverload<K, V>(args: MultiMapOverloads<K, V>): args is CapacityOptionsOverload<K, V> {
     const [arg0, arg1] = args;
-    return (arg0 === null || arg0 === undefined || typeof arg0 === "number")
-        && (arg1 === null || arg1 === undefined || typeof arg1 === "object");
+    return (typeof arg0 === "number")
+        && (isMissing(arg1) || isObject(arg1));
 }
 
 export interface ReadonlyMultiMap<K, V> extends KeyedMultiCollection<K, V> {

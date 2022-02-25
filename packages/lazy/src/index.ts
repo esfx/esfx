@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import { isFunction } from "@esfx/internal-guards";
+import /*#__INLINE__*/ { isFunction } from "@esfx/internal-guards";
 
 type LazyFactoryState<T> = { state: "factory", factory: (...args: any) => T, args: any[] | undefined };
 type LazyValueState<T> = { state: "value", value: T };

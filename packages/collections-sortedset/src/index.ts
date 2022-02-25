@@ -14,14 +14,18 @@
    limitations under the License.
 */
 
-import /*#__INLINE__*/ { binarySearch } from '@esfx/internal-binarysearch';
-import /*#__INLINE__*/ { isIterable } from '@esfx/internal-guards';
 import { Collection, ReadonlyCollection } from "@esfx/collection-core";
-import { Comparison, Comparer } from "@esfx/equatable";
+import { Comparer, Comparison } from "@esfx/equatable";
+import /*#__INLINE__*/ { binarySearch } from '@esfx/internal-binarysearch';
+import /*#__INLINE__*/ { isIterable, isMissing } from '@esfx/internal-guards';
 
 export class SortedSet<T> implements Collection<T> {
     private _values: T[] = [];
     private _comparer: Comparer<T>;
+
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "SortedSet" });
+    }
 
     constructor(comparer?: Comparison<T> | Comparer<T>);
     constructor(iterable?: Iterable<T>, comparer?: Comparison<T> | Comparer<T>);
@@ -30,7 +34,7 @@ export class SortedSet<T> implements Collection<T> {
         let comparer: Comparison<T> | Comparer<T> | undefined;
         if (args.length > 0) {
             const arg0 = args[0];
-            if (isIterable(arg0) || arg0 === undefined) {
+            if (isIterable(arg0) || isMissing(arg0)) {
                 iterable = arg0;
                 if (args.length > 1) comparer = args[1];
             }
@@ -115,13 +119,6 @@ export class SortedSet<T> implements Collection<T> {
     [Collection.delete](value: T) { return this.delete(value); }
     [Collection.clear]() { this.clear(); }
 }
-
-Object.defineProperty(SortedSet, Symbol.toStringTag, {
-    enumerable: false,
-    configurable: true,
-    writable: true,
-    value: "SortedSet"
-});
 
 export interface ReadonlySortedSet<T> extends ReadonlySet<T>, ReadonlyCollection<T> {
     readonly comparer: Comparer<T>;

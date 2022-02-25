@@ -47,9 +47,14 @@
 import { KeyedCollection, ReadonlyKeyedCollection } from "@esfx/collection-core";
 import { Equaler } from "@esfx/equatable";
 import /*#__INLINE__*/ { clearEntries, createHashData, deleteEntry, ensureCapacity, findEntryIndex, findEntryValue, forEachEntry, HashData, insertEntry, iterateEntries, selectEntryEntry, selectEntryKey, selectEntryValue, trimExcessEntries } from '@esfx/internal-collections-hash';
+import /*#__INLINE__*/ { isIterable, isMissing } from "@esfx/internal-guards";
 
 export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, V> {
     private _hashData: HashData<K, V>;
+
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "HashMap" });
+    }
 
     constructor(equaler?: Equaler<K>);
     constructor(iterable?: Iterable<[K, V]>, equaler?: Equaler<K>);
@@ -64,12 +69,12 @@ export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, 
                 capacity = arg0;
                 if (args.length > 1) equaler = args[1];
             }
-            else if (typeof arg0 === "object" && arg0 !== null && Symbol.iterator in arg0 || arg0 === undefined) {
-                iterable = arg0 as Iterable<[K, V]> | undefined;
+            else if (isIterable(arg0) || isMissing(arg0)) {
+                iterable = arg0;
                 if (args.length > 1) equaler = args[1];
             }
             else {
-                equaler = arg0 as Equaler<K>;
+                equaler = arg0;
             }
         }
 
@@ -142,7 +147,7 @@ export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, 
         forEachEntry(this, this._hashData.head, callback, thisArg);
     }
 
-    [Symbol.toStringTag]: string;
+    declare [Symbol.toStringTag]: string;
 
     get [ReadonlyKeyedCollection.size]() { return this.size; }
     [ReadonlyKeyedCollection.has](key: K) { return this.has(key); }
@@ -154,13 +159,6 @@ export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, 
     [KeyedCollection.delete](key: K) { return this.delete(key); }
     [KeyedCollection.clear]() { this.clear(); }
 }
-
-Object.defineProperty(HashMap, Symbol.toStringTag, {
-    enumerable: false,
-    configurable: true,
-    writable: true,
-    value: "HashMap"
-});
 
 export interface ReadonlyHashMap<K, V> extends ReadonlyMap<K, V>, ReadonlyKeyedCollection<K, V> {
     readonly equaler: Equaler<K>;

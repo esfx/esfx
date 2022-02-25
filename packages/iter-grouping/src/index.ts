@@ -30,8 +30,8 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
-import { Hierarchical, HierarchyProvider, HierarchyIterable } from '@esfx/iter-hierarchy';
+import /*#__INLINE__*/ * as assert from "@esfx/internal-assert";
+import { Hierarchical, HierarchyIterable, HierarchyProvider } from '@esfx/iter-hierarchy';
 // import { from, Query, HierarchyQuery } from './query';
 // import { isHierarchyIterable } from './internal/guards';
 
@@ -62,8 +62,7 @@ export class Grouping<K, V> implements Iterable<V> {
         assert.mustBeIterableObject(values, "values");
         assert.mustBeTypeOrUndefined(HierarchyProvider.hasInstance, provider, "provider");
         if (provider) values = HierarchyIterable.create(values, provider);
-        return HierarchyIterable.hasInstance(values) ? new HierarchyGrouping(key, values) :
-            new Grouping(key, values);
+        return HierarchyIterable.hasInstance(values) ? new HierarchyGrouping(key, values) : new Grouping(key, values);
     }
 
     // toQuery(): Query<V> {

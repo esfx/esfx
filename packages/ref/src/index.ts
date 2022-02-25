@@ -14,10 +14,9 @@
    limitations under the License.
 */
 
-import { isObject, isFunction, isDefined } from '@esfx/internal-guards';
+import /*#__INLINE__*/ { isObject, isFunction, isDefined } from '@esfx/internal-guards';
 
 const refData = Symbol.for("@esfx/ref:refData");
-
 
 /**
  * A reference to a lexical value.
@@ -135,12 +134,7 @@ export namespace ref {
         return outForValue<T>();
     }
 
-    Object.defineProperty(ref, Symbol.hasInstance, {
-        enumerable: false,
-        configurable: true,
-        writable: false,
-        value: ref.is,
-    });
+    Object.defineProperty(ref, Symbol.hasInstance, { configurable: true, value: ref.is });
 
     export const prototype = refPrototype;
 }

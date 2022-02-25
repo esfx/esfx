@@ -47,9 +47,14 @@
 import { Collection, ReadonlyCollection } from "@esfx/collection-core";
 import { Equaler } from "@esfx/equatable";
 import /*#__INLINE__*/ { clearEntries, createHashData, deleteEntry, ensureCapacity, findEntryIndex, forEachEntry, HashData, insertEntry, iterateEntries, selectEntryEntry, selectEntryKey, selectEntryValue, trimExcessEntries } from '@esfx/internal-collections-hash';
+import /*#__INLINE__*/ { isIterable, isMissing } from "@esfx/internal-guards";
 
 export class HashSet<T> implements Collection<T> {
     private _hashData: HashData<T,T>;
+
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "HashSet" });
+    }
 
     constructor(equaler?: Equaler<T>);
     constructor(iterable?: Iterable<T>, equaler?: Equaler<T>);
@@ -64,12 +69,12 @@ export class HashSet<T> implements Collection<T> {
                 capacity = arg0;
                 if (args.length > 1) equaler = args[1];
             }
-            else if (typeof arg0 === "object" && arg0 !== null && Symbol.iterator in arg0 || arg0 === undefined) {
-                iterable = arg0 as Iterable<T> | undefined;
+            else if (isIterable(arg0) || isMissing(arg0)) {
+                iterable = arg0;
                 if (args.length > 1) equaler = args[1];
             }
             else {
-                equaler = arg0 as Equaler<T>;
+                equaler = arg0;
             }
         }
         if (capacity === undefined) capacity = 0;
@@ -143,7 +148,7 @@ export class HashSet<T> implements Collection<T> {
         forEachEntry(this, this._hashData.head, callback, thisArg);
     }
 
-    [Symbol.toStringTag]: string;
+    declare [Symbol.toStringTag]: string;
 
     get [Collection.size]() { return this.size; }
     [Collection.has](value: T) { return this.has(value); }
@@ -151,13 +156,6 @@ export class HashSet<T> implements Collection<T> {
     [Collection.delete](value: T) { return this.delete(value); }
     [Collection.clear]() { this.clear(); }
 }
-
-Object.defineProperty(HashSet, Symbol.toStringTag, {
-    enumerable: false,
-    configurable: true,
-    writable: true,
-    value: "HashSet"
-});
 
 export interface ReadonlyHashSet<T> extends ReadonlySet<T>, ReadonlyCollection<T> {
     readonly equaler: Equaler<T>;

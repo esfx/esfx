@@ -18,7 +18,7 @@ import { IndexedCollection } from '@esfx/collection-core';
 import { HashMap } from '@esfx/collections-hashmap';
 import { HashSet } from '@esfx/collections-hashset';
 import { Comparer, Comparison, Equaler, EqualityComparison } from '@esfx/equatable';
-import * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ * as assert from "@esfx/internal-assert";
 import { Index } from "@esfx/interval";
 import * as fn from "@esfx/iter-fn";
 import { ConsumeOptions } from "@esfx/iter-fn";

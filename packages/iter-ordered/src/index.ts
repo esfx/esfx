@@ -31,7 +31,7 @@
 */
 
 import { Comparison, Comparer } from "@esfx/equatable";
-import { isIterable } from "@esfx/internal-guards";
+import /*#__INLINE__*/ { isIterable } from "@esfx/internal-guards";
 
 /**
  * Represents an `Iterable` that is inherently ordered.

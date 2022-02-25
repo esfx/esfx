@@ -2,6 +2,7 @@
     "name": "@esfx/internal-deprecate",
     "version": "1.0.0-pre.24",
     "description": "This package provides internal utilities for '@esfx' and is not intended for use in user-code.",
+    "private": true,
     "type": "commonjs",
     "main": "./dist/index.js",
     "exports": "./dist/index.js",
