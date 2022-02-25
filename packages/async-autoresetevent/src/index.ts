@@ -36,6 +36,7 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isBoolean } from "@esfx/internal-guards";
 import { Cancelable } from "@esfx/cancelable";
 import { WaitQueue } from "@esfx/async-waitqueue";
 
@@ -52,7 +53,7 @@ export class AsyncAutoResetEvent {
      * @param initialState A value indicating whether to set the initial state to signaled.
      */
     constructor(initialState = false) {
-        if (typeof initialState !== "boolean") throw new TypeError("Boolean expected: initialState.");
+        if (!isBoolean(initialState)) throw new TypeError("Boolean expected: initialState.");
         this._signaled = initialState;
     }
 

@@ -8,6 +8,7 @@
     "references": [
         // devDependencies:
         { "path": "../async-canceltoken" },
+        { "path": "../../internal/guards" },
 
         // dependencies:
         { "path": "../async-waitqueue" },
