@@ -1,17 +1,16 @@
 // @ts-check
 const ts = require("typescript");
-const path = require("path");
-const { build } = require('esbuild');
+const { createInliner } = require("./inliner");
 
 /**
  * @param {ts.SolutionBuilderHost} host 
  * @param {ts.SolutionBuilder} builder 
  */
-async function buildSolution(host, builder) {
+function buildSolution(host, builder) {
     /** @type {ts.ResolvedConfigFileName[]} */
     const projects = [];
     while (true) {
-        const invalidatedProject = await buildNextInvalidatedProject(host, builder);
+        const invalidatedProject = buildNextInvalidatedProject(host, builder);
         if (!invalidatedProject) break;
         projects.push(invalidatedProject.project);
     }
@@ -21,21 +20,17 @@ exports.buildSolution = buildSolution;
 
 /**
  * @param {ts.SolutionBuilderHost} host 
- * @param {ts.SolutionBuilder} builder 
+ * @param {ts.SolutionBuilder<ts.BuilderProgram>} builder 
  */
-async function buildNextInvalidatedProject(host, builder) {
+function buildNextInvalidatedProject(host, builder) {
     const invalidatedProject = builder.getNextInvalidatedProject();
     if (!invalidatedProject) return;
-
-    const packageDir = path.dirname(invalidatedProject.project);
-    const esbuildConfigJsFile = path.join(packageDir, "esbuild.config.js");
-    if (host.fileExists(esbuildConfigJsFile)) {
-        invalidatedProject.done(/*cancellationToken*/ undefined, /*writeFile*/ (fileName, data, writeBom) => {
-            // skip '.js' and '.js.map' files files
-            if (fileName.endsWith(".js") || fileName.endsWith(".js.map")) return;
-            host.writeFile(fileName, data, writeBom);
-        });
-        await build({ ...require(esbuildConfigJsFile), absWorkingDir: packageDir });
+    if (invalidatedProject.kind === ts.InvalidatedProjectKind.Build) {
+        invalidatedProject.done(
+            /*cancellationToken*/ undefined,
+            /*writeFile*/ undefined,
+            /*customTransformers*/ { before: [createInliner(invalidatedProject.getProgram())] }
+        );
     }
     else {
         invalidatedProject.done();

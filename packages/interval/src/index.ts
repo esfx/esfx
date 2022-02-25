@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ * as assert from "@esfx/internal-assert";
 import { Equatable, Equaler } from "@esfx/equatable";
 
 /**

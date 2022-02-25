@@ -46,7 +46,7 @@
 
 import { Collection, ReadonlyCollection } from "@esfx/collection-core";
 import { Equaler } from "@esfx/equatable";
-import { HashData, createHashData, findEntryIndex, insertEntry, deleteEntry, clearEntries, ensureCapacity, trimExcessEntries, iterateEntries, selectEntryKey, selectEntryValue, selectEntryEntry, forEachEntry } from '@esfx/internal-collections-hash/dist/hashData';
+import /*#__INLINE__*/ { clearEntries, createHashData, deleteEntry, ensureCapacity, findEntryIndex, forEachEntry, HashData, insertEntry, iterateEntries, selectEntryEntry, selectEntryKey, selectEntryValue, trimExcessEntries } from '@esfx/internal-collections-hash';
 
 export class HashSet<T> implements Collection<T> {
     private _hashData: HashData<T,T>;

@@ -20,7 +20,7 @@ const enqueueWatchProject = createProjectQueue(watchProjects);
  * @param {string} project
  */
 function watchProject(project) {
-    enqueueWatchProject(project);
+    return enqueueWatchProject(project);
 }
 exports.watchProject = watchProject;
 

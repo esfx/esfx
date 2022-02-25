@@ -14,7 +14,6 @@
    limitations under the License.
 */
 
-import { isIterable, isObject, isDefined, isNumber } from "@esfx/internal-guards";
 import { Equaler } from "@esfx/equatable";
 import { KeyedMultiCollection, ReadonlyKeyedMultiCollection } from "@esfx/collection-core";
 import { HashMap } from "@esfx/collections-hashmap";
@@ -31,10 +30,14 @@ export class MultiMap<K, V> implements KeyedMultiCollection<K, V> {
     private _valueEqualer: Equaler<V>;
     private _size = 0;
 
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "MultiMap" });
+    }
+
     constructor(options?: MultiMapOptions<K, V>);
     constructor(iterable?: Iterable<[K, V]>, options?: MultiMapOptions<K, V>);
     constructor(capacity: number, options?: MultiMapOptions<K, V>);
-    constructor(...args: [MultiMapOptions<K, V>?] | [number, MultiMapOptions<K, V>?] | [Iterable<[K, V]>?, MultiMapOptions<K, V>?]) {
+    constructor(...args: MultiMapOverloads<K, V>) {
         let capacity: number | undefined;
         let iterable: Iterable<[K, V]> | undefined;
         let options: MultiMapOptions<K, V> | undefined;
@@ -45,11 +48,14 @@ export class MultiMap<K, V> implements KeyedMultiCollection<K, V> {
             capacity = 0;
             if (isIterableKeyEqualerValueEqualerOverload(args)) {
                 [iterable, options = {}] = args;
-            } else {
+            }
+            else {
                 options = {};
             }
         }
-        const { keyEqualer = Equaler.defaultEqualer, valueEqualer = Equaler.defaultEqualer } = options;
+
+        const keyEqualer = options?.keyEqualer ?? Equaler.defaultEqualer;
+        const valueEqualer = options?.valueEqualer ?? Equaler.defaultEqualer;
         this._map = new HashMap<K, HashSet<V>>(capacity, keyEqualer);
         this._keyEqualer = keyEqualer;
         this._valueEqualer = valueEqualer;
@@ -170,7 +176,7 @@ export class MultiMap<K, V> implements KeyedMultiCollection<K, V> {
         }
     }
 
-    [Symbol.toStringTag]: string;
+    declare [Symbol.toStringTag]: string;
 
     // #region ReadonlyKeyedMultiCollection
     get [ReadonlyKeyedMultiCollection.size]() { return this.size; }
@@ -189,29 +195,24 @@ export class MultiMap<K, V> implements KeyedMultiCollection<K, V> {
     // #endergion KeyedMultiCollection
 }
 
-Object.defineProperty(MultiMap, Symbol.toStringTag, {
-    enumerable: false,
-    configurable: true,
-    writable: true,
-    value: "MultiMap"
-});
-
-type OptionsOverload<K, V> = [MultiMapOptions<K, V>?];
-type IterableOptionsOverload<K, V> = [Iterable<[K, V]>?, MultiMapOptions<K, V>?];
-type CapacityOptionsOverload<K, V> = [number, MultiMapOptions<K, V>?];
+type OptionsOverload<K, V> = [options?: MultiMapOptions<K, V>];
+type IterableOptionsOverload<K, V> = [iterable?: Iterable<[K, V]>, options?: MultiMapOptions<K, V>];
+type CapacityOptionsOverload<K, V> = [capacity: number, options?: MultiMapOptions<K, V>];
 type MultiMapOverloads<K, V> =
     | OptionsOverload<K, V>
     | IterableOptionsOverload<K, V>
     | CapacityOptionsOverload<K, V>;
 
 function isIterableKeyEqualerValueEqualerOverload<K, V>(args: MultiMapOverloads<K, V>): args is IterableOptionsOverload<K, V> {
-    return (args.length < 1 || !isDefined(args[0]) || isIterable(args[0]))
-        && (args.length < 2 || !isDefined(args[1]) || isObject(args[1]));
+    const [arg0, arg1] = args;
+    return (arg0 === null || arg0 === undefined || typeof arg0 === "object" && Symbol.iterator in arg0)
+        && (arg1 === null || arg1 === undefined || typeof arg1 === "object");
 }
 
 function isCapacityKeyEqualerValueEqualerOverload<K, V>(args: MultiMapOverloads<K, V>): args is CapacityOptionsOverload<K, V> {
-    return (args.length < 1 || isNumber(args[0]))
-        && (args.length < 2 || !isDefined(args[1]) || isObject(args[1]));
+    const [arg0, arg1] = args;
+    return (arg0 === null || arg0 === undefined || typeof arg0 === "number")
+        && (arg1 === null || arg1 === undefined || typeof arg1 === "object");
 }
 
 export interface ReadonlyMultiMap<K, V> extends KeyedMultiCollection<K, V> {

@@ -18,7 +18,7 @@ const enqueueCleanProject = createProjectQueue(cleanProjects);
  * @param {string} project
  */
 function cleanProject(project) {
-    enqueueCleanProject(project);
+    return enqueueCleanProject(project);
 }
 
 exports.cleanProject = cleanProject;

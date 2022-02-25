@@ -46,7 +46,7 @@
 
 import { KeyedCollection, ReadonlyKeyedCollection } from "@esfx/collection-core";
 import { Equaler } from "@esfx/equatable";
-import { HashData, createHashData, findEntryIndex, findEntryValue, insertEntry, deleteEntry, clearEntries, ensureCapacity, trimExcessEntries, iterateEntries, selectEntryKey, selectEntryValue, selectEntryEntry, forEachEntry } from '@esfx/internal-collections-hash/dist/hashData';
+import /*#__INLINE__*/ { clearEntries, createHashData, deleteEntry, ensureCapacity, findEntryIndex, findEntryValue, forEachEntry, HashData, insertEntry, iterateEntries, selectEntryEntry, selectEntryKey, selectEntryValue, trimExcessEntries } from '@esfx/internal-collections-hash';
 
 export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, V> {
     private _hashData: HashData<K, V>;

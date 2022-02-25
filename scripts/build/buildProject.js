@@ -10,7 +10,7 @@ const { buildSolution } = require("./buildSolution");
 async function buildProjects(projects, force) {
     const host = ts.createSolutionBuilderHost();
     const builder = ts.createSolutionBuilder(host, projects, { force });
-    await buildSolution(host, builder);
+    buildSolution(host, builder);
 }
 
 const enqueueBuildProject = createProjectQueue(projects => buildProjects(projects, /*force*/ false));

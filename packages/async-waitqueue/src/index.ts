@@ -37,7 +37,7 @@
 */
 
 import { Cancelable, CancelError } from "@esfx/cancelable";
-import { LinkedList, listAdd, listCreate, listRemove } from "@esfx/internal-linked-list";
+import /*#__INLINE__*/ { LinkedList, listAdd, listCreate, listRemove } from "@esfx/internal-linked-list";
 
 interface Entry<T> {
     resolve(value: T | PromiseLike<T>): void;

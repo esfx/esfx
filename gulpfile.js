@@ -24,6 +24,22 @@ const yargs = require("yargs")
 
 const { argv } = yargs;
 
+function makeProjects(projects) {
+    const builders = [];
+    const cleaners = [];
+    for (const project of projects) {
+        const build = { [project]: () => buildProject(project) }[project];
+        const clean = { [`clean:${project}`]: () => cleanProject(project) }[`clean:${project}`];
+        gulp.task(project, build);
+        gulp.task(`clean:${project}`, clean);
+        builders.push(build);
+        cleaners.push(clean);
+    }
+    const build = gulp.parallel(builders);
+    const clean = gulp.parallel(cleaners);
+    return { build, clean };
+}
+
 const internalPackages = fs.readdirSync("internal")
     .map(name => `internal/${name}`)
     .filter(pkg => fs.existsSync(`${pkg}/tsconfig.json`))
@@ -86,22 +102,6 @@ const verify = () => {
 gulp.task("verify", verify);
 
 gulp.task("default", gulp.series(build, verify, test));
-
-function makeProjects(projects) {
-    const builders = [];
-    const cleaners = [];
-    for (const project of projects) {
-        const build = { [project]: () => buildProject(project) }[project];
-        const clean = { [`clean:${project}`]: () => cleanProject(project) }[`clean:${project}`];
-        gulp.task(project, build);
-        gulp.task(`clean:${project}`, clean);
-        builders.push(build);
-        cleaners.push(clean);
-    }
-    const build = gulp.parallel(builders);
-    const clean = gulp.parallel(cleaners);
-    return { build, clean };
-}
 
 const docPackagePattern = argv.docPackagePattern && new RegExp(argv.docPackagePattern, "i");
 const docPackages = publicPackages.filter(docPackage => fs.existsSync(path.resolve(docPackage, "api-extractor.json")) && (!docPackagePattern || docPackagePattern.test(docPackage)));

@@ -14,8 +14,8 @@
    limitations under the License.
 */
 
-import { binarySearch } from '@esfx/internal-binarysearch';
-import { isIterable } from '@esfx/internal-guards';
+import /*#__INLINE__*/ { binarySearch } from '@esfx/internal-binarysearch';
+import /*#__INLINE__*/ { isIterable } from '@esfx/internal-guards';
 import { Collection, ReadonlyCollection } from "@esfx/collection-core";
 import { Comparison, Comparer } from "@esfx/equatable";
 

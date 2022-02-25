@@ -36,11 +36,11 @@
    limitations under the License.
 */
 
-import { CancelableSource, Cancelable, CancelSignal, CancelSubscription, CancelError } from "@esfx/cancelable";
+import { Cancelable, CancelableSource, CancelError, CancelSignal, CancelSubscription } from "@esfx/cancelable";
 import { Disposable } from "@esfx/disposable";
-import { LinkedList, LinkedListNode, listAdd, listCreate, listRemove } from "@esfx/internal-linked-list";
+import /*#__INLINE__*/ { LinkedList, LinkedListNode, listAdd, listCreate, listRemove } from "@esfx/internal-linked-list";
 
-export { CancelSubscription, CancelError } from "@esfx/cancelable";
+export { CancelError, CancelSubscription } from "@esfx/cancelable";
 
 // #region DOM AbortController/AbortSignal compatibility
 
