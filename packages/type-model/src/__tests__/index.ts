@@ -49,7 +49,9 @@ import {
     Intersect,
     Assign,
     AsyncIteratedType,
-    Union
+    Union,
+    RequiredKeyof,
+    OptionalKeyof,
 } from "..";
 
 it("type-model", () => {
@@ -848,3 +850,19 @@ declare const testSymbol: unique symbol;
     ];
 }
 // #endregion Assign tests
+
+// #region RequiredKeyof tests
+{
+    type _ = [
+        Test<ExpectType<RequiredKeyof<{ a: 1, b: 2, c?: 3 }>, "a" | "b">>,
+    ]
+}
+// #endregion RequiredKeyof tests
+
+// #region OptionalKeyof tests
+{
+    type _ = [
+        Test<ExpectType<OptionalKeyof<{ a: 1, b: 2, c?: 3 }>, "c">>,
+    ]
+}
+// #endregion OptionalKeyof tests

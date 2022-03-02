@@ -21,5 +21,8 @@
     "dependencies": {
         "@esfx/disposable": "^1.0.0-pre.30"
     },
+    "devDependencies": {
+        "@esfx/internal-guards": "^1.0.0-pre.23"
+    },
     "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b"
 }

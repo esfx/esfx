@@ -20,7 +20,7 @@ type LazyFactoryState<T> = { state: "factory", factory: (...args: any) => T, arg
 type LazyValueState<T> = { state: "value", value: T };
 type LazyResolvingState = { state: "resolving" };
 type LazyErrorState = { state: "error", error: unknown };
-type LazyState<T> = 
+type LazyState<T> =
     | LazyFactoryState<T>
     | LazyValueState<T>
     | LazyResolvingState
@@ -31,7 +31,7 @@ const noopFactoryState: LazyFactoryState<any> = createFactoryState(noop, /*args*
 const resolvingState: LazyResolvingState = { state: "resolving" };
 
 function createFactoryState<T>(factory: () => T, args: any[] | undefined): LazyFactoryState<T> {
-    return { state: "factory", factory, args };;
+    return { state: "factory", factory, args };
 }
 
 function createValueState<T>(value: T): LazyValueState<T> {
@@ -78,6 +78,7 @@ export class Lazy<T> {
     }
 
     static from<T, A extends any[]>(factory: (...args: A) => T, ...args: A) {
+        if (!isFunction(factory)) throw new TypeError("Function expected: factory");
         const lazy = new Lazy<T>(noop);
         lazy._state = createFactoryState(factory, args);
         return lazy;

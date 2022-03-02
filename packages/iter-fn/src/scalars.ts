@@ -14,18 +14,18 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
-import { Equaler, Comparer, Comparison, EqualityComparison } from "@esfx/equatable";
+import /*#__INLINE__*/ { isFunction, isInteger, isIterableObject, isNumber, isObject, isPositiveInteger, isUndefined } from "@esfx/internal-guards";
 import { IndexedCollection } from '@esfx/collection-core';
-import { HashSet } from "@esfx/collections-hashset";
 import { HashMap } from "@esfx/collections-hashmap";
-import { Lookup } from "@esfx/iter-lookup";
+import { HashSet } from "@esfx/collections-hashset";
+import { Comparer, Comparison, Equaler, EqualityComparison } from "@esfx/equatable";
 import { identity, T } from '@esfx/fn';
-import { consume, empty, ConsumeOptions } from './queries';
-import { prepend, takeRight } from './subqueries';
-import { createGroupings, flowHierarchy } from './internal/utils';
-import { HierarchyIterable } from '@esfx/iter-hierarchy';
 import { Index } from "@esfx/interval";
+import { HierarchyIterable } from '@esfx/iter-hierarchy';
+import { Lookup } from "@esfx/iter-lookup";
+import { createGroupings, flowHierarchy } from './internal/utils';
+import { consume, ConsumeOptions, empty } from './queries';
+import { prepend, takeRight } from './subqueries';
 
 /**
  * Computes a scalar value by applying an accumulator callback over each element.
@@ -55,9 +55,9 @@ export function reduce<T, U>(source: Iterable<T>, accumulator: (current: U, elem
  */
 export function reduce<T, U, R>(source: Iterable<T>, accumulator: (current: U, element: T, offset: number) => U, seed: U, resultSelector: (result: U, count: number) => R): R;
 export function reduce<T>(source: Iterable<T>, accumulator: (current: T, element: T, offset: number) => T, seed?: T, resultSelector: (result: T, count: number) => T = identity): T {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(accumulator, "accumulator");
-    assert.mustBeFunction(resultSelector, "resultSelector");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(accumulator)) throw new TypeError("Function expected: accumulator");
+    if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
     let hasCurrent = arguments.length > 2;
     let current = seed;
     let count = 0;
@@ -102,9 +102,9 @@ export function reduceRight<T, U>(source: Iterable<T>, accumulator: (current: U,
  */
 export function reduceRight<T, U, R>(source: Iterable<T>, accumulator: (current: U, element: T, offset: number) => U, seed: U, resultSelector: (result: U, count: number) => R): R;
 export function reduceRight<T>(source: Iterable<T>, accumulator: (current: T, element: T, offset: number) => T, seed?: T, resultSelector: (result: T, count: number) => T = identity): T {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(accumulator, "accumulator");
-    assert.mustBeFunction(resultSelector, "resultSelector");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(accumulator)) throw new TypeError("Function expected: accumulator");
+    if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
     const sourceArray = toArray<T>(source);
     let hasCurrent = arguments.length > 2;
     let current = seed;
@@ -131,8 +131,8 @@ export function reduceRight<T>(source: Iterable<T>, accumulator: (current: T, el
  * @category Scalar
  */
 export function count<T>(source: Iterable<T>, predicate: (element: T) => boolean = T): number {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
 
     if (predicate === T) {
         if (Array.isArray(source)) return source.length;
@@ -166,8 +166,8 @@ export function first<T, U extends T>(source: Iterable<T>, predicate: (element: 
  */
 export function first<T>(source: Iterable<T>, predicate?: (element: T) => boolean): T | undefined;
 export function first<T>(source: Iterable<T>, predicate: (element: T) => boolean = T): T | undefined {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     for (const element of source) {
         if (predicate(element)) {
             return element;
@@ -195,8 +195,8 @@ export function last<T, U extends T>(source: Iterable<T>, predicate: (element: T
  */
 export function last<T>(source: Iterable<T>, predicate?: (element: T) => boolean): T | undefined;
 export function last<T>(source: Iterable<T>, predicate: (element: T) => boolean = T): T | undefined {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     let result: T | undefined;
     for (const element of source) {
         if (predicate(element)) {
@@ -223,8 +223,8 @@ export function single<T, U extends T>(source: Iterable<T>, predicate: (element:
  */
 export function single<T>(source: Iterable<T>, predicate?: (element: T) => boolean): T | undefined;
 export function single<T>(source: Iterable<T>, predicate: (element: T) => boolean = T) {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     let hasResult = false;
     let result: T | undefined;
     for (const element of source) {
@@ -248,10 +248,10 @@ export function single<T>(source: Iterable<T>, predicate: (element: T) => boolea
  * @category Scalar
  */
 export function minBy<T, K>(source: Iterable<T>, keySelector: (value: T) => K, keyComparer: Comparison<K> | Comparer<K> = Comparer.defaultComparer): T | undefined {
-    if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
+    if (isFunction(keyComparer)) keyComparer = Comparer.create(keyComparer);
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
     let hasResult = false;
     let result: T | undefined;
     let resultKey: K | undefined;
@@ -278,9 +278,9 @@ export function minBy<T, K>(source: Iterable<T>, keySelector: (value: T) => K, k
  * @category Scalar
  */
 export function min<T>(source: Iterable<T>, comparer: Comparison<T> | Comparer<T> = Comparer.defaultComparer): T | undefined {
-    if (typeof comparer === "function") comparer = Comparer.create(comparer);
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeType(Comparer.hasInstance, comparer, "comparer");
+    if (isFunction(comparer)) comparer = Comparer.create(comparer);
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!Comparer.hasInstance(comparer)) throw new TypeError("Comparer expected: comparer");
     return minBy(source, identity, comparer);
 }
 
@@ -293,10 +293,10 @@ export function min<T>(source: Iterable<T>, comparer: Comparison<T> | Comparer<T
  * @category Scalar
  */
 export function maxBy<T, K>(source: Iterable<T>, keySelector: (value: T) => K, keyComparer: Comparison<K> | Comparer<K> = Comparer.defaultComparer): T | undefined {
-    if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
+    if (isFunction(keyComparer)) keyComparer = Comparer.create(keyComparer);
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
     let hasResult = false;
     let result: T | undefined;
     let resultKey: K | undefined;
@@ -323,9 +323,9 @@ export function maxBy<T, K>(source: Iterable<T>, keySelector: (value: T) => K, k
  * @category Scalar
  */
 export function max<T>(source: Iterable<T>, comparer: Comparison<T> | Comparer<T> = Comparer.defaultComparer): T | undefined {
-    if (typeof comparer === "function") comparer = Comparer.create(comparer);
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeType(Comparer.hasInstance, comparer, "comparer");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (isFunction(comparer)) comparer = Comparer.create(comparer);
+    if (!Comparer.hasInstance(comparer)) throw new TypeError("Comparer expected: comparer");
     return maxBy(source, identity, comparer);
 }
 
@@ -338,8 +338,8 @@ export function max<T>(source: Iterable<T>, comparer: Comparison<T> | Comparer<T
  * @category Scalar
  */
 export function some<T>(source: Iterable<T>, predicate: (element: T) => boolean = T): boolean {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     for (const element of source) {
         if (predicate(element)) {
             return true;
@@ -365,8 +365,8 @@ export function every<T, U extends T>(source: Iterable<T>, predicate: (element: 
  */
 export function every<T>(source: Iterable<T>, predicate: (element: T) => boolean): boolean;
 export function every<T>(source: Iterable<T>, predicate: (element: T) => boolean): boolean {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     let hasMatchingElements = false;
     for (const element of source) {
         if (!predicate(element)) {
@@ -391,6 +391,8 @@ export function unzip<T extends readonly any[] | []>(source: Iterable<T>): { [I 
  */
 export function unzip<T, U extends readonly any[] | []>(source: Iterable<T>, partSelector: (value: T) => U): { [I in keyof U]: U[I][]; };
 export function unzip<T extends readonly any[] | []>(source: Iterable<T>, partSelector: (value: T) => T = identity): any {
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(partSelector)) throw new TypeError("Function expected: partSelector");
     const result: any[][] = [];
     let length = -1;
     for (const element of source) {
@@ -416,8 +418,8 @@ export function unzip<T extends readonly any[] | []>(source: Iterable<T>, partSe
  * @category Scalar
  */
 export function forEach<T>(source: Iterable<T>, callback: (element: T, offset: number) => void): void {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(callback, "callback");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(callback)) throw new TypeError("Function expected: callback");
     let offset = 0;
     for (const element of source) {
         callback(element, offset++);
@@ -442,9 +444,9 @@ export function toMap<T, K>(source: Iterable<T>, keySelector: (element: T) => K)
  */
 export function toMap<T, K, V>(source: Iterable<T>, keySelector: (element: T) => K, elementSelector: (element: T) => V): Map<K, V>;
 export function toMap<T, K, V>(source: Iterable<T>, keySelector: (element: T) => K, elementSelector: (element: T) => T | V = identity) {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(elementSelector, "elementSelector");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
     const map = new Map<K, T | V>();
     for (const item of source) {
         const key = keySelector(item);
@@ -478,10 +480,10 @@ export function toHashMap<T, K, V>(source: Iterable<T>, keySelector: (element: T
         keyEqualer = elementSelector;
         elementSelector = identity;
     }
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(elementSelector, "elementSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     const map = new HashMap<K, T | V>(keyEqualer);
     for (const item of source) {
         const key = keySelector(item);
@@ -507,8 +509,8 @@ export function toSet<T>(source: Iterable<T>): Set<T>;
  */
 export function toSet<T, V>(source: Iterable<T>, elementSelector: (element: T) => V): Set<V>;
 export function toSet<T, V>(source: Iterable<T>, elementSelector: (element: T) => T | V = identity) {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(elementSelector, "elementSelector");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
     const set = new Set<T | V>();
     for (const item of source) {
         const element = elementSelector(item);
@@ -539,9 +541,9 @@ export function toHashSet<T>(source: Iterable<T>, elementSelector: ((element: T)
         equaler = elementSelector;
         elementSelector = identity;
     }
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(elementSelector, "elementSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, equaler, "equaler");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
+    if (!isUndefined(equaler) && !Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     const set = new HashSet<T>(equaler);
     for (const item of source) {
         const element = elementSelector(item);
@@ -566,8 +568,8 @@ export function toArray<T>(source: Iterable<T>): T[];
  */
 export function toArray<T, V>(source: Iterable<T>, elementSelector: (element: T) => V): V[];
 export function toArray<T>(source: Iterable<T>, elementSelector: (element: T) => T = identity): T[] {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(elementSelector, "elementSelector");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
     const result: T[] = [];
     for (const element of source) {
         result.push(elementSelector(element));
@@ -883,11 +885,11 @@ export function toObject<T, V>(source: Iterable<T>, prototype: object | null | u
  */
 export function toObject<T, V>(source: Iterable<T>, prototype: object | null | undefined, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => V, descriptorSelector?: (key: PropertyKey, value: V) => PropertyDescriptor): object;
 export function toObject<T>(source: Iterable<T>, prototype: object | null = Object.prototype, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => T = identity, descriptorSelector: (key: PropertyKey, value: T) => PropertyDescriptor = makeDescriptor): object {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeObjectOrNull(prototype, "prototype");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(elementSelector, "elementSelector");
-    assert.mustBeFunction(descriptorSelector, "descriptorSelector");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isObject(prototype) && prototype !== null) throw new TypeError("Object expected: prototype");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
+    if (!isFunction(descriptorSelector)) throw new TypeError("Function expected: descriptorSelector");
     const obj = prototype === Object.prototype ? {} : Object.create(prototype);
     for (const item of source) {
         const key = keySelector(item);
@@ -922,10 +924,10 @@ export function toLookup<T, K, V>(source: Iterable<T>, keySelector: (element: T)
         keyEqualer = elementSelector;
         elementSelector = identity;
     }
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(elementSelector, "elementSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return new Lookup(createGroupings(source, keySelector, elementSelector, keyEqualer), keyEqualer);
 }
 
@@ -938,8 +940,8 @@ export function toLookup<T, K, V>(source: Iterable<T>, keySelector: (element: T)
  * @category Subquery
  */
 export function into<T, S extends Iterable<T>, R>(source: S, callback: (source: S) => R): R {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(callback, "callback");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(callback)) throw new TypeError("Function expected: callback");
     return callback(source);
 }
 
@@ -959,12 +961,12 @@ export function sum(source: Iterable<number>): number;
  */
 export function sum<T>(source: Iterable<T>, elementSelector: (element: T) => number): number;
 export function sum(source: Iterable<number>, elementSelector: (element: number) => number = identity): number {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(elementSelector, "elementSelector");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
     let sum = 0;
     for (const value of source) {
         const result = elementSelector(value);
-        if (typeof result !== "number") throw new TypeError();
+        if (!isNumber(result)) throw new TypeError("Number expected");
         sum += result;
     }
     return sum;
@@ -986,13 +988,13 @@ export function average(source: Iterable<number>): number;
  */
 export function average<T>(source: Iterable<T>, elementSelector: (element: T) => number): number;
 export function average(source: Iterable<number>, elementSelector: (element: number) => number = identity): number {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunctionOrUndefined(elementSelector, "elementSelector");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
     let sum = 0;
     let count = 0;
     for (const value of source) {
         const result = elementSelector(value);
-        if (typeof result !== "number") throw new TypeError();
+        if (!isNumber(result)) throw new TypeError("Number expected");
         sum += result;
         count++;
     }
@@ -1055,8 +1057,8 @@ export function span<T, U extends T>(source: Iterable<T>, predicate: (element: T
  */
 export function span<T>(source: Iterable<T>, predicate: (element: T, offset: number) => boolean): [Iterable<T>, Iterable<T>];
 export function span<T>(source: Iterable<T>, predicate: (element: T, offset: number) => boolean): [Iterable<T>, Iterable<T>] {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     const prefix: T[] = [];
     const iterator = source[Symbol.iterator]();
     let offset = 0;
@@ -1103,8 +1105,8 @@ export function spanUntil<T>(source: HierarchyIterable<T>, predicate: (element: 
  */
 export function spanUntil<T>(source: Iterable<T>, predicate: (element: T, offset: number) => boolean): [Iterable<T>, Iterable<T>];
 export function spanUntil<T>(source: Iterable<T>, predicate: (element: T, offset: number) => boolean): [Iterable<T>, Iterable<T>] {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     const prefix: T[] = [];
     const iterator = source[Symbol.iterator]();
     let offset = 0;
@@ -1151,14 +1153,12 @@ export function correspondsBy<T, K>(left: Iterable<T>, right: Iterable<T>, leftK
         keyEqualer = rightKeySelector;
         rightKeySelector = leftKeySelector;
     }
-    if (typeof keyEqualer === "function") {
-        keyEqualer = Equaler.create(keyEqualer);
-    }
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeFunction(leftKeySelector, "leftKeySelector");
-    assert.mustBeFunction(rightKeySelector, "rightKeySelector");
-    assert.mustBeType(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (isFunction(keyEqualer)) keyEqualer = Equaler.create(keyEqualer);
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
+    if (!isFunction(leftKeySelector)) throw new TypeError("Function expected: leftKeySelector");
+    if (!isFunction(rightKeySelector)) throw new TypeError("Function expected: rightKeySelector");
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     const leftIterator = left[Symbol.iterator]();
     let leftResult: IteratorResult<T> | undefined;
     try {
@@ -1202,9 +1202,6 @@ export function corresponds<T>(left: Iterable<T>, right: Iterable<T>, equaler?: 
  */
 export function corresponds<T, U>(left: Iterable<T>, right: Iterable<U>, equaler: (left: T, right: U) => boolean): boolean;
 export function corresponds<T, U>(left: Iterable<T>, right: Iterable<U>, equaler: EqualityComparison<T | U> | Equaler<T | U> = Equaler.defaultEqualer): boolean {
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeObject(equaler, "equaler");
     return correspondsBy(left, right, identity, identity, equaler);
 }
 
@@ -1217,15 +1214,15 @@ export function corresponds<T, U>(left: Iterable<T>, right: Iterable<U>, equaler
  * @category Scalar
  */
 export function elementAt<T>(source: Iterable<T>, offset: number | Index): T | undefined {
-    assert.mustBeIterableObject(source, "source")
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
     let isFromEnd = false;
-    if (typeof offset === "number") {
-        assert.mustBeInteger(offset, "offset");
+    if (isNumber(offset)) {
+        if (!isInteger(offset)) throw new RangeError("Argument out of range: offset");
         isFromEnd = offset < 0;
         if (isFromEnd) offset = -offset;
     }
     else {
-        assert.mustBeInstanceOf(Index, offset, "offset");
+        if (!(offset instanceof Index)) throw new TypeError("Number or Index expected: offset");
         isFromEnd = offset.isFromEnd;
         offset = offset.value;
     }
@@ -1277,10 +1274,10 @@ export function startsWith<T>(left: Iterable<T>, right: Iterable<T>, equaler?: E
  */
 export function startsWith<T, U>(left: Iterable<T>, right: Iterable<U>, equaler: (left: T, right: U) => boolean): boolean;
 export function startsWith<T>(left: Iterable<T>, right: Iterable<T>, equaler: EqualityComparison<T> | Equaler<T> = Equaler.defaultEqualer): boolean {
-    if (typeof equaler === "function") equaler = Equaler.create(equaler);
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+    if (isFunction(equaler)) equaler = Equaler.create(equaler);
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     const leftIterator = left[Symbol.iterator]();
     let leftResult: IteratorResult<T> | undefined;
     try {
@@ -1324,10 +1321,10 @@ export function endsWith<T>(left: Iterable<T>, right: Iterable<T>, equaler?: Equ
  */
 export function endsWith<T, U>(left: Iterable<T>, right: Iterable<U>, equaler: (left: T, right: U) => boolean): boolean;
 export function endsWith<T>(left: Iterable<T>, right: Iterable<T>, equaler: EqualityComparison<T> | Equaler<T> = Equaler.defaultEqualer): boolean {
-    if (typeof equaler === "function") equaler = Equaler.create(equaler);
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+    if (isFunction(equaler)) equaler = Equaler.create(equaler);
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     const rightArray = toArray(right);
     const numElements = rightArray.length;
     if (numElements <= 0) {
@@ -1364,9 +1361,9 @@ export function includes<T>(source: Iterable<T>, value: T, equaler?: EqualityCom
  */
 export function includes<T, U>(source: Iterable<T>, value: U, equaler: (left: T, right: U) => boolean): boolean;
 export function includes<T>(source: Iterable<T>, value: T, equaler: EqualityComparison<T> | Equaler<T> = Equaler.defaultEqualer): boolean {
-  if (typeof equaler === "function") equaler = Equaler.create(equaler);
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+    if (isFunction(equaler)) equaler = Equaler.create(equaler);
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     for (const element of source) {
         if (equaler.equals(value, element)) {
             return true;
@@ -1396,10 +1393,10 @@ export function includesSequence<T>(left: Iterable<T>, right: Iterable<T>, equal
  */
 export function includesSequence<T, U>(left: Iterable<T>, right: Iterable<U>, equaler: (left: T, right: U) => boolean): boolean;
 export function includesSequence<T>(left: Iterable<T>, right: Iterable<T>, equaler: EqualityComparison<T> | Equaler<T> = Equaler.defaultEqualer): boolean {
-    if (typeof equaler === "function") equaler = Equaler.create(equaler);
-    assert.mustBeIterableObject(left, "source");
-    assert.mustBeIterableObject(right, "other");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+    if (isFunction(equaler)) equaler = Equaler.create(equaler);
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: other");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     const rightArray = toArray(right);
     const numRightElements = rightArray.length;
     if (numRightElements <= 0) {
@@ -1449,19 +1446,22 @@ export function copyTo<T, U extends IndexedCollection<T> | T[]>(source: Iterable
         Array.isArray(collection) ? new ArrayWrapper<T>(collection) :
         undefined;
 
-    assert.mustBeIterableObject(source, "source");
-    assert.assertType(target !== undefined, "dest", /*message*/ undefined);
-    assert.mustBePositiveInteger(start, "start");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (target === undefined) throw new TypeError("IndexedCollection or Array expected: collection");
+    if (!isNumber(start)) throw new TypeError("Number expected: start");
+    if (!isPositiveInteger(start)) throw new RangeError("Argument out of range: start");
 
     const size = target[IndexedCollection.size];
-    if (count !== undefined) {
-        assert.mustBePositiveInteger(count, "count");
+    if (!isUndefined(count)) {
+        if (!isNumber(count)) throw new TypeError("Number expected: count");
+        if (!isPositiveInteger(count)) throw new RangeError("Argument out of range: count");
     }
     else {
         count = size - start;
     }
 
-    assert.assertRange(start + count <= size, "count");
+    if (start + count > size) throw new RangeError("Argument out of range: count");
+
     if (count > 0) {
         for (const element of source) {
             if (count > 0) {

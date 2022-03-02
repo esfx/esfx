@@ -31,7 +31,7 @@
 */
 
 import { Comparison, Comparer } from "@esfx/equatable";
-import { isAsyncIterable } from "@esfx/internal-guards";
+import /*#__INLINE__*/ { isAsyncIterable } from "@esfx/internal-guards";
 
 /**
  * Represents an `AsyncIterable` that is inherently ordered.

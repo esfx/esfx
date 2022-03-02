@@ -22,10 +22,6 @@ import { ReadonlyCollection, ReadonlyKeyedCollection, KeyedCollection, ReadonlyI
 
 // Collections
 
-// declare global { interface AudioTrackList extends ReadonlyIndexedCollection<AudioTrack> {} }
-declare var AudioTrackList: any;
-if (typeof AudioTrackList === "function") makeReadonlyIndexedCollection(AudioTrackList.prototype);
-
 declare global { interface CSSRuleList extends ReadonlyIndexedCollection<CSSRule> {} }
 if (typeof CSSRuleList === "function") makeReadonlyIndexedCollection(CSSRuleList.prototype);
 
@@ -91,8 +87,14 @@ if (typeof SVGLengthList === "function") makeReadonlyIndexedCollection(SVGLength
 declare global { interface SVGNumberList extends ReadonlyIndexedCollection<SVGNumber> {} }
 if (typeof SVGNumberList === "function") makeReadonlyIndexedCollection(SVGNumberList.prototype);
 
+declare global { interface SVGPointList extends ReadonlyIndexedCollection<DOMPoint> {} }
+if (typeof SVGPointList === "function") makeReadonlyIndexedCollection(SVGPointList.prototype);
+
 declare global { interface SVGStringList extends ReadonlyIndexedCollection<string> {} }
 if (typeof SVGStringList === "function") makeReadonlyIndexedCollection(SVGStringList.prototype);
+
+declare global { interface SVGTransformList extends ReadonlyIndexedCollection<SVGTransform> {} }
+if (typeof SVGTransformList === "function") makeReadonlyIndexedCollection(SVGTransformList.prototype);
 
 declare global { interface SourceBufferList extends ReadonlyIndexedCollection<SourceBuffer> {} }
 if (typeof SourceBufferList === "function") makeReadonlyIndexedCollection(SourceBufferList.prototype);
@@ -114,9 +116,6 @@ if (typeof TextTrackList === "function") makeReadonlyIndexedCollection(TextTrack
 
 declare global { interface TouchList extends ReadonlyIndexedCollection<Touch> {} }
 if (typeof TouchList === "function") makeReadonlyIndexedCollection(TouchList.prototype);
-
-declare var VideoTrackList: any;
-if (typeof VideoTrackList === "function") makeReadonlyIndexedCollection(VideoTrackList.prototype);
 
 // Maps
 

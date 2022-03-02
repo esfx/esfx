@@ -1,4 +1,4 @@
-The `@esfx/async-autoresetevent` package provides the `AutoResetEvent` class, an async coordination primitive.
+The `@esfx/async-autoresetevent` package provides the `AsyncAutoResetEvent` class, an async coordination primitive.
 
 # Overview
 

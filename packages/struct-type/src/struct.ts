@@ -1,12 +1,25 @@
-import { StructFieldDefinition, StructInitProperties, StructInitElements, Struct as Struct_, StructFieldRuntimeType } from '.';
+/*!
+   Copyright 2019 Ron Buckton
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+
+import type { StructFieldDefinition, StructInitProperties, StructInitElements, StructFieldRuntimeType } from '.';
 import { StructTypeInfo } from './typeInfo';
 import { numstr } from '@esfx/type-model';
 
-const kBuffer = Symbol("[[Buffer]]");
-const kByteOffset = Symbol("[[ByteOffset]]");
-const kType = Symbol("[[Type]]");
 /* @internal */
-export const kDataView = Symbol("[[DataView]]");
+export let getDataView: (struct: Struct) => DataView;
 
 type StructConstructorEmptyOverload = [];
 type StructConstructorSharedOverload = [boolean];
@@ -34,10 +47,14 @@ function isStructConstructorStructFieldArrayOverload<TDef extends readonly Struc
 
 /* @internal */
 export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
-    private [kBuffer]: ArrayBufferLike;
-    private [kByteOffset]: number;
-    private [kType]: StructTypeInfo;
-    private [kDataView]: DataView;
+    static {
+        getDataView = struct => struct.#dataView;
+    }
+
+    #buffer: ArrayBufferLike;
+    #byteOffset: number;
+    #type: StructTypeInfo;
+    #dataView: DataView;
 
     constructor();
     constructor(shared: boolean);
@@ -45,32 +62,32 @@ export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any
     constructor(object: Partial<StructInitProperties<TDef>>, shared?: boolean);
     constructor(elements: Partial<StructInitElements<TDef>>, shared?: boolean);
     constructor(...args: StructConstructorOverloads<TDef>) {
-        this[kType] = StructTypeInfo.get(new.target);
+        this.#type = StructTypeInfo.get(new.target);
         if (isStructConstructorArrayBufferLikeOverload(args)) {
             const [buffer, byteOffset = 0] = args;
-            if (byteOffset < 0 || byteOffset > buffer.byteLength - this[kType].size) throw new RangeError("Out of range: byteOffset");
-            if (byteOffset % this[kType].alignment) throw new RangeError(`Not aligned: byteOffset must be a multiple of ${this[kType].alignment}`);
-            this[kBuffer] = buffer;
-            this[kByteOffset] = byteOffset;
-            this[kDataView] = new DataView(buffer, byteOffset, this[kType].size);
+            if (byteOffset < 0 || byteOffset > buffer.byteLength - this.#type.size) throw new RangeError("Out of range: byteOffset");
+            if (byteOffset % this.#type.alignment) throw new RangeError(`Not aligned: byteOffset must be a multiple of ${this.#type.alignment}`);
+            this.#buffer = buffer;
+            this.#byteOffset = byteOffset;
+            this.#dataView = new DataView(buffer, byteOffset, this.#type.size);
         }
         else {
             const shared =
                 isStructConstructorStructFieldsOverload(args) ? args[1] :
                 isStructConstructorStructFieldArrayOverload(args) ? args[1] :
                 args[0];
-            this[kBuffer] = shared ? new SharedArrayBuffer(this[kType].size) : new ArrayBuffer(this[kType].size);
-            this[kByteOffset] = 0;
-            this[kDataView] = new DataView(this[kBuffer], 0, this[kType].size);
+            this.#buffer = shared ? new SharedArrayBuffer(this.#type.size) : new ArrayBuffer(this.#type.size);
+            this.#byteOffset = 0;
+            this.#dataView = new DataView(this.#buffer, 0, this.#type.size);
             if (isStructConstructorStructFieldsOverload(args)) {
                 const [obj] = args;
                 if (obj) {
                     for (const key of Object.keys(obj)) {
                         const value = obj[key as keyof Partial<StructInitProperties<TDef>>];
                         if (value !== undefined) {
-                            const field = this[kType].fieldsByName.get(key);
+                            const field = this.#type.fieldsByName.get(key);
                             if (field) {
-                                field.writeTo(this, this[kDataView], field.coerce(value));
+                                field.writeTo(this, this.#dataView, field.coerce(value));
                             }
                         }
                     }
@@ -80,9 +97,9 @@ export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any
                 const [ar] = args;
                 if (ar) {
                     for (const [index, value] of ar.entries()) {
-                        if (value !== undefined && index < this[kType].fields.length) {
-                            const field = this[kType].fields[index];
-                            field.writeTo(this, this[kDataView], field.coerce(value));
+                        if (value !== undefined && index < this.#type.fields.length) {
+                            const field = this.#type.fields[index];
+                            field.writeTo(this, this.#dataView, field.coerce(value));
                         }
                     }
                 }
@@ -93,59 +110,59 @@ export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any
 
     static get SIZE(): number { return StructTypeInfo.get(this).size; }
 
-    get buffer() { return this[kBuffer]; }
-    get byteOffset() { return this[kByteOffset]; }
-    get byteLength() { return this[kType].size; }
+    get buffer() { return this.#buffer; }
+    get byteOffset() { return this.#byteOffset; }
+    get byteLength() { return this.#type.size; }
 
     get<K extends TDef[number]["name"]>(key: K): StructFieldRuntimeType<Extract<TDef[number], { readonly name: K }>>;
     get<K extends TDef[number]["name"]>(key: K) {
-        const field = this[kType].fieldsByName.get(key);
+        const field = this.#type.fieldsByName.get(key);
         if (field) {
-            return field.readFrom(this, this[kDataView]);
+            return field.readFrom(this, this.#dataView);
         }
         throw new RangeError();
     }
 
     set<K extends TDef[number]["name"]>(key: K, value: StructFieldRuntimeType<Extract<TDef[number], { readonly name: K }>>) {
-        const field = this[kType].fieldsByName.get(key);
+        const field = this.#type.fieldsByName.get(key);
         if (field) {
-            field.writeTo(this, this[kDataView], field.coerce(value));
+            field.writeTo(this, this.#dataView, field.coerce(value));
             return;
         }
         throw new RangeError();
     }
 
-    getIndex<I extends keyof TDef & numstr<keyof TDef>>(index: I): StructFieldRuntimeType<Extract<TDef[I], StructFieldDefinition>>;
-    getIndex<I extends keyof TDef & numstr<keyof TDef>>(index: I) {
-        if (index < this[kType].fields.length) {
-            const field = this[kType].fields[index as number];
-            return field.readFrom(this, this[kDataView]);
+    getIndex<I extends numstr<keyof TDef>>(index: I): StructFieldRuntimeType<Extract<TDef[Extract<I, keyof TDef>], StructFieldDefinition>>;
+    getIndex<I extends numstr<keyof TDef>>(index: I) {
+        if (index < this.#type.fields.length) {
+            const field = this.#type.fields[index as number];
+            return field.readFrom(this, this.#dataView);
         }
         throw new RangeError();
     }
 
     setIndex<I extends keyof TDef>(index: I, value: StructFieldRuntimeType<Extract<TDef[I], StructFieldDefinition>>) {
-        if (index < this[kType].fields.length) {
-            const field = this[kType].fields[index as number];
-            field.writeTo(this, this[kDataView], field.coerce(value));
+        if (index < this.#type.fields.length) {
+            const field = this.#type.fields[index as number];
+            field.writeTo(this, this.#dataView, field.coerce(value));
             return true;
         }
         return false;
     }
 
     writeTo(buffer: ArrayBufferLike, byteOffset: number = 0) {
-        if (byteOffset < 0 || byteOffset > buffer.byteLength - this[kType].size) throw new RangeError("Out of range: byteOffset");
-        if (byteOffset % this[kType].alignment) throw new RangeError(`Not aligned: byteOffset must be a multiple of ${this[kType].alignment}`);
-        if (buffer === this[kBuffer]) {
-            if (byteOffset === this[kByteOffset]) {
+        if (byteOffset < 0 || byteOffset > buffer.byteLength - this.#type.size) throw new RangeError("Out of range: byteOffset");
+        if (byteOffset % this.#type.alignment) throw new RangeError(`Not aligned: byteOffset must be a multiple of ${this.#type.alignment}`);
+        if (buffer === this.#buffer) {
+            if (byteOffset === this.#byteOffset) {
                 return;
             }
-            new Uint8Array(buffer).copyWithin(byteOffset, this[kByteOffset], this[kType].size);
+            new Uint8Array(buffer).copyWithin(byteOffset, this.#byteOffset, this.#type.size);
             return;
         }
 
-        const size = this[kType].size;
-        const src = new Uint8Array(this[kBuffer], this[kByteOffset], size);
+        const size = this.#type.size;
+        const src = new Uint8Array(this.#buffer, this.#byteOffset, size);
         const dest = new Uint8Array(buffer, byteOffset, size);
         dest.set(src);
     }

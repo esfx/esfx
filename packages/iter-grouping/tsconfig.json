@@ -6,7 +6,10 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../internal/assert" },
+        // dependencies
         { "path": "../iter-hierarchy" },
+
+        // devDependencies
+        { "path": "../../internal/guards" },
     ]
 }

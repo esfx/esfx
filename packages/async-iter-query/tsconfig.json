@@ -6,10 +6,7 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../internal/assert" },
-        { "path": "../../internal/binarysearch" },
-        { "path": "../../internal/guards" },
-        { "path": "../../internal/jest-sequence" },
+        // dependencies
         { "path": "../async-iter-fn" },
         { "path": "../async-iter-fromsync" },
         { "path": "../async-iter-hierarchy" },
@@ -28,5 +25,9 @@
         { "path": "../iter-ordered" },
         { "path": "../iter-page" },
         { "path": "../iter-query" },
+
+        // devDependencies
+        { "path": "../../internal/jest-sequence" },
+        { "path": "../../internal/guards" },
     ]
 }

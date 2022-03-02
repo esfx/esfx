@@ -38,6 +38,7 @@
 
 import { Cancelable, CancelableSource, CancelError, CancelSignal, CancelSubscription } from "@esfx/cancelable";
 import { Disposable } from "@esfx/disposable";
+import /*#__INLINE__*/ { isFunction, isIterableObject, isMissing, isPositiveFiniteNumber } from "@esfx/internal-guards";
 import /*#__INLINE__*/ { LinkedList, LinkedListNode, listAdd, listCreate, listRemove } from "@esfx/internal-linked-list";
 
 export { CancelError, CancelSubscription } from "@esfx/cancelable";
@@ -262,8 +263,9 @@ const weakCancelSourceState = new WeakMap<CancelSource, CancelState>();
 
 const CancelSource = class implements CancelSource {
     static {
-        this.constructor = Object;
-        Object.defineProperty(this, Symbol.toStringTag, { configurable: true, value: "CancelSource" });
+        // Hide the constructor from the prototype
+        Object.defineProperty(this.prototype, "constructor", { ...Object.getOwnPropertyDescriptor(this.prototype, "constructor"), value: Object });
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "CancelSource" });
     }
 
     constructor(cancel: CancelState) {
@@ -286,6 +288,8 @@ const CancelSource = class implements CancelSource {
     }
 
     cancelAfter(timeout: number, reason?: unknown) {
+        if (!isPositiveFiniteNumber(timeout)) throw new RangeError("Argument out of range: timeout");
+
         const cancel = weakCancelSourceState.get(this);
         if (!cancel) throw new TypeError("Value of 'this' must be of type CancelSource");
         if (cancel.state === "unsignaled") {
@@ -332,7 +336,7 @@ export class CancelToken implements Cancelable, CancelSignal {
             return token;
         }
 
-        Object.defineProperty(this, Symbol.toStringTag, { configurable: true, value: "CancelToken" });
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "CancelToken" });
     }
 
     static readonly none = CancelState.closed.token;
@@ -380,7 +384,7 @@ export class CancelToken implements Cancelable, CancelSignal {
      * Gets a CancelToken from a cancelable.
      */
     static from(cancelable: Cancelable | DOMAbortSignal | null | undefined) {
-        if (cancelable === Cancelable.none || cancelable === null || cancelable === undefined) {
+        if (cancelable === Cancelable.none || isMissing(cancelable)) {
             return CancelToken.none;
         }
         if (cancelable === Cancelable.canceled) {
@@ -406,7 +410,7 @@ export class CancelToken implements Cancelable, CancelSignal {
      * @param cancelables An iterable of `Cancelable` objects.
      */
     static race(cancelables: Iterable<Cancelable | DOMAbortSignal | null | undefined>) {
-        if (typeof cancelables !== "object" || cancelables === null || !(Symbol.iterator in cancelables)) {
+        if (!isIterableObject(cancelables)) {
             throw new TypeError("Object not iterable: cancelables");
         }
 
@@ -461,7 +465,7 @@ export class CancelToken implements Cancelable, CancelSignal {
      * @param cancelables An iterable of `Cancelable` objects.
      */
     static all(cancelables: Iterable<Cancelable | DOMAbortSignal | null | undefined>) {
-        if (typeof cancelables !== "object" || cancelables === null || !(Symbol.iterator in cancelables)) {
+        if (!isIterableObject(cancelables)) {
             throw new TypeError("Object not iterable: cancelables");
         }
 
@@ -534,6 +538,8 @@ export class CancelToken implements Cancelable, CancelSignal {
      * Gets a `CancelToken` that will be canceled with the provided reason after a timeout has elapsed.
      */
     static timeout(ms: number, reason?: unknown) {
+        if (!isPositiveFiniteNumber(ms)) throw new RangeError("Argument out of range: ms");
+
         const cancelState = new CancelState();
         cancelState.cancelAfter(ms, reason ?? new CancelError("Operation timed out"));
         return cancelState.token;
@@ -554,7 +560,8 @@ export class CancelToken implements Cancelable, CancelSignal {
      * Subscribes to notifications for when the object becomes signaled.
      */
     subscribe(onSignaled: () => void): CancelSubscription {
-        if (typeof onSignaled !== "function") throw new TypeError("Function expected: onSignaled");
+        if (!isFunction(onSignaled)) throw new TypeError("Function expected: onSignaled");
+
         const cancel = weakCancelTokenState.get(this);
         if (!cancel) throw new TypeError("Value of 'this' must be of type CancelToken");
         if (cancel.state === "closed") return emptySubscription;
@@ -651,6 +658,8 @@ function getCancelSignalFromAbortSignal(abortSignal: AbortSignal): CancelSignal 
                 return AbortSignalGetReason?.(abortSignal) ?? defaultReason;
             },
             subscribe(onSignaled) {
+                if (!isFunction(onSignaled)) throw new TypeError("Function expected: onSignaled");
+
                 let subscribed = true;
                 const onAbort = () => {
                     if (subscribed) {

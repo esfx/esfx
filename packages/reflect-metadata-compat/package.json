@@ -2,6 +2,7 @@
     "name": "@esfx/reflect-metadata-compat",
     "version": "1.0.0-pre.23",
     "description": "A global shim that provides API compatibility with 'reflect-metadata'.",
+    "private": true,
     "type": "commonjs",
     "main": "./dist/index.js",
     "exports": "./dist/index.js",
@@ -19,7 +20,7 @@
         "@esfx/internal-guards": "^1.0.0-pre.23",
         "@esfx/metadata": "^1.0.0-pre.23",
         "@esfx/metadata-shim": "^1.0.0-pre.23",
-        "tslib": "^2.1.0"
+        "tslib": "^2.3.1"
     },
     "publishConfig": {
         "access": "public"

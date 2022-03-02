@@ -15,7 +15,7 @@
 */
 
 import { createDecoratorOrDecoratorFactory, MemberDescriptor, ClassDescriptor, isMethod, isAccessor, AccessorMemberDescriptor, MethodMemberDescriptor } from "@esfx/decorators-stage1-core";
-import { isFunction } from "@esfx/internal-guards";
+import /*#__INLINE__*/ { isFunction } from "@esfx/internal-guards";
 
 function formatClassDeprecationMessage(descriptor: ClassDescriptor, message = `This class will be removed in a future revision.`) {
     return `DEPRECATION ${descriptor.target.name}: ${message}`;

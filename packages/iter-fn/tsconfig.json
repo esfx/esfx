@@ -7,10 +7,7 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../internal/jest-sequence" },
-        { "path": "../../internal/assert" },
-        { "path": "../../internal/binarysearch" },
-        { "path": "../../internal/guards" },
+        // dependencies
         { "path": "../collection-core" },
         { "path": "../collections-hashmap" },
         { "path": "../collections-hashset" },
@@ -22,5 +19,9 @@
         { "path": "../iter-page" },
         { "path": "../iter-ordered" },
         { "path": "../iter-hierarchy" },
+
+        // devDependencies
+        { "path": "../../internal/jest-sequence" },
+        { "path": "../../internal/guards" },
     ]
 }

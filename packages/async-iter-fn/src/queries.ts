@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ { isBoolean, isFunction, isIterator, isNumber, isPositiveFiniteNumber } from '@esfx/internal-guards';
 
 class AsyncEmptyIterable<T> implements AsyncIterable<T> {
     async *[Symbol.asyncIterator](): AsyncIterator<T> {
@@ -82,9 +82,12 @@ export interface ConsumeAsyncOptions {
  * @param iterator An [[AsyncIterator]] object.
  * @category Query
  */
-export function consumeAsync<T>(iterator: AsyncIterator<T>, { cacheElements = false, leaveOpen = false }: ConsumeAsyncOptions = {}): AsyncIterable<T> {
-    assert.mustBeIterator(iterator, "iterator");
-    assert.mustBeBoolean(cacheElements, "cacheElements");
+export function consumeAsync<T>(iterator: AsyncIterator<T>, options?: ConsumeAsyncOptions): AsyncIterable<T> {
+    const cacheElements = options?.cacheElements ?? false;
+    const leaveOpen = options?.leaveOpen ?? false;
+    if (!isIterator(iterator)) throw new TypeError("Iterator expected: iterator");
+    if (!isBoolean(cacheElements)) throw new TypeError("Boolean expected: options.cacheElements");
+    if (!isBoolean(leaveOpen)) throw new TypeError("Boolean expected: options.leaveOpen");
     return new AsyncConsumeIterable(iterator, cacheElements, leaveOpen);
 }
 
@@ -140,8 +143,9 @@ class AsyncGenerateIterable<T> implements AsyncIterable<T> {
  * @category Query
  */
 export function generateAsync<T>(count: number, generator: (offset: number) => PromiseLike<T> | T): AsyncIterable<T> {
-    assert.mustBePositiveFiniteNumber(count, "count");
-    assert.mustBeFunction(generator, "generator");
+    if (!isNumber(count)) throw new TypeError("Number expected: count");
+    if (!isFunction(generator)) throw new TypeError("Function expected: generator");
+    if (!isPositiveFiniteNumber(count)) throw new RangeError("Argument out of range: count");
     return new AsyncGenerateIterable(count, generator);
 }
 
@@ -194,6 +198,7 @@ class AsyncRepeatIterable<T> implements AsyncIterable<T> {
  * @category Query
  */
 export function repeatAsync<T>(value: PromiseLike<T> | T, count: number): AsyncIterable<T> {
-    assert.mustBePositiveFiniteNumber(count, "count");
+    if (!isNumber(count)) throw new TypeError("Number expected: count");
+    if (!isPositiveFiniteNumber(count)) throw new RangeError("Argument out of range: count");
     return new AsyncRepeatIterable(value, count);
 }

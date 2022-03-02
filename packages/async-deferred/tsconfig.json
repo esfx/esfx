@@ -6,5 +6,7 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
+        // devDependencies
+        { "path": "../../internal/guards" },
     ]
 }

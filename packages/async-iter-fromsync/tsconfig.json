@@ -6,7 +6,9 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../internal/assert" },
+        // dependencies
+
+        // devDependencies
         { "path": "../../internal/guards" },
     ]
 }

@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import /*#__INLINE__*/ { isObject, isFunction, isDefined } from '@esfx/internal-guards';
+import /*#__INLINE__*/ { isObject, isFunction, isPresent } from '@esfx/internal-guards';
 
 const refData = Symbol.for("@esfx/ref:refData");
 
@@ -126,7 +126,7 @@ export namespace ref {
     export function out<T>(): Reference<T>;
     export function out<T>(get: () => T, set: (value: T) => void): Reference<T>;
     export function out<T>(get?: () => T, set?: (value: T) => void) {
-        if (isDefined(get) || isDefined(set)) {
+        if (isPresent(get) || isPresent(set)) {
             if (!isFunction(get)) throw new TypeError("Function expected: get");
             if (!isFunction(set)) throw new TypeError("Function expected: set");
             return outForGetSet(get, set);

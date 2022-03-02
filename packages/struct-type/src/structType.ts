@@ -1,20 +1,22 @@
-import { StructFieldDefinition, StructType as StructType_ } from ".";
-import { Struct, kDataView } from "./struct";
-import { StructTypeInfo } from './typeInfo';
+/*!
+   Copyright 2019 Ron Buckton
 
-type __Concat<L extends readonly any[], R extends readonly any[]> =
-    L extends readonly [] ? R :
-    L extends readonly [any] ? ((l0: L[0], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any] ? ((l0: L[0], l1: L[1], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], l4: L[4], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], l4: L[4], l5: L[5], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], l4: L[4], l5: L[5], l6: L[6], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any, any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], l4: L[4], l5: L[5], l6: L[6], l7: L[7], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any, any, any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], l4: L[4], l5: L[5], l6: L[6], l7: L[7], l8: L[8], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any, any, any, any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], l4: L[4], l5: L[5], l6: L[6], l7: L[7], l8: L[8], l9: L[9], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    readonly never[];
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+
+import type { StructFieldDefinition, StructType as StructType_ } from ".";
+import { Struct, getDataView } from "./struct";
+import { StructTypeInfo } from './typeInfo';
 
 type CreateStructTypeFieldsNameOverload<TDef extends readonly StructFieldDefinition[]> = [TDef, string?];
 type CreateStructTypeBaseFieldsNameOverload<TBase extends readonly StructFieldDefinition[], TDef extends readonly StructFieldDefinition[]> = [StructType_<TBase>, TDef, string?];
@@ -31,7 +33,7 @@ function isStructTypeBaseFieldsNameOverload<TBase extends readonly StructFieldDe
 }
 
 /* @internal */
-export function StructType<TBase extends readonly StructFieldDefinition[], TDef extends readonly StructFieldDefinition[]>(...args: CreateStructTypeOverloads<TBase, TDef>): StructType_<__Concat<TBase, TDef>> {
+export function StructType<TBase extends readonly StructFieldDefinition[], TDef extends readonly StructFieldDefinition[]>(...args: CreateStructTypeOverloads<TBase, TDef>): StructType_<readonly [...TBase, ...TDef]> {
     let baseType: any;
     let fields: TDef;
     let name: string | undefined;
@@ -48,27 +50,27 @@ export function StructType<TBase extends readonly StructFieldDefinition[], TDef 
 
     const baseTypeInfo = StructTypeInfo.get(baseType);
     const structTypeInfo = new StructTypeInfo(fields, baseTypeInfo);
-    const structClass = { [name || ""]: class extends baseType { } as StructType_<__Concat<TBase, TDef>> }[name || ""];
+    const structClass = { [name || ""]: class extends baseType { } as StructType_<readonly [...TBase, ...TDef]> }[name || ""];
     Object.defineProperty(structClass, "name", { value: name });
     for (const field of structTypeInfo.ownFields) {
         Object.defineProperty(structClass.prototype, field.name, {
             enumerable: false,
             configurable: true,
-            get(this: Struct<__Concat<TBase, TDef>>) {
-                return field.readFrom(this, this[kDataView]);
+            get(this: Struct<readonly [...TBase, ...TDef]>) {
+                return field.readFrom(this, getDataView(this));
             },
-            set(this: Struct<__Concat<TBase, TDef>>, value) {
-                field.writeTo(this, this[kDataView], value);
+            set(this: Struct<readonly [...TBase, ...TDef]>, value) {
+                field.writeTo(this, getDataView(this), value);
             }
         });
         Object.defineProperty(structClass.prototype, field.index, {
             enumerable: false,
             configurable: true,
-            get(this: Struct<__Concat<TBase, TDef>>) {
-                return field.readFrom(this, this[kDataView]);
+            get(this: Struct<readonly [...TBase, ...TDef]>) {
+                return field.readFrom(this, getDataView(this));
             },
-            set(this: Struct<__Concat<TBase, TDef>>, value) {
-                field.writeTo(this, this[kDataView], value);
+            set(this: Struct<readonly [...TBase, ...TDef]>, value) {
+                field.writeTo(this, getDataView(this), value);
             }
         });
     }

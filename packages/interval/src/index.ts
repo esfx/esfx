@@ -15,7 +15,7 @@
 */
 
 import { Equaler, Equatable } from "@esfx/equatable";
-import /*#__INLINE__*/ * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ { isBoolean, isNumber, isPositiveInteger, isPositiveNonZeroFiniteNumber } from "@esfx/internal-guards";
 
 /**
  * Represents an ordinal index within an indexed collection.
@@ -25,7 +25,10 @@ export class Index implements Equatable {
     private _isFromEnd: boolean;
 
     constructor(value: number, isFromEnd = false) {
-        assert.mustBePositiveInteger(value, "value");
+        if (!isNumber(value)) throw new TypeError("Number expected: value");
+        if (!isPositiveInteger(value)) throw new RangeError("Argument out of range: value");
+        if (!isBoolean(isFromEnd)) throw new TypeError("Boolean expected: isFromEnd");
+
         this._value = value;
         this._isFromEnd = !!isFromEnd;
     }
@@ -33,22 +36,30 @@ export class Index implements Equatable {
     /**
      * Gets an `Index` representing the first element of an indexed collection.
      */
-    static get start() { return new Index(0, /*isFromEnd*/ false); }
+    static get start() {
+        return new Index(0, /*isFromEnd*/ false);
+    }
 
     /**
      * Gets an `Index` representing the last element of an indexed collection.
      */
-    static get end() { return new Index(0, /*isFromEnd*/ true); }
+    static get end() {
+        return new Index(0, /*isFromEnd*/ true);
+    }
 
     /**
      * Gets the value for the index.
      */
-    get value() { return this._value; }
+    get value() {
+        return this._value;
+    }
 
     /**
      * Gets a value indicating whether the index value is relative to the end of the collection.
      */
-    get isFromEnd() { return this._isFromEnd; }
+    get isFromEnd() {
+        return this._isFromEnd;
+    }
 
     /**
      * Creates an index relative to the start of an indexed collection.
@@ -69,7 +80,9 @@ export class Index implements Equatable {
      * @param length The number of elements in the collection.
      */
     getIndex(length: number) {
-        assert.mustBePositiveInteger(length, "length");
+        if (!isNumber(length)) throw new TypeError("Number expected: length");
+        if (!isPositiveInteger(length)) throw new RangeError("Argument out of range: length");
+
         return this._isFromEnd ? length - this._value : this._value;
     }
 
@@ -97,10 +110,6 @@ export class Index implements Equatable {
     }
 }
 
-function isIndex(value: unknown): value is Index {
-    return value instanceof Index;
-}
-
 /**
  * Represents an interval within an indexed collection.
  */
@@ -116,11 +125,13 @@ export class Interval {
      * @param step The number of elements to advance when stepping through an indexed collection (default: `1`).
      */
     constructor(start: number | Index, end: number | Index, step = 1) {
-        if (typeof start === "number") start = Index.fromStart(start);
-        if (typeof end === "number") end = Index.fromStart(end);
-        assert.mustBeType(isIndex, start, "start");
-        assert.mustBeType(isIndex, end, "end");
-        assert.mustBePositiveNonZeroFiniteNumber(step, "step");
+        if (isNumber(start)) start = Index.fromStart(start);
+        if (isNumber(end)) end = Index.fromStart(end);
+        if (!(start instanceof Index)) throw new TypeError("Index expected: start");
+        if (!(end instanceof Index)) throw new TypeError("Index expected: end");
+        if (!isNumber(step)) throw new TypeError("Number expected: step");
+        if (!isPositiveNonZeroFiniteNumber(step)) throw new RangeError("Argument out of range: step");
+
         this._start = start;
         this._end = end;
         this._step = step;
@@ -129,22 +140,30 @@ export class Interval {
     /**
      * Gets an `Interval` that represents every element of a collection.
      */
-    static get all() { return new Interval(Index.start, Index.end); }
+    static get all() {
+        return new Interval(Index.start, Index.end);
+    }
 
     /**
      * Gets an `Index` that represents the start of the interval (inclusive).
      */
-    get start() { return this._start; }
+    get start() {
+        return this._start;
+    }
 
     /**
      * Gets an `Index` that represents the end of the interval (exclusive).
      */
-    get end() { return this._end; }
+    get end() {
+        return this._end;
+    }
 
     /**
      * Gets the number of elements to advance when stepping through an indexed collection.
      */
-    get step() { return this._step; }
+    get step() {
+        return this._step;
+    }
 
     /**
      * Creates a new `Interval` between the specified index (inclusive) and the end of the indexed collection.
@@ -165,7 +184,9 @@ export class Interval {
      * @returns A tuple of `[start, end, step]`.
      */
     getIndices(length: number): [number, number, number] {
-        assert.mustBePositiveInteger(length, "length");
+        if (!isNumber(length)) throw new TypeError("Number expected: length");
+        if (!isPositiveInteger(length)) throw new RangeError("Argument out of range: length");
+
         const start = this._start.getIndex(length);
         const end = this._end.getIndex(length);
         const step = end < start ? -this._step : this._step;

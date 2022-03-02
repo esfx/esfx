@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ { isFunction, isFunctionOrUndefined, isIterableObject, isNumber, isPositiveFiniteNumber, isUndefined } from "@esfx/internal-guards";
 import { Equaler } from "@esfx/equatable";
 import { HashSet } from "@esfx/collections-hashset";
 import { HashMap } from "@esfx/collections-hashmap";
@@ -57,7 +57,7 @@ export function append<TNode, T extends TNode>(source: HierarchyIterable<TNode, 
  */
 export function append<T>(source: Iterable<T>, value: T): Iterable<T>;
 export function append<T>(source: Iterable<T>, value: T): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
     return flowHierarchy(new AppendIterable(source, value), source);
 }
 
@@ -91,7 +91,7 @@ export function prepend<TNode, T extends TNode>(source: HierarchyIterable<TNode,
  */
 export function prepend<T>(source: Iterable<T>, value: T): Iterable<T>;
 export function prepend<T>(source: Iterable<T>, value: T): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
     return flowHierarchy(new PrependIterable(value, source), source);
 }
 
@@ -135,8 +135,8 @@ export function concat<TNode, T extends TNode>(left: Iterable<T>, right: Hierarc
  */
 export function concat<T>(left: Iterable<T>, right: Iterable<T>): Iterable<T>;
 export function concat<T>(left: Iterable<T>, right: Iterable<T>): Iterable<T> {
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
     return flowHierarchy(new ConcatIterable(left, right), left, right);
 }
 
@@ -187,9 +187,9 @@ export function filterBy<TNode, T extends TNode, K>(source: HierarchyIterable<TN
  */
 export function filterBy<T, K>(source: Iterable<T>, keySelector: (element: T) => K, predicate: (key: K, offset: number) => boolean): Iterable<T>;
 export function filterBy<T, K>(source: Iterable<T>, keySelector: (element: T) => K, predicate: (key: K, offset: number) => boolean): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return flowHierarchy(new FilterByIterable(source, keySelector, predicate, /*invert*/ false), source);
 }
 
@@ -228,8 +228,6 @@ export function filter<TNode, T extends TNode>(source: HierarchyIterable<TNode, 
  */
 export function filter<T>(source: Iterable<T>, predicate: (element: T, offset: number) => boolean): Iterable<T>;
 export function filter<T>(source: Iterable<T>, predicate: (element: T, offset: number) => boolean): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
     return filterBy(source, identity, predicate);
 }
 
@@ -296,9 +294,9 @@ export function filterNotBy<TNode, T extends TNode, K>(source: HierarchyIterable
  */
 export function filterNotBy<T, K>(source: Iterable<T>, keySelector: (element: T) => K, predicate: (key: K, offset: number) => boolean): Iterable<T>;
 export function filterNotBy<T, K>(source: Iterable<T>, keySelector: (element: T) => K, predicate: (key: K, offset: number) => boolean): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return flowHierarchy(new FilterByIterable(source, keySelector, predicate, /*invert*/ true), source);
 }
 
@@ -337,8 +335,6 @@ export function filterNot<TNode, T extends TNode>(source: HierarchyIterable<TNod
  */
 export function filterNot<T>(source: Iterable<T>, predicate: (element: T, offset: number) => boolean): Iterable<T>;
 export function filterNot<T>(source: Iterable<T>, predicate: (element: T, offset: number) => boolean): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
     return filterNotBy(source, identity, predicate);
 }
 
@@ -392,8 +388,8 @@ class MapIterable<T, U> implements Iterable<U> {
  * @category Subquery
  */
 export function map<T, U>(source: Iterable<T>, selector: (element: T, offset: number) => U): Iterable<U> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(selector, "selector");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(selector)) throw new TypeError("Function expected: selector");
     return new MapIterable(source, selector);
 }
 
@@ -445,9 +441,9 @@ export function flatMap<T, U>(source: Iterable<T>, projection: (element: T) => I
  */
 export function flatMap<T, U, R>(source: Iterable<T>, projection: (element: T) => Iterable<U>, resultSelector: (element: T, innerElement: U) => R): Iterable<R>;
 export function flatMap<T, U, R>(source: Iterable<T>, projection: (element: T) => Iterable<U>, resultSelector?: (element: T, innerElement: U) => R): Iterable<U | R> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(projection, "projection");
-    assert.mustBeFunctionOrUndefined(resultSelector, "resultSelector");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(projection)) throw new TypeError("Function expected: projection");
+    if (!isFunctionOrUndefined(resultSelector)) throw new TypeError("Function expected: resultSelector");
     return new FlatMapIterable(source, projection, resultSelector);
 }
 
@@ -499,8 +495,9 @@ export function drop<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>
  */
 export function drop<T>(source: Iterable<T>, count: number): Iterable<T>;
 export function drop<T>(source: Iterable<T>, count: number): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBePositiveFiniteNumber(count, "count");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isNumber(count)) throw new TypeError("Number expected: count");
+    if (!isPositiveFiniteNumber(count)) throw new RangeError("Argument out of range: count");
     return flowHierarchy(new DropIterable(source, count), source);
 }
 
@@ -551,8 +548,9 @@ export function dropRight<TNode, T extends TNode>(source: HierarchyIterable<TNod
  */
 export function dropRight<T>(source: Iterable<T>, count: number): Iterable<T>;
 export function dropRight<T>(source: Iterable<T>, count: number): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBePositiveFiniteNumber(count, "count");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isNumber(count)) throw new TypeError("Number expected: count");
+    if (!isPositiveFiniteNumber(count)) throw new RangeError("Argument out of range: count");
     return flowHierarchy(new DropRightIterable(source, count), source);
 }
 
@@ -605,8 +603,8 @@ export function dropWhile<TNode, T extends TNode>(source: HierarchyIterable<TNod
  */
 export function dropWhile<T>(source: Iterable<T>, predicate: (element: T) => boolean): Iterable<T>;
 export function dropWhile<T>(source: Iterable<T>, predicate: (element: T) => boolean): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return flowHierarchy(new DropWhileIterable(source, predicate, /*invert*/ false), source);
 }
 
@@ -631,8 +629,8 @@ export function dropUntil<TNode, T extends TNode>(source: HierarchyIterable<TNod
  */
 export function dropUntil<T>(source: Iterable<T>, predicate: (element: T) => boolean): Iterable<T>;
 export function dropUntil<T>(source: Iterable<T>, predicate: (element: T) => boolean): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return flowHierarchy(new DropWhileIterable(source, predicate, /*invert*/ true), source);
 }
 
@@ -679,8 +677,9 @@ export function take<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>
  */
 export function take<T>(source: Iterable<T>, count: number): Iterable<T>;
 export function take<T>(source: Iterable<T>, count: number): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBePositiveFiniteNumber(count, "count");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isNumber(count)) throw new TypeError("Number expected: count");
+    if (!isPositiveFiniteNumber(count)) throw new RangeError("Argument out of range: count");
     return flowHierarchy(new TakeIterable(source, count), source);
 }
 
@@ -730,8 +729,9 @@ export function takeRight<TNode, T extends TNode>(source: HierarchyIterable<TNod
  */
 export function takeRight<T>(source: Iterable<T>, count: number): Iterable<T>;
 export function takeRight<T>(source: Iterable<T>, count: number): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBePositiveFiniteNumber(count, "count");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isNumber(count)) throw new TypeError("Number expected: count");
+    if (!isPositiveFiniteNumber(count)) throw new RangeError("Argument out of range: count");
     return flowHierarchy(new TakeRightIterable(source, count), source);
 }
 
@@ -793,8 +793,8 @@ export function takeWhile<TNode, T extends TNode>(source: HierarchyIterable<TNod
  */
 export function takeWhile<T>(source: Iterable<T>, predicate: (element: T) => boolean): Iterable<T>;
 export function takeWhile<T>(source: Iterable<T>, predicate: (element: T) => boolean): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return flowHierarchy(new TakeWhileIterable(source, predicate, /*invert*/ false), source);
 }
 
@@ -831,8 +831,8 @@ export function takeUntil<TNode, T extends TNode>(source: HierarchyIterable<TNod
  */
 export function takeUntil<T>(source: Iterable<T>, predicate: (element: T) => boolean): Iterable<T>;
 export function takeUntil<T>(source: Iterable<T>, predicate: (element: T) => boolean): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return flowHierarchy(new TakeWhileIterable(source, predicate, /*invert*/ true), source);
 }
 
@@ -894,11 +894,11 @@ export function intersectBy<TNode, T extends TNode, K>(left: Iterable<T>, right:
  */
 export function intersectBy<T, K>(left: Iterable<T>, right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Iterable<T>;
 export function intersectBy<T, K>(left: Iterable<T>, right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Iterable<T> {
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
-    return flowHierarchy(new IntersectByIterable(left, right, keySelector), left, right);
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
+    return flowHierarchy(new IntersectByIterable(left, right, keySelector, keyEqualer), left, right);
 }
 
 /**
@@ -929,10 +929,10 @@ export function intersect<TNode, T extends TNode>(left: Iterable<T>, right: Hier
  */
 export function intersect<T>(left: Iterable<T>, right: Iterable<T>, equaler?: Equaler<T>): Iterable<T>;
 export function intersect<T>(left: Iterable<T>, right: Iterable<T>, equaler?: Equaler<T>): Iterable<T> {
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, equaler, "equaler");
-    return intersectBy(left, right, identity, equaler);
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
+    if (!isUndefined(equaler) && !Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
+    return flowHierarchy(new IntersectByIterable(left, right, identity, equaler), left, right);
 }
 
 class UnionByIterable<T, K> implements Iterable<T> {
@@ -995,10 +995,10 @@ export function unionBy<TNode, T extends TNode, K>(left: Iterable<T>, right: Hie
  */
 export function unionBy<T, K>(left: Iterable<T>, right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Iterable<T>;
 export function unionBy<T, K>(left: Iterable<T>, right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Iterable<T> {
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return flowHierarchy(new UnionByIterable(left, right, keySelector, keyEqualer), left, right);
 }
 
@@ -1030,10 +1030,10 @@ export function union<TNode, T extends TNode>(left: Iterable<T>, right: Hierarch
  */
 export function union<T>(left: Iterable<T>, right: Iterable<T>, equaler?: Equaler<T>): Iterable<T>;
 export function union<T>(left: Iterable<T>, right: Iterable<T>, equaler?: Equaler<T>): Iterable<T> {
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, equaler, "equaler");
-    return unionBy(left, right, identity, equaler);
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
+    if (!isUndefined(equaler) && !Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
+    return flowHierarchy(new UnionByIterable(left, right, identity, equaler), left, right);
 }
 
 class ExceptByIterable<T, K> implements Iterable<T> {
@@ -1081,10 +1081,10 @@ export function exceptBy<TNode, T extends TNode, K>(left: HierarchyIterable<TNod
  */
 export function exceptBy<T, K>(left: Iterable<T>, right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Iterable<T>;
 export function exceptBy<T, K>(left: Iterable<T>, right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Iterable<T> {
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return flowHierarchy(new ExceptByIterable(left, right, keySelector, keyEqualer), left);
 }
 
@@ -1109,13 +1109,33 @@ export function except<TNode, T extends TNode>(left: HierarchyIterable<TNode, T>
  */
 export function except<T>(left: Iterable<T>, right: Iterable<T>, equaler?: Equaler<T>): Iterable<T>;
 export function except<T>(left: Iterable<T>, right: Iterable<T>, equaler?: Equaler<T>): Iterable<T> {
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, equaler, "equaler");
-    return exceptBy(left, right, identity, equaler);
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
+    if (!isUndefined(equaler) && !Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
+    return flowHierarchy(new ExceptByIterable(left, right, identity, equaler), left);
 }
 
 export { except as relativeComplement };
+
+/**
+ * Creates an `Iterable` with every instance of the specified value removed.
+ *
+ * @param source An `Iterable` object.
+ * @param values The values to exclude.
+ * @category Subquery
+ */
+export function exclude<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, ...values: T[]): HierarchyIterable<TNode, T>;
+/**
+ * Creates an `Iterable` with every instance of the specified value removed.
+ *
+ * @param source An `Iterable` object.
+ * @param values The values to exclude.
+ * @category Subquery
+ */
+export function exclude<T>(source: Iterable<T>, ...values: T[]): Iterable<T>;
+export function exclude<T>(source: Iterable<T>, ...values: T[]): Iterable<T> {
+    return exceptBy(source, values, identity);
+}
 
 class DistinctByIterable<T, K> implements Iterable<T> {
     private _source: Iterable<T>;
@@ -1142,27 +1162,6 @@ class DistinctByIterable<T, K> implements Iterable<T> {
 }
 
 /**
- * Creates an `Iterable` with every instance of the specified value removed.
- *
- * @param source An `Iterable` object.
- * @param values The values to exclude.
- * @category Subquery
- */
-export function exclude<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, ...values: T[]): HierarchyIterable<TNode, T>;
-/**
- * Creates an `Iterable` with every instance of the specified value removed.
- *
- * @param source An `Iterable` object.
- * @param values The values to exclude.
- * @category Subquery
- */
-export function exclude<T>(source: Iterable<T>, ...values: T[]): Iterable<T>;
-export function exclude<T>(source: Iterable<T>, ...values: T[]): Iterable<T> {
-    assert.mustBeIterableObject(source, "left");
-    return exceptBy(source, values, identity);
-}
-
-/**
  * Creates an `Iterable` for the distinct elements of `source`.
  * @category Subquery
  *
@@ -1181,9 +1180,9 @@ export function distinctBy<TNode, T extends TNode, K>(source: HierarchyIterable<
  */
 export function distinctBy<T, K>(source: Iterable<T>, keySelector: (value: T) => K, keyEqualer?: Equaler<K>): Iterable<T>;
 export function distinctBy<T, K>(source: Iterable<T>, keySelector: (value: T) => K, keyEqualer?: Equaler<K>): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return flowHierarchy(new DistinctByIterable(source, keySelector, keyEqualer), source);
 }
 
@@ -1204,9 +1203,9 @@ export function distinct<TNode, T extends TNode, K>(source: HierarchyIterable<TN
  */
 export function distinct<T>(source: Iterable<T>, equaler?: Equaler<T>): Iterable<T>;
 export function distinct<T>(source: Iterable<T>, equaler?: Equaler<T>): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, equaler, "equaler");
-    return distinctBy(source, identity, equaler);
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isUndefined(equaler) && !Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
+    return flowHierarchy(new DistinctByIterable(source, identity, equaler), source);
 }
 
 class DefaultIfEmptyIterable<T> implements Iterable<T> {
@@ -1251,7 +1250,7 @@ export function defaultIfEmpty<TNode, T extends TNode>(source: HierarchyIterable
  */
 export function defaultIfEmpty<T>(source: Iterable<T>, defaultValue: T): Iterable<T>;
 export function defaultIfEmpty<T>(source: Iterable<T>, defaultValue: T): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
     return flowHierarchy(new DefaultIfEmptyIterable(source, defaultValue), source);
 }
 
@@ -1317,11 +1316,13 @@ export function patch<TNode, T extends TNode>(source: HierarchyIterable<TNode, T
  * @category Subquery
  */
 export function patch<T>(source: Iterable<T>, start: number, skipCount?: number, range?: Iterable<T>): Iterable<T>;
-export function patch<T>(source: Iterable<T>, start: number, skipCount?: number, range?: Iterable<T>): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBePositiveFiniteNumber(start, "start");
-    assert.mustBePositiveFiniteNumber(skipCount, "skipCount");
-    assert.mustBeIterableObjectOrUndefined(range, "range");
+export function patch<T>(source: Iterable<T>, start: number, skipCount: number = 0, range?: Iterable<T>): Iterable<T> {
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isNumber(start)) throw new TypeError("Number expected: start");
+    if (!isNumber(skipCount)) throw new TypeError("Number expected: skipCount");
+    if (!isUndefined(range) && !isIterableObject(range)) throw new TypeError("Iterable expected: range");
+    if (!isPositiveFiniteNumber(start)) throw new RangeError("Argument out of range: start");
+    if (!isPositiveFiniteNumber(skipCount)) throw new RangeError("Argument out of range: skipCount");
     return flowHierarchy(new PatchIterable(source, start, skipCount, range), source);
 }
 
@@ -1375,8 +1376,8 @@ export function scan<T>(source: Iterable<T>, accumulator: (current: T, element: 
  */
 export function scan<T, U>(source: Iterable<T>, accumulator: (current: U, element: T, offset: number) => U, seed: U): Iterable<U>;
 export function scan<T, U>(source: Iterable<T>, accumulator: (current: T | U, element: T, offset: number) => T | U, seed?: T | U): Iterable<T | U> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(accumulator, "accumulator");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(accumulator)) throw new TypeError("Function expected: accumulator");
     return new ScanIterable<T, U>(source, accumulator, arguments.length > 2, seed!);
 }
 
@@ -1429,8 +1430,8 @@ export function scanRight<T>(source: Iterable<T>, accumulator: (current: T, elem
  */
 export function scanRight<T, U>(source: Iterable<T>, accumulator: (current: U, element: T, offset: number) => U, seed: U): Iterable<U>;
 export function scanRight<T, U>(source: Iterable<T>, accumulator: (current: T | U, element: T, offset: number) => T | U, seed?: T | U): Iterable<T | U> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(accumulator, "accumulator");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(accumulator)) throw new TypeError("Function expected: accumulator");
     return new ScanRightIterable<T, U>(source, accumulator, arguments.length > 2, seed);
 }
 
@@ -1474,7 +1475,7 @@ class SymmetricDifferenceByIterable<T, K> implements Iterable<T> {
 
 /**
  * Creates a subquery for the symmetric difference between two `Iterable` objects, where set identity is determined by the selected key.
- * The result is an `Iterable` containings the elements that exist in only left or right, but not 
+ * The result is an `Iterable` containings the elements that exist in only left or right, but not
  * in both.
  *
  * @param left An `Iterable` object.
@@ -1486,7 +1487,7 @@ class SymmetricDifferenceByIterable<T, K> implements Iterable<T> {
 export function symmetricDifferenceBy<TNode, T extends TNode, K>(left: HierarchyIterable<TNode, T>, right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): HierarchyIterable<TNode, T>;
 /**
  * Creates a subquery for the symmetric difference between two `Iterable` objects, where set identity is determined by the selected key.
- * The result is an `Iterable` containings the elements that exist in only left or right, but not 
+ * The result is an `Iterable` containings the elements that exist in only left or right, but not
  * in both.
  *
  * @param left An `Iterable` object.
@@ -1498,7 +1499,7 @@ export function symmetricDifferenceBy<TNode, T extends TNode, K>(left: Hierarchy
 export function symmetricDifferenceBy<TNode, T extends TNode, K>(left: Iterable<T>, right: HierarchyIterable<TNode, T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): HierarchyIterable<TNode, T>;
 /**
  * Creates a subquery for the symmetric difference between two `Iterable` objects, where set identity is determined by the selected key.
- * The result is an `Iterable` containings the elements that exist in only left or right, but not 
+ * The result is an `Iterable` containings the elements that exist in only left or right, but not
  * in both.
  *
  * @param left An `Iterable` object.
@@ -1509,16 +1510,16 @@ export function symmetricDifferenceBy<TNode, T extends TNode, K>(left: Iterable<
  */
 export function symmetricDifferenceBy<T, K>(left: Iterable<T>, right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Iterable<T>;
 export function symmetricDifferenceBy<T, K>(left: Iterable<T>, right: Iterable<T>, keySelector: (element: T) => K, keyEqualer?: Equaler<K>): Iterable<T> {
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return flowHierarchy(new SymmetricDifferenceByIterable(left, right, keySelector, keyEqualer), left, right);
 }
 
 /**
  * Creates a subquery for the symmetric difference between two `Iterable` objects.
- * The result is an `Iterable` containings the elements that exist in only left or right, but not 
+ * The result is an `Iterable` containings the elements that exist in only left or right, but not
  * in both.
  *
  * @param left An `Iterable` object.
@@ -1529,7 +1530,7 @@ export function symmetricDifferenceBy<T, K>(left: Iterable<T>, right: Iterable<T
 export function symmetricDifference<TNode, T extends TNode>(left: HierarchyIterable<TNode, T>, right: Iterable<T>, equaler?: Equaler<T>): HierarchyIterable<TNode, T>;
 /**
  * Creates a subquery for the symmetric difference between two `Iterable` objects.
- * The result is an `Iterable` containings the elements that exist in only left or right, but not 
+ * The result is an `Iterable` containings the elements that exist in only left or right, but not
  * in both.
  *
  * @param left An `Iterable` object.
@@ -1540,7 +1541,7 @@ export function symmetricDifference<TNode, T extends TNode>(left: HierarchyItera
 export function symmetricDifference<TNode, T extends TNode>(left: Iterable<T>, right: HierarchyIterable<TNode, T>, equaler?: Equaler<T>): HierarchyIterable<TNode, T>;
 /**
  * Creates a subquery for the symmetric difference between two `Iterable` objects.
- * The result is an `Iterable` containings the elements that exist in only left or right, but not 
+ * The result is an `Iterable` containings the elements that exist in only left or right, but not
  * in both.
  *
  * @param left An `Iterable` object.
@@ -1550,10 +1551,10 @@ export function symmetricDifference<TNode, T extends TNode>(left: Iterable<T>, r
  */
 export function symmetricDifference<T>(left: Iterable<T>, right: Iterable<T>, equaler?: Equaler<T>): Iterable<T>;
 export function symmetricDifference<T>(left: Iterable<T>, right: Iterable<T>, equaler?: Equaler<T>): Iterable<T> {
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, equaler, "equaler");
-    return symmetricDifferenceBy(left, right, identity, equaler);
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
+    if (!isUndefined(equaler) && !Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
+    return flowHierarchy(new SymmetricDifferenceByIterable(left, right, identity, equaler), left, right);
 }
 
 class TapIterable<T> implements Iterable<T> {
@@ -1593,8 +1594,8 @@ export function tap<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>,
  */
 export function tap<T>(source: Iterable<T>, callback: (element: T, offset: number) => void): Iterable<T>;
 export function tap<T>(source: Iterable<T>, callback: (element: T, offset: number) => void): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(callback, "callback");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(callback)) throw new TypeError("Iterable expected: callback");
     return flowHierarchy(new TapIterable(source, callback), source);
 }
 
@@ -1617,6 +1618,6 @@ class MaterializeIterable<T> implements Iterable<T> {
 export function materialize<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>): HierarchyIterable<TNode, T>;
 export function materialize<T>(source: Iterable<T>): Iterable<T>;
 export function materialize<T>(source: Iterable<T>): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
     return flowHierarchy(new MaterializeIterable(source), source);
 }

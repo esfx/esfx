@@ -19,7 +19,7 @@
         "@esfx/iter-hierarchy": "^1.0.0-pre.23"
     },
     "devDependencies": {
-        "@esfx/internal-assert": "^1.0.0-pre.23"
+        "@esfx/internal-guards": "^1.0.0-pre.23"
     },
     "publishConfig": {
         "access": "public"

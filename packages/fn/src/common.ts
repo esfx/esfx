@@ -15,6 +15,7 @@
 */
 
 import { Equaler, Comparer } from "@esfx/equatable";
+import /*#__INLINE__*/ { isMissing } from "@esfx/internal-guards";
 
 /**
  * Throws the provided value.
@@ -334,8 +335,15 @@ export namespace equate {
     /**
      * Creates a copy of `equate` for a specific `Equaler`.
      */
-    export function withEqualer<T>(equaler: Equaler<T>): (a: T, b: T) => boolean {
-        return (a, b) => equaler.equals(a, b);
+    export function withEqualer<T>(equaler: Equaler<T>, allowNullishValues: true): (a: T | null | undefined, b: T | null | undefined) => boolean;
+    /**
+     * Creates a copy of `equate` for a specific `Equaler`.
+     */
+    export function withEqualer<T>(equaler: Equaler<T>, allowNullishValues?: boolean): (a: T, b: T) => boolean;
+    export function withEqualer<T>(equaler: Equaler<T>, allowNullishValues?: boolean): (a: T, b: T) => boolean {
+        return allowNullishValues ?
+            (a, b) => isMissing(a) ? isMissing(b) : !isMissing(b) || equaler.equals(a, b) :
+            (a, b) => equaler.equals(a, b);
     }
 }
 
@@ -350,8 +358,15 @@ export namespace hash {
     /**
      * Creates a copy of `hash` for a specific `Equaler`.
      */
-    export function withEqualer<T>(equaler: Equaler<T>): (value: T) => number {
-        return value => equaler.hash(value);
+    export function withEqualer<T>(equaler: Equaler<T>, allowNullishValues: true): (value: T | null | undefined) => number;
+    /**
+     * Creates a copy of `hash` for a specific `Equaler`.
+     */
+    export function withEqualer<T>(equaler: Equaler<T>, allowNullishValues?: boolean): (value: T) => number;
+    export function withEqualer<T>(equaler: Equaler<T>, allowNullishValues?: boolean): (value: T) => number {
+        return allowNullishValues ?
+            value => isMissing(value) ? 0 : equaler.hash(value) :
+            value => equaler.hash(value);
     }
 }
 
@@ -367,8 +382,15 @@ export namespace compare {
     /**
      * Creates a copy of `compare` for a specific `Comparer`.
      */
-    export function withComparer<T>(comparer: Comparer<T>): (a: T, b: T) => number {
-        return (a, b) => comparer.compare(a, b);
+    export function withComparer<T>(comparer: Comparer<T>, allowNullishValues: true): (a: T | null | undefined, b: T | null | undefined) => number;
+    /**
+     * Creates a copy of `compare` for a specific `Comparer`.
+     */
+    export function withComparer<T>(comparer: Comparer<T>, allowNullishValues?: boolean): (a: T, b: T) => number;
+    export function withComparer<T>(comparer: Comparer<T>, allowNullishValues?: boolean): (a: T, b: T) => number {
+        return allowNullishValues ?
+            (a, b) => isMissing(a) ? isMissing(b) ? 0 : -1 : isMissing(b) ? +1 : comparer.compare(a, b) :
+            (a, b) => comparer.compare(a, b);
     }
 }
 
@@ -392,9 +414,15 @@ export namespace clamp {
     /**
      * Creates a copy of `clamp` for a specific `Comparer`.
      */
-    export function withComparer<T>(comparer: Comparer<T>): (min: T, max: T) => (value: T) => T {
-        return (min, max) => (value) => comparer.compare(value, min) < 0 ? min :
-                                        comparer.compare(value, max) > 0 ? max :
+    export function withComparer<T>(comparer: Comparer<T>, allowNullishValues: true): (min: T, max: T) => (value: T) => T;
+    /**
+     * Creates a copy of `clamp` for a specific `Comparer`.
+     */
+    export function withComparer<T>(comparer: Comparer<T>, allowNullishValues?: boolean): (min: T, max: T) => (value: T) => T;
+    export function withComparer<T>(comparer: Comparer<T>, allowNullishValues?: boolean): (min: T, max: T) => (value: T) => T {
+        const comparefn = compare.withComparer(comparer, allowNullishValues);
+        return (min, max) => (value) => comparefn(value, min) < 0 ? min :
+                                        comparefn(value, max) > 0 ? max :
                                         value;
     }
 }
@@ -449,5 +477,5 @@ export function fallback<A extends unknown[], T, U>(a: (...args: A) => T, b: (..
  * Returns `true` if a value is neither `null` nor `undefined`.
  */
 export function isDefined<T>(value: T): value is NonNullable<T> {
-    return value !== null && value !== undefined;
+    return !isMissing(value);
 }

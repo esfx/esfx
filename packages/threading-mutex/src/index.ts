@@ -14,24 +14,19 @@
    limitations under the License.
 */
 
-import { Lockable } from "@esfx/threading-lockable";
 import { Disposable } from "@esfx/disposable";
-
-// NOTE: This must be a single bit, must be distinct from other threading coordination
-//       primitives, and must be a bit >= 16.
-const MUTEX_ID = 1 << 18;
-
-const UNLOCKED = MUTEX_ID | 0;
-const LOCKED = MUTEX_ID | 1;
-const IN_CONTENTION = MUTEX_ID | 2;
-const MUTEX_EXCLUDES = ~(UNLOCKED | LOCKED | IN_CONTENTION);
-
-const ATOM_INDEX = 0;
+import { Lockable } from "@esfx/threading-lockable";
+import /*#__INLINE__*/ { MUTEX_FIELD_STATE, MUTEX_ID, MUTEX_STATE_EXCLUDES, MUTEX_STATE_INCONTENTION, MUTEX_STATE_LOCKED, MUTEX_STATE_UNLOCKED } from "@esfx/internal-threading";
+import /*#__INLINE__*/ { isNumber } from "@esfx/internal-guards";
 
 const kArray = Symbol("kArray");
 const kOwnsLock = Symbol("kOwnsLock");
 
 export class Mutex implements Lockable, Disposable {
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "Mutex" });
+    }
+
     static readonly SIZE = 4;
 
     private [kArray]: Int32Array | undefined;
@@ -53,10 +48,10 @@ export class Mutex implements Lockable, Disposable {
             initiallyOwned = bufferOrInitiallyOwned;
         }
 
-        Atomics.compareExchange(array, ATOM_INDEX, 0, UNLOCKED);
+        Atomics.compareExchange(array, MUTEX_FIELD_STATE, 0, MUTEX_STATE_UNLOCKED);
 
-        const data = Atomics.load(array, ATOM_INDEX);
-        if (!(data & MUTEX_ID) || data & MUTEX_EXCLUDES) throw new TypeError("Invalid handle.");
+        const data = Atomics.load(array, MUTEX_FIELD_STATE);
+        if (!(data & MUTEX_ID) || data & MUTEX_STATE_EXCLUDES) throw new TypeError("Invalid handle.");
 
         this[kArray] = array;
         this[kOwnsLock] = false;
@@ -106,8 +101,8 @@ export class Mutex implements Lockable, Disposable {
         const array = this[kArray];
         if (!array) throw new TypeError("Object is disposed.");
 
-        const atom = Atomics.load(array, ATOM_INDEX);
-        return atom === LOCKED || atom === IN_CONTENTION;
+        const atom = Atomics.load(array, MUTEX_FIELD_STATE);
+        return atom === MUTEX_STATE_LOCKED || atom === MUTEX_STATE_INCONTENTION;
     }
 
     /**
@@ -117,7 +112,7 @@ export class Mutex implements Lockable, Disposable {
      * @returns `true` if the lock was acquired within the provided timeout period; otherwise, `false`.
      */
     lock(ms: number = Infinity) {
-        if (typeof ms !== "number") throw new TypeError("Number expected: ms");
+        if (!isNumber(ms)) throw new TypeError("Number expected: ms");
         ms = isNaN(ms) ? Infinity : Math.max(ms, 0);
 
         const array = this[kArray];
@@ -131,18 +126,18 @@ export class Mutex implements Lockable, Disposable {
         let timeout = ms;
 
         // algorithm based on https://github.com/eliben/code-for-blog/blob/e041beff3712e0674e87dbae5283a09987e566cf/2018/futex-basics/mutex-using-futex.cpp.
-        let c = Atomics.compareExchange(array, ATOM_INDEX, UNLOCKED, LOCKED);
-        if (c !== UNLOCKED) {
+        let c = Atomics.compareExchange(array, MUTEX_FIELD_STATE, MUTEX_STATE_UNLOCKED, MUTEX_STATE_LOCKED);
+        if (c !== MUTEX_STATE_UNLOCKED) {
             do {
-                if (c === IN_CONTENTION || Atomics.compareExchange(array, ATOM_INDEX, LOCKED, IN_CONTENTION) !== UNLOCKED) {
-                    if (timeout <= 0 || Atomics.wait(array, ATOM_INDEX, IN_CONTENTION, timeout) === "timed-out") {
+                if (c === MUTEX_STATE_INCONTENTION || Atomics.compareExchange(array, MUTEX_FIELD_STATE, MUTEX_STATE_LOCKED, MUTEX_STATE_INCONTENTION) !== MUTEX_STATE_UNLOCKED) {
+                    if (timeout <= 0 || Atomics.wait(array, MUTEX_FIELD_STATE, MUTEX_STATE_INCONTENTION, timeout) === "timed-out") {
                         return false;
                     }
                     if (isFinite(ms)) {
                         timeout = ms - (Date.now() - start);
                     }
                 }
-            } while ((c = Atomics.compareExchange(array, ATOM_INDEX, UNLOCKED, IN_CONTENTION)) !== UNLOCKED);
+            } while ((c = Atomics.compareExchange(array, MUTEX_FIELD_STATE, MUTEX_STATE_UNLOCKED, MUTEX_STATE_INCONTENTION)) !== MUTEX_STATE_UNLOCKED);
         }
 
         this[kOwnsLock] = true;
@@ -160,7 +155,7 @@ export class Mutex implements Lockable, Disposable {
         if (this[kOwnsLock]) {
             throw new Error("Deadlock would occur.");
         }
-        if (Atomics.compareExchange(array, ATOM_INDEX, UNLOCKED, LOCKED) === UNLOCKED) {
+        if (Atomics.compareExchange(array, MUTEX_FIELD_STATE, MUTEX_STATE_UNLOCKED, MUTEX_STATE_LOCKED) === MUTEX_STATE_UNLOCKED) {
             this[kOwnsLock] = true;
             return true;
         }
@@ -176,9 +171,9 @@ export class Mutex implements Lockable, Disposable {
         const array = this[kArray];
         if (!array) throw new TypeError("Object is disposed.");
         if (this[kOwnsLock]) {
-            if (Atomics.sub(array, ATOM_INDEX, 1) !== LOCKED) {
-                Atomics.store(array, ATOM_INDEX, UNLOCKED);
-                Atomics.notify(array, ATOM_INDEX, 1);
+            if (Atomics.sub(array, MUTEX_FIELD_STATE, 1) !== MUTEX_STATE_LOCKED) {
+                Atomics.store(array, MUTEX_FIELD_STATE, MUTEX_STATE_UNLOCKED);
+                Atomics.notify(array, MUTEX_FIELD_STATE, 1);
             }
             this[kOwnsLock] = false;
             return true;

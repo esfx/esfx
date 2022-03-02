@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import /*#__INLINE__*/ { isObject, isFunction, isDefined } from "@esfx/internal-guards";
+import /*#__INLINE__*/ { isObject, isFunction, isPresent } from "@esfx/internal-guards";
 
 export interface Lockable {
     /**
@@ -24,12 +24,14 @@ export interface Lockable {
      * @returns `true` if the current thread now owns the lock; otherwise, `false`.
      */
     [Lockable.lock](ms?: number): boolean;
+
     /**
      * Attempts to take an exclusive lock without waiting.
      *
      * @returns `true` if the current thread now owns the lock; otherwise, `false`.
      */
     [Lockable.tryLock]?(): boolean;
+
     /**
      * Releases the exclusive lock.
      *
@@ -49,6 +51,6 @@ export namespace Lockable {
         return isObject(value)
             && Lockable.lock in value
             && Lockable.unlock in value
-            && (!(Lockable.tryLock in value) || !isDefined(Lockable.tryLock) || isFunction(Lockable.tryLock));
+            && (!(Lockable.tryLock in value) || !isPresent(Lockable.tryLock) || isFunction(Lockable.tryLock));
     }
 }

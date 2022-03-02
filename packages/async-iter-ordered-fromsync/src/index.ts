@@ -14,16 +14,16 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
-import { OrderedIterable } from "@esfx/iter-ordered";
+import /*#__INLINE__*/ { isFunction } from "@esfx/internal-guards";
 import { AsyncOrderedIterable } from "@esfx/async-iter-ordered";
 import { Comparison } from '@esfx/equatable';
+import { OrderedIterable } from "@esfx/iter-ordered";
 
 class AsyncFromSyncOrderedIterable<T, TSource extends OrderedIterable<T>> implements AsyncOrderedIterable<T> {
     private _source: TSource;
 
     constructor(source: TSource) {
-        assert.mustBeType(OrderedIterable.hasInstance, "source");
+        if (!OrderedIterable.hasInstance(source)) throw new TypeError("OrderedIterable expected: source");
         this._source = source;
     }
 
@@ -33,10 +33,8 @@ class AsyncFromSyncOrderedIterable<T, TSource extends OrderedIterable<T>> implem
 
     [AsyncOrderedIterable.thenByAsync]<K>(keySelector: (element: T) => K, comparison: (x: K, y: K) => number, descending: boolean): AsyncOrderedIterable<T> {
         const thenBy = this._source[OrderedIterable.thenBy];
-        if (typeof thenBy === "function") {
-            return new AsyncFromSyncOrderedIterable(thenBy.call(this._source, keySelector, comparison as Comparison<unknown>, descending));
-        }
-        throw new TypeError();
+        if (!isFunction(thenBy)) throw new TypeError("Function expected");
+        return new AsyncFromSyncOrderedIterable(thenBy.call(this._source, keySelector, comparison as Comparison<unknown>, descending));
     }
 }
 

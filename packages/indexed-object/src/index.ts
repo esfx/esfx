@@ -14,11 +14,71 @@
    limitations under the License.
 */
 
+let integerIndexedObjectHandler: ProxyHandler<IntegerIndexedObject<any>>;
+
 /**
  * Represents an object that can be indexed by an integer value similar to a native
  * Array or TypedArray.
  */
 export abstract class IntegerIndexedObject<T> {
+    static {
+        integerIndexedObjectHandler = {
+            getOwnPropertyDescriptor(target, propertyKey) {
+                const index = toIndex(propertyKey);
+                if (index !== undefined) return undefined;
+                return Reflect.getOwnPropertyDescriptor(target, propertyKey);
+            },
+            defineProperty(target, propertyKey, descriptor) {
+                const index = toIndex(propertyKey);
+                if (index !== undefined) return false;
+                return Reflect.defineProperty(target, propertyKey, descriptor);
+            },
+            has(target, propertyKey) {
+                const index = toIndex(propertyKey);
+                if (index !== undefined) {
+                    return target.hasIndex(index);
+                }
+                return Reflect.has(target, propertyKey);
+            },
+            get(target, propertyKey, receiver) {
+                const index = toIndex(propertyKey);
+                if (index !== undefined) {
+                    return target.getIndex(index); 
+                }
+                return Reflect.get(target, propertyKey, receiver);
+            },
+            set(target, propertyKey, value, receiver) {
+                const index = toIndex(propertyKey);
+                if (index !== undefined) {
+                    return target.setIndex(index, value);
+                }
+                return Reflect.set(target, propertyKey, value, receiver);
+            },
+            deleteProperty(target, propertyKey) {
+                const index = toIndex(propertyKey);
+                if (index !== undefined) {
+                    return target.deleteIndex(index);
+                }
+                return Reflect.deleteProperty(target, propertyKey);
+            },
+            ownKeys(target) {
+                const keys: (string | symbol)[] = [];
+                const length = target.getLength();
+                for (let i = 0; i < length; i++) {
+                    if (target.hasIndex(i)) {
+                        keys.push(String(i));
+                    }
+                }
+                for (const key of Reflect.ownKeys(target)) {
+                    if (typeof key !== "string" || toIndex(key) === undefined) {
+                        keys.push(key);
+                    }
+                }
+                return keys;
+            }
+        };
+    }
+
     constructor() {
         return new Proxy(this, integerIndexedObjectHandler);
     }
@@ -84,65 +144,3 @@ function toIndex(propertyKey: PropertyKey) {
         return index;
     }
 }
-
-const integerIndexedObjectHandler: ProxyHandler<IntegerIndexedObject<any>> = {
-    getOwnPropertyDescriptor(target, propertyKey) {
-        const index = toIndex(propertyKey);
-        if (index !== undefined) return undefined;
-        return Reflect.getOwnPropertyDescriptor(target, propertyKey);
-    },
-    defineProperty(target, propertyKey, descriptor) {
-        const index = toIndex(propertyKey);
-        if (index !== undefined) return false;
-        return Reflect.defineProperty(target, propertyKey, descriptor);
-    },
-    has(target, propertyKey) {
-        const index = toIndex(propertyKey);
-        if (index !== undefined) {
-            // @ts-ignore
-            return target.hasIndex(index);
-        }
-        return Reflect.has(target, propertyKey);
-    },
-    get(target, propertyKey, receiver) {
-        const index = toIndex(propertyKey);
-        if (index !== undefined) {
-            // @ts-ignore
-            return target.getIndex(index); 
-        }
-        return Reflect.get(target, propertyKey, receiver);
-    },
-    set(target, propertyKey, value, receiver) {
-        const index = toIndex(propertyKey);
-        if (index !== undefined) {
-            // @ts-ignore
-            return target.setIndex(index, value);
-        }
-        return Reflect.set(target, propertyKey, value, receiver);
-    },
-    deleteProperty(target, propertyKey) {
-        const index = toIndex(propertyKey);
-        if (index !== undefined) {
-            // @ts-ignore
-            return target.deleteIndex(index);
-        }
-        return Reflect.deleteProperty(target, propertyKey);
-    },
-    ownKeys(target) {
-        const keys: (string | symbol)[] = [];
-        // @ts-ignore
-        const length = target.getLength();
-        for (let i = 0; i < length; i++) {
-            // @ts-ignore
-            if (target.hasIndex(i)) {
-                keys.push(String(i));
-            }
-        }
-        for (const key of Reflect.ownKeys(target)) {
-            if (typeof key !== "string" || toIndex(key) === undefined) {
-                keys.push(key);
-            }
-        }
-        return keys;
-    }
-};

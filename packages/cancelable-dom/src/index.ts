@@ -15,6 +15,7 @@
 */
 
 import { Cancelable, CancelableCancelSignal, CancelSubscription } from "@esfx/cancelable";
+import /*#__INLINE__*/ { isFunction } from "@esfx/internal-guards";
 
 const weakAbortSignal = new WeakMap<Cancelable, AbortSignal>();
 const weakCancelable = new WeakMap<AbortSignal, CancelableCancelSignal>();
@@ -29,8 +30,16 @@ const AbortSignalGetReason: ((obj: AbortSignal) => unknown) | undefined = "reaso
 
 export function toAbortSignal(cancelable: Cancelable): AbortSignal;
 export function toAbortSignal(cancelable: Cancelable | AbortController | AbortSignal) {
-    if (cancelable instanceof AbortController) return AbortControllerGetSignal(cancelable);
-    if (cancelable instanceof AbortSignal) return cancelable;
+    if (cancelable instanceof AbortController) {
+        return AbortControllerGetSignal(cancelable);
+    }
+    if (cancelable instanceof AbortSignal) {
+        return cancelable;
+    }
+    if (!Cancelable.hasInstance(cancelable)) {
+        throw new TypeError("Cancelable expected: cancelable");
+    }
+
     let abortSignal = weakAbortSignal.get(cancelable);
     if (!abortSignal) {
         const signal = cancelable[Cancelable.cancelSignal]();
@@ -44,16 +53,19 @@ export function toAbortSignal(cancelable: Cancelable | AbortController | AbortSi
         abortSignal = AbortControllerGetSignal(adapter);
         weakAbortSignal.set(cancelable, abortSignal);
     }
+
     return abortSignal;
 }
 
 export function wrapAbortSignal(signal: AbortController | AbortSignal): Cancelable {
+    if (Cancelable.hasInstance(signal)) {
+        return signal;
+    }
     if (signal instanceof AbortController) {
         return wrapAbortSignal(AbortControllerGetSignal(signal));
     }
-
-    if (Cancelable.hasInstance(signal)) {
-        return signal;
+    if (!(signal instanceof AbortSignal)) {
+        throw new TypeError("AbortSignal or AbortController expected: signal");
     }
 
     let cancelable = weakCancelable.get(signal);
@@ -66,6 +78,7 @@ export function wrapAbortSignal(signal: AbortController | AbortSignal): Cancelab
                 return AbortSignalGetReason?.(signal) ?? defaultReason;
             },
             subscribe(onSignaled: () => void) {
+                if (!isFunction(onSignaled)) throw new TypeError("Function expected: onSignaled");
                 let subscribed = true;
                 const onAbort = () => {
                     if (subscribed) {

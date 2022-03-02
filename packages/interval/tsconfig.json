@@ -6,8 +6,10 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../internal/assert" },
-        { "path": "../../internal/guards" },
+        // dependencies
         { "path": "../equatable" },
+        
+        // devDependencies
+        { "path": "../../internal/guards" },
     ]
 }

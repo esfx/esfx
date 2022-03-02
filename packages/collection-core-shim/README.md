@@ -73,6 +73,12 @@ The global shim adds a default implementation the collection interfaces to the f
 - `Map` implements:
   - `ReadonlyKeyedCollection`
   - `KeyedCollection`
+- `WeakSet` implements:
+  - `ReadonlyContainer`
+  - `Container`
+- `WeakMap` implements:
+  - `ReadonlyKeyedContainer`
+  - `KeyedContainer`
 
 To install the global shim, import `@esfx/collection-core-shim`:
 

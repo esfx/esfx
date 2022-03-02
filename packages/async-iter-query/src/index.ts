@@ -14,7 +14,7 @@
   limitations under the License.
  */
 
-import * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ { isAsyncIterableObject, isIterableObject, isUndefined } from "@esfx/internal-guards";
 import * as fn from "@esfx/async-iter-fn";
 import * as sync_fn from "@esfx/iter-fn";
 import { ConsumeAsyncOptions } from "@esfx/async-iter-fn";
@@ -142,7 +142,7 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
      * @param source An `AsyncIterable` object.
      */
     constructor(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>) {
-        assert.mustBeAsyncOrSyncIterableObject(source, "source");
+        if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
         this[kSource] = getSource(toAsyncIterable(source));
     }
 
@@ -161,8 +161,8 @@ export class AsyncQuery<T> implements AsyncIterable<T> {
     static from<T extends readonly unknown[] | []>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncQuery<T>;
     static from<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncQuery<T>;
     static from(source: AsyncIterable<any> | Iterable<any>, provider?: HierarchyProvider<any>): AsyncQuery<any> {
-        assert.mustBeAsyncOrSyncIterableObject(source, "source");
-        assert.mustBeTypeOrUndefined(HierarchyProvider.hasInstance, provider, "provider");
+        if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+        if (!isUndefined(provider) && !HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
         if (provider) source = fn.toHierarchyAsync(source, provider);
         return source instanceof AsyncQuery ? source :
             AsyncOrderedHierarchyIterable.hasInstance(source) || OrderedHierarchyIterable.hasInstance(source) ? new AsyncOrderedHierarchyQuery(source) :
@@ -2366,7 +2366,7 @@ AsyncQuery.prototype.break = AsyncQuery.prototype.spanUntil;
  */
 export class AsyncOrderedQuery<T> extends AsyncQuery<T> implements AsyncOrderedIterable<T> {
     constructor(source: AsyncOrderedIterable<T> | OrderedIterable<T>) {
-        assert.assertType(AsyncOrderedIterable.hasInstance(source) || OrderedIterable.hasInstance(source), "source");
+        if (!AsyncOrderedIterable.hasInstance(source) && !OrderedIterable.hasInstance(source)) throw new TypeError("AsyncOrderedIterable expected: source");
         super(source);
     }
 
@@ -2409,12 +2409,12 @@ export class AsyncHierarchyQuery<TNode, T extends TNode = TNode> extends AsyncQu
     constructor(source: AsyncIterable<T> | Iterable<T>, provider: HierarchyProvider<TNode>);
     constructor(source: AsyncHierarchyIterable<TNode, T> | AsyncIterable<T> | HierarchyIterable<TNode, T> | Iterable<T>, provider?: HierarchyProvider<TNode>) {
         if (provider !== undefined) {
-            assert.mustBeAsyncOrSyncIterableObject(source, "source");
-            assert.mustBeType(HierarchyProvider.hasInstance, provider, "provider");
+            if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+            if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
             source = fn.toHierarchyAsync(source, provider);
         }
         else {
-            assert.assertType(AsyncHierarchyIterable.hasInstance(source) || HierarchyIterable.hasInstance(source), "source");
+            if (!AsyncHierarchyIterable.hasInstance(source) && !HierarchyIterable.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
         }
         super(source);
     }
@@ -3586,11 +3586,11 @@ export class AsyncOrderedHierarchyQuery<TNode, T extends TNode = TNode> extends 
     constructor(source: AsyncOrderedIterable<T> | OrderedIterable<T>, provider: HierarchyProvider<TNode>);
     constructor(source: AsyncOrderedHierarchyIterable<TNode, T> | AsyncOrderedIterable<T> | OrderedHierarchyIterable<TNode, T> | OrderedIterable<T>, provider?: HierarchyProvider<TNode>) {
         if (provider !== undefined) {
-            assert.assertType(AsyncOrderedIterable.hasInstance(source) || OrderedIterable.hasInstance(source), "source");
+            if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
             super(source, provider);
         }
         else {
-            assert.assertType(AsyncOrderedHierarchyIterable.hasInstance(source) || OrderedHierarchyIterable.hasInstance(source), "source");
+            if (!AsyncOrderedHierarchyIterable.hasInstance(source) && !OrderedHierarchyIterable.hasInstance(source)) throw new TypeError("AsyncOrderedHierarchyIterable expected: source");
             super(source);
         }
     }

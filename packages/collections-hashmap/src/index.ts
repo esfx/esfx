@@ -12,42 +12,12 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-
-   THIRD PARTY LICENSE NOTICE:
-
-   HashMap is derived from the implementation of Dictionary<T> in .NET Core.
-
-   .NET Core is licensed under the MIT License:
-
-   The MIT License (MIT)
-
-   Copyright (c) .NET Foundation and Contributors
-
-   All rights reserved.
-
-   Permission is hereby granted, free of charge, to any person obtaining a copy
-   of this software and associated documentation files (the "Software"), to deal
-   in the Software without restriction, including without limitation the rights
-   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-   copies of the Software, and to permit persons to whom the Software is
-   furnished to do so, subject to the following conditions:
-
-   The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Software.
-
-   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-   SOFTWARE.
 */
 
 import { KeyedCollection, ReadonlyKeyedCollection } from "@esfx/collection-core";
 import { Equaler } from "@esfx/equatable";
 import /*#__INLINE__*/ { clearEntries, createHashData, deleteEntry, ensureCapacity, findEntryIndex, findEntryValue, forEachEntry, HashData, insertEntry, iterateEntries, selectEntryEntry, selectEntryKey, selectEntryValue, trimExcessEntries } from '@esfx/internal-collections-hash';
-import /*#__INLINE__*/ { isIterable, isMissing } from "@esfx/internal-guards";
+import /*#__INLINE__*/ { isFunction, isIterable, isNumber, isPositiveInteger, isUndefined } from "@esfx/internal-guards";
 
 export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, V> {
     private _hashData: HashData<K, V>;
@@ -65,11 +35,12 @@ export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, 
         let equaler: Equaler<K> | undefined;
         if (args.length > 0) {
             const arg0 = args[0];
-            if (typeof arg0 === "number") {
+            if (isNumber(arg0)) {
+                if (!isPositiveInteger(arg0)) throw new RangeError("Argument out of range: capacity");
                 capacity = arg0;
                 if (args.length > 1) equaler = args[1];
             }
-            else if (isIterable(arg0) || isMissing(arg0)) {
+            else if (isUndefined(arg0) || isIterable(arg0)) {
                 iterable = arg0;
                 if (args.length > 1) equaler = args[1];
             }
@@ -78,10 +49,8 @@ export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, 
             }
         }
 
-        if (capacity === undefined) capacity = 0;
-        if (equaler === undefined) equaler = Equaler.defaultEqualer;
-        if (capacity < 0) throw new RangeError();
-
+        capacity ??= 0;
+        equaler ??= Equaler.defaultEqualer;
         this._hashData = createHashData(equaler, capacity);
         if (iterable) {
             for (const [key, value] of iterable) {
@@ -120,10 +89,16 @@ export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, 
     }
 
     ensureCapacity(capacity: number) {
+        if (!isNumber(capacity)) throw new TypeError("Number expected: capacity");
+        if (!isPositiveInteger(capacity)) throw new RangeError("Argument out of range: capacity");
         return ensureCapacity(this._hashData, capacity);
     }
 
     trimExcess(capacity?: number) {
+        if (!isUndefined(capacity)) {
+            if (!isNumber(capacity)) throw new TypeError("Number expected: capacity");
+            if (!isPositiveInteger(capacity)) throw new RangeError("Argument out of range: capacity");
+        }
         trimExcessEntries(this._hashData, capacity);
     }
 
@@ -144,6 +119,7 @@ export class HashMap<K, V> implements KeyedCollection<K, V>, ReadonlyHashMap<K, 
     }
 
     forEach(callback: (value: V, key: K, map: this) => void, thisArg?: any) {
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         forEachEntry(this, this._hashData.head, callback, thisArg);
     }
 

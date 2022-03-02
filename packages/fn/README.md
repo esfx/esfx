@@ -21,5 +21,5 @@ npm i @esfx/fn
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/fn.html).
+You can read more about the API [here](https://esfx.github.io/esfx/api/fn.html).
 

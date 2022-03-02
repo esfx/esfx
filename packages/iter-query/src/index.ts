@@ -18,7 +18,7 @@ import { IndexedCollection } from '@esfx/collection-core';
 import { HashMap } from '@esfx/collections-hashmap';
 import { HashSet } from '@esfx/collections-hashset';
 import { Comparer, Comparison, Equaler, EqualityComparison } from '@esfx/equatable';
-import /*#__INLINE__*/ * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ { isIterableObject, isUndefined } from "@esfx/internal-guards";
 import { Index } from "@esfx/interval";
 import * as fn from "@esfx/iter-fn";
 import { ConsumeOptions } from "@esfx/iter-fn";
@@ -127,7 +127,7 @@ export class Query<T> implements Iterable<T> {
      * @param source A `Iterable` object.
      */
     constructor(source: Iterable<T>) {
-        assert.mustBeIterableObject(source, "source");
+        if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
         this[kSource] = getSource(source);
     }
 
@@ -145,8 +145,8 @@ export class Query<T> implements Iterable<T> {
     static from<T extends readonly unknown[] | []>(source: Iterable<T>): Query<T>;
     static from<T>(source: Iterable<T>): Query<T>;
     static from(source: Iterable<any>, provider?: HierarchyProvider<any>): Query<any> {
-        assert.mustBeIterableObject(source, "source");
-        assert.mustBeTypeOrUndefined(HierarchyProvider.hasInstance, provider, "provider");
+        if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+        if (!isUndefined(provider) && !HierarchyProvider.hasInstance(provider)) throw new TypeError("HiearchyProvider expected: provider");
         if (provider) source = fn.toHierarchy(source, provider);
         return source instanceof Query ? source :
             OrderedHierarchyIterable.hasInstance(source) ? new OrderedHierarchyQuery(source) :
@@ -2370,7 +2370,7 @@ Query.prototype.break = Query.prototype.spanUntil;
  */
 export class OrderedQuery<T> extends Query<T> implements OrderedIterable<T> {
     constructor(source: OrderedIterable<T>) {
-        assert.mustBeType(OrderedIterable.hasInstance, source, "source");
+        if (!OrderedIterable.hasInstance(source)) throw new TypeError("OrderedIterable expected: source");
         super(source);
     }
 
@@ -2412,15 +2412,15 @@ export class HierarchyQuery<TNode, T extends TNode = TNode> extends Query<T> imp
     constructor(source: HierarchyIterable<TNode, T>);
     constructor(source: Iterable<T>, provider: HierarchyProvider<TNode>);
     constructor(source: Iterable<T> | HierarchyIterable<TNode, T>, provider?: HierarchyProvider<TNode>) {
-        if (provider !== undefined) {
-            assert.mustBeIterableObject(source, "source");
-            assert.mustBeType(HierarchyProvider.hasInstance, provider, "provider");
-            source = fn.toHierarchy(source, provider);
+        if (!isUndefined(provider)) {
+            if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+            if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+            super(fn.toHierarchy(source, provider));
         }
         else {
-            assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
+            if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+            super(source);
         }
-        super(source);
     }
 
     // #region Hierarchy
@@ -2835,12 +2835,13 @@ export class OrderedHierarchyQuery<TNode, T extends TNode = TNode> extends Hiera
     constructor(source: OrderedHierarchyIterable<TNode, T>);
     constructor(source: OrderedIterable<T>, provider: HierarchyProvider<TNode>);
     constructor(source: OrderedIterable<T> | OrderedHierarchyIterable<TNode, T>, provider?: HierarchyProvider<TNode>) {
-        if (provider !== undefined) {
-            assert.mustBeType(OrderedIterable.hasInstance, source, "source");
+        if (!isUndefined(provider)) {
+            if (!OrderedIterable.hasInstance(source)) throw new TypeError("OrderedIterable expected: source");
+            if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expectd: provider");
             super(source, provider);
         }
         else {
-            assert.mustBeType(OrderedHierarchyIterable.hasInstance, source, "source");
+            if (!OrderedHierarchyIterable.hasInstance(source)) throw new TypeError("OrderedHierarchyIterable expected: source");
             super(source);
         }
     }

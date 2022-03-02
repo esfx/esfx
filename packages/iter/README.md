@@ -21,5 +21,5 @@ npm i @esfx/iter
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/iter.html).
+You can read more about the API [here](https://esfx.github.io/esfx/api/iter.html).
 

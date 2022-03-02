@@ -6,10 +6,15 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../internal/ts-worker" },
-        { "path": "../struct-type" },
-        { "path": "../threading-lockable" },
-        { "path": "../threading-mutex" },
+        // dependencies
         { "path": "../disposable" },
+        { "path": "../threading-lockable" },
+
+        // devDependencies
+        { "path": "../../internal/ts-worker" },
+        { "path": "../../internal/threading" },
+        { "path": "../../internal/guards" },
+        { "path": "../struct-type" },
+        { "path": "../threading-mutex" },
     ]
 }

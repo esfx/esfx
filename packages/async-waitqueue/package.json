@@ -19,7 +19,8 @@
         "@esfx/cancelable": "^1.0.0-pre.30"
     },
     "devDependencies": {
-        "@esfx/internal-linked-list": "^1.0.0-pre.30"
+        "@esfx/internal-linked-list": "^1.0.0-pre.30",
+        "@esfx/internal-guards": "^1.0.0-pre.23"
     },
     "publishConfig": {
         "access": "public"

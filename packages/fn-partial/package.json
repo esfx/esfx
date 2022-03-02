@@ -1,0 +1,24 @@
+{
+    "name": "@esfx/fn-partial",
+    "version": "1.0.0-pre.19",
+    "description": "Partial application utility functions.",
+    "private": true,
+    "type": "commonjs",
+    "main": "./dist/index.js",
+    "exports": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "dependencies": {
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

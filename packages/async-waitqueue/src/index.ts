@@ -37,12 +37,13 @@
 */
 
 import { Cancelable, CancelError } from "@esfx/cancelable";
+import /*#__INLINE__*/ { isUndefined } from "@esfx/internal-guards";
 import /*#__INLINE__*/ { LinkedList, listAdd, listCreate, listRemove } from "@esfx/internal-linked-list";
 
 interface Entry<T> {
-    resolve(value: T | PromiseLike<T>): void;
-    reject(reason: any): void;
     unsubscribe(): void;
+    resolve: (value: T | PromiseLike<T>) => void;
+    reject: (reason: any) => void;
 }
 
 /**
@@ -52,7 +53,7 @@ export class WaitQueue<T> {
     private _list: LinkedList<Entry<T>> = listCreate();
 
     static {
-        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "WaitQueue" });        
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "WaitQueue" });
     }
 
     /**
@@ -66,22 +67,25 @@ export class WaitQueue<T> {
      * Returns a `Promise` for the next value to be added to the queue.
      * @param cancelable A `Cancelable` used to cancel the request.
      */
-    wait(cancelable: Cancelable = Cancelable.none): Promise<T> {
+    wait(cancelable?: Cancelable): Promise<T> {
         return new Promise<T>((resolve, reject) => {
-            Cancelable.throwIfSignaled(cancelable);
+            if (!isUndefined(cancelable) && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+
+            const signal = cancelable?.[Cancelable.cancelSignal]();
+            if (signal?.signaled) throw signal.reason ?? new CancelError();
 
             const node = listAdd(this._list, {
                 unsubscribe() {
-                    subscription.unsubscribe();
+                    subscription?.unsubscribe();
                 },
                 resolve,
                 reject,
             });
 
-            const subscription = Cancelable.subscribe(cancelable, () => {
+            const subscription = signal?.subscribe(() => {
                 const entry = node.value;
                 if (listRemove(this._list, node)) {
-                    entry.reject(new CancelError());
+                    entry.reject(signal.reason ?? new CancelError());
                 }
             });
         });
@@ -169,15 +173,15 @@ export class WaitQueue<T> {
      * Rejects the next pending `wait()` operation with a `CancelError`.
      * @returns `true` if a pending `wait()` operation was rejected; otherwise, `false`.
      */
-    cancelOne() {
-        return this.rejectOne(new CancelError());
+    cancelOne(reason = new CancelError()) {
+        return this.rejectOne(reason);
     }
 
     /**
      * Rejects all pending `wait()` operations with a `CancelError`.
      * @returns The number of pending `wait()` operations that were rejected.
      */
-    cancelAll() {
-        return this.rejectAll(new CancelError());
+    cancelAll(reason = new CancelError()) {
+        return this.rejectAll(reason);
     }
 }

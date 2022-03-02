@@ -16,24 +16,18 @@
 
 import { SpinWait } from "@esfx/threading-spinwait";
 import { Disposable } from "@esfx/disposable";
+import /*#__INLINE__*/ { COUNTDOWN_FIELD_STATE, COUNTDOWN_FIELD_INITIALCOUNT, COUNTDOWN_FIELD_REMAININGCOUNT, COUNTDOWN_ID, COUNTDOWN_STATE_EXCLUDES, COUNTDOWN_STATE_NONSIGNALED, COUNTDOWN_STATE_SIGNALED } from "@esfx/internal-threading";
+import /*#__INLINE__*/ { isNumber, isPositiveNonZeroFiniteNumber, isUndefined } from "@esfx/internal-guards";
 
 const MAX_INT32 = (2 ** 31) - 1;
-
-// NOTE: This must be a single bit, must be distinct from other threading coordination
-//       primitives, and must be a bit >= 16.
-const COUNTDOWN_ID = 1 << 20;
-
-const NONSIGNALED = COUNTDOWN_ID | 0;
-const SIGNALED = COUNTDOWN_ID | 1;
-const COUNTDOWN_EXCLUDES = ~(NONSIGNALED | SIGNALED);
-
-const ATOM_INDEX = 0;
-const INITIALCOUNT_INDEX = 1;
-const REMAININGCOUNT_INDEX = 2;
 
 const kArray = Symbol("kArray");
 
 export class CountdownEvent implements Disposable {
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "CountdownEvent" });
+    }
+
     static readonly SIZE = 12;
 
     private [kArray]: Int32Array | undefined;
@@ -55,15 +49,15 @@ export class CountdownEvent implements Disposable {
             initialCount = bufferOrInitialCount;
         }
 
-        if (Atomics.compareExchange(array, ATOM_INDEX, 0, initialCount === 0 ? SIGNALED : NONSIGNALED) === 0) {
-            if (Atomics.compareExchange(array, INITIALCOUNT_INDEX, 0, initialCount) !== 0 ||
-                Atomics.compareExchange(array, REMAININGCOUNT_INDEX, 0, initialCount) !== 0) {
+        if (Atomics.compareExchange(array, COUNTDOWN_FIELD_STATE, 0, initialCount === 0 ? COUNTDOWN_STATE_SIGNALED : COUNTDOWN_STATE_NONSIGNALED) === 0) {
+            if (Atomics.compareExchange(array, COUNTDOWN_FIELD_INITIALCOUNT, 0, initialCount) !== 0 ||
+                Atomics.compareExchange(array, COUNTDOWN_FIELD_REMAININGCOUNT, 0, initialCount) !== 0) {
                 throw new TypeError("Invalid handle.");
             }
         }
 
-        const data = Atomics.load(array, ATOM_INDEX);
-        if (!(data & COUNTDOWN_ID) || data & COUNTDOWN_EXCLUDES) throw new TypeError("Invalid handle.");
+        const data = Atomics.load(array, COUNTDOWN_FIELD_STATE);
+        if (!(data & COUNTDOWN_ID) || data & COUNTDOWN_STATE_EXCLUDES) throw new TypeError("Invalid handle.");
 
         this[kArray] = array;
     }
@@ -101,7 +95,7 @@ export class CountdownEvent implements Disposable {
     get initialCount() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        return Atomics.load(array, INITIALCOUNT_INDEX);
+        return Atomics.load(array, COUNTDOWN_FIELD_INITIALCOUNT);
     }
 
     /**
@@ -110,7 +104,7 @@ export class CountdownEvent implements Disposable {
     get remainingCount() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        return Math.max(0, Atomics.load(array, REMAININGCOUNT_INDEX));
+        return Math.max(0, Atomics.load(array, COUNTDOWN_FIELD_REMAININGCOUNT));
     }
 
     /**
@@ -136,17 +130,19 @@ export class CountdownEvent implements Disposable {
      *
      * @returns `true` if the participants were added; otherwise, `false`.
      */
-    tryAdd(count?: number) {
+    tryAdd(count: number = 1) {
+        if (!isNumber(count)) throw new TypeError("Number expected: count");
+        if (!isPositiveNonZeroFiniteNumber(count)) throw new RangeError("Out of range: count");
+
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        if (count === undefined) count = 1;
-        if (count <= 0) throw new RangeError("Out of range: count");
+
         const spinWait = new SpinWait();
         while (true) {
-            const remainingCount = Atomics.load(array, REMAININGCOUNT_INDEX);
+            const remainingCount = Atomics.load(array, COUNTDOWN_FIELD_REMAININGCOUNT);
             if (remainingCount <= 0) return false;
             if (remainingCount > MAX_INT32 - count) throw new Error("Operation would cause count to overflow.");
-            if (Atomics.compareExchange(array, REMAININGCOUNT_INDEX, remainingCount, remainingCount + count) === remainingCount) {
+            if (Atomics.compareExchange(array, COUNTDOWN_FIELD_REMAININGCOUNT, remainingCount, remainingCount + count) === remainingCount) {
                 break;
             }
             spinWait.spinOnce();
@@ -160,19 +156,23 @@ export class CountdownEvent implements Disposable {
      * @param count The new number of participants required. If this is `undefined`, the current value of `initialCount` is used.
      */
     reset(count?: number) {
+        if (!isUndefined(count) && !isNumber(count)) throw new TypeError("Number expected: count");
+        if (!isUndefined(count) && count < 0) throw new RangeError("Out of range: count");
+
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        if (count === undefined) count = Atomics.load(array, INITIALCOUNT_INDEX);
-        if (count < 0) throw new RangeError("Out of range: count");
-        Atomics.store(array, REMAININGCOUNT_INDEX, count);
-        Atomics.store(array, INITIALCOUNT_INDEX, count);
+
+        count ??= Atomics.load(array, COUNTDOWN_FIELD_INITIALCOUNT);
+
+        Atomics.store(array, COUNTDOWN_FIELD_REMAININGCOUNT, count);
+        Atomics.store(array, COUNTDOWN_FIELD_INITIALCOUNT, count);
         if (count === 0) {
-            if (Atomics.compareExchange(array, ATOM_INDEX, NONSIGNALED, SIGNALED) === NONSIGNALED) {
-                Atomics.notify(array, ATOM_INDEX, Infinity);
+            if (Atomics.compareExchange(array, COUNTDOWN_FIELD_STATE, COUNTDOWN_STATE_NONSIGNALED, COUNTDOWN_STATE_SIGNALED) === COUNTDOWN_STATE_NONSIGNALED) {
+                Atomics.notify(array, COUNTDOWN_FIELD_STATE, Infinity);
             }
         }
         else {
-            Atomics.compareExchange(array, ATOM_INDEX, SIGNALED, NONSIGNALED);
+            Atomics.compareExchange(array, COUNTDOWN_FIELD_STATE, COUNTDOWN_STATE_SIGNALED, COUNTDOWN_STATE_NONSIGNALED);
         }
     }
 
@@ -182,24 +182,26 @@ export class CountdownEvent implements Disposable {
      * @param count The number of participants to signal (default: `1`).
      * @returns `true` if all participants were accounted for and the event became signaled; otherwise, `false`.
      */
-    signal(count?: number) {
+    signal(count: number = 1) {
+        if (!isNumber(count)) throw new TypeError("Number expected: count");
+        if (count <= 0) throw new RangeError("Out of range: count");
+
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        if (count === undefined) count = 1;
-        if (count <= 0) throw new RangeError("Out of range: count");
+
         const spinWait = new SpinWait();
         let remainingCount: number;
         while (true) {
-            remainingCount = Atomics.load(array, REMAININGCOUNT_INDEX);
+            remainingCount = Atomics.load(array, COUNTDOWN_FIELD_REMAININGCOUNT);
             if (remainingCount < count) throw new Error("Invalid attempt to decrement the event's count below zero.");
-            if (Atomics.compareExchange(array, REMAININGCOUNT_INDEX, remainingCount, remainingCount - count) === remainingCount) {
+            if (Atomics.compareExchange(array, COUNTDOWN_FIELD_REMAININGCOUNT, remainingCount, remainingCount - count) === remainingCount) {
                 break;
             }
             spinWait.spinOnce();
         }
         if (remainingCount === count) {
-            if (Atomics.compareExchange(array, ATOM_INDEX, NONSIGNALED, SIGNALED) === NONSIGNALED) {
-                Atomics.notify(array, ATOM_INDEX, Infinity);
+            if (Atomics.compareExchange(array, COUNTDOWN_FIELD_STATE, COUNTDOWN_STATE_NONSIGNALED, COUNTDOWN_STATE_SIGNALED) === COUNTDOWN_STATE_NONSIGNALED) {
+                Atomics.notify(array, COUNTDOWN_FIELD_STATE, Infinity);
             }
             return true;
         }
@@ -213,13 +215,13 @@ export class CountdownEvent implements Disposable {
      * @returns `true` if the event was signaled before the timeout period elapsed; otherwise, `false`.
      */
     wait(ms: number = Infinity) {
-        if (typeof ms !== "number") throw new TypeError("Number expected: ms");
+        if (!isNumber(ms)) throw new TypeError("Number expected: ms");
         ms = isNaN(ms) ? Infinity : Math.max(ms, 0);
 
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
 
-        return this.isSet || Atomics.wait(array, ATOM_INDEX, NONSIGNALED, ms) !== "timed-out";
+        return this.isSet || Atomics.wait(array, COUNTDOWN_FIELD_STATE, COUNTDOWN_STATE_NONSIGNALED, ms) !== "timed-out";
     }
 
     /**

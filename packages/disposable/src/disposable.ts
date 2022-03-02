@@ -15,6 +15,7 @@
 */
 
 import { CreateScope, DisposeResources } from "./internal/utils";
+import /*#__INLINE__*/ { isFunction, isIterableObject, isObject } from "@esfx/internal-guards";
 
 /**
  * Indicates an object that has resources that can be explicitly disposed.
@@ -35,6 +36,8 @@ export class Disposable {
      * @deprecated Use `DisposableStack` or `{ [Disposable.dispose]() { ... } }` instead.
      */
     constructor(dispose: () => void) {
+        if (!isFunction(dispose)) throw new TypeError("Function expected: dispose");
+
         return Disposable.create(dispose);
     }
 }
@@ -112,9 +115,11 @@ export namespace Disposable {
      * }
      * ```
      */
-    export function * usingEach(disposables: Iterable<Disposable | null | undefined>) {
+    export function * usingEach(iterable: Iterable<Disposable | null | undefined>) {
+        if (!isIterableObject(iterable)) throw new TypeError("Object not iterable: iterable");
+
         // for (using const disposable of disposables) yield disposable;
-        for (const disposable of disposables) {
+        for (const disposable of iterable) {
             for (const { using, fail } of Disposable.scope()) try {
                 yield using(disposable);
             } catch (e) { fail(e); }
@@ -131,7 +136,7 @@ export namespace Disposable {
      * or to implement `Disposable.dispose` yourself instead.
      */
     export function create(dispose: () => void): Disposable {
-        if (typeof dispose !== "function") throw new TypeError("Function expected: dispose");
+        if (!isFunction(dispose)) throw new TypeError("Function expected: dispose");
 
         let disposed = false;
         return Object.setPrototypeOf({
@@ -153,8 +158,7 @@ export namespace Disposable {
      * NOTE: This is not spec-compliant and will not be standardized.
      */
     export function hasInstance(value: unknown): value is Disposable {
-        return typeof value === "object"
-            && value != null
+        return isObject(value)
             && Disposable.dispose in value;
     }
 }

@@ -14,11 +14,11 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isAsyncIterableObject, isBoolean, isFunction, isIterableObject } from '@esfx/internal-guards';
 import { AsyncHierarchyIterable, AsyncOrderedHierarchyIterable } from '@esfx/async-iter-hierarchy';
 import { AsyncOrderedIterable } from "@esfx/async-iter-ordered";
 import { toAsyncOrderedIterable } from "@esfx/async-iter-ordered-fromsync";
 import { Comparer, Comparison } from "@esfx/equatable";
-import * as assert from "@esfx/internal-assert";
 import { HierarchyIterable, OrderedHierarchyIterable } from '@esfx/iter-hierarchy';
 import { OrderedIterable } from "@esfx/iter-ordered";
 import { flowHierarchy } from './internal/utils';
@@ -49,7 +49,7 @@ export function reverseAsync<TNode, T extends TNode>(source: AsyncHierarchyItera
  */
 export function reverseAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncIterable<T>;
 export function reverseAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>): AsyncIterable<T> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
     return flowHierarchy(new AsyncReverseIterable(source), source);
 }
 
@@ -84,10 +84,10 @@ class AsyncOrderByIterable<T, K> implements AsyncOrderedIterable<T> {
     }
 
     [AsyncOrderedIterable.thenByAsync]<K>(keySelector: (element: T) => K, keyComparer: Comparison<K> | Comparer<K>, descending: boolean): AsyncOrderedIterable<T> {
-        if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-        assert.mustBeFunction(keySelector, "keySelector");
-        assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
-        assert.mustBeBoolean(descending, "descending");
+        if (isFunction(keyComparer)) keyComparer = Comparer.create(keyComparer);
+        if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+        if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
+        if (!isBoolean(descending)) throw new TypeError("Boolean expected: descending");
         return new AsyncOrderByIterable(this._source, keySelector, keyComparer, descending, this);
     }
 
@@ -127,10 +127,10 @@ export function orderByAsync<TNode, T extends TNode, K>(source: AsyncHierarchyIt
  */
 export function orderByAsync<T, K>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyComparer?: Comparison<K> | Comparer<K>): AsyncOrderedIterable<T>;
 export function orderByAsync<T, K>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyComparer: Comparison<K> | Comparer<K> = Comparer.defaultComparer): AsyncOrderedIterable<T> {
-    if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
+    if (isFunction(keyComparer)) keyComparer = Comparer.create(keyComparer);
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
     return flowHierarchy(new AsyncOrderByIterable(source, keySelector, keyComparer, /*descending*/ false), source);
 }
 
@@ -153,10 +153,10 @@ export function orderByDescendingAsync<TNode, T extends TNode, K>(source: AsyncH
  */
 export function orderByDescendingAsync<T, K>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyComparer?: Comparison<K> | Comparer<K>): AsyncOrderedIterable<T>;
 export function orderByDescendingAsync<T, K>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyComparer: Comparison<K> | Comparer<K> = Comparer.defaultComparer): AsyncOrderedIterable<T> {
-    if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
+    if (isFunction(keyComparer)) keyComparer = Comparer.create(keyComparer);
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
     return flowHierarchy(new AsyncOrderByIterable(source, keySelector, keyComparer, /*descending*/ true), source);
 }
 
@@ -179,10 +179,10 @@ export function thenByAsync<TNode, T extends TNode, K>(source: AsyncOrderedHiera
  */
 export function thenByAsync<T, K>(source: AsyncOrderedIterable<T> | OrderedIterable<T>, keySelector: (element: T) => K, keyComparer?: Comparison<K> | Comparer<K>): AsyncOrderedIterable<T>;
 export function thenByAsync<T, K>(source: AsyncOrderedIterable<T> | OrderedIterable<T>, keySelector: (element: T) => K, keyComparer: Comparison<K> | Comparer<K> = Comparer.defaultComparer): AsyncOrderedIterable<T> {
-    if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-    assert.assertType(AsyncOrderedIterable.hasInstance(source) || OrderedIterable.hasInstance(source), "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
+    if (isFunction(keyComparer)) keyComparer = Comparer.create(keyComparer);
+    if (!AsyncOrderedIterable.hasInstance(source) && !OrderedIterable.hasInstance(source)) throw new TypeError("AsyncOrderedIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
     return flowHierarchy(toAsyncOrderedIterable(source)[AsyncOrderedIterable.thenByAsync](keySelector, keyComparer, /*descending*/ false), source);
 }
 
@@ -205,9 +205,9 @@ export function thenByDescendingAsync<TNode, T extends TNode, K>(source: AsyncOr
  */
 export function thenByDescendingAsync<T, K>(source: AsyncOrderedIterable<T> | OrderedIterable<T>, keySelector: (element: T) => K, keyComparer?: Comparison<K> | Comparer<K>): AsyncOrderedIterable<T>;
 export function thenByDescendingAsync<T, K>(source: AsyncOrderedIterable<T> | OrderedIterable<T>, keySelector: (element: T) => K, keyComparer: Comparison<K> | Comparer<K> = Comparer.defaultComparer): AsyncOrderedIterable<T> {
-    if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-    assert.assertType(AsyncOrderedIterable.hasInstance(source) || OrderedIterable.hasInstance(source), "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
+    if (isFunction(keyComparer)) keyComparer = Comparer.create(keyComparer);
+    if (!AsyncOrderedIterable.hasInstance(source) && !OrderedIterable.hasInstance(source)) throw new TypeError("AsyncOrderedIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
     return flowHierarchy(toAsyncOrderedIterable(source)[AsyncOrderedIterable.thenByAsync](keySelector, keyComparer, /*descending*/ true), source);
 }

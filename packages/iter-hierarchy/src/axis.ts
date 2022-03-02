@@ -16,6 +16,7 @@
 
 import { HierarchyProvider } from "./provider";
 import { Index } from "@esfx/interval";
+import /*#__INLINE__*/ { isNumber } from '@esfx/internal-guards';
 
 type HasPreviousSibling<T> = Pick<Required<HierarchyProvider<T>>, "previousSibling">;
 type HasNextSibling<T> = Pick<Required<HierarchyProvider<T>>, "nextSibling">;
@@ -42,15 +43,25 @@ function hasLastChild<T>(provider: HierarchyProvider<T>): provider is HierarchyP
  * Axis traversal helpers.
  */
 export namespace Axis {
-    export function * self<T>(provider: HierarchyProvider<T>, element: T) {
+    function * selfGen<T>(_provider: HierarchyProvider<T>, element: T) {
         yield element;
     }
 
-    export function * parents<T>(provider: HierarchyProvider<T>, element: T) {
+    export function self<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return selfGen(provider, element);
+    }
+
+    function * parentsGen<T>(provider: HierarchyProvider<T>, element: T) {
         const parent = provider.parent(element);
         if (parent !== undefined) {
             yield parent;
         }
+    }
+
+    export function parents<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return parentsGen(provider, element);
     }
 
     function * reverseChildrenUsingPreviousSiblingAndLastChild<T>(provider: HierarchyProvider<T> & HasPreviousSibling<T> & HasLastChild<T>, element: T) {
@@ -66,7 +77,7 @@ export namespace Axis {
         }
     }
 
-    export function * children<T>(provider: HierarchyProvider<T>, element: T) {
+    function * childrenGen<T>(provider: HierarchyProvider<T>, element: T) {
         const children = provider.children(element);
         if (children === undefined) {
             return;
@@ -76,6 +87,11 @@ export namespace Axis {
                 yield child;
             }
         }
+    }
+
+    export function children<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return childrenGen(provider, element);
     }
 
     function * firstChildUsingFirstChild<T>(provider: HierarchyProvider<T> & HasFirstChild<T>, element: T) {
@@ -92,10 +108,15 @@ export namespace Axis {
         }
     }
 
-    export function * firstChild<T>(provider: HierarchyProvider<T>, element: T) {
+    function * firstChildGen<T>(provider: HierarchyProvider<T>, element: T) {
         yield* hasFirstChild(provider)
             ? firstChildUsingFirstChild(provider, element)
             : firstChildFallback(provider, element);
+    }
+
+    export function firstChild<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return firstChildGen(provider, element);
     }
 
     function * lastChildUsingLastChild<T>(provider: HierarchyProvider<T> & HasLastChild<T>, element: T) {
@@ -117,10 +138,15 @@ export namespace Axis {
         }
     }
 
-    export function * lastChild<T>(provider: HierarchyProvider<T>, element: T) {
+    function * lastChildGen<T>(provider: HierarchyProvider<T>, element: T) {
         yield* hasLastChild(provider)
             ? lastChildUsingLastChild(provider, element)
             : lastChildFallback(provider, element);
+    }
+
+    export function lastChild<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return lastChildGen(provider, element);
     }
 
     function nth<T>(source: Iterable<T>, offset: number | Index): T | undefined {
@@ -162,7 +188,7 @@ export namespace Axis {
         return undefined;
     }
 
-    export function * nthChild<T>(provider: HierarchyProvider<T>, element: T, offset: number | Index) {
+    function * nthChildGen<T>(provider: HierarchyProvider<T>, element: T, offset: number | Index) {
         if (typeof offset !== "number" && !offset.isFromEnd) {
             offset = offset.value;
         }
@@ -177,7 +203,13 @@ export namespace Axis {
         }
     }
 
-    export function * root<T>(provider: HierarchyProvider<T>, element: T) {
+    export function nthChild<T>(provider: HierarchyProvider<T>, element: T, offset: number | Index) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        if (!isNumber(offset) && !(offset instanceof Index)) throw new TypeError("Number of Index expected: offset");
+        return nthChildGen(provider, element, offset);
+    }
+
+    function * rootGen<T>(provider: HierarchyProvider<T>, element: T) {
         if (provider.root !== undefined) {
             yield provider.root(element);
         }
@@ -194,7 +226,12 @@ export namespace Axis {
         }
     }
 
-    function * ancestorsWorker<T>(provider: HierarchyProvider<T>, element: T, self: boolean) {
+    export function root<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return rootGen(provider, element);
+    }
+
+    function * ancestorsGen<T>(provider: HierarchyProvider<T>, element: T, self: boolean) {
         let ancestor = self ? element : provider.parent(element);
         while (ancestor !== undefined) {
             yield ancestor;
@@ -202,12 +239,14 @@ export namespace Axis {
         }
     }
 
-    export function * ancestors<T>(provider: HierarchyProvider<T>, element: T) {
-        yield* ancestorsWorker(provider, element, /*self*/ false);
+    export function ancestors<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return ancestorsGen(provider, element, /*self*/ false);
     }
 
-    export function * ancestorsAndSelf<T>(provider: HierarchyProvider<T>, element: T) {
-        yield* ancestorsWorker(provider, element, /*self*/ true);
+    export function ancestorsAndSelf<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return ancestorsGen(provider, element, /*self*/ true);
     }
 
     function * descendantsUsingNextSiblingAndFirstChild<T>(provider: HierarchyProvider<T> & HasNextSibling<T> & HasFirstChild<T>, element: T, self: boolean, after: boolean): IterableIterator<T> {
@@ -252,16 +291,26 @@ export namespace Axis {
         }
     }
 
-    export function * descendants<T>(provider: HierarchyProvider<T>, element: T) {
+    function * descendantsGen<T>(provider: HierarchyProvider<T>, element: T) {
         yield* hasNextSibling(provider) && hasFirstChild(provider)
             ? descendantsUsingNextSiblingAndFirstChild(provider, element, /*self*/ false, /*after*/ false)
             : descendantsFallback(provider, element, /*self*/ false, /*after*/ false);
     }
 
-    export function * descendantsAndSelf<T>(provider: HierarchyProvider<T>, element: T) {
+    export function descendants<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return descendantsGen(provider, element);
+    }
+
+    function * descendantsAndSelfGen<T>(provider: HierarchyProvider<T>, element: T) {
         yield* hasNextSibling(provider) && hasFirstChild(provider)
             ? descendantsUsingNextSiblingAndFirstChild(provider, element, /*self*/ true, /*after*/ false)
             : descendantsFallback(provider, element, /*self*/ true, /*after*/ false);
+    }
+
+    export function descendantsAndSelf<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return descendantsAndSelfGen(provider, element);
     }
 
     function * siblingsUsingPreviousAndNextSibling<T>(provider: HierarchyProvider<T> & HasPreviousSibling<T> & HasNextSibling<T>, element: T, self: boolean) {
@@ -286,16 +335,26 @@ export namespace Axis {
         }
     }
 
-    export function * siblings<T>(provider: HierarchyProvider<T>, element: T) {
+    function * siblingsGen<T>(provider: HierarchyProvider<T>, element: T) {
         yield* hasPreviousSibling(provider) && hasNextSibling(provider)
             ? siblingsUsingPreviousAndNextSibling(provider, element, /*self*/ false)
             : siblingsFallback(provider, element, /*self*/ false);
     }
+    
+    export function siblings<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return siblingsGen(provider, element);
+    }
 
-    export function * siblingsAndSelf<T>(provider: HierarchyProvider<T>, element: T) {
+    function * siblingsAndSelfGen<T>(provider: HierarchyProvider<T>, element: T) {
         yield* hasPreviousSibling(provider) && hasNextSibling(provider)
             ? siblingsUsingPreviousAndNextSibling(provider, element, /*self*/ true)
             : siblingsFallback(provider, element, /*self*/ true);
+    }
+
+    export function siblingsAndSelf<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return siblingsAndSelfGen(provider, element);
     }
 
     function * precedingSiblingUsingPreviousSibling<T>(provider: HierarchyProvider<T> & HasPreviousSibling<T>, element: T) {
@@ -324,10 +383,15 @@ export namespace Axis {
         }
     }
 
-    export function * precedingSiblings<T>(provider: HierarchyProvider<T>, element: T) {
+    function * precedingSiblingsGen<T>(provider: HierarchyProvider<T>, element: T) {
         yield* hasPreviousSibling(provider)
             ? precedingSiblingUsingPreviousSibling(provider, element)
             : precedingSiblingsFallback(provider, element);
+    }
+    
+    export function precedingSiblings<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return precedingSiblingsGen(provider, element);
     }
 
     function * followingSiblingsUsingNextSibling<T>(provider: HierarchyProvider<T> & HasNextSibling<T>, element: T) {
@@ -348,14 +412,19 @@ export namespace Axis {
         }
     }
 
-    export function * followingSiblings<T>(provider: HierarchyProvider<T>, element: T) {
+    function * followingSiblingsGen<T>(provider: HierarchyProvider<T>, element: T) {
         yield* hasNextSibling(provider)
             ? followingSiblingsUsingNextSibling(provider, element)
             : followingSiblingsFallback(provider, element);
     }
+    
+    export function followingSiblings<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return followingSiblingsGen(provider, element);
+    }
 
     function * precedingUsingPreviousSiblingAndLastChild<T>(provider: HierarchyProvider<T> & HasPreviousSibling<T> & HasLastChild<T>, element: T) {
-        for (const ancestor of ancestorsWorker(provider, element, /*self*/ true)) {
+        for (const ancestor of ancestorsGen(provider, element, /*self*/ true)) {
             for (const sibling of precedingSiblingUsingPreviousSibling(provider, ancestor)) {
                 yield* reverseDescendantsUsingPreviousSiblingAndLastChild(provider, sibling, /*self*/ true);
             }
@@ -363,21 +432,26 @@ export namespace Axis {
     }
 
     function * precedingFallback<T>(provider: HierarchyProvider<T>, element: T) {
-        for (const ancestor of ancestorsWorker(provider, element, /*self*/ true)) {
+        for (const ancestor of ancestorsGen(provider, element, /*self*/ true)) {
             for (const sibling of precedingSiblingsFallback(provider, ancestor)) {
                 yield* reverseDescendantsFallback(provider, sibling, /*self*/ true);
             }
         }
     }
 
-    export function * preceding<T>(provider: HierarchyProvider<T>, element: T) {
+    function * precedingGen<T>(provider: HierarchyProvider<T>, element: T) {
         yield* hasPreviousSibling(provider) && hasLastChild(provider)
             ? precedingUsingPreviousSiblingAndLastChild(provider, element)
             : precedingFallback(provider, element);
     }
 
+    export function preceding<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return precedingGen(provider, element);
+    }
+
     function * followingUsingNextSiblingAndFirstChild<T>(provider: HierarchyProvider<T> & HasNextSibling<T> & HasFirstChild<T>, element: T) {
-        for (const ancestor of ancestorsWorker(provider, element, /*self*/ true)) {
+        for (const ancestor of ancestorsGen(provider, element, /*self*/ true)) {
             for (const sibling of followingSiblingsUsingNextSibling(provider, ancestor)) {
                 yield* descendantsUsingNextSiblingAndFirstChild(provider, sibling, /*self*/ true, /*after*/ true);
             }
@@ -385,16 +459,21 @@ export namespace Axis {
     }
 
     function * followingFallback<T>(provider: HierarchyProvider<T>, element: T) {
-        for (const ancestor of ancestorsWorker(provider, element, /*self*/ true)) {
+        for (const ancestor of ancestorsGen(provider, element, /*self*/ true)) {
             for (const sibling of followingSiblingsFallback(provider, ancestor)) {
                 yield* descendantsFallback(provider, sibling, /*self*/ true, /*after*/ true);
             }
         }
     }
 
-    export function * following<T>(provider: HierarchyProvider<T>, element: T) {
+    function * followingGen<T>(provider: HierarchyProvider<T>, element: T) {
         yield* hasNextSibling(provider) && hasFirstChild(provider)
             ? followingUsingNextSiblingAndFirstChild(provider, element)
             : followingFallback(provider, element);
+    }
+
+    export function following<T>(provider: HierarchyProvider<T>, element: T) {
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return followingGen(provider, element);
     }
 }

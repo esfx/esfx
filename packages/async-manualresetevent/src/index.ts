@@ -36,8 +36,9 @@
    limitations under the License.
 */
 
-import { Cancelable } from "@esfx/cancelable";
+import { Cancelable, CancelError } from "@esfx/cancelable";
 import { WaitQueue } from "@esfx/async-waitqueue";
+import /*#__INLINE__*/ { isBoolean, isUndefined } from "@esfx/internal-guards";
 
 /**
  * Asynchronously notifies one or more waiting Promises that an event has occurred.
@@ -46,13 +47,17 @@ export class AsyncManualResetEvent {
     private _signaled: boolean;
     private _waiters = new WaitQueue<void>();
 
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncManualResetEvent" });
+    }
+
     /**
      * Initializes a new instance of the ManualResetEvent class.
      *
      * @param initialState A value indicating whether to set the initial state to signaled.
      */
     constructor(initialState: boolean = false) {
-        if (typeof initialState !== "boolean") throw new TypeError("Boolean expected: initialState.");
+        if (!isBoolean(initialState)) throw new TypeError("Boolean expected: initialState.");
         this._signaled = !!initialState;
     }
 
@@ -86,12 +91,15 @@ export class AsyncManualResetEvent {
      * @param cancelable A Cancelable used to cancel the request.
      */
     async wait(cancelable?: Cancelable): Promise<void> {
-        Cancelable.throwIfSignaled(cancelable);
+        if (!isUndefined(cancelable) && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+
+        const signal = cancelable?.[Cancelable.cancelSignal]();
+        if (signal?.signaled) throw signal.reason ?? new CancelError();
+
         if (this._signaled) {
             return;
         }
+
         await this._waiters.wait(cancelable);
     }
 }
-
-Object.defineProperty(AsyncManualResetEvent.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncManualResetEvent" });

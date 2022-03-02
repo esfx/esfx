@@ -15,9 +15,8 @@
 */
 
 import { Comparer, Comparison } from '@esfx/equatable';
-import /*#__INLINE__*/ * as assert from "@esfx/internal-assert";
-import { isIterable } from '@esfx/internal-guards';
 import { OrderedIterable } from '@esfx/iter-ordered';
+import /*#__INLINE__*/ { isIterable, isIterableObject, isObject } from '@esfx/internal-guards';
 import { OrderedHierarchyIterable } from './ordered';
 import { HierarchyProvider } from './provider';
 
@@ -35,7 +34,7 @@ export namespace Hierarchical {
     export const hierarchy = Symbol.for("@esfx/iter-hierarchy:Hierarchical.hierarchy");
 
     export function hasInstance(x: unknown): x is Hierarchical<unknown> {
-        return typeof x === "object" && x !== null
+        return isObject(x)
             && hierarchy in x;
     }
 }
@@ -52,64 +51,60 @@ export namespace HierarchyIterable {
             && Hierarchical.hasInstance(x);
     }
 
-    const { HierarchyIterable: HierarchyIterableImpl } = {
-        HierarchyIterable: class <TNode, T extends TNode> implements HierarchyIterable<TNode, T> {
-            private _source: Iterable<T>;
-            private _provider: HierarchyProvider<TNode>;
+    const HierarchyIterable = class <TNode, T extends TNode> implements HierarchyIterable<TNode, T> {
+        private _source: Iterable<T>;
+        private _provider: HierarchyProvider<TNode>;
 
-            constructor(source: Iterable<T>, provider: HierarchyProvider<TNode>) {
-                this._source = source;
-                this._provider = provider;
-            }
+        constructor(source: Iterable<T>, provider: HierarchyProvider<TNode>) {
+            this._source = source;
+            this._provider = provider;
+        }
 
-            [Symbol.iterator]() {
-                return this._source[Symbol.iterator]();
-            }
+        [Symbol.iterator]() {
+            return this._source[Symbol.iterator]();
+        }
 
-            [Hierarchical.hierarchy]() {
-                return this._provider;
-            }
+        [Hierarchical.hierarchy]() {
+            return this._provider;
         }
     };
 
-    const { OrderedHierarchyIterable: OrderedHierarchyIterableImpl } = {
-        OrderedHierarchyIterable: class <TNode, T extends TNode> implements OrderedHierarchyIterable<TNode, T> {
-            private _source: OrderedIterable<T>;
-            private _provider: HierarchyProvider<TNode>;
+    const OrderedHierarchyIterable = class <TNode, T extends TNode> implements OrderedHierarchyIterable<TNode, T> {
+        private _source: OrderedIterable<T>;
+        private _provider: HierarchyProvider<TNode>;
 
-            constructor(source: OrderedIterable<T>, provider: HierarchyProvider<TNode>) {
-                this._source = source;
-                this._provider = provider;
-            }
+        constructor(source: OrderedIterable<T>, provider: HierarchyProvider<TNode>) {
+            this._source = source;
+            this._provider = provider;
+        }
 
-            [Symbol.iterator]() {
-                return this._source[Symbol.iterator]();
-            }
+        [Symbol.iterator]() {
+            return this._source[Symbol.iterator]();
+        }
 
-            [OrderedIterable.thenBy]<K>(keySelector: (element: T) => K, comparer: Comparison<K> | Comparer<K>, descending: boolean): OrderedHierarchyIterable<TNode, T> {
-                return new OrderedHierarchyIterableImpl<TNode, T>(this._source[OrderedIterable.thenBy](keySelector, comparer, descending), this._provider);
-            }
+        [OrderedIterable.thenBy]<K>(keySelector: (element: T) => K, comparer: Comparison<K> | Comparer<K>, descending: boolean): OrderedHierarchyIterable<TNode, T> {
+            return new OrderedHierarchyIterable<TNode, T>(this._source[OrderedIterable.thenBy](keySelector, comparer, descending), this._provider);
+        }
 
-            [Hierarchical.hierarchy]() {
-                return this._provider;
-            }
+        [Hierarchical.hierarchy]() {
+            return this._provider;
         }
     };
 
     /**
      * Creates a `HierarchyIterable` using the provided `HierarchyProvider`.
      *
-     * @param source An `Iterable` object.
-     * @param hierarchy A `HierarchyProvider`.
+     * @param iterable An `Iterable` object.
+     * @param provider A `HierarchyProvider`.
      * @category Hierarchy
      */
     export function create<TNode, T extends TNode = TNode>(iterable: OrderedIterable<T>, provider: HierarchyProvider<TNode>): OrderedHierarchyIterable<TNode, T>;
     export function create<TNode, T extends TNode = TNode>(iterable: Iterable<T>, provider: HierarchyProvider<TNode>): HierarchyIterable<TNode, T>;
     export function create<TNode, T extends TNode = TNode>(iterable: Iterable<T> | OrderedIterable<T>, provider: HierarchyProvider<TNode>) {
-        assert.mustBeIterableObject(iterable, "iterable");
-        assert.mustBeType(HierarchyProvider.hasInstance, provider, "provider");
-        return HierarchyIterable.hasInstance(iterable) && iterable[Hierarchical.hierarchy]() === provider ? iterable :
-            OrderedIterable.hasInstance(iterable) ? new OrderedHierarchyIterableImpl(iterable, provider) :
-            new HierarchyIterableImpl(iterable, provider);
+        if (!isIterableObject(iterable)) throw new TypeError("Iterable expected: iterable");
+        if (!HierarchyProvider.hasInstance(provider)) throw new TypeError("HierarchyProvider expected: provider");
+        return hasInstance(iterable) && iterable[Hierarchical.hierarchy]() === provider ? iterable :
+            OrderedIterable.hasInstance(iterable) ? new OrderedHierarchyIterable(iterable, provider) :
+            new HierarchyIterable(iterable, provider);
     }
 }

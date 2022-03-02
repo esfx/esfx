@@ -15,6 +15,11 @@
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
     },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "@esfx/internal-guards": "^1.0.0-pre.23"
+    },
     "publishConfig": {
         "access": "public"
     }

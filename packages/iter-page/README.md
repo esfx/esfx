@@ -21,5 +21,5 @@ npm i @esfx/iter-page
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/iter_page.html).
+You can read more about the API [here](https://esfx.js.org/esfx/api/iter-page.html).
 

@@ -14,14 +14,13 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
-import { isAsyncIterable } from "@esfx/internal-guards";
+import /*#__INLINE__*/ { isAsyncIterable, isIterable } from "@esfx/internal-guards";
 
 class AsyncFromSyncIterable<T, TSource extends Iterable<PromiseLike<T> | T>> implements AsyncIterable<T> {
     protected _source: TSource;
 
     constructor(source: TSource) {
-        assert.mustBeIterable(source, "source");
+        if (!isIterable(source)) throw new TypeError("Iterable expected: source");
         this._source = source;
     }
 

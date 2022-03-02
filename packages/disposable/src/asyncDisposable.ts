@@ -16,6 +16,7 @@
 
 import { Disposable } from "./disposable";
 import { CreateScope, DisposeResources } from "./internal/utils";
+import /*#__INLINE__*/ { isAsyncIterableObject, isFunction, isIterableObject, isObject } from "@esfx/internal-guards";
 
 /**
  * Indicates an object that has resources that can be explicitly disposed asynchronously.
@@ -37,8 +38,10 @@ export class AsyncDisposable {
      * Creates an `AsyncDisposable` wrapper around a callback used to dispose resources.
      * @deprecated Use `AsyncDisposableStack` or `{ [AsyncDisposable.asyncDispose]() { ... } }` instead.
      */
-    constructor(dispose: () => void | PromiseLike<void>) {
-        return AsyncDisposable.create(dispose);
+    constructor(disposeAsync: () => void | PromiseLike<void>) {
+        if (!isFunction(disposeAsync)) throw new TypeError("Function expected: disposeAsync");
+
+        return AsyncDisposable.create(disposeAsync);
     }
 }
 
@@ -117,6 +120,8 @@ export namespace AsyncDisposable {
      * ```
      */
     export async function * usingEach(iterable: AsyncIterable<AsyncDisposable | Disposable | null | undefined> | Iterable<AsyncDisposable | Disposable | null | undefined | PromiseLike<AsyncDisposable | Disposable | null | undefined>>) {
+        if (!isAsyncIterableObject(iterable) && !isIterableObject(iterable)) throw new TypeError("Object not iterable: iterable");
+
         for await (const disposable of iterable) {
             for await (const { using, fail } of AsyncDisposable.scope()) try {
                 yield using(disposable);
@@ -134,7 +139,7 @@ export namespace AsyncDisposable {
      * or to implement `AsyncDisposable.asyncDispose` yourself instead.
      */
     export function create(disposeAsync: () => void | PromiseLike<void>): AsyncDisposable {
-        if (typeof disposeAsync !== "function") throw new TypeError("Function expected: disposeAsync");
+        if (!isFunction(disposeAsync)) throw new TypeError("Function expected: disposeAsync");
 
         let disposed = false;
         return Object.setPrototypeOf({
@@ -155,9 +160,7 @@ export namespace AsyncDisposable {
      * NOTE: This is not spec-compliant and will not be standardized.
      */
     export function hasInstance(value: unknown): value is AsyncDisposable {
-        return typeof value === "object"
-            && value !== null
-            && AsyncDisposable.asyncDispose in value;
+        return isObject(value) && AsyncDisposable.asyncDispose in value;
     }
 }
 

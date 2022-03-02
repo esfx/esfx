@@ -15,8 +15,5 @@
 */
 
 export * from "./common";
-export * from "./partial";
-
-// export * as Op from "./operators";
 import * as Op from "./operators";
 export { Op };

@@ -6,7 +6,12 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../internal/ts-worker" },
+        // dependencies
         { "path": "../disposable" },
+
+        // devDependencies
+        { "path": "../../internal/ts-worker" },
+        { "path": "../../internal/threading" },
+        { "path": "../../internal/guards" },
     ]
 }

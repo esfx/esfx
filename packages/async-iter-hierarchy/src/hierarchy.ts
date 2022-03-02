@@ -15,7 +15,7 @@
 */
 
 import * as assert from "@esfx/internal-assert";
-import { isAsyncIterable } from '@esfx/internal-guards';
+import /*#__INLINE__*/ { isAsyncIterable } from '@esfx/internal-guards';
 import { AsyncOrderedIterable } from '@esfx/async-iter-ordered';
 import { Hierarchical, HierarchyProvider } from '@esfx/iter-hierarchy';
 import { Comparison, Comparer } from '@esfx/equatable';

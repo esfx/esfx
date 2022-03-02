@@ -6,12 +6,13 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        // devDependencies:
-        { "path": "../async-mutex" },
-        { "path": "../../internal/linked-list" },
-
-        // dependencies:
+        // dependencies
         { "path": "../async-lockable" },
         { "path": "../cancelable" },
+
+        // devDependencies
+        { "path": "../async-mutex" },
+        { "path": "../../internal/linked-list" },
+        { "path": "../../internal/guards" },
     ]
 }

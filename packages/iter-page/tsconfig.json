@@ -10,6 +10,6 @@
         { "path": "../iter-hierarchy" },
 
         // devDependencies
-        { "path": "../../internal/assert" },
+        { "path": "../../internal/guards" },
     ]
 }

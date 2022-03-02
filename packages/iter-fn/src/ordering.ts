@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ { isBoolean, isFunction, isIterableObject } from "@esfx/internal-guards";
 import { Comparer, Comparison } from "@esfx/equatable";
 import { OrderedIterable } from "@esfx/iter-ordered";
 import { HierarchyIterable, OrderedHierarchyIterable } from '@esfx/iter-hierarchy';
@@ -46,7 +46,7 @@ export function reverse<TNode, T extends TNode>(source: HierarchyIterable<TNode,
  */
 export function reverse<T>(source: Iterable<T>): Iterable<T>;
 export function reverse<T>(source: Iterable<T>): Iterable<T> {
-    assert.mustBeIterableObject(source, "source");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
     return flowHierarchy(new ReverseIterable(source), source);
 }
 
@@ -81,10 +81,10 @@ class OrderByIterable<T, K> implements OrderedIterable<T> {
     }
 
     [OrderedIterable.thenBy]<K>(keySelector: (element: T) => K, keyComparer: Comparison<K> | Comparer<K>, descending: boolean): OrderedIterable<T> {
-        if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-        assert.mustBeFunction(keySelector, "keySelector");
-        assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
-        assert.mustBeBoolean(descending, "descending");
+        if (isFunction(keyComparer)) keyComparer = Comparer.create(keyComparer);
+        if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+        if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
+        if (!isBoolean(descending)) throw new TypeError("Boolean expected: descending");
         return new OrderByIterable(this._source, keySelector, keyComparer, descending, this);
     }
 
@@ -124,10 +124,10 @@ export function orderBy<TNode, T extends TNode, K>(source: HierarchyIterable<TNo
  */
 export function orderBy<T, K>(source: Iterable<T>, keySelector: (element: T) => K, keyComparer?: Comparison<K> | Comparer<K>): OrderedIterable<T>;
 export function orderBy<T, K>(source: Iterable<T>, keySelector: (element: T) => K, keyComparer: Comparison<K> | Comparer<K> = Comparer.defaultComparer): OrderedIterable<T> {
-    if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
+    if (isFunction(keyComparer)) keyComparer = Comparer.create(keyComparer);
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
     return flowHierarchy(new OrderByIterable(source, keySelector, keyComparer, /*descending*/ false), source);
 }
 
@@ -150,10 +150,10 @@ export function orderByDescending<TNode, T extends TNode, K>(source: HierarchyIt
  */
 export function orderByDescending<T, K>(source: Iterable<T>, keySelector: (element: T) => K, keyComparer?: Comparison<K> | Comparer<K>): OrderedIterable<T>;
 export function orderByDescending<T, K>(source: Iterable<T>, keySelector: (element: T) => K, keyComparer: Comparison<K> | Comparer<K> = Comparer.defaultComparer): OrderedIterable<T> {
-    if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
+    if (isFunction(keyComparer)) keyComparer = Comparer.create(keyComparer);
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
     return flowHierarchy(new OrderByIterable(source, keySelector, keyComparer, /*descending*/ true), source);
 }
 
@@ -176,10 +176,10 @@ export function thenBy<TNode, T extends TNode, K>(source: OrderedHierarchyIterab
  */
 export function thenBy<T, K>(source: OrderedIterable<T>, keySelector: (element: T) => K, keyComparer?: Comparison<K> | Comparer<K>): OrderedIterable<T>;
 export function thenBy<T, K>(source: OrderedIterable<T>, keySelector: (element: T) => K, keyComparer: Comparison<K> | Comparer<K> = Comparer.defaultComparer): OrderedIterable<T> {
-    if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-    assert.mustBeType(OrderedIterable.hasInstance, source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
+    if (isFunction(keyComparer)) keyComparer = Comparer.create(keyComparer);
+    if (!OrderedIterable.hasInstance(source)) throw new TypeError("OrderedIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
     return flowHierarchy(source[OrderedIterable.thenBy](keySelector, keyComparer, /*descending*/ false), source);
 }
 
@@ -202,9 +202,9 @@ export function thenByDescending<TNode, T extends TNode, K>(source: OrderedHiera
  */
 export function thenByDescending<T, K>(source: OrderedIterable<T>, keySelector: (element: T) => K, keyComparer?: Comparison<K> | Comparer<K>): OrderedIterable<T>;
 export function thenByDescending<T, K>(source: OrderedIterable<T>, keySelector: (element: T) => K, keyComparer: Comparison<K> | Comparer<K> = Comparer.defaultComparer): OrderedIterable<T> {
-    if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-    assert.mustBeType(OrderedIterable.hasInstance, source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
+    if (isFunction(keyComparer)) keyComparer = Comparer.create(keyComparer);
+    if (!OrderedIterable.hasInstance(source)) throw new TypeError("OrderedIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
     return flowHierarchy(source[OrderedIterable.thenBy](keySelector, keyComparer, /*descending*/ true), source);
 }

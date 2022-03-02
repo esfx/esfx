@@ -26,10 +26,12 @@ export interface StructPrimitiveType<K extends string = string, T extends number
      * Coerce the provided value into a value of this type.
      */
     (value: number | bigint): T;
+
     /**
      * The name of the primitive type.
      */
     readonly name: K;
+
     /**
      * The size, in bytes, of the primitive type.
      */
@@ -145,34 +147,12 @@ export type StructFieldType =
     | typeof biguint64
     | typeof float32
     | typeof float64
-    | StructType;
+    | (new () => Struct);
 
 export interface StructFieldDefinition {
     readonly name: conststring | constsymbol;
     readonly type: StructFieldType;
 }
-
-type __Concat<L extends readonly any[], R extends readonly any[]> =
-    L extends readonly [] ? R :
-    L extends readonly [any] ? ((l0: L[0], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any] ? ((l0: L[0], l1: L[1], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], l4: L[4], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], l4: L[4], l5: L[5], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], l4: L[4], l5: L[5], l6: L[6], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any, any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], l4: L[4], l5: L[5], l6: L[6], l7: L[7], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any, any, any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], l4: L[4], l5: L[5], l6: L[6], l7: L[7], l8: L[8], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    L extends readonly [any, any, any, any, any, any, any, any, any, any] ? ((l0: L[0], l1: L[1], l2: L[2], l3: L[3], l4: L[4], l5: L[5], l6: L[6], l7: L[7], l8: L[8], l9: L[9], ...r: R) => void) extends ((...c: infer C) => void) ? Readonly<C> : never :
-    readonly never[];
-
-/**
- * Gets the runtime type from a `StructFieldType`.
- */
-export type StructFieldRuntimeType<TField extends StructFieldDefinition> =
-    TField["type"] extends StructPrimitiveType ? ReturnType<TField["type"]> :
-    TField["type"] extends StructType ? InstanceType<TField["type"]> :
-    never;
 
 /**
  * Represents an instance of a struct type.
@@ -182,30 +162,37 @@ export type Struct<TDef extends readonly StructFieldDefinition[] = any> = {
      * Gets the underlying `ArrayBuffer` or `SharedArrayBuffer` of a struct.
      */
     readonly buffer: ArrayBufferLike;
+
     /**
      * Gets the byte offset into this struct's `buffer` at which the struct starts.
      */
     readonly byteOffset: number;
+
     /**
      * Gets the size of this struct in bytes.
      */
     readonly byteLength: number;
+
     /**
      * Gets the value of a named field of this struct.
      */
     get<K extends TDef[number]["name"]>(key: K): StructFieldRuntimeType<Extract<TDef[number], { readonly name: K }>>;
+
     /**
      * Sets the value of a named field of this struct.
      */
     set<K extends TDef[number]["name"]>(key: K, value: StructFieldRuntimeType<Extract<TDef[number], { readonly name: K }>>): void;
+
     /**
      * Gets the value of an ordinal field of this struct.
      */
-    getIndex<I extends keyof TDef & numstr<keyof TDef>>(index: I): StructFieldRuntimeType<Extract<TDef[I], StructFieldDefinition>>;
+    getIndex<I extends numstr<keyof TDef>>(index: I): StructFieldRuntimeType<Extract<TDef[Extract<I, keyof TDef>], StructFieldDefinition>>;
+
     /**
      * Sets the value of an ordinal field of this struct.
      */
-    setIndex<I extends keyof TDef & numstr<keyof TDef>>(index: I, value: StructFieldRuntimeType<Extract<TDef[I], StructFieldDefinition>>): boolean;
+    setIndex<I extends numstr<keyof TDef>>(index: I, value: StructFieldRuntimeType<Extract<TDef[Extract<I, keyof TDef>], StructFieldDefinition>>): boolean;
+
     /**
      * Writes the value of this struct to an array buffer.
      */
@@ -219,15 +206,23 @@ export type Struct<TDef extends readonly StructFieldDefinition[] = any> = {
     /**
      * Gets or sets an ordinal field of the struct.
      */
-    [I in keyof TDef & numstr<keyof TDef> & number]: StructFieldRuntimeType<Extract<TDef[I], StructFieldDefinition>>;
+    [I in Extract<keyof TDef, `${number}`>]: StructFieldRuntimeType<Extract<TDef[I], StructFieldDefinition>>;
 };
+
+/**
+ * Gets the runtime type from a `StructFieldType`.
+ */
+export type StructFieldRuntimeType<TField extends StructFieldDefinition> =
+    TField["type"] extends StructPrimitiveType ? ReturnType<TField["type"]> :
+    TField["type"] extends new () => Struct ? InstanceType<TField["type"]> :
+    never;
 
 /**
  * Describes a type that can be used to initialize a property or element of a struct.
  */
 export type StructInitFieldType<TField extends StructFieldDefinition> =
     TField["type"] extends StructPrimitiveType ? ReturnType<TField["type"]> :
-    TField["type"] extends StructType<infer TDef> ? InstanceType<TField["type"]> | StructInitProperties<TDef> | StructInitElements<TDef> :
+    TField["type"] extends new () => Struct<infer TDef> ? InstanceType<TField["type"]> | StructInitProperties<TDef> | StructInitElements<TDef> :
     never;
 
 /**
@@ -244,8 +239,6 @@ export type StructInitElements<TDef extends readonly StructFieldDefinition[]> = 
     [I in keyof TDef]: StructInitFieldType<Extract<TDef[I], StructFieldDefinition>>;
 };
 
-// declare const kFields: unique symbol;
-
 /**
  * Represents the constructor for a struct.
  */
@@ -256,7 +249,6 @@ export interface StructType<TDef extends readonly StructFieldDefinition[] = any>
     new (object: Partial<StructInitProperties<TDef>>, shared?: boolean): Struct<TDef>;
     new (elements: Partial<StructInitElements<TDef>>, shared?: boolean): Struct<TDef>;
     readonly SIZE: number;
-    // readonly [kFields]: TDef;
 }
 
 /**
@@ -268,27 +260,31 @@ export interface StructTypeConstructor {
      * @param fields An array of `StructFieldDefinition` entries describing the ordered fields in the struct.
      * @param name A name for the struct.
      */
-    <TDef extends readonly StructFieldDefinition[]>(fields: TDef | [], name?: string): StructType<TDef>;
+    <TDef extends readonly StructFieldDefinition[] | readonly []>(fields: TDef, name?: string): StructType<TDef>;
+
     /**
      * Creates a new Struct type from the provided field definition.
      * @param baseType A base struct from which this struct is derived. Fields in this struct will come after fields in the base struct.
      * @param fields An array of `StructFieldDefinition` entries describing the ordered fields in the struct.
      * @param name A name for the struct.
      */
-    <TDef extends readonly StructFieldDefinition[], TBaseDef extends readonly StructFieldDefinition[]>(baseType: StructType<TBaseDef>, fields: TDef | [], name?: string): StructType<__Concat<TBaseDef, TDef>>;
+    <TDef extends readonly StructFieldDefinition[] | readonly [], TBaseDef extends readonly StructFieldDefinition[]>(baseType: StructType<TBaseDef>, fields: TDef, name?: string): StructType<readonly [...TBaseDef, ...TDef]>;
+
     /**
      * Creates a new Struct type from the provided field definition.
      * @param fields An array of `StructFieldDefinition` entries describing the ordered fields in the struct.
      * @param name A name for the struct.
      */
-    new <TDef extends readonly StructFieldDefinition[]>(fields: TDef | [], name?: string): StructType<TDef>;
+    new <TDef extends readonly StructFieldDefinition[] | readonly []>(fields: TDef, name?: string): StructType<TDef>;
+
     /**
      * Creates a new Struct type from the provided field definition.
      * @param baseType A base struct from which this struct is derived. Fields in this struct will come after fields in the base struct.
      * @param fields An array of `StructFieldDefinition` entries describing the ordered fields in the struct.
      * @param name A name for the struct.
      */
-    new <TDef extends readonly StructFieldDefinition[], TBaseDef extends readonly StructFieldDefinition[]>(baseType: StructType<TBaseDef>, fields: TDef | [], name?: string): StructType<__Concat<TBaseDef, TDef>>;
+    new <TDef extends readonly StructFieldDefinition[] | readonly [], TBaseDef extends readonly StructFieldDefinition[]>(baseType: StructType<TBaseDef>, fields: TDef, name?: string): StructType<readonly [...TBaseDef, ...TDef]>;
+
     prototype: StructType<[]>;
 }
 

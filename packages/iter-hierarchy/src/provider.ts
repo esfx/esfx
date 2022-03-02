@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import /*#__INLINE__*/ { isObject, isFunction, isFunctionOrUndefined } from '@esfx/internal-guards';
+import /*#__INLINE__*/ { isObject, isFunction, isFunctionOrUndefined, isMissing } from '@esfx/internal-guards';
 
 /**
  * Describes an object that defines the relationships between parents and children of an element.
@@ -121,9 +121,16 @@ export namespace HierarchyProvider {
     /**
      * Combines two hierarchy providers.
      */
-    export function combine<T>(left: HierarchyProvider<T> | undefined, right: HierarchyProvider<T> | undefined): HierarchyProvider<T> | undefined {
-        if (right === undefined || left === right) return left;
-        if (left === undefined) return right;
+    export function combine<T>(left: HierarchyProvider<T> | undefined, right: HierarchyProvider<T> | undefined): HierarchyProvider<T> | undefined;
+    /**
+     * Combines two hierarchy providers.
+     */
+    export function combine<T>(left: HierarchyProvider<T> | null | undefined, right: HierarchyProvider<T> | null | undefined): HierarchyProvider<T> | null | undefined;
+    export function combine<T>(left: HierarchyProvider<T> | null | undefined, right: HierarchyProvider<T> | null | undefined): HierarchyProvider<T> | null | undefined {
+        if (!isMissing(left) && !hasInstance(left)) throw new TypeError("HierarchyProvider expected: left");
+        if (!isMissing(right) && !hasInstance(right)) throw new TypeError("HierarchyProvider expected: right");
+        if (isMissing(right) || left === right) return left;
+        if (isMissing(left)) return right;
 
         const leftProviders = flattenProvider(left);
         const rightProviders = flattenProvider(right);

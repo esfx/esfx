@@ -37,7 +37,8 @@
 */
 
 import { WaitQueue } from "@esfx/async-waitqueue";
-import { Cancelable } from "@esfx/cancelable";
+import { Cancelable, CancelError } from "@esfx/cancelable";
+import /*#__INLINE__*/ { isIterable, isUndefined } from "@esfx/internal-guards";
 
 const enum State {
     Open = 0,
@@ -50,8 +51,12 @@ const enum State {
  * An asynchronous queue.
  */
 export class AsyncQueue<T> {
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncQueue" });
+    }
+
     private _state = State.Open;
-    private _available: Array<Promise<T>> | undefined = undefined;
+    private _available: Promise<T>[] | undefined = undefined;
     private _pending: WaitQueue<T> | undefined = undefined;
 
     /**
@@ -60,10 +65,11 @@ export class AsyncQueue<T> {
      * @param iterable An optional iterable of values or promises.
      */
     constructor(iterable?: Iterable<T | PromiseLike<T>>) {
-        if (iterable !== null && iterable !== undefined) {
-            if (typeof iterable !== "object" || !(Symbol.iterator in iterable)) throw new TypeError("Object not iterable: iterable.");
-            this._available = [];
+        if (!isUndefined(iterable)) {
+            if (!isIterable(iterable)) throw new TypeError("Object not iterable: iterable.");
+
             for (const value of iterable) {
+                this._available ??= [];
                 this._available.push(Promise.resolve(value));
             }
         }
@@ -99,9 +105,11 @@ export class AsyncQueue<T> {
         if (this._available && this._available.length > 0) {
             return this._available.length;
         }
+
         if (this._pending && this._pending.size > 0) {
             return -this._pending.size;
         }
+
         return 0;
     }
 
@@ -112,7 +120,11 @@ export class AsyncQueue<T> {
      * @param cancelable A `Cancelable` used to cancel the request.
      */
     async get(cancelable?: Cancelable): Promise<T> {
-        Cancelable.throwIfSignaled(cancelable);
+        if (!isUndefined(cancelable) && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+
+        const signal = cancelable?.[Cancelable.cancelSignal]();
+        if (signal?.signaled) throw signal.reason ?? new CancelError();
+
         if (this._available) {
             const promise = this._available.shift();
             if (promise !== undefined) {
@@ -127,9 +139,7 @@ export class AsyncQueue<T> {
             throw new Error("AsyncQueue is not readable.");
         }
 
-        if (this._pending === undefined) {
-            this._pending = new WaitQueue();
-        }
+        this._pending ??= new WaitQueue();
 
         return await this._pending.wait(cancelable);
     }
@@ -152,19 +162,15 @@ export class AsyncQueue<T> {
      */
     put(value?: T | PromiseLike<T>): void {
         if (!this.writable) throw new Error("AsyncQueue is not writable.");
-        if (this._pending && this._pending.resolveOne(value!)) {
+        if (this._pending?.resolveOne(value!)) {
             if (this._pending.size === 0) {
                 this._pending = undefined;
             }
             return;
         }
 
-        if (this._available === undefined) {
-            this._available = [Promise.resolve(value!)];
-        }
-        else {
-            this._available.push(Promise.resolve(value!));
-        }
+        this._available ??= [];
+        this._available.push(Promise.resolve(value!));
     }
 
     /**
@@ -193,11 +199,7 @@ export class AsyncQueue<T> {
     end() {
         this.doneReading();
         this.doneWriting();
-        if (this._pending) {
-            this._pending.cancelAll();
-            this._pending = undefined;
-        }
+        this._pending?.cancelAll();
+        this._pending = undefined;
     }
 }
-
-Object.defineProperty(AsyncQueue.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncQueue" });

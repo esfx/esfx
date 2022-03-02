@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ { isFunction, isIterableObject, isNumber, isPositiveNonZeroFiniteNumber, isUndefined } from "@esfx/internal-guards";
 import { HashMap } from "@esfx/collections-hashmap";
 import { Equaler } from "@esfx/equatable";
 import { identity } from '@esfx/fn';
@@ -97,9 +97,10 @@ export function pageBy<T>(source: Iterable<T>, pageSize: number): Iterable<Page<
  */
 export function pageBy<T, R>(source: Iterable<T>, pageSize: number, pageSelector: (page: number, offset: number, values: Iterable<T>) => R): Iterable<R>;
 export function pageBy<T, R>(source: Iterable<T>, pageSize: number, pageSelector: ((page: number, offset: number, values: Iterable<T>) => Page<T> | R) | ((page: number, offset: number, values: HierarchyIterable<unknown, T>) => Page<T> | R) = Page.from): Iterable<Page<T> | R> {
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBePositiveNonZeroFiniteNumber(pageSize, "pageSize");
-    assert.mustBeFunction(pageSelector, "pageSelector");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isNumber(pageSize)) throw new TypeError("Number expected: pageSize");
+    if (!isFunction(pageSelector)) throw new TypeError("Function expected: pageSelector");
+    if (!isPositiveNonZeroFiniteNumber(pageSize)) throw new RangeError("Argument out of range: pageSize");
     return new PageByIterable(source, pageSize, pageSelector as (page: number, offset: number, values: Iterable<T>) => R);
 }
 
@@ -204,11 +205,11 @@ export function spanMap<T, K, V, R>(source: Iterable<T>, keySelector: (element: 
         keyEqualer = spanSelector;
         spanSelector = Grouping.from;
     }
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(elementSelector, "elementSelector");
-    assert.mustBeFunction(spanSelector, "spanSelector");
-    assert.mustBeType(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
+    if (!isFunction(spanSelector)) throw new TypeError("Function expected: spanSelector");
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return new SpanMapIterable(source, keySelector, keyEqualer, elementSelector, spanSelector as (key: K, span: Iterable<T | V>) => Grouping<K, T | V> | R);
 }
 
@@ -311,10 +312,10 @@ export function groupBy<T, K, V, R>(source: Iterable<T>, keySelector: (element: 
         keyEqualer = resultSelector;
         resultSelector = Grouping.from;
     }
-    assert.mustBeIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(elementSelector, "elementSelector");
-    assert.mustBeFunction(resultSelector, "resultSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
+    if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return new GroupByIterable(source, keySelector, elementSelector, resultSelector as (key: K, elements: Iterable<T | V>) => Grouping<K, T | V> | R);
 }

@@ -17,15 +17,15 @@
 import { Collection, ReadonlyCollection } from "@esfx/collection-core";
 import { Comparer, Comparison } from "@esfx/equatable";
 import /*#__INLINE__*/ { binarySearch } from '@esfx/internal-binarysearch';
-import /*#__INLINE__*/ { isIterable, isMissing } from '@esfx/internal-guards';
+import /*#__INLINE__*/ { isFunction, isIterable, isUndefined } from '@esfx/internal-guards';
 
 export class SortedSet<T> implements Collection<T> {
-    private _values: T[] = [];
-    private _comparer: Comparer<T>;
-
     static {
         Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "SortedSet" });
     }
+
+    private _values: T[] = [];
+    private _comparer: Comparer<T>;
 
     constructor(comparer?: Comparison<T> | Comparer<T>);
     constructor(iterable?: Iterable<T>, comparer?: Comparison<T> | Comparer<T>);
@@ -34,7 +34,7 @@ export class SortedSet<T> implements Collection<T> {
         let comparer: Comparison<T> | Comparer<T> | undefined;
         if (args.length > 0) {
             const arg0 = args[0];
-            if (isIterable(arg0) || isMissing(arg0)) {
+            if (isUndefined(arg0) || isIterable(arg0)) {
                 iterable = arg0;
                 if (args.length > 1) comparer = args[1];
             }
@@ -42,7 +42,8 @@ export class SortedSet<T> implements Collection<T> {
                 comparer = arg0;
             }
         }
-        if (comparer === undefined) comparer = Comparer.defaultComparer;
+        
+        comparer ??= Comparer.defaultComparer;
         this._comparer = typeof comparer === "function" ? Comparer.create(comparer) : comparer;
         if (iterable) {
             for (const value of iterable) {
@@ -105,9 +106,10 @@ export class SortedSet<T> implements Collection<T> {
         return this.values();
     }
 
-    forEach(cb: (value: T, key: T, map: this) => void, thisArg?: unknown) {
+    forEach(callback: (value: T, key: T, map: this) => void, thisArg?: unknown) {
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         for (const value of this) {
-            cb.call(thisArg, value, value, this);
+            callback.call(thisArg, value, value, this);
         }
     }
 

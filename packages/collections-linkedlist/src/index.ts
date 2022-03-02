@@ -38,19 +38,30 @@
 
 import { Collection, ReadonlyCollection } from "@esfx/collection-core";
 import { Equaler, EqualityComparison } from "@esfx/equatable";
-import /*#__INLINE__*/ { isIterable, isMissing } from "@esfx/internal-guards";
+import /*#__INLINE__*/ { isFunction, isIterable, isMissing, isUndefined } from "@esfx/internal-guards";
 
-const kList = Symbol("LinkedListNode.list");
-const kPrevious = Symbol("LinkedListNode.previous");
-const kNext = Symbol("LinkedListNode.next");
+let setList: <T>(node: LinkedListNode<T>, list: LinkedList<T> | undefined) => void;
+let getPrevious: <T>(node: LinkedListNode<T>) => LinkedListNode<T> | undefined;
+let setPrevious: <T>(node: LinkedListNode<T>, previous: LinkedListNode<T> | undefined) => void;
+let getNext: <T>(node: LinkedListNode<T>) => LinkedListNode<T> | undefined;
+let setNext: <T>(node: LinkedListNode<T>, next: LinkedListNode<T> | undefined) => void;
 
 /**
  * A node in a [doubly-linked list](https://en.wikipedia.org/wiki/Doubly_linked_list).
  */
 export class LinkedListNode<T> {
-    [kList]: LinkedList<T> | undefined = undefined;
-    [kPrevious]: LinkedListNode<T> | undefined = undefined;
-    [kNext]: LinkedListNode<T> | undefined = undefined;
+    private _list: LinkedList<T> | undefined = undefined;
+    private _previous: LinkedListNode<T> | undefined = undefined;
+    private _next: LinkedListNode<T> | undefined = undefined;
+
+    static {
+        setList = (node, list) => { node._list = list; };
+        getPrevious = node => node._previous;
+        setPrevious = (node, previous) => { node._previous = previous };
+        getNext = node => node._next;
+        setNext = (node, next) => { node._next = next };
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "LinkedListNode" });
+    }
 
     /**
      * The value for the node.
@@ -66,7 +77,7 @@ export class LinkedListNode<T> {
      * `undefined`.
      */
     get list(): LinkedList<T> | undefined {
-        return this[kList];
+        return this._list;
     }
 
     /**
@@ -74,8 +85,8 @@ export class LinkedListNode<T> {
      * node is not attached to a {@link LinkedList}, then this returns `undefined`.
      */
     get previous(): LinkedListNode<T> | undefined {
-        if (this[kPrevious] && this.list && this !== this.list.first) {
-            return this[kPrevious];
+        if (this._previous && this._list && this !== this._list.first) {
+            return this._previous;
         }
 
         return undefined;
@@ -86,8 +97,8 @@ export class LinkedListNode<T> {
      * node is not attached to a {@link LinkedList}, then this returns `undefined`.
      */
     get next(): LinkedListNode<T> | undefined {
-        if (this[kNext] && this.list && this[kNext] !== this.list.first) {
-            return this[kNext];
+        if (this._next && this._list && this._next !== this._list.first) {
+            return this._next;
         }
 
         return undefined;
@@ -98,18 +109,11 @@ export class LinkedListNode<T> {
      * @returns `true` if the node was successfully removed from the list; otherwise, `false`.
      */
     detachSelf() {
-        return this.list ? this.list.deleteNode(this) : false;
+        return this._list ? this._list.deleteNode(this) : false;
     }
 
-    [Symbol.toStringTag]!: string;
+    declare [Symbol.toStringTag]: string;
 }
-
-Object.defineProperty(LinkedListNode.prototype, Symbol.toStringTag, {
-    enumerable: false,
-    configurable: true,
-    writable: true,
-    value: "LinkedListNode"
-});
 
 const enum Position {
     before,
@@ -135,7 +139,7 @@ export class LinkedList<T> implements Collection<T> {
         let equaler: EqualityComparison<T> | Equaler<T> | undefined;
         if (args.length > 0) {
             const arg0 = args[0];
-            if (isMissing(arg0) || isIterable(arg0)) {
+            if (isUndefined(arg0) || isIterable(arg0)) {
                 iterable = arg0;
                 if (args.length > 1) equaler = args[1];
             }
@@ -173,7 +177,7 @@ export class LinkedList<T> implements Collection<T> {
      */
     get last(): LinkedListNode<T> | undefined {
         if (this._head) {
-            return this._head[kPrevious];
+            return getPrevious(this._head);
         }
 
         return undefined;
@@ -221,10 +225,10 @@ export class LinkedList<T> implements Collection<T> {
      * @param value The value to find.
      * @param fromNode When provided, starts looking for `value` starting at this node.
      */
-    nodeOf(value: T, fromNode?: LinkedListNode<T>): LinkedListNode<T> | undefined {
-        if (fromNode !== null && fromNode !== undefined && !(fromNode instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: fromNode");
-        if (fromNode !== null && fromNode !== undefined && fromNode.list !== this) throw new TypeError("Wrong list.");
-        for (let node = fromNode || this.first; node; node = node.next) {
+    nodeOf(value: T, fromNode?: LinkedListNode<T> | null): LinkedListNode<T> | undefined {
+        if (!isMissing(fromNode) && !(fromNode instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: fromNode");
+        if (!isMissing(fromNode) && fromNode.list !== this) throw new TypeError("Wrong list.");
+        for (let node = fromNode ?? this.first; node; node = node.next) {
             if (this._equaler.equals(node.value, value)) {
                 return node;
             }
@@ -238,10 +242,10 @@ export class LinkedList<T> implements Collection<T> {
      * @param value The value to find.
      * @param fromNode When provided, starts looking for `value` starting at this node and working backwards towards the front of the list.
      */
-    lastNodeOf(value: T, fromNode?: LinkedListNode<T>): LinkedListNode<T> | undefined {
-        if (fromNode !== null && fromNode !== undefined && !(fromNode instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: fromNode");
-        if (fromNode !== null && fromNode !== undefined && fromNode.list !== this) throw new TypeError("Wrong list.");
-        for (let node = fromNode || this.last; node; node = node.previous) {
+    lastNodeOf(value: T, fromNode?: LinkedListNode<T> | null): LinkedListNode<T> | undefined {
+        if (!isMissing(fromNode) && !(fromNode instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: fromNode");
+        if (!isMissing(fromNode) && fromNode.list !== this) throw new TypeError("Wrong list.");
+        for (let node = fromNode ?? this.last; node; node = node.previous) {
             if (this._equaler.equals(node.value, value)) {
                 return node;
             }
@@ -263,7 +267,7 @@ export class LinkedList<T> implements Collection<T> {
      */
     find(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): T | undefined;
     find(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): T | undefined {
-        if (typeof callback !== "function") throw new TypeError("Function expected: callback");
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         let node: LinkedListNode<T>;
         let next = this.first;
         while (next !== undefined) {
@@ -288,7 +292,7 @@ export class LinkedList<T> implements Collection<T> {
      */
     findLast(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): T | undefined;
     findLast(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): T | undefined {
-        if (typeof callback !== "function") throw new TypeError("Function expected: callback");
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         let node: LinkedListNode<T>;
         let prev = this.last;
         while (prev !== undefined) {
@@ -313,7 +317,7 @@ export class LinkedList<T> implements Collection<T> {
      */
     findNode(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): LinkedListNode<T> | undefined;
     findNode(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): LinkedListNode<T> | undefined {
-        if (typeof callback !== "function") throw new TypeError("Function expected: callback");
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         let node: LinkedListNode<T>;
         let next = this.first;
         while (next !== undefined) {
@@ -337,7 +341,7 @@ export class LinkedList<T> implements Collection<T> {
      */
     findLastNode(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): LinkedListNode<T> | undefined;
     findLastNode(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): LinkedListNode<T> | undefined {
-        if (typeof callback !== "function") throw new TypeError("Function expected: callback");
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         let node: LinkedListNode<T>;
         let prev = this.last;
         while (prev !== undefined) {
@@ -363,9 +367,9 @@ export class LinkedList<T> implements Collection<T> {
      * @returns The new {@link LinkedListNode} for `value`.
      */
     insertBefore(node: LinkedListNode<T> | null | undefined, value: T): LinkedListNode<T> {
-        if (node !== null && node !== undefined && !(node instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
-        if (node !== null && node !== undefined && node.list !== this) throw new TypeError("Wrong list.");
-        return this._insertNode(node || undefined, new LinkedListNode(value), Position.before);
+        if (!isMissing(node) && !(node instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
+        if (!isMissing(node) && node.list !== this) throw new TypeError("Wrong list.");
+        return this._insertNode(node ?? undefined, new LinkedListNode(value), Position.before);
     }
 
     /**
@@ -375,9 +379,9 @@ export class LinkedList<T> implements Collection<T> {
      * @param newNode The new node to insert.
      */
     insertNodeBefore(node: LinkedListNode<T> | null | undefined, newNode: LinkedListNode<T>): void {
-        if (node !== null && node !== undefined && !(node instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
+        if (!isMissing(node) && !(node instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
+        if (!isMissing(node) && node.list !== this) throw new TypeError("Wrong list.");
         if (!(newNode instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: newNode");
-        if (node !== null && node !== undefined && node.list !== this) throw new TypeError("Wrong list.");
         if (newNode.list) throw new Error("Node is already attached to a list.");
         this._insertNode(node || undefined, newNode, Position.before);
     }
@@ -390,8 +394,8 @@ export class LinkedList<T> implements Collection<T> {
      * @returns The new {@link LinkedListNode} for `value`.
      */
     insertAfter(node: LinkedListNode<T> | null | undefined, value: T): LinkedListNode<T> {
-        if (node !== null && node !== undefined && !(node instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
-        if (node !== null && node !== undefined && node.list !== this) throw new TypeError("Wrong list.");
+        if (!isMissing(node) && !(node instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
+        if (!isMissing(node) && node.list !== this) throw new TypeError("Wrong list.");
         return this._insertNode(node || undefined, new LinkedListNode(value), Position.after);
     }
 
@@ -402,9 +406,9 @@ export class LinkedList<T> implements Collection<T> {
      * @param newNode The new node to insert.
      */
     insertNodeAfter(node: LinkedListNode<T> | null | undefined, newNode: LinkedListNode<T>): void {
-        if (node !== null && node !== undefined && !(node instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
+        if (!isMissing(node) && !(node instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
+        if (!isMissing(node) && node.list !== this) throw new TypeError("Wrong list.");
         if (!(newNode instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: newNode");
-        if (node !== null && node !== undefined && node.list !== this) throw new TypeError("Wrong list.");
         if (newNode.list) throw new Error("Node is already attached to a list.");
         this._insertNode(node || undefined, newNode, Position.after);
     }
@@ -500,9 +504,9 @@ export class LinkedList<T> implements Collection<T> {
      * @returns `true` if the node was successfully removed from the list; otherwise, `false`.
      */
     deleteNode(node: LinkedListNode<T> | null | undefined): boolean {
-        if (node !== null && node !== undefined && !(node instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
-        if (node !== null && node !== undefined && node.list !== this) throw new TypeError("Wrong list.");
-        if (node === null || node === undefined || !node.list) return false;
+        if (!isMissing(node) && !(node instanceof LinkedListNode)) throw new TypeError("LinkedListNode expected: node");
+        if (!isMissing(node) && node.list !== this) throw new TypeError("Wrong list.");
+        if (isMissing(node) || !node.list) return false;
         return this._deleteNode(node);
     }
 
@@ -512,7 +516,7 @@ export class LinkedList<T> implements Collection<T> {
      * @param thisArg The `this` value to use when executing `predicate`.
      */
     deleteAll(predicate: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any) {
-        if (typeof predicate !== "function") throw new TypeError("Function expected: predicate");
+        if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
         let count = 0;
         let node = this.first;
         while (node) {
@@ -521,10 +525,8 @@ export class LinkedList<T> implements Collection<T> {
                 this._deleteNode(node);
                 ++count;
             }
-
             node = next;
         }
-
         return count;
     }
 
@@ -538,7 +540,7 @@ export class LinkedList<T> implements Collection<T> {
     }
 
     forEach(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => void, thisArg?: any) {
-        if (typeof callback !== "function") throw new TypeError("Function expected: callback");
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         let node: LinkedListNode<T>;
         let next = this.first;
         while (next !== undefined) {
@@ -554,7 +556,7 @@ export class LinkedList<T> implements Collection<T> {
      * @param thisArg The `this` value to use when executing `callback`.
      */
     map<U>(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => U, thisArg?: any) {
-        if (typeof callback !== "function") throw new TypeError("Function expected: callback");
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         const mappedList = new LinkedList<U>();
         let node: LinkedListNode<T>;
         let next = this.first;
@@ -580,7 +582,7 @@ export class LinkedList<T> implements Collection<T> {
      */
     filter(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any): LinkedList<T>;
     filter(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any) {
-        if (typeof callback !== "function") throw new TypeError("Function expected: callback");
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         const mappedList = new LinkedList<T>(this.equaler);
         let node: LinkedListNode<T>;
         let next = this.first;
@@ -616,7 +618,7 @@ export class LinkedList<T> implements Collection<T> {
      */
     reduce<U>(callback: (previousValue: U, value: T, node: LinkedListNode<T>, list: LinkedList<T>) => U, initialValue: U): U;
     reduce(callback: (previousValue: T, value: T, node: LinkedListNode<T>, list: LinkedList<T>) => T, initialValue?: T) {
-        if (typeof callback !== "function") throw new TypeError("Function expected: callback");
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         let hasInitialValue = arguments.length > 1;
         let result = initialValue;
         let node: LinkedListNode<T>;
@@ -657,7 +659,7 @@ export class LinkedList<T> implements Collection<T> {
      */
     reduceRight<U>(callback: (previousValue: U, value: T, node: LinkedListNode<T>, list: LinkedList<T>) => U, initialValue: U): U;
     reduceRight(callback: (previousValue: T, value: T, node: LinkedListNode<T>, list: LinkedList<T>) => T, initialValue?: T) {
-        if (typeof callback !== "function") throw new TypeError("Function expected: callback");
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         let hasInitialValue = arguments.length > 1;
         let result = initialValue;
         let node: LinkedListNode<T>;
@@ -678,7 +680,7 @@ export class LinkedList<T> implements Collection<T> {
     }
 
     some(callback?: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any) {
-        if (callback !== null && callback !== undefined && typeof callback !== "function") throw new TypeError("Function expected: callback");
+        if (!isUndefined(callback) && !isFunction(callback)) throw new TypeError("Function expected: callback");
         let node: LinkedListNode<T>;
         let next = this.first;
         while (next !== undefined) {
@@ -690,7 +692,7 @@ export class LinkedList<T> implements Collection<T> {
     }
 
     every(callback: (value: T, node: LinkedListNode<T>, list: LinkedList<T>) => boolean, thisArg?: any) {
-        if (typeof callback !== "function") throw new TypeError("Function expected: callback");
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         let hasMatch = false;
         let node: LinkedListNode<T>;
         let next = this.first;
@@ -704,29 +706,29 @@ export class LinkedList<T> implements Collection<T> {
     }
 
     private _deleteNode(node: LinkedListNode<T>): boolean {
-        if (node[kNext] === node) {
+        if (getNext(node) === node) {
             this._head = undefined;
         }
         else {
-            node[kNext]![kPrevious] = node[kPrevious];
-            node[kPrevious]![kNext] = node[kNext];
+            setPrevious(getNext(node)!, getPrevious(node));
+            setNext(getPrevious(node)!, getNext(node));
             if (this._head === node) {
-                this._head = node[kNext];
+                this._head = getNext(node);
             }
         }
 
-        node[kList] = undefined;
-        node[kNext] = undefined;
-        node[kPrevious] = undefined;
+        setList(node, undefined);
+        setPrevious(node, undefined);
+        setNext(node, undefined);
         this._size--;
         return true;
     }
 
     private _insertNode(adjacentNode: LinkedListNode<T> | undefined, newNode: LinkedListNode<T>, position: Position) {
-        newNode[kList] = this;
+        setList(newNode, this);
         if (this._head === undefined) {
-            newNode[kNext] = newNode;
-            newNode[kPrevious] = newNode;
+            setNext(newNode, newNode);
+            setPrevious(newNode, newNode);
             this._head = newNode;
         }
         else {
@@ -740,21 +742,21 @@ export class LinkedList<T> implements Collection<T> {
                         this._head = newNode;
                     }
 
-                    newNode[kNext] = adjacentNode;
-                    newNode[kPrevious] = adjacentNode[kPrevious];
-                    adjacentNode[kPrevious]![kNext] = newNode;
-                    adjacentNode[kPrevious] = newNode;
+                    setNext(newNode, adjacentNode);
+                    setPrevious(newNode, getPrevious(adjacentNode));
+                    setNext(getPrevious(adjacentNode)!, newNode);
+                    setPrevious(adjacentNode, newNode);
                     break;
 
                 case Position.after:
                     if (adjacentNode === undefined) {
-                        adjacentNode = this._head[kPrevious]!;
+                        adjacentNode = getPrevious(this._head)!;
                     }
 
-                    newNode[kPrevious] = adjacentNode;
-                    newNode[kNext] = adjacentNode[kNext];
-                    adjacentNode[kNext]![kPrevious] = newNode;
-                    adjacentNode[kNext] = newNode;
+                    setPrevious(newNode, adjacentNode);
+                    setNext(newNode, getNext(adjacentNode));
+                    setPrevious(getNext(adjacentNode)!, newNode);
+                    setNext(adjacentNode, newNode);
                     break;
             }
         }

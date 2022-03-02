@@ -14,10 +14,10 @@
    limitations under the License.
 */
 
-import /*#__INLINE__*/ * as assert from "@esfx/internal-assert";
 import { HashMap } from '@esfx/collections-hashmap';
 import { Equaler } from '@esfx/equatable';
 import { Grouping } from '@esfx/iter-grouping';
+import /*#__INLINE__*/ { isFunction, isIterableObject, isUndefined } from "@esfx/internal-guards";
 
 class LookupIterable<K, V, R> implements Iterable<R> {
     private _map: ReadonlyMap<K, Iterable<V>>;
@@ -47,9 +47,9 @@ export class Lookup<K, V> implements Iterable<Grouping<K, V>> {
      * @param entries A map containing the unique groups of values.
      */
     constructor(entries: Iterable<[K, Iterable<V>]>, keyEqualer?: Equaler<K>) {
-        assert.mustBeIterableObject(entries, "entries");
-        assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
-        this._entries = new HashMap(entries, keyEqualer);
+        if (!isIterableObject(entries)) throw new TypeError("Iterable expected: entries");
+        if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
+        this._entries = new HashMap<K, Iterable<V>>(entries, keyEqualer);
         this._source = new LookupIterable<K, V, Grouping<K, V>>(this._entries, Grouping.from);
     }
 
@@ -84,7 +84,7 @@ export class Lookup<K, V> implements Iterable<Grouping<K, V>> {
      * @param selector A callback used to select results for each group.
      */
     applyResultSelector<R>(selector: (key: K, elements: Iterable<V>) => R): Iterable<R> {
-        assert.mustBeFunction(selector, "selector");
+        if (!isFunction(selector)) throw new TypeError("Function expected: selector");
         return new LookupIterable(this._entries, selector);
     }
 

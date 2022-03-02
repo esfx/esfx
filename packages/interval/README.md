@@ -21,5 +21,5 @@ npm i @esfx/interval
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/interval.html).
+You can read more about the API [here](https://esfx.github.io/esfx/api/interval.html).
 

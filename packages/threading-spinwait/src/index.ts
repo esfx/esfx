@@ -15,8 +15,13 @@
 */
 
 import { sleep } from "@esfx/threading-sleep";
+import /*#__INLINE__*/ { isFunction, isNumber } from "@esfx/internal-guards";
 
 export class SpinWait {
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "SpinWait" });
+    }
+
     private _count = 0;
 
     reset() {
@@ -34,6 +39,9 @@ export class SpinWait {
     }
 
     spinUntil(condition: () => boolean, ms: number = +Infinity) {
+        if (!isFunction(condition)) throw new TypeError("Function expected: condition");
+        if (!isNumber(ms)) throw new TypeError("Number expected: ms");
+
         if (ms < 0) throw new RangeError("Out of range: ms");
         const start = Date.now();
         while (!condition()) {

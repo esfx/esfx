@@ -95,9 +95,6 @@
         "@esfx/collections-hashset": "^1.0.0-pre.24",
         "@esfx/equatable": "^1.0.0-pre.19",
         "@esfx/fn": "^1.0.0-pre.19",
-        "@esfx/internal-assert": "^1.0.0-pre.23",
-        "@esfx/internal-binarysearch": "^1.0.0-pre.19",
-        "@esfx/internal-guards": "^1.0.0-pre.23",
         "@esfx/interval": "^1.0.0-pre.23",
         "@esfx/iter-fn": "^1.0.0-pre.24",
         "@esfx/iter-grouping": "^1.0.0-pre.23",
@@ -105,10 +102,11 @@
         "@esfx/iter-lookup": "^1.0.0-pre.24",
         "@esfx/iter-ordered": "^1.0.0-pre.23",
         "@esfx/iter-page": "^1.0.0-pre.23",
-        "tslib": "^2.1.0"
+        "tslib": "^2.3.1"
     },
     "devDependencies": {
-        "@esfx/internal-jest-sequence": "^1.0.0-pre.19"
+        "@esfx/internal-jest-sequence": "^1.0.0-pre.19",
+        "@esfx/internal-guards": "^1.0.0-pre.23"
     },
     "publishConfig": {
         "access": "public"

@@ -17,7 +17,7 @@
 import { KeyedCollection, ReadonlyKeyedCollection } from "@esfx/collection-core";
 import { Comparer, Comparison } from "@esfx/equatable";
 import /*#__INLINE__*/ { binarySearch } from '@esfx/internal-binarysearch';
-import /*#__INLINE__*/ { isIterable, isMissing } from '@esfx/internal-guards';
+import /*#__INLINE__*/ { isFunction, isIterable, isUndefined } from '@esfx/internal-guards';
 
 export class SortedMap<K, V> implements KeyedCollection<K, V> {
     private _keys: K[] = [];
@@ -35,7 +35,7 @@ export class SortedMap<K, V> implements KeyedCollection<K, V> {
         let comparer: Comparison<K> | Comparer<K> | undefined;
         if (args.length > 0) {
             const arg0 = args[0];
-            if (isIterable(arg0) || isMissing(arg0)) {
+            if (isUndefined(arg0) || isIterable(arg0)) {
                 iterable = arg0;
                 if (args.length > 1) comparer = args[1];
             }
@@ -43,7 +43,8 @@ export class SortedMap<K, V> implements KeyedCollection<K, V> {
                 comparer = arg0;
             }
         }
-        if (comparer === undefined) comparer = Comparer.defaultComparer;
+        
+        comparer ??= Comparer.defaultComparer;
         this._comparer = typeof comparer === "function" ? Comparer.create(comparer) : comparer;
         if (iterable) {
             for (const [key, value] of iterable) {
@@ -114,9 +115,10 @@ export class SortedMap<K, V> implements KeyedCollection<K, V> {
         return this.entries();
     }
 
-    forEach(cb: (value: V, key: K, map: this) => void, thisArg?: unknown) {
+    forEach(callback: (value: V, key: K, map: this) => void, thisArg?: unknown) {
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         for (const [key, value] of this) {
-            cb.call(thisArg, value, key, this);
+            callback.call(thisArg, value, key, this);
         }
     }
 

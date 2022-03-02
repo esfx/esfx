@@ -17,11 +17,13 @@
     },
     "dependencies": {
         "@esfx/disposable": "^1.0.0-pre.30",
-        "@esfx/threading-manualresetevent": "^1.0.0-pre.30",
         "@esfx/threading-spinwait": "^1.0.0-pre.23"
     },
     "devDependencies": {
-        "@esfx/internal-ts-worker": "^1.0.0-pre.20"
+        "@esfx/threading-manualresetevent": "^1.0.0-pre.30",
+        "@esfx/internal-ts-worker": "^1.0.0-pre.20",
+        "@esfx/internal-threading": "^1.0.0-pre.19",
+        "@esfx/internal-guards": "^1.0.0-pre.23"
     },
     "publishConfig": {
         "access": "public"

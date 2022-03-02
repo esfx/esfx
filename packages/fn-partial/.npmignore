@@ -1,0 +1,7 @@
+.vscode
+obj
+src
+__tests__
+api-extractor.json
+tsconfig.json
+tsconfig.tsbuildinfo

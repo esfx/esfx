@@ -14,6 +14,8 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isNumber } from "@esfx/internal-guards";
+
 const sleepBuffer = new SharedArrayBuffer(4);
 const sleepArray = new Int32Array(sleepBuffer);
 
@@ -22,7 +24,7 @@ const sleepArray = new Int32Array(sleepBuffer);
  * @param ms The number of milliseconds to suspend the thread. Must be a finite, positive value, or zero.
  */
 export function sleep(ms: number) {
-    if (typeof ms !== "number") throw new TypeError("Number expected: ms");
+    if (!isNumber(ms)) throw new TypeError("Number expected: ms");
     if (!isFinite(ms) || ms < 0) throw new RangeError("Out of range: ms");
     Atomics.wait(sleepArray, 0, 0, ms);
 }

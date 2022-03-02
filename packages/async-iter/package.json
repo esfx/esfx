@@ -33,20 +33,6 @@
         "@esfx/iter-page": "^1.0.0-pre.23",
         "@esfx/iter-query": "^1.0.0-pre.24"
     },
-    "bundledDependencies": [
-        "@esfx/async-iter-fn",
-        "@esfx/async-iter-hierarchy",
-        "@esfx/async-iter-ordered",
-        "@esfx/async-iter-query",
-        "@esfx/fn",
-        "@esfx/iter-fn",
-        "@esfx/iter-grouping",
-        "@esfx/iter-hierarchy",
-        "@esfx/iter-lookup",
-        "@esfx/iter-ordered",
-        "@esfx/iter-page",
-        "@esfx/iter-query"
-    ],
     "publishConfig": {
         "access": "public"
     },

@@ -15,22 +15,16 @@
 */
 
 import { Disposable } from "@esfx/disposable";
-
-// NOTE: This must be a single bit, must be distinct from other threading coordination
-//       primitives, and must be a bit >= 16.
-const AUTO_RESET_ID = 1 << 17;
-
-const NONSIGNALED = AUTO_RESET_ID | 0;
-const NOTIFYING = AUTO_RESET_ID | 1;
-const SIGNALED = AUTO_RESET_ID | 3;
-
-const AUTO_RESET_EXCLUDES = ~(NONSIGNALED | SIGNALED | NOTIFYING);
-
-const ATOM_INDEX = 0;
+import /*#__INLINE__*/ { AUTORESET_FIELD_STATE, AUTORESET_ID, AUTORESET_STATE_EXCLUDES, AUTORESET_STATE_NONSIGNALED, AUTORESET_STATE_NOTIFYING, AUTORESET_STATE_SIGNALED } from "@esfx/internal-threading";
+import /*#__INLINE__*/ { isNumber } from "@esfx/internal-guards";
 
 const kArray = Symbol("kArray");
 
 export class AutoResetEvent implements Disposable {
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "AutoResetEvent" });
+    }
+
     static readonly SIZE = 4;
 
     private [kArray]: Int32Array | undefined;
@@ -51,10 +45,10 @@ export class AutoResetEvent implements Disposable {
             initialState = bufferOrInitialState;
         }
 
-        Atomics.compareExchange(array, ATOM_INDEX, 0, NONSIGNALED);
+        Atomics.compareExchange(array, AUTORESET_FIELD_STATE, 0, AUTORESET_STATE_NONSIGNALED);
 
-        const data = Atomics.load(array, ATOM_INDEX);
-        if (!(data & AUTO_RESET_ID) || data & AUTO_RESET_EXCLUDES) throw new TypeError("Invalid handle.");
+        const data = Atomics.load(array, AUTORESET_FIELD_STATE);
+        if (!(data & AUTORESET_ID) || data & AUTORESET_STATE_EXCLUDES) throw new TypeError("Invalid handle.");
 
         this[kArray] = array;
         if (initialState) {
@@ -97,12 +91,12 @@ export class AutoResetEvent implements Disposable {
     set() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        if (Atomics.compareExchange(array, ATOM_INDEX, NONSIGNALED, NOTIFYING) === NONSIGNALED) {
-            if (Atomics.notify(array, ATOM_INDEX, 1) === 1) {
-                Atomics.store(array, ATOM_INDEX, NONSIGNALED);
+        if (Atomics.compareExchange(array, AUTORESET_FIELD_STATE, AUTORESET_STATE_NONSIGNALED, AUTORESET_STATE_NOTIFYING) === AUTORESET_STATE_NONSIGNALED) {
+            if (Atomics.notify(array, AUTORESET_FIELD_STATE, 1) === 1) {
+                Atomics.store(array, AUTORESET_FIELD_STATE, AUTORESET_STATE_NONSIGNALED);
             }
             else {
-                Atomics.store(array, ATOM_INDEX, SIGNALED);
+                Atomics.store(array, AUTORESET_FIELD_STATE, AUTORESET_STATE_SIGNALED);
             }
             return true;
         }
@@ -117,7 +111,7 @@ export class AutoResetEvent implements Disposable {
     reset() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        return Atomics.compareExchange(array, ATOM_INDEX, SIGNALED, NONSIGNALED) === SIGNALED;
+        return Atomics.compareExchange(array, AUTORESET_FIELD_STATE, AUTORESET_STATE_SIGNALED, AUTORESET_STATE_NONSIGNALED) === AUTORESET_STATE_SIGNALED;
     }
 
     /**
@@ -127,7 +121,7 @@ export class AutoResetEvent implements Disposable {
      * @returns `true` if the event was signaled before the timeout expired; otherwise, `false`.
      */
     waitOne(ms: number = Infinity) {
-        if (typeof ms !== "number") throw new TypeError("Number expected: ms.");
+        if (!isNumber(ms)) throw new TypeError("Number expected: ms.");
         if (isNaN(ms) || ms < 0) throw new RangeError("Out of range: ms.");
         
         const array = this[kArray];
@@ -136,13 +130,13 @@ export class AutoResetEvent implements Disposable {
         const start = isFinite(ms) ? Date.now() : 0;
         let timeout = ms;
         while (timeout >= 0) {
-            switch (Atomics.wait(array, ATOM_INDEX, NONSIGNALED, timeout)) {
+            switch (Atomics.wait(array, AUTORESET_FIELD_STATE, AUTORESET_STATE_NONSIGNALED, timeout)) {
                 case "timed-out": // timeout expired while waiting
                     return false;
                 case "ok": // event was nonsignaled and we were released
                     return true;
                 case "not-equal": // event was already signaled...
-                    if (Atomics.compareExchange(array, ATOM_INDEX, SIGNALED, NONSIGNALED) === SIGNALED) {
+                    if (Atomics.compareExchange(array, AUTORESET_FIELD_STATE, AUTORESET_STATE_SIGNALED, AUTORESET_STATE_NONSIGNALED) === AUTORESET_STATE_SIGNALED) {
                         // We were the first to reach the signaled event so we can release the thread.
                         return true;
                     }

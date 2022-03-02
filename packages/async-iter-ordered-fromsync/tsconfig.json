@@ -7,10 +7,12 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../internal/assert" },
-        { "path": "../../internal/guards" },
+        // dependencies
         { "path": "../async-iter-ordered" },
         { "path": "../equatable" },
         { "path": "../iter-ordered" },
+
+        // devDependencies
+        { "path": "../../internal/guards" },
     ]
 }

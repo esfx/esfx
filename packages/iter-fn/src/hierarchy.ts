@@ -14,11 +14,11 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ { isFunction, isInteger, isNumber } from "@esfx/internal-guards";
 import { HashMap } from '@esfx/collections-hashmap';
 import { HashSet } from '@esfx/collections-hashset';
 import { Equaler } from '@esfx/equatable';
-import { T } from '@esfx/fn';
+import { alwaysTrue } from '@esfx/fn';
 import { Hierarchical, HierarchyIterable, HierarchyProvider, OrderedHierarchyIterable } from "@esfx/iter-hierarchy";
 import { OrderedIterable } from '@esfx/iter-ordered';
 import { Axis } from '@esfx/iter-hierarchy/axis';
@@ -46,11 +46,22 @@ function createHierarchyIterable(tag: string, axis: <TNode>(provider: HierarchyP
                 const hierarchy = source[Hierarchical.hierarchy]();
                 const predicate = this._predicate;
                 const axis = this._axis;
-                for (const element of source) {
-                    if (isHierarchyElement(hierarchy, element)) {
-                        for (const related of axis(hierarchy, element)) {
-                            if (predicate(related)) {
+                if (predicate === alwaysTrue) {
+                    for (const element of source) {
+                        if (isHierarchyElement(hierarchy, element)) {
+                            for (const related of axis(hierarchy, element)) {
                                 yield related;
+                            }
+                        }
+                    }
+                }
+                else {
+                    for (const element of source) {
+                        if (isHierarchyElement(hierarchy, element)) {
+                            for (const related of axis(hierarchy, element)) {
+                                if (predicate(related)) {
+                                    yield related;
+                                }
                             }
                         }
                     }
@@ -72,9 +83,9 @@ const RootHierarchyIterable = createHierarchyIterable("RootHierarchyIterable", A
  */
 export function root<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function root<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function root<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function root<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new RootHierarchyIterable(source, predicate);
 }
 
@@ -86,9 +97,9 @@ const AncestorsHierarchyIterable = createHierarchyIterable("AncestorsHierarchyIt
  */
 export function ancestors<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function ancestors<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function ancestors<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function ancestors<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AncestorsHierarchyIterable(source, predicate);
 }
 
@@ -100,9 +111,9 @@ const AncestorsAndSelfHierarchyIterable = createHierarchyIterable("AncestorsAndS
  */
 export function ancestorsAndSelf<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function ancestorsAndSelf<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function ancestorsAndSelf<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function ancestorsAndSelf<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AncestorsAndSelfHierarchyIterable(source, predicate);
 }
 
@@ -114,9 +125,9 @@ const DescendantsHierarchyIterable = createHierarchyIterable("DescendantsHierarc
  */
 export function descendants<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function descendants<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function descendants<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function descendants<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new DescendantsHierarchyIterable(source, predicate);
 }
 
@@ -128,9 +139,9 @@ const DescendantsAndSelfHierarchyIterable = createHierarchyIterable("Descendants
  */
 export function descendantsAndSelf<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function descendantsAndSelf<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function descendantsAndSelf<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function descendantsAndSelf<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new DescendantsAndSelfHierarchyIterable(source, predicate);
 }
 
@@ -142,9 +153,9 @@ const ParentsHierarchyIterable = createHierarchyIterable("ParentsHierarchyIterab
  */
 export function parents<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function parents<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function parents<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function parents<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new ParentsHierarchyIterable(source, predicate);
 }
 
@@ -156,9 +167,9 @@ const SelfHierarchyIterable = createHierarchyIterable("SelfHierarchyIterable", A
  */
 export function self<TNode, T extends TNode, U extends T>(source: HierarchyIterable<TNode, T>, predicate: (element: T) => element is U): HierarchyIterable<TNode, U>;
 export function self<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate?: (element: T) => boolean): HierarchyIterable<TNode, T>;
-export function self<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function self<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new SelfHierarchyIterable(source, predicate);
 }
 
@@ -170,9 +181,9 @@ const SiblingsHierarchyIterable = createHierarchyIterable("SiblingsHierarchyIter
  */
 export function siblings<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function siblings<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function siblings<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function siblings<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new SiblingsHierarchyIterable(source, predicate);
 }
 
@@ -184,9 +195,9 @@ const SiblingsAndSelfHierarchyIterable = createHierarchyIterable("SiblingsAndSel
  */
 export function siblingsAndSelf<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function siblingsAndSelf<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function siblingsAndSelf<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function siblingsAndSelf<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new SiblingsAndSelfHierarchyIterable(source, predicate);
 }
 
@@ -198,9 +209,9 @@ const PrecedingSiblingsHierarchyIterable = createHierarchyIterable("PrecedingSib
  */
 export function precedingSiblings<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function precedingSiblings<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function precedingSiblings<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function precedingSiblings<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new PrecedingSiblingsHierarchyIterable(source, predicate);
 }
 
@@ -215,9 +226,9 @@ const FollowingSiblingsHierarchyIterable = createHierarchyIterable("FollowingSib
  */
 export function followingSiblings<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function followingSiblings<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function followingSiblings<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function followingSiblings<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new FollowingSiblingsHierarchyIterable(source, predicate);
 }
 
@@ -230,9 +241,9 @@ const PrecedingHierarchyIterable = createHierarchyIterable("PrecedingHierarchyIt
  */
 export function preceding<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function preceding<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function preceding<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function preceding<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new PrecedingHierarchyIterable(source, predicate);
 }
 
@@ -244,9 +255,9 @@ const FollowingHierarchyIterable = createHierarchyIterable("FollowingHierarchyIt
  */
 export function following<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function following<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function following<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function following<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new FollowingHierarchyIterable(source, predicate);
 }
 
@@ -258,9 +269,9 @@ const ChildrenHierarchyIterable = createHierarchyIterable("ChildrenHierarchyIter
  */
 export function children<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function children<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function children<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function children<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new ChildrenHierarchyIterable(source, predicate);
 }
 
@@ -272,9 +283,9 @@ const FirstChildHierarchyIterable = createHierarchyIterable("FirstChildHierarchy
  */
 export function firstChild<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function firstChild<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function firstChild<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function firstChild<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new FirstChildHierarchyIterable(source, predicate);
 }
 
@@ -286,9 +297,9 @@ const LastChildHierarchyIterable = createHierarchyIterable("LastChildHierarchyIt
  */
 export function lastChild<TNode, U extends TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function lastChild<TNode>(source: HierarchyIterable<TNode>, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function lastChild<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function lastChild<TNode>(source: HierarchyIterable<TNode>, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new LastChildHierarchyIterable(source, predicate);
 }
 
@@ -308,11 +319,22 @@ class NthChildHierarchyIterable<TNode> implements Iterable<TNode> {
         const provider = source[Hierarchical.hierarchy]();
         const offset = this._offset;
         const predicate = this._predicate;
-        for (const element of source) {
-            if (isHierarchyElement(provider, element)) {
-                for (const child of Axis.nthChild(provider, element, offset)) {
-                    if (predicate(child)) {
+        if (predicate === alwaysTrue) {
+            for (const element of source) {
+                if (isHierarchyElement(provider, element)) {
+                    for (const child of Axis.nthChild(provider, element, offset)) {
                         yield child;
+                    }
+                }
+            }
+        }
+        else {
+            for (const element of source) {
+                if (isHierarchyElement(provider, element)) {
+                    for (const child of Axis.nthChild(provider, element, offset)) {
+                        if (predicate(child)) {
+                            yield child;
+                        }
                     }
                 }
             }
@@ -335,11 +357,12 @@ class NthChildHierarchyIterable<TNode> implements Iterable<TNode> {
  */
 export function nthChild<TNode, U extends TNode>(source: HierarchyIterable<TNode>, offset: number, predicate: (element: TNode) => element is U): HierarchyIterable<TNode, U>;
 export function nthChild<TNode>(source: HierarchyIterable<TNode>, offset: number, predicate?: (element: TNode) => boolean): HierarchyIterable<TNode>;
-export function nthChild<TNode>(source: HierarchyIterable<TNode>, offset: number, predicate: (element: TNode) => boolean = T): HierarchyIterable<TNode> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeInteger(offset, "offset");
-    assert.mustBeFunction(predicate, "predicate");
-    return new NthChildHierarchyIterable(source, offset, T);
+export function nthChild<TNode>(source: HierarchyIterable<TNode>, offset: number, predicate: (element: TNode) => boolean = alwaysTrue): HierarchyIterable<TNode> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isNumber(offset)) throw new TypeError("Numebr expected: offset");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
+    if (!isInteger(offset)) throw new RangeError("Argument out of range: offset");
+    return new NthChildHierarchyIterable(source, offset, alwaysTrue);
 }
 
 class TopMostIterable<TNode, T extends TNode> implements HierarchyIterable<TNode, T> {
@@ -388,8 +411,15 @@ class TopMostIterable<TNode, T extends TNode> implements HierarchyIterable<TNode
             }
         }
 
-        for (const node of topMostNodes) {
-            if (predicate(node)) yield node;
+        if (predicate === alwaysTrue) {
+            for (const node of topMostNodes) {
+                yield node;
+            }
+        }
+        else {
+            for (const node of topMostNodes) {
+                if (predicate(node)) yield node;
+            }
         }
     }
 
@@ -418,10 +448,10 @@ export function topMost<TNode, T extends TNode, U extends T>(source: HierarchyIt
  * @category Hierarchy
  */
 export function topMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate?: (value: T) => boolean, equaler?: Equaler<TNode>): HierarchyIterable<TNode, T>;
-export function topMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate: (value: T) => boolean = T, equaler: Equaler<TNode> = Equaler.defaultEqualer): HierarchyIterable<TNode, T> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+export function topMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate: (value: T) => boolean = alwaysTrue, equaler: Equaler<TNode> = Equaler.defaultEqualer): HierarchyIterable<TNode, T> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     return new TopMostIterable<TNode, T>(source, predicate, equaler);
 }
 
@@ -471,8 +501,15 @@ class BottomMostIterable<TNode, T extends TNode> implements HierarchyIterable<TN
             }
         }
 
-        for (const node of bottomMostNodes) {
-            if (predicate(node)) yield node;
+        if (predicate === alwaysTrue) {
+            for (const node of bottomMostNodes) {
+                yield node;
+            }
+        }
+        else {
+            for (const node of bottomMostNodes) {
+                if (predicate(node)) yield node;
+            }
         }
     }
 
@@ -500,10 +537,10 @@ export function bottomMost<TNode, T extends TNode, U extends T>(source: Hierarch
  * @category Hierarchy
  */
 export function bottomMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate?: (value: T) => boolean, equaler?: Equaler<TNode>): HierarchyIterable<TNode, T>;
-export function bottomMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate: (value: T) => boolean = T, equaler: Equaler<TNode> = Equaler.defaultEqualer): HierarchyIterable<TNode, T> {
-    assert.mustBeType(HierarchyIterable.hasInstance, source, "source");
-    assert.mustBeFunction(predicate, "predicate");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+export function bottomMost<TNode, T extends TNode>(source: HierarchyIterable<TNode, T>, predicate: (value: T) => boolean = alwaysTrue, equaler: Equaler<TNode> = Equaler.defaultEqualer): HierarchyIterable<TNode, T> {
+    if (!HierarchyIterable.hasInstance(source)) throw new TypeError("HierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     return new BottomMostIterable<TNode, T>(source, predicate, equaler);
 }
 

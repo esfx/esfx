@@ -47,7 +47,7 @@
 import { Collection, ReadonlyCollection } from "@esfx/collection-core";
 import { Equaler } from "@esfx/equatable";
 import /*#__INLINE__*/ { clearEntries, createHashData, deleteEntry, ensureCapacity, findEntryIndex, forEachEntry, HashData, insertEntry, iterateEntries, selectEntryEntry, selectEntryKey, selectEntryValue, trimExcessEntries } from '@esfx/internal-collections-hash';
-import /*#__INLINE__*/ { isIterable, isMissing } from "@esfx/internal-guards";
+import /*#__INLINE__*/ { isFunction, isIterable, isNumber, isPositiveInteger, isUndefined } from "@esfx/internal-guards";
 
 export class HashSet<T> implements Collection<T> {
     private _hashData: HashData<T,T>;
@@ -65,11 +65,12 @@ export class HashSet<T> implements Collection<T> {
         let equaler: Equaler<T> | undefined;
         if (args.length > 0) {
             const arg0 = args[0];
-            if (typeof arg0 === "number") {
+            if (isNumber(arg0)) {
+                if (!isPositiveInteger(arg0)) throw new RangeError("Argument out of range: capacity");
                 capacity = arg0;
                 if (args.length > 1) equaler = args[1];
             }
-            else if (isIterable(arg0) || isMissing(arg0)) {
+            else if (isUndefined(arg0) || isIterable(arg0)) {
                 iterable = arg0;
                 if (args.length > 1) equaler = args[1];
             }
@@ -77,9 +78,9 @@ export class HashSet<T> implements Collection<T> {
                 equaler = arg0;
             }
         }
-        if (capacity === undefined) capacity = 0;
-        if (equaler === undefined) equaler = Equaler.defaultEqualer;
-        if (capacity < 0) throw new RangeError();
+
+        capacity ??= 0;
+        equaler ??= Equaler.defaultEqualer;
 
         this._hashData = createHashData(equaler, capacity);
         if (iterable) {
@@ -121,10 +122,16 @@ export class HashSet<T> implements Collection<T> {
     }
 
     ensureCapacity(capacity: number) {
+        if (!isNumber(capacity)) throw new TypeError("Number expected: capacity");
+        if (!isPositiveInteger(capacity)) throw new RangeError("Argument out of range: capacity");
         return ensureCapacity(this._hashData, capacity);
     }
 
     trimExcess(capacity?: number) {
+        if (!isUndefined(capacity)) {
+            if (!isNumber(capacity)) throw new TypeError("Number expected: capacity");
+            if (!isPositiveInteger(capacity)) throw new RangeError("Argument out of range: capacity");
+        }
         trimExcessEntries(this._hashData, capacity);
     }
 
@@ -145,6 +152,7 @@ export class HashSet<T> implements Collection<T> {
     }
 
     forEach(callback: (value: T, key: T, map: this) => void, thisArg?: any) {
+        if (!isFunction(callback)) throw new TypeError("Function expected: callback");
         forEachEntry(this, this._hashData.head, callback, thisArg);
     }
 

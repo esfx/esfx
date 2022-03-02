@@ -2,6 +2,7 @@
     "name": "@esfx/metadata",
     "version": "1.0.0-pre.23",
     "description": "This package provides an API for defining metadata about an object.",
+    "private": true,
     "type": "commonjs",
     "main": "./dist/index.js",
     "exports": "./dist/index.js",

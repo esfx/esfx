@@ -6,11 +6,12 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        // devDependencies:
-        { "path": "../async-canceltoken" },
-
         // dependencies:
         { "path": "../async-waitqueue" },
         { "path": "../cancelable" },
+
+        // devDependencies:
+        { "path": "../async-canceltoken" },
+        { "path": "../../internal/guards" }
     ]
 }

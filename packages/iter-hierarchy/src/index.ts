@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+export * from "./axis";
 export * from "./provider";
 export * from "./hierarchy";
 export * from "./ordered";

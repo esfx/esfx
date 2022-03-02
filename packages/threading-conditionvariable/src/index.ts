@@ -16,16 +16,15 @@
 
 import { Disposable } from "@esfx/disposable";
 import { Lockable } from "@esfx/threading-lockable";
-
-// NOTE: This must be a single bit, must be distinct from other threading coordination
-//       primitives, and must be a bit >= 16.
-const CONDVAR_ID = 1 << 19;
-const CONDVAR_EXCLUDES = ~(CONDVAR_ID);
-
-const ATOM_INDEX = 0;
+import /*#__INLINE__*/ { CONDVAR_FIELD_STATE, CONDVAR_ID, CONDVAR_STATE_EXCLUDES } from "@esfx/internal-threading";
+import /*#__INLINE__*/ { isNumber } from "@esfx/internal-guards";
 
 const kArray = Symbol("kArray");
 export class ConditionVariable implements Disposable {
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "ConditionVariable" });
+    }
+
     static readonly SIZE = 4;
 
     private [kArray]: Int32Array | undefined;
@@ -41,10 +40,10 @@ export class ConditionVariable implements Disposable {
             array = new Int32Array(new SharedArrayBuffer(4));
         }
 
-        Atomics.compareExchange(array, ATOM_INDEX, 0, CONDVAR_ID);
+        Atomics.compareExchange(array, CONDVAR_FIELD_STATE, 0, CONDVAR_ID);
 
-        const data = Atomics.load(array, ATOM_INDEX);
-        if (!(data & CONDVAR_ID) || data & CONDVAR_EXCLUDES) throw new TypeError("Invalid handle.");
+        const data = Atomics.load(array, CONDVAR_FIELD_STATE);
+        if (!(data & CONDVAR_ID) || data & CONDVAR_STATE_EXCLUDES) throw new TypeError("Invalid handle.");
 
         this[kArray] = array;
     }
@@ -97,7 +96,7 @@ export class ConditionVariable implements Disposable {
      * @returns `true` if the condition variable was notified prior to the timeout period elapsing; otherwise, `false`.
      */
     waitFor(mutex: Lockable, ms: number, condition?: () => boolean) {
-        if (typeof ms !== "number") throw new TypeError("Number expected: ms");
+        if (!isNumber(ms)) throw new TypeError("Number expected: ms");
         ms = isNaN(ms) ? Infinity : Math.max(ms, 0);
 
         const array = this[kArray];
@@ -108,7 +107,7 @@ export class ConditionVariable implements Disposable {
 
         while (!condition?.()) {
             if (!mutex[Lockable.unlock]()) throw new Error("Mutex does not own lock.");
-            const result = Atomics.wait(array, ATOM_INDEX, CONDVAR_ID, timeout);
+            const result = Atomics.wait(array, CONDVAR_FIELD_STATE, CONDVAR_ID, timeout);
             mutex[Lockable.lock]();
             if (result === "not-equal") throw new Error("Illegal state");
             if (result === "timed-out") return false;
@@ -128,7 +127,7 @@ export class ConditionVariable implements Disposable {
     notifyOne() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        return Atomics.notify(array, ATOM_INDEX, 1) === 1;
+        return Atomics.notify(array, CONDVAR_FIELD_STATE, 1) === 1;
     }
 
     /**
@@ -139,7 +138,7 @@ export class ConditionVariable implements Disposable {
     notifyAll() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        return Atomics.notify(array, ATOM_INDEX, +Infinity);
+        return Atomics.notify(array, CONDVAR_FIELD_STATE, +Infinity);
     }
 
     /**

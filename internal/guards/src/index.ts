@@ -1,4 +1,4 @@
-/*!
+/*
    Copyright 2019 Ron Buckton
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import { Constructor, AbstractConstructor } from "@esfx/type-model";
+import type { Constructor, AbstractConstructor } from "@esfx/type-model";
 
 /*@internal*/
 export function isFunction(value: unknown): value is Function {
@@ -32,15 +32,19 @@ export function isObject(value: unknown): value is object {
         || typeof value === "function";
 }
 
-type AbstractInstanceType<T extends abstract new (...args: any) => any> = T extends abstract new (...args: any) => infer R ? R : any;
+/*@internal*/
+export function isInstance<C extends Constructor | AbstractConstructor>(value: unknown, ctor: C): value is InstanceType<C> {
+    return !isMissing(value) && value instanceof ctor;
+}
 
 /*@internal*/
-export function isInstance<C extends Constructor>(value: unknown, ctor: C): value is InstanceType<C>;
+export function isUndefined(value: unknown): value is undefined {
+    return value === undefined;
+}
+
 /*@internal*/
-export function isInstance<C extends AbstractConstructor>(value: unknown, ctor: C): value is AbstractInstanceType<C>;
-/*@internal*/
-export function isInstance(value: unknown, ctor: Function) {
-    return !isMissing(value) && value instanceof ctor;
+export function isDefined<T>(value: T): value is T extends undefined ? never : T {
+    return value === undefined;
 }
 
 /*@internal*/
@@ -50,8 +54,9 @@ export function isMissing(value: unknown): value is null | undefined {
 }
 
 /*@internal*/
-export function isDefined<T>(value: T): value is NonNullable<T> {
-    return value !== null && value !== undefined;
+export function isPresent<T>(value: T): value is NonNullable<T> {
+    return value !== null
+        && value !== undefined;
 }
 
 /*@internal*/
@@ -62,10 +67,20 @@ export function isIterable(value: unknown): value is Iterable<any> {
 }
 
 /*@internal*/
+export function isIterableObject(value: unknown): value is object & Iterable<any> {
+    return isObject(value) && Symbol.iterator in value;
+}
+
+/*@internal*/
 export function isAsyncIterable(value: unknown): value is AsyncIterable<any> {
     return value !== undefined
         && value !== null
         && Symbol.asyncIterator in Object(value);
+}
+
+/*@internal*/
+export function isAsyncIterableObject(value: unknown): value is object & AsyncIterable<any> {
+    return isObject(value) && Symbol.asyncIterator in value;
 }
 
 /** @internal */
@@ -77,9 +92,46 @@ export function isIterator(value: unknown): value is Iterator<unknown> {
         && isFunctionOrUndefined((value as IterableIterator<unknown>)[Symbol.iterator]);
 }
 
+declare const kFinite: unique symbol;
+declare const kPositive: unique symbol;
+declare const kNonZero: unique symbol;
+declare const kInteger: unique symbol;
+
+/* @internal */
+export interface IsFiniteNumber { [kFinite]: never };
+
+/* @internal */
+export interface IsPositiveNumber { [kPositive]: never };
+
+/* @internal */
+export interface IsNonZeroNumber { [kNonZero]: never };
+
+/* @internal */
+export interface IsInteger extends IsFiniteNumber { [kInteger]: never };
+
 /*@internal*/
 export function isNumber(value: unknown): value is number {
     return typeof value === "number";
+}
+
+/*@internal*/
+export function isPositiveFiniteNumber(value: number): value is number & IsPositiveNumber & IsFiniteNumber {
+    return isFinite(value) && value >= 0;
+}
+
+/*@internal*/
+export function isPositiveNonZeroFiniteNumber(value: number): value is number & IsPositiveNumber & IsFiniteNumber & IsNonZeroNumber {
+    return isFinite(value) && value > 0;
+}
+
+/*@internal*/
+export function isInteger(value: number): value is number & IsInteger {
+    return Object.is(value, value | 0);
+}
+
+/*@internal*/
+export function isPositiveInteger(value: number): value is number & IsPositiveNumber & IsInteger {
+    return isInteger(value) && value >= 0;
 }
 
 /*@internal*/

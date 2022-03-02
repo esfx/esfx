@@ -14,11 +14,11 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isAsyncIterableObject, isFunction, isIterableObject, isNumber, isPositiveNonZeroFiniteNumber, isUndefined } from '@esfx/internal-guards';
 import { toAsyncIterable } from "@esfx/async-iter-fromsync";
 import { AsyncHierarchyIterable } from "@esfx/async-iter-hierarchy";
 import { Equaler } from "@esfx/equatable";
 import { identity } from "@esfx/fn";
-import * as assert from "@esfx/internal-assert";
 import { Grouping, HierarchyGrouping } from "@esfx/iter-grouping";
 import { HierarchyIterable } from "@esfx/iter-hierarchy";
 import { HierarchyPage, Page } from "@esfx/iter-page";
@@ -98,9 +98,10 @@ export function pageByAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T
  */
 export function pageByAsync<T, R>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, pageSize: number, pageSelector: (page: number, offset: number, values: Iterable<T>) => R): AsyncIterable<R>;
 export function pageByAsync<T, R>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, pageSize: number, pageSelector: ((page: number, offset: number, values: Iterable<T>) => Page<T> | R) | ((page: number, offset: number, values: HierarchyIterable<unknown, T>) => Page<T> | R) = Page.from): AsyncIterable<Page<T> | R> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBePositiveNonZeroFiniteNumber(pageSize, "pageSize");
-    assert.mustBeFunction(pageSelector, "pageSelector");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isNumber(pageSize)) throw new TypeError("Number expected: pageSize");
+    if (!isFunction(pageSelector)) throw new TypeError("Function expected: pageSelector");
+    if (!isPositiveNonZeroFiniteNumber(pageSize)) throw new RangeError("Argument out of range: pageSize");
     return new AsyncPageByIterable(flowHierarchy(toAsyncIterable(source), source), pageSize, pageSelector as (page: number, offset: number, values: Iterable<T>) => R);
 }
 
@@ -205,12 +206,12 @@ export function spanMapAsync<T, K, V, R>(source: AsyncIterable<T> | Iterable<Pro
         keyEqualer = spanSelector;
         spanSelector = Grouping.from;
     }
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(elementSelector, "elementSelector");
-    assert.mustBeFunction(spanSelector, "spanSelector");
-    assert.mustBeType(Equaler.hasInstance, keyEqualer, "keyEqualer");
-    return new AsyncSpanMapIterable(flowHierarchy(toAsyncIterable(source), source), keySelector, keyEqualer, elementSelector, spanSelector  as (key: K, span: Iterable<T | V>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R);
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
+    if (!isFunction(spanSelector)) throw new TypeError("Function expected: spanSelector");
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
+    return new AsyncSpanMapIterable(flowHierarchy(toAsyncIterable(source), source), keySelector, keyEqualer, elementSelector, spanSelector as (key: K, span: Iterable<T | V>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R);
 }
 
 class AsyncGroupByIterable<T, K, V, R> implements AsyncIterable<R> {
@@ -298,10 +299,10 @@ export function groupByAsync<T, K, V, R>(source: AsyncIterable<T> | Iterable<Pro
         keyEqualer = resultSelector;
         resultSelector = Grouping.from;
     }
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(elementSelector, "elementSelector");
-    assert.mustBeFunction(resultSelector, "resultSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
+    if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return new AsyncGroupByIterable(flowHierarchy(toAsyncIterable(source), source), keySelector, elementSelector, resultSelector as (key: K, elements: Iterable<T | V>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R);
 }

@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import { ReadonlyCollection, Collection, ReadonlyKeyedCollection, KeyedCollection, ReadonlyIndexedCollection, IndexedCollection, FixedSizeIndexedCollection } from "@esfx/collection-core";
+import { ReadonlyCollection, Collection, ReadonlyKeyedCollection, KeyedCollection, ReadonlyIndexedCollection, IndexedCollection, FixedSizeIndexedCollection, Container, KeyedContainer, ReadonlyKeyedContainer } from "@esfx/collection-core";
 
 //
 // Global augmentations
@@ -322,3 +322,77 @@ if (typeof Map === "function") {
 }
 
 // #endregion Map augmentations
+
+// #region WeakSet augmentations
+
+declare global {
+    interface WeakSet<T> extends Container<T> {}
+}
+
+if (typeof WeakSet === "function") {
+    Object.defineProperties(WeakSet.prototype, {
+        // ReadonlyContainer<T>
+        [Container.has]: {
+            configurable: true, writable: true,
+            value(this: WeakSet<any>, value: any) {
+                return this.has(value);
+            }
+        },
+
+        // Container<T>
+        [Container.add]: {
+            configurable: true, writable: true,
+            value(this: WeakSet<any>, value: any) {
+                this.add(value);
+            }
+        },
+        [Container.delete]: {
+            configurable: true, writable: true,
+            value(this: WeakSet<any>, value: any) {
+                return this.delete(value);
+            }
+        },
+    });
+}
+
+// #endregion WeakSet augmentations
+
+// #region WeakMap augmentations
+
+declare global {
+    interface WeakMap<K extends object, V> extends KeyedContainer<K, V> {}
+}
+
+if (typeof WeakMap === "function") {
+    Object.defineProperties(WeakMap.prototype, {
+        // ReadonlyKeyedContainer<T>
+        [ReadonlyKeyedContainer.has]: {
+            configurable: true, writable: true,
+            value(this: WeakMap<any, any>, key: any) {
+                return this.has(key);
+            }
+        },
+
+        // KeyedContainer<T>
+        [KeyedContainer.get]: {
+            configurable: true, writable: true,
+            value(this: WeakMap<any, any>, key: any) {
+                this.get(key);
+            }
+        },
+        [KeyedContainer.set]: {
+            configurable: true, writable: true,
+            value(this: WeakMap<any, any>, key: any, value: any) {
+                this.set(key, value);
+            }
+        },
+        [KeyedContainer.delete]: {
+            configurable: true, writable: true,
+            value(this: WeakMap<any, any>, key: any) {
+                return this.delete(key);
+            }
+        },
+    });
+}
+
+// #endregion WeakMap augmentations

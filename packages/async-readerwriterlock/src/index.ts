@@ -38,15 +38,35 @@
 
 import { WaitQueue } from "@esfx/async-waitqueue";
 import { LockHandle, UpgradeableLockHandle, AsyncLockable } from "@esfx/async-lockable";
-import { Cancelable } from "@esfx/cancelable";
+import { Cancelable, CancelError } from "@esfx/cancelable";
 import { Disposable } from "@esfx/disposable";
+import /*#__INLINE__*/ { isUndefined } from "@esfx/internal-guards";
 
 export { LockHandle, UpgradeableLockHandle } from "@esfx/async-lockable";
+
+let readerOwnsLock: (owner: AsyncReaderWriterLock, reader: LockHandle) => boolean;
+let lockReader: (owner: AsyncReaderWriterLock, reader: LockHandle, upgradeable: boolean, cancelable?: Cancelable) => Promise<void>;
+let unlockReader: (owner: AsyncReaderWriterLock, reader: LockHandle) => void;
+let createUpgradedWriter: (owner: AsyncReaderWriterLock, reader: AsyncReaderWriterLockUpgradeableReader) => AsyncReaderWriterLockWriter;
+let writerOwnsLock: (owner: AsyncReaderWriterLock, writer: LockHandle) => boolean;
+let lockWriter: (owner: AsyncReaderWriterLock, writer: LockHandle, upgradeable: LockHandle | undefined, cancelable?: Cancelable) => Promise<void>;
+let unlockWriter: (owner: AsyncReaderWriterLock, writer: LockHandle) => void;
 
 /**
  * Coordinates readers and writers for a resource.
  */
 export class AsyncReaderWriterLock {
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLock" });
+        readerOwnsLock = (owner, reader) => owner._readers.has(reader);
+        lockReader = (owner, reader, upgradeable, cancelable) => owner._lockReader(reader, upgradeable, cancelable);
+        unlockReader = (owner, reader) => owner._unlockReader(reader);
+        createUpgradedWriter = (owner, reader) => owner._createUpgradedWriter(reader);
+        writerOwnsLock = (owner, writer) => owner._writer === writer;
+        lockWriter = (owner, writer, upgradeable, cancelable) => owner._lockWriter(writer, upgradeable, cancelable);
+        unlockWriter = (owner, writer) => owner._unlockWriter(writer);
+    }
+
     private _readerQueue = new WaitQueue<void>();
     private _writerQueue = new WaitQueue<void>();
     private _readers = new Set<LockHandle>();
@@ -56,99 +76,27 @@ export class AsyncReaderWriterLock {
     /**
      * Creates a `AsyncReaderWriterLockReader` that can be used to take and release "read" locks on a resource.
      */
-    createReader() {
-        const owner = this;
-        const handle: AsyncReaderWriterLockReader = Object.setPrototypeOf({
-            get owner() {
-                return owner;
-            },
-            get ownsLock() {
-                return owner._readers.has(handle);
-            },
-            async lock(cancelable?: Cancelable) {
-                await owner._lockReader(handle, false, cancelable);
-                return handle;
-            },
-            unlock() {
-                owner._unlockReader(handle);
-            }
-        }, readerPrototype);
-        return handle;
+    createReader(): AsyncReaderWriterLockReader {
+        return new AsyncReaderWriterLockReader(this);
     }
 
     /**
      * Creates a `AsyncReaderWriterLockUpgradeableReader` that can be used to take and release "read" locks on a resource
      * and can be later upgraded to take and release "write" locks.
      */
-    createUpgradeableReader() {
-        const owner = this;
-        const handle: AsyncReaderWriterLockUpgradeableReader = Object.setPrototypeOf({
-            get owner() {
-                return handle;
-            },
-            get ownsLock() {
-                return owner._readers.has(handle);
-            },
-            async lock(cancelable?: Cancelable) {
-                await owner._lockReader(handle, true, cancelable);
-                return handle;
-            },
-            unlock() {
-                owner._unlockReader(handle);
-            },
-            createWriter() {
-                return owner._createUpgradedWriter(handle);
-            },
-            async upgrade(cancelable?: Cancelable) {
-                const upgradedWriter = this.createWriter();
-                await upgradedWriter.lock(cancelable);
-                return upgradedWriter;
-            }
-        }, upgradeableReaderPrototype);
-        return handle;
+    createUpgradeableReader(): AsyncReaderWriterLockUpgradeableReader {
+        return new AsyncReaderWriterLockUpgradeableReader(this);
     }
 
     /**
      * Creates a `AsyncReaderWriterLockWriter` that can be used to take and release "write" locks on a resource.
      */
-    createWriter() {
-        const owner = this;
-        const handle: AsyncReaderWriterLockWriter = Object.setPrototypeOf({
-            get owner() {
-                return owner;
-            },
-            get ownsLock() {
-                return owner._writer === handle;
-            },
-            async lock(cancelable?: Cancelable) {
-                await owner._lockWriter(handle, undefined, cancelable);
-                return handle;
-            },
-            unlock() {
-                owner._unlockWriter(handle);
-            }
-        }, writerPrototype);
-        return handle;
+    createWriter(): AsyncReaderWriterLockWriter {
+        return new AsyncReaderWriterLockWriter(this);
     }
 
-    private _createUpgradedWriter(upgradeable: AsyncReaderWriterLockUpgradeableReader) {
-        const owner = this;
-        const handle: AsyncReaderWriterLockWriter = Object.setPrototypeOf({
-            get owner() {
-                return owner;
-            },
-            get ownsLock() {
-                return owner._writer === handle;
-            },
-            async lock(cancelable?: Cancelable) {
-                await owner._lockWriter(handle, upgradeable, cancelable);
-                return handle;
-            },
-            unlock() {
-                owner._unlockWriter(handle);
-            }
-        }, upgradedWriterPrototype);
-        return handle;
+    private _createUpgradedWriter(upgradeable: AsyncReaderWriterLockUpgradeableReader): AsyncReaderWriterLockWriter {
+        return new AsyncReaderWriterLockWriter(this, upgradeable);
     }
 
     /**
@@ -216,11 +164,16 @@ export class AsyncReaderWriterLock {
     }
 
     private async _lockReader(handle: LockHandle, upgradeable: boolean, cancelable?: Cancelable) {
-        Cancelable.throwIfSignaled(cancelable);
+        if (!isUndefined(cancelable) && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+
+        const signal = cancelable?.[Cancelable.cancelSignal]();
+        if (signal?.signaled) throw signal.reason ?? new CancelError();
+
         while (true) {
             if (this._readers.has(handle)) {
                 throw new Error("Lock already taken.");
             }
+
             if (this._canTakeReadLock() && !(upgradeable && this._upgradeable)) {
                 this._readers.add(handle);
                 if (upgradeable) {
@@ -228,6 +181,7 @@ export class AsyncReaderWriterLock {
                 }
                 return;
             }
+
             await this._readerQueue.wait(cancelable);
         }
     }
@@ -236,29 +190,38 @@ export class AsyncReaderWriterLock {
         if (!this._readers.has(handle)) {
             throw new Error("Lock already released.");
         }
+
         if (handle === this._upgradeable) {
             if (this._writer) {
                 throw new Error("Cannot unlock an upgraded lock.");
             }
             this._upgradeable = undefined;
         }
+
         this._readers.delete(handle);
         this._processLockRequests();
     }
 
     private async _lockWriter(handle: LockHandle, upgradeable: LockHandle | undefined, cancelable?: Cancelable) {
-        Cancelable.throwIfSignaled(cancelable);
+        if (!isUndefined(cancelable) && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+
+        const signal = cancelable?.[Cancelable.cancelSignal]();
+        if (signal?.signaled) throw signal.reason ?? new CancelError();
+
         while (true) {
             if (this._writer === handle) {
                 throw new Error("Lock already taken.");
             }
+
             if (this._upgradeable !== upgradeable) {
                 throw new Error("Lock already released.");
             }
+
             if (this._canTakeWriteLock()) {
                 this._writer = handle;
                 return;
             }
+
             await this._writerQueue.wait(cancelable);
         }
     }
@@ -267,12 +230,11 @@ export class AsyncReaderWriterLock {
         if (this._writer !== handle) {
             throw new Error("Lock already released.");
         }
+
         this._writer = undefined;
         this._processLockRequests();
     }
 }
-
-Object.defineProperty(AsyncReaderWriterLock.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLock" });
 
 export interface AsyncReaderWriterLockReader extends LockHandle<AsyncReaderWriterLockReader> {
     /**
@@ -288,63 +250,138 @@ export interface AsyncReaderWriterLockWriter extends LockHandle<AsyncReaderWrite
     readonly owner: AsyncReaderWriterLock;
 }
 
-export interface AsyncReaderWriterLockUpgradedWriter extends LockHandle<AsyncReaderWriterLockUpgradedWriter> {
+export interface AsyncReaderWriterLockUpgradeableReader extends UpgradeableLockHandle<AsyncReaderWriterLockUpgradeableReader, AsyncReaderWriterLockWriter> {
     /**
      * Gets the `AsyncReaderWriterLock` that owns this object.
      */
     readonly owner: AsyncReaderWriterLock;
-}
 
-export interface AsyncReaderWriterLockUpgradeableReader extends UpgradeableLockHandle<AsyncReaderWriterLockUpgradeableReader, AsyncReaderWriterLockUpgradedWriter> {
     /**
-     * Gets the `AsyncReaderWriterLock` that owns this object.
+     * Creates a `AsyncReaderWriterLockWriter` that can be used to take and release "write" locks on a resource.
      */
-    readonly owner: AsyncReaderWriterLock;
-    /**
-     * Creates a `AsyncReaderWriterLockUpgradedWriter` that can be used to take and release "write" locks on a resource.
-     */
-    createWriter(): AsyncReaderWriterLockUpgradedWriter;
+    createWriter(): AsyncReaderWriterLockWriter;
+
     /**
      * Asynchronously waits for and takes a write lock on a resource.
      *
      * @param cancelable A `Cancelable` used to cancel the request.
      */
-    upgrade(cancelable?: Cancelable): Promise<AsyncReaderWriterLockUpgradedWriter>;
+    upgrade(cancelable?: Cancelable): Promise<AsyncReaderWriterLockWriter>;
 }
 
-const lockHandlePrototype: object = {
-    get mutex() {
+abstract class AsyncReaderWriterLockBase {
+    static {
+        Object.defineProperty(this, "constructor", { ...Object.getOwnPropertyDescriptor(this, "constructor"), value: Object });
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLock" });
+    }
+
+    private _owner: AsyncReaderWriterLock;
+
+    constructor(owner: AsyncReaderWriterLock) {
+        this._owner = owner;
+    }
+
+    get owner() {
+        return this._owner;
+    }
+    
+    get mutex(): this {
         return this;
-    },
-    async [AsyncLockable.lock](this: LockHandle, cancelable?: Cancelable) {
+    }
+
+    abstract get ownsLock(): boolean;
+    abstract lock(cancelable?: Cancelable): Promise<this>;
+    abstract unlock(): void;
+
+    async [AsyncLockable.lock](cancelable?: Cancelable): Promise<LockHandle<AsyncLockable>> {
         await this.lock(cancelable);
         return this;
-    },
-    [AsyncLockable.unlock](this: LockHandle) {
+    }
+
+    [AsyncLockable.unlock](): void {
         this.unlock();
-    },
-    [Disposable.dispose](this: LockHandle) {
+    }
+
+    [Disposable.dispose](): void {
         if (this.ownsLock) {
             this.unlock();
         }
     }
+}
+
+const AsyncReaderWriterLockReader = class extends AsyncReaderWriterLockBase implements AsyncReaderWriterLockReader {
+    static {
+        Object.defineProperty(this, "constructor", { ...Object.getOwnPropertyDescriptor(this, "constructor"), value: Object });
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLockReader" });
+    }
+
+    get ownsLock(): boolean {
+        return readerOwnsLock(this.owner, this);
+    }
+
+    async lock(cancelable?: Cancelable): Promise<this> {
+        await lockReader(this.owner, this, /*upgradeable*/ false, cancelable);
+        return this;
+    }
+
+    unlock(): void {
+        unlockReader(this.owner, this);
+    }
+}
+
+const AsyncReaderWriterLockUpgradeableReader = class extends AsyncReaderWriterLockBase implements AsyncReaderWriterLockUpgradeableReader {
+    static {
+        Object.defineProperty(this, "constructor", { ...Object.getOwnPropertyDescriptor(this, "constructor"), value: Object });
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLockReader" });
+    }
+
+    get ownsLock(): boolean {
+        return readerOwnsLock(this.owner, this);
+    }
+
+    async lock(cancelable?: Cancelable): Promise<this> {
+        await lockReader(this.owner, this, /*upgradeable*/ true, cancelable);
+        return this;
+    }
+
+    unlock(): void {
+        unlockReader(this.owner, this);
+    }
+
+    createWriter(): AsyncReaderWriterLockWriter {
+        return createUpgradedWriter(this.owner, this);
+    }
+
+    async upgrade(cancelable?: Cancelable): Promise<AsyncReaderWriterLockWriter> {
+        const upgradedWriter = this.createWriter();
+        await upgradedWriter.lock(cancelable);
+        return upgradedWriter;
+    }
 };
 
-Object.setPrototypeOf(lockHandlePrototype, Disposable.prototype);
-Object.defineProperty(lockHandlePrototype, Symbol.toStringTag, { configurable: true, value: "LockHandle" });
+const AsyncReaderWriterLockWriter = class extends AsyncReaderWriterLockBase implements AsyncReaderWriterLockWriter {
+    static {
+        Object.defineProperty(this, "constructor", { ...Object.getOwnPropertyDescriptor(this, "constructor"), value: Object });
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLockWriter" });
+    }
 
-const readerPrototype: object = {};
-Object.setPrototypeOf(readerPrototype, lockHandlePrototype);
-Object.defineProperty(readerPrototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLockReader" });
+    private _upgradeable: LockHandle | undefined;
 
-const writerPrototype: object = {};
-Object.setPrototypeOf(writerPrototype, lockHandlePrototype);
-Object.defineProperty(writerPrototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLockWriter" });
+    constructor(owner: AsyncReaderWriterLock, upgradeable?: LockHandle) {
+        super(owner);
+        this._upgradeable = upgradeable;
+    }
 
-const upgradeableReaderPrototype: object = {};
-Object.setPrototypeOf(upgradeableReaderPrototype, readerPrototype);
-Object.defineProperty(upgradeableReaderPrototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLockUpgradeableReader" });
+    get ownsLock(): boolean {
+        return writerOwnsLock(this.owner, this);
+    }
 
-const upgradedWriterPrototype: object = {};
-Object.setPrototypeOf(upgradedWriterPrototype, writerPrototype);
-Object.defineProperty(upgradedWriterPrototype, Symbol.toStringTag, { configurable: true, value: "AsyncReaderWriterLockUpgradedWriter" });
+    async lock(cancelable?: Cancelable): Promise<this> {
+        await lockWriter(this.owner, this, this._upgradeable, cancelable);
+        return this;
+    }
+
+    unlock() {
+        unlockWriter(this.owner, this);
+    }
+};

@@ -37,7 +37,8 @@
 */
 
 import { WaitQueue } from "@esfx/async-waitqueue";
-import { Cancelable } from "@esfx/cancelable";
+import { Cancelable, CancelError } from "@esfx/cancelable";
+import /*#__INLINE__*/ { isNumber, isPositiveFiniteNumber, isPositiveNonZeroFiniteNumber, isUndefined } from "@esfx/internal-guards";
 
 const MAX_INT32 = (2 ** 31) - 1;
 
@@ -46,6 +47,10 @@ const MAX_INT32 = (2 ** 31) - 1;
  * or pool of resources.
  */
 export class AsyncSemaphore {
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncSemaphore" });
+    }
+
     private _maxCount: number;
     private _currentCount: number;
     private _waiters = new WaitQueue<void>();
@@ -57,10 +62,13 @@ export class AsyncSemaphore {
      * @param maxCount The maximum number of entries.
      */
     constructor(initialCount: number, maxCount: number = MAX_INT32) {
-        if (typeof initialCount !== "number") throw new TypeError("Number expected: initialCount.");
-        if (typeof maxCount !== "number") throw new TypeError("Number expected: maxCount.");
-        if ((initialCount |= 0) < 0) throw new RangeError("Argument out of range: initialCount.");
-        if ((maxCount |= 0) < 1) throw new RangeError("Argument out of range: maxCount.");
+        if (!isNumber(initialCount)) throw new TypeError("Number expected: initialCount.");
+        if (!isNumber(maxCount)) throw new TypeError("Number expected: maxCount.");
+
+        initialCount |= 0;
+        maxCount |= 0;
+        if (!isPositiveFiniteNumber(initialCount)) throw new RangeError("Argument out of range: initialCount.");
+        if (!isPositiveNonZeroFiniteNumber(maxCount)) throw new RangeError("Argument out of range: maxCount.");
         if (initialCount > maxCount) throw new RangeError("Argument out of range: initialCount.");
 
         this._currentCount = initialCount;
@@ -81,11 +89,16 @@ export class AsyncSemaphore {
      * @param cancelable An optional Cancelable used to cancel the request.
      */
     async wait(cancelable?: Cancelable): Promise<void> {
-        Cancelable.throwIfSignaled(cancelable);
+        if (!isUndefined(cancelable) && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+
+        const signal = cancelable?.[Cancelable.cancelSignal]();
+        if (signal?.signaled) throw signal.reason ?? new CancelError();
+
         if (this._currentCount > 0) {
             this._currentCount--;
             return;
         }
+
         await this._waiters.wait(cancelable);
     }
 
@@ -95,8 +108,10 @@ export class AsyncSemaphore {
      * @param count The number of times to release the Semaphore.
      */
     release(count: number = 1): void {
-        if (typeof count !== "number") throw new TypeError("Number expected: count.");
-        if ((count |= 0) < 1) throw new RangeError("Argument out of range: count.");
+        if (!isNumber(count)) throw new TypeError("Number expected: count.");
+
+        count |= 0;
+        if (!isPositiveNonZeroFiniteNumber(count)) throw new RangeError("Argument out of range: count.");
         if (this._maxCount - this._currentCount < count) throw new RangeError("Argument out of range: count.");
 
         while (count > 0) {
@@ -107,5 +122,3 @@ export class AsyncSemaphore {
         }
     }
 }
-
-Object.defineProperty(AsyncSemaphore.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncSemaphore" });

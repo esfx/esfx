@@ -41,6 +41,7 @@
         { "path": "./equatable" },
         { "path": "./events" },
         { "path": "./fn" },
+        { "path": "./fn-partial" },
         { "path": "./indexed-object" },
         { "path": "./iter-fn" },
         { "path": "./iter-grouping" },

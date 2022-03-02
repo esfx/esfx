@@ -17,9 +17,19 @@ npm i @esfx/async-iter-query
 # Usage
 
 ```ts
+// TypeScript
+import { AsyncQuery } from "@esfx/async-iter-query";
+
+// JavaScript (CommonJS)
+const { AsyncQuery } = require("@esfx/async-iter-query");
+
+let q = AsyncQuery
+  .from(books)
+  .filter(book => book.author === "Alice")
+  .groupBy(book => book.releaseYear);
 ```
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/async_iter_query.html).
+You can read more about the API [here](https://esfx.github.io/esfx/api/async-iter-query.html).
 

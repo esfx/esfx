@@ -17,7 +17,7 @@
     },
     "dependencies": {
         "@esfx/type-model": "^1.0.0-pre.23",
-        "tslib": "^2.1.0"
+        "tslib": "^2.3.1"
     },
     "publishConfig": {
         "access": "public"

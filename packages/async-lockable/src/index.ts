@@ -16,6 +16,7 @@
 
 import { Cancelable } from "@esfx/cancelable";
 import { Disposable } from "@esfx/disposable";
+import /*#__INLINE__*/ { isObject } from "@esfx/internal-guards";
 
 /**
  * Represents a value that can be used to synchronize access to a resource.
@@ -26,6 +27,7 @@ export interface AsyncLockable {
      * @param cancelable A `Cancelable` object that can be used to cancel the request.
      */
     [AsyncLockable.lock](cancelable?: Cancelable): Promise<LockHandle>;
+
     /**
      * Releases a lock.
      */
@@ -34,6 +36,7 @@ export interface AsyncLockable {
 
 export namespace AsyncLockable {
     // #region AsyncLockable
+
     /**
      * A well-known symbol used to define an locking method on an object.
      */
@@ -43,25 +46,8 @@ export namespace AsyncLockable {
      * A well-known symbol used to define an unlocking method on an object.
      */
     export const unlock = Symbol.for("@esfx/async-lockable:AsyncLockable.unlock");
-    // #endregion AsyncLockable
 
-    let warned = false;
-    /**
-     * Determines whether a value is `AsyncLockable`.
-     * @deprecated Use `AsyncLockable.hasInstance` instead.
-     */
-    export function isAsyncLockable(value: unknown): value is AsyncLockable {
-        if (!warned) {
-            warned = true;
-            if (typeof process !== "undefined") {
-                process.emitWarning("Use 'AsyncLockable.hasInstance' instead.", "DeprecationWarning");
-            }
-            else {
-                console.warn("DeprecationWarning: Use 'AsyncLockable.hasInstance' instead.");
-            }
-        }
-        return AsyncLockable.hasInstance(value);
-    }
+    // #endregion AsyncLockable
 
     export const name = "AsyncLockable";
 
@@ -69,8 +55,7 @@ export namespace AsyncLockable {
      * Determines whether a value is `AsyncLockable`.
      */
     export function hasInstance(value: unknown): value is AsyncLockable {
-        return typeof value === "object"
-            && value !== null
+        return isObject(value)
             && AsyncLockable.lock in value
             && AsyncLockable.unlock in value;
     }
@@ -84,15 +69,18 @@ export interface LockHandle<TMutex extends AsyncLockable = AsyncLockable> extend
      * Gets the associated `AsyncLockable` object.
      */
     readonly mutex: TMutex;
+
     /**
      * Indicates whether this handle owns its associated `mutex`.
      */
     readonly ownsLock: boolean;
+
     /**
      * Reacquires the lock. If this handle already owns the lock, an `Error` is thrown.
      * @param cancelable A Cancelable used to cancel the request.
      */
     lock(cancelable?: Cancelable): Promise<this>;
+
     /**
      * Releases the lock. If this handle does not own the lock, an `Error` is thrown.
      */

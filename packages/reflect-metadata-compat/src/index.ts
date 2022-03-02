@@ -17,7 +17,7 @@
 import "@esfx/metadata-shim";
 import * as metadata from "@esfx/metadata";
 import { MetadataKey } from "@esfx/metadata";
-import { isFunction, isObject, isPropertyKey, isDefined } from "@esfx/internal-guards";
+import /*#__INLINE__*/ { isFunction, isObject, isPropertyKey, isPresent } from "@esfx/internal-guards";
 
 declare global {
     namespace Reflect {
@@ -61,12 +61,12 @@ function isParameterOverload(args: Overloads): args is readonly [object, Propert
 }
 
 function isMemberOverload(args: Overloads): args is readonly [object, PropertyKey] {
-    if (args.length >= 2 && isObject(args[0]) && isPropertyKey(args[1]) && (args.length === 2 || !isDefined(args[2]) || isObject(args[2]))) return true;
+    if (args.length >= 2 && isObject(args[0]) && isPropertyKey(args[1]) && (args.length === 2 || !isPresent(args[2]) || isObject(args[2]))) return true;
     return false;
 }
 
 function isObjectOverload(args: Overloads): args is readonly [object] {
-    if (args.length >= 1 && isObject(args[0]) && (args.length === 1 || !isDefined(args[1]))) return true;
+    if (args.length >= 1 && isObject(args[0]) && (args.length === 1 || !isPresent(args[1]))) return true;
     return false;
 }
 
@@ -76,12 +76,12 @@ if (!Reflect.decorate) Reflect.decorate = (() => {
         | readonly [(PropertyDecorator | MethodDecorator)[], object, PropertyKey, PropertyDescriptor?];
 
     function isDecorateClassOverload(args: DecorateOverloads): args is readonly [ClassDecorator[], Function] {
-        if (args.length >= 2 && Array.isArray(args[0]) && isFunction(args[1]) && (args.length === 2 || !isDefined(args[2])) && (args.length === 3 || !isDefined(args[3]))) return true;
+        if (args.length >= 2 && Array.isArray(args[0]) && isFunction(args[1]) && (args.length === 2 || !isPresent(args[2])) && (args.length === 3 || !isPresent(args[3]))) return true;
         return false;
     }
 
     function isDecorateMemberOverload(args: DecorateOverloads): args is readonly [(PropertyDecorator | MethodDecorator)[], object, PropertyKey, PropertyDescriptor?] {
-        if (args.length >= 3 && Array.isArray(args[0]) && isObject(args[1]) && isPropertyKey(args[2]) && (isObject(args[3]) || !isDefined(args[3]))) return true;
+        if (args.length >= 3 && Array.isArray(args[0]) && isObject(args[1]) && isPropertyKey(args[2]) && (isObject(args[3]) || !isPresent(args[3]))) return true;
         return false;
     }
 
@@ -98,7 +98,7 @@ if (!Reflect.decorate) Reflect.decorate = (() => {
         for (let i = decorators.length - 1; i >= 0; i--) {
             const decorator = decorators[i];
             const decorated = decorator(target);
-            if (isDefined(decorated)) {
+            if (isPresent(decorated)) {
                 if (!isFunction(decorated)) throw new TypeError();
                 target = decorated;
             }
@@ -111,7 +111,7 @@ if (!Reflect.decorate) Reflect.decorate = (() => {
         for (let i = decorators.length - 1; i >= 0; i--) {
             const decorator = decorators[i];
             const decorated = decorator(target, propertyKey, descriptor!);
-            if (isDefined(decorated)) {
+            if (isPresent(decorated)) {
                 if (!isObject(decorated)) throw new TypeError();
                 descriptor = decorated;
             }

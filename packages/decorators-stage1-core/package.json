@@ -2,6 +2,7 @@
     "name": "@esfx/decorators-stage1-core",
     "version": "1.0.0-pre.23",
     "description": "A low-level API for working with ECMAScript Stage 1 Decorators.",
+    "private": true,
     "type": "commonjs",
     "main": "./dist/index.js",
     "exports": "./dist/index.js",

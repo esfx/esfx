@@ -14,17 +14,15 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isAsyncIterableObject, isFunction, isInteger, isIterableObject, isNumber, isPrimitive, isUndefined } from '@esfx/internal-guards';
 import { AsyncHierarchyIterable, AsyncOrderedHierarchyIterable } from '@esfx/async-iter-hierarchy';
 import { AsyncOrderedIterable } from '@esfx/async-iter-ordered';
 import { HashMap } from '@esfx/collections-hashmap';
 import { HashSet } from '@esfx/collections-hashset';
 import { Equaler } from '@esfx/equatable';
-import { T } from '@esfx/fn';
-import * as assert from "@esfx/internal-assert";
-import { isAsyncIterable, isIterable, isPrimitive } from '@esfx/internal-guards';
+import { alwaysTrue } from '@esfx/fn';
 import { Index } from '@esfx/interval';
-import { Hierarchical, HierarchyIterable, HierarchyProvider } from "@esfx/iter-hierarchy";
-import { Axis } from '@esfx/iter-hierarchy/axis';
+import { Axis, Hierarchical, HierarchyIterable, HierarchyProvider } from "@esfx/iter-hierarchy";
 import { OrderedIterable } from '@esfx/iter-ordered';
 import { toArrayAsync } from './scalars';
 
@@ -78,9 +76,9 @@ const AsyncRootHierarchyIterable = createAsyncHierarchyIterable("AsyncRootHierar
  */
 export function rootAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function rootAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function rootAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function rootAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncRootHierarchyIterable(source, predicate);
 }
 
@@ -92,9 +90,9 @@ const AsyncAncestorsHierarchyIterable = createAsyncHierarchyIterable("AsyncAnces
  */
 export function ancestorsAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function ancestorsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function ancestorsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function ancestorsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncAncestorsHierarchyIterable(source, predicate);
 }
 
@@ -106,9 +104,9 @@ const AsyncAncestorsAndSelfHierarchyIterable = createAsyncHierarchyIterable("Asy
  */
 export function ancestorsAndSelfAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function ancestorsAndSelfAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function ancestorsAndSelfAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function ancestorsAndSelfAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncAncestorsAndSelfHierarchyIterable(source, predicate);
 }
 
@@ -120,9 +118,9 @@ const AsyncDescendantsHierarchyIterable = createAsyncHierarchyIterable("AsyncDes
  */
 export function descendantsAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function descendantsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function descendantsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function descendantsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncDescendantsHierarchyIterable(source, predicate);
 }
 
@@ -134,9 +132,9 @@ const AsyncDescendantsAndSelfHierarchyIterable = createAsyncHierarchyIterable("A
  */
 export function descendantsAndSelfAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function descendantsAndSelfAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function descendantsAndSelfAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function descendantsAndSelfAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncDescendantsAndSelfHierarchyIterable(source, predicate);
 }
 
@@ -148,9 +146,9 @@ const AsyncParentsHierarchyIterable = createAsyncHierarchyIterable("AsyncParents
  */
 export function parentsAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function parentsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function parentsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function parentsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncParentsHierarchyIterable(source, predicate);
 }
 
@@ -162,9 +160,9 @@ const AsyncSelfHierarchyIterable = createAsyncHierarchyIterable("AsyncSelfHierar
  */
 export function selfAsync<TNode, T extends TNode, U extends T>(source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, predicate: (element: T) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function selfAsync<TNode, T extends TNode>(source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, predicate?: (element: T) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode, T>;
-export function selfAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function selfAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncSelfHierarchyIterable(source, predicate);
 }
 
@@ -176,9 +174,9 @@ const AsyncSiblingsHierarchyIterable = createAsyncHierarchyIterable("AsyncSiblin
  */
 export function siblingsAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function siblingsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function siblingsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function siblingsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncSiblingsHierarchyIterable(source, predicate);
 }
 
@@ -190,9 +188,9 @@ const AsyncSiblingsAndSelfHierarchyIterable = createAsyncHierarchyIterable("Asyn
  */
 export function siblingsAndSelfAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function siblingsAndSelfAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function siblingsAndSelfAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function siblingsAndSelfAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncSiblingsAndSelfHierarchyIterable(source, predicate);
 }
 
@@ -204,9 +202,9 @@ const AsyncPrecedingSiblingsHierarchyIterable = createAsyncHierarchyIterable("As
  */
 export function precedingSiblingsAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function precedingSiblingsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function precedingSiblingsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function precedingSiblingsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncPrecedingSiblingsHierarchyIterable(source, predicate);
 }
 
@@ -221,9 +219,9 @@ const AsyncFollowingSiblingsHierarchyIterable = createAsyncHierarchyIterable("As
  */
 export function followingSiblingsAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function followingSiblingsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function followingSiblingsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function followingSiblingsAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncFollowingSiblingsHierarchyIterable(source, predicate);
 }
 
@@ -236,9 +234,9 @@ const AsyncPrecedingHierarchyIterable = createAsyncHierarchyIterable("AsyncPrece
  */
 export function precedingAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function precedingAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function precedingAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function precedingAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncPrecedingHierarchyIterable(source, predicate);
 }
 
@@ -250,9 +248,9 @@ const AsyncFollowingHierarchyIterable = createAsyncHierarchyIterable("AsyncFollo
  */
 export function followingAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function followingAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function followingAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function followingAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncFollowingHierarchyIterable(source, predicate);
 }
 
@@ -264,9 +262,9 @@ const AsyncChildrenHierarchyIterable = createAsyncHierarchyIterable("AsyncChildr
  */
 export function childrenAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function childrenAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function childrenAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunctionOrUndefined(predicate, "predicate");
+export function childrenAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isUndefined(predicate) && !isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncChildrenHierarchyIterable(source, predicate);
 }
 
@@ -278,9 +276,9 @@ const AsyncFirstChildHierarchyIterable = createAsyncHierarchyIterable("AsyncFirs
  */
 export function firstChildAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function firstChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function firstChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function firstChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncFirstChildHierarchyIterable(source, predicate);
 }
 
@@ -292,9 +290,9 @@ const AsyncLastChildHierarchyIterable = createAsyncHierarchyIterable("AsyncLastC
  */
 export function lastChildAsync<TNode, U extends TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => element is U): AsyncHierarchyIterable<TNode, U>;
 export function lastChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function lastChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunction(predicate, "predicate");
+export function lastChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return new AsyncLastChildHierarchyIterable(source, predicate);
 }
 
@@ -352,10 +350,11 @@ export function nthChildAsync<TNode, U extends TNode>(source: AsyncHierarchyIter
  * @category Hierarchy
  */
 export function nthChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, offset: number | Index, predicate?: (element: TNode) => PromiseLike<boolean> | boolean): AsyncHierarchyIterable<TNode>;
-export function nthChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, offset: number | Index, predicate: (element: TNode) => PromiseLike<boolean> | boolean = T): AsyncHierarchyIterable<TNode> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeInteger(offset, "offset");
-    assert.mustBeFunction(predicate, "predicate");
+export function nthChildAsync<TNode>(source: AsyncHierarchyIterable<TNode> | HierarchyIterable<TNode>, offset: number | Index, predicate: (element: TNode) => PromiseLike<boolean> | boolean = alwaysTrue): AsyncHierarchyIterable<TNode> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isNumber(offset)) throw new TypeError("Number expected: offset");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
+    if (!isInteger(offset)) throw new RangeError("Argument out of range: offset");
     return new AsyncNthChildIterable(source, offset, predicate);
 }
 
@@ -405,7 +404,7 @@ class AsyncTopMostIterable<TNode, T extends TNode> implements AsyncHierarchyIter
             }
         }
 
-        if (predicate === T) {
+        if (predicate === alwaysTrue) {
             yield* topMostNodes;
         }
         else {
@@ -440,10 +439,10 @@ export function topMostAsync<TNode, T extends TNode, U extends T>(source: AsyncH
  * @category Hierarchy
  */
 export function topMostAsync<TNode, T extends TNode>(source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, predicate?: (element: T) => PromiseLike<boolean> | boolean, equaler?: Equaler<TNode>): AsyncHierarchyIterable<TNode, T>;
-export function topMostAsync<TNode, T extends TNode>(source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, predicate: (element: T) => PromiseLike<boolean> | boolean = T, equaler: Equaler<TNode> = Equaler.defaultEqualer): AsyncHierarchyIterable<TNode, T> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunction(predicate, "predicate");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+export function topMostAsync<TNode, T extends TNode>(source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, predicate: (element: T) => PromiseLike<boolean> | boolean = alwaysTrue, equaler: Equaler<TNode> = Equaler.defaultEqualer): AsyncHierarchyIterable<TNode, T> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     return new AsyncTopMostIterable<TNode, T>(source, predicate, equaler);
 }
 
@@ -493,7 +492,7 @@ class AsyncBottomMostIterable<TNode, T extends TNode> implements AsyncHierarchyI
             }
         }
 
-        if (predicate === T) {
+        if (predicate === alwaysTrue) {
             yield* bottomMostNodes;
             return;
         }
@@ -528,10 +527,10 @@ export function bottomMostAsync<TNode, T extends TNode, U extends T>(source: Asy
  * @category Hierarchy
  */
 export function bottomMostAsync<TNode, T extends TNode>(source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, predicate?: (element: T) => PromiseLike<boolean> | boolean, equaler?: Equaler<TNode>): AsyncHierarchyIterable<TNode, T>;
-export function bottomMostAsync<TNode, T extends TNode>(source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, predicate: (element: T) => PromiseLike<boolean> | boolean = T, equaler: Equaler<TNode> = Equaler.defaultEqualer): AsyncHierarchyIterable<TNode, T> {
-    assert.assertType((isAsyncIterable(source) || isIterable(source)) && Hierarchical.hasInstance(source), "source");
-    assert.mustBeFunction(predicate, "predicate");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+export function bottomMostAsync<TNode, T extends TNode>(source: AsyncHierarchyIterable<TNode, T> | HierarchyIterable<TNode, T>, predicate: (element: T) => PromiseLike<boolean> | boolean = alwaysTrue, equaler: Equaler<TNode> = Equaler.defaultEqualer): AsyncHierarchyIterable<TNode, T> {
+    if (!isAsyncIterableObject(source) && !isIterableObject(source) || !Hierarchical.hasInstance(source)) throw new TypeError("AsyncHierarchyIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     return new AsyncBottomMostIterable<TNode, T>(source, predicate, equaler);
 }
 
@@ -552,7 +551,7 @@ export function toHierarchyAsync<TNode, T extends TNode = TNode>(source: AsyncOr
  */
 export function toHierarchyAsync<TNode, T extends TNode = TNode>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, hierarchy: HierarchyProvider<TNode>): AsyncHierarchyIterable<TNode, T>;
 export function toHierarchyAsync<TNode, T extends TNode = TNode>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, hierarchy: HierarchyProvider<TNode>): AsyncHierarchyIterable<TNode, T> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeType(HierarchyProvider.hasInstance, hierarchy, "hierarchy");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!HierarchyProvider.hasInstance(hierarchy)) throw new TypeError("HierarchyProvider expected: hierarchy");
     return AsyncHierarchyIterable.create(source, hierarchy);
 }

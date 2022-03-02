@@ -16,8 +16,10 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/internal-assert": "^1.0.0-pre.23",
         "@esfx/iter-hierarchy": "^1.0.0-pre.23"
+    },
+    "devDependencies": {
+        "@esfx/internal-guards": "^1.0.0-pre.23"
     },
     "publishConfig": {
         "access": "public"

@@ -14,21 +14,7 @@
    limitations under the License.
 */
 
-/*!
-   Copyright 2019 Ron Buckton
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-*/
+import /*#__INLINE__*/ { isFunction } from "@esfx/internal-guards";
 
 type LazyFactoryState<T> = { state: "factory", factory: (...args: any) => T | PromiseLike<T>, args: any[] | undefined };
 type LazyValueState<T> = { state: "value", value: Promise<T> };
@@ -45,7 +31,7 @@ const noopFactoryState: LazyFactoryState<any> = createFactoryState(noop, /*args*
 const resolvingState: LazyResolvingState = { state: "resolving" };
 
 function createFactoryState<T>(factory: () => T | PromiseLike<T>, args: any[] | undefined): LazyFactoryState<T> {
-    return { state: "factory", factory, args };;
+    return { state: "factory", factory, args };
 }
 
 function createValueState<T>(value: Promise<T>): LazyValueState<T> {
@@ -62,8 +48,12 @@ function createErrorState(error: unknown): LazyErrorState {
 export class AsyncLazy<T> {
     private _state: LazyState<T>;
 
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncLazy" });
+    }
+
     constructor(factory: () => T | PromiseLike<T>) {
-        if (typeof factory !== "function") throw new TypeError("Function expected: factory");
+        if (!isFunction(factory)) throw new TypeError("Function expected: factory");
         this._state = factory === noop
             ? noopFactoryState
             : createFactoryState(factory, /*args*/ undefined);
@@ -84,7 +74,7 @@ export class AsyncLazy<T> {
         const { factory, args } = this._state;
         this._state = resolvingState;
         try {
-            const value = Promise.resolve(args && args.length ? factory(...args) : factory());
+            const value = Promise.resolve(args?.length ? factory(...args) : factory());
             this._state = createValueState(value);
             return value;
         }
@@ -95,6 +85,7 @@ export class AsyncLazy<T> {
     }
 
     static from<T, A extends any[]>(factory: (...args: A) => T | PromiseLike<T>, ...args: A) {
+        if (!isFunction(factory)) throw new TypeError("Function expected: factory");
         const lazy = new AsyncLazy<T>(noop);
         lazy._state = createFactoryState(factory, args);
         return lazy;
@@ -106,5 +97,3 @@ export class AsyncLazy<T> {
         return lazy;
     }
 }
-
-Object.defineProperty(AsyncLazy.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncLazy" });

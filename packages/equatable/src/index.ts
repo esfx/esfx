@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isMissing, isNumber } from "@esfx/internal-guards";
 import { hashUnknown } from './internal/hashCode';
 
 /**
@@ -59,8 +60,7 @@ export namespace Equatable {
      */
     export function hasInstance(value: unknown): value is Equatable {
         let obj: object;
-        return value !== undefined
-            && value !== null
+        return !isMissing(value)
             && equals in (obj = Object(value))
             && hash in obj;
     }
@@ -106,8 +106,7 @@ export namespace Comparable {
      * @returns `true` if the value is a Comparable; otherwise, `false`.
      */
     export function hasInstance(value: unknown): value is Comparable {
-        return value !== null
-            && value !== undefined
+        return !isMissing(value)
             && compareTo in Object(value);
     }
 
@@ -159,8 +158,7 @@ export namespace StructuralEquatable {
      */
     export function hasInstance(value: unknown): value is StructuralEquatable {
         let obj: object;
-        return value !== null
-            && value !== undefined
+        return !isMissing(value)
             && structuralEquals in (obj = Object(value))
             && structuralHash in obj;
     }
@@ -204,8 +202,7 @@ export namespace StructuralComparable {
      * @returns `true` if the value is StructuralComparable; otherwise, `false`.
      */
     export function hasInstance(value: unknown): value is StructuralComparable {
-        return value !== null
-            && value !== undefined
+        return !isMissing(value)
             && structuralCompareTo in Object(value);
     }
 
@@ -277,8 +274,8 @@ export namespace Equaler {
      */
     export const tupleEqualer: Equaler<readonly unknown[]> = create(
         (x, y) => {
-            if (!Array.isArray(x) && x !== null && x !== undefined ||
-                !Array.isArray(y) && y !== null && y !== undefined) {
+            if (!isMissing(x) && !Array.isArray(x) ||
+                !isMissing(y) && !Array.isArray(y)) {
                 throw new TypeError("Array expected");
             }
             if (x === y) {
@@ -295,7 +292,7 @@ export namespace Equaler {
             return true;
         },
         (x) => {
-            if (x === null || x === undefined) {
+            if (isMissing(x)) {
                 return 0;
             }
             if (!Array.isArray(x)) {
@@ -313,8 +310,8 @@ export namespace Equaler {
      */
     export const tupleStructuralEqualer: Equaler<readonly unknown[]> = create(
         (x, y) => {
-            if (!Array.isArray(x) && x !== null && x !== undefined ||
-                !Array.isArray(y) && y !== null && y !== undefined) {
+            if (!isMissing(x) && !Array.isArray(x) ||
+                !isMissing(y) && !Array.isArray(y)) {
                 throw new TypeError("Array expected");
             }
             if (x === y) {
@@ -331,7 +328,7 @@ export namespace Equaler {
             return true;
         },
         (x) => {
-            if (x === null || x === undefined) {
+            if (isMissing(x)) {
                 return 0;
             }
             if (!Array.isArray(x)) {
@@ -362,9 +359,9 @@ export namespace Equaler {
      * @param rotate The number of bits (between 0 and 31) to left-rotate the first hash code before XOR'ing it with the second (default 7).
      */
     export function combineHashes(x: number, y: number, rotate: number = 7) {
-        if (typeof x !== "number") throw new TypeError("Integer expected: x");
-        if (typeof y !== "number") throw new TypeError("Integer expected: y");
-        if (typeof rotate !== "number") throw new TypeError("Integer expected: rotate");
+        if (!isNumber(x)) throw new TypeError("Integer expected: x");
+        if (!isNumber(y)) throw new TypeError("Integer expected: y");
+        if (!isNumber(rotate)) throw new TypeError("Integer expected: rotate");
         if (isNaN(x) || !isFinite(x)) throw new RangeError("Argument must be a finite number value: x");
         if (isNaN(y) || !isFinite(y)) throw new RangeError("Argument must be a finite number value: y");
         if (isNaN(rotate) || !isFinite(rotate)) throw new RangeError("Argument must be a finite number value: rotate");
@@ -444,8 +441,8 @@ export namespace Comparer {
      * A default `Comparer` that compares array values rather than the arrays themselves.
      */
     export const tupleComparer: Comparer<readonly unknown[]> = create((x, y) => {
-        if (!Array.isArray(x) && x !== null && x !== undefined ||
-            !Array.isArray(y) && y !== null && y !== undefined) {
+        if (!isMissing(x) && !Array.isArray(x) ||
+            !isMissing(y) && !Array.isArray(y)) {
             throw new TypeError("Array expected");
         }
         let r: number;
@@ -464,8 +461,8 @@ export namespace Comparer {
      * A default `Comparer` that compares array values that may be `StructuralComparable` rather than the arrays themselves.
      */
     export const tupleStructuralComparer: Comparer<readonly unknown[]> = create((x, y) => {
-        if (!Array.isArray(x) && x !== null && x !== undefined ||
-            !Array.isArray(y) && y !== null && y !== undefined) {
+        if (!isMissing(x) && !Array.isArray(x) ||
+            !isMissing(y) && !Array.isArray(y)) {
             throw new TypeError("Array expected");
         }
         let r: number;

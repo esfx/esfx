@@ -54,6 +54,18 @@ function isDefinedAndNot(value, test) {
 exports.isDefinedAndNot = isDefinedAndNot;
 
 /**
+ * @template T
+ * @template U
+ * @param {T | U | undefined} value 
+ * @param {(value: T | U) => value is U} test 
+ * @returns {value is Extract<T, U>}
+ */
+function isDefinedAnd(value, test) {
+    return value !== undefined && test(value);
+}
+exports.isDefinedAnd = isDefinedAnd;
+
+/**
  * @param {string} file
  * @param {(diagnostic: import("./types").Diagnostic) => void} addError
  * @returns {import("typescript").JsonSourceFile | undefined}
@@ -68,3 +80,13 @@ exports.isDefinedAndNot = isDefinedAndNot;
     }
 }
 exports.tryReadJsonFile = tryReadJsonFile;
+
+/** @type {ts.ParseConfigFileHost} */
+exports.parseConfigFileHost = {
+    fileExists: ts.sys.fileExists,
+    getCurrentDirectory: ts.sys.getCurrentDirectory,
+    readDirectory: ts.sys.readDirectory,
+    readFile: ts.sys.readFile,
+    useCaseSensitiveFileNames: ts.sys.useCaseSensitiveFileNames,
+    onUnRecoverableConfigFileDiagnostic: diagnostic => {},
+};

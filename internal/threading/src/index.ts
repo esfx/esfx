@@ -1,117 +1,41 @@
-/*!
-   Copyright 2019 Ron Buckton
+export const MANUALRESET_ID = 1 << 16;
+export const MANUALRESET_STATE_NONSIGNALED = MANUALRESET_ID | 0;
+export const MANUALRESET_STATE_SIGNALED = MANUALRESET_ID | 1;
+export const MANUALRESET_STATE_EXCLUDES = ~(MANUALRESET_STATE_NONSIGNALED | MANUALRESET_STATE_SIGNALED);
+export const MANUALRESET_FIELD_STATE = 0;
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+export const AUTORESET_ID = 1 << 17;
+export const AUTORESET_STATE_NONSIGNALED = AUTORESET_ID | 0;
+export const AUTORESET_STATE_NOTIFYING = AUTORESET_ID | 1;
+export const AUTORESET_STATE_SIGNALED = AUTORESET_ID | 3;
+export const AUTORESET_STATE_EXCLUDES = ~(AUTORESET_STATE_NONSIGNALED | AUTORESET_STATE_SIGNALED | AUTORESET_STATE_NOTIFYING);
+export const AUTORESET_FIELD_STATE = 0;
 
-       http://www.apache.org/licenses/LICENSE-2.0
+export const MUTEX_ID = 1 << 18;
+export const MUTEX_STATE_UNLOCKED = MUTEX_ID | 0;
+export const MUTEX_STATE_LOCKED = MUTEX_ID | 1;
+export const MUTEX_STATE_INCONTENTION = MUTEX_ID | 2;
+export const MUTEX_STATE_EXCLUDES = ~(MUTEX_STATE_UNLOCKED | MUTEX_STATE_LOCKED | MUTEX_STATE_INCONTENTION);
+export const MUTEX_FIELD_STATE = 0;
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-*/
+export const CONDVAR_ID = 1 << 19;
+export const CONDVAR_STATE_EXCLUDES = ~(CONDVAR_ID);
+export const CONDVAR_FIELD_STATE = 0;
 
-/* @internal */
-export const enum SignalFlags {
-    NonSignaled = 0,
-    Unlocked = NonSignaled,
+export const SEM_ID = 1 << 20;
+export const SEM_STATE_UNLOCKED = SEM_ID | 0;
+export const SEM_STATE_LOCKED = SEM_ID | 1;
+export const SEM_STATE_INCONTENTION = SEM_ID | 2;
+export const SEM_STATE_EXCLUDES = ~(SEM_STATE_UNLOCKED | SEM_STATE_LOCKED | SEM_STATE_INCONTENTION);
+export const SEM_FIELD_STATE = 0;
+export const SEM_FIELD_MAXCOUNT = 1;
+export const SEM_FIELD_CURRENTCOUNT = 2;
+export const SEM_FIELD_WAITCOUNT = 3;
 
-    Signaled = 1,
-    Locked = Signaled,
-
-    InContention = 2,
-
-    // ManualReset = 1 << 16,
-    // ManualResetExcludes = ~(ManualReset | Signaled | NonSignaled),
-    // ManualResetSignaled = Signaled | ManualReset,
-    // ManualResetNonSignaled = NonSignaled | ManualReset,
-
-    // AutoReset = 1 << 17,
-    // AutoResetExcludes = ~(AutoReset | Signaled | NonSignaled),
-    // AutoResetSignaled = Signaled | AutoReset,
-    // AutoResetNonSignaled = NonSignaled | AutoReset,
-
-    // Mutex = 1 << 18,
-    // MutexExcludes = ~(Mutex | Unlocked | Locked | InContention),
-    // MutexUnlocked = Mutex | Unlocked,
-    // MutexLocked = Mutex | Locked,
-    // MutexInContention = Mutex | InContention,
-
-    // ConditionVariable = 1 << 19,
-    // ConditionVariableExcludes = ~(ConditionVariable),
-
-    // Semaphore = 1 << 20,
-    // SemaphoreExcludes = ~(Semaphore | Unlocked | Locked),
-    // SemaphoreUnlocked = Semaphore | Unlocked,
-    // SemaphoreLocked = Semaphore | Locked,
-
-    Countdown = 1 << 21,
-    CountdownExcludes = ~(Countdown | NonSignaled | Signaled),
-    CountdownNonSignaled = Countdown | NonSignaled,
-    CountdownSignaled = Countdown | Signaled,
-
-    // KindMask = ManualReset | AutoReset | Mutex | ConditionVariable | Semaphore | Countdown,
-}
-
-/* @internal */
-export function setArray(array: Int32Array, index: number, valueWhenNonSignaled: number, valueWhenSignaled: number, notifyCount: number) {
-    if (Atomics.compareExchange(array, index, valueWhenNonSignaled, valueWhenSignaled) === valueWhenNonSignaled) {
-        Atomics.notify(array, index, notifyCount);
-        return true;
-    }
-    return false;
-}
-
-/* @internal */
-export function resetArray(array: Int32Array, index: number, valueWhenNonSignaled: number, valueWhenSignaled: number) {
-    return Atomics.compareExchange(array, index, valueWhenSignaled, valueWhenNonSignaled) === valueWhenSignaled;
-}
-
-/* @internal */
-export function waitOneArray(array: Int32Array, index: number, valueWhenNonSignaled: number, ms = +Infinity) {
-    return Atomics.wait(array, index, valueWhenNonSignaled, ms) !== "timed-out";
-}
-
-/* @internal */
-export function lockArray(array: Int32Array, index: number, valueWhenUnlocked: number, valueWhenLocked: number, ms = +Infinity) {
-    const start = isFinite(ms) ? Date.now() : 0;
-    let timeout = ms;
-    while (Atomics.compareExchange(array, index, valueWhenUnlocked, valueWhenLocked) !== valueWhenUnlocked) {
-        if (timeout <= 0 || Atomics.wait(array, index, valueWhenLocked, timeout) === "timed-out") {
-            return false;
-        }
-        if (isFinite(ms)) {
-            timeout = ms - (Date.now() - start);
-        }
-    }
-    return true;
-}
-
-/* @internal */
-export function unlockArray(array: Int32Array, index: number, valueWhenUnlocked: number, valueWhenLocked: number) {
-    if (Atomics.compareExchange(array, index, valueWhenLocked, valueWhenUnlocked) === valueWhenLocked) {
-        return Atomics.notify(array, index, 1);
-    }
-    return -1;
-}
-
-/* @internal */
-export function waitForArray(array: Int32Array, waitIndex: number, unlock: (array: Int32Array) => void, lock: (array: Int32Array) => void, ms: number, condition?: () => boolean) {
-    while (!condition || !condition()) {
-        unlock(array);
-        let result: "ok" | "timed-out" | "not-equal" = "not-equal";
-        while (result === "not-equal") {
-            const waitCount = Atomics.load(array, waitIndex);
-            result = Atomics.wait(array, waitIndex, waitCount, ms);
-        }
-        lock(array);
-        if (result === "timed-out") {
-            return false;
-        }
-        if (!condition) break;
-    }
-    return true;
-}
+export const COUNTDOWN_ID = 1 << 21;
+export const COUNTDOWN_STATE_NONSIGNALED = COUNTDOWN_ID | 0;
+export const COUNTDOWN_STATE_SIGNALED = COUNTDOWN_ID | 1;
+export const COUNTDOWN_STATE_EXCLUDES = ~(COUNTDOWN_STATE_NONSIGNALED | COUNTDOWN_STATE_SIGNALED);
+export const COUNTDOWN_FIELD_STATE = 0;
+export const COUNTDOWN_FIELD_INITIALCOUNT = 1;
+export const COUNTDOWN_FIELD_REMAININGCOUNT = 2;

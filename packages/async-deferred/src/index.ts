@@ -36,6 +36,8 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isFunction } from "@esfx/internal-guards";
+
 /**
  * Encapsulates a Promise and exposes its resolve and reject callbacks.
  */
@@ -44,6 +46,10 @@ export class Deferred<T> {
     private _resolve!: (value: PromiseLike<T> | T) => void;
     private _reject!: (reason: any) => void;
     private _callback?: (err: Error | null | undefined, value: T) => void;
+
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "Deferred" });
+    }
 
     /**
      * Initializes a new instance of the Deferred class.
@@ -65,20 +71,22 @@ export class Deferred<T> {
     /**
      * Gets the callback used to resolve the promise.
      */
-    get resolve() { return this._resolve; }
+    get resolve() {
+        return this._resolve;
+    }
 
     /**
      * Gets the callback used to reject the promise.
      */
-    get reject() { return this._reject; }
+    get reject() {
+        return this._reject;
+    }
 
     /**
      * Gets a NodeJS-style callback that can be used to resolve or reject the promise.
      */
     get callback() {
-        if (!this._callback) {
-            this._callback = this.createCallback(identity);
-        }
+        this._callback ??= this.createCallback(identity);
         return this._callback as T extends void
             ? ((err: Error | null | undefined) => void)
             : ((err: Error | null | undefined, value: T) => void);
@@ -88,6 +96,8 @@ export class Deferred<T> {
      * Creates a NodeJS-style callback that can be used to resolve or reject the promise with multiple values.
      */
     createCallback<A extends any[]>(selector: (...args: A) => T) {
+        if (!isFunction(selector)) throw new TypeError("Function expected: selector");
+
         return (err: Error | null | undefined, ...args: A) => {
             if (err !== null && err !== undefined) {
                 this._reject(err);
@@ -101,5 +111,3 @@ export class Deferred<T> {
 
 function identity<A extends any[]>(...args: A): A[0];
 function identity<T>(value: T) { return value; }
-
-Object.defineProperty(Deferred.prototype, Symbol.toStringTag, { configurable: true, value: "Deferred" });

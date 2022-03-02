@@ -6,6 +6,10 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../disposable" }
+        // dependencies
+        { "path": "../disposable" },
+
+        // devDependencies
+        { "path": "../../internal/guards" },
     ]
 }

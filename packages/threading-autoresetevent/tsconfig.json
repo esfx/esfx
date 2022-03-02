@@ -11,5 +11,7 @@
 
         // devDependencies
         { "path": "../../internal/ts-worker" },
+        { "path": "../../internal/threading" },
+        { "path": "../../internal/guards" },
     ]
 }

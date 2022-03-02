@@ -17,6 +17,7 @@
 import { AsyncLockable } from "@esfx/async-lockable";
 import { Cancelable, CancelError } from "@esfx/cancelable";
 import /*#__INLINE__*/ { LinkedList, listAdd, listCreate, listRemove } from "@esfx/internal-linked-list";
+import /*#__INLINE__*/ { isFunction, isUndefined } from "@esfx/internal-guards";
 
 interface Entry {
     cancelable: Cancelable | undefined;
@@ -28,6 +29,10 @@ interface Entry {
 
 export class AsyncConditionVariable {
     private _waiters: LinkedList<Entry> = listCreate();
+
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncConditionVariable" });
+    }
 
     /**
      * Releases `lock`, waiting until notified before reacquiring `lock`.
@@ -45,9 +50,12 @@ export class AsyncConditionVariable {
     async wait(lock: AsyncLockable, condition?: (() => boolean) | Cancelable, cancelable?: Cancelable) {
         if (Cancelable.hasInstance(condition)) cancelable = condition, condition = undefined;
         if (!AsyncLockable.hasInstance(lock)) throw new TypeError("AsyncLockable expected: lock");
-        if (condition !== null && condition !== undefined && typeof condition !== "function") throw new TypeError("Function expected: condition");
-        if (cancelable !== null && cancelable !== undefined && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
-        Cancelable.throwIfSignaled(cancelable);
+        if (!isUndefined(condition) && !isFunction(condition)) throw new TypeError("Function expected: condition");
+        if (!isUndefined(cancelable) && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+
+        const signal = cancelable?.[Cancelable.cancelSignal]();
+        if (signal?.signaled) throw signal.reason ?? new CancelError();
+
         if (condition) {
             while (!condition()) {
                 await this._waitOne(lock, cancelable);
@@ -121,5 +129,3 @@ export class AsyncConditionVariable {
         }
     }
 }
-
-Object.defineProperty(AsyncConditionVariable.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncConditionVariable" });

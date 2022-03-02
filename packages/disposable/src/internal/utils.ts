@@ -34,11 +34,13 @@
 */
 
 /* @internal */
-import { Disposable } from "../disposable";
+import /*#__INLINE__*/ { isFunction, isMissing, isObject } from "@esfx/internal-guards";
 /* @internal */
 import { AsyncDisposable } from "../asyncDisposable";
+/* @internal */
+import { Disposable } from "../disposable";
 
-export {};
+export { };
 
 /* @internal */
 export function GetMethod<V, P extends keyof V>(V: V, P: P): V[P] extends ((...args: any[]) => any) ? V[P] : undefined;
@@ -46,8 +48,8 @@ export function GetMethod<V, P extends keyof V>(V: V, P: P) {
     // ECMA262 7.3.11 GetMethod ( _V_, _P_ )
 
     const func = V[P];
-    if (func === null || func === undefined) return undefined;
-    if (typeof func !== "function") throw new TypeError(`Property ${typeof P === "symbol" ? P.toString() : JSON.stringify(P)} is not a function.`);
+    if (isMissing(func)) return undefined;
+    if (!isFunction(func)) throw new TypeError(`Property ${typeof P === "symbol" ? P.toString() : JSON.stringify(P)} is not a function.`);
     return func;
 }
 
@@ -62,10 +64,10 @@ export function SpeciesConstructor<C extends new (...args: any) => any>(O: any, 
 
     const C = O.constructor;
     if (C === undefined) return defaultConstructor;
-    if (typeof C !== "object" && typeof C !== "function") throw new TypeError("Object expected");
+    if (!isObject(C)) throw new TypeError("Object expected");
     const S = O[Symbol.species];
-    if (S === undefined || S === null) return defaultConstructor;
-    if (typeof S === "function") return S;
+    if (isMissing(S)) return defaultConstructor;
+    if (isFunction(S)) return S;
     throw new TypeError("constructor not found");
 }
 
@@ -85,7 +87,7 @@ export function AddDisposableResource<Hint extends "sync" | "async">(disposableR
         if (V === null || V === undefined) return;
 
         // b. If Type(_V_) is not Object, throw a *TypeError* exception.
-        if (typeof V !== "object" && typeof V !== "function") throw new TypeError("Object expected");
+        if (!isObject(V)) throw new TypeError("Object expected");
 
         // c. Let _resource_ be ? CreateDisposableResource(_V_, _hint_)/
         resource = CreateDisposableResource(V, hint);
@@ -102,7 +104,7 @@ export function AddDisposableResource<Hint extends "sync" | "async">(disposableR
         // b. Else,
         else {
             // i. If Type(_V_) is not Object, throw a *TypeError* exception.
-            if (typeof V !== "object" && typeof V !== "function") throw new TypeError("Object expected");
+            if (!isObject(V)) throw new TypeError("Object expected");
 
             // ii. Let _resource_ be CreateDisposableResource(_V_, _hint_, _method_).
             resource = CreateDisposableResource(V, hint, method);
@@ -134,7 +136,7 @@ export function CreateDisposableResource<Hint extends "sync" | "async">(V: objec
     // 2. Else,
     else {
         // a. If IsCallable(_method_) is *false*, throw a *TypeError* exception.
-        if (typeof method !== "function") throw new TypeError(hint === "async" ? "Object not async disposable" : "Object not disposable");
+        if (!isFunction(method)) throw new TypeError(hint === "async" ? "Object not async disposable" : "Object not disposable");
     }
 
     // 3. Return the DisposableResource Record { [[ResourceValue]]: _V_, [[Hint]]: _hint_, [[DisposeMethod]]: _method_ }.

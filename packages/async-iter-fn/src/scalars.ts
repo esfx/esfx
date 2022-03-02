@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isAsyncIterableObject, isFunction, isInteger, isIterableObject, isNumber, isObject, isPositiveInteger, isUndefined } from '@esfx/internal-guards';
 import { toAsyncIterable } from '@esfx/async-iter-fromsync';
 import { AsyncHierarchyIterable } from '@esfx/async-iter-hierarchy';
 import { IndexedCollection } from '@esfx/collection-core';
@@ -21,7 +22,6 @@ import { HashMap } from "@esfx/collections-hashmap";
 import { HashSet } from "@esfx/collections-hashset";
 import { Comparer, Comparison, Equaler, EqualityComparison } from "@esfx/equatable";
 import { identity, T } from '@esfx/fn';
-import * as assert from "@esfx/internal-assert";
 import { Index } from "@esfx/interval";
 import { HierarchyIterable } from '@esfx/iter-hierarchy';
 import { Lookup } from "@esfx/iter-lookup";
@@ -57,9 +57,9 @@ export function reduceAsync<T, U>(source: AsyncIterable<T> | Iterable<PromiseLik
  */
 export function reduceAsync<T, U, R>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, accumulator: (current: U, element: T, offset: number) => PromiseLike<U> | U, seed: U, resultSelector: (result: U, count: number) => R | PromiseLike<R>): Promise<R>;
 export function reduceAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, accumulator: (current: T, element: T, offset: number) => PromiseLike<T> | T, seed?: T, resultSelector: (result: T, count: number) => PromiseLike<T> | T = identity): Promise<T> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(accumulator, "accumulator");
-    assert.mustBeFunction(resultSelector, "resultSelector");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(accumulator)) throw new TypeError("Function expected: accumulator");
+    if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
     return reduceAsyncCore(source, accumulator, arguments.length > 2, seed, resultSelector);
 }
 
@@ -106,9 +106,9 @@ export function reduceRightAsync<T, U>(source: AsyncIterable<T> | Iterable<Promi
  */
 export function reduceRightAsync<T, U, R>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, accumulator: (current: U, element: T, offset: number) => PromiseLike<U> | U, seed: U, resultSelector: (result: U, count: number) => R | PromiseLike<R>): Promise<R>;
 export function reduceRightAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, accumulator: (current: T, element: T, offset: number) => PromiseLike<T> | T, seed?: T, resultSelector: (result: T, count: number) => PromiseLike<T> | T = identity): Promise<T> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(accumulator, "accumulator");
-    assert.mustBeFunction(resultSelector, "resultSelector");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(accumulator)) throw new TypeError("Function expected: accumulator");
+    if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
     return reduceRightAsyncCore(source, accumulator, arguments.length > 2, seed, resultSelector);
 }
 
@@ -137,8 +137,8 @@ async function reduceRightAsyncCore<T>(source: AsyncIterable<T> | Iterable<Promi
  * @category Scalar
  */
 export function countAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate: (element: T) => PromiseLike<boolean> | boolean = T): Promise<number> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return countAsyncCore(source, predicate);
 }
 
@@ -175,14 +175,14 @@ export function firstAsync<T, U extends T>(source: AsyncIterable<T> | Iterable<P
  */
 export function firstAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate?: (element: T) => PromiseLike<boolean> | boolean): Promise<T | undefined>;
 export function firstAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate: (element: T) => PromiseLike<boolean> | boolean = T): Promise<T | undefined> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return firstAsyncCore(source, predicate);
 }
 
 async function firstAsyncCore<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate: (element: T) => PromiseLike<boolean> | boolean): Promise<T | undefined> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     for await (const element of source) {
         const result = predicate(element);
         if (typeof result === "boolean" ? result : await result) {
@@ -211,8 +211,8 @@ export function lastAsync<T, U extends T>(source: AsyncIterable<T> | Iterable<Pr
  */
 export function lastAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate?: (element: T) => PromiseLike<boolean> | boolean): Promise<T | undefined>;
 export function lastAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate: (element: T) => PromiseLike<boolean> | boolean = T): Promise<T | undefined> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return lastAsyncCore(source, predicate);
 }
 
@@ -244,8 +244,8 @@ export function singleAsync<T, U extends T>(source: AsyncIterable<T> | Iterable<
  */
 export function singleAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate?: (element: T) => PromiseLike<boolean> | boolean): Promise<T | undefined>;
 export function singleAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate: (element: T) => PromiseLike<boolean> | boolean = T) {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return singleAsyncCore(source, predicate);
 }
 
@@ -275,9 +275,9 @@ async function singleAsyncCore<T>(source: AsyncIterable<T> | Iterable<PromiseLik
  */
 export function minByAsync<T, K>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (value: T) => K, keyComparer: Comparison<K> | Comparer<K> = Comparer.defaultComparer): Promise<T | undefined> {
     if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
     return minByAsyncCore(source, keySelector,keyComparer);
 }
 
@@ -309,8 +309,8 @@ async function minByAsyncCore<T, K>(source: AsyncIterable<T> | Iterable<PromiseL
  */
 export function minAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, comparer: Comparison<T> | Comparer<T> = Comparer.defaultComparer): Promise<T | undefined> {
     if (typeof comparer === "function") comparer = Comparer.create(comparer);
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeType(Comparer.hasInstance, comparer, "comparer");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!Comparer.hasInstance(comparer)) throw new TypeError("Comparer expected: comparer");
     return minByAsyncCore(source, identity, comparer);
 }
 
@@ -324,9 +324,9 @@ export function minAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> |
  */
 export function maxByAsync<T, K>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (value: T) => K, keyComparer: Comparison<K> | Comparer<K> = Comparer.defaultComparer): Promise<T | undefined> {
     if (typeof keyComparer === "function") keyComparer = Comparer.create(keyComparer);
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeType(Comparer.hasInstance, keyComparer, "keyComparer");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!Comparer.hasInstance(keyComparer)) throw new TypeError("Comparer expected: keyComparer");
     return maxByAsyncCore(source, keySelector, keyComparer);
 }
 
@@ -358,8 +358,8 @@ async function maxByAsyncCore<T, K>(source: AsyncIterable<T> | Iterable<PromiseL
  */
 export function maxAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, comparer: Comparison<T> | Comparer<T> = Comparer.defaultComparer): Promise<T | undefined> {
     if (typeof comparer === "function") comparer = Comparer.create(comparer);
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeType(Comparer.hasInstance, comparer, "comparer");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!Comparer.hasInstance(comparer)) throw new TypeError("Comparer expected: comparer");
     return maxByAsyncCore(source, identity, comparer);
 }
 
@@ -372,8 +372,8 @@ export function maxAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> |
  * @category Scalar
  */
 export function someAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate: (element: T) => PromiseLike<boolean> | boolean = T): Promise<boolean> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return someAsyncCore(source, predicate);
 }
 
@@ -395,8 +395,8 @@ async function someAsyncCore<T>(source: AsyncIterable<T> | Iterable<PromiseLike<
  * @category Scalar
  */
 export function everyAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate: (element: T) => PromiseLike<boolean> | boolean): Promise<boolean> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return everyAsyncCore(source, predicate);
 }
 
@@ -426,8 +426,8 @@ export function unzipAsync<T extends readonly any[] | []>(source: AsyncIterable<
  */
 export function unzipAsync<T, U extends readonly any[] | []>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, partSelector: (value: T) => PromiseLike<U> | U): Promise<{ -readonly [I in keyof U]: U[I][]; }>
 export function unzipAsync<T extends readonly any[] | []>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, partSelector: (value: T) => PromiseLike<T> | T = identity): Promise<any> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(partSelector, "partSelector");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(partSelector)) throw new TypeError("Function expected: partSelector");
     return unzipAsyncCore(source, partSelector);
 }
 
@@ -457,8 +457,8 @@ async function unzipAsyncCore<T extends readonly any[] | []>(source: AsyncIterab
  * @category Scalar
  */
 export function forEachAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, callback: (element: T, offset: number) => void | PromiseLike<void>): Promise<void> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(callback, "callback");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(callback)) throw new TypeError("Function expected: callback");
     return forEachAsyncCore(source, callback);
 }
 
@@ -488,9 +488,9 @@ export function toMapAsync<T, K>(source: AsyncIterable<T> | Iterable<PromiseLike
  */
 export function toMapAsync<T, K, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V): Promise<Map<K, V>>;
 export function toMapAsync<T, K, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<T | V> | T | V = identity) {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(elementSelector, "elementSelector");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
     return toMapAsyncCore(source, keySelector, elementSelector);
 }
 
@@ -528,10 +528,10 @@ export function toHashMapAsync<T, K, V>(source: AsyncIterable<T> | Iterable<Prom
         keyEqualer = elementSelector;
         elementSelector = identity;
     }
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(elementSelector, "elementSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return toHashMapAsyncCore(source, keySelector, elementSelector);
 }
 
@@ -561,8 +561,8 @@ export function toSetAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T>
  */
 export function toSetAsync<T, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, elementSelector: (element: T) => PromiseLike<V> | V): Promise<Set<V>>;
 export function toSetAsync<T, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, elementSelector: (element: T) => PromiseLike<T | V> | T | V = identity) {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(elementSelector, "elementSelector");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
     return toSetAsyncCore(source, elementSelector);
 }
 
@@ -597,9 +597,9 @@ export function toHashSetAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLik
         equaler = elementSelector;
         elementSelector = identity;
     }
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(elementSelector, "elementSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, equaler, "equaler");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
+    if (!isUndefined(equaler) && !Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     return toHashSetAsyncCore(source, elementSelector, equaler);
 }
 
@@ -628,8 +628,8 @@ export function toArrayAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<
  */
 export function toArrayAsync<T, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, elementSelector: (element: T) => PromiseLike<V> | V): Promise<V[]>;
 export function toArrayAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, elementSelector: (element: T) => PromiseLike<T> | T = identity): Promise<T[]> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(elementSelector, "elementSelector");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
     return toArrayAsyncCore(source, elementSelector);
 }
 
@@ -940,11 +940,11 @@ export function toObjectAsync<T, V>(source: AsyncIterable<T> | Iterable<PromiseL
  */
 export function toObjectAsync<T, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: object | null | undefined, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => PromiseLike<V> | V, descriptorSelector?: (key: PropertyKey, value: V) => PropertyDescriptor): Promise<object>;
 export function toObjectAsync<T, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, prototype: object | null = Object.prototype, keySelector: (element: T) => PropertyKey, elementSelector: (element: T) => PromiseLike<T | V> | T | V = identity, descriptorSelector: (key: PropertyKey, value: T | V) => PropertyDescriptor = makeDescriptor): Promise<object> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeObjectOrNull(prototype, "prototype");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(elementSelector, "elementSelector");
-    assert.mustBeFunction(descriptorSelector, "descriptorSelector");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isObject(prototype) && prototype !== null) throw new TypeError("Object expected: prototype");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
+    if (!isFunction(descriptorSelector)) throw new TypeError("Function expected: descriptorSelector");
     return toObjectAsyncCore(source, prototype, keySelector, elementSelector, descriptorSelector);
 }
 
@@ -992,10 +992,10 @@ export function toLookupAsync<T, K, V>(source: AsyncIterable<T> | Iterable<Promi
         keyEqualer = elementSelector;
         elementSelector = identity;
     }
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(keySelector, "keySelector");
-    assert.mustBeFunction(elementSelector, "elementSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return toLookupAsyncCore(source, keySelector, elementSelector);
 }
 
@@ -1011,8 +1011,8 @@ async function toLookupAsyncCore<T, K, V>(source: AsyncIterable<T> | Iterable<Pr
  * @category Sub`AsyncIterable`
  */
 export function intoAsync<T, S extends AsyncIterable<T> | Iterable<PromiseLike<T> | T>, R>(source: S, callback: (source: S) => R): R {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(callback, "callback");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(callback)) throw new TypeError("Function expected: callback");
     return callback(source);
 }
 
@@ -1033,8 +1033,8 @@ export function sumAsync(source: AsyncIterable<number> | Iterable<PromiseLike<nu
  */
 export function sumAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, elementSelector: (element: T) => PromiseLike<number> | number): Promise<number>;
 export function sumAsync(source: AsyncIterable<number> | Iterable<PromiseLike<number> | number>, elementSelector: (element: number) => PromiseLike<number> | number = identity): Promise<number> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(elementSelector, "elementSelector");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
     return sumAsyncCore(source, elementSelector);
 }
 
@@ -1043,7 +1043,7 @@ async function sumAsyncCore(source: AsyncIterable<number> | Iterable<PromiseLike
     for await (const element of source) {
         const value = elementSelector(element);
         const result = typeof value === "number" ? value : await value;
-        assert.mustBeNumber(result);
+        if (!isNumber(result)) throw new TypeError("Number expected");
         sum += result;
     }
     return sum;
@@ -1066,8 +1066,8 @@ export function averageAsync(source: AsyncIterable<number> | Iterable<PromiseLik
  */
 export function averageAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, elementSelector: (element: T) => PromiseLike<number> | number): Promise<number>;
 export function averageAsync(source: AsyncIterable<number> | Iterable<PromiseLike<number> | number>, elementSelector: (element: number) => PromiseLike<number> | number = identity): Promise<number> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(elementSelector, "elementSelector");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
     return averageAsyncCore(source, elementSelector);
 }
 
@@ -1077,7 +1077,7 @@ async function averageAsyncCore(source: AsyncIterable<number> | Iterable<Promise
     for await (const element of source) {
         const value = elementSelector(element);
         const result = typeof value === "number" ? value : await value;
-        assert.mustBeNumber(result);
+        if (!isNumber(result)) throw new TypeError("Number expected");
         sum += result;
         count++;
     }
@@ -1140,8 +1140,8 @@ export function spanAsync<T, U extends T>(source: AsyncIterable<T> | Iterable<Pr
  */
 export function spanAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): Promise<[Iterable<T>, AsyncIterable<T>]>;
 export function spanAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): Promise<[Iterable<T>, AsyncIterable<T>]> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return spanAsyncCore(source, predicate);
 }
 
@@ -1193,8 +1193,8 @@ export function spanUntilAsync<TNode, T extends TNode>(source: AsyncHierarchyIte
  */
 export function spanUntilAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): Promise<[Iterable<T>, AsyncIterable<T>]>;
 export function spanUntilAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, predicate: (element: T, offset: number) => PromiseLike<boolean> | boolean): Promise<[Iterable<T>, AsyncIterable<T>]> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeFunction(predicate, "predicate");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!isFunction(predicate)) throw new TypeError("Function expected: predicate");
     return spanUntilAsyncCore(source, predicate);
 }
 
@@ -1242,12 +1242,12 @@ export function correspondsByAsync<T, K>(left: AsyncIterable<T> | Iterable<Promi
  */
 export function correspondsByAsync<T, U, K>(left: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, right: AsyncIterable<U> | Iterable<PromiseLike<U> | U>, leftKeySelector: (element: T) => K, rightKeySelector: (element: U) => K, keyEqualer?: EqualityComparison<K> | Equaler<K>): Promise<boolean>;
 export function correspondsByAsync<T, K>(left: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, leftKeySelector: (element: T) => K, rightKeySelector: (element: T) => K = leftKeySelector, keyEqualer: EqualityComparison<K> | Equaler<K> = Equaler.defaultEqualer): Promise<boolean> {
-    if (typeof keyEqualer === "function") keyEqualer = Equaler.create(keyEqualer);
-    assert.mustBeAsyncOrSyncIterableObject(left, "left");
-    assert.mustBeAsyncOrSyncIterableObject(right, "right");
-    assert.mustBeFunction(leftKeySelector, "leftKeySelector");
-    assert.mustBeFunction(rightKeySelector, "rightKeySelector");
-    assert.mustBeType(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (isFunction(keyEqualer)) keyEqualer = Equaler.create(keyEqualer);
+    if (!isAsyncIterableObject(left) && !isIterableObject(left)) throw new TypeError("AsyncIterable expected: left");
+    if (!isAsyncIterableObject(right) && !isIterableObject(right)) throw new TypeError("AsyncIterable expected: right");
+    if (!isFunction(leftKeySelector)) throw new TypeError("Function expected: leftKeySelector");
+    if (!isFunction(rightKeySelector)) throw new TypeError("Function expected: rightKeySelector");
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return correspondsByAsyncCore(left, right, leftKeySelector, rightKeySelector, keyEqualer);
 }
 
@@ -1297,10 +1297,10 @@ export function correspondsAsync<T>(left: AsyncIterable<T> | Iterable<PromiseLik
  */
 export function correspondsAsync<T, U>(left: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, right: AsyncIterable<U> | Iterable<PromiseLike<U> | U>, equaler: (left: T, right: U) => boolean): Promise<boolean>;
 export function correspondsAsync<T>(left: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler: EqualityComparison<T> | Equaler<T> = Equaler.defaultEqualer): Promise<boolean> {
-    if (typeof equaler === "function") equaler = Equaler.create(equaler);
-    assert.mustBeAsyncOrSyncIterableObject(left, "left");
-    assert.mustBeAsyncOrSyncIterableObject(right, "right");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equality");
+    if (isFunction(equaler)) equaler = Equaler.create(equaler);
+    if (!isAsyncIterableObject(left) && !isIterableObject(left)) throw new TypeError("AsyncIterable expected: left");
+    if (!isAsyncIterableObject(right) && !isIterableObject(right)) throw new TypeError("AsyncIterable expected: right");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     return correspondsByAsyncCore(left, right, identity, identity, equaler);
 }
 
@@ -1313,15 +1313,15 @@ export function correspondsAsync<T>(left: AsyncIterable<T> | Iterable<PromiseLik
  * @category Scalar
  */
 export function elementAtAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, offset: number | Index): Promise<T | undefined> {
-    assert.mustBeAsyncOrSyncIterableObject(source, "source")
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
     let isFromEnd = false;
-    if (typeof offset === "number") {
-        assert.mustBeInteger(offset, "offset");
+    if (isNumber(offset)) {
+        if (!isInteger(offset)) throw new RangeError("Argument out of range: offset");
         isFromEnd = offset < 0;
         if (isFromEnd) offset = -offset;
     }
     else {
-        assert.mustBeInstanceOf(Index, offset, "offset");
+        if (!(offset instanceof Index)) throw new TypeError("Number or Index expected: offset");
         isFromEnd = offset.isFromEnd;
         offset = offset.value;
     }
@@ -1377,10 +1377,10 @@ export function startsWithAsync<T>(left: AsyncIterable<T> | Iterable<PromiseLike
  */
 export function startsWithAsync<T, U>(left: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, right: AsyncIterable<U> | Iterable<PromiseLike<U> | U>, equaler: (left: T, right: U) => boolean): Promise<boolean>;
 export function startsWithAsync<T>(left: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler: EqualityComparison<T> | Equaler<T> = Equaler.defaultEqualer): Promise<boolean> {
-    if (typeof equaler === "function") equaler = Equaler.create(equaler);
-    assert.mustBeAsyncOrSyncIterableObject(left, "left");
-    assert.mustBeAsyncOrSyncIterableObject(right, "right");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+    if (isFunction(equaler)) equaler = Equaler.create(equaler);
+    if (!isAsyncIterableObject(left) && !isIterableObject(left)) throw new TypeError("AsyncIterable expected: left");
+    if (!isAsyncIterableObject(right) && !isIterableObject(right)) throw new TypeError("AsyncIterable expected: right");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     return startsWithAsyncCore(left, right, equaler);
 }
 
@@ -1430,10 +1430,10 @@ export function endsWithAsync<T>(left: AsyncIterable<T> | Iterable<PromiseLike<T
  */
 export function endsWithAsync<T, U>(left: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, right: AsyncIterable<U> | Iterable<PromiseLike<U> | U>, equaler: (left: T, right: U) => boolean): Promise<boolean>;
 export function endsWithAsync<T>(left: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler: EqualityComparison<T> | Equaler<T> = Equaler.defaultEqualer): Promise<boolean> {
-    if (typeof equaler === "function") equaler = Equaler.create(equaler);
-    assert.mustBeAsyncOrSyncIterableObject(left, "left");
-    assert.mustBeAsyncOrSyncIterableObject(right, "right");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+    if (isFunction(equaler)) equaler = Equaler.create(equaler);
+    if (!isAsyncIterableObject(left) && !isIterableObject(left)) throw new TypeError("AsyncIterable expected: left");
+    if (!isAsyncIterableObject(right) && !isIterableObject(right)) throw new TypeError("AsyncIterable expected: right");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     return endsWithAsyncCore(left, right, equaler);
 }
 
@@ -1474,9 +1474,9 @@ export function includesAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike
  */
 export function includesAsync<T, U>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, value: U, equaler: (left: T, right: U) => boolean): Promise<boolean>;
 export function includesAsync<T>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, value: T, equaler: EqualityComparison<T> | Equaler<T> = Equaler.defaultEqualer): Promise<boolean> {
-    if (typeof equaler === "function") equaler = Equaler.create(equaler);
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+    if (isFunction(equaler)) equaler = Equaler.create(equaler);
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     return includesAsyncCore(source, value, equaler);
 }
 
@@ -1510,10 +1510,10 @@ export function includesSequenceAsync<T>(left: AsyncIterable<T> | Iterable<Promi
  */
 export function includesSequenceAsync<T, U>(left: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, right: AsyncIterable<U> | Iterable<PromiseLike<U> | U>, equaler: (left: T, right: U) => boolean): Promise<boolean>;
 export function includesSequenceAsync<T>(left: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, right: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, equaler: EqualityComparison<T> | Equaler<T> = Equaler.defaultEqualer): Promise<boolean> {
-    if (typeof equaler === "function") equaler = Equaler.create(equaler);
-    assert.mustBeAsyncOrSyncIterableObject(left, "source");
-    assert.mustBeAsyncOrSyncIterableObject(right, "other");
-    assert.mustBeType(Equaler.hasInstance, equaler, "equaler");
+    if (isFunction(equaler)) equaler = Equaler.create(equaler);
+    if (!isAsyncIterableObject(left) && !isIterableObject(left)) throw new TypeError("AsyncIterable expected: left");
+    if (!isAsyncIterableObject(right) && !isIterableObject(right)) throw new TypeError("AsyncIterable expected: right");
+    if (!Equaler.hasInstance(equaler)) throw new TypeError("Equaler expected: equaler");
     return includesSequenceAsyncCore(left, right, equaler);
 }
 
@@ -1566,18 +1566,21 @@ export function copyToAsync<T, U extends IndexedCollection<T> | T[]>(source: Asy
         Array.isArray(collection) ? new ArrayWrapper<T>(collection) :
         undefined;
 
-    assert.mustBeAsyncOrSyncIterableObject(source, "source");
-    assert.assertType(target !== undefined, "dest");
-    assert.mustBePositiveInteger(start, "start");
+    if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
+    if (target === undefined) throw new TypeError("IndexedCollection or Array expected: collection");
+    if (!isNumber(start)) throw new TypeError("Number expected: start");
+    if (!isPositiveInteger(start)) throw new RangeError("Argument out of range: start");
+
     const size = target[IndexedCollection.size];
-    if (count !== undefined) {
-        assert.mustBePositiveInteger(count, "count");
+    if (!isUndefined(count)) {
+        if (!isNumber(count)) throw new TypeError("Number expected: count");
+        if (!isPositiveInteger(count)) throw new RangeError("Argument out of range: count");
     }
     else {
         count = size - start;
     }
 
-    assert.assertRange(start + count <= size, "count");
+    if (start + count > size) throw new RangeError("Argument out of range: count");
     return copyToAsyncCore(source, collection, target, start, count);
 }
 

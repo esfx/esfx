@@ -21,5 +21,5 @@ npm i @esfx/async-iter
 
 # API
 
-You can read more about the API [here](https://esfx.github.io/esfx/modules/async_iter.html).
+You can read more about the API [here](https://esfx.github.io/esfx/api/async-iter.html).
 

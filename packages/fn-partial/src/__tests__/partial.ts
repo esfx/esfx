@@ -3,7 +3,7 @@ import {
     placeholder as _,
     thisPlaceholder as _this,
     restPlaceholder as _rest,
-} from "../partial";
+} from "..";
 
 describe("partial", () => {
     it("leading placeholder", () => {

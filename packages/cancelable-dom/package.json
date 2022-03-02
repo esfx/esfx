@@ -18,6 +18,9 @@
     "dependencies": {
         "@esfx/cancelable": "^1.0.0-pre.30"
     },
+    "devDependencies": {
+        "@esfx/internal-guards": "^1.0.0-pre.23"
+    },
     "publishConfig": {
         "access": "public"
     },

@@ -14,10 +14,10 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isAsyncIterableObject, isFunction, isIterableObject, isUndefined } from '@esfx/internal-guards';
 import { toAsyncIterable } from '@esfx/async-iter-fromsync';
 import { Equaler } from "@esfx/equatable";
 import { identity, tuple } from '@esfx/fn';
-import * as assert from "@esfx/internal-assert";
 import { defaultIfEmpty, empty, map, union } from "@esfx/iter-fn";
 import { Grouping } from "@esfx/iter-grouping";
 import { Lookup } from "@esfx/iter-lookup";
@@ -64,12 +64,12 @@ class AsyncGroupJoinIterable<O, I, K, R> implements AsyncIterable<R> {
  * @category Join
  */
 export function groupJoinAsync<O, I, K, R>(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: Iterable<I>) => PromiseLike<R> | R, keyEqualer?: Equaler<K>): AsyncIterable<R> {
-    assert.mustBeAsyncOrSyncIterableObject(outer, "outer");
-    assert.mustBeAsyncOrSyncIterableObject(inner, "inner");
-    assert.mustBeFunction(outerKeySelector, "outerKeySelector");
-    assert.mustBeFunction(innerKeySelector, "innerKeySelector");
-    assert.mustBeFunction(resultSelector, "resultSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isAsyncIterableObject(outer) && !isIterableObject(outer)) throw new TypeError("AsyncIterable expected: outer");
+    if (!isAsyncIterableObject(inner) && !isIterableObject(inner)) throw new TypeError("AsyncIterable expected: inner");
+    if (!isFunction(outerKeySelector)) throw new TypeError("Function expected: outerKeySelector");
+    if (!isFunction(innerKeySelector)) throw new TypeError("Function expected: innerKeySelector");
+    if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return new AsyncGroupJoinIterable(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer);
 }
 
@@ -118,12 +118,12 @@ class AsyncJoinIterable<O, I, K, R> implements AsyncIterable<R> {
  * @category Join
  */
 export function joinAsync<O, I, K, R>(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: I) => PromiseLike<R> | R, keyEqualer?: Equaler<K>): AsyncIterable<R> {
-    assert.mustBeAsyncOrSyncIterableObject(outer, "outer");
-    assert.mustBeAsyncOrSyncIterableObject(inner, "inner");
-    assert.mustBeFunction(outerKeySelector, "outerKeySelector");
-    assert.mustBeFunction(innerKeySelector, "innerKeySelector");
-    assert.mustBeFunction(resultSelector, "resultSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isAsyncIterableObject(outer) && !isIterableObject(outer)) throw new TypeError("AsyncIterable expected: outer");
+    if (!isAsyncIterableObject(inner) && !isIterableObject(inner)) throw new TypeError("AsyncIterable expected: inner");
+    if (!isFunction(outerKeySelector)) throw new TypeError("Function expected: outerKeySelector");
+    if (!isFunction(innerKeySelector)) throw new TypeError("Function expected: innerKeySelector");
+    if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return new AsyncJoinIterable(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer);
 }
 
@@ -178,12 +178,12 @@ class AsyncFullJoinIterable<O, I, K, R> implements AsyncIterable<R> {
  * @category Join
  */
 export function fullJoinAsync<O, I, K, R>(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O | undefined, inner: I | undefined) => PromiseLike<R> | R, keyEqualer?: Equaler<K>): AsyncIterable<R> {
-    assert.mustBeAsyncOrSyncIterableObject(outer, "outer");
-    assert.mustBeAsyncOrSyncIterableObject(inner, "inner");
-    assert.mustBeFunction(outerKeySelector, "outerKeySelector");
-    assert.mustBeFunction(innerKeySelector, "innerKeySelector");
-    assert.mustBeFunction(resultSelector, "resultSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isAsyncIterableObject(outer) && !isIterableObject(outer)) throw new TypeError("AsyncIterable expected: outer");
+    if (!isAsyncIterableObject(inner) && !isIterableObject(inner)) throw new TypeError("AsyncIterable expected: inner");
+    if (!isFunction(outerKeySelector)) throw new TypeError("Function expected: outerKeySelector");
+    if (!isFunction(innerKeySelector)) throw new TypeError("Function expected: innerKeySelector");
+    if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
     return new AsyncFullJoinIterable(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer);
 }
 
@@ -245,8 +245,8 @@ export function zipAsync<T, U>(left: AsyncIterable<T> | Iterable<PromiseLike<T> 
  */
 export function zipAsync<T, U, R>(left: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, right: AsyncIterable<U> | Iterable<PromiseLike<U> | U>, selector: (left: T, right: U) => PromiseLike<R> | R): AsyncIterable<R>;
 export function zipAsync<T, U, R>(left: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, right: AsyncIterable<U> | Iterable<PromiseLike<U> | U>, selector: (left: T, right: U) => PromiseLike<[T, U] | R> | [T, U] | R = tuple): AsyncIterable<[T, U] | R> {
-    assert.mustBeAsyncOrSyncIterableObject(left, "left");
-    assert.mustBeAsyncOrSyncIterableObject(right, "right");
-    assert.mustBeFunction(selector, "selector");
+    if (!isAsyncIterableObject(left) && !isIterableObject(left)) throw new TypeError("AsyncIterable expected: left");
+    if (!isAsyncIterableObject(right) && !isIterableObject(right)) throw new TypeError("AsyncIterable expected: right");
+    if (!isFunction(selector)) throw new TypeError("Function expected: selector");
     return new AsyncZipIterable(left, right, selector);
 }

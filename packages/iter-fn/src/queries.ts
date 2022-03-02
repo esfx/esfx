@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ { isBoolean, isFunction, isIterator, isNumber, isPositiveFiniteNumber, isPositiveNonZeroFiniteNumber } from "@esfx/internal-guards";
 
 class EmptyIterable<T> implements Iterable<T> {
     *[Symbol.iterator](): Iterator<T> {
@@ -83,10 +83,12 @@ class ConsumeIterable<T> implements Iterable<T> {
  * @param iterator An `Iterator` object.
  * @category Query
  */
-export function consume<T>(iterator: Iterator<T>, options: ConsumeOptions = {}): Iterable<T> {
-    const { cacheElements = false, leaveOpen = false } = options;
-    assert.mustBeIterator(iterator, "iterator");
-    assert.mustBeBoolean(cacheElements, "cacheElements");
+export function consume<T>(iterator: Iterator<T>, options?: ConsumeOptions): Iterable<T> {
+    const cacheElements = options?.cacheElements ?? false;
+    const leaveOpen = options?.leaveOpen ?? false;
+    if (!isIterator(iterator)) throw new TypeError("Iterator expected: iterator");
+    if (!isBoolean(cacheElements)) throw new TypeError("Boolean expected: options.cacheElements");
+    if (!isBoolean(leaveOpen)) throw new TypeError("Boolean expected: options.leaveOpen");
     return new ConsumeIterable(iterator, cacheElements, leaveOpen);
 }
 
@@ -142,8 +144,9 @@ class GenerateIterable<T> implements Iterable<T> {
  * @category Query
  */
 export function generate<T>(count: number, generator: (offset: number) => T): Iterable<T> {
-    assert.mustBePositiveFiniteNumber(count, "count");
-    assert.mustBeFunction(generator, "generator");
+    if (!isNumber(count)) throw new TypeError("Number expected: count");
+    if (!isFunction(generator)) throw new TypeError("Function expected: generator");
+    if (!isPositiveFiniteNumber(count)) throw new RangeError("Argument out of range: count");
     return new GenerateIterable(count, generator);
 }
 
@@ -193,7 +196,8 @@ class RepeatIterable<T> implements Iterable<T> {
  * @category Query
  */
 export function repeat<T>(value: T, count: number): Iterable<T> {
-    assert.mustBePositiveFiniteNumber(count, "count");
+    if (!isNumber(count)) throw new TypeError("Number expected: count");
+    if (!isPositiveFiniteNumber(count)) throw new RangeError("Argument out of range: count");
     return new RepeatIterable(value, count);
 }
 
@@ -234,9 +238,11 @@ class RangeIterable implements Iterable<number> {
  * @category Query
  */
 export function range(start: number, end: number, increment: number = 1): Iterable<number> {
-    assert.mustBeFiniteNumber(start, "start");
-    assert.mustBeFiniteNumber(end, "end");
-    assert.mustBePositiveNonZeroFiniteNumber(increment, "increment");
+    if (!isNumber(start)) throw new TypeError("Number expected: start");
+    if (!isNumber(end)) throw new TypeError("Number expected: end");
+    if (!isNumber(increment)) throw new TypeError("Number expected: increment");
+    if (!isFinite(start)) throw new RangeError("Argument out of range: start");
+    if (!isFinite(end)) throw new RangeError("Argument out of range: end");
+    if (!isPositiveNonZeroFiniteNumber(increment)) throw new RangeError("Argument out of range: increment");
     return new RangeIterable(start, end, increment);
 }
-

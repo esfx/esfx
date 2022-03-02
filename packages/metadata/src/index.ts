@@ -14,8 +14,8 @@
    limitations under the License.
 */
 
-import { isObject, isDefined } from '@esfx/internal-guards';
-import { createMemberDescriptor, createParameterDescriptor, createDecoratorFactory, DecoratorDescriptor, MemberDescriptor, ParameterDescriptor, isClass, isMember, isParameter, ClassDescriptor } from '@esfx/decorators-stage1-core';
+import { ClassDescriptor, createDecoratorFactory, createMemberDescriptor, createParameterDescriptor, DecoratorDescriptor, isClass, isMember, isParameter, MemberDescriptor, ParameterDescriptor } from '@esfx/decorators-stage1-core';
+import /*#__INLINE__*/ { isPresent, isObject } from '@esfx/internal-guards';
 
 export type MetadataKey = string | symbol | number | boolean | bigint | object;
 
@@ -236,7 +236,7 @@ function getMetadataKeys(selector: MetadataSelector) {
  */
 export function defineObjectMetadata(target: object, metadataKey: MetadataKey, metadataValue: unknown) {
     if (!isObject(target)) throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     defineMetadata(createObjectDescriptor(target), metadataKey, metadataValue);
 }
 
@@ -247,7 +247,7 @@ export function defineObjectMetadata(target: object, metadataKey: MetadataKey, m
  */
 export function deleteObjectMetadata(target: object, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return deleteMetadata(createObjectDescriptor(target), metadataKey);
 }
 
@@ -258,7 +258,7 @@ export function deleteObjectMetadata(target: object, metadataKey: MetadataKey) {
  */
 export function hasOwnObjectMetadata(target: object, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return hasOwnMetadata(createObjectDescriptor(target), metadataKey);
 }
 
@@ -269,7 +269,7 @@ export function hasOwnObjectMetadata(target: object, metadataKey: MetadataKey) {
  */
 export function hasObjectMetadata(target: object, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return hasMetadata(createObjectDescriptor(target), metadataKey);
 }
 
@@ -280,7 +280,7 @@ export function hasObjectMetadata(target: object, metadataKey: MetadataKey) {
  */
 export function getOwnObjectMetadata(target: object, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return getOwnMetadata(createObjectDescriptor(target), metadataKey);
 }
 
@@ -291,7 +291,7 @@ export function getOwnObjectMetadata(target: object, metadataKey: MetadataKey) {
  */
 export function getObjectMetadata(target: object, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return getMetadata(createObjectDescriptor(target), metadataKey);
 }
 
@@ -333,7 +333,7 @@ function addMetadataMembers(target: object, members: Set<string | symbol>) {
  */
 export function definePropertyMetadata(target: object, propertyKey: PropertyKey, metadataKey: MetadataKey, metadataValue: unknown) {
     if (!isObject(target)) throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     defineMetadata(createMemberDescriptor(target, propertyKey), metadataKey, metadataValue);
 }
 
@@ -345,7 +345,7 @@ export function definePropertyMetadata(target: object, propertyKey: PropertyKey,
  */
 export function deletePropertyMetadata(target: object, propertyKey: PropertyKey, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return deleteMetadata(createMemberDescriptor(target, propertyKey), metadataKey);
 }
 
@@ -357,7 +357,7 @@ export function deletePropertyMetadata(target: object, propertyKey: PropertyKey,
  */
 export function hasOwnPropertyMetadata(target: object, propertyKey: PropertyKey, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return hasOwnMetadata(createMemberDescriptor(target, propertyKey), metadataKey);
 }
 
@@ -369,7 +369,7 @@ export function hasOwnPropertyMetadata(target: object, propertyKey: PropertyKey,
  */
 export function hasPropertyMetadata(target: object, propertyKey: PropertyKey, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return hasMetadata(createMemberDescriptor(target, propertyKey), metadataKey);
 }
 
@@ -381,7 +381,7 @@ export function hasPropertyMetadata(target: object, propertyKey: PropertyKey, me
  */
 export function getOwnPropertyMetadata(target: object, propertyKey: PropertyKey, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return getOwnMetadata(createMemberDescriptor(target, propertyKey), metadataKey);
 }
 
@@ -393,7 +393,7 @@ export function getOwnPropertyMetadata(target: object, propertyKey: PropertyKey,
  */
 export function getPropertyMetadata(target: object, propertyKey: PropertyKey, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return getMetadata(createMemberDescriptor(target, propertyKey), metadataKey);
 }
 
@@ -458,7 +458,7 @@ export function getMetadataProperties(target: object) {
 export function defineParameterMetadata(target: object, propertyKey: PropertyKey, parameterIndex: number, metadataKey: MetadataKey, metadataValue: unknown) {
     if (!isObject(target)) throw new TypeError();
     if (typeof parameterIndex !== "number") throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     defineMetadata(createParameterDescriptor(target, propertyKey, parameterIndex), metadataKey, metadataValue);
 }
 
@@ -472,7 +472,7 @@ export function defineParameterMetadata(target: object, propertyKey: PropertyKey
 export function deleteParameterMetadata(target: object, propertyKey: PropertyKey, parameterIndex: number, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
     if (typeof parameterIndex !== "number") throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return deleteMetadata(createParameterDescriptor(target, propertyKey, parameterIndex), metadataKey);
 }
 
@@ -486,7 +486,7 @@ export function deleteParameterMetadata(target: object, propertyKey: PropertyKey
 export function hasOwnParameterMetadata(target: object, propertyKey: PropertyKey, parameterIndex: number, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
     if (typeof parameterIndex !== "number") throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return hasOwnMetadata(createParameterDescriptor(target, propertyKey, parameterIndex), metadataKey);
 }
 
@@ -500,7 +500,7 @@ export function hasOwnParameterMetadata(target: object, propertyKey: PropertyKey
 export function hasParameterMetadata(target: object, propertyKey: PropertyKey, parameterIndex: number, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
     if (typeof parameterIndex !== "number") throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return hasMetadata(createParameterDescriptor(target, propertyKey, parameterIndex), metadataKey);
 }
 
@@ -514,7 +514,7 @@ export function hasParameterMetadata(target: object, propertyKey: PropertyKey, p
 export function getOwnParameterMetadata(target: object, propertyKey: PropertyKey, parameterIndex: number, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
     if (typeof parameterIndex !== "number") throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return getOwnMetadata(createParameterDescriptor(target, propertyKey, parameterIndex), metadataKey);
 }
 
@@ -528,7 +528,7 @@ export function getOwnParameterMetadata(target: object, propertyKey: PropertyKey
 export function getParameterMetadata(target: object, propertyKey: PropertyKey, parameterIndex: number, metadataKey: MetadataKey) {
     if (!isObject(target)) throw new TypeError();
     if (typeof parameterIndex !== "number") throw new TypeError();
-    if (!isDefined(metadataKey)) throw new TypeError();
+    if (!isPresent(metadataKey)) throw new TypeError();
     return getMetadata(createParameterDescriptor(target, propertyKey, parameterIndex), metadataKey);
 }
 

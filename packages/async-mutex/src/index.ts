@@ -16,15 +16,30 @@
 
 import { AsyncLockable, LockHandle } from "@esfx/async-lockable";
 import { WaitQueue } from "@esfx/async-waitqueue";
-import { Cancelable } from "@esfx/cancelable";
+import { Cancelable, CancelError } from "@esfx/cancelable";
 import { Disposable } from "@esfx/disposable";
+import /*#__INLINE__*/ { isUndefined } from "@esfx/internal-guards";
+
+let lock: (mutex: AsyncMutex, handle: LockHandle<AsyncMutex>, cancelable?: Cancelable) => Promise<void>;
+let unlock: (mutex: AsyncMutex, handle: LockHandle<AsyncMutex>) => void;
+let ownsLock: (mutex: AsyncMutex, handle: LockHandle<AsyncMutex>) => boolean;
 
 /**
  * An async coordination primitive used to coordinate access to a protected resource.
  */
 export class AsyncMutex implements AsyncLockable {
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncMutex" });
+
+        lock = (mutex, handle, cancelable) => mutex._lock(handle, cancelable);
+        unlock = (mutex, handle) => mutex._unlock(handle);
+        ownsLock = (mutex, handle) => mutex._handle === handle;
+    }
+
     private _waiters = new WaitQueue<void>();
     private _handle: LockHandle<AsyncMutex> | undefined;
+
+    declare [Symbol.toStringTag]: string;
 
     /**
      * Indicates whether the lock has been taken.
@@ -38,7 +53,7 @@ export class AsyncMutex implements AsyncLockable {
      * @param cancelable A `Cancelable` used to cancel the pending request.
      */
     async lock(cancelable?: Cancelable): Promise<LockHandle<AsyncMutex>> {
-        const handle = createLockHandle(this);
+        const handle = new AsyncMutexLockHandle(this);
         await handle.lock(cancelable);
         return handle;
     }
@@ -48,7 +63,7 @@ export class AsyncMutex implements AsyncLockable {
      */
     tryLock(): boolean {
         if (!this._handle) {
-            this._handle = createLockHandle(this);
+            this._handle = new AsyncMutexLockHandle(this);
             return true;
         }
         return false;
@@ -66,16 +81,22 @@ export class AsyncMutex implements AsyncLockable {
     }
 
     private async _lock(handle: LockHandle<AsyncMutex>, cancelable?: Cancelable) {
-        Cancelable.throwIfSignaled(cancelable);
+        if (!isUndefined(cancelable) && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expectd: cancelable");
+
+        const signal = cancelable?.[Cancelable.cancelSignal]();
+        if (signal?.signaled) throw signal.reason ?? new CancelError();
+
         if (this._handle === handle) {
             throw new Error("Lock already taken.");
         }
+
         if (this._handle) {
             await this._waiters.wait(cancelable);
             if (this._handle === handle) {
                 throw new Error("Lock already taken.");
             }
         }
+
         this._handle = handle;
     }
 
@@ -90,6 +111,7 @@ export class AsyncMutex implements AsyncLockable {
     }
 
     // #region AsyncLockable
+
     [AsyncLockable.lock](cancelable?: Cancelable) {
         return this.lock(cancelable);
     }
@@ -97,43 +119,52 @@ export class AsyncMutex implements AsyncLockable {
     [AsyncLockable.unlock]() {
         this.unlock();
     }
+
     // #endregion AsyncLockable
 }
 
-Object.defineProperty(AsyncMutex.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncMutex" });
+class AsyncMutexLockHandle implements LockHandle<AsyncMutex> {
+    static {
+        Object.defineProperty(this, "constructor", { ...Object.getOwnPropertyDescriptor(this, "constructor"), value: Object });
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "AsyncMutexLockHandle" });
+    }
 
-const mutexLockHandlePrototype: object = {
-    [AsyncLockable.lock](this: LockHandle, cancelable?: Cancelable) {
+    private _mutex: AsyncMutex;
+
+    constructor(mutex: AsyncMutex) {
+        this._mutex = mutex;
+    }
+
+    declare [Symbol.toStringTag]: string;
+
+    get mutex() {
+        return this._mutex;
+    }
+
+    get ownsLock(): boolean {
+        return ownsLock(this._mutex, this);
+    }
+
+    async lock(cancelable?: Cancelable): Promise<this> {
+        await lock(this._mutex, this, cancelable);
+        return this;
+    }
+
+    unlock() {
+        unlock(this._mutex, this);
+    }
+
+    [AsyncLockable.lock](cancelable?: Cancelable) {
         return this.lock(cancelable);
-    },
-    [AsyncLockable.unlock](this: LockHandle) {
+    }
+
+    [AsyncLockable.unlock]() {
         return this.unlock();
-    },
-    [Disposable.dispose](this: LockHandle) {
+    }
+
+    [Disposable.dispose]() {
         if (this.ownsLock) {
             this.unlock();
         }
     }
-};
-
-Object.setPrototypeOf(mutexLockHandlePrototype, Disposable.prototype);
-Object.defineProperty(mutexLockHandlePrototype, Symbol.toStringTag, { configurable: true, value: "MutexLockHandle" });
-
-function createLockHandle(mutex: AsyncMutex): LockHandle<AsyncMutex> {
-    const handle: LockHandle<AsyncMutex> = Object.setPrototypeOf({
-        get mutex() {
-            return mutex;
-        },
-        get ownsLock() {
-            return mutex["_handle"] === handle;
-        },
-        async lock(cancelable?: Cancelable) {
-            await mutex["_lock"](handle, cancelable);
-            return this;
-        },
-        unlock() {
-            mutex["_unlock"](handle);
-        }
-    }, mutexLockHandlePrototype);
-    return handle;
 }

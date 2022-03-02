@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import * as assert from "@esfx/internal-assert";
+import /*#__INLINE__*/ { isFunction, isIterableObject, isUndefined } from "@esfx/internal-guards";
 import { Equaler } from "@esfx/equatable";
 import { Grouping } from "@esfx/iter-grouping";
 import { Lookup } from "@esfx/iter-lookup";
@@ -64,12 +64,12 @@ class GroupJoinIterable<O, I, K, R> implements Iterable<R> {
  * @category Join
  */
 export function groupJoin<O, I, K, R>(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: Iterable<I>) => R, keyEqualer?: Equaler<K>): Iterable<R> {
-    assert.mustBeIterableObject(outer, "outer");
-    assert.mustBeIterableObject(inner, "inner");
-    assert.mustBeFunction(outerKeySelector, "outerKeySelector");
-    assert.mustBeFunction(innerKeySelector, "innerKeySelector");
-    assert.mustBeFunction(resultSelector, "resultSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isIterableObject(outer)) throw new TypeError("Iterable expected: outer");
+    if (!isIterableObject(inner)) throw new TypeError("Iterable expected: inner");
+    if (!isFunction(outerKeySelector)) throw new TypeError("Function expected: outerKeySelector");
+    if (!isFunction(innerKeySelector)) throw new TypeError("Function expected: innerKeySelector");
+    if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: equaler");
     return new GroupJoinIterable(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer);
 }
 
@@ -118,12 +118,12 @@ class JoinIterable<O, I, K, R> implements Iterable<R> {
  * @category Join
  */
 export function join<O, I, K, R>(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: I) => R, keyEqualer?: Equaler<K>): Iterable<R> {
-    assert.mustBeIterableObject(outer, "outer");
-    assert.mustBeIterableObject(inner, "inner");
-    assert.mustBeFunction(outerKeySelector, "outerKeySelector");
-    assert.mustBeFunction(innerKeySelector, "innerKeySelector");
-    assert.mustBeFunction(resultSelector, "resultSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isIterableObject(outer)) throw new TypeError("Iterable expected: outer");
+    if (!isIterableObject(inner)) throw new TypeError("Iterable expected: inner");
+    if (!isFunction(outerKeySelector)) throw new TypeError("Function expected: outerKeySelector");
+    if (!isFunction(innerKeySelector)) throw new TypeError("Function expected: innerKeySelector");
+    if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: equaler");
     return new JoinIterable(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer);
 }
 
@@ -178,12 +178,12 @@ class FullJoinIterable<O, I, K, R> implements Iterable<R> {
  * @category Join
  */
 export function fullJoin<O, I, K, R>(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O | undefined, inner: I | undefined) => R, keyEqualer?: Equaler<K>): Iterable<R> {
-    assert.mustBeIterableObject(outer, "outer");
-    assert.mustBeIterableObject(inner, "inner");
-    assert.mustBeFunction(outerKeySelector, "outerKeySelector");
-    assert.mustBeFunction(innerKeySelector, "innerKeySelector");
-    assert.mustBeFunction(resultSelector, "resultSelector");
-    assert.mustBeTypeOrUndefined(Equaler.hasInstance, keyEqualer, "keyEqualer");
+    if (!isIterableObject(outer)) throw new TypeError("Iterable expected: outer");
+    if (!isIterableObject(inner)) throw new TypeError("Iterable expected: inner");
+    if (!isFunction(outerKeySelector)) throw new TypeError("Function expected: outerKeySelector");
+    if (!isFunction(innerKeySelector)) throw new TypeError("Function expected: innerKeySelector");
+    if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
+    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: equaler");
     return new FullJoinIterable(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer);
 }
 
@@ -247,8 +247,8 @@ export function zip<T, U>(left: Iterable<T>, right: Iterable<U>): Iterable<[T, U
  */
 export function zip<T, U, R>(left: Iterable<T>, right: Iterable<U>, selector: (left: T, right: U) => R): Iterable<R>;
 export function zip<T, U, R>(left: Iterable<T>, right: Iterable<U>, selector: (left: T, right: U) => [T, U] | R = tuple): Iterable<[T, U] | R> {
-    assert.mustBeIterableObject(left, "left");
-    assert.mustBeIterableObject(right, "right");
-    assert.mustBeFunction(selector, "selector");
+    if (!isIterableObject(left)) throw new TypeError("Iterable expected: left");
+    if (!isIterableObject(right)) throw new TypeError("Iterable expected: right");
+    if (!isFunction(selector)) throw new TypeError("Function expected: selector");
     return new ZipIterable(left, right, selector);
 }

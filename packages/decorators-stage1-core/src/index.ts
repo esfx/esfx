@@ -14,9 +14,9 @@
    limitations under the License.
 */
 
-import { isObject, isFunction, isPropertyKey, isNumber, isDefined } from '@esfx/internal-guards';
+import /*#__INLINE__*/ { isPresent, isFunction, isNumber, isObject, isPropertyKey } from '@esfx/internal-guards';
 import { AccessorPropertyDescriptor, MethodPropertyDescriptor } from '@esfx/type-model';
-import { DecoratorSignature, MappedDecoratorSignature, MappedDecoratorFactorySignature, MappedDecoratorOrDecoratorFactorySignature } from './typeModel';
+import { DecoratorSignature, MappedDecoratorFactorySignature, MappedDecoratorOrDecoratorFactorySignature, MappedDecoratorSignature } from './typeModel';
 
 export interface ClassDescriptor<T extends Function = Function> {
     kind: "class";
@@ -223,7 +223,7 @@ export function decorateClass(decorators: ((target: Function) => Function | void
     for (let i = decorators.length - 1; i >= 0; i--) {
         const decorator = decorators[i];
         const decorated = decorator(target);
-        if (isDefined(decorated)) {
+        if (isPresent(decorated)) {
             if (!isFunction(decorated)) throw new TypeError();
             target = decorated;
         }
@@ -236,7 +236,7 @@ export function decorateMember(decorators: ((target: object, propertyKey: Proper
     for (let i = decorators.length - 1; i >= 0; i--) {
         const decorator = decorators[i];
         const decorated = decorator(target, propertyKey, descriptor!);
-        if (isDefined(decorated)) {
+        if (isPresent(decorated)) {
             if (!isObject(decorated)) throw new TypeError();
             descriptor = decorated;
         }

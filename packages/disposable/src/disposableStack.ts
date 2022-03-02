@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isFunction, isObject } from "@esfx/internal-guards";
 import { Disposable } from "./disposable";
 import { AddDisposableResource, DisposableResourceRecord, DisposeMethod, DisposeResources, GetDisposeMethod, GetMethod, SpeciesConstructor } from "./internal/utils";
 
@@ -131,7 +132,7 @@ export class DisposableStack {
         // 4. If _onDispose_ is not *undefined*, then
         if (onDispose !== undefined) {
             // a. If IsCallable(_onDispose_) is *false*, throw a *TypeError* exception.
-            if (typeof onDispose !== "function") throw new TypeError("Function expected: onDispose");
+            if (!isFunction(onDispose)) throw new TypeError("Function expected: onDispose");
 
             // b. Let _F_ be a new built-in function object as defined in 9.3.3.2.1.
             // c. Set _F_.[[Argument]] to _value_.
@@ -145,7 +146,7 @@ export class DisposableStack {
         // 5. Else, if _value_ is neither *null* nor *undefined*, then
         else if (value !== null && value !== undefined) {
             // a. If Type(_value_) is not Object, throw a *TypeError* exception.
-            if (typeof value !== "object" && typeof value !== "function") throw new TypeError("Object expected: value");
+            if (!isObject(value)) throw new TypeError("Object expected: value");
 
             // b. Let _method_ be GetDisposeMethod(_value_, ~sync~).
             const method = GetDisposeMethod(value as T & object, "sync");
@@ -153,7 +154,7 @@ export class DisposableStack {
             // c. If _method_ is undefined, then
             if (method === undefined) {
                 // i. If IsCallable(_value_) is true, then
-                if (typeof value === "function") {
+                if (isFunction(value)) {
                     // 1. Perform ? AddDisposableResource(_disposableStack_, *undefined*, ~sync~, _value_).
                     AddDisposableResource(weakDisposableResourceStack.get(this)!, undefined, "sync", value as T & DisposeMethod<"sync">);
                 }

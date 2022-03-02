@@ -19,9 +19,6 @@ The global shim adds a default implementation the collection interfaces to the f
 
 - `AudioParamMap` implements:
     - `ReadonlyKeyedCollection`
-- `AudioTrackList` implements:
-    - `ReadonlyIndexedCollection`
-    - `ReadonlyCollection`
 - `CSSRuleList` implements:
     - `ReadonlyIndexedCollection`
     - `ReadonlyCollection`
@@ -95,7 +92,13 @@ The global shim adds a default implementation the collection interfaces to the f
 - `SVGNumberList` implements:
     - `ReadonlyIndexedCollection`
     - `ReadonlyCollection`
+- `SVGPointList` implements:
+    - `ReadonlyIndexedCollection`
+    - `ReadonlyCollection`
 - `SVGStringList` implements:
+    - `ReadonlyIndexedCollection`
+    - `ReadonlyCollection`
+- `SVGTransformList` implements:
     - `ReadonlyIndexedCollection`
     - `ReadonlyCollection`
 - `SourceBufferList` implements:
@@ -126,9 +129,6 @@ The global shim adds a default implementation the collection interfaces to the f
     - `KeyedCollection`
     - `ReadonlyKeyedCollection`
     - `ReadonlyKeyedCollection`
-- `VideoTrackList` implements:
-    - `ReadonlyIndexedCollection`
-    - `ReadonlyCollection`
 
 To install the global shim, import `@esfx/collection-core-dom-shim`:
 

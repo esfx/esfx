@@ -15,6 +15,7 @@
 */
 
 import { Disposable } from "@esfx/disposable";
+import /*#__INLINE__*/ { isFunction } from "@esfx/internal-guards";
 
 const symContext = Symbol.for("@esfx/events:Event.context");
 const symListener = Symbol.for("@esfx/events:EventListener.listener");
@@ -164,9 +165,11 @@ class EventContext<F extends (...args: any[]) => void> {
 }
 
 let createEventSource: <F extends (...args: any[]) => void>(context: EventContext<F>) => EventSource<F>;
+
 export class EventSource<F extends (...args: any[]) => void> {
     static {
         createEventSource = context => new EventSource(context);
+        Object.defineProperty(this.prototype, "constructor", { ...Object.getOwnPropertyDescriptor(this.prototype, "constructor"), value: Object });
     }
 
     private [symContext]: EventContext<F>;
@@ -200,12 +203,14 @@ export class EventSource<F extends (...args: any[]) => void> {
 }
 
 let createEvent: <F extends (...args: any[]) => void>(context: EventContext<F>) => Event<F>;
+
 export class Event<F extends (...args: any[]) => void> {
     static {
         createEvent = context => new Event(context);
+        Object.defineProperty(this.prototype, "constructor", { ...Object.getOwnPropertyDescriptor(this.prototype, "constructor"), value: Object });
     }
 
-    private [symContext]: EventContext<F>;
+    private declare [symContext]: EventContext<F>;
 
     private constructor(context: EventContext<F>) {
         const self = function Event(listener: EventListener<F>) { return self.subscribe(listener); } as Event<F>;
@@ -229,6 +234,8 @@ export class Event<F extends (...args: any[]) => void> {
     }
 
     subscribe(listener: EventListener<F>, options?: { once?: boolean, prepend?: boolean }): EventSubscription<ThisParameterType<F>> {
+        if (!isFunction(listener)) throw new TypeError("Function expected: listener");
+
         const context = this[symContext];
         const token = {};
         listener = createListenerWrap(context, listener, { once: options?.once, token });
@@ -242,34 +249,48 @@ export class Event<F extends (...args: any[]) => void> {
     }
 
     addListener(listener: EventListener<F>) {
+        if (!isFunction(listener)) throw new TypeError("Function expected: listener");
+
         this[symContext].addListener(listener);
         return this.owner as EventOwner<F>;
     }
 
     on(listener: EventListener<F>) {
+        if (!isFunction(listener)) throw new TypeError("Function expected: listener");
+
         return this.addListener(listener);
     }
 
     once(listener: EventListener<F>) {
+        if (!isFunction(listener)) throw new TypeError("Function expected: listener");
+
         this.addListener(createListenerWrap(this[symContext], listener, { once: true }));
         return this.owner as EventOwner<F>;
     }
 
     prependListener(listener: EventListener<F>) {
+        if (!isFunction(listener)) throw new TypeError("Function expected: listener");
+
         this[symContext].prependListener(listener);
         return this.owner as EventOwner<F>;
     }
 
     prependOnceListener(listener: EventListener<F>) {
+        if (!isFunction(listener)) throw new TypeError("Function expected: listener");
+
         return this.prependListener(createListenerWrap(this[symContext], listener, { once: true }));
     }
 
     removeListener(listener: EventListener<F>) {
+        if (!isFunction(listener)) throw new TypeError("Function expected: listener");
+
         this[symContext].removeListener(listener);
         return this.owner as EventOwner<F>;
     }
 
     off(listener: EventListener<F>) {
+        if (!isFunction(listener)) throw new TypeError("Function expected: listener");
+
         return this.removeListener(listener);
     }
 
@@ -295,9 +316,11 @@ Object.setPrototypeOf(Event, Function);
 Object.setPrototypeOf(Event.prototype, Function.prototype);
 
 let createEventSubscription: <F extends (...args: any[]) => void>(context: EventContext<F>, token: object) => EventSubscription<ThisParameterType<F>>;
+
 export class EventSubscription<TOwner> implements Disposable {
     static {
         createEventSubscription = (context, token) => new EventSubscription(context, token);
+        Object.defineProperty(this.prototype, "constructor", { ...Object.getOwnPropertyDescriptor(this.prototype, "constructor"), value: Object });
     }
 
     private [symContext]?: EventContext<(this: TOwner, ...args: any[]) => void>;

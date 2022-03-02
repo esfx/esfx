@@ -7,6 +7,10 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../cancelable" }
+        // dependencies
+        { "path": "../cancelable" },
+
+        // devDependencies
+        { "path": "../../internal/guards" },
     ]
 }

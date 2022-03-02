@@ -15,20 +15,16 @@
 */
 
 import { Disposable } from "@esfx/disposable";
-
-// NOTE: This must be a single bit, must be distinct from other threading coordination
-//       primitives, and must be a bit >= 16.
-const MANUAL_RESET_ID = 1 << 16;
-
-const NON_SIGNALED = MANUAL_RESET_ID | 0;
-const SIGNALED = MANUAL_RESET_ID | 1;
-const MANUAL_RESET_EXCLUDES = ~(NON_SIGNALED | SIGNALED);
-
-const ATOM_INDEX = 0;
+import /*#__INLINE__*/ { MANUALRESET_FIELD_STATE, MANUALRESET_ID, MANUALRESET_STATE_EXCLUDES, MANUALRESET_STATE_NONSIGNALED, MANUALRESET_STATE_SIGNALED } from "@esfx/internal-threading";
+import /*#__INLINE__*/ { isNumber } from "@esfx/internal-guards";
 
 const kArray = Symbol("kArray");
 
 export class ManualResetEvent implements Disposable {
+    static {
+        Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, writable: true, value: "ManualResetEvent" });
+    }
+
     static readonly SIZE = 4;
 
     private [kArray]: Int32Array | undefined;
@@ -49,10 +45,10 @@ export class ManualResetEvent implements Disposable {
             initialState = bufferOrInitialState;
         }
 
-        Atomics.compareExchange(array, ATOM_INDEX, 0, NON_SIGNALED);
+        Atomics.compareExchange(array, MANUALRESET_FIELD_STATE, 0, MANUALRESET_STATE_NONSIGNALED);
 
-        const data = Atomics.load(array, ATOM_INDEX);
-        if (!(data & MANUAL_RESET_ID) || data & MANUAL_RESET_EXCLUDES) throw new TypeError("Invalid handle.");
+        const data = Atomics.load(array, MANUALRESET_FIELD_STATE);
+        if (!(data & MANUALRESET_ID) || data & MANUALRESET_STATE_EXCLUDES) throw new TypeError("Invalid handle.");
 
         this[kArray] = array;
         if (initialState) {
@@ -93,7 +89,7 @@ export class ManualResetEvent implements Disposable {
     get isSet() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        return Atomics.load(array, ATOM_INDEX) === SIGNALED;
+        return Atomics.load(array, MANUALRESET_FIELD_STATE) === MANUALRESET_STATE_SIGNALED;
     }
 
     /**
@@ -104,8 +100,8 @@ export class ManualResetEvent implements Disposable {
     set() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        if (Atomics.compareExchange(array, ATOM_INDEX, NON_SIGNALED, SIGNALED) === NON_SIGNALED) {
-            Atomics.notify(array, ATOM_INDEX, +Infinity);
+        if (Atomics.compareExchange(array, MANUALRESET_FIELD_STATE, MANUALRESET_STATE_NONSIGNALED, MANUALRESET_STATE_SIGNALED) === MANUALRESET_STATE_NONSIGNALED) {
+            Atomics.notify(array, MANUALRESET_FIELD_STATE, +Infinity);
             return true;
         }
         return false;
@@ -119,7 +115,7 @@ export class ManualResetEvent implements Disposable {
     reset() {
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        return Atomics.compareExchange(array, ATOM_INDEX, SIGNALED, NON_SIGNALED) === SIGNALED;
+        return Atomics.compareExchange(array, MANUALRESET_FIELD_STATE, MANUALRESET_STATE_SIGNALED, MANUALRESET_STATE_NONSIGNALED) === MANUALRESET_STATE_SIGNALED;
     }
 
     /**
@@ -129,11 +125,11 @@ export class ManualResetEvent implements Disposable {
      * @returns `true` if the event was signaled before the timeout expired; otherwise, `false`.
      */
     waitOne(ms: number = Infinity) {
-        if (typeof ms !== "number") throw new TypeError("Number expected: ms.");
+        if (!isNumber(ms)) throw new TypeError("Number expected: ms.");
         if (isNaN(ms) || ms < 0) throw new RangeError("Out of range: ms.");
         const array = this[kArray];
         if (!array) throw new ReferenceError("Object is disposed.");
-        return Atomics.wait(array, ATOM_INDEX, NON_SIGNALED, ms) !== "timed-out";
+        return Atomics.wait(array, MANUALRESET_FIELD_STATE, MANUALRESET_STATE_NONSIGNALED, ms) !== "timed-out";
     }
 
     /**

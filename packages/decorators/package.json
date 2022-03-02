@@ -2,6 +2,7 @@
     "name": "@esfx/decorators",
     "version": "1.0.0-pre.23",
     "description": "A set of decorators for common tasks.",
+    "private": true,
     "type": "commonjs",
     "main": "./dist/index.js",
     "exports": {
@@ -118,7 +119,7 @@
     "dependencies": {
         "@esfx/decorators-stage1-core": "^1.0.0-pre.23",
         "@esfx/internal-guards": "^1.0.0-pre.23",
-        "tslib": "^2.1.0"
+        "tslib": "^2.3.1"
     },
     "publishConfig": {
         "access": "public"

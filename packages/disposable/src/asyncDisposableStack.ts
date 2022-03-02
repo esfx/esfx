@@ -17,6 +17,7 @@
 import { AsyncDisposable } from "./asyncDisposable";
 import { Disposable } from "./disposable";
 import { AddDisposableResource, DisposableResourceRecord, DisposeMethod, DisposeResources, GetDisposeMethod, GetMethod, SpeciesConstructor } from "./internal/utils";
+import /*#__INLINE__*/ { isFunction, isIterableObject, isObject } from "@esfx/internal-guards";
 
 const weakAsyncDisposableState = new WeakMap<AsyncDisposable, "pending" | "disposed">();
 const weakAsyncDisposableResourceStack = new WeakMap<AsyncDisposable, DisposableResourceRecord<"async">[]>();
@@ -129,7 +130,7 @@ export class AsyncDisposableStack implements AsyncDisposable {
         // 4. If _onDisposeAsync_ is not *undefined*, then
         if (onDisposeAsync !== undefined) {
             // a. If IsCallable(_onDisposeAsync_) is *false*, throw a *TypeError* exception.
-            if (typeof onDisposeAsync !== "function") throw new TypeError("Function expected: onDisposeAsync");
+            if (!isFunction(onDisposeAsync)) throw new TypeError("Function expected: onDisposeAsync");
 
             // b. Let _F_ be a new built-in function object as defined in 9.4.3.2.1.
             // c. Set _F_.[[Argument]] to _value_.
@@ -143,7 +144,7 @@ export class AsyncDisposableStack implements AsyncDisposable {
         // 5. Else, if value is neither null nor undefined, then
         else if (value !== null && value !== undefined) {
             // a. If Type(_value_) is not Object, throw a *TypeError* exception.
-            if (typeof value !== "object" && typeof value !== "function") throw new TypeError("Object expected: value");
+            if (!isObject(value)) throw new TypeError("Object expected: value");
 
             // b. Let _method_ be GetDisposeMethod(_value_, ~async~).
             const method = GetDisposeMethod(value as T & object, "async");

@@ -13,6 +13,6 @@
 
         // devDependencies
         { "path": "../../internal/jest-sequence" },
-        { "path": "../../internal/assert" },
+        { "path": "../../internal/guards" },
     ]
 }

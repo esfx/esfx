@@ -68,9 +68,6 @@ export type Primitive = string | symbol | boolean | number | bigint;
  */
 export type Falsy = null | undefined | false | 0 | 0n | '';
 
-/** @deprecated Use {@link Falsy} instead. */
-export type Falsey = Falsy;
-
 /**
  * A PropertyDescriptor constrained to the valid attributes for an accessor.
  */
@@ -110,6 +107,21 @@ export type Nullable<T> = T | undefined | null;
  * Strips `null` or `undefined` from a type.
  */
 export import NonNullable = globalThis.NonNullable;
+
+type _RequiredKeyof<T, K extends keyof T = keyof T> =
+    K extends keyof T ?
+        Pick<T, K> extends Required<Pick<T, K>> ? K : never :
+        never;
+
+/**
+ * Gets a union of the keys of `T` that are non-optional.
+ */
+export type RequiredKeyof<T> = _RequiredKeyof<T, keyof T>;
+
+/**
+ * Gets a union of the keys of `T` that are optional.
+ */
+export type OptionalKeyof<T> = Exclude<keyof T, RequiredKeyof<T>>;
 
 /**
  * Gets a union of `keyof T'` of each constituent `T'` of `T`.
@@ -224,7 +236,7 @@ export type IsAny<A> = (1 | 2) extends (A extends never ? 1 : 2) ? true : false;
 /**
  * Maps to `true` if `A` is precisely the `never` type; otherwise, `false`.
  */
-export type IsNever<A> = (A extends never ? true : false) extends true ? true : false;
+export type IsNever<A> = [A] extends [never] ? true : false;
 
 /**
  * Maps to `true` if `A` is precisely the `unknown` type; otherwise, `false`.
