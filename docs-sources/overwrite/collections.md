@@ -1,14 +1,14 @@
 ---
-uid: collections
+uid: '@esfx/collections!'
 ---
 
 Provides a number of common collection classes from the following packages:
 
-- @"collections-sortedmap"
-- @"collections-sortedset"
-- @"collections-hashmap"
-- @"collections-hashset"
-- @"collections-linkedlist"
+- @"@esfx/collections-sortedmap!"
+- @"@esfx/collections-sortedset!"
+- @"@esfx/collections-hashmap!"
+- @"@esfx/collections-hashset!"
+- @"@esfx/collections-linkedlist!"
 
 # Installation
 

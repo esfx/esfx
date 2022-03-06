@@ -1,8 +1,8 @@
 ---
-uid: async-conditionvariable
+uid: '@esfx/async-conditionvariable!'
 ---
 
-Provides @"async-conditionvariable.AsyncConditionVariable", an async coordination primitive.
+Provides @"@esfx/async-conditionvariable!AsyncConditionVariable:class", an async coordination primitive.
 
 # Overview
 

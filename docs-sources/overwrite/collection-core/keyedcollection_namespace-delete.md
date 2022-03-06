@@ -1,5 +1,5 @@
 ---
-uid: collection-core.KeyedCollection_Namespace._delete
+uid: '@esfx/collection-core!KeyedCollection:namespace._delete'
 name: delete
 fullName: delete
 syntax:

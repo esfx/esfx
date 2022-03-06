@@ -83,13 +83,153 @@
   <h1 id="_esfx_async_barrier_" data-uid="@esfx/async-barrier!" class="text-break">Package @esfx/async-barrier
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>The <code>@esfx/async-barrier</code> package provides the <a class="xref" href="async-barrier/asyncbarrier.html#_esfx_async_barrier_AsyncBarrier_class">AsyncBarrier</a> class, an async coordination primitive.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/async-barrier
+</code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_Q0Gifs4NdT">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_Q0Gifs4NdT_ts" role="tab" aria-controls="tabpanel_Q0Gifs4NdT_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_Q0Gifs4NdT_js" role="tab" aria-controls="tabpanel_Q0Gifs4NdT_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_Q0Gifs4NdT_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { AsyncBarrier } from &quot;@esfx/async-barrier&quot;;
+
+async function main() {
+    let count = 0;
+
+    // Create a barrier with 3 participants and a post-phase action to print results.
+    // When phase 2 completes, throw an exception to be observed by all participants.
+    const barrier = new AsyncBarrier(3, b =&gt; {
+        console.log(`Post-phase action: count=${count}, phase=${b.currentPhaseNumber}`);
+        if (b.currentPhaseNumber === 2) throw new Error(&quot;Oops&quot;);
+    });
+
+    // Add two participants
+    barrier.add(2);
+    barrier.participantCount; // 5
+
+    // Remove one participant
+    barrier.remove();
+    barrier.participantcount; // 4
+
+    const action = async () =&gt; {
+        count++;
+
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 4 and 
+        // &#39;phase&#39; will be 0.
+        await barrier.signalAndWait();
+
+        count++;
+
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 8 and 
+        // &#39;phase&#39; will be 1.
+        await barrier.signalAndWait();
+
+        count++;
+
+        // When phase 2 ends an exception is thrown to all participants:
+        try {
+            await barrier.signalAndWait();
+        }
+        catch (e) {
+            console.log(`Caught error: ${e.message}`);
+        }
+
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 16 and 
+        // &#39;phase&#39; will be 3.
+        await barrier.signalAndWait();
+    };
+
+    // Start 4 async actions to serve as the 4 participants.
+    await Promise.all([action(), action(), action(), action()]);
+}
+
+main();
+// prints:
+// Post-phase action: count=4, phase=0
+// Post-phase action: count=8, phase=1
+// Post-phase action: count=12, phase=2
+// Caught error: Oops
+// Post-phase action: count=16, phase=3
+</code></pre></section>
+<section id="tabpanel_Q0Gifs4NdT_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { AsyncBarrier } = require(&quot;@esfx/async-barrier&quot;);
+
+async function main() {
+    let count = 0;
+
+    // Create a barrier with 3 participants and a post-phase action to print results.
+    // When phase 2 completes, throw an exception to be observed by all participants.
+    const barrier = new AsyncBarrier(3, b =&gt; {
+        console.log(`Post-phase action: count=${count}, phase=${b.currentPhaseNumber}`);
+        if (b.currentPhaseNumber === 2) throw new Error(&quot;Oops&quot;);
+    });
+
+    // Add two participants
+    barrier.add(2);
+    barrier.participantCount; // 5
+
+    // Remove one participant
+    barrier.remove();
+    barrier.participantcount; // 4
+
+    const action = async () =&gt; {
+        count++;
+
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 4 and 
+        // &#39;phase&#39; will be 0.
+        await barrier.signalAndWait();
+
+        count++;
+
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 8 and 
+        // &#39;phase&#39; will be 1.
+        await barrier.signalAndWait();
+
+        count++;
+
+        // When phase 2 ends an exception is thrown to all participants:
+        try {
+            await barrier.signalAndWait();
+        }
+        catch (e) {
+            console.log(`Caught error: ${e.message}`);
+        }
+
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 16 and 
+        // &#39;phase&#39; will be 3.
+        await barrier.signalAndWait();
+    };
+
+    // Start 4 async actions to serve as the 4 participants.
+    await Promise.all([action(), action(), action(), action()]);
+}
+
+main();
+// prints:
+// Post-phase action: count=4, phase=0
+// Post-phase action: count=8, phase=1
+// Post-phase action: count=12, phase=2
+// Caught error: Oops
+// Post-phase action: count=16, phase=3
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
         <h4><a class="xref" href="async-barrier/asyncbarrier.html#_esfx_async_barrier_AsyncBarrier_class">AsyncBarrier</a></h4>
-        <section><p>Enables multiple tasks to cooperatively work on an algorithm through
-multiple phases.</p>
+        <section><p>Enables multiple tasks to cooperatively work on an algorithm through multiple phases.</p>
 </section>
 </article>
           </div>
@@ -98,6 +238,9 @@ multiple phases.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/async-barrier.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

@@ -147,7 +147,7 @@ export type StructFieldType =
     | typeof biguint64
     | typeof float32
     | typeof float64
-    | (new () => Struct);
+    | ((new () => Struct) & { readonly SIZE: number });
 
 export interface StructFieldDefinition {
     readonly name: conststring | constsymbol;

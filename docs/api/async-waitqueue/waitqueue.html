@@ -116,16 +116,27 @@
   </h3>
   
   
-  <h4 id="_esfx_async_waitqueue_WaitQueue_cancelAll_member_1_" data-uid="@esfx/async-waitqueue!WaitQueue#cancelAll:member(1)">cancelAll()</h4>
+  <h4 id="_esfx_async_waitqueue_WaitQueue_cancelAll_member_1_" data-uid="@esfx/async-waitqueue!WaitQueue#cancelAll:member(1)">cancelAll(reason)</h4>
   <div class="markdown level1 summary"><p>Rejects all pending <code>wait()</code> operations with a <code>CancelError</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">cancelAll(): number;</code></pre>
+    <pre><code class="lang-typeScript hljs">cancelAll(reason?: CancelError): number;</code></pre>
   </div>
   
   
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>reason</dt>
+        <dd><a class="xref" href="../cancelable/cancelerror.html#_esfx_cancelable_CancelError_class">CancelError</a></dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
@@ -140,16 +151,27 @@
   
   
   
-  <h4 id="_esfx_async_waitqueue_WaitQueue_cancelOne_member_1_" data-uid="@esfx/async-waitqueue!WaitQueue#cancelOne:member(1)">cancelOne()</h4>
+  <h4 id="_esfx_async_waitqueue_WaitQueue_cancelOne_member_1_" data-uid="@esfx/async-waitqueue!WaitQueue#cancelOne:member(1)">cancelOne(reason)</h4>
   <div class="markdown level1 summary"><p>Rejects the next pending <code>wait()</code> operation with a <code>CancelError</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">cancelOne(): boolean;</code></pre>
+    <pre><code class="lang-typeScript hljs">cancelOne(reason?: CancelError): boolean;</code></pre>
   </div>
   
   
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>reason</dt>
+        <dd><a class="xref" href="../cancelable/cancelerror.html#_esfx_cancelable_CancelError_class">CancelError</a></dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
   
   <h5 class="returns">Returns</h5>
   <div class="property">

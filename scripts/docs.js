@@ -7,14 +7,37 @@
 // - alternatively use `api-documenter yaml` and DocFX:
 //   - https://dotnet.github.io/docfx/
 
+// apply patches
+require("./docs/patches/tsdoc")({
+    paramTagHyphen: false,
+    emitSoftBreak: false,
+});
+
+require("./docs/patches/api-extractor")({
+    exportStarAsNamespace: false,
+});
+
+require("./docs/patches/api-documenter")({
+    emitSoftBreak: false,
+    overrideTocRoot: true,
+    documentExternals: true,
+    inlineTypeAliases: true,
+    renameTsSymbolicNames: true,
+    disableConvertToSDP: true,
+    documentAliases: true,
+    overwriteYamlSchema: true
+});
+
+require("./docs/patches/api-extractor-model")({
+    ambiguousReferences: true,
+});
+
 const fs = require("fs");
 const os = require("os");
 const path = require("path");
 const del = require("del");
 const { default: chalk } = require("chalk");
-require("./docs/patches/tsdoc");
-require("./docs/patches/api-extractor");
-require("./docs/patches/api-documenter");
+
 const { Extractor, ExtractorConfig, ExtractorMessageCategory, ExtractorLogLevel } = require("@microsoft/api-extractor");
 const { ApiModel, ApiDocumentedItem, ApiDeclaredItem, ApiItemContainerMixin, ApiParameterListMixin } = require("@microsoft/api-extractor-model");
 const { YamlDocumenter } = require("@microsoft/api-documenter/lib/documenters/YamlDocumenter");
@@ -27,56 +50,57 @@ const { promisify } = require("util");
 const { default: fetch } = require("node-fetch");
 const unzip = require("extract-zip");
 
+const { TSDocConfigFile } = require("@microsoft/tsdoc-config");
 const { TSDocTagDefinition, TSDocTagSyntaxKind, StandardTags } = require("@microsoft/tsdoc");
 const { AedocDefinitions } = require("@microsoft/api-extractor-model/lib/aedoc/AedocDefinitions");
 
-const categoryTag = new TSDocTagDefinition({
-    tagName: "@category",
-    syntaxKind: TSDocTagSyntaxKind.ModifierTag
-});
+// const categoryTag = new TSDocTagDefinition({
+//     tagName: "@category",
+//     syntaxKind: TSDocTagSyntaxKind.ModifierTag
+// });
 
-const seeTag = new TSDocTagDefinition({
-    tagName: "@see",
-    syntaxKind: TSDocTagSyntaxKind.ModifierTag
-});
+// const seeTag = new TSDocTagDefinition({
+//     tagName: "@see",
+//     syntaxKind: TSDocTagSyntaxKind.ModifierTag
+// });
 
-const typeParamTag = StandardTags.typeParam || new TSDocTagDefinition({
-    tagName: "@typeParam",
-    syntaxKind: TSDocTagSyntaxKind.BlockTag,
-    allowMultiple: true
-});
+// const typeParamTag = StandardTags.typeParam || new TSDocTagDefinition({
+//     tagName: "@typeParam",
+//     syntaxKind: TSDocTagSyntaxKind.BlockTag,
+//     allowMultiple: true
+// });
 
-let isTsDocConfigured = false;
+// let isTsDocConfigured = false;
 
-function configureTsDoc() {
-    if (!isTsDocConfigured) {
-        const foundCategoryTag = AedocDefinitions.tsdocConfiguration.tryGetTagDefinition("@category");
-        if (!foundCategoryTag) {
-            AedocDefinitions.tsdocConfiguration.addTagDefinitions([categoryTag], true);
-        }
-        else {
-            AedocDefinitions.tsdocConfiguration.setSupportForTags([foundCategoryTag], true);
-        }
+// function configureTsDoc() {
+//     if (!isTsDocConfigured) {
+//         const foundCategoryTag = AedocDefinitions.tsdocConfiguration.tryGetTagDefinition("@category");
+//         if (!foundCategoryTag) {
+//             AedocDefinitions.tsdocConfiguration.addTagDefinitions([categoryTag], true);
+//         }
+//         else {
+//             AedocDefinitions.tsdocConfiguration.setSupportForTags([foundCategoryTag], true);
+//         }
 
-        const foundSeeTag = AedocDefinitions.tsdocConfiguration.tryGetTagDefinition("@see");
-        if (!foundSeeTag) {
-            AedocDefinitions.tsdocConfiguration.addTagDefinitions([seeTag], true);
-        }
-        else {
-            AedocDefinitions.tsdocConfiguration.setSupportForTags([foundSeeTag], true);
-        }
+//         const foundSeeTag = AedocDefinitions.tsdocConfiguration.tryGetTagDefinition("@see");
+//         if (!foundSeeTag) {
+//             AedocDefinitions.tsdocConfiguration.addTagDefinitions([seeTag], true);
+//         }
+//         else {
+//             AedocDefinitions.tsdocConfiguration.setSupportForTags([foundSeeTag], true);
+//         }
 
-        const foundTypeParamTag = AedocDefinitions.tsdocConfiguration.tryGetTagDefinition("@typeParam");
-        if (!foundTypeParamTag) {
-            AedocDefinitions.tsdocConfiguration.addTagDefinitions([typeParamTag], true);
-        }
-        else {
-            AedocDefinitions.tsdocConfiguration.setSupportForTags([foundTypeParamTag], true);
-        }
+//         const foundTypeParamTag = AedocDefinitions.tsdocConfiguration.tryGetTagDefinition("@typeParam");
+//         if (!foundTypeParamTag) {
+//             AedocDefinitions.tsdocConfiguration.addTagDefinitions([typeParamTag], true);
+//         }
+//         else {
+//             AedocDefinitions.tsdocConfiguration.setSupportForTags([foundTypeParamTag], true);
+//         }
 
-        isTsDocConfigured = true;
-    }
-}
+//         isTsDocConfigured = true;
+//     }
+// }
 
 /**
  * @param {string} docPackage
@@ -85,9 +109,17 @@ function configureTsDoc() {
  * @param {boolean} [options.force]
  */
 async function apiExtractor(docPackage, options = {}) {
-    configureTsDoc();
+    // configureTsDoc();
     const { verbose, force } = options
-    const config = ExtractorConfig.loadFileAndPrepare(path.resolve(docPackage, "api-extractor.json"));
+    const configObjectFullPath = path.resolve(docPackage, "api-extractor.json");
+    const packageJsonFullPath = path.resolve(docPackage, "package.json");
+    const configObject = ExtractorConfig.loadFile(configObjectFullPath);
+    const config = ExtractorConfig.prepare({
+        configObject,
+        configObjectFullPath,
+        packageJsonFullPath,
+        tsdocConfigFile: TSDocConfigFile.loadFile(path.resolve("tsdoc.json"))
+    });
     const inputs = [...glob.sync(`${docPackage}/index.d.ts`), ...glob.sync(`${docPackage}/dist/**/*.d.ts`)];
     if (!force && inputs.length > 0 && !newer(inputs, config.apiJsonFilePath)) {
         if (verbose) {

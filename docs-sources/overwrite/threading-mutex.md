@@ -1,8 +1,8 @@
 ---
-uid: threading-mutex
+uid: '@esfx/threading-mutex!'
 ---
 
-Provides the @"threading-mutex.Mutex" class which can be used to protect shared resources across Workers using a @"SharedArrayBuffer".
+Provides the @"@esfx/threading-mutex!Mutex:class" class which can be used to protect shared resources across Workers using a @"@esfx/SharedArrayBuffer!".
 
 # Overview
 

@@ -90,25 +90,21 @@
   </h3>
   
   
-        <h4 id="_esfx_disposable_AsyncDisposable_create_function_1_" data-uid="@esfx/disposable!AsyncDisposable.create:function(1)">create(dispose)</h4>
-        	<div class="alert is-warning">
-  		<h5>Warning</h5>
-  		<p>Deprecated</p>
-  			Use `new AsyncDisposable(dispose)` instead.
-  	</div>
-        <div class="markdown level1 summary"><p>Creates an <code>AsyncDisposable</code> wrapper around a callback used to dispose resources.</p>
+        <h4 id="_esfx_disposable_AsyncDisposable_create_function_1_" data-uid="@esfx/disposable!AsyncDisposable.create:function(1)">create(disposeAsync)</h4>
+              <div class="markdown level1 summary"><p>Creates an <code>AsyncDisposable</code> wrapper around a callback used to dispose resources.</p>
+<p>NOTE: This is not spec-compliant and will not be standardized. It is preferred to use an <code>AsyncDisposableStack</code> or to implement <code>AsyncDisposable.asyncDispose</code> yourself instead.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">function create(dispose: () =&gt; void | PromiseLike&lt;void&gt;): AsyncDisposable;</code></pre>
+          <pre><code class="lang-typeScript hljs">function create(disposeAsync: () =&gt; void | PromiseLike&lt;void&gt;): AsyncDisposable;</code></pre>
         </div>
   
   
         <h5 class="parameters">Parameters</h5>
           <div class="property">
             <dl class="parameter">
-              <dt>dispose</dt>
+              <dt>disposeAsync</dt>
               <dd>() =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;</dd>
             </dl>
             <p>
@@ -122,6 +118,148 @@
           <div><a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a></div>
           <p>
         </div>
+  
+  
+  
+  
+  
+        <h4 id="_esfx_disposable_AsyncDisposable_hasInstance_function_1_" data-uid="@esfx/disposable!AsyncDisposable.hasInstance:function(1)">hasInstance(value)</h4>
+              <div class="markdown level1 summary"><p>Determines whether a value is <code>AsyncDisposable</code><!-- -->.</p>
+<p>NOTE: This is not spec-compliant and will not be standardized.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">function hasInstance(value: unknown): value is AsyncDisposable;</code></pre>
+        </div>
+  
+  
+        <h5 class="parameters">Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>value</dt>
+              <dd><span class="xref">unknown</span></dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+  
+        <h5 class="returns">Returns</h5>
+        <div class="property">
+          <div><span class="xref">value</span> is <a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a></div>
+          <p>
+        </div>
+  
+  
+  
+  
+  
+        <h4 id="_esfx_disposable_AsyncDisposable_scope_function_1_" data-uid="@esfx/disposable!AsyncDisposable.scope:function(1)">scope()</h4>
+              <div class="markdown level1 summary"><p>Emulate <code>using await const</code> using <code>for..await..of</code><!-- -->.</p>
+<p>NOTE: This is not spec-compliant and will not be standardized.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">function scope(): AsyncGenerator&lt;AsyncDisposableScope, void, undefined&gt;;</code></pre>
+        </div>
+  
+  
+  
+        <h5 class="returns">Returns</h5>
+        <div class="property">
+          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-asyncgenerator-objects">AsyncGenerator</a>&lt;<a class="xref" href="asyncdisposablescope.html#_esfx_disposable_AsyncDisposableScope_interface">AsyncDisposableScope</a>, void, undefined&gt;</div>
+          <p>
+        </div>
+  
+  
+  
+        <h5 id="_esfx_disposable_AsyncDisposable_scope_function_1__examples">Examples</h5>
+        <pre><code class="lang-ts">// with `using await const` (proposed)
+{
+  ...
+  using await const x = expr, y = expr;
+  ...
+}
+
+// with `AsyncDisposable.scope()`:
+for await (const { using, fail } of AsyncDisposable.scope()) {
+  try {
+    ...
+    const x = using(expr), y = using(expr);
+    ...
+  }
+  catch (e) {
+    fail(e);
+  }
+}
+</code></pre>
+  
+  
+        <h4 id="_esfx_disposable_AsyncDisposable_usingEach_function_1_" data-uid="@esfx/disposable!AsyncDisposable.usingEach:function(1)">usingEach(iterable)</h4>
+              <div class="markdown level1 summary"><p>Yields each disposable in the iterable, disposing it when the generator resumes.</p>
+<p>This emulates <code>for (using await const x of expr)</code><!-- -->.</p>
+<p>NOTE: This is not spec-compliant and will not be standardized.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">function usingEach(iterable: AsyncIterable&lt;AsyncDisposable | Disposable | null | undefined&gt; | Iterable&lt;AsyncDisposable | Disposable | null | undefined | PromiseLike&lt;AsyncDisposable | Disposable | null | undefined&gt;&gt;): AsyncGenerator&lt;AsyncDisposable | Disposable | null | undefined, void, unknown&gt;;</code></pre>
+        </div>
+  
+  
+        <h5 class="parameters">Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>iterable</dt>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | null | undefined&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | null | undefined | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | null | undefined&gt;&gt;</dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+  
+        <h5 class="returns">Returns</h5>
+        <div class="property">
+          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-asyncgenerator-objects">AsyncGenerator</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | null | undefined, void, unknown&gt;</div>
+          <p>
+        </div>
+  
+  
+  
+        <h5 id="_esfx_disposable_AsyncDisposable_usingEach_function_1__examples">Examples</h5>
+        <pre><code class="lang-ts">// with `using await const` (proposed)
+for (using await const x of expr) {
+  ...
+}
+for await (using await const x of expr) {
+  ...
+}
+
+// with `Disposable.usingEach()`:
+for await (const x of Disposable.usingEach(expr)) {
+  ...
+}
+</code></pre>
+    <h3 id="variables">Variables
+  </h3>
+  
+  
+        <h4 id="_esfx_disposable_AsyncDisposable_asyncDispose_var" data-uid="@esfx/disposable!AsyncDisposable.asyncDispose:var">asyncDispose</h4>
+              <div class="markdown level1 summary"><p>A well-known symbol used to define an async explicit resource disposal method on an object.</p>
+<p>NOTE: Uses <code>Symbol.asyncDispose</code> if present.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">asyncDispose: unique symbol</code></pre>
+        </div>
+  
+  
+  
   
   
   

@@ -1,8 +1,8 @@
 ---
-uid: async-stack
+uid: '@esfx/async-stack!'
 ---
 
-The `@esfx/async-stack` package provides the @"async-stack.AsyncStack" class, an async coordination primitive.
+The `@esfx/async-stack` package provides the @"@esfx/async-stack!AsyncStack:class" class, an async coordination primitive.
 
 # Overview
 

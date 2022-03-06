@@ -1,8 +1,8 @@
 ---
-uid: threading-semaphore
+uid: '@esfx/threading-semaphore!'
 ---
 
-Provides the @"threading-semaphore.Semaphore" class, a thread synchronization primitive for use with Workers.
+Provides the @"@esfx/threading-semaphore!Semaphore:class" class, a thread synchronization primitive for use with Workers.
 
 # Overview
 

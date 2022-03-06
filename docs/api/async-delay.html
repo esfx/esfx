@@ -83,7 +83,42 @@
   <h1 id="_esfx_async_delay_" data-uid="@esfx/async-delay!" class="text-break">Package @esfx/async-delay
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>The <code>@esfx/async-delay</code> package provides the <a class="xref" href="async-delay.html#_esfx_async_delay_delay_function_1_">delay(msec)</a> function.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/async-delay
+</code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_Avi9um8uqZ">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_Avi9um8uqZ_ts" role="tab" aria-controls="tabpanel_Avi9um8uqZ_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_Avi9um8uqZ_js" role="tab" aria-controls="tabpanel_Avi9um8uqZ_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_Avi9um8uqZ_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { delay } from &quot;@esfx/async-delay&quot;;
+
+async function doSomeAction() {
+    // wait 10 seconds
+    await delay(10 * 1000);
+}
+</code></pre></section>
+<section id="tabpanel_Avi9um8uqZ_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { delay } = require(&quot;@esfx/async-delay&quot;);
+
+async function doSomeAction() {
+    // wait 10 seconds
+    await delay(10 * 1000);
+}
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="functions">Functions
   </h3>
@@ -290,6 +325,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/async-delay.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

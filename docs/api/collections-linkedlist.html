@@ -83,7 +83,44 @@
   <h1 id="_esfx_collections_linkedlist_" data-uid="@esfx/collections-linkedlist!" class="text-break">Package @esfx/collections-linkedlist
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="collections-linkedlist/linkedlist.html#_esfx_collections_linkedlist_LinkedList_class">LinkedList</a> class, a linked-list implementation that utilizes <a class="xref" href="collection-core.html">@esfx/collection-core</a> and <a class="xref" href="equatable.html">@esfx/equatable</a>.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/collections-linkedlist
+</code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_iFuJ0GN-gZ">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_iFuJ0GN-gZ_ts" role="tab" aria-controls="tabpanel_iFuJ0GN-gZ_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_iFuJ0GN-gZ_js" role="tab" aria-controls="tabpanel_iFuJ0GN-gZ_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_iFuJ0GN-gZ_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { LinkedList, LinkedListNode } from &quot;equatable/collections-linkedlist&quot;;
+
+const list = new LinkedList&lt;string&gt;();
+const n1: LinkedListNode&lt;string&gt; = list.push(&quot;first&quot;);
+const n2: LinkedListNode&lt;string&gt; = list.push(&quot;second&quot;);
+n2.value = &quot;second updated&quot;;
+[...list]; // first,second updated
+</code></pre></section>
+<section id="tabpanel_iFuJ0GN-gZ_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { LinkedList } = require(&quot;equatable/collections-linkedlist&quot;);
+
+const list = new LinkedList();
+const n1 = list.push(&quot;first&quot;);
+const n2 = list.push(&quot;second&quot;);
+n2.value = &quot;second updated&quot;;
+[...list]; // first,second updated
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
@@ -100,6 +137,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/collections-linkedlist.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

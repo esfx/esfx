@@ -1,8 +1,8 @@
 ---
-uid: collections-linkedlist
+uid: '@esfx/collections-linkedlist!'
 ---
 
-Provides the @"collections-linkedlist.LinkedList" class, a linked-list implementation that utilizes @"collection-core" and @"equatable".
+Provides the @"@esfx/collections-linkedlist!LinkedList:class" class, a linked-list implementation that utilizes @"@esfx/collection-core!" and @"@esfx/equatable!".
 
 # Overview
 

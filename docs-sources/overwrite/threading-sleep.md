@@ -1,8 +1,8 @@
 ---
-uid: threading-sleep
+uid: '@esfx/threading-sleep!'
 ---
 
-Provides the @"threading-sleep.sleep" function which causes the current execution thread to sleep until the timeout expires.
+Provides the @"@esfx/threading-sleep!sleep:function(1)" function which causes the current execution thread to sleep until the timeout expires.
 
 # Overview
 

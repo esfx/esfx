@@ -83,7 +83,369 @@
   <h1 id="_esfx_ref_" data-uid="@esfx/ref!" class="text-break">Package @esfx/ref
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>Provides a low-level API for defining forward references.</p>
+<div class="NOTE"><h5>Note</h5><p>This implementation is an approximation of the <code>Reference</code> behavior from <a href="https://github.com/rbuckton/proposal-refs">https://github.com/rbuckton/proposal-refs</a>.</p>
+</div>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/ref
+</code></pre><h1 id="usage">Usage</h1>
+<div class="NOTE"><h5>Note</h5><p>Examples adapted from <a href="https://github.com/rbuckton/proposal-refs#examples">https://github.com/rbuckton/proposal-refs#examples</a> where applicable.</p>
+</div>
+<h2 id="take-a-reference-to-a-variable">Take a reference to a variable</h2>
+<div class="tabGroup" id="tabgroup_oQRBqYTOeG">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG_ts" role="tab" aria-controls="tabpanel_oQRBqYTOeG_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG_js" role="tab" aria-controls="tabpanel_oQRBqYTOeG_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_oQRBqYTOeG_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+let x = 1;
+const r = ref(() =&gt; x, _ =&gt; x = _);
+print(r.value); // 1
+r.value = 2;
+print(x); // 2
+</code></pre></section>
+<section id="tabpanel_oQRBqYTOeG_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { ref } = require(&quot;@esfx/ref&quot;);
+
+let x = 1;
+const r = ref(() =&gt; x, _ =&gt; x = _);
+print(r.value); // 1
+r.value = 2;
+print(x); // 2
+</code></pre></section>
+</div>
+<h2 id="take-a-reference-to-a-property">Take a reference to a property</h2>
+<div class="tabGroup" id="tabgroup_oQRBqYTOeG-1">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-1_ts" role="tab" aria-controls="tabpanel_oQRBqYTOeG-1_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-1_js" role="tab" aria-controls="tabpanel_oQRBqYTOeG-1_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_oQRBqYTOeG-1_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+let o = { x: 1 };
+const r = ref.at(o, &quot;x&quot;);
+print(r.value); // 1
+r.value = 2;
+print(o); // { x: 2 }
+</code></pre></section>
+<section id="tabpanel_oQRBqYTOeG-1_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { ref } = require(&quot;@esfx/ref&quot;);
+
+let o = { x: 1 };
+const r = ref.at(o, &quot;x&quot;);
+print(r.value); // 1
+r.value = 2;
+print(o); // { x: 2 }
+</code></pre></section>
+</div>
+<h2 id="take-a-reference-to-an-element">Take a reference to an element</h2>
+<div class="tabGroup" id="tabgroup_oQRBqYTOeG-2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-2_ts" role="tab" aria-controls="tabpanel_oQRBqYTOeG-2_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-2_js" role="tab" aria-controls="tabpanel_oQRBqYTOeG-2_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_oQRBqYTOeG-2_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+let ar = [1];
+const r = ref.at(ar, 0);
+print(r.value); // 1
+r.value = 2;
+print(ar); // [2]
+</code></pre></section>
+<section id="tabpanel_oQRBqYTOeG-2_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { ref } = require(&quot;@esfx/ref&quot;);
+
+let ar = [1];
+const r = ref.at(ar, 0);
+print(r.value); // 1
+r.value = 2;
+print(ar); // [2]
+</code></pre></section>
+</div>
+<h2 id="reference-passing">Reference passing</h2>
+<div class="tabGroup" id="tabgroup_oQRBqYTOeG-3">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-3_ts" role="tab" aria-controls="tabpanel_oQRBqYTOeG-3_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-3_js" role="tab" aria-controls="tabpanel_oQRBqYTOeG-3_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_oQRBqYTOeG-3_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { ref, Reference } from &quot;@esfx/ref&quot;;
+
+function update(ref_r: Reference&lt;number&gt;) {
+    ref_r.value = 2;
+}
+
+let x = 1;
+update(ref(() =&gt; x, _ =&gt; x = _));
+print(x); // 2
+</code></pre></section>
+<section id="tabpanel_oQRBqYTOeG-3_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { ref } = require(&quot;@esfx/ref&quot;);
+
+function update(ref_r) {
+    ref_r.value = 2;
+}
+
+let x = 1;
+update(ref(() =&gt; x, _ =&gt; x = _));
+print(x); // 2
+</code></pre></section>
+</div>
+<h2 id="referencing-a-local-declaration-creates-a-closure">Referencing a local declaration creates a closure</h2>
+<div class="tabGroup" id="tabgroup_oQRBqYTOeG-4">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-4_ts" role="tab" aria-controls="tabpanel_oQRBqYTOeG-4_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-4_js" role="tab" aria-controls="tabpanel_oQRBqYTOeG-4_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_oQRBqYTOeG-4_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+function f() {
+    let x = 1;
+    return [ref(() =&gt; x, _ =&gt; x = _), () =&gt; print(x)] as const;
+}
+
+const [r, p] = f();
+p(); // 1
+r.value = 2;
+p(); // 2
+</code></pre></section>
+<section id="tabpanel_oQRBqYTOeG-4_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { ref } = require(&quot;@esfx/ref&quot;);
+
+function f() {
+    let x = 1;
+    return [ref(() =&gt; x, _ =&gt; x = _), () =&gt; print(x)];
+}
+
+const [r, p] = f();
+p(); // 1
+r.value = 2;
+p(); // 2
+</code></pre></section>
+</div>
+<h2 id="more-complex-reference-passing">More complex reference passing</h2>
+<div class="tabGroup" id="tabgroup_oQRBqYTOeG-5">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-5_ts" role="tab" aria-controls="tabpanel_oQRBqYTOeG-5_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-5_js" role="tab" aria-controls="tabpanel_oQRBqYTOeG-5_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_oQRBqYTOeG-5_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { ref, Reference } from &quot;@esfx/ref&quot;;
+
+function max(ref_first: Reference&lt;number&gt;, ref_second: Reference&lt;number&gt;, ref_third: Reference&lt;number&gt;) {
+    const ref_max = ref_first.value &gt; ref_second.value ? ref_first : ref_second;
+    return ref_max.value &gt; ref_third.value ? ref_max : ref_third;
+}
+
+let x = 1, y = 2, z = 3;
+const ref_x = ref(() =&gt; x, _ =&gt; x = _);
+const ref_y = ref(() =&gt; y, _ =&gt; y = _);
+const ref_z = ref(() =&gt; z, _ =&gt; z = _);
+const ref_w = max(ref_x, ref_y, ref_z);
+ref_w.value = 4;
+print(x); // 1
+print(y); // 2
+print(z); // 4
+</code></pre></section>
+<section id="tabpanel_oQRBqYTOeG-5_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { ref } = require(&quot;@esfx/ref&quot;);
+
+function max(ref_first, ref_second, ref_third) {
+    const ref_max = ref_first.value &gt; ref_second.value ? ref_first : ref_second;
+    return ref_max.value &gt; ref_third.value ? ref_max : ref_third;
+}
+
+let x = 1, y = 2, z = 3;
+const ref_x = ref(() =&gt; x, _ =&gt; x = _);
+const ref_y = ref(() =&gt; y, _ =&gt; y = _);
+const ref_z = ref(() =&gt; z, _ =&gt; z = _);
+const ref_w = max(ref_x, ref_y, ref_z);
+ref_w.value = 4;
+print(x); // 1
+print(y); // 2
+print(z); // 4
+</code></pre></section>
+</div>
+<h2 id="forward-reference-to-a-var">Forward reference to a <code>var</code></h2>
+<div class="tabGroup" id="tabgroup_oQRBqYTOeG-6">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-6_ts" role="tab" aria-controls="tabpanel_oQRBqYTOeG-6_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-6_js" role="tab" aria-controls="tabpanel_oQRBqYTOeG-6_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_oQRBqYTOeG-6_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+const ref_a = ref(() =&gt; a, _ =&gt; a = _);
+ref_a.value = 1; // ok, no error as `a` is a var.
+
+var a: number;
+</code></pre></section>
+<section id="tabpanel_oQRBqYTOeG-6_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { ref } = require(&quot;@esfx/ref&quot;);
+
+const ref_a = ref(() =&gt; a, _ =&gt; a = _);
+ref_a.value = 1; // ok, no error as `a` is a var.
+
+var a;
+</code></pre></section>
+</div>
+<h2 id="forward-reference-to-a-block-scoped-variable">Forward reference to a block-scoped variable</h2>
+<div class="tabGroup" id="tabgroup_oQRBqYTOeG-7">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-7_ts" role="tab" aria-controls="tabpanel_oQRBqYTOeG-7_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-7_js" role="tab" aria-controls="tabpanel_oQRBqYTOeG-7_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_oQRBqYTOeG-7_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+let a: number;
+
+const ref_a = ref(() =&gt; a, _ =&gt; a = _);
+ref_a.value = 1; // ok, no error as `a` has been declared.
+
+const ref_b = ref(() =&gt; b, _ =&gt; b = _);
+ref_b.value = 1; // error as `b` has not yet been declared.
+
+let b: number;
+</code></pre></section>
+<section id="tabpanel_oQRBqYTOeG-7_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { ref } = require(&quot;@esfx/ref&quot;);
+
+let a;
+
+const ref_a = ref(() =&gt; a, _ =&gt; a = _);
+ref_a.value = 1; // ok, no error as `a` has been declared.
+
+const ref_b = ref(() =&gt; b, _ =&gt; b = _);
+ref_b.value = 1; // error as `b` has not yet been declared.
+
+let b;
+</code></pre></section>
+</div>
+<h2 id="forward-reference-to-a-member-of-a-block-scoped-variable">Forward reference to a member of a block-scoped variable</h2>
+<div class="tabGroup" id="tabgroup_oQRBqYTOeG-8">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-8_ts" role="tab" aria-controls="tabpanel_oQRBqYTOeG-8_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-8_js" role="tab" aria-controls="tabpanel_oQRBqYTOeG-8_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_oQRBqYTOeG-8_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+const ref_x = ref.at(b, &quot;x&quot;); // error, `b` has not yet been declared
+let b = { x: 1 };
+</code></pre></section>
+<section id="tabpanel_oQRBqYTOeG-8_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { ref } = require(&quot;@esfx/ref&quot;);
+
+const ref_x = ref.at(b, &quot;x&quot;); // error, `b` has not yet been declared
+let b = { x: 1 };
+</code></pre></section>
+</div>
+<h2 id="forward-references-for-decorators">Forward references for decorators</h2>
+<div class="tabGroup" id="tabgroup_oQRBqYTOeG-9">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-9_ts-1" role="tab" aria-controls="tabpanel_oQRBqYTOeG-9_ts-1" data-tab="ts-1" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+</ul>
+<section id="tabpanel_oQRBqYTOeG-9_ts-1" role="tabpanel" data-tab="ts-1">
+<pre><code class="lang-ts">import { ref, Reference } from &quot;@esfx/ref&quot;;
+import { metadata } from &quot;@esfx/metadata&quot;;
+
+const Type = (ref_type: Reference&lt;Function&gt;) =&gt; metadata(&quot;design:type&quot;, ref_type);
+
+class Node {
+    @Type(ref(() =&gt; Container))
+    get parent() { /*...*/ }
+
+    @Type(ref(() =&gt; Node)) 
+    get nextSibling() { /*...*/ }
+}
+
+class Container extends Node {
+    @Type(ref(() =&gt; Node))
+    get firstChild() { /*...*/ }
+}
+</code></pre></section>
+</div>
+<h2 id="side-effects">Side effects</h2>
+<div class="tabGroup" id="tabgroup_oQRBqYTOeG-10">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-10_ts" role="tab" aria-controls="tabpanel_oQRBqYTOeG-10_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_oQRBqYTOeG-10_js" role="tab" aria-controls="tabpanel_oQRBqYTOeG-10_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_oQRBqYTOeG-10_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { ref } from &quot;@esfx/ref&quot;;
+
+let count = 0;
+let e = [0, 1, 2];
+const ref_e = ref.at(e, count++); // `count++` is evaluated when Reference is taken.
+print(ref_e.value); // 0
+print(ref_e.value); // 0
+print(count); // 1
+</code></pre></section>
+<section id="tabpanel_oQRBqYTOeG-10_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { ref } = require(&quot;@esfx/ref&quot;);
+
+let count = 0;
+let e = [0, 1, 2];
+const ref_e = ref.at(e, count++); // `count++` is evaluated when Reference is taken.
+print(ref_e.value); // 0
+print(ref_e.value); // 0
+print(count); // 1
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces
   </h3>
@@ -157,6 +519,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/ref.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

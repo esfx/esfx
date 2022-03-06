@@ -1,8 +1,8 @@
 ---
-uid: async-waitqueue
+uid: '@esfx/async-waitqueue!'
 ---
 
-The `@esfx/async-waitqueue` package provides the @"async-waitqueue.WaitQueue" class, an async coordination primitive used to queue and resolve promises.
+The `@esfx/async-waitqueue` package provides the @"@esfx/async-waitqueue!WaitQueue:class" class, an async coordination primitive used to queue and resolve promises.
 
 # Overview
 

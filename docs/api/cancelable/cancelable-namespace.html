@@ -90,6 +90,38 @@
   </h3>
   
   
+        <h4 id="_esfx_cancelable_Cancelable_getReason_function_1_" data-uid="@esfx/cancelable!Cancelable.getReason:function(1)">getReason(cancelable)</h4>
+              <div class="markdown level1 summary"><p>Gets the reason for cancelation.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">function getReason(cancelable: Cancelable | null | undefined): unknown;</code></pre>
+        </div>
+  
+  
+        <h5 class="parameters">Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>cancelable</dt>
+              <dd><a class="xref" href="cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | null | undefined</dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+  
+        <h5 class="returns">Returns</h5>
+        <div class="property">
+          <div><span class="xref">unknown</span></div>
+          <p>
+        </div>
+  
+  
+  
+  
+  
         <h4 id="_esfx_cancelable_Cancelable_hasInstance_function_1_" data-uid="@esfx/cancelable!Cancelable.hasInstance:function(1)">hasInstance(value)</h4>
               <div class="markdown level1 summary"><p>Determines whether a value is a <code>Cancelable</code> object.</p>
 </div>
@@ -122,50 +154,13 @@
   
   
   
-        <h4 id="_esfx_cancelable_Cancelable_isCancelable_function_1_" data-uid="@esfx/cancelable!Cancelable.isCancelable:function(1)">isCancelable(value)</h4>
-        	<div class="alert is-warning">
-  		<h5>Warning</h5>
-  		<p>Deprecated</p>
-  			Use `Cancelable.hasInstance` instead.
-  	</div>
-        <div class="markdown level1 summary"><p>Determines whether a value is a <code>Cancelable</code> object.</p>
-</div>
-        <div class="markdown level1 conceptual"></div>
-        <h5 class="decalaration">Declaration</h5>
-        <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">function isCancelable(value: unknown): value is Cancelable;</code></pre>
-        </div>
-  
-  
-        <h5 class="parameters">Parameters</h5>
-          <div class="property">
-            <dl class="parameter">
-              <dt>value</dt>
-              <dd><span class="xref">unknown</span></dd>
-            </dl>
-            <p>
-              
-              
-            </p>
-          </div>
-  
-        <h5 class="returns">Returns</h5>
-        <div class="property">
-          <div><span class="xref">value</span> is <a class="xref" href="cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></div>
-          <p>
-        </div>
-  
-  
-  
-  
-  
         <h4 id="_esfx_cancelable_Cancelable_isSignaled_function_1_" data-uid="@esfx/cancelable!Cancelable.isSignaled:function(1)">isSignaled(cancelable)</h4>
               <div class="markdown level1 summary"><p>Determines whether <code>cancelable</code> is in the signaled state.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">function isSignaled(cancelable: Cancelable | undefined): boolean;</code></pre>
+          <pre><code class="lang-typeScript hljs">function isSignaled(cancelable: Cancelable | null | undefined): boolean;</code></pre>
         </div>
   
   
@@ -173,7 +168,7 @@
           <div class="property">
             <dl class="parameter">
               <dt>cancelable</dt>
-              <dd><a class="xref" href="cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | undefined</dd>
+              <dd><a class="xref" href="cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | null | undefined</dd>
             </dl>
             <p>
               
@@ -197,7 +192,7 @@
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">function subscribe(cancelable: Cancelable | undefined, onSignaled: () =&gt; void): CancelSubscription;</code></pre>
+          <pre><code class="lang-typeScript hljs">function subscribe(cancelable: Cancelable | null | undefined, onSignaled: () =&gt; void): CancelSubscription;</code></pre>
         </div>
   
   
@@ -205,7 +200,7 @@
           <div class="property">
             <dl class="parameter">
               <dt>cancelable</dt>
-              <dd><a class="xref" href="cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | undefined</dd>
+              <dd><a class="xref" href="cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | null | undefined</dd>
             </dl>
             <p>
               
@@ -239,7 +234,7 @@
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">function throwIfSignaled(cancelable: Cancelable | undefined): void;</code></pre>
+          <pre><code class="lang-typeScript hljs">function throwIfSignaled(cancelable: Cancelable | null | undefined): void;</code></pre>
         </div>
   
   
@@ -247,7 +242,7 @@
           <div class="property">
             <dl class="parameter">
               <dt>cancelable</dt>
-              <dd><a class="xref" href="cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | undefined</dd>
+              <dd><a class="xref" href="cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | null | undefined</dd>
             </dl>
             <p>
               

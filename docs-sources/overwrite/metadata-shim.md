@@ -1,8 +1,8 @@
 ---
-uid: metadata-shim
+uid: '@esfx/metadata-shim!'
 ---
 
-Provides a global shim that adds minimal @"metadata" functionality to the `Reflect` global object.
+Provides a global shim that adds minimal @"@esfx/metadata!" functionality to the `Reflect` global object.
 This provides partial compatibility with TypeScript's `--emitDecoratorMetadata` flag.
 
 # Overview

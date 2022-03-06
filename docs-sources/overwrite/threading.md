@@ -1,18 +1,18 @@
 ---
-uid: threading
+uid: '@esfx/threading!'
 ---
 
 Provides a number Thread synchronization primitives for use with Workers from the following packages:
 
-- @"threading-autoresetevent"
-- @"threading-conditionvariable"
-- @"threading-countdown"
-- @"threading-lockable"
-- @"threading-manualresetevent"
-- @"threading-mutex"
-- @"threading-semaphore"
-- @"threading-sleep"
-- @"threading-spinwait"
+- @"@esfx/threading-autoresetevent!"
+- @"@esfx/threading-conditionvariable!"
+- @"@esfx/threading-countdown!"
+- @"@esfx/threading-lockable!"
+- @"@esfx/threading-manualresetevent!"
+- @"@esfx/threading-mutex!"
+- @"@esfx/threading-semaphore!"
+- @"@esfx/threading-sleep!"
+- @"@esfx/threading-spinwait!"
 
 # Installation
 

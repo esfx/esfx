@@ -1,5 +1,5 @@
 ---
-uid: lazy
+uid: '@esfx/lazy!'
 ---
 
 Provides a class to simplify lazy-initialization logic.

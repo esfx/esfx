@@ -1,8 +1,8 @@
 ---
-uid: struct-type
+uid: '@esfx/struct-type!'
 ---
 
-Define structured types using @"ArrayBuffer" and @"SharedArrayBuffer".
+Define structured types using @"@esfx/ArrayBuffer!" and @"@esfx/SharedArrayBuffer!".
 
 # Overview
 

@@ -1,8 +1,8 @@
 ---
-uid: async-mutex
+uid: '@esfx/async-mutex!'
 ---
 
-Provides the @"async-mutex.AsyncMutex" class, an async coordination primitive.
+Provides the @"@esfx/async-mutex!AsyncMutex:class" class, an async coordination primitive.
 
 # Overview
 

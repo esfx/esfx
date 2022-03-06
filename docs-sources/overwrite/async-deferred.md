@@ -1,7 +1,7 @@
 ---
-uid: async-deferred
+uid: '@esfx/async-deferred!'
 ---
-The `@esfx/async-deferred` package provides the @"async-deferred.Deferred" class, an async coordination primitive.
+The `@esfx/async-deferred` package provides the @"@esfx/async-deferred!Deferred:class" class, an async coordination primitive.
 
 # Overview
 

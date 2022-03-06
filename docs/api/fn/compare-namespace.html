@@ -90,13 +90,13 @@
   </h3>
   
   
-        <h4 id="_esfx_fn_compare_withComparer_function_1_" data-uid="@esfx/fn!compare.withComparer:function(1)">withComparer(comparer)</h4>
+        <h4 id="_esfx_fn_compare_withComparer_function_1_" data-uid="@esfx/fn!compare.withComparer:function(1)">withComparer(comparer, allowNullishValues)</h4>
               <div class="markdown level1 summary"><p>Creates a copy of <code>compare</code> for a specific <code>Comparer</code><!-- -->.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">function withComparer&lt;T&gt;(comparer: Comparer&lt;T&gt;): (a: T, b: T) =&gt; number;</code></pre>
+          <pre><code class="lang-typeScript hljs">function withComparer&lt;T&gt;(comparer: Comparer&lt;T&gt;, allowNullishValues: true): (a: T | null | undefined, b: T | null | undefined) =&gt; number;</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>
@@ -115,6 +115,68 @@
             <dl class="parameter">
               <dt>comparer</dt>
               <dd><a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;T&gt;</dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>allowNullishValues</dt>
+              <dd><span class="xref">true</span></dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+  
+        <h5 class="returns">Returns</h5>
+        <div class="property">
+          <div><span class="xref">(a: T | null | undefined, b: T | null | undefined) =&gt; number</span></div>
+          <p>
+        </div>
+  
+  
+  
+  
+  
+        <h4 id="_esfx_fn_compare_withComparer_function_2_" data-uid="@esfx/fn!compare.withComparer:function(2)">withComparer(comparer, allowNullishValues)</h4>
+              <div class="markdown level1 summary"><p>Creates a copy of <code>compare</code> for a specific <code>Comparer</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">function withComparer&lt;T&gt;(comparer: Comparer&lt;T&gt;, allowNullishValues?: boolean): (a: T, b: T) =&gt; number;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+        <h5 class="parameters">Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>comparer</dt>
+              <dd><a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;T&gt;</dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>allowNullishValues</dt>
+              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></dd>
             </dl>
             <p>
               

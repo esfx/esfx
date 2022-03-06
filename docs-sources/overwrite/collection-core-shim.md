@@ -1,8 +1,8 @@
 ---
-uid: collection-core-shim
+uid: '@esfx/collection-core-shim!'
 ---
 
-Provides a global shim to add default @"collection-core" behaviors to global objects.
+Provides a global shim to add default @"@esfx/collection-core!" behaviors to global objects.
 
 # Overview
 
@@ -20,63 +20,63 @@ npm i @esfx/collection-core-shim
 The global shim adds a default implementation the collection interfaces to the following global objects:
 
 - `Array` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.Collection"
-  - @"collection-core.ReadonlyIndexedCollection"
-  - @"collection-core.FixedSizeIndexedCollection"
-  - @"collection-core.IndexedCollection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!Collection:interface"
+  - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+  - @"@esfx/collection-core!FixedSizeIndexedCollection:interface"
+  - @"@esfx/collection-core!IndexedCollection:interface"
 - `Uint8Array` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.ReadonlyIndexedCollection"
-  - @"collection-core.FixedSizeIndexedCollection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+  - @"@esfx/collection-core!FixedSizeIndexedCollection:interface"
 - `Uint8ClampedArray` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.ReadonlyIndexedCollection"
-  - @"collection-core.FixedSizeIndexedCollection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+  - @"@esfx/collection-core!FixedSizeIndexedCollection:interface"
 - `Uint16Array` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.ReadonlyIndexedCollection"
-  - @"collection-core.FixedSizeIndexedCollection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+  - @"@esfx/collection-core!FixedSizeIndexedCollection:interface"
 - `Uint32Array` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.ReadonlyIndexedCollection"
-  - @"collection-core.FixedSizeIndexedCollection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+  - @"@esfx/collection-core!FixedSizeIndexedCollection:interface"
 - `Int8Array` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.ReadonlyIndexedCollection"
-  - @"collection-core.FixedSizeIndexedCollection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+  - @"@esfx/collection-core!FixedSizeIndexedCollection:interface"
 - `Int16Array` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.ReadonlyIndexedCollection"
-  - @"collection-core.FixedSizeIndexedCollection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+  - @"@esfx/collection-core!FixedSizeIndexedCollection:interface"
 - `Int32Array` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.ReadonlyIndexedCollection"
-  - @"collection-core.FixedSizeIndexedCollection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+  - @"@esfx/collection-core!FixedSizeIndexedCollection:interface"
 - `Float32Array` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.ReadonlyIndexedCollection"
-  - @"collection-core.FixedSizeIndexedCollection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+  - @"@esfx/collection-core!FixedSizeIndexedCollection:interface"
 - `Float64Array` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.ReadonlyIndexedCollection"
-  - @"collection-core.FixedSizeIndexedCollection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+  - @"@esfx/collection-core!FixedSizeIndexedCollection:interface"
 - `BigUint64Array` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.ReadonlyIndexedCollection"
-  - @"collection-core.FixedSizeIndexedCollection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+  - @"@esfx/collection-core!FixedSizeIndexedCollection:interface"
 - `BigInt64Array` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.ReadonlyIndexedCollection"
-  - @"collection-core.FixedSizeIndexedCollection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+  - @"@esfx/collection-core!FixedSizeIndexedCollection:interface"
 - `Set` implements:
-  - @"collection-core.ReadonlyCollection"
-  - @"collection-core.Collection"
+  - @"@esfx/collection-core!ReadonlyCollection:interface"
+  - @"@esfx/collection-core!Collection:interface"
 - `Map` implements:
-  - @"collection-core.ReadonlyKeyedCollection"
-  - @"collection-core.KeyedCollection"
+  - @"@esfx/collection-core!ReadonlyKeyedCollection:interface"
+  - @"@esfx/collection-core!KeyedCollection:interface"
 
-To install the global shim, import @"collection-core-shim":
+To install the global shim, import @"@esfx/collection-core-shim!":
 
 ## [TypeScript](#tab/ts)
 ```ts

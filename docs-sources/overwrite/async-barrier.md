@@ -1,8 +1,8 @@
 ---
-uid: async-barrier
+uid: '@esfx/async-barrier!'
 ---
 
-The `@esfx/async-barrier` package provides the @"async-barrier.AsyncBarrier" class, an async coordination primitive.
+The `@esfx/async-barrier` package provides the @"@esfx/async-barrier!AsyncBarrier:class" class, an async coordination primitive.
 
 # Overview
 

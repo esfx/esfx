@@ -1,5 +1,5 @@
 ---
-uid: decorators
+uid: '@esfx/decorators!'
 ---
 
 Provides a number of frequently used decorators.

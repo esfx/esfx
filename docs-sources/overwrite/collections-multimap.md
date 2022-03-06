@@ -1,8 +1,8 @@
 ---
-uid: collections-multimap
+uid: '@esfx/collections-multimap!'
 ---
 
-Provides the @"collections-multimap.MultiMap" class, a collection class that maps a single key to multiple values.
+Provides the @"@esfx/collections-multimap!MultiMap:class" class, a collection class that maps a single key to multiple values.
 
 # Overview
 

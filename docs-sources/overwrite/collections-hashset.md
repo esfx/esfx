@@ -1,8 +1,8 @@
 ---
-uid: collections-hashset
+uid: '@esfx/collections-hashset!'
 ---
 
-Provides the @"collections-hashset.HashSet" class, a collection class that utilizes @"collection-core" and @"equatable".
+Provides the @"@esfx/collections-hashset!HashSet:class" class, a collection class that utilizes @"@esfx/collection-core!" and @"@esfx/equatable!".
 
 # Overview
 

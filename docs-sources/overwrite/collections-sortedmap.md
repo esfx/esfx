@@ -1,8 +1,8 @@
 ---
-uid: collections-sortedmap
+uid: '@esfx/collections-sortedmap!'
 ---
 
-Provides the @"collections-sortedmap.SortedMap" class, a collection class that utilizes @"collection-core" and @"equatable".
+Provides the @"@esfx/collections-sortedmap!SortedMap:class" class, a collection class that utilizes @"@esfx/collection-core!" and @"@esfx/equatable!".
 
 # Overview
 

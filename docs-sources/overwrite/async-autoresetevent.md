@@ -1,8 +1,8 @@
 ---
-uid: async-autoresetevent
+uid: '@esfx/async-autoresetevent!'
 ---
 
-The `@esfx/async-autoresetevent` package provides the @"async-autoresetevent.AsyncAutoResetEvent" class, an async coordination primitive.
+The `@esfx/async-autoresetevent` package provides the @"@esfx/async-autoresetevent!AsyncAutoResetEvent:class" class, an async coordination primitive.
 
 # Overview
 

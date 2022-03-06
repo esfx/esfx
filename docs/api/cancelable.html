@@ -83,7 +83,80 @@
   <h1 id="_esfx_cancelable_" data-uid="@esfx/cancelable!" class="text-break">Package @esfx/cancelable
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>The <code>@esfx/cancelable</code> package provides a low-level Symbol-based API for defining a common cancellation protocol.</p>
+<div class="NOTE"><h5>Note</h5><p>This package does not contain an <em>implementation</em> of cancellation signals, but rather provides only a
+protocol for interoperable libraries that depend on cancellation.</p>
+<p>For an implementation of this protocol, please consider the following packages:</p>
+<ul>
+<li><a class="xref" href="async-canceltoken.html">@esfx/async-canceltoken</a></li>
+<li><a class="xref" href="cancelable-dom.html">@esfx/cancelable-dom</a></li>
+<li><a class="xref" href="cancelable-dom-shim.html">@esfx/cancelable-dom-shim</a></li>
+<li><a href="https://github.com/rbuckton/prex#readme">prex</a> (version 0.4.6 or later)</li>
+</ul>
+</div>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/cancelable
+</code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_zzPo7824WW">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_zzPo7824WW_ts" role="tab" aria-controls="tabpanel_zzPo7824WW_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_zzPo7824WW_js" role="tab" aria-controls="tabpanel_zzPo7824WW_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_zzPo7824WW_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { Cancelable } from &quot;@esfx/cancelable&quot;;
+
+function doSomeWork(cancelable: Cancelable) {
+    return new Promise((resolve, reject) =&gt; {
+        const cancelSignal = cancelable[Cancelable.cancelSignal]();
+        if (cancelSignal.signaled) throw new Error(&quot;Operation canceled.&quot;);
+
+        const child = fork(&quot;worker.js&quot;);
+        const subscription = cancelSignal.subscribe(() =&gt; {
+            // cancellation requested, abort worker
+            worker.kill();
+            reject(new Error(&quot;Operation canceled.&quot;));
+        });
+
+        worker.on(&quot;exit&quot;, () =&gt; {
+            subscription.unsubscribe();
+            resolve();
+        });
+    });
+}
+</code></pre></section>
+<section id="tabpanel_zzPo7824WW_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Cancelable } = require(&quot;@esfx/cancelable&quot;);
+
+function doSomeWork(cancelable) {
+    return new Promise((resolve, reject) =&gt; {
+        const cancelSignal = cancelable[Cancelable.cancelSignal]();
+        if (cancelSignal.signaled) throw new Error(&quot;Operation canceled.&quot;);
+
+        const child = fork(&quot;worker.js&quot;);
+        const subscription = cancelSignal.subscribe(() =&gt; {
+            // cancellation requested, abort worker
+            worker.kill();
+            reject(new Error(&quot;Operation canceled.&quot;));
+        });
+
+        worker.on(&quot;exit&quot;, () =&gt; {
+            subscription.unsubscribe();
+            resolve();
+        });
+    });
+}
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
@@ -120,6 +193,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/cancelable.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

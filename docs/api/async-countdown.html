@@ -83,7 +83,78 @@
   <h1 id="_esfx_async_countdown_" data-uid="@esfx/async-countdown!" class="text-break">Package @esfx/async-countdown
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>The <code>@esfx/async-countdown</code> package provides the <a class="xref" href="async-countdown/asynccountdownevent.html#_esfx_async_countdown_AsyncCountdownEvent_class">AsyncCountdownEvent</a> class, an async coordination primitive.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/async-countdown
+</code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_c8tNA7mCuT">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_c8tNA7mCuT_ts" role="tab" aria-controls="tabpanel_c8tNA7mCuT_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_c8tNA7mCuT_js" role="tab" aria-controls="tabpanel_c8tNA7mCuT_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_c8tNA7mCuT_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { AsyncCountdownEvent } from &quot;@esfx/cancelable&quot;;
+
+async function main() {
+    // create an AsyncCountdownEvent with 4 participants
+    const countdown = new AsyncCountdownEvent(4);
+
+    const worker = async () =&gt; {
+        // dome some work async...
+
+        // signal completion
+        countdown.signal();
+    }
+
+    // start 4 workers
+    worker();
+    worker();
+    worker();
+    worker();
+
+    // wait for all 4 workers to signal completion...
+    await countdown.wait();
+}
+
+main().catch(e =&gt; console.error(e));
+</code></pre></section>
+<section id="tabpanel_c8tNA7mCuT_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { AsyncCountdownEvent } = require(&quot;@esfx/cancelable&quot;);
+
+async function main() {
+    // create an AsyncCountdownEvent with 4 participants
+    const countdown = new AsyncCountdownEvent(4);
+
+    const worker = async () =&gt; {
+        // dome some work async...
+
+        // signal completion
+        countdown.signal();
+    }
+
+    // start 4 workers
+    worker();
+    worker();
+    worker();
+    worker();
+
+    // wait for all 4 workers to signal completion...
+    await countdown.wait();
+}
+
+main().catch(e =&gt; console.error(e));
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
@@ -97,6 +168,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/async-countdown.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

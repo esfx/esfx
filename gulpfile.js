@@ -20,6 +20,7 @@ const yargs = require("yargs")
     .option("docPackagePattern", { type: "string" })
     .option("force", { type: "boolean", default: false })
     .option("verbose", { type: "boolean", default: false })
+    .option("serve", { type: "boolean", default: false })
     ;
 
 const { argv } = yargs;

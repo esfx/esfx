@@ -1,5 +1,5 @@
 ---
-uid: indexed-object
+uid: '@esfx/indexed-object!'
 ---
 
 Provides a base class for custom integer-indexed collections.

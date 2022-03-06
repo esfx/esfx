@@ -83,20 +83,82 @@
   <h1 id="_esfx_disposable_" data-uid="@esfx/disposable!" class="text-break">Package @esfx/disposable
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>Provides a low-level API for defining explicit resource management that third-party libraries can use to interoperate.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/disposable
+</code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_myt0b9nSI2">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_myt0b9nSI2_ts" role="tab" aria-controls="tabpanel_myt0b9nSI2_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_myt0b9nSI2_js" role="tab" aria-controls="tabpanel_myt0b9nSI2_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_myt0b9nSI2_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { Disposable } from &quot;@esfx/disposable&quot;;
+
+class MyFileResouce {
+    private _handle?: number;
+
+    constructor() {
+        this._handle = fs.openSync(&quot;path/to/file&quot;);
+    }
+
+    close() {
+        if (this._handle !== undefined) {
+            fs.closeSync(this._handle);
+            this._handle = undefined;
+        }
+    }
+
+    // provide low-level &#39;dispose&#39; primitive for interop
+    [Disposable.dispose]() {
+        this.close();
+    }
+}
+</code></pre></section>
+<section id="tabpanel_myt0b9nSI2_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Disposable } = require(&quot;@esfx/disposable&quot;);
+
+class MyFileResouce {
+    constructor() {
+        this._handle = fs.openSync(&quot;path/to/file&quot;);
+    }
+
+    close() {
+        if (this._handle !== undefined) {
+            fs.closeSync(this._handle);
+            this._handle = undefined;
+        }
+    }
+
+    // provide low-level &#39;dispose&#39; primitive for interop
+    [Disposable.dispose]() {
+        this.close();
+    }
+}
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
         <h4><a class="xref" href="disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a></h4>
         <section><p>Indicates an object that has resources that can be explicitly disposed asynchronously.</p>
-<p>NOTE: It is not necessary to subclass <code>Disposable</code><!-- -->. Merely having a <code>[Disposable.dispose]()</code> method is sufficient.</p>
+<p>NOTE: It is not necessary to subclass <code>AsyncDisposable</code><!-- -->. Merely having an <code>[AsyncDisposable.asyncDispose]()</code> method is sufficient.</p>
 </section>
         <h4><a class="xref" href="disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_class">AsyncDisposableStack</a></h4>
         <section><p>Emulates Python&#39;s <code>AsyncExitStack</code></p>
 </section>
         <h4><a class="xref" href="disposable/disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a></h4>
         <section><p>Indicates an object that has resources that can be explicitly disposed.</p>
-<p>NOTE: It is not necessary to subclass <code>Disposable</code><!-- -->. Merely having a <code>[Disposable.dispose]()</code> method is sufficient.</p>
 </section>
         <h4><a class="xref" href="disposable/disposablestack.html#_esfx_disposable_DisposableStack_class">DisposableStack</a></h4>
         <section><p>Emulates Python&#39;s <code>ExitStack</code></p>
@@ -112,14 +174,33 @@
         <section><p>Indicates an object that has resources that can be explicitly disposed.</p>
 </section>
         <h4><a class="xref" href="disposable/disposablescope.html#_esfx_disposable_DisposableScope_interface">DisposableScope</a></h4>
-        <section><p>Used to aproximate <code>using const</code> via <code>for..of</code><!-- -->. See .</p>
+        <section><p>Used to aproximate <code>using const</code> via <code>for..of</code><!-- -->. See <a class="xref" href="disposable/disposable-namespace.html">Disposable.scope()</a><!-- -->.</p>
+<p>NOTE: This is not spec-compliant and will not be standardized.</p>
 </section>
+    <h3 id="typealiases">Type Aliases
+  </h3>
+  
+  
+        <h4 id="_esfx_disposable_DisposableLike_type" data-uid="@esfx/disposable!DisposableLike:type">DisposableLike</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type DisposableLike = Disposable | (() =&gt; void);</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
     <h3 id="namespaces">Namespaces
   </h3>
         <h4><a class="xref" href="disposable/asyncdisposable-namespace.html#_esfx_disposable_AsyncDisposable_namespace">AsyncDisposable</a></h4>
         <section></section>
         <h4><a class="xref" href="disposable/disposable-namespace.html#_esfx_disposable_Disposable_namespace">Disposable</a></h4>
-        <section></section>
+        <section><p>Indicates an object that has resources that can be explicitly disposed.</p>
+</section>
 </article>
           </div>
           
@@ -127,6 +208,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/disposable.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

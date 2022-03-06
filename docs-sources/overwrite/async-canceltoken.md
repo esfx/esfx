@@ -1,8 +1,8 @@
 ---
-uid: async-canceltoken
+uid: '@esfx/async-canceltoken!'
 ---
 
-The `@esfx/async-canceltoken` package provides the @"async-canceltoken.CancelToken" class, an implementation of `@esfx/cancelable`.
+The `@esfx/async-canceltoken` package provides the @"@esfx/async-canceltoken!CancelToken:class" class, an implementation of `@esfx/cancelable`.
 
 # Overview
 

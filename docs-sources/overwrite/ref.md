@@ -1,5 +1,5 @@
 ---
-uid: ref
+uid: '@esfx/ref!'
 ---
 
 Provides a low-level API for defining forward references.

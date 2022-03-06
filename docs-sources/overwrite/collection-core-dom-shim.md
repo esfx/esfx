@@ -1,8 +1,8 @@
 ---
-uid: collection-core-dom-shim
+uid: '@esfx/collection-core-dom-shim!'
 ---
 
-Provides a global shim to add default @"collection-core" behaviors to global DOM objects.
+Provides a global shim to add default @"@esfx/collection-core!" behaviors to global DOM objects.
 
 # Overview
 
@@ -20,119 +20,119 @@ npm i @esfx/collection-core-dom-shim
 The global shim adds a default implementation the collection interfaces to the following global DOM objects:
 
 - `AudioParamMap` implements:
-    - @"collection-core.ReadonlyKeyedCollection"
+    - @"@esfx/collection-core!ReadonlyKeyedCollection:interface"
 - `AudioTrackList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `CSSRuleList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `CSSStyleDeclaration` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `ClientRectList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `DOMRectList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `DOMStringList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `DOMTokenList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `DataTransferItemList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `FileList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `FormData` implements:
-    - @"collection-core.KeyedCollection"
-    - @"collection-core.ReadonlyKeyedCollection"
+    - @"@esfx/collection-core!KeyedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyKeyedCollection:interface"
 - `HTMLAllCollection` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `HTMLCollectionBase` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `HTMLCollectionOf` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `HTMLFormElement` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `HTMLSelectElement` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `Headers` implements:
-    - @"collection-core.KeyedCollection"
-    - @"collection-core.ReadonlyKeyedCollection"
+    - @"@esfx/collection-core!KeyedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyKeyedCollection:interface"
 - `MediaKeyStatusMap` implements:
-    - @"collection-core.ReadonlyKeyedCollection"
+    - @"@esfx/collection-core!ReadonlyKeyedCollection:interface"
 - `MediaList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `MimeTypeArray` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `NamedNodeMap` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `NodeList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `Plugin` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `PluginArray` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `RTCStatsReport` implements:
-    - @"collection-core.ReadonlyKeyedCollection"
+    - @"@esfx/collection-core!ReadonlyKeyedCollection:interface"
 - `SVGLengthList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `SVGNumberList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `SVGStringList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `SourceBufferList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `SpeechGrammarList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `SpeechRecognitionResult` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `SpeechRecognitionResultList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `StyleSheetList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `TextTrackCueList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `TextTrackList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `TouchList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 - `URLSearchParams` implements:
-    - @"collection-core.KeyedCollection"
-    - @"collection-core.ReadonlyKeyedCollection"
-    - @"collection-core.ReadonlyKeyedCollection"
+    - @"@esfx/collection-core!KeyedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyKeyedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyKeyedCollection:interface"
 - `VideoTrackList` implements:
-    - @"collection-core.ReadonlyIndexedCollection"
-    - @"collection-core.ReadonlyCollection"
+    - @"@esfx/collection-core!ReadonlyIndexedCollection:interface"
+    - @"@esfx/collection-core!ReadonlyCollection:interface"
 
-To install the global shim, import @"collection-core-dom-shim":
+To install the global shim, import @"@esfx/collection-core-dom-shim!":
 
 ## [TypeScript](#tab/ts)
 ```ts

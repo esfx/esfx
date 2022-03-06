@@ -70,9 +70,9 @@ references:
   href: api/async-canceltoken.html
   fullName: '@esfx/async-canceltoken'
 - uid: '@esfx/async-canceltoken!CancelSource#cancel:member(1)'
-  name: cancel()
+  name: cancel(reason)
   href: api/async-canceltoken/cancelsource.html#_esfx_async_canceltoken_CancelSource_cancel_member_1_
-  fullName: cancel()
+  fullName: cancel(reason)
 - uid: '@esfx/async-canceltoken!CancelSource#close:member(1)'
   name: close()
   href: api/async-canceltoken/cancelsource.html#_esfx_async_canceltoken_CancelSource_close_member_1_
@@ -93,6 +93,10 @@ references:
   name: canBeSignaled
   href: api/async-canceltoken/canceltoken.html#_esfx_async_canceltoken_CancelToken_canBeSignaled_member
   fullName: canBeSignaled
+- uid: '@esfx/async-canceltoken!CancelToken#reason:member'
+  name: reason
+  href: api/async-canceltoken/canceltoken.html#_esfx_async_canceltoken_CancelToken_reason_member
+  fullName: reason
 - uid: '@esfx/async-canceltoken!CancelToken#signaled:member'
   name: signaled
   href: api/async-canceltoken/canceltoken.html#_esfx_async_canceltoken_CancelToken_signaled_member
@@ -113,6 +117,10 @@ references:
   name: canceled
   href: api/async-canceltoken/canceltoken.html#_esfx_async_canceltoken_CancelToken_canceled_member
   fullName: canceled
+- uid: '@esfx/async-canceltoken!CancelToken.canceledWith:member(1)'
+  name: canceledWith(reason)
+  href: api/async-canceltoken/canceltoken.html#_esfx_async_canceltoken_CancelToken_canceledWith_member_1_
+  fullName: canceledWith(reason)
 - uid: '@esfx/async-canceltoken!CancelToken.from:member(1)'
   name: from(cancelable)
   href: api/async-canceltoken/canceltoken.html#_esfx_async_canceltoken_CancelToken_from_member_1_
@@ -129,6 +137,10 @@ references:
   name: source()
   href: api/async-canceltoken/canceltoken.html#_esfx_async_canceltoken_CancelToken_source_member_1_
   fullName: source()
+- uid: '@esfx/async-canceltoken!CancelToken.timeout:member(1)'
+  name: timeout(ms, reason)
+  href: api/async-canceltoken/canceltoken.html#_esfx_async_canceltoken_CancelToken_timeout_member_1_
+  fullName: timeout(ms, reason)
 - uid: '@esfx/async-canceltoken!CancelToken:class'
   name: CancelToken
   href: api/async-canceltoken/canceltoken.html#_esfx_async_canceltoken_CancelToken_class
@@ -314,9 +326,9 @@ references:
   href: api/async-iter-fn.html#_esfx_async_iter_fn_concatAsync_function_3_
   fullName: concatAsync(left, right)
 - uid: '@esfx/async-iter-fn!consumeAsync:function(1)'
-  name: consumeAsync(iterator, { cacheElements, leaveOpen })
+  name: consumeAsync(iterator, options)
   href: api/async-iter-fn.html#_esfx_async_iter_fn_consumeAsync_function_1_
-  fullName: consumeAsync(iterator, { cacheElements, leaveOpen })
+  fullName: consumeAsync(iterator, options)
 - uid: '@esfx/async-iter-fn!ConsumeAsyncOptions#cacheElements:member'
   name: cacheElements
   href: api/async-iter-fn/consumeasyncoptions.html#_esfx_async_iter_fn_ConsumeAsyncOptions_cacheElements_member
@@ -2353,10 +2365,6 @@ references:
   name: hasInstance(value)
   href: api/async-lockable/asynclockable-namespace.html
   fullName: AsyncLockable.hasInstance(value)
-- uid: '@esfx/async-lockable!AsyncLockable.isAsyncLockable:function(1)'
-  name: isAsyncLockable(value)
-  href: api/async-lockable/asynclockable-namespace.html
-  fullName: AsyncLockable.isAsyncLockable(value)
 - uid: '@esfx/async-lockable!AsyncLockable.lock:var'
   name: lock
   href: api/async-lockable/asynclockable-namespace.html
@@ -2445,6 +2453,10 @@ references:
   name: '[AsyncLockable.unlock]()'
   href: api/async-mutex/asyncmutex.html#_esfx_async_mutex_AsyncMutex__AsyncLockable_unlock__member_1_
   fullName: '[AsyncLockable.unlock]()'
+- uid: '@esfx/async-mutex!AsyncMutex#[Symbol.toStringTag]:member'
+  name: '[Symbol.toStringTag]'
+  href: api/async-mutex/asyncmutex.html#_esfx_async_mutex_AsyncMutex__Symbol_toStringTag__member
+  fullName: '[Symbol.toStringTag]'
 - uid: '@esfx/async-mutex!AsyncMutex#isLocked:member'
   name: isLocked
   href: api/async-mutex/asyncmutex.html#_esfx_async_mutex_AsyncMutex_isLocked_member
@@ -2573,14 +2585,6 @@ references:
   name: AsyncReaderWriterLockUpgradeableReader
   href: api/async-readerwriterlock/asyncreaderwriterlockupgradeablereader.html#_esfx_async_readerwriterlock_AsyncReaderWriterLockUpgradeableReader_interface
   fullName: AsyncReaderWriterLockUpgradeableReader
-- uid: '@esfx/async-readerwriterlock!AsyncReaderWriterLockUpgradedWriter#owner:member'
-  name: owner
-  href: api/async-readerwriterlock/asyncreaderwriterlockupgradedwriter.html#_esfx_async_readerwriterlock_AsyncReaderWriterLockUpgradedWriter_owner_member
-  fullName: owner
-- uid: '@esfx/async-readerwriterlock!AsyncReaderWriterLockUpgradedWriter:interface'
-  name: AsyncReaderWriterLockUpgradedWriter
-  href: api/async-readerwriterlock/asyncreaderwriterlockupgradedwriter.html#_esfx_async_readerwriterlock_AsyncReaderWriterLockUpgradedWriter_interface
-  fullName: AsyncReaderWriterLockUpgradedWriter
 - uid: '@esfx/async-readerwriterlock!AsyncReaderWriterLockWriter#owner:member'
   name: owner
   href: api/async-readerwriterlock/asyncreaderwriterlockwriter.html#_esfx_async_readerwriterlock_AsyncReaderWriterLockWriter_owner_member
@@ -2670,13 +2674,13 @@ references:
   href: api/async-waitqueue.html
   fullName: '@esfx/async-waitqueue'
 - uid: '@esfx/async-waitqueue!WaitQueue#cancelAll:member(1)'
-  name: cancelAll()
+  name: cancelAll(reason)
   href: api/async-waitqueue/waitqueue.html#_esfx_async_waitqueue_WaitQueue_cancelAll_member_1_
-  fullName: cancelAll()
+  fullName: cancelAll(reason)
 - uid: '@esfx/async-waitqueue!WaitQueue#cancelOne:member(1)'
-  name: cancelOne()
+  name: cancelOne(reason)
   href: api/async-waitqueue/waitqueue.html#_esfx_async_waitqueue_WaitQueue_cancelOne_member_1_
-  fullName: cancelOne()
+  fullName: cancelOne(reason)
 - uid: '@esfx/async-waitqueue!WaitQueue#rejectAll:member(1)'
   name: rejectAll(reason)
   href: api/async-waitqueue/waitqueue.html#_esfx_async_waitqueue_WaitQueue_rejectAll_member_1_
@@ -2729,14 +2733,14 @@ references:
   name: cancelSignal
   href: api/cancelable/cancelable-namespace.html
   fullName: Cancelable.cancelSignal
+- uid: '@esfx/cancelable!Cancelable.getReason:function(1)'
+  name: getReason(cancelable)
+  href: api/cancelable/cancelable-namespace.html
+  fullName: Cancelable.getReason(cancelable)
 - uid: '@esfx/cancelable!Cancelable.hasInstance:function(1)'
   name: hasInstance(value)
   href: api/cancelable/cancelable-namespace.html
   fullName: Cancelable.hasInstance(value)
-- uid: '@esfx/cancelable!Cancelable.isCancelable:function(1)'
-  name: isCancelable(value)
-  href: api/cancelable/cancelable-namespace.html
-  fullName: Cancelable.isCancelable(value)
 - uid: '@esfx/cancelable!Cancelable.isSignaled:function(1)'
   name: isSignaled(cancelable)
   href: api/cancelable/cancelable-namespace.html
@@ -2774,9 +2778,9 @@ references:
   href: api/cancelable/cancelablecancelsignal.html#_esfx_cancelable_CancelableCancelSignal_interface
   fullName: CancelableCancelSignal
 - uid: '@esfx/cancelable!CancelableSource#[CancelableSource.cancel]:member(1)'
-  name: '[CancelableSource.cancel]()'
+  name: '[CancelableSource.cancel](reason)'
   href: api/cancelable/cancelablesource-interface.html#_esfx_cancelable_CancelableSource__CancelableSource_cancel__member_1_
-  fullName: '[CancelableSource.cancel]()'
+  fullName: '[CancelableSource.cancel](reason)'
 - uid: '@esfx/cancelable!CancelableSource.cancel:var'
   name: cancel
   href: api/cancelable/cancelablesource-namespace.html
@@ -2785,10 +2789,6 @@ references:
   name: hasInstance(value)
   href: api/cancelable/cancelablesource-namespace.html
   fullName: CancelableSource.hasInstance(value)
-- uid: '@esfx/cancelable!CancelableSource.isCancelableSource:function(1)'
-  name: isCancelableSource(value)
-  href: api/cancelable/cancelablesource-namespace.html
-  fullName: CancelableSource.isCancelableSource(value)
 - uid: '@esfx/cancelable!CancelableSource.name:var'
   name: name
   href: api/cancelable/cancelablesource-namespace.html
@@ -2806,9 +2806,13 @@ references:
   href: api/cancelable/cancelerror.html#_esfx_cancelable_CancelError_class
   fullName: CancelError
 - uid: '@esfx/cancelable!CancelError:constructor(1)'
-  name: constructor(message)
+  name: constructor(message, options)
   href: api/cancelable/cancelerror.html#_esfx_cancelable_CancelError_constructor_1_
-  fullName: constructor(message)
+  fullName: constructor(message, options)
+- uid: '@esfx/cancelable!CancelSignal#reason:member'
+  name: reason
+  href: api/cancelable/cancelsignal.html#_esfx_cancelable_CancelSignal_reason_member
+  fullName: reason
 - uid: '@esfx/cancelable!CancelSignal#signaled:member'
   name: signaled
   href: api/cancelable/cancelsignal.html#_esfx_cancelable_CancelSignal_signaled_member
@@ -2845,6 +2849,10 @@ references:
   name: toAbortSignal(cancelable)
   href: api/cancelable-dom.html#_esfx_cancelable_dom_toAbortSignal_function_1_
   fullName: toAbortSignal(cancelable)
+- uid: '@esfx/cancelable-dom!wrapAbortSignal:function(1)'
+  name: wrapAbortSignal(signal)
+  href: api/cancelable-dom.html#_esfx_cancelable_dom_wrapAbortSignal_function_1_
+  fullName: wrapAbortSignal(signal)
 - uid: '@esfx/cancelable-dom-shim!'
   name: '@esfx/cancelable-dom-shim'
   href: api/cancelable-dom-shim.html
@@ -2869,10 +2877,6 @@ references:
   name: _delete
   href: api/collection-core/collection-namespace.html
   fullName: Collection._delete
-- uid: '@esfx/collection-core!Collection.add:var'
-  name: add
-  href: api/collection-core/collection-namespace.html
-  fullName: Collection.add
 - uid: '@esfx/collection-core!Collection.clear:var'
   name: clear
   href: api/collection-core/collection-namespace.html
@@ -2885,14 +2889,6 @@ references:
   name: hasInstance(value)
   href: api/collection-core/collection-namespace.html
   fullName: Collection.hasInstance(value)
-- uid: '@esfx/collection-core!Collection.isCollection:function(1)'
-  name: isCollection(value)
-  href: api/collection-core/collection-namespace.html
-  fullName: Collection.isCollection(value)
-- uid: '@esfx/collection-core!Collection.isCollection:function(2)'
-  name: isCollection(value)
-  href: api/collection-core/collection-namespace.html
-  fullName: Collection.isCollection(value)
 - uid: '@esfx/collection-core!Collection.name:var'
   name: name
   href: api/collection-core/collection-namespace.html
@@ -2905,6 +2901,38 @@ references:
   name: Collection
   href: api/collection-core/collection-namespace.html#_esfx_collection_core_Collection_namespace
   fullName: Collection
+- uid: '@esfx/collection-core!Container#[Container.add]:member(1)'
+  name: '[Container.add](value)'
+  href: api/collection-core/container-interface.html#_esfx_collection_core_Container__Container_add__member_1_
+  fullName: '[Container.add](value)'
+- uid: '@esfx/collection-core!Container#[Container.delete]:member(1)'
+  name: '[Container.delete](value)'
+  href: api/collection-core/container-interface.html#_esfx_collection_core_Container__Container_delete__member_1_
+  fullName: '[Container.delete](value)'
+- uid: '@esfx/collection-core!Container._delete:var'
+  name: _delete
+  href: api/collection-core/container-namespace.html
+  fullName: Container._delete
+- uid: '@esfx/collection-core!Container.add:var'
+  name: add
+  href: api/collection-core/container-namespace.html
+  fullName: Container.add
+- uid: '@esfx/collection-core!Container.hasInstance:function(1)'
+  name: hasInstance(value)
+  href: api/collection-core/container-namespace.html
+  fullName: Container.hasInstance(value)
+- uid: '@esfx/collection-core!Container.name:var'
+  name: name
+  href: api/collection-core/container-namespace.html
+  fullName: Container.name
+- uid: '@esfx/collection-core!Container:interface'
+  name: Container
+  href: api/collection-core/container-interface.html#_esfx_collection_core_Container_interface
+  fullName: Container
+- uid: '@esfx/collection-core!Container:namespace'
+  name: Container
+  href: api/collection-core/container-namespace.html#_esfx_collection_core_Container_namespace
+  fullName: Container
 - uid: '@esfx/collection-core!FixedSizeIndexedCollection#[FixedSizeIndexedCollection.setAt]:member(1)'
   name: '[FixedSizeIndexedCollection.setAt](index, value)'
   href: api/collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection__FixedSizeIndexedCollection_setAt__member_1_
@@ -2917,14 +2945,6 @@ references:
   name: hasInstance(value)
   href: api/collection-core/fixedsizeindexedcollection-namespace.html
   fullName: FixedSizeIndexedCollection.hasInstance(value)
-- uid: '@esfx/collection-core!FixedSizeIndexedCollection.isFixedSizeIndexedCollection:function(1)'
-  name: isFixedSizeIndexedCollection(value)
-  href: api/collection-core/fixedsizeindexedcollection-namespace.html
-  fullName: FixedSizeIndexedCollection.isFixedSizeIndexedCollection(value)
-- uid: '@esfx/collection-core!FixedSizeIndexedCollection.isFixedSizeIndexedCollection:function(2)'
-  name: isFixedSizeIndexedCollection(value)
-  href: api/collection-core/fixedsizeindexedcollection-namespace.html
-  fullName: FixedSizeIndexedCollection.isFixedSizeIndexedCollection(value)
 - uid: '@esfx/collection-core!FixedSizeIndexedCollection.name:var'
   name: name
   href: api/collection-core/fixedsizeindexedcollection-namespace.html
@@ -2965,14 +2985,6 @@ references:
   name: insertAt
   href: api/collection-core/indexedcollection-namespace.html
   fullName: IndexedCollection.insertAt
-- uid: '@esfx/collection-core!IndexedCollection.isIndexedCollection:function(1)'
-  name: isIndexedCollection(value)
-  href: api/collection-core/indexedcollection-namespace.html
-  fullName: IndexedCollection.isIndexedCollection(value)
-- uid: '@esfx/collection-core!IndexedCollection.isIndexedCollection:function(2)'
-  name: isIndexedCollection(value)
-  href: api/collection-core/indexedcollection-namespace.html
-  fullName: IndexedCollection.isIndexedCollection(value)
 - uid: '@esfx/collection-core!IndexedCollection.name:var'
   name: name
   href: api/collection-core/indexedcollection-namespace.html
@@ -2993,14 +3005,6 @@ references:
   name: '[KeyedCollection.clear]()'
   href: api/collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection__KeyedCollection_clear__member_1_
   fullName: '[KeyedCollection.clear]()'
-- uid: '@esfx/collection-core!KeyedCollection#[KeyedCollection.delete]:member(1)'
-  name: '[KeyedCollection.delete](key)'
-  href: api/collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection__KeyedCollection_delete__member_1_
-  fullName: '[KeyedCollection.delete](key)'
-- uid: '@esfx/collection-core!KeyedCollection#[KeyedCollection.set]:member(1)'
-  name: '[KeyedCollection.set](key, value)'
-  href: api/collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection__KeyedCollection_set__member_1_
-  fullName: '[KeyedCollection.set](key, value)'
 - uid: '@esfx/collection-core!KeyedCollection._delete:var'
   name: _delete
   href: api/collection-core/keyedcollection-namespace.html
@@ -3017,22 +3021,10 @@ references:
   name: hasInstance(value)
   href: api/collection-core/keyedcollection-namespace.html
   fullName: KeyedCollection.hasInstance(value)
-- uid: '@esfx/collection-core!KeyedCollection.isKeyedCollection:function(1)'
-  name: isKeyedCollection(value)
-  href: api/collection-core/keyedcollection-namespace.html
-  fullName: KeyedCollection.isKeyedCollection(value)
-- uid: '@esfx/collection-core!KeyedCollection.isKeyedCollection:function(2)'
-  name: isKeyedCollection(value)
-  href: api/collection-core/keyedcollection-namespace.html
-  fullName: KeyedCollection.isKeyedCollection(value)
 - uid: '@esfx/collection-core!KeyedCollection.name:var'
   name: name
   href: api/collection-core/keyedcollection-namespace.html
   fullName: KeyedCollection.name
-- uid: '@esfx/collection-core!KeyedCollection.set:var'
-  name: set
-  href: api/collection-core/keyedcollection-namespace.html
-  fullName: KeyedCollection.set
 - uid: '@esfx/collection-core!KeyedCollection:interface'
   name: KeyedCollection
   href: api/collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection_interface
@@ -3041,6 +3033,38 @@ references:
   name: KeyedCollection
   href: api/collection-core/keyedcollection-namespace.html#_esfx_collection_core_KeyedCollection_namespace
   fullName: KeyedCollection
+- uid: '@esfx/collection-core!KeyedContainer#[KeyedContainer.delete]:member(1)'
+  name: '[KeyedContainer.delete](key)'
+  href: api/collection-core/keyedcontainer-interface.html#_esfx_collection_core_KeyedContainer__KeyedContainer_delete__member_1_
+  fullName: '[KeyedContainer.delete](key)'
+- uid: '@esfx/collection-core!KeyedContainer#[KeyedContainer.set]:member(1)'
+  name: '[KeyedContainer.set](key, value)'
+  href: api/collection-core/keyedcontainer-interface.html#_esfx_collection_core_KeyedContainer__KeyedContainer_set__member_1_
+  fullName: '[KeyedContainer.set](key, value)'
+- uid: '@esfx/collection-core!KeyedContainer._delete:var'
+  name: _delete
+  href: api/collection-core/keyedcontainer-namespace.html
+  fullName: KeyedContainer._delete
+- uid: '@esfx/collection-core!KeyedContainer.hasInstance:function(1)'
+  name: hasInstance(value)
+  href: api/collection-core/keyedcontainer-namespace.html
+  fullName: KeyedContainer.hasInstance(value)
+- uid: '@esfx/collection-core!KeyedContainer.name:var'
+  name: name
+  href: api/collection-core/keyedcontainer-namespace.html
+  fullName: KeyedContainer.name
+- uid: '@esfx/collection-core!KeyedContainer.set:var'
+  name: set
+  href: api/collection-core/keyedcontainer-namespace.html
+  fullName: KeyedContainer.set
+- uid: '@esfx/collection-core!KeyedContainer:interface'
+  name: KeyedContainer
+  href: api/collection-core/keyedcontainer-interface.html#_esfx_collection_core_KeyedContainer_interface
+  fullName: KeyedContainer
+- uid: '@esfx/collection-core!KeyedContainer:namespace'
+  name: KeyedContainer
+  href: api/collection-core/keyedcontainer-namespace.html#_esfx_collection_core_KeyedContainer_namespace
+  fullName: KeyedContainer
 - uid: '@esfx/collection-core!KeyedMultiCollection#[KeyedMultiCollection.add]:member(1)'
   name: '[KeyedMultiCollection.add](key, value)'
   href: api/collection-core/keyedmulticollection-interface.html#_esfx_collection_core_KeyedMultiCollection__KeyedMultiCollection_add__member_1_
@@ -3081,14 +3105,6 @@ references:
   name: hasInstance(value)
   href: api/collection-core/keyedmulticollection-namespace.html
   fullName: KeyedMultiCollection.hasInstance(value)
-- uid: '@esfx/collection-core!KeyedMultiCollection.isKeyedMultiCollection:function(1)'
-  name: isKeyedMultiCollection(value)
-  href: api/collection-core/keyedmulticollection-namespace.html
-  fullName: KeyedMultiCollection.isKeyedMultiCollection(value)
-- uid: '@esfx/collection-core!KeyedMultiCollection.isKeyedMultiCollection:function(2)'
-  name: isKeyedMultiCollection(value)
-  href: api/collection-core/keyedmulticollection-namespace.html
-  fullName: KeyedMultiCollection.isKeyedMultiCollection(value)
 - uid: '@esfx/collection-core!KeyedMultiCollection.name:var'
   name: name
   href: api/collection-core/keyedmulticollection-namespace.html
@@ -3109,10 +3125,6 @@ references:
   name: '[ReadonlyCollection.size]'
   href: api/collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection__ReadonlyCollection_size__member
   fullName: '[ReadonlyCollection.size]'
-- uid: '@esfx/collection-core!ReadonlyCollection.has:var'
-  name: has
-  href: api/collection-core/readonlycollection-namespace.html
-  fullName: ReadonlyCollection.has
 - uid: '@esfx/collection-core!ReadonlyCollection.hasInstance:function(1)'
   name: hasInstance(value)
   href: api/collection-core/readonlycollection-namespace.html
@@ -3121,14 +3133,6 @@ references:
   name: hasInstance(value)
   href: api/collection-core/readonlycollection-namespace.html
   fullName: ReadonlyCollection.hasInstance(value)
-- uid: '@esfx/collection-core!ReadonlyCollection.isReadonlyCollection:function(1)'
-  name: isReadonlyCollection(value)
-  href: api/collection-core/readonlycollection-namespace.html
-  fullName: ReadonlyCollection.isReadonlyCollection(value)
-- uid: '@esfx/collection-core!ReadonlyCollection.isReadonlyCollection:function(2)'
-  name: isReadonlyCollection(value)
-  href: api/collection-core/readonlycollection-namespace.html
-  fullName: ReadonlyCollection.isReadonlyCollection(value)
 - uid: '@esfx/collection-core!ReadonlyCollection.name:var'
   name: name
   href: api/collection-core/readonlycollection-namespace.html
@@ -3145,6 +3149,30 @@ references:
   name: ReadonlyCollection
   href: api/collection-core/readonlycollection-namespace.html#_esfx_collection_core_ReadonlyCollection_namespace
   fullName: ReadonlyCollection
+- uid: '@esfx/collection-core!ReadonlyContainer#[ReadonlyContainer.has]:member(1)'
+  name: '[ReadonlyContainer.has](value)'
+  href: api/collection-core/readonlycontainer-interface.html#_esfx_collection_core_ReadonlyContainer__ReadonlyContainer_has__member_1_
+  fullName: '[ReadonlyContainer.has](value)'
+- uid: '@esfx/collection-core!ReadonlyContainer.has:var'
+  name: has
+  href: api/collection-core/readonlycontainer-namespace.html
+  fullName: ReadonlyContainer.has
+- uid: '@esfx/collection-core!ReadonlyContainer.hasInstance:function(1)'
+  name: hasInstance(value)
+  href: api/collection-core/readonlycontainer-namespace.html
+  fullName: ReadonlyContainer.hasInstance(value)
+- uid: '@esfx/collection-core!ReadonlyContainer.name:var'
+  name: name
+  href: api/collection-core/readonlycontainer-namespace.html
+  fullName: ReadonlyContainer.name
+- uid: '@esfx/collection-core!ReadonlyContainer:interface'
+  name: ReadonlyContainer
+  href: api/collection-core/readonlycontainer-interface.html#_esfx_collection_core_ReadonlyContainer_interface
+  fullName: ReadonlyContainer
+- uid: '@esfx/collection-core!ReadonlyContainer:namespace'
+  name: ReadonlyContainer
+  href: api/collection-core/readonlycontainer-namespace.html#_esfx_collection_core_ReadonlyContainer_namespace
+  fullName: ReadonlyContainer
 - uid: '@esfx/collection-core!ReadonlyIndexedCollection#[ReadonlyIndexedCollection.getAt]:member(1)'
   name: '[ReadonlyIndexedCollection.getAt](index)'
   href: api/collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection__ReadonlyIndexedCollection_getAt__member_1_
@@ -3169,14 +3197,6 @@ references:
   name: indexOf
   href: api/collection-core/readonlyindexedcollection-namespace.html
   fullName: ReadonlyIndexedCollection.indexOf
-- uid: '@esfx/collection-core!ReadonlyIndexedCollection.isReadonlyIndexedCollection:function(1)'
-  name: isReadonlyIndexedCollection(value)
-  href: api/collection-core/readonlyindexedcollection-namespace.html
-  fullName: ReadonlyIndexedCollection.isReadonlyIndexedCollection(value)
-- uid: '@esfx/collection-core!ReadonlyIndexedCollection.isReadonlyIndexedCollection:function(2)'
-  name: isReadonlyIndexedCollection(value)
-  href: api/collection-core/readonlyindexedcollection-namespace.html
-  fullName: ReadonlyIndexedCollection.isReadonlyIndexedCollection(value)
 - uid: '@esfx/collection-core!ReadonlyIndexedCollection.name:var'
   name: name
   href: api/collection-core/readonlyindexedcollection-namespace.html
@@ -3189,14 +3209,6 @@ references:
   name: ReadonlyIndexedCollection
   href: api/collection-core/readonlyindexedcollection-namespace.html#_esfx_collection_core_ReadonlyIndexedCollection_namespace
   fullName: ReadonlyIndexedCollection
-- uid: '@esfx/collection-core!ReadonlyKeyedCollection#[ReadonlyKeyedCollection.get]:member(1)'
-  name: '[ReadonlyKeyedCollection.get](key)'
-  href: api/collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection__ReadonlyKeyedCollection_get__member_1_
-  fullName: '[ReadonlyKeyedCollection.get](key)'
-- uid: '@esfx/collection-core!ReadonlyKeyedCollection#[ReadonlyKeyedCollection.has]:member(1)'
-  name: '[ReadonlyKeyedCollection.has](key)'
-  href: api/collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection__ReadonlyKeyedCollection_has__member_1_
-  fullName: '[ReadonlyKeyedCollection.has](key)'
 - uid: '@esfx/collection-core!ReadonlyKeyedCollection#[ReadonlyKeyedCollection.keys]:member(1)'
   name: '[ReadonlyKeyedCollection.keys]()'
   href: api/collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection__ReadonlyKeyedCollection_keys__member_1_
@@ -3209,14 +3221,6 @@ references:
   name: '[ReadonlyKeyedCollection.values]()'
   href: api/collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection__ReadonlyKeyedCollection_values__member_1_
   fullName: '[ReadonlyKeyedCollection.values]()'
-- uid: '@esfx/collection-core!ReadonlyKeyedCollection.get:var'
-  name: get
-  href: api/collection-core/readonlykeyedcollection-namespace.html
-  fullName: ReadonlyKeyedCollection.get
-- uid: '@esfx/collection-core!ReadonlyKeyedCollection.has:var'
-  name: has
-  href: api/collection-core/readonlykeyedcollection-namespace.html
-  fullName: ReadonlyKeyedCollection.has
 - uid: '@esfx/collection-core!ReadonlyKeyedCollection.hasInstance:function(1)'
   name: hasInstance(value)
   href: api/collection-core/readonlykeyedcollection-namespace.html
@@ -3225,14 +3229,6 @@ references:
   name: hasInstance(value)
   href: api/collection-core/readonlykeyedcollection-namespace.html
   fullName: ReadonlyKeyedCollection.hasInstance(value)
-- uid: '@esfx/collection-core!ReadonlyKeyedCollection.isReadonlyKeyedCollection:function(1)'
-  name: isReadonlyKeyedCollection(value)
-  href: api/collection-core/readonlykeyedcollection-namespace.html
-  fullName: ReadonlyKeyedCollection.isReadonlyKeyedCollection(value)
-- uid: '@esfx/collection-core!ReadonlyKeyedCollection.isReadonlyKeyedCollection:function(2)'
-  name: isReadonlyKeyedCollection(value)
-  href: api/collection-core/readonlykeyedcollection-namespace.html
-  fullName: ReadonlyKeyedCollection.isReadonlyKeyedCollection(value)
 - uid: '@esfx/collection-core!ReadonlyKeyedCollection.keys:var'
   name: keys
   href: api/collection-core/readonlykeyedcollection-namespace.html
@@ -3257,6 +3253,38 @@ references:
   name: ReadonlyKeyedCollection
   href: api/collection-core/readonlykeyedcollection-namespace.html#_esfx_collection_core_ReadonlyKeyedCollection_namespace
   fullName: ReadonlyKeyedCollection
+- uid: '@esfx/collection-core!ReadonlyKeyedContainer#[ReadonlyKeyedContainer.get]:member(1)'
+  name: '[ReadonlyKeyedContainer.get](key)'
+  href: api/collection-core/readonlykeyedcontainer-interface.html#_esfx_collection_core_ReadonlyKeyedContainer__ReadonlyKeyedContainer_get__member_1_
+  fullName: '[ReadonlyKeyedContainer.get](key)'
+- uid: '@esfx/collection-core!ReadonlyKeyedContainer#[ReadonlyKeyedContainer.has]:member(1)'
+  name: '[ReadonlyKeyedContainer.has](key)'
+  href: api/collection-core/readonlykeyedcontainer-interface.html#_esfx_collection_core_ReadonlyKeyedContainer__ReadonlyKeyedContainer_has__member_1_
+  fullName: '[ReadonlyKeyedContainer.has](key)'
+- uid: '@esfx/collection-core!ReadonlyKeyedContainer.get:var'
+  name: get
+  href: api/collection-core/readonlykeyedcontainer-namespace.html
+  fullName: ReadonlyKeyedContainer.get
+- uid: '@esfx/collection-core!ReadonlyKeyedContainer.has:var'
+  name: has
+  href: api/collection-core/readonlykeyedcontainer-namespace.html
+  fullName: ReadonlyKeyedContainer.has
+- uid: '@esfx/collection-core!ReadonlyKeyedContainer.hasInstance:function(1)'
+  name: hasInstance(value)
+  href: api/collection-core/readonlykeyedcontainer-namespace.html
+  fullName: ReadonlyKeyedContainer.hasInstance(value)
+- uid: '@esfx/collection-core!ReadonlyKeyedContainer.name:var'
+  name: name
+  href: api/collection-core/readonlykeyedcontainer-namespace.html
+  fullName: ReadonlyKeyedContainer.name
+- uid: '@esfx/collection-core!ReadonlyKeyedContainer:interface'
+  name: ReadonlyKeyedContainer
+  href: api/collection-core/readonlykeyedcontainer-interface.html#_esfx_collection_core_ReadonlyKeyedContainer_interface
+  fullName: ReadonlyKeyedContainer
+- uid: '@esfx/collection-core!ReadonlyKeyedContainer:namespace'
+  name: ReadonlyKeyedContainer
+  href: api/collection-core/readonlykeyedcontainer-namespace.html#_esfx_collection_core_ReadonlyKeyedContainer_namespace
+  fullName: ReadonlyKeyedContainer
 - uid: '@esfx/collection-core!ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.get]:member(1)'
   name: '[ReadonlyKeyedMultiCollection.get](key)'
   href: api/collection-core/readonlykeyedmulticollection-interface.html#_esfx_collection_core_ReadonlyKeyedMultiCollection__ReadonlyKeyedMultiCollection_get__member_1_
@@ -3301,14 +3329,6 @@ references:
   name: hasValue
   href: api/collection-core/readonlykeyedmulticollection-namespace.html
   fullName: ReadonlyKeyedMultiCollection.hasValue
-- uid: '@esfx/collection-core!ReadonlyKeyedMultiCollection.isReadonlyKeyedMultiCollection:function(1)'
-  name: isReadonlyKeyedMultiCollection(value)
-  href: api/collection-core/readonlykeyedmulticollection-namespace.html
-  fullName: ReadonlyKeyedMultiCollection.isReadonlyKeyedMultiCollection(value)
-- uid: '@esfx/collection-core!ReadonlyKeyedMultiCollection.isReadonlyKeyedMultiCollection:function(2)'
-  name: isReadonlyKeyedMultiCollection(value)
-  href: api/collection-core/readonlykeyedmulticollection-namespace.html
-  fullName: ReadonlyKeyedMultiCollection.isReadonlyKeyedMultiCollection(value)
 - uid: '@esfx/collection-core!ReadonlyKeyedMultiCollection.keys:var'
   name: keys
   href: api/collection-core/readonlykeyedmulticollection-namespace.html
@@ -3809,18 +3829,6 @@ references:
   name: constructor(iterable, equaler)
   href: api/collections-linkedlist/linkedlist.html#_esfx_collections_linkedlist_LinkedList_constructor_2_
   fullName: constructor(iterable, equaler)
-- uid: '@esfx/collections-linkedlist!LinkedListNode#[kList]:member'
-  name: '[kList]'
-  href: api/collections-linkedlist/linkedlistnode.html#_esfx_collections_linkedlist_LinkedListNode__kList__member
-  fullName: '[kList]'
-- uid: '@esfx/collections-linkedlist!LinkedListNode#[kNext]:member'
-  name: '[kNext]'
-  href: api/collections-linkedlist/linkedlistnode.html#_esfx_collections_linkedlist_LinkedListNode__kNext__member
-  fullName: '[kNext]'
-- uid: '@esfx/collections-linkedlist!LinkedListNode#[kPrevious]:member'
-  name: '[kPrevious]'
-  href: api/collections-linkedlist/linkedlistnode.html#_esfx_collections_linkedlist_LinkedListNode__kPrevious__member
-  fullName: '[kPrevious]'
 - uid: '@esfx/collections-linkedlist!LinkedListNode#[Symbol.toStringTag]:member'
   name: '[Symbol.toStringTag]'
   href: api/collections-linkedlist/linkedlistnode.html#_esfx_collections_linkedlist_LinkedListNode__Symbol_toStringTag__member
@@ -4114,9 +4122,9 @@ references:
   href: api/collections-sortedmap/sortedmap.html#_esfx_collections_sortedmap_SortedMap_entries_member_1_
   fullName: entries()
 - uid: '@esfx/collections-sortedmap!SortedMap#forEach:member(1)'
-  name: forEach(cb, thisArg)
+  name: forEach(callback, thisArg)
   href: api/collections-sortedmap/sortedmap.html#_esfx_collections_sortedmap_SortedMap_forEach_member_1_
-  fullName: forEach(cb, thisArg)
+  fullName: forEach(callback, thisArg)
 - uid: '@esfx/collections-sortedmap!SortedMap#get:member(1)'
   name: get(key)
   href: api/collections-sortedmap/sortedmap.html#_esfx_collections_sortedmap_SortedMap_get_member_1_
@@ -4218,9 +4226,9 @@ references:
   href: api/collections-sortedset/sortedset.html#_esfx_collections_sortedset_SortedSet_entries_member_1_
   fullName: entries()
 - uid: '@esfx/collections-sortedset!SortedSet#forEach:member(1)'
-  name: forEach(cb, thisArg)
+  name: forEach(callback, thisArg)
   href: api/collections-sortedset/sortedset.html#_esfx_collections_sortedset_SortedSet_forEach_member_1_
-  fullName: forEach(cb, thisArg)
+  fullName: forEach(callback, thisArg)
 - uid: '@esfx/collections-sortedset!SortedSet#has:member(1)'
   name: has(value)
   href: api/collections-sortedset/sortedset.html#_esfx_collections_sortedset_SortedSet_has_member_1_
@@ -4525,46 +4533,34 @@ references:
   name: '[AsyncDisposable.asyncDispose]()'
   href: api/disposable/asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable__AsyncDisposable_asyncDispose__member_1_
   fullName: '[AsyncDisposable.asyncDispose]()'
-- uid: '@esfx/disposable!AsyncDisposable.[Symbol.hasInstance]:member(1)'
-  name: '[Symbol.hasInstance](value)'
-  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable__Symbol_hasInstance__member_1_
-  fullName: '[Symbol.hasInstance](value)'
-- uid: '@esfx/disposable!AsyncDisposable.asyncDispose:member'
+- uid: '@esfx/disposable!AsyncDisposable.asyncDispose:var'
   name: asyncDispose
-  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_asyncDispose_member
-  fullName: asyncDispose
-- uid: '@esfx/disposable!AsyncDisposable.create:function(1)'
-  name: create(dispose)
   href: api/disposable/asyncdisposable-namespace.html
-  fullName: AsyncDisposable.create(dispose)
-- uid: '@esfx/disposable!AsyncDisposable.from:member(1)'
-  name: from(resources)
-  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_from_member_1_
-  fullName: from(resources)
-- uid: '@esfx/disposable!AsyncDisposable.hasInstance:member(1)'
+  fullName: AsyncDisposable.asyncDispose
+- uid: '@esfx/disposable!AsyncDisposable.create:function(1)'
+  name: create(disposeAsync)
+  href: api/disposable/asyncdisposable-namespace.html
+  fullName: AsyncDisposable.create(disposeAsync)
+- uid: '@esfx/disposable!AsyncDisposable.hasInstance:function(1)'
   name: hasInstance(value)
-  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_hasInstance_member_1_
-  fullName: hasInstance(value)
-- uid: '@esfx/disposable!AsyncDisposable.scope:member(1)'
+  href: api/disposable/asyncdisposable-namespace.html
+  fullName: AsyncDisposable.hasInstance(value)
+- uid: '@esfx/disposable!AsyncDisposable.scope:function(1)'
   name: scope()
-  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_scope_member_1_
-  fullName: scope()
-- uid: '@esfx/disposable!AsyncDisposable.use:member(1)'
-  name: use(resource, callback)
-  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_use_member_1_
-  fullName: use(resource, callback)
-- uid: '@esfx/disposable!AsyncDisposable.usingEach:member(1)'
+  href: api/disposable/asyncdisposable-namespace.html
+  fullName: AsyncDisposable.scope()
+- uid: '@esfx/disposable!AsyncDisposable.usingEach:function(1)'
   name: usingEach(iterable)
-  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_usingEach_member_1_
-  fullName: usingEach(iterable)
+  href: api/disposable/asyncdisposable-namespace.html
+  fullName: AsyncDisposable.usingEach(iterable)
 - uid: '@esfx/disposable!AsyncDisposable:class'
   name: AsyncDisposable
   href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class
   fullName: AsyncDisposable
 - uid: '@esfx/disposable!AsyncDisposable:constructor(1)'
-  name: constructor(onDispose)
+  name: constructor(disposeAsync)
   href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_constructor_1_
-  fullName: constructor(onDispose)
+  fullName: constructor(disposeAsync)
 - uid: '@esfx/disposable!AsyncDisposable:interface'
   name: AsyncDisposable
   href: api/disposable/asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface
@@ -4597,14 +4593,6 @@ references:
   name: disposeAsync
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_disposeAsync_member
   fullName: disposeAsync
-- uid: '@esfx/disposable!AsyncDisposableStack#enter:member(1)'
-  name: enter(value)
-  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_enter_member_1_
-  fullName: enter(value)
-- uid: '@esfx/disposable!AsyncDisposableStack#enter:member(2)'
-  name: enter(value, onDispose)
-  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_enter_member_2_
-  fullName: enter(value, onDispose)
 - uid: '@esfx/disposable!AsyncDisposableStack#move:member(1)'
   name: move()
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_move_member_1_
@@ -4614,9 +4602,13 @@ references:
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_use_member_1_
   fullName: use(value)
 - uid: '@esfx/disposable!AsyncDisposableStack#use:member(2)'
-  name: use(value, onDispose)
+  name: use(value, onDisposeAsync)
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_use_member_2_
-  fullName: use(value, onDispose)
+  fullName: use(value, onDisposeAsync)
+- uid: '@esfx/disposable!AsyncDisposableStack.[Symbol.species]:member'
+  name: '[Symbol.species]'
+  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack__Symbol_species__member
+  fullName: '[Symbol.species]'
 - uid: '@esfx/disposable!AsyncDisposableStack:class'
   name: AsyncDisposableStack
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_class
@@ -4629,46 +4621,34 @@ references:
   name: '[Disposable.dispose]()'
   href: api/disposable/disposable-interface.html#_esfx_disposable_Disposable__Disposable_dispose__member_1_
   fullName: '[Disposable.dispose]()'
-- uid: '@esfx/disposable!Disposable.[Symbol.hasInstance]:member(1)'
-  name: '[Symbol.hasInstance](value)'
-  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable__Symbol_hasInstance__member_1_
-  fullName: '[Symbol.hasInstance](value)'
 - uid: '@esfx/disposable!Disposable.create:function(1)'
   name: create(dispose)
   href: api/disposable/disposable-namespace.html
   fullName: Disposable.create(dispose)
-- uid: '@esfx/disposable!Disposable.dispose:member'
+- uid: '@esfx/disposable!Disposable.dispose:var'
   name: dispose
-  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_dispose_member
-  fullName: dispose
-- uid: '@esfx/disposable!Disposable.from:member(1)'
-  name: from(disposables)
-  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_from_member_1_
-  fullName: from(disposables)
-- uid: '@esfx/disposable!Disposable.hasInstance:member(1)'
+  href: api/disposable/disposable-namespace.html
+  fullName: Disposable.dispose
+- uid: '@esfx/disposable!Disposable.hasInstance:function(1)'
   name: hasInstance(value)
-  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_hasInstance_member_1_
-  fullName: hasInstance(value)
-- uid: '@esfx/disposable!Disposable.scope:member(1)'
+  href: api/disposable/disposable-namespace.html
+  fullName: Disposable.hasInstance(value)
+- uid: '@esfx/disposable!Disposable.scope:function(1)'
   name: scope()
-  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_scope_member_1_
-  fullName: scope()
-- uid: '@esfx/disposable!Disposable.use:member(1)'
-  name: use(resource, callback)
-  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_use_member_1_
-  fullName: use(resource, callback)
-- uid: '@esfx/disposable!Disposable.usingEach:member(1)'
-  name: usingEach(disposables)
-  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_usingEach_member_1_
-  fullName: usingEach(disposables)
+  href: api/disposable/disposable-namespace.html
+  fullName: Disposable.scope()
+- uid: '@esfx/disposable!Disposable.usingEach:function(1)'
+  name: usingEach(iterable)
+  href: api/disposable/disposable-namespace.html
+  fullName: Disposable.usingEach(iterable)
 - uid: '@esfx/disposable!Disposable:class'
   name: Disposable
   href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_class
   fullName: Disposable
 - uid: '@esfx/disposable!Disposable:constructor(1)'
-  name: constructor(onDispose)
+  name: constructor(dispose)
   href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_constructor_1_
-  fullName: constructor(onDispose)
+  fullName: constructor(dispose)
 - uid: '@esfx/disposable!Disposable:interface'
   name: Disposable
   href: api/disposable/disposable-interface.html#_esfx_disposable_Disposable_interface
@@ -4677,6 +4657,10 @@ references:
   name: Disposable
   href: api/disposable/disposable-namespace.html#_esfx_disposable_Disposable_namespace
   fullName: Disposable
+- uid: '@esfx/disposable!DisposableLike:type'
+  name: DisposableLike
+  href: api/disposable.html#_esfx_disposable_DisposableLike_type
+  fullName: DisposableLike
 - uid: '@esfx/disposable!DisposableScope#fail:member(1)'
   name: fail(error)
   href: api/disposable/disposablescope.html#_esfx_disposable_DisposableScope_fail_member_1_
@@ -4701,14 +4685,6 @@ references:
   name: dispose
   href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_dispose_member
   fullName: dispose
-- uid: '@esfx/disposable!DisposableStack#enter:member(1)'
-  name: enter(value)
-  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_enter_member_1_
-  fullName: enter(value)
-- uid: '@esfx/disposable!DisposableStack#enter:member(2)'
-  name: enter(value, onDispose)
-  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_enter_member_2_
-  fullName: enter(value, onDispose)
 - uid: '@esfx/disposable!DisposableStack#move:member(1)'
   name: move()
   href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_move_member_1_
@@ -4721,6 +4697,10 @@ references:
   name: use(value, onDispose)
   href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_use_member_2_
   fullName: use(value, onDispose)
+- uid: '@esfx/disposable!DisposableStack.[Symbol.species]:member'
+  name: '[Symbol.species]'
+  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack__Symbol_species__member
+  fullName: '[Symbol.species]'
 - uid: '@esfx/disposable!DisposableStack:class'
   name: DisposableStack
   href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_class
@@ -5166,9 +5146,13 @@ references:
   href: api/fn.html#_esfx_fn_caller_function_7_
   fullName: caller(args)
 - uid: '@esfx/fn!clamp.withComparer:function(1)'
-  name: withComparer(comparer)
+  name: withComparer(comparer, allowNullishValues)
   href: api/fn/clamp-namespace.html
-  fullName: clamp.withComparer(comparer)
+  fullName: clamp.withComparer(comparer, allowNullishValues)
+- uid: '@esfx/fn!clamp.withComparer:function(2)'
+  name: withComparer(comparer, allowNullishValues)
+  href: api/fn/clamp-namespace.html
+  fullName: clamp.withComparer(comparer, allowNullishValues)
 - uid: '@esfx/fn!clamp:function(1)'
   name: clamp(min, max)
   href: api/fn.html#_esfx_fn_clamp_function_1_
@@ -5178,9 +5162,13 @@ references:
   href: api/fn/clamp-namespace.html#_esfx_fn_clamp_namespace
   fullName: clamp
 - uid: '@esfx/fn!compare.withComparer:function(1)'
-  name: withComparer(comparer)
+  name: withComparer(comparer, allowNullishValues)
   href: api/fn/compare-namespace.html
-  fullName: compare.withComparer(comparer)
+  fullName: compare.withComparer(comparer, allowNullishValues)
+- uid: '@esfx/fn!compare.withComparer:function(2)'
+  name: withComparer(comparer, allowNullishValues)
+  href: api/fn/compare-namespace.html
+  fullName: compare.withComparer(comparer, allowNullishValues)
 - uid: '@esfx/fn!compare:function(1)'
   name: compare(a, b)
   href: api/fn.html#_esfx_fn_compare_function_1_
@@ -5234,9 +5222,13 @@ references:
   href: api/fn.html#_esfx_fn_either_function_2_
   fullName: either(a, b)
 - uid: '@esfx/fn!equate.withEqualer:function(1)'
-  name: withEqualer(equaler)
+  name: withEqualer(equaler, allowNullishValues)
   href: api/fn/equate-namespace.html
-  fullName: equate.withEqualer(equaler)
+  fullName: equate.withEqualer(equaler, allowNullishValues)
+- uid: '@esfx/fn!equate.withEqualer:function(2)'
+  name: withEqualer(equaler, allowNullishValues)
+  href: api/fn/equate-namespace.html
+  fullName: equate.withEqualer(equaler, allowNullishValues)
 - uid: '@esfx/fn!equate:function(1)'
   name: equate(a, b)
   href: api/fn.html#_esfx_fn_equate_function_1_
@@ -5286,9 +5278,13 @@ references:
   href: api/fn.html#_esfx_fn_flip_function_1_
   fullName: flip(f)
 - uid: '@esfx/fn!hash.withEqualer:function(1)'
-  name: withEqualer(equaler)
+  name: withEqualer(equaler, allowNullishValues)
   href: api/fn/hash-namespace.html
-  fullName: hash.withEqualer(equaler)
+  fullName: hash.withEqualer(equaler, allowNullishValues)
+- uid: '@esfx/fn!hash.withEqualer:function(2)'
+  name: withEqualer(equaler, allowNullishValues)
+  href: api/fn/hash-namespace.html
+  fullName: hash.withEqualer(equaler, allowNullishValues)
 - uid: '@esfx/fn!hash:function(1)'
   name: hash(value)
   href: api/fn.html#_esfx_fn_hash_function_1_
@@ -5629,6 +5625,14 @@ references:
   name: Op.rne
   href: api/fn/op.rne-namespace.html#_esfx_fn_Op_rne_namespace
   fullName: Op.rne
+- uid: '@esfx/fn!Op.sal:function(1)'
+  name: sal(x, n)
+  href: api/fn/op.html
+  fullName: Op.sal(x, n)
+- uid: '@esfx/fn!Op.sal:function(2)'
+  name: sal(x, n)
+  href: api/fn/op.html
+  fullName: Op.sal(x, n)
 - uid: '@esfx/fn!Op.sar:function(1)'
   name: sar(x, n)
   href: api/fn/op.html
@@ -5681,1302 +5685,6 @@ references:
   name: Op
   href: api/fn/op.html#_esfx_fn_Op_namespace
   fullName: Op
-- uid: '@esfx/fn!partial._:var'
-  name: _
-  href: api/fn/partial-namespace.html
-  fullName: partial._
-- uid: '@esfx/fn!partial._rest:var'
-  name: _rest
-  href: api/fn/partial-namespace.html
-  fullName: partial._rest
-- uid: '@esfx/fn!partial._this:var'
-  name: _this
-  href: api/fn/partial-namespace.html
-  fullName: partial._this
-- uid: '@esfx/fn!partial:function(1)'
-  name: partial(f)
-  href: api/fn.html#_esfx_fn_partial_function_1_
-  fullName: partial(f)
-- uid: '@esfx/fn!partial:function(10)'
-  name: partial(f, a, _this)
-  href: api/fn.html#_esfx_fn_partial_function_10_
-  fullName: partial(f, a, _this)
-- uid: '@esfx/fn!partial:function(100)'
-  name: partial(f, _this, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_100_
-  fullName: partial(f, _this, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(101)'
-  name: partial(f, _this, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_101_
-  fullName: partial(f, _this, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(102)'
-  name: partial(f, _this, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_102_
-  fullName: partial(f, _this, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(103)'
-  name: partial(f, _this, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_103_
-  fullName: partial(f, _this, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(104)'
-  name: partial(f, _this, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_104_
-  fullName: partial(f, _this, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(105)'
-  name: partial(f, a, _this, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_105_
-  fullName: partial(f, a, _this, b, c, _rest)
-- uid: '@esfx/fn!partial:function(106)'
-  name: partial(f, a, _this, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_106_
-  fullName: partial(f, a, _this, b, c, _rest)
-- uid: '@esfx/fn!partial:function(107)'
-  name: partial(f, a, _this, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_107_
-  fullName: partial(f, a, _this, b, c, _rest)
-- uid: '@esfx/fn!partial:function(108)'
-  name: partial(f, a, _this, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_108_
-  fullName: partial(f, a, _this, b, c, _rest)
-- uid: '@esfx/fn!partial:function(109)'
-  name: partial(f, a, _this, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_109_
-  fullName: partial(f, a, _this, b, c, _rest)
-- uid: '@esfx/fn!partial:function(11)'
-  name: partial(f, a, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_11_
-  fullName: partial(f, a, _rest)
-- uid: '@esfx/fn!partial:function(110)'
-  name: partial(f, a, _this, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_110_
-  fullName: partial(f, a, _this, b, c, _rest)
-- uid: '@esfx/fn!partial:function(111)'
-  name: partial(f, a, _this, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_111_
-  fullName: partial(f, a, _this, b, c, _rest)
-- uid: '@esfx/fn!partial:function(112)'
-  name: partial(f, a, _this, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_112_
-  fullName: partial(f, a, _this, b, c, _rest)
-- uid: '@esfx/fn!partial:function(113)'
-  name: partial(f, a, b, _this, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_113_
-  fullName: partial(f, a, b, _this, c, _rest)
-- uid: '@esfx/fn!partial:function(114)'
-  name: partial(f, a, b, _this, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_114_
-  fullName: partial(f, a, b, _this, c, _rest)
-- uid: '@esfx/fn!partial:function(115)'
-  name: partial(f, a, b, _this, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_115_
-  fullName: partial(f, a, b, _this, c, _rest)
-- uid: '@esfx/fn!partial:function(116)'
-  name: partial(f, a, b, _this, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_116_
-  fullName: partial(f, a, b, _this, c, _rest)
-- uid: '@esfx/fn!partial:function(117)'
-  name: partial(f, a, b, _this, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_117_
-  fullName: partial(f, a, b, _this, c, _rest)
-- uid: '@esfx/fn!partial:function(118)'
-  name: partial(f, a, b, _this, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_118_
-  fullName: partial(f, a, b, _this, c, _rest)
-- uid: '@esfx/fn!partial:function(119)'
-  name: partial(f, a, b, _this, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_119_
-  fullName: partial(f, a, b, _this, c, _rest)
-- uid: '@esfx/fn!partial:function(12)'
-  name: partial(f, a, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_12_
-  fullName: partial(f, a, _rest)
-- uid: '@esfx/fn!partial:function(120)'
-  name: partial(f, a, b, _this, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_120_
-  fullName: partial(f, a, b, _this, c, _rest)
-- uid: '@esfx/fn!partial:function(121)'
-  name: partial(f, a, b, c, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_121_
-  fullName: partial(f, a, b, c, _this, _rest)
-- uid: '@esfx/fn!partial:function(122)'
-  name: partial(f, a, b, c, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_122_
-  fullName: partial(f, a, b, c, _this, _rest)
-- uid: '@esfx/fn!partial:function(123)'
-  name: partial(f, a, b, c, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_123_
-  fullName: partial(f, a, b, c, _this, _rest)
-- uid: '@esfx/fn!partial:function(124)'
-  name: partial(f, a, b, c, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_124_
-  fullName: partial(f, a, b, c, _this, _rest)
-- uid: '@esfx/fn!partial:function(125)'
-  name: partial(f, a, b, c, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_125_
-  fullName: partial(f, a, b, c, _this, _rest)
-- uid: '@esfx/fn!partial:function(126)'
-  name: partial(f, a, b, c, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_126_
-  fullName: partial(f, a, b, c, _this, _rest)
-- uid: '@esfx/fn!partial:function(127)'
-  name: partial(f, a, b, c, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_127_
-  fullName: partial(f, a, b, c, _this, _rest)
-- uid: '@esfx/fn!partial:function(128)'
-  name: partial(f, a, b, c, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_128_
-  fullName: partial(f, a, b, c, _this, _rest)
-- uid: '@esfx/fn!partial:function(129)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_129_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(13)'
-  name: partial(f, _this, a, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_13_
-  fullName: partial(f, _this, a, _rest)
-- uid: '@esfx/fn!partial:function(130)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_130_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(131)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_131_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(132)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_132_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(133)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_133_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(134)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_134_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(135)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_135_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(136)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_136_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(137)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_137_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(138)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_138_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(139)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_139_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(14)'
-  name: partial(f, _this, a, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_14_
-  fullName: partial(f, _this, a, _rest)
-- uid: '@esfx/fn!partial:function(140)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_140_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(141)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_141_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(142)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_142_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(143)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_143_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(144)'
-  name: partial(f, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_144_
-  fullName: partial(f, a, b, c, d)
-- uid: '@esfx/fn!partial:function(145)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_145_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(146)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_146_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(147)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_147_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(148)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_148_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(149)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_149_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(15)'
-  name: partial(f, a, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_15_
-  fullName: partial(f, a, _this, _rest)
-- uid: '@esfx/fn!partial:function(150)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_150_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(151)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_151_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(152)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_152_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(153)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_153_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(154)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_154_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(155)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_155_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(156)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_156_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(157)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_157_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(158)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_158_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(159)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_159_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(16)'
-  name: partial(f, a, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_16_
-  fullName: partial(f, a, _this, _rest)
-- uid: '@esfx/fn!partial:function(160)'
-  name: partial(f, _this, a, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_160_
-  fullName: partial(f, _this, a, b, c, d)
-- uid: '@esfx/fn!partial:function(161)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_161_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(162)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_162_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(163)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_163_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(164)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_164_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(165)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_165_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(166)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_166_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(167)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_167_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(168)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_168_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(169)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_169_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(17)'
-  name: partial(f, a, b)
-  href: api/fn.html#_esfx_fn_partial_function_17_
-  fullName: partial(f, a, b)
-- uid: '@esfx/fn!partial:function(170)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_170_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(171)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_171_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(172)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_172_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(173)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_173_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(174)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_174_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(175)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_175_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(176)'
-  name: partial(f, a, _this, b, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_176_
-  fullName: partial(f, a, _this, b, c, d)
-- uid: '@esfx/fn!partial:function(177)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_177_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(178)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_178_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(179)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_179_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(18)'
-  name: partial(f, a, b)
-  href: api/fn.html#_esfx_fn_partial_function_18_
-  fullName: partial(f, a, b)
-- uid: '@esfx/fn!partial:function(180)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_180_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(181)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_181_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(182)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_182_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(183)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_183_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(184)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_184_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(185)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_185_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(186)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_186_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(187)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_187_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(188)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_188_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(189)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_189_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(19)'
-  name: partial(f, a, b)
-  href: api/fn.html#_esfx_fn_partial_function_19_
-  fullName: partial(f, a, b)
-- uid: '@esfx/fn!partial:function(190)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_190_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(191)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_191_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(192)'
-  name: partial(f, a, b, _this, c, d)
-  href: api/fn.html#_esfx_fn_partial_function_192_
-  fullName: partial(f, a, b, _this, c, d)
-- uid: '@esfx/fn!partial:function(193)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_193_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(194)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_194_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(195)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_195_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(196)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_196_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(197)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_197_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(198)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_198_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(199)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_199_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(2)'
-  name: partial(f, _this)
-  href: api/fn.html#_esfx_fn_partial_function_2_
-  fullName: partial(f, _this)
-- uid: '@esfx/fn!partial:function(20)'
-  name: partial(f, a, b)
-  href: api/fn.html#_esfx_fn_partial_function_20_
-  fullName: partial(f, a, b)
-- uid: '@esfx/fn!partial:function(200)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_200_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(201)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_201_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(202)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_202_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(203)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_203_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(204)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_204_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(205)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_205_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(206)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_206_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(207)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_207_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(208)'
-  name: partial(f, a, b, c, _this, d)
-  href: api/fn.html#_esfx_fn_partial_function_208_
-  fullName: partial(f, a, b, c, _this, d)
-- uid: '@esfx/fn!partial:function(209)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_209_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(21)'
-  name: partial(f, _this, a, b)
-  href: api/fn.html#_esfx_fn_partial_function_21_
-  fullName: partial(f, _this, a, b)
-- uid: '@esfx/fn!partial:function(210)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_210_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(211)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_211_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(212)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_212_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(213)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_213_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(214)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_214_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(215)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_215_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(216)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_216_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(217)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_217_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(218)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_218_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(219)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_219_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(22)'
-  name: partial(f, _this, a, b)
-  href: api/fn.html#_esfx_fn_partial_function_22_
-  fullName: partial(f, _this, a, b)
-- uid: '@esfx/fn!partial:function(220)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_220_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(221)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_221_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(222)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_222_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(223)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_223_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(224)'
-  name: partial(f, a, b, c, d, _this)
-  href: api/fn.html#_esfx_fn_partial_function_224_
-  fullName: partial(f, a, b, c, d, _this)
-- uid: '@esfx/fn!partial:function(225)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_225_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(226)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_226_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(227)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_227_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(228)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_228_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(229)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_229_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(23)'
-  name: partial(f, _this, a, b)
-  href: api/fn.html#_esfx_fn_partial_function_23_
-  fullName: partial(f, _this, a, b)
-- uid: '@esfx/fn!partial:function(230)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_230_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(231)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_231_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(232)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_232_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(233)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_233_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(234)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_234_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(235)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_235_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(236)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_236_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(237)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_237_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(238)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_238_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(239)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_239_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(24)'
-  name: partial(f, _this, a, b)
-  href: api/fn.html#_esfx_fn_partial_function_24_
-  fullName: partial(f, _this, a, b)
-- uid: '@esfx/fn!partial:function(240)'
-  name: partial(f, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_240_
-  fullName: partial(f, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(241)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_241_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(242)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_242_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(243)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_243_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(244)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_244_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(245)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_245_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(246)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_246_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(247)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_247_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(248)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_248_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(249)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_249_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(25)'
-  name: partial(f, a, _this, b)
-  href: api/fn.html#_esfx_fn_partial_function_25_
-  fullName: partial(f, a, _this, b)
-- uid: '@esfx/fn!partial:function(250)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_250_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(251)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_251_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(252)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_252_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(253)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_253_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(254)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_254_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(255)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_255_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(256)'
-  name: partial(f, _this, a, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_256_
-  fullName: partial(f, _this, a, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(257)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_257_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(258)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_258_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(259)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_259_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(26)'
-  name: partial(f, a, _this, b)
-  href: api/fn.html#_esfx_fn_partial_function_26_
-  fullName: partial(f, a, _this, b)
-- uid: '@esfx/fn!partial:function(260)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_260_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(261)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_261_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(262)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_262_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(263)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_263_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(264)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_264_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(265)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_265_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(266)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_266_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(267)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_267_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(268)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_268_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(269)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_269_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(27)'
-  name: partial(f, a, _this, b)
-  href: api/fn.html#_esfx_fn_partial_function_27_
-  fullName: partial(f, a, _this, b)
-- uid: '@esfx/fn!partial:function(270)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_270_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(271)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_271_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(272)'
-  name: partial(f, a, _this, b, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_272_
-  fullName: partial(f, a, _this, b, c, d, _rest)
-- uid: '@esfx/fn!partial:function(273)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_273_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(274)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_274_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(275)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_275_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(276)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_276_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(277)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_277_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(278)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_278_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(279)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_279_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(28)'
-  name: partial(f, a, _this, b)
-  href: api/fn.html#_esfx_fn_partial_function_28_
-  fullName: partial(f, a, _this, b)
-- uid: '@esfx/fn!partial:function(280)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_280_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(281)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_281_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(282)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_282_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(283)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_283_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(284)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_284_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(285)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_285_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(286)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_286_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(287)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_287_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(288)'
-  name: partial(f, a, b, _this, c, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_288_
-  fullName: partial(f, a, b, _this, c, d, _rest)
-- uid: '@esfx/fn!partial:function(289)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_289_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(29)'
-  name: partial(f, a, b, _this)
-  href: api/fn.html#_esfx_fn_partial_function_29_
-  fullName: partial(f, a, b, _this)
-- uid: '@esfx/fn!partial:function(290)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_290_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(291)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_291_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(292)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_292_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(293)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_293_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(294)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_294_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(295)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_295_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(296)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_296_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(297)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_297_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(298)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_298_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(299)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_299_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(3)'
-  name: partial(f, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_3_
-  fullName: partial(f, _rest)
-- uid: '@esfx/fn!partial:function(30)'
-  name: partial(f, a, b, _this)
-  href: api/fn.html#_esfx_fn_partial_function_30_
-  fullName: partial(f, a, b, _this)
-- uid: '@esfx/fn!partial:function(300)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_300_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(301)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_301_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(302)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_302_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(303)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_303_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(304)'
-  name: partial(f, a, b, c, _this, d, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_304_
-  fullName: partial(f, a, b, c, _this, d, _rest)
-- uid: '@esfx/fn!partial:function(305)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_305_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(306)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_306_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(307)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_307_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(308)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_308_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(309)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_309_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(31)'
-  name: partial(f, a, b, _this)
-  href: api/fn.html#_esfx_fn_partial_function_31_
-  fullName: partial(f, a, b, _this)
-- uid: '@esfx/fn!partial:function(310)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_310_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(311)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_311_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(312)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_312_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(313)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_313_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(314)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_314_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(315)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_315_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(316)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_316_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(317)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_317_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(318)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_318_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(319)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_319_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(32)'
-  name: partial(f, a, b, _this)
-  href: api/fn.html#_esfx_fn_partial_function_32_
-  fullName: partial(f, a, b, _this)
-- uid: '@esfx/fn!partial:function(320)'
-  name: partial(f, a, b, c, d, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_320_
-  fullName: partial(f, a, b, c, d, _this, _rest)
-- uid: '@esfx/fn!partial:function(33)'
-  name: partial(f, a, b, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_33_
-  fullName: partial(f, a, b, _rest)
-- uid: '@esfx/fn!partial:function(34)'
-  name: partial(f, a, b, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_34_
-  fullName: partial(f, a, b, _rest)
-- uid: '@esfx/fn!partial:function(35)'
-  name: partial(f, a, b, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_35_
-  fullName: partial(f, a, b, _rest)
-- uid: '@esfx/fn!partial:function(36)'
-  name: partial(f, a, b, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_36_
-  fullName: partial(f, a, b, _rest)
-- uid: '@esfx/fn!partial:function(37)'
-  name: partial(f, _this, a, b, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_37_
-  fullName: partial(f, _this, a, b, _rest)
-- uid: '@esfx/fn!partial:function(38)'
-  name: partial(f, _this, a, b, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_38_
-  fullName: partial(f, _this, a, b, _rest)
-- uid: '@esfx/fn!partial:function(39)'
-  name: partial(f, _this, a, b, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_39_
-  fullName: partial(f, _this, a, b, _rest)
-- uid: '@esfx/fn!partial:function(4)'
-  name: partial(f, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_4_
-  fullName: partial(f, _this, _rest)
-- uid: '@esfx/fn!partial:function(40)'
-  name: partial(f, _this, a, b, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_40_
-  fullName: partial(f, _this, a, b, _rest)
-- uid: '@esfx/fn!partial:function(41)'
-  name: partial(f, a, _this, b, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_41_
-  fullName: partial(f, a, _this, b, _rest)
-- uid: '@esfx/fn!partial:function(42)'
-  name: partial(f, a, _this, b, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_42_
-  fullName: partial(f, a, _this, b, _rest)
-- uid: '@esfx/fn!partial:function(43)'
-  name: partial(f, a, _this, b, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_43_
-  fullName: partial(f, a, _this, b, _rest)
-- uid: '@esfx/fn!partial:function(44)'
-  name: partial(f, a, _this, b, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_44_
-  fullName: partial(f, a, _this, b, _rest)
-- uid: '@esfx/fn!partial:function(45)'
-  name: partial(f, a, b, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_45_
-  fullName: partial(f, a, b, _this, _rest)
-- uid: '@esfx/fn!partial:function(46)'
-  name: partial(f, a, b, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_46_
-  fullName: partial(f, a, b, _this, _rest)
-- uid: '@esfx/fn!partial:function(47)'
-  name: partial(f, a, b, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_47_
-  fullName: partial(f, a, b, _this, _rest)
-- uid: '@esfx/fn!partial:function(48)'
-  name: partial(f, a, b, _this, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_48_
-  fullName: partial(f, a, b, _this, _rest)
-- uid: '@esfx/fn!partial:function(49)'
-  name: partial(f, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_49_
-  fullName: partial(f, a, b, c)
-- uid: '@esfx/fn!partial:function(5)'
-  name: partial(f, a)
-  href: api/fn.html#_esfx_fn_partial_function_5_
-  fullName: partial(f, a)
-- uid: '@esfx/fn!partial:function(50)'
-  name: partial(f, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_50_
-  fullName: partial(f, a, b, c)
-- uid: '@esfx/fn!partial:function(51)'
-  name: partial(f, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_51_
-  fullName: partial(f, a, b, c)
-- uid: '@esfx/fn!partial:function(52)'
-  name: partial(f, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_52_
-  fullName: partial(f, a, b, c)
-- uid: '@esfx/fn!partial:function(53)'
-  name: partial(f, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_53_
-  fullName: partial(f, a, b, c)
-- uid: '@esfx/fn!partial:function(54)'
-  name: partial(f, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_54_
-  fullName: partial(f, a, b, c)
-- uid: '@esfx/fn!partial:function(55)'
-  name: partial(f, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_55_
-  fullName: partial(f, a, b, c)
-- uid: '@esfx/fn!partial:function(56)'
-  name: partial(f, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_56_
-  fullName: partial(f, a, b, c)
-- uid: '@esfx/fn!partial:function(57)'
-  name: partial(f, _this, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_57_
-  fullName: partial(f, _this, a, b, c)
-- uid: '@esfx/fn!partial:function(58)'
-  name: partial(f, _this, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_58_
-  fullName: partial(f, _this, a, b, c)
-- uid: '@esfx/fn!partial:function(59)'
-  name: partial(f, _this, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_59_
-  fullName: partial(f, _this, a, b, c)
-- uid: '@esfx/fn!partial:function(6)'
-  name: partial(f, a)
-  href: api/fn.html#_esfx_fn_partial_function_6_
-  fullName: partial(f, a)
-- uid: '@esfx/fn!partial:function(60)'
-  name: partial(f, _this, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_60_
-  fullName: partial(f, _this, a, b, c)
-- uid: '@esfx/fn!partial:function(61)'
-  name: partial(f, _this, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_61_
-  fullName: partial(f, _this, a, b, c)
-- uid: '@esfx/fn!partial:function(62)'
-  name: partial(f, _this, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_62_
-  fullName: partial(f, _this, a, b, c)
-- uid: '@esfx/fn!partial:function(63)'
-  name: partial(f, _this, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_63_
-  fullName: partial(f, _this, a, b, c)
-- uid: '@esfx/fn!partial:function(64)'
-  name: partial(f, _this, a, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_64_
-  fullName: partial(f, _this, a, b, c)
-- uid: '@esfx/fn!partial:function(65)'
-  name: partial(f, a, _this, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_65_
-  fullName: partial(f, a, _this, b, c)
-- uid: '@esfx/fn!partial:function(66)'
-  name: partial(f, a, _this, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_66_
-  fullName: partial(f, a, _this, b, c)
-- uid: '@esfx/fn!partial:function(67)'
-  name: partial(f, a, _this, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_67_
-  fullName: partial(f, a, _this, b, c)
-- uid: '@esfx/fn!partial:function(68)'
-  name: partial(f, a, _this, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_68_
-  fullName: partial(f, a, _this, b, c)
-- uid: '@esfx/fn!partial:function(69)'
-  name: partial(f, a, _this, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_69_
-  fullName: partial(f, a, _this, b, c)
-- uid: '@esfx/fn!partial:function(7)'
-  name: partial(f, _this, a)
-  href: api/fn.html#_esfx_fn_partial_function_7_
-  fullName: partial(f, _this, a)
-- uid: '@esfx/fn!partial:function(70)'
-  name: partial(f, a, _this, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_70_
-  fullName: partial(f, a, _this, b, c)
-- uid: '@esfx/fn!partial:function(71)'
-  name: partial(f, a, _this, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_71_
-  fullName: partial(f, a, _this, b, c)
-- uid: '@esfx/fn!partial:function(72)'
-  name: partial(f, a, _this, b, c)
-  href: api/fn.html#_esfx_fn_partial_function_72_
-  fullName: partial(f, a, _this, b, c)
-- uid: '@esfx/fn!partial:function(73)'
-  name: partial(f, a, b, _this, c)
-  href: api/fn.html#_esfx_fn_partial_function_73_
-  fullName: partial(f, a, b, _this, c)
-- uid: '@esfx/fn!partial:function(74)'
-  name: partial(f, a, b, _this, c)
-  href: api/fn.html#_esfx_fn_partial_function_74_
-  fullName: partial(f, a, b, _this, c)
-- uid: '@esfx/fn!partial:function(75)'
-  name: partial(f, a, b, _this, c)
-  href: api/fn.html#_esfx_fn_partial_function_75_
-  fullName: partial(f, a, b, _this, c)
-- uid: '@esfx/fn!partial:function(76)'
-  name: partial(f, a, b, _this, c)
-  href: api/fn.html#_esfx_fn_partial_function_76_
-  fullName: partial(f, a, b, _this, c)
-- uid: '@esfx/fn!partial:function(77)'
-  name: partial(f, a, b, _this, c)
-  href: api/fn.html#_esfx_fn_partial_function_77_
-  fullName: partial(f, a, b, _this, c)
-- uid: '@esfx/fn!partial:function(78)'
-  name: partial(f, a, b, _this, c)
-  href: api/fn.html#_esfx_fn_partial_function_78_
-  fullName: partial(f, a, b, _this, c)
-- uid: '@esfx/fn!partial:function(79)'
-  name: partial(f, a, b, _this, c)
-  href: api/fn.html#_esfx_fn_partial_function_79_
-  fullName: partial(f, a, b, _this, c)
-- uid: '@esfx/fn!partial:function(8)'
-  name: partial(f, _this, a)
-  href: api/fn.html#_esfx_fn_partial_function_8_
-  fullName: partial(f, _this, a)
-- uid: '@esfx/fn!partial:function(80)'
-  name: partial(f, a, b, _this, c)
-  href: api/fn.html#_esfx_fn_partial_function_80_
-  fullName: partial(f, a, b, _this, c)
-- uid: '@esfx/fn!partial:function(81)'
-  name: partial(f, a, b, c, _this)
-  href: api/fn.html#_esfx_fn_partial_function_81_
-  fullName: partial(f, a, b, c, _this)
-- uid: '@esfx/fn!partial:function(82)'
-  name: partial(f, a, b, c, _this)
-  href: api/fn.html#_esfx_fn_partial_function_82_
-  fullName: partial(f, a, b, c, _this)
-- uid: '@esfx/fn!partial:function(83)'
-  name: partial(f, a, b, c, _this)
-  href: api/fn.html#_esfx_fn_partial_function_83_
-  fullName: partial(f, a, b, c, _this)
-- uid: '@esfx/fn!partial:function(84)'
-  name: partial(f, a, b, c, _this)
-  href: api/fn.html#_esfx_fn_partial_function_84_
-  fullName: partial(f, a, b, c, _this)
-- uid: '@esfx/fn!partial:function(85)'
-  name: partial(f, a, b, c, _this)
-  href: api/fn.html#_esfx_fn_partial_function_85_
-  fullName: partial(f, a, b, c, _this)
-- uid: '@esfx/fn!partial:function(86)'
-  name: partial(f, a, b, c, _this)
-  href: api/fn.html#_esfx_fn_partial_function_86_
-  fullName: partial(f, a, b, c, _this)
-- uid: '@esfx/fn!partial:function(87)'
-  name: partial(f, a, b, c, _this)
-  href: api/fn.html#_esfx_fn_partial_function_87_
-  fullName: partial(f, a, b, c, _this)
-- uid: '@esfx/fn!partial:function(88)'
-  name: partial(f, a, b, c, _this)
-  href: api/fn.html#_esfx_fn_partial_function_88_
-  fullName: partial(f, a, b, c, _this)
-- uid: '@esfx/fn!partial:function(89)'
-  name: partial(f, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_89_
-  fullName: partial(f, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(9)'
-  name: partial(f, a, _this)
-  href: api/fn.html#_esfx_fn_partial_function_9_
-  fullName: partial(f, a, _this)
-- uid: '@esfx/fn!partial:function(90)'
-  name: partial(f, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_90_
-  fullName: partial(f, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(91)'
-  name: partial(f, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_91_
-  fullName: partial(f, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(92)'
-  name: partial(f, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_92_
-  fullName: partial(f, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(93)'
-  name: partial(f, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_93_
-  fullName: partial(f, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(94)'
-  name: partial(f, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_94_
-  fullName: partial(f, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(95)'
-  name: partial(f, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_95_
-  fullName: partial(f, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(96)'
-  name: partial(f, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_96_
-  fullName: partial(f, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(97)'
-  name: partial(f, _this, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_97_
-  fullName: partial(f, _this, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(98)'
-  name: partial(f, _this, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_98_
-  fullName: partial(f, _this, a, b, c, _rest)
-- uid: '@esfx/fn!partial:function(99)'
-  name: partial(f, _this, a, b, c, _rest)
-  href: api/fn.html#_esfx_fn_partial_function_99_
-  fullName: partial(f, _this, a, b, c, _rest)
-- uid: '@esfx/fn!partial:namespace'
-  name: partial
-  href: api/fn/partial-namespace.html#_esfx_fn_partial_namespace
-  fullName: partial
 - uid: '@esfx/fn!pipe:function(1)'
   name: pipe(fa, fb)
   href: api/fn.html#_esfx_fn_pipe_function_1_
@@ -6997,10 +5705,6 @@ references:
   name: pipe(first, rest)
   href: api/fn.html#_esfx_fn_pipe_function_5_
   fullName: pipe(first, rest)
-- uid: '@esfx/fn!placeholder:var'
-  name: placeholder
-  href: api/fn.html#_esfx_fn_placeholder_var
-  fullName: placeholder
 - uid: '@esfx/fn!property:function(1)'
   name: property(key)
   href: api/fn.html#_esfx_fn_property_function_1_
@@ -7009,14 +5713,6 @@ references:
   name: propertyWriter(key)
   href: api/fn.html#_esfx_fn_propertyWriter_function_1_
   fullName: propertyWriter(key)
-- uid: '@esfx/fn!restPlaceholder:var'
-  name: restPlaceholder
-  href: api/fn.html#_esfx_fn_restPlaceholder_var
-  fullName: restPlaceholder
-- uid: '@esfx/fn!thisPlaceholder:var'
-  name: thisPlaceholder
-  href: api/fn.html#_esfx_fn_thisPlaceholder_var
-  fullName: thisPlaceholder
 - uid: '@esfx/fn!tuple:function(1)'
   name: tuple(args)
   href: api/fn.html#_esfx_fn_tuple_function_1_
@@ -7025,6 +5721,1318 @@ references:
   name: uncurryThis(f)
   href: api/fn.html#_esfx_fn_uncurryThis_function_1_
   fullName: uncurryThis(f)
+- uid: '@esfx/fn-partial!'
+  name: '@esfx/fn-partial'
+  href: api/fn-partial.html
+  fullName: '@esfx/fn-partial'
+- uid: '@esfx/fn-partial!partial._:var'
+  name: _
+  href: api/fn-partial/partial-namespace.html
+  fullName: partial._
+- uid: '@esfx/fn-partial!partial._rest:var'
+  name: _rest
+  href: api/fn-partial/partial-namespace.html
+  fullName: partial._rest
+- uid: '@esfx/fn-partial!partial._this:var'
+  name: _this
+  href: api/fn-partial/partial-namespace.html
+  fullName: partial._this
+- uid: '@esfx/fn-partial!partial:function(1)'
+  name: partial(f)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_1_
+  fullName: partial(f)
+- uid: '@esfx/fn-partial!partial:function(10)'
+  name: partial(f, a, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_10_
+  fullName: partial(f, a, _this)
+- uid: '@esfx/fn-partial!partial:function(100)'
+  name: partial(f, _this, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_100_
+  fullName: partial(f, _this, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(101)'
+  name: partial(f, _this, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_101_
+  fullName: partial(f, _this, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(102)'
+  name: partial(f, _this, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_102_
+  fullName: partial(f, _this, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(103)'
+  name: partial(f, _this, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_103_
+  fullName: partial(f, _this, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(104)'
+  name: partial(f, _this, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_104_
+  fullName: partial(f, _this, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(105)'
+  name: partial(f, a, _this, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_105_
+  fullName: partial(f, a, _this, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(106)'
+  name: partial(f, a, _this, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_106_
+  fullName: partial(f, a, _this, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(107)'
+  name: partial(f, a, _this, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_107_
+  fullName: partial(f, a, _this, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(108)'
+  name: partial(f, a, _this, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_108_
+  fullName: partial(f, a, _this, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(109)'
+  name: partial(f, a, _this, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_109_
+  fullName: partial(f, a, _this, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(11)'
+  name: partial(f, a, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_11_
+  fullName: partial(f, a, _rest)
+- uid: '@esfx/fn-partial!partial:function(110)'
+  name: partial(f, a, _this, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_110_
+  fullName: partial(f, a, _this, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(111)'
+  name: partial(f, a, _this, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_111_
+  fullName: partial(f, a, _this, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(112)'
+  name: partial(f, a, _this, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_112_
+  fullName: partial(f, a, _this, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(113)'
+  name: partial(f, a, b, _this, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_113_
+  fullName: partial(f, a, b, _this, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(114)'
+  name: partial(f, a, b, _this, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_114_
+  fullName: partial(f, a, b, _this, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(115)'
+  name: partial(f, a, b, _this, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_115_
+  fullName: partial(f, a, b, _this, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(116)'
+  name: partial(f, a, b, _this, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_116_
+  fullName: partial(f, a, b, _this, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(117)'
+  name: partial(f, a, b, _this, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_117_
+  fullName: partial(f, a, b, _this, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(118)'
+  name: partial(f, a, b, _this, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_118_
+  fullName: partial(f, a, b, _this, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(119)'
+  name: partial(f, a, b, _this, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_119_
+  fullName: partial(f, a, b, _this, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(12)'
+  name: partial(f, a, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_12_
+  fullName: partial(f, a, _rest)
+- uid: '@esfx/fn-partial!partial:function(120)'
+  name: partial(f, a, b, _this, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_120_
+  fullName: partial(f, a, b, _this, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(121)'
+  name: partial(f, a, b, c, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_121_
+  fullName: partial(f, a, b, c, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(122)'
+  name: partial(f, a, b, c, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_122_
+  fullName: partial(f, a, b, c, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(123)'
+  name: partial(f, a, b, c, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_123_
+  fullName: partial(f, a, b, c, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(124)'
+  name: partial(f, a, b, c, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_124_
+  fullName: partial(f, a, b, c, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(125)'
+  name: partial(f, a, b, c, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_125_
+  fullName: partial(f, a, b, c, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(126)'
+  name: partial(f, a, b, c, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_126_
+  fullName: partial(f, a, b, c, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(127)'
+  name: partial(f, a, b, c, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_127_
+  fullName: partial(f, a, b, c, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(128)'
+  name: partial(f, a, b, c, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_128_
+  fullName: partial(f, a, b, c, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(129)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_129_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(13)'
+  name: partial(f, _this, a, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_13_
+  fullName: partial(f, _this, a, _rest)
+- uid: '@esfx/fn-partial!partial:function(130)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_130_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(131)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_131_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(132)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_132_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(133)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_133_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(134)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_134_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(135)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_135_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(136)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_136_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(137)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_137_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(138)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_138_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(139)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_139_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(14)'
+  name: partial(f, _this, a, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_14_
+  fullName: partial(f, _this, a, _rest)
+- uid: '@esfx/fn-partial!partial:function(140)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_140_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(141)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_141_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(142)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_142_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(143)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_143_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(144)'
+  name: partial(f, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_144_
+  fullName: partial(f, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(145)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_145_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(146)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_146_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(147)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_147_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(148)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_148_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(149)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_149_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(15)'
+  name: partial(f, a, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_15_
+  fullName: partial(f, a, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(150)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_150_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(151)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_151_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(152)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_152_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(153)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_153_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(154)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_154_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(155)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_155_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(156)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_156_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(157)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_157_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(158)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_158_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(159)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_159_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(16)'
+  name: partial(f, a, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_16_
+  fullName: partial(f, a, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(160)'
+  name: partial(f, _this, a, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_160_
+  fullName: partial(f, _this, a, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(161)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_161_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(162)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_162_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(163)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_163_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(164)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_164_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(165)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_165_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(166)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_166_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(167)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_167_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(168)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_168_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(169)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_169_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(17)'
+  name: partial(f, a, b)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_17_
+  fullName: partial(f, a, b)
+- uid: '@esfx/fn-partial!partial:function(170)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_170_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(171)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_171_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(172)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_172_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(173)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_173_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(174)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_174_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(175)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_175_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(176)'
+  name: partial(f, a, _this, b, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_176_
+  fullName: partial(f, a, _this, b, c, d)
+- uid: '@esfx/fn-partial!partial:function(177)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_177_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(178)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_178_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(179)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_179_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(18)'
+  name: partial(f, a, b)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_18_
+  fullName: partial(f, a, b)
+- uid: '@esfx/fn-partial!partial:function(180)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_180_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(181)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_181_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(182)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_182_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(183)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_183_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(184)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_184_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(185)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_185_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(186)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_186_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(187)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_187_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(188)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_188_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(189)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_189_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(19)'
+  name: partial(f, a, b)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_19_
+  fullName: partial(f, a, b)
+- uid: '@esfx/fn-partial!partial:function(190)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_190_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(191)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_191_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(192)'
+  name: partial(f, a, b, _this, c, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_192_
+  fullName: partial(f, a, b, _this, c, d)
+- uid: '@esfx/fn-partial!partial:function(193)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_193_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(194)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_194_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(195)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_195_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(196)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_196_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(197)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_197_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(198)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_198_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(199)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_199_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(2)'
+  name: partial(f, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_2_
+  fullName: partial(f, _this)
+- uid: '@esfx/fn-partial!partial:function(20)'
+  name: partial(f, a, b)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_20_
+  fullName: partial(f, a, b)
+- uid: '@esfx/fn-partial!partial:function(200)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_200_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(201)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_201_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(202)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_202_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(203)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_203_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(204)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_204_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(205)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_205_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(206)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_206_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(207)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_207_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(208)'
+  name: partial(f, a, b, c, _this, d)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_208_
+  fullName: partial(f, a, b, c, _this, d)
+- uid: '@esfx/fn-partial!partial:function(209)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_209_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(21)'
+  name: partial(f, _this, a, b)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_21_
+  fullName: partial(f, _this, a, b)
+- uid: '@esfx/fn-partial!partial:function(210)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_210_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(211)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_211_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(212)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_212_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(213)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_213_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(214)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_214_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(215)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_215_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(216)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_216_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(217)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_217_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(218)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_218_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(219)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_219_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(22)'
+  name: partial(f, _this, a, b)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_22_
+  fullName: partial(f, _this, a, b)
+- uid: '@esfx/fn-partial!partial:function(220)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_220_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(221)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_221_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(222)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_222_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(223)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_223_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(224)'
+  name: partial(f, a, b, c, d, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_224_
+  fullName: partial(f, a, b, c, d, _this)
+- uid: '@esfx/fn-partial!partial:function(225)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_225_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(226)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_226_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(227)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_227_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(228)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_228_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(229)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_229_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(23)'
+  name: partial(f, _this, a, b)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_23_
+  fullName: partial(f, _this, a, b)
+- uid: '@esfx/fn-partial!partial:function(230)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_230_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(231)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_231_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(232)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_232_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(233)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_233_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(234)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_234_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(235)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_235_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(236)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_236_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(237)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_237_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(238)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_238_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(239)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_239_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(24)'
+  name: partial(f, _this, a, b)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_24_
+  fullName: partial(f, _this, a, b)
+- uid: '@esfx/fn-partial!partial:function(240)'
+  name: partial(f, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_240_
+  fullName: partial(f, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(241)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_241_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(242)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_242_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(243)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_243_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(244)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_244_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(245)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_245_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(246)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_246_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(247)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_247_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(248)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_248_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(249)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_249_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(25)'
+  name: partial(f, a, _this, b)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_25_
+  fullName: partial(f, a, _this, b)
+- uid: '@esfx/fn-partial!partial:function(250)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_250_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(251)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_251_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(252)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_252_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(253)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_253_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(254)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_254_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(255)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_255_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(256)'
+  name: partial(f, _this, a, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_256_
+  fullName: partial(f, _this, a, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(257)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_257_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(258)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_258_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(259)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_259_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(26)'
+  name: partial(f, a, _this, b)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_26_
+  fullName: partial(f, a, _this, b)
+- uid: '@esfx/fn-partial!partial:function(260)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_260_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(261)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_261_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(262)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_262_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(263)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_263_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(264)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_264_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(265)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_265_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(266)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_266_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(267)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_267_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(268)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_268_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(269)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_269_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(27)'
+  name: partial(f, a, _this, b)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_27_
+  fullName: partial(f, a, _this, b)
+- uid: '@esfx/fn-partial!partial:function(270)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_270_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(271)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_271_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(272)'
+  name: partial(f, a, _this, b, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_272_
+  fullName: partial(f, a, _this, b, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(273)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_273_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(274)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_274_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(275)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_275_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(276)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_276_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(277)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_277_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(278)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_278_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(279)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_279_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(28)'
+  name: partial(f, a, _this, b)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_28_
+  fullName: partial(f, a, _this, b)
+- uid: '@esfx/fn-partial!partial:function(280)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_280_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(281)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_281_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(282)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_282_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(283)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_283_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(284)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_284_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(285)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_285_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(286)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_286_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(287)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_287_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(288)'
+  name: partial(f, a, b, _this, c, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_288_
+  fullName: partial(f, a, b, _this, c, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(289)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_289_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(29)'
+  name: partial(f, a, b, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_29_
+  fullName: partial(f, a, b, _this)
+- uid: '@esfx/fn-partial!partial:function(290)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_290_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(291)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_291_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(292)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_292_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(293)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_293_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(294)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_294_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(295)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_295_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(296)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_296_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(297)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_297_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(298)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_298_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(299)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_299_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(3)'
+  name: partial(f, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_3_
+  fullName: partial(f, _rest)
+- uid: '@esfx/fn-partial!partial:function(30)'
+  name: partial(f, a, b, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_30_
+  fullName: partial(f, a, b, _this)
+- uid: '@esfx/fn-partial!partial:function(300)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_300_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(301)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_301_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(302)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_302_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(303)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_303_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(304)'
+  name: partial(f, a, b, c, _this, d, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_304_
+  fullName: partial(f, a, b, c, _this, d, _rest)
+- uid: '@esfx/fn-partial!partial:function(305)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_305_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(306)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_306_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(307)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_307_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(308)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_308_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(309)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_309_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(31)'
+  name: partial(f, a, b, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_31_
+  fullName: partial(f, a, b, _this)
+- uid: '@esfx/fn-partial!partial:function(310)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_310_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(311)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_311_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(312)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_312_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(313)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_313_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(314)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_314_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(315)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_315_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(316)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_316_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(317)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_317_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(318)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_318_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(319)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_319_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(32)'
+  name: partial(f, a, b, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_32_
+  fullName: partial(f, a, b, _this)
+- uid: '@esfx/fn-partial!partial:function(320)'
+  name: partial(f, a, b, c, d, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_320_
+  fullName: partial(f, a, b, c, d, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(33)'
+  name: partial(f, a, b, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_33_
+  fullName: partial(f, a, b, _rest)
+- uid: '@esfx/fn-partial!partial:function(34)'
+  name: partial(f, a, b, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_34_
+  fullName: partial(f, a, b, _rest)
+- uid: '@esfx/fn-partial!partial:function(35)'
+  name: partial(f, a, b, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_35_
+  fullName: partial(f, a, b, _rest)
+- uid: '@esfx/fn-partial!partial:function(36)'
+  name: partial(f, a, b, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_36_
+  fullName: partial(f, a, b, _rest)
+- uid: '@esfx/fn-partial!partial:function(37)'
+  name: partial(f, _this, a, b, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_37_
+  fullName: partial(f, _this, a, b, _rest)
+- uid: '@esfx/fn-partial!partial:function(38)'
+  name: partial(f, _this, a, b, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_38_
+  fullName: partial(f, _this, a, b, _rest)
+- uid: '@esfx/fn-partial!partial:function(39)'
+  name: partial(f, _this, a, b, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_39_
+  fullName: partial(f, _this, a, b, _rest)
+- uid: '@esfx/fn-partial!partial:function(4)'
+  name: partial(f, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_4_
+  fullName: partial(f, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(40)'
+  name: partial(f, _this, a, b, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_40_
+  fullName: partial(f, _this, a, b, _rest)
+- uid: '@esfx/fn-partial!partial:function(41)'
+  name: partial(f, a, _this, b, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_41_
+  fullName: partial(f, a, _this, b, _rest)
+- uid: '@esfx/fn-partial!partial:function(42)'
+  name: partial(f, a, _this, b, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_42_
+  fullName: partial(f, a, _this, b, _rest)
+- uid: '@esfx/fn-partial!partial:function(43)'
+  name: partial(f, a, _this, b, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_43_
+  fullName: partial(f, a, _this, b, _rest)
+- uid: '@esfx/fn-partial!partial:function(44)'
+  name: partial(f, a, _this, b, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_44_
+  fullName: partial(f, a, _this, b, _rest)
+- uid: '@esfx/fn-partial!partial:function(45)'
+  name: partial(f, a, b, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_45_
+  fullName: partial(f, a, b, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(46)'
+  name: partial(f, a, b, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_46_
+  fullName: partial(f, a, b, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(47)'
+  name: partial(f, a, b, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_47_
+  fullName: partial(f, a, b, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(48)'
+  name: partial(f, a, b, _this, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_48_
+  fullName: partial(f, a, b, _this, _rest)
+- uid: '@esfx/fn-partial!partial:function(49)'
+  name: partial(f, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_49_
+  fullName: partial(f, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(5)'
+  name: partial(f, a)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_5_
+  fullName: partial(f, a)
+- uid: '@esfx/fn-partial!partial:function(50)'
+  name: partial(f, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_50_
+  fullName: partial(f, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(51)'
+  name: partial(f, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_51_
+  fullName: partial(f, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(52)'
+  name: partial(f, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_52_
+  fullName: partial(f, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(53)'
+  name: partial(f, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_53_
+  fullName: partial(f, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(54)'
+  name: partial(f, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_54_
+  fullName: partial(f, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(55)'
+  name: partial(f, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_55_
+  fullName: partial(f, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(56)'
+  name: partial(f, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_56_
+  fullName: partial(f, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(57)'
+  name: partial(f, _this, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_57_
+  fullName: partial(f, _this, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(58)'
+  name: partial(f, _this, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_58_
+  fullName: partial(f, _this, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(59)'
+  name: partial(f, _this, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_59_
+  fullName: partial(f, _this, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(6)'
+  name: partial(f, a)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_6_
+  fullName: partial(f, a)
+- uid: '@esfx/fn-partial!partial:function(60)'
+  name: partial(f, _this, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_60_
+  fullName: partial(f, _this, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(61)'
+  name: partial(f, _this, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_61_
+  fullName: partial(f, _this, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(62)'
+  name: partial(f, _this, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_62_
+  fullName: partial(f, _this, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(63)'
+  name: partial(f, _this, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_63_
+  fullName: partial(f, _this, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(64)'
+  name: partial(f, _this, a, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_64_
+  fullName: partial(f, _this, a, b, c)
+- uid: '@esfx/fn-partial!partial:function(65)'
+  name: partial(f, a, _this, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_65_
+  fullName: partial(f, a, _this, b, c)
+- uid: '@esfx/fn-partial!partial:function(66)'
+  name: partial(f, a, _this, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_66_
+  fullName: partial(f, a, _this, b, c)
+- uid: '@esfx/fn-partial!partial:function(67)'
+  name: partial(f, a, _this, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_67_
+  fullName: partial(f, a, _this, b, c)
+- uid: '@esfx/fn-partial!partial:function(68)'
+  name: partial(f, a, _this, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_68_
+  fullName: partial(f, a, _this, b, c)
+- uid: '@esfx/fn-partial!partial:function(69)'
+  name: partial(f, a, _this, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_69_
+  fullName: partial(f, a, _this, b, c)
+- uid: '@esfx/fn-partial!partial:function(7)'
+  name: partial(f, _this, a)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_7_
+  fullName: partial(f, _this, a)
+- uid: '@esfx/fn-partial!partial:function(70)'
+  name: partial(f, a, _this, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_70_
+  fullName: partial(f, a, _this, b, c)
+- uid: '@esfx/fn-partial!partial:function(71)'
+  name: partial(f, a, _this, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_71_
+  fullName: partial(f, a, _this, b, c)
+- uid: '@esfx/fn-partial!partial:function(72)'
+  name: partial(f, a, _this, b, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_72_
+  fullName: partial(f, a, _this, b, c)
+- uid: '@esfx/fn-partial!partial:function(73)'
+  name: partial(f, a, b, _this, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_73_
+  fullName: partial(f, a, b, _this, c)
+- uid: '@esfx/fn-partial!partial:function(74)'
+  name: partial(f, a, b, _this, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_74_
+  fullName: partial(f, a, b, _this, c)
+- uid: '@esfx/fn-partial!partial:function(75)'
+  name: partial(f, a, b, _this, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_75_
+  fullName: partial(f, a, b, _this, c)
+- uid: '@esfx/fn-partial!partial:function(76)'
+  name: partial(f, a, b, _this, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_76_
+  fullName: partial(f, a, b, _this, c)
+- uid: '@esfx/fn-partial!partial:function(77)'
+  name: partial(f, a, b, _this, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_77_
+  fullName: partial(f, a, b, _this, c)
+- uid: '@esfx/fn-partial!partial:function(78)'
+  name: partial(f, a, b, _this, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_78_
+  fullName: partial(f, a, b, _this, c)
+- uid: '@esfx/fn-partial!partial:function(79)'
+  name: partial(f, a, b, _this, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_79_
+  fullName: partial(f, a, b, _this, c)
+- uid: '@esfx/fn-partial!partial:function(8)'
+  name: partial(f, _this, a)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_8_
+  fullName: partial(f, _this, a)
+- uid: '@esfx/fn-partial!partial:function(80)'
+  name: partial(f, a, b, _this, c)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_80_
+  fullName: partial(f, a, b, _this, c)
+- uid: '@esfx/fn-partial!partial:function(81)'
+  name: partial(f, a, b, c, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_81_
+  fullName: partial(f, a, b, c, _this)
+- uid: '@esfx/fn-partial!partial:function(82)'
+  name: partial(f, a, b, c, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_82_
+  fullName: partial(f, a, b, c, _this)
+- uid: '@esfx/fn-partial!partial:function(83)'
+  name: partial(f, a, b, c, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_83_
+  fullName: partial(f, a, b, c, _this)
+- uid: '@esfx/fn-partial!partial:function(84)'
+  name: partial(f, a, b, c, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_84_
+  fullName: partial(f, a, b, c, _this)
+- uid: '@esfx/fn-partial!partial:function(85)'
+  name: partial(f, a, b, c, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_85_
+  fullName: partial(f, a, b, c, _this)
+- uid: '@esfx/fn-partial!partial:function(86)'
+  name: partial(f, a, b, c, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_86_
+  fullName: partial(f, a, b, c, _this)
+- uid: '@esfx/fn-partial!partial:function(87)'
+  name: partial(f, a, b, c, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_87_
+  fullName: partial(f, a, b, c, _this)
+- uid: '@esfx/fn-partial!partial:function(88)'
+  name: partial(f, a, b, c, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_88_
+  fullName: partial(f, a, b, c, _this)
+- uid: '@esfx/fn-partial!partial:function(89)'
+  name: partial(f, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_89_
+  fullName: partial(f, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(9)'
+  name: partial(f, a, _this)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_9_
+  fullName: partial(f, a, _this)
+- uid: '@esfx/fn-partial!partial:function(90)'
+  name: partial(f, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_90_
+  fullName: partial(f, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(91)'
+  name: partial(f, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_91_
+  fullName: partial(f, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(92)'
+  name: partial(f, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_92_
+  fullName: partial(f, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(93)'
+  name: partial(f, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_93_
+  fullName: partial(f, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(94)'
+  name: partial(f, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_94_
+  fullName: partial(f, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(95)'
+  name: partial(f, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_95_
+  fullName: partial(f, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(96)'
+  name: partial(f, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_96_
+  fullName: partial(f, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(97)'
+  name: partial(f, _this, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_97_
+  fullName: partial(f, _this, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(98)'
+  name: partial(f, _this, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_98_
+  fullName: partial(f, _this, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:function(99)'
+  name: partial(f, _this, a, b, c, _rest)
+  href: api/fn-partial.html#_esfx_fn_partial_partial_function_99_
+  fullName: partial(f, _this, a, b, c, _rest)
+- uid: '@esfx/fn-partial!partial:namespace'
+  name: partial
+  href: api/fn-partial/partial-namespace.html#_esfx_fn_partial_partial_namespace
+  fullName: partial
+- uid: '@esfx/fn-partial!placeholder:var'
+  name: placeholder
+  href: api/fn-partial.html#_esfx_fn_partial_placeholder_var
+  fullName: placeholder
+- uid: '@esfx/fn-partial!restPlaceholder:var'
+  name: restPlaceholder
+  href: api/fn-partial.html#_esfx_fn_partial_restPlaceholder_var
+  fullName: restPlaceholder
+- uid: '@esfx/fn-partial!thisPlaceholder:var'
+  name: thisPlaceholder
+  href: api/fn-partial.html#_esfx_fn_partial_thisPlaceholder_var
+  fullName: thisPlaceholder
 - uid: '@esfx/indexed-object!'
   name: '@esfx/indexed-object'
   href: api/indexed-object.html
@@ -8193,6 +8201,78 @@ references:
   name: '@esfx/iter-hierarchy'
   href: api/iter-hierarchy.html
   fullName: '@esfx/iter-hierarchy'
+- uid: '@esfx/iter-hierarchy!Axis.ancestors:function(1)'
+  name: ancestors(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.ancestors(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.ancestorsAndSelf:function(1)'
+  name: ancestorsAndSelf(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.ancestorsAndSelf(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.children:function(1)'
+  name: children(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.children(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.descendants:function(1)'
+  name: descendants(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.descendants(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.descendantsAndSelf:function(1)'
+  name: descendantsAndSelf(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.descendantsAndSelf(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.firstChild:function(1)'
+  name: firstChild(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.firstChild(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.following:function(1)'
+  name: following(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.following(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.followingSiblings:function(1)'
+  name: followingSiblings(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.followingSiblings(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.lastChild:function(1)'
+  name: lastChild(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.lastChild(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.nthChild:function(1)'
+  name: nthChild(provider, element, offset)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.nthChild(provider, element, offset)
+- uid: '@esfx/iter-hierarchy!Axis.parents:function(1)'
+  name: parents(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.parents(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.preceding:function(1)'
+  name: preceding(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.preceding(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.precedingSiblings:function(1)'
+  name: precedingSiblings(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.precedingSiblings(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.root:function(1)'
+  name: root(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.root(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.self:function(1)'
+  name: self(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.self(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.siblings:function(1)'
+  name: siblings(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.siblings(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis.siblingsAndSelf:function(1)'
+  name: siblingsAndSelf(provider, element)
+  href: api/iter-hierarchy/axis.html
+  fullName: Axis.siblingsAndSelf(provider, element)
+- uid: '@esfx/iter-hierarchy!Axis:namespace'
+  name: Axis
+  href: api/iter-hierarchy/axis.html#_esfx_iter_hierarchy_Axis_namespace
+  fullName: Axis
 - uid: '@esfx/iter-hierarchy!Hierarchical#[Hierarchical.hierarchy]:member(1)'
   name: '[Hierarchical.hierarchy]()'
   href: api/iter-hierarchy/hierarchical-interface.html#_esfx_iter_hierarchy_Hierarchical__Hierarchical_hierarchy__member_1_
@@ -8274,6 +8354,10 @@ references:
   href: api/iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_root_member_1_
   fullName: root(element)
 - uid: '@esfx/iter-hierarchy!HierarchyProvider.combine:function(1)'
+  name: combine(left, right)
+  href: api/iter-hierarchy/hierarchyprovider-namespace.html
+  fullName: HierarchyProvider.combine(left, right)
+- uid: '@esfx/iter-hierarchy!HierarchyProvider.combine:function(2)'
   name: combine(left, right)
   href: api/iter-hierarchy/hierarchyprovider-namespace.html
   fullName: HierarchyProvider.combine(left, right)

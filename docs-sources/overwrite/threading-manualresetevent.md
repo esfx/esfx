@@ -1,8 +1,8 @@
 ---
-uid: threading-manualresetevent
+uid: '@esfx/threading-manualresetevent!'
 ---
 
-Provides the @"threading-manualresetevent.ManualResetEvent" class, a threading primitive for use with Workers.
+Provides the @"@esfx/threading-manualresetevent!ManualResetEvent:class" class, a threading primitive for use with Workers.
 
 # Overview
 

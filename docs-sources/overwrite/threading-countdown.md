@@ -1,8 +1,8 @@
 ---
-uid: threading-countdown
+uid: '@esfx/threading-countdown!'
 ---
 
-Provides the @"threading-countdown.CountdownEvent" class, a thread synchronization primitive for use with Workers.
+Provides the @"@esfx/threading-countdown!CountdownEvent:class" class, a thread synchronization primitive for use with Workers.
 
 # Overview
 

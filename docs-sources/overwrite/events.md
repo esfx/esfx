@@ -1,5 +1,5 @@
 ---
-uid: events
+uid: '@esfx/events!'
 ---
 
 Provides a low-level API for defining events.

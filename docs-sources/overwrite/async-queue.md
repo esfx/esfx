@@ -1,8 +1,8 @@
 ---
-uid: async-queue
+uid: '@esfx/async-queue!'
 ---
 
-The `@esfx/async-queue` package provides the @"async-queue.AsyncQueue" class, an async coordination primitive.
+The `@esfx/async-queue` package provides the @"@esfx/async-queue!AsyncQueue:class" class, an async coordination primitive.
 
 # Overview
 

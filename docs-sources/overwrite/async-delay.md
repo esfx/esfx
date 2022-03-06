@@ -1,7 +1,7 @@
 ---
-uid: async-delay
+uid: '@esfx/async-delay!'
 ---
-The `@esfx/async-delay` package provides the @"async-delay.delay" function.
+The `@esfx/async-delay` package provides the @"@esfx/async-delay!delay:function(1)" function.
 
 # Overview
 

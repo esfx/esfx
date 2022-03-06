@@ -1,5 +1,5 @@
 ---
-uid: cancelable
+uid: '@esfx/cancelable!'
 ---
 
 The `@esfx/cancelable` package provides a low-level Symbol-based API for defining a common cancellation protocol.
@@ -9,9 +9,9 @@ The `@esfx/cancelable` package provides a low-level Symbol-based API for definin
 > protocol for interoperable libraries that depend on cancellation.
 >
 > For an implementation of this protocol, please consider the following packages:
-> - @"async-canceltoken"
-> - @"cancelable-dom"
-> - @"cancelable-dom-shim"
+> - @"@esfx/async-canceltoken!"
+> - @"@esfx/cancelable-dom!"
+> - @"@esfx/cancelable-dom-shim!"
 > - [prex](https://github.com/rbuckton/prex#readme) (version 0.4.6 or later)
 
 # Overview

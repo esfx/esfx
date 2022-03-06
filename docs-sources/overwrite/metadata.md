@@ -1,5 +1,5 @@
 ---
-uid: metadata
+uid: '@esfx/metadata!'
 ---
 
 Provides an API for defining metadata about an object.

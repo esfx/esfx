@@ -1,8 +1,8 @@
 ---
-uid: async-countdown
+uid: '@esfx/async-countdown!'
 ---
 
-The `@esfx/async-countdown` package provides the @"async-countdown.AsyncCountdownEvent" class, an async coordination primitive.
+The `@esfx/async-countdown` package provides the @"@esfx/async-countdown!AsyncCountdownEvent:class" class, an async coordination primitive.
 
 # Overview
 

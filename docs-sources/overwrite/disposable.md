@@ -1,5 +1,5 @@
 ---
-uid: disposable
+uid: '@esfx/disposable!'
 ---
 
 Provides a low-level API for defining explicit resource management that third-party libraries can use to interoperate.

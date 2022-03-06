@@ -1,8 +1,8 @@
 ---
-uid: async-readerwriterlock
+uid: '@esfx/async-readerwriterlock!'
 ---
 
-The `@esfx/async-readerwriterlock` package provides the @"async-readerwriterlock.AsyncReaderWriterLock" class, an async coordination primitive.
+The `@esfx/async-readerwriterlock` package provides the @"@esfx/async-readerwriterlock!AsyncReaderWriterLock:class" class, an async coordination primitive.
 
 # Overview
 

@@ -1,8 +1,8 @@
 ---
-uid: equatable-shim
+uid: '@esfx/equatable-shim!'
 ---
 
-Provides a global shim that adds @"equatable" functionality to various ECMAScript built-ins.
+Provides a global shim that adds @"@esfx/equatable!" functionality to various ECMAScript built-ins.
 
 # Overview
 
@@ -17,10 +17,10 @@ npm i @esfx/equatable-shim
 
 # Usage
 
-The global shim adds a default implementation of @"equatable.Equatable_Interface" to `Object.prototype` and default implementations of
-@"comparable.Comparable_Interface" to `String.prototype`, `Number.prototype`, `Boolean.prototype`, and `BigInt.prototype`.
+The global shim adds a default implementation of @"@esfx/equatable!Equatable:interface" to `Object.prototype` and default implementations of
+@"@esfx/comparable!Comparable:interface" to `String.prototype`, `Number.prototype`, `Boolean.prototype`, and `BigInt.prototype`.
 
-To install the global shim, import @"equatable-shim":
+To install the global shim, import @"@esfx/equatable-shim!":
 
 ## [TypeScript](#tab/ts)
 ```ts

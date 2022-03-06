@@ -1,8 +1,8 @@
 ---
-uid: collections-sortedset
+uid: '@esfx/collections-sortedset!'
 ---
 
-Provides the @"collections-sortedset.SortedSet" class, a collection class that utilizes @"collection-core" and @"equatable".
+Provides the @"@esfx/collections-sortedset!SortedSet:class" class, a collection class that utilizes @"@esfx/collection-core!" and @"@esfx/equatable!".
 
 # Overview
 

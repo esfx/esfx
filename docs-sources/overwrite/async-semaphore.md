@@ -1,8 +1,8 @@
 ---
-uid: async-semaphore
+uid: '@esfx/async-semaphore!'
 ---
 
-The `@esfx/async-semaphore` package provides the @"async-semaphore.AsyncSemaphore" class, an async coordination primitive.
+The `@esfx/async-semaphore` package provides the @"@esfx/async-semaphore!AsyncSemaphore:class" class, an async coordination primitive.
 
 # Overview
 

@@ -88,7 +88,7 @@
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
-      <div class="level0"><a class="xref" href="../async-lockable/upgradeablelockhandle.html#_esfx_async_lockable_UpgradeableLockHandle_interface">UpgradeableLockHandle</a>&lt;<a class="xref" href="asyncreaderwriterlockupgradeablereader.html#_esfx_async_readerwriterlock_AsyncReaderWriterLockUpgradeableReader_interface">AsyncReaderWriterLockUpgradeableReader</a>, <a class="xref" href="asyncreaderwriterlockupgradedwriter.html#_esfx_async_readerwriterlock_AsyncReaderWriterLockUpgradedWriter_interface">AsyncReaderWriterLockUpgradedWriter</a>&gt; </div>
+      <div class="level0"><a class="xref" href="../async-lockable/upgradeablelockhandle.html#_esfx_async_lockable_UpgradeableLockHandle_interface">UpgradeableLockHandle</a>&lt;<a class="xref" href="asyncreaderwriterlockupgradeablereader.html#_esfx_async_readerwriterlock_AsyncReaderWriterLockUpgradeableReader_interface">AsyncReaderWriterLockUpgradeableReader</a>, <a class="xref" href="asyncreaderwriterlockwriter.html#_esfx_async_readerwriterlock_AsyncReaderWriterLockWriter_interface">AsyncReaderWriterLockWriter</a>&gt; </div>
       <div class="level1"><span class="xref">AsyncReaderWriterLockUpgradeableReader</span></div>
   </div>
   <h3 id="properties">Properties
@@ -121,19 +121,19 @@
   
   
   <h4 id="_esfx_async_readerwriterlock_AsyncReaderWriterLockUpgradeableReader_createWriter_member_1_" data-uid="@esfx/async-readerwriterlock!AsyncReaderWriterLockUpgradeableReader#createWriter:member(1)">createWriter()</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>AsyncReaderWriterLockUpgradedWriter</code> that can be used to take and release &quot;write&quot; locks on a resource.</p>
+  <div class="markdown level1 summary"><p>Creates a <code>AsyncReaderWriterLockWriter</code> that can be used to take and release &quot;write&quot; locks on a resource.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">createWriter(): AsyncReaderWriterLockUpgradedWriter;</code></pre>
+    <pre><code class="lang-typeScript hljs">createWriter(): AsyncReaderWriterLockWriter;</code></pre>
   </div>
   
   
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="asyncreaderwriterlockupgradedwriter.html#_esfx_async_readerwriterlock_AsyncReaderWriterLockUpgradedWriter_interface">AsyncReaderWriterLockUpgradedWriter</a></div>
+    <div><a class="xref" href="asyncreaderwriterlockwriter.html#_esfx_async_readerwriterlock_AsyncReaderWriterLockWriter_interface">AsyncReaderWriterLockWriter</a></div>
     <p>
   </div>
   
@@ -149,7 +149,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">upgrade(cancelable?: Cancelable): Promise&lt;AsyncReaderWriterLockUpgradedWriter&gt;;</code></pre>
+    <pre><code class="lang-typeScript hljs">upgrade(cancelable?: Cancelable): Promise&lt;AsyncReaderWriterLockWriter&gt;;</code></pre>
   </div>
   
   
@@ -168,7 +168,7 @@
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;<a class="xref" href="asyncreaderwriterlockupgradedwriter.html#_esfx_async_readerwriterlock_AsyncReaderWriterLockUpgradedWriter_interface">AsyncReaderWriterLockUpgradedWriter</a>&gt;</div>
+    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">Promise</a>&lt;<a class="xref" href="asyncreaderwriterlockwriter.html#_esfx_async_readerwriterlock_AsyncReaderWriterLockWriter_interface">AsyncReaderWriterLockWriter</a>&gt;</div>
     <p>
   </div>
   

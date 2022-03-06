@@ -1,8 +1,8 @@
 ---
-uid: async-manualresetevent
+uid: '@esfx/async-manualresetevent!'
 ---
 
-The `@esfx/async-manualresetevent` package provides the @"async-manualresetevent.AsyncManualResetEvent" class, an async coordination primitive.
+The `@esfx/async-manualresetevent` package provides the @"@esfx/async-manualresetevent!AsyncManualResetEvent:class" class, an async coordination primitive.
 
 # Overview
 

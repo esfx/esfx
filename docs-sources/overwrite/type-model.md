@@ -1,5 +1,5 @@
 ---
-uid: type-model
+uid: '@esfx/type-model!'
 ---
 
 Provides a number of utility types for TypeScript.

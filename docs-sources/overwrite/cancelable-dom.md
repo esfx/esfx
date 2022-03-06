@@ -1,8 +1,8 @@
 ---
-uid: cancelable-dom
+uid: '@esfx/cancelable-dom!'
 ---
 
-The `@esfx/cancelable-dom` package provides a DOM interop library for @"cancelable".
+The `@esfx/cancelable-dom` package provides a DOM interop library for @"@esfx/cancelable!".
 
 # Overview
 

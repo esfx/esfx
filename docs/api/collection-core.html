@@ -83,11 +83,78 @@
   <h1 id="_esfx_collection_core_" data-uid="@esfx/collection-core!" class="text-break">Package @esfx/collection-core
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>Provides a low-level Symbol-based API for defining common collection behaviors.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/collection-core
+</code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_N59XgRrnwT">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_N59XgRrnwT_ts" role="tab" aria-controls="tabpanel_N59XgRrnwT_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_N59XgRrnwT_js" role="tab" aria-controls="tabpanel_N59XgRrnwT_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_N59XgRrnwT_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { Collection } from &quot;@esfx/collection-core&quot;;
+
+class MyCollection&lt;T&gt; {
+    private _items = new Set&lt;T&gt;();
+
+    // Your implementation
+    get count() { return this._items.size; }
+    contains(value): T { return this._items.has(value); }
+    add(value: T) { this._items.add(value); }
+    remove(value: T) { return this._items.delete(value); }
+    clear() { this._items.clear(); }
+
+    // Implement the `Collection` interface for cross-library consistency
+    get [Collection.size]() { return this.count; }
+    [Collection.has](value) { return this.contains(value); }
+    [Collection.add](value) { this.add(value); }
+    [Collection.delete](value) { return this.remove(value); }
+    [Collection.clear]() { this.clear(); }
+    [Symbol.iterator]() { return this._items.values(); }
+}
+</code></pre></section>
+<section id="tabpanel_N59XgRrnwT_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Collection } = require(&quot;@esfx/collection-core&quot;);
+
+class MyCollection {
+    constructor() {
+        this._items = new Set();
+    }
+
+    // Your implementation
+    get count() { return this._items.size; }
+    contains(value) { return this._items.has(value); }
+    add(value) { this._items.add(value); }
+    remove(value) { return this._items.delete(value); }
+    clear() { this._items.clear(); }
+
+    // Implement the `Collection` interface for cross-library consistency
+    get [Collection.size]() { return this.count; }
+    [Collection.has](value) { return this.contains(value); }
+    [Collection.add](value) { this.add(value); }
+    [Collection.delete](value) { return this.remove(value); }
+    [Collection.clear]() { this.clear(); }
+    [Symbol.iterator]() { return this._items.values(); }
+}
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces
   </h3>
         <h4><a class="xref" href="collection-core/collection-interface.html#_esfx_collection_core_Collection_interface">Collection</a></h4>
+        <section></section>
+        <h4><a class="xref" href="collection-core/container-interface.html#_esfx_collection_core_Container_interface">Container</a></h4>
         <section></section>
         <h4><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></h4>
         <section></section>
@@ -95,13 +162,19 @@
         <section></section>
         <h4><a class="xref" href="collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection_interface">KeyedCollection</a></h4>
         <section></section>
+        <h4><a class="xref" href="collection-core/keyedcontainer-interface.html#_esfx_collection_core_KeyedContainer_interface">KeyedContainer</a></h4>
+        <section></section>
         <h4><a class="xref" href="collection-core/keyedmulticollection-interface.html#_esfx_collection_core_KeyedMultiCollection_interface">KeyedMultiCollection</a></h4>
         <section></section>
         <h4><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></h4>
         <section></section>
+        <h4><a class="xref" href="collection-core/readonlycontainer-interface.html#_esfx_collection_core_ReadonlyContainer_interface">ReadonlyContainer</a></h4>
+        <section></section>
         <h4><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></h4>
         <section></section>
         <h4><a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection</a></h4>
+        <section></section>
+        <h4><a class="xref" href="collection-core/readonlykeyedcontainer-interface.html#_esfx_collection_core_ReadonlyKeyedContainer_interface">ReadonlyKeyedContainer</a></h4>
         <section></section>
         <h4><a class="xref" href="collection-core/readonlykeyedmulticollection-interface.html#_esfx_collection_core_ReadonlyKeyedMultiCollection_interface">ReadonlyKeyedMultiCollection</a></h4>
         <section></section>
@@ -109,19 +182,27 @@
   </h3>
         <h4><a class="xref" href="collection-core/collection-namespace.html#_esfx_collection_core_Collection_namespace">Collection</a></h4>
         <section></section>
+        <h4><a class="xref" href="collection-core/container-namespace.html#_esfx_collection_core_Container_namespace">Container</a></h4>
+        <section></section>
         <h4><a class="xref" href="collection-core/fixedsizeindexedcollection-namespace.html#_esfx_collection_core_FixedSizeIndexedCollection_namespace">FixedSizeIndexedCollection</a></h4>
         <section></section>
         <h4><a class="xref" href="collection-core/indexedcollection-namespace.html#_esfx_collection_core_IndexedCollection_namespace">IndexedCollection</a></h4>
         <section></section>
         <h4><a class="xref" href="collection-core/keyedcollection-namespace.html#_esfx_collection_core_KeyedCollection_namespace">KeyedCollection</a></h4>
         <section></section>
+        <h4><a class="xref" href="collection-core/keyedcontainer-namespace.html#_esfx_collection_core_KeyedContainer_namespace">KeyedContainer</a></h4>
+        <section></section>
         <h4><a class="xref" href="collection-core/keyedmulticollection-namespace.html#_esfx_collection_core_KeyedMultiCollection_namespace">KeyedMultiCollection</a></h4>
         <section></section>
         <h4><a class="xref" href="collection-core/readonlycollection-namespace.html#_esfx_collection_core_ReadonlyCollection_namespace">ReadonlyCollection</a></h4>
         <section></section>
+        <h4><a class="xref" href="collection-core/readonlycontainer-namespace.html#_esfx_collection_core_ReadonlyContainer_namespace">ReadonlyContainer</a></h4>
+        <section></section>
         <h4><a class="xref" href="collection-core/readonlyindexedcollection-namespace.html#_esfx_collection_core_ReadonlyIndexedCollection_namespace">ReadonlyIndexedCollection</a></h4>
         <section></section>
         <h4><a class="xref" href="collection-core/readonlykeyedcollection-namespace.html#_esfx_collection_core_ReadonlyKeyedCollection_namespace">ReadonlyKeyedCollection</a></h4>
+        <section></section>
+        <h4><a class="xref" href="collection-core/readonlykeyedcontainer-namespace.html#_esfx_collection_core_ReadonlyKeyedContainer_namespace">ReadonlyKeyedContainer</a></h4>
         <section></section>
         <h4><a class="xref" href="collection-core/readonlykeyedmulticollection-namespace.html#_esfx_collection_core_ReadonlyKeyedMultiCollection_namespace">ReadonlyKeyedMultiCollection</a></h4>
         <section></section>
@@ -132,6 +213,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/collection-core.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

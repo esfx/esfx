@@ -1,8 +1,8 @@
 ---
-uid: collections-hashmap
+uid: '@esfx/collections-hashmap!'
 ---
 
-Provides the @"collections-hashmap.HashMap" class, a collection class that utilizes @"collection-core" and @"equatable".
+Provides the @"@esfx/collections-hashmap!HashMap:class" class, a collection class that utilizes @"@esfx/collection-core!" and @"@esfx/equatable!".
 
 # Overview
 

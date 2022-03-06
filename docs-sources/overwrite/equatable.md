@@ -1,5 +1,5 @@
 ---
-uid: equatable
+uid: '@esfx/equatable!'
 ---
 
 Provides a low level API for defining equality.

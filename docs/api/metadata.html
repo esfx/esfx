@@ -83,7 +83,71 @@
   <h1 id="_esfx_metadata_" data-uid="@esfx/metadata!" class="text-break">Package @esfx/metadata
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>Provides an API for defining metadata about an object.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/metadata
+</code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_rc63qNyT3w">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_rc63qNyT3w_ts" role="tab" aria-controls="tabpanel_rc63qNyT3w_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_rc63qNyT3w_js" role="tab" aria-controls="tabpanel_rc63qNyT3w_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_rc63qNyT3w_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { Metadata, getClassMetadata, getMemberMetadata, getParameterMetadata } from &quot;@esfx/metadata&quot;;
+
+const Service = name =&gt; Metadata(&quot;Service&quot;, name);
+const ReturnType = type =&gt; Metadata(&quot;ReturnType&quot;, type);
+const Type = type =&gt; Metadata(&quot;Type&quot;, type);
+
+@Service(&quot;MyService&quot;)
+class MyClass {
+    @ReturnType(&quot;string&quot;)
+    method(@Type(&quot;number&quot;) x: number) {
+        return &quot;hi&quot;;
+    }
+}
+
+const c = new MyClass();
+getClassMetadata(MyClass, &quot;Service&quot;); // &quot;MyService&quot;
+getMemberMetadata(c, &quot;method&quot;, &quot;ReturnType&quot;); // &quot;string&quot;
+getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;number&quot;
+</code></pre></section>
+<section id="tabpanel_rc63qNyT3w_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const {
+    defineClassMetadata,
+    defineMemberMetadata,
+    defineParameterMetadata,
+    getClassMetadata,
+    getMemberMetadata,
+    getParameterMetadata
+} = require(&quot;@esfx/metadata&quot;);
+
+class MyClass {
+    method(x) {
+        return &quot;hi&quot;;
+    }
+}
+
+defineClassMetadata(MyClass, &quot;Service&quot;, &quot;MyService&quot;);
+defineMemberMetadata(MyClass.prototype, &quot;method&quot;, &quot;ReturnType&quot;, &quot;string&quot;);
+defineParameterMetadata(MyClass.prototype, &quot;method&quot;, 0, &quot;Type&quot;, &quot;number&quot;);
+
+const c = new MyClass();
+getClassMetadata(MyClass, &quot;Service&quot;); // &quot;MyService&quot;
+getMemberMetadata(c, &quot;method&quot;, &quot;ReturnType&quot;); // &quot;string&quot;
+getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;number&quot;
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="functions">Functions
   </h3>
@@ -1603,6 +1667,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/metadata.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

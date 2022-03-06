@@ -1,8 +1,8 @@
 ---
-uid: threading-autoresetevent
+uid: '@esfx/threading-autoresetevent!'
 ---
 
-Provides the @"threading-autoresetevent.AutoResetEvent" class, a threading primitive for use with Workers.
+Provides the @"@esfx/threading-autoresetevent!AutoResetEvent:class" class, a threading primitive for use with Workers.
 
 # Overview
 

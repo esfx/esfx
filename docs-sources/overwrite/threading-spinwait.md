@@ -1,8 +1,8 @@
 ---
-uid: threading-spinwait
+uid: '@esfx/threading-spinwait!'
 ---
 
-Provides the @"threading-spinwait.SpinWait" class, a thread synchronization primitive for use with Workers.
+Provides the @"@esfx/threading-spinwait!SpinWait:class" class, a thread synchronization primitive for use with Workers.
 
 # Overview
 

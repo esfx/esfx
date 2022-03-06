@@ -1,5 +1,5 @@
 ---
-uid: async-lazy
+uid: '@esfx/async-lazy!'
 ---
 
 Lazy-initialized asynchronous value.

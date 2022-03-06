@@ -83,7 +83,98 @@
   <h1 id="_esfx_threading_spinwait_" data-uid="@esfx/threading-spinwait!" class="text-break">Package @esfx/threading-spinwait
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="threading-spinwait/spinwait.html#_esfx_threading_spinwait_SpinWait_class">SpinWait</a> class, a thread synchronization primitive for use with Workers.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/threading-spinwait
+</code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_WhDibgN8Pt">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_WhDibgN8Pt_ts" role="tab" aria-controls="tabpanel_WhDibgN8Pt_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_WhDibgN8Pt_js" role="tab" aria-controls="tabpanel_WhDibgN8Pt_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_WhDibgN8Pt_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
+import { SpinWait } from &quot;@esfx/threading-spinwait&quot;;
+import { StructType, int32 } from &quot;@esfx/struct-type&quot;;
+
+const SharedData = StructType([
+    { name: &quot;ready&quot;, type: int32 },
+] as const);
+
+function worker_thread() {
+    const data = new SharedData(workerData);
+
+    // do some long running process...
+
+    // signal that the work has completed.
+    data.ready = 1;
+}
+
+function main() {
+    const data = new SharedData(/*shared*/ true);
+    const worker = new Worker(__filename, { workerData: data.buffer });
+
+    // start spinning until the condition is met.
+    // this results in the thread sleeping periodically
+    // while it waits for the condition.
+    const spinWait = new SpinWait();
+    spinWait.spinUntil(() =&gt; data.ready === 1);
+}
+
+if (isMainThread) {
+    main();
+}
+else {
+    worker_thread();
+}
+</code></pre></section>
+<section id="tabpanel_WhDibgN8Pt_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
+const { SpinWait } = require(&quot;@esfx/threading-spinwait&quot;);
+const { StructType, int32 } = require(&quot;@esfx/struct-type&quot;);
+
+const SharedData = StructType([
+    { name: &quot;ready&quot;, type: int32 },
+]);
+
+function worker_thread() {
+    const data = new SharedData(workerData);
+
+    // do some long running process...
+
+    // signal that the work has completed.
+    data.ready = 1;
+}
+
+function main() {
+    const data = new SharedData(/*shared*/ true);
+    const worker = new Worker(__filename, { workerData: data.buffer });
+
+    // start spinning until the condition is met.
+    // this results in the thread sleeping periodically
+    // while it waits for the condition.
+    const spinWait = new SpinWait();
+    spinWait.spinUntil(() =&gt; data.ready === 1);
+}
+
+if (isMainThread) {
+    main();
+}
+else {
+    worker_thread();
+}
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
@@ -96,6 +187,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/threading-spinwait.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

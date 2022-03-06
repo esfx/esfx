@@ -83,13 +83,82 @@
   <h1 id="_esfx_indexed_object_" data-uid="@esfx/indexed-object!" class="text-break">Package @esfx/indexed-object
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>Provides a base class for custom integer-indexed collections.</p>
+<p>The underlying implementation uses a <code>Proxy</code> to trap integer indexes in a fashion similar to
+the <a href="https://tc39.github.io/ecma262/#integer-indexed-exotic-object">Integer-Indexed Exotic Object</a> 
+in the ECMAScript specification.</p>
+<h1 id="overview">Overview</h1>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h1 id="installation">Installation</h1>
+<pre><code class="lang-sh">npm i @esfx/indexed-object
+</code></pre><h1 id="usage">Usage</h1>
+<div class="tabGroup" id="tabgroup_pi7-7UyvIE">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_pi7-7UyvIE_ts" role="tab" aria-controls="tabpanel_pi7-7UyvIE_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_pi7-7UyvIE_js" role="tab" aria-controls="tabpanel_pi7-7UyvIE_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_pi7-7UyvIE_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { IntegerIndexedObject } from &quot;indexed-object&quot;;
+
+class BooleansCollection extends IntegerIndexedObject&lt;boolean&gt; {
+    protected getLength() {
+        return 2;
+    }
+    protected getIndex(index: number) {
+        switch (index) {
+            case 0: return false;
+            case 1: return true;
+            default: return undefined;
+        }
+    }
+    // hasIndex(index): boolean
+    // setIndex(index, value): boolean
+    // deleteIndex(index): boolean
+}
+
+const booleans = new BooleansCollection();
+console.log(booleans[0]); // false
+console.log(booleans[1]); // true
+</code></pre></section>
+<section id="tabpanel_pi7-7UyvIE_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-js">const { IntegerIndexedObject } = require(&quot;indexed-object&quot;);
+
+class BooleansCollection extends IntegerIndexedObject {
+    /** @protected */
+    getLength() {
+        return 2;
+    }
+    /** @protected */
+    getIndex(index) {
+        switch (index) {
+            case 0: return false;
+            case 1: return true;
+            default: return undefined;
+        }
+    }
+    // hasIndex(index): boolean
+    // setIndex(index, value): boolean
+    // deleteIndex(index): boolean
+}
+
+const booleans = new BooleansCollection();
+console.log(booleans[0]); // false
+console.log(booleans[1]); // true
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
         <h4><a class="xref" href="indexed-object/integerindexedobject.html#_esfx_indexed_object_IntegerIndexedObject_class">IntegerIndexedObject</a></h4>
-        <section><p>Represents an object that can be indexed by an integer value similar to a native
-Array or TypedArray.</p>
+        <section><p>Represents an object that can be indexed by an integer value similar to a native Array or TypedArray.</p>
 </section>
 </article>
           </div>
@@ -98,6 +167,9 @@ Array or TypedArray.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/indexed-object.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

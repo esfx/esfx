@@ -16,10 +16,11 @@
     "packages/*"
   ],
   "devDependencies": {
-    "@microsoft/api-documenter": "7.7.16",
-    "@microsoft/api-extractor": "7.7.12",
-    "@microsoft/api-extractor-model": "7.7.10",
-    "@microsoft/tsdoc": "0.12.19",
+    "@microsoft/api-documenter": "^7.15.3",
+    "@microsoft/api-extractor": "^7.19.4",
+    "@microsoft/api-extractor-model": "^7.15.3",
+    "@microsoft/tsdoc": "^0.13.2",
+    "@microsoft/tsdoc-config": "^0.15.2",
     "@types/graceful-fs": "^4.1.4",
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.41",

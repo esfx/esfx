@@ -1,5 +1,5 @@
 ---
-uid: collection-core
+uid: '@esfx/collection-core!'
 ---
 
 Provides a low-level Symbol-based API for defining common collection behaviors.

@@ -1,8 +1,8 @@
 ---
-uid: threading-conditionvariable
+uid: '@esfx/threading-conditionvariable!'
 ---
 
-Provides the @"threading-conditionvariable.ConditionVariable" class, a thread synchronization primitive for use with Workers.
+Provides the @"@esfx/threading-conditionvariable!ConditionVariable:class" class, a thread synchronization primitive for use with Workers.
 
 # Overview
 

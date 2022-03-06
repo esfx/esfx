@@ -90,13 +90,13 @@
   </h3>
   
   
-        <h4 id="_esfx_fn_equate_withEqualer_function_1_" data-uid="@esfx/fn!equate.withEqualer:function(1)">withEqualer(equaler)</h4>
+        <h4 id="_esfx_fn_equate_withEqualer_function_1_" data-uid="@esfx/fn!equate.withEqualer:function(1)">withEqualer(equaler, allowNullishValues)</h4>
               <div class="markdown level1 summary"><p>Creates a copy of <code>equate</code> for a specific <code>Equaler</code><!-- -->.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">function withEqualer&lt;T&gt;(equaler: Equaler&lt;T&gt;): (a: T, b: T) =&gt; boolean;</code></pre>
+          <pre><code class="lang-typeScript hljs">function withEqualer&lt;T&gt;(equaler: Equaler&lt;T&gt;, allowNullishValues: true): (a: T | null | undefined, b: T | null | undefined) =&gt; boolean;</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>
@@ -115,6 +115,68 @@
             <dl class="parameter">
               <dt>equaler</dt>
               <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>allowNullishValues</dt>
+              <dd><span class="xref">true</span></dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+  
+        <h5 class="returns">Returns</h5>
+        <div class="property">
+          <div><span class="xref">(a: T | null | undefined, b: T | null | undefined) =&gt; boolean</span></div>
+          <p>
+        </div>
+  
+  
+  
+  
+  
+        <h4 id="_esfx_fn_equate_withEqualer_function_2_" data-uid="@esfx/fn!equate.withEqualer:function(2)">withEqualer(equaler, allowNullishValues)</h4>
+              <div class="markdown level1 summary"><p>Creates a copy of <code>equate</code> for a specific <code>Equaler</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">function withEqualer&lt;T&gt;(equaler: Equaler&lt;T&gt;, allowNullishValues?: boolean): (a: T, b: T) =&gt; boolean;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+        <h5 class="parameters">Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>equaler</dt>
+              <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
+            </dl>
+            <p>
+              
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>allowNullishValues</dt>
+              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></dd>
             </dl>
             <p>
               
