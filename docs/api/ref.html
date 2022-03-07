@@ -86,17 +86,17 @@
   <div class="markdown level0 conceptual"><p>Provides a low-level API for defining forward references.</p>
 <div class="NOTE"><h5>Note</h5><p>This implementation is an approximation of the <code>Reference</code> behavior from <a href="https://github.com/rbuckton/proposal-refs">https://github.com/rbuckton/proposal-refs</a>.</p>
 </div>
-<h1 id="overview">Overview</h1>
+<h2 id="overview">Overview</h2>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
 </ul>
-<h1 id="installation">Installation</h1>
+<h2 id="installation">Installation</h2>
 <pre><code class="lang-sh">npm i @esfx/ref
-</code></pre><h1 id="usage">Usage</h1>
+</code></pre><h2 id="usage">Usage</h2>
 <div class="NOTE"><h5>Note</h5><p>Examples adapted from <a href="https://github.com/rbuckton/proposal-refs#examples">https://github.com/rbuckton/proposal-refs#examples</a> where applicable.</p>
 </div>
-<h2 id="take-a-reference-to-a-variable">Take a reference to a variable</h2>
+<h3 id="take-a-reference-to-a-variable">Take a reference to a variable</h3>
 <div class="tabGroup" id="tabgroup_oQRBqYTOeG">
 <ul role="tablist">
 <li role="presentation">
@@ -125,7 +125,7 @@ r.value = 2;
 print(x); // 2
 </code></pre></section>
 </div>
-<h2 id="take-a-reference-to-a-property">Take a reference to a property</h2>
+<h3 id="take-a-reference-to-a-property">Take a reference to a property</h3>
 <div class="tabGroup" id="tabgroup_oQRBqYTOeG-1">
 <ul role="tablist">
 <li role="presentation">
@@ -154,7 +154,7 @@ r.value = 2;
 print(o); // { x: 2 }
 </code></pre></section>
 </div>
-<h2 id="take-a-reference-to-an-element">Take a reference to an element</h2>
+<h3 id="take-a-reference-to-an-element">Take a reference to an element</h3>
 <div class="tabGroup" id="tabgroup_oQRBqYTOeG-2">
 <ul role="tablist">
 <li role="presentation">
@@ -183,7 +183,7 @@ r.value = 2;
 print(ar); // [2]
 </code></pre></section>
 </div>
-<h2 id="reference-passing">Reference passing</h2>
+<h3 id="reference-passing">Reference passing</h3>
 <div class="tabGroup" id="tabgroup_oQRBqYTOeG-3">
 <ul role="tablist">
 <li role="presentation">
@@ -216,7 +216,7 @@ update(ref(() =&gt; x, _ =&gt; x = _));
 print(x); // 2
 </code></pre></section>
 </div>
-<h2 id="referencing-a-local-declaration-creates-a-closure">Referencing a local declaration creates a closure</h2>
+<h3 id="referencing-a-local-declaration-creates-a-closure">Referencing a local declaration creates a closure</h3>
 <div class="tabGroup" id="tabgroup_oQRBqYTOeG-4">
 <ul role="tablist">
 <li role="presentation">
@@ -253,7 +253,7 @@ r.value = 2;
 p(); // 2
 </code></pre></section>
 </div>
-<h2 id="more-complex-reference-passing">More complex reference passing</h2>
+<h3 id="more-complex-reference-passing">More complex reference passing</h3>
 <div class="tabGroup" id="tabgroup_oQRBqYTOeG-5">
 <ul role="tablist">
 <li role="presentation">
@@ -300,7 +300,7 @@ print(y); // 2
 print(z); // 4
 </code></pre></section>
 </div>
-<h2 id="forward-reference-to-a-var">Forward reference to a <code>var</code></h2>
+<h3 id="forward-reference-to-a-var">Forward reference to a <code>var</code></h3>
 <div class="tabGroup" id="tabgroup_oQRBqYTOeG-6">
 <ul role="tablist">
 <li role="presentation">
@@ -327,7 +327,7 @@ ref_a.value = 1; // ok, no error as `a` is a var.
 var a;
 </code></pre></section>
 </div>
-<h2 id="forward-reference-to-a-block-scoped-variable">Forward reference to a block-scoped variable</h2>
+<h3 id="forward-reference-to-a-block-scoped-variable">Forward reference to a block-scoped variable</h3>
 <div class="tabGroup" id="tabgroup_oQRBqYTOeG-7">
 <ul role="tablist">
 <li role="presentation">
@@ -364,7 +364,7 @@ ref_b.value = 1; // error as `b` has not yet been declared.
 let b;
 </code></pre></section>
 </div>
-<h2 id="forward-reference-to-a-member-of-a-block-scoped-variable">Forward reference to a member of a block-scoped variable</h2>
+<h3 id="forward-reference-to-a-member-of-a-block-scoped-variable">Forward reference to a member of a block-scoped variable</h3>
 <div class="tabGroup" id="tabgroup_oQRBqYTOeG-8">
 <ul role="tablist">
 <li role="presentation">
@@ -387,7 +387,7 @@ const ref_x = ref.at(b, &quot;x&quot;); // error, `b` has not yet been declared
 let b = { x: 1 };
 </code></pre></section>
 </div>
-<h2 id="forward-references-for-decorators">Forward references for decorators</h2>
+<h3 id="forward-references-for-decorators">Forward references for decorators</h3>
 <div class="tabGroup" id="tabgroup_oQRBqYTOeG-9">
 <ul role="tablist">
 <li role="presentation">
@@ -414,7 +414,7 @@ class Container extends Node {
 }
 </code></pre></section>
 </div>
-<h2 id="side-effects">Side effects</h2>
+<h3 id="side-effects">Side effects</h3>
 <div class="tabGroup" id="tabgroup_oQRBqYTOeG-10">
 <ul role="tablist">
 <li role="presentation">
@@ -445,6 +445,7 @@ print(ref_e.value); // 0
 print(count); // 1
 </code></pre></section>
 </div>
+<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces

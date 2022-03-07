@@ -4,20 +4,20 @@ uid: '@esfx/threading-mutex!'
 
 Provides the @"@esfx/threading-mutex!Mutex:class" class which can be used to protect shared resources across Workers using a @"@esfx/SharedArrayBuffer!".
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/threading-mutex
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Worker, isMainThread, parentPort, workerData } from "worker_threads";
 import { Mutex } from "@esfx/threading-mutex";
@@ -78,7 +78,7 @@ else {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Worker, isMainThread, parentPort, workerData } = require("worker_threads");
 const { Mutex } = require("@esfx/threading-mutex");
@@ -140,3 +140,5 @@ else {
 ```
 
 ***
+
+## API

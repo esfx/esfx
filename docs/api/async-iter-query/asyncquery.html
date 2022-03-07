@@ -84,7 +84,9 @@
   <h1 id="_esfx_async_iter_query_AsyncQuery_class" data-uid="@esfx/async-iter-query!AsyncQuery:class">Class AsyncQuery
   </h1>
   <h6><strong>Package</strong>: <a class="xref" href="../async-iter-query.html">@esfx/async-iter-query</a></h6>
-  <div class="markdown level0 summary"><p>A <code>AsyncQuery</code> represents a series of operations that act upon an <code>Iterable</code> or ArrayLike. Evaluation of these operations is deferred until the either a scalar value is requested from the <code>AsyncQuery</code> or the <code>AsyncQuery</code> is iterated.</p>
+  <div class="markdown level0 summary"><p>A <code>AsyncQuery</code> represents a series of operations that act upon an <code>Iterable</code> or ArrayLike. Evaluation of
+these operations is deferred until the either a scalar value is requested from the <code>AsyncQuery</code> or the
+<code>AsyncQuery</code> is iterated.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h3 id="constructors">Constructors
@@ -876,7 +878,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T</dd>
       </dl>
       <p>
-        <p>The value to append. Subquery</p>
+        <p>The value to append.
+ Subquery</p>
 
         
       </p>
@@ -896,7 +899,7 @@
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_average_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#average:member(1)">average()</h4>
   <div class="markdown level1 summary"><p>Computes the average for a series of numbers.</p>
-<p>Scalar</p>
+<p> Scalar</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -920,7 +923,7 @@
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_average_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#average:member(2)">average(elementSelector)</h4>
   <div class="markdown level1 summary"><p>Computes the average for a series of numbers.</p>
-<p>Scalar</p>
+<p> Scalar</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -954,8 +957,11 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_break_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#break:member(1)">break(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of elements that do not match the supplied predicate, and whose second element is a subquery containing the remaining elements.</p>
-<p>The first subquery is eagerly evaluated, while the second subquery is lazily evaluated.</p>
+  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of
+elements that do not match the supplied predicate, and whose second element is a subquery
+containing the remaining elements.</p>
+<p>The first subquery is eagerly evaluated, while the second subquery is lazily
+evaluated.</p>
 <p>NOTE: This is an alias for <code>spanUntil</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -972,7 +978,8 @@
         <dd>(element: T, offset: number) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;boolean&gt; | boolean</dd>
       </dl>
       <p>
-        <p>The predicate used to match elements. Scalar</p>
+        <p>The predicate used to match elements.
+ Scalar</p>
 
         
       </p>
@@ -1017,7 +1024,8 @@
         <dd><span class="xref">R</span></dd>
       </dl>
       <p>
-        <p>An <code>AsyncIterable</code> or <code>Iterable</code> object. Subquery</p>
+        <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.
+ Subquery</p>
 
         
       </p>
@@ -1052,7 +1060,8 @@
         <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;T&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>AsyncIterable</code> or <code>Iterable</code> object. Subquery</p>
+        <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.
+ Subquery</p>
 
         
       </p>
@@ -1097,7 +1106,8 @@
         <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterator-interface">AsyncIterator</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>AsyncIterator</code> object. Query</p>
+        <p>An <code>AsyncIterator</code> object.
+ Query</p>
 
         
       </p>
@@ -1152,7 +1162,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T</dd>
       </dl>
       <p>
-        <p>The value for each element of the <code>AsyncQuery</code><!-- -->. Query</p>
+        <p>The value for each element of the <code>AsyncQuery</code><!-- -->.
+ Query</p>
 
         
       </p>
@@ -1171,7 +1182,9 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_copyTo_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#copyTo:member(1)">copyTo(dest, start, count)</h4>
-  <div class="markdown level1 summary"><p>Writes each element to a destination. The destination must already have enough space to write the requested number of elements (i.e. arrays are *not* resized).</p>
+  <div class="markdown level1 summary"><p>Writes each element to a destination. The destination must already
+have enough space to write the requested number of elements (i.e.
+arrays are *not* resized).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1219,7 +1232,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        <p>The number of elements to write to the array. Scalar</p>
+        <p>The number of elements to write to the array.
+ Scalar</p>
 
         
       </p>
@@ -1238,7 +1252,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_corresponds_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#corresponds:member(1)">corresponds(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in this <code>AsyncQuery</code> corresponds to a matching element in another <code>AsyncIterable</code> or <code>Iterable</code> at the same position.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in this <code>AsyncQuery</code> corresponds to a matching element
+in another <code>AsyncIterable</code> or <code>Iterable</code> at the same position.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1265,7 +1280,8 @@
         <dd><a class="xref" href="../equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An optional callback used to compare the equality of two elements. Scalar</p>
+        <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
 
         
       </p>
@@ -1284,7 +1300,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_corresponds_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#corresponds:member(2)">corresponds(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in this <code>AsyncQuery</code> corresponds to a matching element in another <code>AsyncIterable</code> or <code>Iterable</code> at the same position.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in this <code>AsyncQuery</code> corresponds to a matching element
+in another <code>AsyncIterable</code> or <code>Iterable</code> at the same position.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1321,7 +1338,8 @@
         <dd><span class="xref">(left: T, right: U) =&gt; boolean</span></dd>
       </dl>
       <p>
-        <p>An optional callback used to compare the equality of two elements. Scalar</p>
+        <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
 
         
       </p>
@@ -1340,7 +1358,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_correspondsBy_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#correspondsBy:member(1)">correspondsBy(right, keySelector, keyEqualer)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in this <code>AsyncQuery</code> corresponds to a matching element in another <code>AsyncIterable</code> or <code>Iterable</code> at the same position.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in this <code>AsyncQuery</code> corresponds to a matching element
+in another <code>AsyncIterable</code> or <code>Iterable</code> at the same position.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1388,7 +1407,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> used to compare the equality of two keys. Scalar</p>
+        <p>An <code>Equaler</code> used to compare the equality of two keys.
+ Scalar</p>
 
         
       </p>
@@ -1407,7 +1427,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_correspondsBy_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#correspondsBy:member(2)">correspondsBy(right, leftKeySelector, rightKeySelector, keyEqualer)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the key for every element in this <code>AsyncQuery</code> corresponds to a matching key in <code>right</code> at the same position.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the key for every element in this <code>AsyncQuery</code> corresponds to a matching key
+in <code>right</code> at the same position.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1475,7 +1496,8 @@
         <dd><a class="xref" href="../equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;K&gt; | <a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An optional callback used to compare the equality of two keys. Scalar</p>
+        <p>An optional callback used to compare the equality of two keys.
+ Scalar</p>
 
         
       </p>
@@ -1494,7 +1516,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_count_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#count:member(1)">count(predicate)</h4>
-  <div class="markdown level1 summary"><p>Counts the number of elements in the <code>AsyncQuery</code><!-- -->, optionally filtering elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Counts the number of elements in the <code>AsyncQuery</code><!-- -->, optionally filtering elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1510,7 +1533,8 @@
         <dd>(element: T) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;boolean&gt; | boolean</dd>
       </dl>
       <p>
-        <p>An optional callback used to match each element. Scalar</p>
+        <p>An optional callback used to match each element.
+ Scalar</p>
 
         
       </p>
@@ -1529,7 +1553,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_defaultIfEmpty_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#defaultIfEmpty:member(1)">defaultIfEmpty(defaultValue)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery that contains the provided default value if this <code>AsyncQuery</code> contains no elements.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery that contains the provided default value if this <code>AsyncQuery</code>
+contains no elements.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1545,7 +1570,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T</dd>
       </dl>
       <p>
-        <p>The default value. Subquery</p>
+        <p>The default value.
+ Subquery</p>
 
         
       </p>
@@ -1580,7 +1606,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -1636,7 +1663,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -1655,7 +1683,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_drop_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#drop:member(1)">drop(count)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements up to the supplied count.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements up to the supplied
+count.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1671,7 +1700,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        <p>The number of elements to drop. Subquery</p>
+        <p>The number of elements to drop.
+ Subquery</p>
 
         
       </p>
@@ -1690,7 +1720,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_dropRight_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#dropRight:member(1)">dropRight(count)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the last elements up to the supplied count.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the last elements up to the supplied
+count.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1706,7 +1737,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        <p>The number of elements to drop. Subquery</p>
+        <p>The number of elements to drop.
+ Subquery</p>
 
         
       </p>
@@ -1725,7 +1757,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_dropUntil_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#dropUntil:member(1)">dropUntil(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that don&#39;t match the supplied predicate.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that don&#39;t match
+the supplied predicate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1760,7 +1793,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_dropWhile_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#dropWhile:member(1)">dropWhile(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that match the supplied predicate.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that match
+the supplied predicate.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1795,7 +1829,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_elementAt_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#elementAt:member(1)">elementAt(offset)</h4>
-  <div class="markdown level1 summary"><p>Finds the value in the <code>AsyncQuery</code> at the provided offset. A negative offset starts from the last element.</p>
+  <div class="markdown level1 summary"><p>Finds the value in the <code>AsyncQuery</code> at the provided offset. A negative offset starts from the
+last element.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1811,7 +1846,8 @@
         <dd>number | <a class="xref" href="../interval/index.html#_esfx_interval_Index_class">Index</a></dd>
       </dl>
       <p>
-        <p>An offset. Scalar</p>
+        <p>An offset.
+ Scalar</p>
 
         
       </p>
@@ -1831,7 +1867,7 @@
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_empty_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery.empty:member(1)">empty()</h4>
   <div class="markdown level1 summary"><p>Creates a <code>AsyncQuery</code> with no elements.</p>
-<p>Query</p>
+<p> Query</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1864,7 +1900,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_endsWith_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#endsWith:member(1)">endsWith(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>AsyncQuery</code> end with the same sequence of elements in another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>AsyncQuery</code> end
+with the same sequence of elements in another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1891,7 +1928,8 @@
         <dd><a class="xref" href="../equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>A callback used to compare the equality of two elements. Scalar</p>
+        <p>A callback used to compare the equality of two elements.
+ Scalar</p>
 
         
       </p>
@@ -1910,7 +1948,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_endsWith_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#endsWith:member(2)">endsWith(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>AsyncQuery</code> end with the same sequence of elements in another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>AsyncQuery</code> end
+with the same sequence of elements in another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1947,7 +1986,8 @@
         <dd><span class="xref">(left: T, right: U) =&gt; boolean</span></dd>
       </dl>
       <p>
-        <p>A callback used to compare the equality of two elements. Scalar</p>
+        <p>A callback used to compare the equality of two elements.
+ Scalar</p>
 
         
       </p>
@@ -1966,7 +2006,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_every_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#every:member(1)">every(predicate)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether all elements of the <code>AsyncQuery</code> match the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether all elements of the <code>AsyncQuery</code>
+match the supplied callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1982,7 +2023,8 @@
         <dd>(element: T) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;boolean&gt; | boolean</dd>
       </dl>
       <p>
-        <p>A callback used to match each element. Scalar</p>
+        <p>A callback used to match each element.
+ Scalar</p>
 
         
       </p>
@@ -2028,7 +2070,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
         
       </p>
@@ -2095,7 +2138,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -2130,7 +2174,8 @@
         <dd>[<a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T, ...(<a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T)[]]</dd>
       </dl>
       <p>
-        <p>The values to exclude. Subquery</p>
+        <p>The values to exclude.
+ Subquery</p>
 
         
       </p>
@@ -2286,7 +2331,7 @@
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_filterDefined_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#filterDefined:member(1)">filterDefined()</h4>
   <div class="markdown level1 summary"><p>Creates a subquery whose elements are neither <code>null</code> nor <code>undefined</code><!-- -->.</p>
-<p>Subquery</p>
+<p> Subquery</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -2535,7 +2580,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_first_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#first:member(1)">first(predicate)</h4>
-  <div class="markdown level1 summary"><p>Gets the first element in the <code>AsyncQuery</code><!-- -->, optionally filtering elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Gets the first element in the <code>AsyncQuery</code><!-- -->, optionally filtering elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -2561,7 +2607,8 @@
         <dd>(element: T) =&gt; <span class="xref">element</span> is U</dd>
       </dl>
       <p>
-        <p>An optional callback used to match each element. Scalar</p>
+        <p>An optional callback used to match each element.
+ Scalar</p>
 
         
       </p>
@@ -2580,7 +2627,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_first_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#first:member(2)">first(predicate)</h4>
-  <div class="markdown level1 summary"><p>Gets the first element in the <code>AsyncQuery</code><!-- -->, optionally filtering elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Gets the first element in the <code>AsyncQuery</code><!-- -->, optionally filtering elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -2596,7 +2644,8 @@
         <dd>(element: T) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;boolean&gt; | boolean</dd>
       </dl>
       <p>
-        <p>An optional callback used to match each element. Scalar</p>
+        <p>An optional callback used to match each element.
+ Scalar</p>
 
         
       </p>
@@ -2741,7 +2790,8 @@
         <dd>(element: T, offset: number) =&gt; void | <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;void&gt;</dd>
       </dl>
       <p>
-        <p>The callback to invoke. Scalar</p>
+        <p>The callback to invoke.
+ Scalar</p>
 
         
       </p>
@@ -2761,7 +2811,7 @@
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_from_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery.from:member(1)">from(source)</h4>
   <div class="markdown level1 summary"><p>Creates an <code>AsyncQuery</code> from an <code>AsyncIterable</code> or <code>Iterable</code> source.</p>
-<p>Query</p>
+<p> Query</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -3207,7 +3257,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Join</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Join</p>
 
         
       </p>
@@ -3226,7 +3277,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_generate_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery.generate:member(1)">generate(count, generator)</h4>
-  <div class="markdown level1 summary"><p>Creates a <code>AsyncQuery</code> whose values are provided by a callback executed a provided number of times.</p>
+  <div class="markdown level1 summary"><p>Creates a <code>AsyncQuery</code> whose values are provided by a callback executed a provided number of
+times.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -3263,7 +3315,8 @@
         <dd>(offset: number) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T</dd>
       </dl>
       <p>
-        <p>The callback to execute. Query</p>
+        <p>The callback to execute.
+ Query</p>
 
         
       </p>
@@ -3319,7 +3372,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -3395,7 +3449,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -3491,7 +3546,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -3578,7 +3634,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -3685,7 +3742,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Join</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Join</p>
 
         
       </p>
@@ -3731,7 +3789,8 @@
         <dd><a class="xref" href="../equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An optional callback used to compare the equality of two elements. Scalar</p>
+        <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
 
         
       </p>
@@ -3787,7 +3846,8 @@
         <dd><span class="xref">(left: T, right: U) =&gt; boolean</span></dd>
       </dl>
       <p>
-        <p>An optional callback used to compare the equality of two elements. Scalar</p>
+        <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
 
         
       </p>
@@ -3806,7 +3866,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_includesSequence_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#includesSequence:member(1)">includesSequence(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>AsyncQuery</code> include an exact sequence of elements from another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>AsyncQuery</code> include
+an exact sequence of elements from another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -3833,7 +3894,8 @@
         <dd><a class="xref" href="../equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>A callback used to compare the equality of two elements. Scalar</p>
+        <p>A callback used to compare the equality of two elements.
+ Scalar</p>
 
         
       </p>
@@ -3852,7 +3914,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_includesSequence_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#includesSequence:member(2)">includesSequence(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>AsyncQuery</code> include an exact sequence of elements from another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>AsyncQuery</code> include
+an exact sequence of elements from another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -3889,7 +3952,8 @@
         <dd><span class="xref">(left: T, right: U) =&gt; boolean</span></dd>
       </dl>
       <p>
-        <p>A callback used to compare the equality of two elements. Scalar</p>
+        <p>A callback used to compare the equality of two elements.
+ Scalar</p>
 
         
       </p>
@@ -3945,7 +4009,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
         
       </p>
@@ -3991,7 +4056,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
         
       </p>
@@ -4067,7 +4133,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -4134,7 +4201,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -4286,7 +4354,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Join</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Join</p>
 
         
       </p>
@@ -4305,7 +4374,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_last_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#last:member(1)">last(predicate)</h4>
-  <div class="markdown level1 summary"><p>Gets the last element in the <code>AsyncQuery</code><!-- -->, optionally filtering elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Gets the last element in the <code>AsyncQuery</code><!-- -->, optionally filtering elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4331,7 +4401,8 @@
         <dd>(element: T) =&gt; <span class="xref">element</span> is U</dd>
       </dl>
       <p>
-        <p>An optional callback used to match each element. Scalar</p>
+        <p>An optional callback used to match each element.
+ Scalar</p>
 
         
       </p>
@@ -4350,7 +4421,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_last_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#last:member(2)">last(predicate)</h4>
-  <div class="markdown level1 summary"><p>Gets the last element in the <code>AsyncQuery</code><!-- -->, optionally filtering elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Gets the last element in the <code>AsyncQuery</code><!-- -->, optionally filtering elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4366,7 +4438,8 @@
         <dd>(element: T) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;boolean&gt; | boolean</dd>
       </dl>
       <p>
-        <p>An optional callback used to match each element. Scalar</p>
+        <p>An optional callback used to match each element.
+ Scalar</p>
 
         
       </p>
@@ -4431,7 +4504,7 @@
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_materialize_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#materialize:member(1)">materialize()</h4>
   <div class="markdown level1 summary"><p>Eagerly evaluate the <code>AsyncQuery</code><!-- -->, returning a new <code>AsyncQuery</code><!-- -->.</p>
-<p>Subquery</p>
+<p> Subquery</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4454,7 +4527,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_max_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#max:member(1)">max(comparer)</h4>
-  <div class="markdown level1 summary"><p>Gets the maximum element in the <code>AsyncQuery</code><!-- -->, optionally comparing elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Gets the maximum element in the <code>AsyncQuery</code><!-- -->, optionally comparing elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4470,7 +4544,8 @@
         <dd><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;T&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An optional callback used to compare two elements. Scalar</p>
+        <p>An optional callback used to compare two elements.
+ Scalar</p>
 
         
       </p>
@@ -4526,7 +4601,8 @@
         <dd><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An optional callback used to compare the keys. Scalar</p>
+        <p>An optional callback used to compare the keys.
+ Scalar</p>
 
         
       </p>
@@ -4545,7 +4621,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_min_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#min:member(1)">min(comparer)</h4>
-  <div class="markdown level1 summary"><p>Gets the minimum element in the <code>AsyncQuery</code><!-- -->, optionally comparing elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Gets the minimum element in the <code>AsyncQuery</code><!-- -->, optionally comparing elements using the supplied
+callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4561,7 +4638,8 @@
         <dd><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;T&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An optional callback used to compare two elements. Scalar</p>
+        <p>An optional callback used to compare two elements.
+ Scalar</p>
 
         
       </p>
@@ -4617,7 +4695,8 @@
         <dd><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An optional callback used to compare the keys. Scalar</p>
+        <p>An optional callback used to compare the keys.
+ Scalar</p>
 
         
       </p>
@@ -4636,7 +4715,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_nth_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#nth:member(1)">nth(offset)</h4>
-  <div class="markdown level1 summary"><p>Finds the value in the <code>AsyncQuery</code> at the provided offset. A negative offset starts from the last element.</p>
+  <div class="markdown level1 summary"><p>Finds the value in the <code>AsyncQuery</code> at the provided offset. A negative offset starts from the
+last element.</p>
 <p>NOTE: This is an alias for <code>elementAt</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -4653,7 +4733,8 @@
         <dd>number | <a class="xref" href="../interval/index.html#_esfx_interval_Index_class">Index</a></dd>
       </dl>
       <p>
-        <p>An offset. Scalar</p>
+        <p>An offset.
+ Scalar</p>
 
         
       </p>
@@ -4698,7 +4779,8 @@
         <dd>(<a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T)[]</dd>
       </dl>
       <p>
-        <p>The elements of the <code>AsyncQuery</code><!-- -->. Query</p>
+        <p>The elements of the <code>AsyncQuery</code><!-- -->.
+ Query</p>
 
         
       </p>
@@ -4743,7 +4825,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T</dd>
       </dl>
       <p>
-        <p>The only element for the <code>AsyncQuery</code><!-- -->. Query</p>
+        <p>The only element for the <code>AsyncQuery</code><!-- -->.
+ Query</p>
 
         
       </p>
@@ -4799,7 +4882,8 @@
         <dd><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An optional callback used to compare two keys. Order</p>
+        <p>An optional callback used to compare two keys.
+ Order</p>
 
         
       </p>
@@ -4855,7 +4939,8 @@
         <dd><a class="xref" href="../equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="../equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An optional callback used to compare two keys. Order</p>
+        <p>An optional callback used to compare two keys.
+ Order</p>
 
         
       </p>
@@ -4874,7 +4959,9 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_pageBy_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#pageBy:member(1)">pageBy(pageSize)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery that splits this <code>AsyncQuery</code> into one or more pages. While advancing from page to page is evaluated lazily, the elements of the page are evaluated eagerly.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery that splits this <code>AsyncQuery</code> into one or more pages.
+While advancing from page to page is evaluated lazily, the elements of the page are
+evaluated eagerly.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4890,7 +4977,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        <p>The number of elements per page. Subquery</p>
+        <p>The number of elements per page.
+ Subquery</p>
 
         
       </p>
@@ -4909,7 +4997,9 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_pageBy_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#pageBy:member(2)">pageBy(pageSize, pageSelector)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery that splits this <code>AsyncQuery</code> into one or more pages. While advancing from page to page is evaluated lazily, the elements of the page are evaluated eagerly.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery that splits this <code>AsyncQuery</code> into one or more pages.
+While advancing from page to page is evaluated lazily, the elements of the page are
+evaluated eagerly.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -4935,7 +5025,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        <p>The number of elements per page. Subquery</p>
+        <p>The number of elements per page.
+ Subquery</p>
 
         
       </p>
@@ -4964,7 +5055,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_patch_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#patch:member(1)">patch(start, skipCount, range)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery for the elements of this <code>AsyncQuery</code> with the provided range patched into the results.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery for the elements of this <code>AsyncQuery</code> with the provided range
+patched into the results.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -5002,7 +5094,8 @@
         <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;T&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T&gt;</dd>
       </dl>
       <p>
-        <p>The range to patch into the result. Subquery</p>
+        <p>The range to patch into the result.
+ Subquery</p>
 
         
       </p>
@@ -5037,7 +5130,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T</dd>
       </dl>
       <p>
-        <p>The value to prepend. Subquery</p>
+        <p>The value to prepend.
+ Subquery</p>
 
         
       </p>
@@ -5094,7 +5188,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        <p>The amount by which to change between each itereated value. Query</p>
+        <p>The amount by which to change between each itereated value.
+ Query</p>
 
         
       </p>
@@ -5185,7 +5280,8 @@
         <dd><span class="xref">U</span></dd>
       </dl>
       <p>
-        <p>An optional seed value. Scalar</p>
+        <p>An optional seed value.
+ Scalar</p>
 
         
       </p>
@@ -5271,7 +5367,8 @@
         <dd>(result: U, count: number) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;R&gt; | R</dd>
       </dl>
       <p>
-        <p>An optional callback used to compute the final result. Scalar</p>
+        <p>An optional callback used to compute the final result.
+ Scalar</p>
 
         
       </p>
@@ -5306,7 +5403,8 @@
         <dd>(current: T, element: T, offset: number) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | T</dd>
       </dl>
       <p>
-        <p>the callback used to compute the result. Scalar</p>
+        <p>the callback used to compute the result.
+ Scalar</p>
 
         
       </p>
@@ -5362,7 +5460,8 @@
         <dd><span class="xref">U</span></dd>
       </dl>
       <p>
-        <p>An optional seed value. Scalar</p>
+        <p>An optional seed value.
+ Scalar</p>
 
         
       </p>
@@ -5448,7 +5547,8 @@
         <dd>(result: U, count: number) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;R&gt; | R</dd>
       </dl>
       <p>
-        <p>An optional callback used to compute the final result. Scalar</p>
+        <p>An optional callback used to compute the final result.
+ Scalar</p>
 
         
       </p>
@@ -5495,7 +5595,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
         
       </p>
@@ -5563,7 +5664,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -5619,7 +5721,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        <p>The number of times to repeat the value. Query</p>
+        <p>The number of times to repeat the value.
+ Query</p>
 
         
       </p>
@@ -5639,7 +5742,7 @@
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_reverse_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#reverse:member(1)">reverse()</h4>
   <div class="markdown level1 summary"><p>Creates a subquery whose elements are in the reverse order.</p>
-<p>Subquery</p>
+<p> Subquery</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -5734,7 +5837,8 @@
         <dd><span class="xref">U</span></dd>
       </dl>
       <p>
-        <p>An optional seed value. Subquery</p>
+        <p>An optional seed value.
+ Subquery</p>
 
         
       </p>
@@ -5825,7 +5929,8 @@
         <dd><span class="xref">U</span></dd>
       </dl>
       <p>
-        <p>An optional seed value. Subquery</p>
+        <p>An optional seed value.
+ Subquery</p>
 
         
       </p>
@@ -6028,7 +6133,8 @@
         <dd>(element: T) =&gt; <span class="xref">element</span> is U</dd>
       </dl>
       <p>
-        <p>An optional callback used to match each element. Scalar</p>
+        <p>An optional callback used to match each element.
+ Scalar</p>
 
         
       </p>
@@ -6063,7 +6169,8 @@
         <dd>(element: T) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;boolean&gt; | boolean</dd>
       </dl>
       <p>
-        <p>An optional callback used to match each element. Scalar</p>
+        <p>An optional callback used to match each element.
+ Scalar</p>
 
         
       </p>
@@ -6082,7 +6189,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_skip_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#skip:member(1)">skip(count)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements up to the supplied count.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements up to the supplied
+count.</p>
 <p>NOTE: This is an alias for <code>drop</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -6099,7 +6207,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        <p>The number of elements to skip. Subquery</p>
+        <p>The number of elements to skip.
+ Subquery</p>
 
         
       </p>
@@ -6118,7 +6227,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_skipRight_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#skipRight:member(1)">skipRight(count)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the last elements up to the supplied count.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the last elements up to the supplied
+count.</p>
 <p>NOTE: This is an alias for <code>dropRight</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -6135,7 +6245,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        <p>The number of elements to skip. Subquery</p>
+        <p>The number of elements to skip.
+ Subquery</p>
 
         
       </p>
@@ -6154,7 +6265,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_skipUntil_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#skipUntil:member(1)">skipUntil(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that don&#39;t match the supplied predicate.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that don&#39;t match
+the supplied predicate.</p>
 <p>NOTE: This is an alias for <code>dropUntil</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -6190,7 +6302,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_skipWhile_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#skipWhile:member(1)">skipWhile(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that match the supplied predicate.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that match
+the supplied predicate.</p>
 <p>NOTE: This is an alias for <code>dropWhile</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -6226,7 +6339,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_some_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#some:member(1)">some(predicate)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the <code>AsyncQuery</code> contains any elements, optionally filtering the elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the <code>AsyncQuery</code> contains any elements,
+optionally filtering the elements using the supplied callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6242,7 +6356,8 @@
         <dd>(element: T) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;boolean&gt; | boolean</dd>
       </dl>
       <p>
-        <p>An optional callback used to match each element. Scalar</p>
+        <p>An optional callback used to match each element.
+ Scalar</p>
 
         
       </p>
@@ -6261,8 +6376,11 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_span_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#span:member(1)">span(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of elements that match the supplied predicate, and whose second element is a subquery containing the remaining elements.</p>
-<p>The first subquery is eagerly evaluated, while the second subquery is lazily evaluated.</p>
+  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of
+elements that match the supplied predicate, and whose second element is a subquery
+containing the remaining elements.</p>
+<p>The first subquery is eagerly evaluated, while the second subquery is lazily
+evaluated.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6288,7 +6406,8 @@
         <dd>(element: T, offset: number) =&gt; <span class="xref">element</span> is U</dd>
       </dl>
       <p>
-        <p>The predicate used to match elements. Scalar</p>
+        <p>The predicate used to match elements.
+ Scalar</p>
 
         
       </p>
@@ -6307,8 +6426,11 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_span_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#span:member(2)">span(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of elements that match the supplied predicate, and whose second element is a subquery containing the remaining elements.</p>
-<p>The first subquery is eagerly evaluated, while the second subquery is lazily evaluated.</p>
+  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of
+elements that match the supplied predicate, and whose second element is a subquery
+containing the remaining elements.</p>
+<p>The first subquery is eagerly evaluated, while the second subquery is lazily
+evaluated.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6324,7 +6446,8 @@
         <dd>(element: T, offset: number) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;boolean&gt; | boolean</dd>
       </dl>
       <p>
-        <p>The predicate used to match elements. Scalar</p>
+        <p>The predicate used to match elements.
+ Scalar</p>
 
         
       </p>
@@ -6654,8 +6777,11 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_spanUntil_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#spanUntil:member(1)">spanUntil(predicate)</h4>
-  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of elements that do not match the supplied predicate, and whose second element is a subquery containing the remaining elements.</p>
-<p>The first subquery is eagerly evaluated, while the second subquery is lazily evaluated.</p>
+  <div class="markdown level1 summary"><p>Creates a tuple whose first element is a subquery containing the first span of
+elements that do not match the supplied predicate, and whose second element is a subquery
+containing the remaining elements.</p>
+<p>The first subquery is eagerly evaluated, while the second subquery is lazily
+evaluated.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6671,7 +6797,8 @@
         <dd>(element: T, offset: number) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;boolean&gt; | boolean</dd>
       </dl>
       <p>
-        <p>The predicate used to match elements. Scalar</p>
+        <p>The predicate used to match elements.
+ Scalar</p>
 
         
       </p>
@@ -6690,7 +6817,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_startsWith_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#startsWith:member(1)">startsWith(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>AsyncQuery</code> start with the same sequence of elements in another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>AsyncQuery</code> start
+with the same sequence of elements in another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6717,7 +6845,8 @@
         <dd><a class="xref" href="../equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>A callback used to compare the equality of two elements. Scalar</p>
+        <p>A callback used to compare the equality of two elements.
+ Scalar</p>
 
         
       </p>
@@ -6736,7 +6865,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_startsWith_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#startsWith:member(2)">startsWith(right, equaler)</h4>
-  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>AsyncQuery</code> start with the same sequence of elements in another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this <code>AsyncQuery</code> start
+with the same sequence of elements in another <code>AsyncIterable</code> or <code>Iterable</code><!-- -->.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6773,7 +6903,8 @@
         <dd><span class="xref">(left: T, right: U) =&gt; boolean</span></dd>
       </dl>
       <p>
-        <p>A callback used to compare the equality of two elements. Scalar</p>
+        <p>A callback used to compare the equality of two elements.
+ Scalar</p>
 
         
       </p>
@@ -6793,7 +6924,7 @@
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_sum_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#sum:member(1)">sum()</h4>
   <div class="markdown level1 summary"><p>Computes the sum for a series of numbers.</p>
-<p>Scalar</p>
+<p> Scalar</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6817,7 +6948,7 @@
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_sum_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#sum:member(2)">sum(elementSelector)</h4>
   <div class="markdown level1 summary"><p>Computes the sum for a series of numbers.</p>
-<p>Scalar</p>
+<p> Scalar</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -6888,7 +7019,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
         
       </p>
@@ -6934,7 +7066,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
         
       </p>
@@ -7010,7 +7143,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -7077,7 +7211,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -7096,7 +7231,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_take_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#take:member(1)">take(count)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing the first elements up to the supplied count.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing the first elements up to the supplied
+count.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -7112,7 +7248,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        <p>The number of elements to take. Subquery</p>
+        <p>The number of elements to take.
+ Subquery</p>
 
         
       </p>
@@ -7131,7 +7268,8 @@
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_takeRight_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#takeRight:member(1)">takeRight(count)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery containing the last elements up to the supplied count.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery containing the last elements up to the supplied
+count.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -7147,7 +7285,8 @@
         <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
       </dl>
       <p>
-        <p>The number of elements to take. Subquery</p>
+        <p>The number of elements to take.
+ Subquery</p>
 
         
       </p>
@@ -7362,7 +7501,7 @@
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_toArray_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#toArray:member(1)">toArray()</h4>
   <div class="markdown level1 summary"><p>Creates an Array for the elements of the <code>AsyncQuery</code><!-- -->.</p>
-<p>Scalar</p>
+<p> Scalar</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -7411,7 +7550,8 @@
         <dd>(element: T) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;V&gt; | V</dd>
       </dl>
       <p>
-        <p>A callback that selects a value for each element. Scalar</p>
+        <p>A callback that selects a value for each element.
+ Scalar</p>
 
         
       </p>
@@ -7467,7 +7607,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Scalar</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Scalar</p>
 
         
       </p>
@@ -7543,7 +7684,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Scalar</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Scalar</p>
 
         
       </p>
@@ -7578,7 +7720,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare equality. Scalar</p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Scalar</p>
 
         
       </p>
@@ -7634,7 +7777,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;V&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare equality. Scalar</p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Scalar</p>
 
         
       </p>
@@ -7679,7 +7823,8 @@
         <dd><a class="xref" href="../iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface">HierarchyProvider</a>&lt;TNode&gt;</dd>
       </dl>
       <p>
-        <p>A <code>HierarchyProvider</code><!-- -->. Hierarchy</p>
+        <p>A <code>HierarchyProvider</code><!-- -->.
+ Hierarchy</p>
 
         
       </p>
@@ -7735,7 +7880,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Scalar</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Scalar</p>
 
         
       </p>
@@ -7811,7 +7957,8 @@
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Scalar</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Scalar</p>
 
         
       </p>
@@ -7856,7 +8003,8 @@
         <dd><span class="xref">(element: T) =&gt; K</span></dd>
       </dl>
       <p>
-        <p>A callback used to select a key for each element. Scalar</p>
+        <p>A callback used to select a key for each element.
+ Scalar</p>
 
         
       </p>
@@ -7921,7 +8069,8 @@
         <dd>(element: T) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;V&gt; | V</dd>
       </dl>
       <p>
-        <p>A callback that selects a value for each element. Scalar</p>
+        <p>A callback that selects a value for each element.
+ Scalar</p>
 
         
       </p>
@@ -7994,7 +8143,8 @@ typeof obj.toString; // undefined
         <dd><span class="xref">TProto</span></dd>
       </dl>
       <p>
-        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
         
       </p>
@@ -8005,7 +8155,8 @@ typeof obj.toString; // undefined
         <dd><span class="xref">(element: T) =&gt; K</span></dd>
       </dl>
       <p>
-        <p>A callback used to select a key for each element. Scalar</p>
+        <p>A callback used to select a key for each element.
+ Scalar</p>
 
         
       </p>
@@ -8069,7 +8220,8 @@ typeof obj.toString; // undefined
         <dd><span class="xref">TProto</span></dd>
       </dl>
       <p>
-        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
         
       </p>
@@ -8080,7 +8232,8 @@ typeof obj.toString; // undefined
         <dd>(element: T) =&gt; <span class="xref">PropertyKey</span></dd>
       </dl>
       <p>
-        <p>A callback used to select a key for each element. Scalar</p>
+        <p>A callback used to select a key for each element.
+ Scalar</p>
 
         
       </p>
@@ -8144,7 +8297,8 @@ typeof obj.toString; // undefined
         <dd><span class="xref">object | null | undefined</span></dd>
       </dl>
       <p>
-        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
         
       </p>
@@ -8155,7 +8309,8 @@ typeof obj.toString; // undefined
         <dd><span class="xref">(element: T) =&gt; K</span></dd>
       </dl>
       <p>
-        <p>A callback used to select a key for each element. Scalar</p>
+        <p>A callback used to select a key for each element.
+ Scalar</p>
 
         
       </p>
@@ -8209,7 +8364,8 @@ typeof obj.toString; // undefined
         <dd><span class="xref">object | null | undefined</span></dd>
       </dl>
       <p>
-        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
         
       </p>
@@ -8220,7 +8376,8 @@ typeof obj.toString; // undefined
         <dd>(element: T) =&gt; <span class="xref">PropertyKey</span></dd>
       </dl>
       <p>
-        <p>A callback used to select a key for each element. Scalar</p>
+        <p>A callback used to select a key for each element.
+ Scalar</p>
 
         
       </p>
@@ -8302,7 +8459,8 @@ typeof obj.toString; // undefined
         <dd><span class="xref">TProto</span></dd>
       </dl>
       <p>
-        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
         
       </p>
@@ -8335,7 +8493,8 @@ typeof obj.toString; // undefined
         <dd>(key: K, element: V) =&gt; <span class="xref">TypedPropertyDescriptor</span>&lt;V&gt;</dd>
       </dl>
       <p>
-        <p>A callback that defines the <code>PropertyDescriptor</code> for each property. Scalar</p>
+        <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
 
         
       </p>
@@ -8408,7 +8567,8 @@ typeof obj.toString; // undefined
         <dd><span class="xref">TProto</span></dd>
       </dl>
       <p>
-        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
         
       </p>
@@ -8441,7 +8601,8 @@ typeof obj.toString; // undefined
         <dd>(key: <span class="xref">PropertyKey</span>, element: V) =&gt; <span class="xref">TypedPropertyDescriptor</span>&lt;V&gt;</dd>
       </dl>
       <p>
-        <p>A callback that defines the <code>PropertyDescriptor</code> for each property. Scalar</p>
+        <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
 
         
       </p>
@@ -8514,7 +8675,8 @@ typeof obj.toString; // undefined
         <dd><span class="xref">object | null | undefined</span></dd>
       </dl>
       <p>
-        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
         
       </p>
@@ -8547,7 +8709,8 @@ typeof obj.toString; // undefined
         <dd>(key: K, element: V) =&gt; <span class="xref">TypedPropertyDescriptor</span>&lt;V&gt;</dd>
       </dl>
       <p>
-        <p>A callback that defines the <code>PropertyDescriptor</code> for each property. Scalar</p>
+        <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
 
         
       </p>
@@ -8611,7 +8774,8 @@ typeof obj.toString; // undefined
         <dd><span class="xref">object | null | undefined</span></dd>
       </dl>
       <p>
-        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
         
       </p>
@@ -8644,7 +8808,8 @@ typeof obj.toString; // undefined
         <dd>(key: <span class="xref">PropertyKey</span>, element: V) =&gt; <span class="xref">TypedPropertyDescriptor</span>&lt;V&gt;</dd>
       </dl>
       <p>
-        <p>A callback that defines the <code>PropertyDescriptor</code> for each property. Scalar</p>
+        <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
 
         
       </p>
@@ -8708,7 +8873,8 @@ typeof obj.toString; // undefined
         <dd><span class="xref">object | null | undefined</span></dd>
       </dl>
       <p>
-        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+        <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
         
       </p>
@@ -8741,7 +8907,8 @@ typeof obj.toString; // undefined
         <dd>(key: <span class="xref">PropertyKey</span>, element: V) =&gt; <span class="xref">PropertyDescriptor</span></dd>
       </dl>
       <p>
-        <p>A callback that defines the <code>PropertyDescriptor</code> for each property. Scalar</p>
+        <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
 
         
       </p>
@@ -8761,7 +8928,7 @@ typeof obj.toString; // undefined
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_toSet_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#toSet:member(1)">toSet()</h4>
   <div class="markdown level1 summary"><p>Creates a <code>Set</code> for the elements of the <code>AsyncQuery</code><!-- -->.</p>
-<p>Scalar</p>
+<p> Scalar</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -8810,7 +8977,8 @@ typeof obj.toString; // undefined
         <dd>(element: T) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;V&gt; | V</dd>
       </dl>
       <p>
-        <p>A callback that selects a value for each element. Scalar</p>
+        <p>A callback that selects a value for each element.
+ Scalar</p>
 
         
       </p>
@@ -8866,7 +9034,8 @@ typeof obj.toString; // undefined
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
         
       </p>
@@ -8912,7 +9081,8 @@ typeof obj.toString; // undefined
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
         
       </p>
@@ -8988,7 +9158,8 @@ typeof obj.toString; // undefined
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -9055,7 +9226,8 @@ typeof obj.toString; // undefined
         <dd><a class="xref" href="../equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
       </dl>
       <p>
-        <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+        <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
         
       </p>
@@ -9129,7 +9301,8 @@ typeof obj.toString; // undefined
         <dd><span class="xref">(value: T) =&gt; U</span></dd>
       </dl>
       <p>
-        <p>A callback that converts a result into a tuple. Scalar</p>
+        <p>A callback that converts a result into a tuple.
+ Scalar</p>
 
         
       </p>
@@ -9291,7 +9464,7 @@ typeof obj.toString; // undefined
   <h4 id="_esfx_async_iter_query_AsyncQuery_whereDefined_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#whereDefined:member(1)">whereDefined()</h4>
   <div class="markdown level1 summary"><p>Creates a subquery whose elements are neither <code>null</code> nor <code>undefined</code><!-- -->.</p>
 <p>NOTE: This is an alias for <code>filterDefined</code><!-- -->.</p>
-<p>Subquery</p>
+<p> Subquery</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -9545,7 +9718,8 @@ typeof obj.toString; // undefined
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_zip_member_1_" data-uid="@esfx/async-iter-query!AsyncQuery#zip:member(1)">zip(right)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery that combines this <code>AsyncQuery</code> with another <code>AsyncIterable</code> or <code>Iterable</code> by combining elements in tuples.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery that combines this <code>AsyncQuery</code> with another <code>AsyncIterable</code> or <code>Iterable</code> by combining elements
+in tuples.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -9571,7 +9745,8 @@ typeof obj.toString; // undefined
         <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;U&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;U&gt; | U&gt;</dd>
       </dl>
       <p>
-        <p>An <code>AsyncIterable</code> or <code>Iterable</code> object. Join</p>
+        <p>An <code>AsyncIterable</code> or <code>Iterable</code> object.
+ Join</p>
 
         
       </p>
@@ -9590,7 +9765,8 @@ typeof obj.toString; // undefined
   
   
   <h4 id="_esfx_async_iter_query_AsyncQuery_zip_member_2_" data-uid="@esfx/async-iter-query!AsyncQuery#zip:member(2)">zip(right, selector)</h4>
-  <div class="markdown level1 summary"><p>Creates a subquery that combines this <code>AsyncQuery</code> with another <code>AsyncIterable</code> or <code>Iterable</code> by combining elements using the supplied callback.</p>
+  <div class="markdown level1 summary"><p>Creates a subquery that combines this <code>AsyncQuery</code> with another <code>AsyncIterable</code> or <code>Iterable</code> by combining elements
+using the supplied callback.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -9636,7 +9812,8 @@ typeof obj.toString; // undefined
         <dd>(left: T, right: U) =&gt; <a class="xref" href="https://tc39.github.io/ecma262/#sec-promise-objects">PromiseLike</a>&lt;R&gt; | R</dd>
       </dl>
       <p>
-        <p>A callback used to combine two elements. Join</p>
+        <p>A callback used to combine two elements.
+ Join</p>
 
         
       </p>

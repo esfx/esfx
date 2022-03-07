@@ -4,20 +4,20 @@ uid: '@esfx/async-mutex!'
 
 Provides the @"@esfx/async-mutex!AsyncMutex:class" class, an async coordination primitive.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-mutex
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { AsyncMutex } from "@esfx/async-mutex";
 
@@ -51,7 +51,7 @@ async function main() {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { AsyncMutex } = require("@esfx/async-mutex");
 
@@ -86,3 +86,5 @@ async function main() {
 ```
 
 ***
+
+## API

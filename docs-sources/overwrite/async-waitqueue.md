@@ -4,20 +4,20 @@ uid: '@esfx/async-waitqueue!'
 
 The `@esfx/async-waitqueue` package provides the @"@esfx/async-waitqueue!WaitQueue:class" class, an async coordination primitive used to queue and resolve promises.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-waitqueue
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { WaitQueue } from "@esfx/async-waitqueue";
 
@@ -37,7 +37,7 @@ async function main() {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { WaitQueue } = require("@esfx/async-waitqueue");
 
@@ -58,3 +58,5 @@ async function main() {
 ```
 
 ***
+
+## API

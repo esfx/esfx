@@ -4,20 +4,20 @@ uid: '@esfx/collection-core!'
 
 Provides a low-level Symbol-based API for defining common collection behaviors.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/collection-core
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Collection } from "@esfx/collection-core";
 
@@ -41,7 +41,7 @@ class MyCollection<T> {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Collection } = require("@esfx/collection-core");
 
@@ -68,3 +68,5 @@ class MyCollection {
 ```
 
 ***
+
+## API

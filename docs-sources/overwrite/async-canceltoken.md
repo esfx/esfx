@@ -4,25 +4,25 @@ uid: '@esfx/async-canceltoken!'
 
 The `@esfx/async-canceltoken` package provides the @"@esfx/async-canceltoken!CancelToken:class" class, an implementation of `@esfx/cancelable`.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-canceltoken
 ```
 
-# Usage
+## Usage
 
 * [Basic Usage](#basic-usage)
 * [Linking Tokens](#linking-tokens)
 
-## Basic Usage
+### Basic Usage
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { CancelToken } from "@esfx/async-canceltoken";
 
@@ -68,7 +68,7 @@ doWork(source.token).then(() => {
 setTimeout(() => source.cancel(), 1000 * 10);
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { CancelToken } = require("@esfx/async-canceltoken");
 
@@ -116,9 +116,9 @@ setTimeout(() => source.cancel(), 1000 * 10);
 
 ***
 
-## Linking Tokens
+### Linking Tokens
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { CancelToken } from "@esfx/async-canceltoken";
 
@@ -147,7 +147,7 @@ async function downloadFile(url, path, token = CancelToken.none) {
 }
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { CancelToken } = require("@esfx/async-canceltoken");
 
@@ -177,3 +177,5 @@ async function downloadFile(url, path, token = CancelToken.none) {
 ```
 
 ***
+
+## API

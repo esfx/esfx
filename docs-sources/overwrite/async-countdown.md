@@ -4,20 +4,20 @@ uid: '@esfx/async-countdown!'
 
 The `@esfx/async-countdown` package provides the @"@esfx/async-countdown!AsyncCountdownEvent:class" class, an async coordination primitive.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-countdown
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { AsyncCountdownEvent } from "@esfx/cancelable";
 
@@ -45,7 +45,7 @@ async function main() {
 main().catch(e => console.error(e));
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { AsyncCountdownEvent } = require("@esfx/cancelable");
 
@@ -74,3 +74,5 @@ main().catch(e => console.error(e));
 ```
 
 ***
+
+## API

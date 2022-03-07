@@ -4,20 +4,20 @@ uid: '@esfx/async-lazy!'
 
 Lazy-initialized asynchronous value.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-lazy
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { AsyncLazy } from "@esfx/async-lazy";
 
@@ -48,7 +48,7 @@ async function main() {
 main().catch(e => console.error(e));
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { AsyncLazy } = require("@esfx/async-lazy");
 
@@ -80,3 +80,5 @@ main().catch(e => console.error(e));
 ```
 
 ***
+
+## API

@@ -18,6 +18,7 @@ type MemberDecoratorSignature<A extends any[] = any[]> =
 type ParameterDecoratorSignature<A extends any[] = any[]> =
     | VoidParameterDecoratorSignature<A>;
 
+/** @experimental */
 export type DecoratorSignature<A extends any[] = any[]> =
     | ClassDecoratorSignature<A>
     | MemberDecoratorSignature<A>
@@ -151,6 +152,7 @@ type __MappedDecoratorSignature<
     A extends any[],
 > = UnionToIntersection<S extends unknown ? __MappedDecoratorSignatureRest<S, A> : never>;
 
+/** @experimental */
 export type MappedDecoratorSignature<S extends DecoratorSignature> = __MappedDecoratorSignature<S, []>;
 
 type PickSignature<
@@ -231,8 +233,10 @@ type __MappedDecoratorFactorySignature<
     never
 ) | never;
 
+/** @experimental */
 export type MappedDecoratorFactorySignature<S extends DecoratorSignature> = __MappedDecoratorFactorySignature<S>;
 
+/** @experimental */
 export type MappedDecoratorOrDecoratorFactorySignature<S extends DecoratorSignature> = (
     & MappedDecoratorFactorySignature<S>
     & MappedDecoratorSignature<S>

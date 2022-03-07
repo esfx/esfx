@@ -9,8 +9,8 @@
 
 // apply patches
 require("./docs/patches/tsdoc")({
-    paramTagHyphen: false,
-    emitSoftBreak: false,
+    paramTagHyphen: true,
+    emitSoftBreak: true,
 });
 
 require("./docs/patches/api-extractor")({
@@ -18,7 +18,7 @@ require("./docs/patches/api-extractor")({
 });
 
 require("./docs/patches/api-documenter")({
-    emitSoftBreak: false,
+    emitSoftBreak: true,
     overrideTocRoot: true,
     documentExternals: true,
     inlineTypeAliases: true,

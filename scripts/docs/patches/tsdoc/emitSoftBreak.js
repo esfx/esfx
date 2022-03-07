@@ -1,7 +1,7 @@
 // @ts-check
-const { TSDocEmitter } = require("@microsoft/tsdoc/lib/emitters/TSDocEmitter");
-const { TrimSpacesTransform } = require("@microsoft/tsdoc/lib/transforms/TrimSpacesTransform");
-const { DocParagraph } = require("@microsoft/tsdoc/lib/nodes/DocParagraph");
+const { TSDocEmitter } = require("@microsoft/tsdoc/lib-commonjs/emitters/TSDocEmitter");
+const { TrimSpacesTransform } = require("@microsoft/tsdoc/lib-commonjs/transforms/TrimSpacesTransform");
+const { DocParagraph } = require("@microsoft/tsdoc/lib-commonjs/nodes/DocParagraph");
 
 TrimSpacesTransform.transform = function (docParagraph) {
     if (docParagraph.nodes.length > 0 && 

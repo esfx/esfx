@@ -4,20 +4,20 @@ uid: '@esfx/threading-manualresetevent!'
 
 Provides the @"@esfx/threading-manualresetevent!ManualResetEvent:class" class, a threading primitive for use with Workers.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/threading-manualresetevent
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Worker, isMainThread, parentPort, workerData } from "worker_threads";
 import { createInterface } from "readline";
@@ -61,7 +61,7 @@ else {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Worker, isMainThread, parentPort, workerData } = require("worker_threads");
 const { createInterface } = require("readline");
@@ -106,3 +106,5 @@ else {
 ```
 
 ***
+
+## API

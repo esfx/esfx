@@ -4,20 +4,20 @@ uid: '@esfx/threading-spinwait!'
 
 Provides the @"@esfx/threading-spinwait!SpinWait:class" class, a thread synchronization primitive for use with Workers.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/threading-spinwait
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Worker, isMainThread, parentPort, workerData } from "worker_threads";
 import { SpinWait } from "@esfx/threading-spinwait";
@@ -55,7 +55,7 @@ else {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Worker, isMainThread, parentPort, workerData } = require("worker_threads");
 const { SpinWait } = require("@esfx/threading-spinwait");
@@ -94,3 +94,5 @@ else {
 ```
 
 ***
+
+## API

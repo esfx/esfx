@@ -4,20 +4,20 @@ uid: '@esfx/async-conditionvariable!'
 
 Provides @"@esfx/async-conditionvariable!AsyncConditionVariable:class", an async coordination primitive.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-conditionvariable
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { AsyncConditionVariable } from "@esfx/async-conditionvariable";
 import { AsyncMutex } from "@esfx/async-mutex";
@@ -84,7 +84,7 @@ async function main() {
 main().catch(e => console.error(e));
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { AsyncConditionVariable } = require("@esfx/async-conditionvariable");
 const { AsyncMutex } = require("@esfx/async-mutex");
@@ -152,3 +152,5 @@ main().catch(e => console.error(e));
 ```
 
 ***
+
+## API

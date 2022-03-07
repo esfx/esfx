@@ -4,20 +4,20 @@ uid: '@esfx/metadata!'
 
 Provides an API for defining metadata about an object.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/metadata
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Metadata, getClassMetadata, getMemberMetadata, getParameterMetadata } from "@esfx/metadata";
 
@@ -39,7 +39,7 @@ getMemberMetadata(c, "method", "ReturnType"); // "string"
 getParameterMetadata(c, "method", 0, "Type"); // "number"
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const {
     defineClassMetadata,
@@ -67,3 +67,5 @@ getParameterMetadata(c, "method", 0, "Type"); // "number"
 ```
 
 ***
+
+## API

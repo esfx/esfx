@@ -4,20 +4,20 @@ uid: '@esfx/collections-sortedset!'
 
 Provides the @"@esfx/collections-sortedset!SortedSet:class" class, a collection class that utilizes @"@esfx/collection-core!" and @"@esfx/equatable!".
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/collections-sortedset
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { SortedSet } from "@esfx/collections-sortedset";
 import { Equatable, Equaler, Comparable, Comparer } from "@esfx/equatable";
@@ -68,7 +68,7 @@ sortedSet.add(obj2);
 [...sortedSet]; // Bob Clark,Alice Johnson
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { SortedSet } = require("@esfx/collections-sortedset");
 const { Equatable, Equaler, Comparable, Comparer } = require("@esfx/equatable");
@@ -118,3 +118,5 @@ sortedSet.add(obj2);
 ```
 
 ***
+
+## API

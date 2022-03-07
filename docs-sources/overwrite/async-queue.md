@@ -4,20 +4,20 @@ uid: '@esfx/async-queue!'
 
 The `@esfx/async-queue` package provides the @"@esfx/async-queue!AsyncQueue:class" class, an async coordination primitive.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-queue
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { AsyncQueue } from "@esfx/async-queue";
 
@@ -45,7 +45,7 @@ async function main() {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { AsyncQueue } = require("@esfx/async-queue");
 
@@ -74,3 +74,5 @@ async function main() {
 ```
 
 ***
+
+## API

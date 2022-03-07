@@ -7,25 +7,25 @@ Provides a low-level API for defining forward references.
 > [!NOTE]
 > This implementation is an approximation of the `Reference` behavior from https://github.com/rbuckton/proposal-refs.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/ref
 ```
 
-# Usage
+## Usage
 
 > [!NOTE]
 > Examples adapted from https://github.com/rbuckton/proposal-refs#examples where applicable.
 
-## Take a reference to a variable
+### Take a reference to a variable
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { ref } from "@esfx/ref";
 
@@ -36,7 +36,7 @@ r.value = 2;
 print(x); // 2
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { ref } = require("@esfx/ref");
 
@@ -49,9 +49,9 @@ print(x); // 2
 
 ***
 
-## Take a reference to a property
+### Take a reference to a property
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { ref } from "@esfx/ref";
 
@@ -62,7 +62,7 @@ r.value = 2;
 print(o); // { x: 2 }
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { ref } = require("@esfx/ref");
 
@@ -75,9 +75,9 @@ print(o); // { x: 2 }
 
 ***
 
-## Take a reference to an element
+### Take a reference to an element
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { ref } from "@esfx/ref";
 
@@ -88,7 +88,7 @@ r.value = 2;
 print(ar); // [2]
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { ref } = require("@esfx/ref");
 
@@ -101,9 +101,9 @@ print(ar); // [2]
 
 ***
 
-## Reference passing
+### Reference passing
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { ref, Reference } from "@esfx/ref";
 
@@ -116,7 +116,7 @@ update(ref(() => x, _ => x = _));
 print(x); // 2
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { ref } = require("@esfx/ref");
 
@@ -131,9 +131,9 @@ print(x); // 2
 
 ***
 
-## Referencing a local declaration creates a closure
+### Referencing a local declaration creates a closure
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { ref } from "@esfx/ref";
 
@@ -148,7 +148,7 @@ r.value = 2;
 p(); // 2
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { ref } = require("@esfx/ref");
 
@@ -165,9 +165,9 @@ p(); // 2
 
 ***
 
-## More complex reference passing
+### More complex reference passing
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { ref, Reference } from "@esfx/ref";
 
@@ -187,7 +187,7 @@ print(y); // 2
 print(z); // 4
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { ref } = require("@esfx/ref");
 
@@ -209,9 +209,9 @@ print(z); // 4
 
 ***
 
-## Forward reference to a `var`
+### Forward reference to a `var`
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { ref } from "@esfx/ref";
 
@@ -221,7 +221,7 @@ ref_a.value = 1; // ok, no error as `a` is a var.
 var a: number;
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { ref } = require("@esfx/ref");
 
@@ -233,9 +233,9 @@ var a;
 
 ***
 
-## Forward reference to a block-scoped variable
+### Forward reference to a block-scoped variable
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { ref } from "@esfx/ref";
 
@@ -250,7 +250,7 @@ ref_b.value = 1; // error as `b` has not yet been declared.
 let b: number;
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { ref } = require("@esfx/ref");
 
@@ -267,9 +267,9 @@ let b;
 
 ***
 
-## Forward reference to a member of a block-scoped variable
+### Forward reference to a member of a block-scoped variable
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { ref } from "@esfx/ref";
 
@@ -277,7 +277,7 @@ const ref_x = ref.at(b, "x"); // error, `b` has not yet been declared
 let b = { x: 1 };
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { ref } = require("@esfx/ref");
 
@@ -287,9 +287,9 @@ let b = { x: 1 };
 
 ***
 
-## Forward references for decorators
+### Forward references for decorators
 
-### [TypeScript](#tab/ts-1)
+#### [TypeScript](#tab/ts-1)
 ```ts
 import { ref, Reference } from "@esfx/ref";
 import { metadata } from "@esfx/metadata";
@@ -312,9 +312,9 @@ class Container extends Node {
 
 ***
 
-## Side effects
+### Side effects
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { ref } from "@esfx/ref";
 
@@ -326,7 +326,7 @@ print(ref_e.value); // 0
 print(count); // 1
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { ref } = require("@esfx/ref");
 
@@ -339,3 +339,5 @@ print(count); // 1
 ```
 
 ***
+
+## API

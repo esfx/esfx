@@ -4,20 +4,20 @@ uid: '@esfx/collections-hashmap!'
 
 Provides the @"@esfx/collections-hashmap!HashMap:class" class, a collection class that utilizes @"@esfx/collection-core!" and @"@esfx/equatable!".
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/collections-hashmap
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { HashMap } from "@esfx/collections-hashmap";
 import { Equatable, Equaler, Comparable, Comparer } from "@esfx/equatable";
@@ -66,7 +66,7 @@ hashMap.set(obj2, "obj2");
 hashMap.size; // 1
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { HashMap } = require("@esfx/collections-hashmap");
 const { Equatable, Equaler, Comparable, Comparer } = require("@esfx/equatable");
@@ -114,3 +114,5 @@ hashMap.size; // 1
 ```
 
 ***
+
+## API

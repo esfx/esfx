@@ -4,20 +4,20 @@ uid: '@esfx/threading-conditionvariable!'
 
 Provides the @"@esfx/threading-conditionvariable!ConditionVariable:class" class, a thread synchronization primitive for use with Workers.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/threading-conditionvariable
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Worker, isMainThread, parentPort, workerData } from "worker_threads";
 import { Mutex } from "@esfx/threading-mutex";
@@ -98,7 +98,7 @@ else {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Worker, isMainThread, parentPort, workerData } = require("worker_threads");
 const { Mutex } = require("@esfx/threading-mutex");
@@ -180,3 +180,5 @@ else {
 ```
 
 ***
+
+## API

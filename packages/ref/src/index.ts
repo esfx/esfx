@@ -136,7 +136,7 @@ export namespace ref {
 
     Object.defineProperty(ref, Symbol.hasInstance, { configurable: true, value: ref.is });
 
-    export const prototype = refPrototype;
+    export const prototype = refPrototype as Reference<unknown>;
 }
 
 export declare namespace ref {

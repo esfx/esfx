@@ -4,20 +4,20 @@ uid: '@esfx/threading-countdown!'
 
 Provides the @"@esfx/threading-countdown!CountdownEvent:class" class, a thread synchronization primitive for use with Workers.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/threading-countdown
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Worker, isMainThread, parentPort, workerData } from "worker_threads";
 import { CountdownEvent } from "@esfx/threading-countdown";
@@ -51,7 +51,7 @@ else {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Worker, isMainThread, parentPort, workerData } = require("worker_threads");
 const { CountdownEvent } = require("@esfx/threading-countdown");
@@ -86,3 +86,5 @@ else {
 ```
 
 ***
+
+## API

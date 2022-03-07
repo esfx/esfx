@@ -159,7 +159,7 @@ export class LinkedList<T> implements Collection<T> {
     }
 
     /**
-     * Gets the {@link @esfx/equatable!Equaler} used for equality comparisons in this list.
+     * Gets the {@link Equaler} used for equality comparisons in this list.
      */
     get equaler(): Equaler<T> {
         return this._equaler;

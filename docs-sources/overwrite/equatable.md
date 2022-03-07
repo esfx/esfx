@@ -4,20 +4,20 @@ uid: '@esfx/equatable!'
 
 Provides a low level API for defining equality.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/equatable
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Equatable, Equaler, Comparable, Comparer } from "@esfx/equatable";
 
@@ -64,7 +64,7 @@ obj1 === obj2; // false
 Equaler.defaultEqualer.equals(obj1, obj2); // true
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Equatable, Equaler, Comparable, Comparer } = require("@esfx/equatable");
 
@@ -110,3 +110,5 @@ Equaler.defaultEqualer.equals(obj1, obj2); // true
 ```
 
 ***
+
+## API

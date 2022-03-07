@@ -83,7 +83,37 @@
   <h1 id="_esfx_iter_fn_" data-uid="@esfx/iter-fn!" class="text-break">Package @esfx/iter-fn
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>An iteration and query API for ECMAScript iterables.</p>
+<h2 id="overview">Overview</h2>
+<ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+</ul>
+<h2 id="installation">Installation</h2>
+<pre><code class="lang-sh">npm i @esfx/iter-fn
+</code></pre><h2 id="usage">Usage</h2>
+<div class="tabGroup" id="tabgroup_JHmglnqf3H">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_JHmglnqf3H_ts" role="tab" aria-controls="tabpanel_JHmglnqf3H_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_JHmglnqf3H_js" role="tab" aria-controls="tabpanel_JHmglnqf3H_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_JHmglnqf3H_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-ts">import { map } from &quot;@esfx/iter-fn&quot;;
+const x = map([1, 2, 3], x =&gt; x * 2);
+x; // [2, 4, 6]
+</code></pre></section>
+<section id="tabpanel_JHmglnqf3H_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-ts">const { map } = require(&quot;@esfx/iter-fn&quot;);
+const x = map([1, 2, 3], x =&gt; x * 2);
+x; // [2, 4, 6]
+</code></pre></section>
+</div>
+<h2 id="api">API</h2>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces
   </h3>
@@ -94,7 +124,8 @@
   
   
         <h4 id="_esfx_iter_fn_ancestors_function_1_" data-uid="@esfx/iter-fn!ancestors:function(1)">ancestors(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the ancestors of each node in the iterable. This is equivalent to the <code>ancestor::*</code> selector in XPath. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the ancestors of each node in the iterable. This is equivalent to the <code>ancestor::*</code> selector in XPath.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -206,7 +237,8 @@
   
   
         <h4 id="_esfx_iter_fn_ancestorsAndSelf_function_1_" data-uid="@esfx/iter-fn!ancestorsAndSelf:function(1)">ancestorsAndSelf(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the ancestors of each node in the iterable, along with the node itself. This is equivalent to the <code>ancestor-or-self::*</code> selector in XPath. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the ancestors of each node in the iterable, along with the node itself. This is equivalent to the <code>ancestor-or-self::*</code> selector in XPath.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -318,7 +350,8 @@
   
   
         <h4 id="_esfx_iter_fn_append_function_1_" data-uid="@esfx/iter-fn!append:function(1)">append(source, value)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the elements of <code>source</code> with the provided <code>value</code> appended to the end.</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the elements of <code>source</code> with the provided <code>value</code> appended to the
+end.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -364,7 +397,8 @@
               <dd><span class="xref">T</span></dd>
             </dl>
             <p>
-              <p>The value to append. Subquery</p>
+              <p>The value to append.
+ Subquery</p>
 
               
             </p>
@@ -381,7 +415,8 @@
   
   
         <h4 id="_esfx_iter_fn_append_function_2_" data-uid="@esfx/iter-fn!append:function(2)">append(source, value)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the elements of <code>source</code> with the provided <code>value</code> appended to the end.</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the elements of <code>source</code> with the provided <code>value</code> appended to the
+end.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -418,7 +453,8 @@
               <dd><span class="xref">T</span></dd>
             </dl>
             <p>
-              <p>The value to append. Subquery</p>
+              <p>The value to append.
+ Subquery</p>
 
               
             </p>
@@ -451,7 +487,8 @@
               <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;number&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Iterable</code> object. Scalar</p>
+              <p>An <code>Iterable</code> object.
+ Scalar</p>
 
               
             </p>
@@ -505,7 +542,8 @@
               <dd><span class="xref">(element: T) =&gt; number</span></dd>
             </dl>
             <p>
-              <p>A callback used to convert a value in <code>source</code> to a number. Scalar</p>
+              <p>A callback used to convert a value in <code>source</code> to a number.
+ Scalar</p>
 
               
             </p>
@@ -522,7 +560,8 @@
   
   
         <h4 id="_esfx_iter_fn_bottomMost_function_1_" data-uid="@esfx/iter-fn!bottomMost:function(1)">bottomMost(source, predicate, equaler)</h4>
-              <div class="markdown level1 summary"><p>Creates a <code>HierarchyIterable</code> for the bottom-most elements of a <code>HierarchyIterable</code><!-- -->. Elements of <code>source</code> that are an ancestor of any other element of <code>source</code> are removed.</p>
+              <div class="markdown level1 summary"><p>Creates a <code>HierarchyIterable</code> for the bottom-most elements of a <code>HierarchyIterable</code><!-- -->.
+Elements of <code>source</code> that are an ancestor of any other element of <code>source</code> are removed.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -577,7 +616,8 @@
               <dd>(value: T) =&gt; <span class="xref">value</span> is U</dd>
             </dl>
             <p>
-              <p>An optional callback used to filter the results. Hierarchy</p>
+              <p>An optional callback used to filter the results.
+ Hierarchy</p>
 
               
             </p>
@@ -604,7 +644,8 @@
   
   
         <h4 id="_esfx_iter_fn_bottomMost_function_2_" data-uid="@esfx/iter-fn!bottomMost:function(2)">bottomMost(source, predicate, equaler)</h4>
-              <div class="markdown level1 summary"><p>Creates a <code>HierarchyIterable</code> for the bottom-most elements of a <code>HierarchyIterable</code><!-- -->. Elements of <code>source</code> that are an ancestor of any other element of <code>source</code> are removed.</p>
+              <div class="markdown level1 summary"><p>Creates a <code>HierarchyIterable</code> for the bottom-most elements of a <code>HierarchyIterable</code><!-- -->.
+Elements of <code>source</code> that are an ancestor of any other element of <code>source</code> are removed.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -661,7 +702,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;TNode&gt;</dd>
             </dl>
             <p>
-              <p>An optional <code>Equaler</code> used to compare equality between nodes. Hierarchy</p>
+              <p>An optional <code>Equaler</code> used to compare equality between nodes.
+ Hierarchy</p>
 
               
             </p>
@@ -678,7 +720,8 @@
   
   
         <h4 id="_esfx_iter_fn_children_function_1_" data-uid="@esfx/iter-fn!children:function(1)">children(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the children of each node in the iterable. This is equivalent to the <code>child::*</code> selector in XPath, or the <code>&gt;</code> combinator in CSS. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the children of each node in the iterable. This is equivalent to the <code>child::*</code> selector in XPath, or the <code>&gt;</code> combinator in CSS.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -836,7 +879,8 @@
               <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Iterable</code> object. Subquery</p>
+              <p>An <code>Iterable</code> object.
+ Subquery</p>
 
               
             </p>
@@ -899,7 +943,8 @@
               <dd><a class="xref" href="iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Iterable</code> object. Subquery</p>
+              <p>An <code>Iterable</code> object.
+ Subquery</p>
 
               
             </p>
@@ -953,7 +998,8 @@
               <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Iterable</code> object. Subquery</p>
+              <p>An <code>Iterable</code> object.
+ Subquery</p>
 
               
             </p>
@@ -996,7 +1042,8 @@
               <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterator-interface">Iterator</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Iterator</code> object. Query</p>
+              <p>An <code>Iterator</code> object.
+ Query</p>
 
               
             </p>
@@ -1049,7 +1096,8 @@
               <dd><span class="xref">T</span></dd>
             </dl>
             <p>
-              <p>The value for each element of the <code>Iterable</code><!-- -->. Query</p>
+              <p>The value for each element of the <code>Iterable</code><!-- -->.
+ Query</p>
 
               
             </p>
@@ -1066,7 +1114,8 @@
   
   
         <h4 id="_esfx_iter_fn_copyTo_function_1_" data-uid="@esfx/iter-fn!copyTo:function(1)">copyTo(source, collection, start, count)</h4>
-              <div class="markdown level1 summary"><p>Writes each element of a source iterable to a destination. The destination must already have enough space to write the requested number of elements (i.e. arrays are *not* resized).</p>
+              <div class="markdown level1 summary"><p>Writes each element of a source iterable to a destination. The destination must already
+have enough space to write the requested number of elements (i.e. arrays are *not* resized).</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -1134,7 +1183,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The number of elements to write to the array. Scalar</p>
+              <p>The number of elements to write to the array.
+ Scalar</p>
 
               
             </p>
@@ -1151,7 +1201,8 @@
   
   
         <h4 id="_esfx_iter_fn_corresponds_function_1_" data-uid="@esfx/iter-fn!corresponds:function(1)">corresponds(left, right, equaler)</h4>
-              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in <code>left</code> corresponds to a matching element in <code>right</code> at the same position.</p>
+              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in <code>left</code> corresponds to a matching element
+in <code>right</code> at the same position.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -1199,7 +1250,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare the equality of two elements. Scalar</p>
+              <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
 
               
             </p>
@@ -1216,7 +1268,8 @@
   
   
         <h4 id="_esfx_iter_fn_corresponds_function_2_" data-uid="@esfx/iter-fn!corresponds:function(2)">corresponds(left, right, equaler)</h4>
-              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in <code>left</code> corresponds to a matching element in <code>right</code> at the same position.</p>
+              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether every element in <code>left</code> corresponds to a matching element
+in <code>right</code> at the same position.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -1273,7 +1326,8 @@
               <dd><span class="xref">(left: T, right: U) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>An optional callback used to compare the equality of two elements. Scalar</p>
+              <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
 
               
             </p>
@@ -1290,7 +1344,8 @@
   
   
         <h4 id="_esfx_iter_fn_correspondsBy_function_1_" data-uid="@esfx/iter-fn!correspondsBy:function(1)">correspondsBy(left, right, keySelector, keyEqualer)</h4>
-              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the key for every element in <code>left</code> corresponds to a matching key in <code>right</code> at the same position.</p>
+              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the key for every element in <code>left</code> corresponds to a matching key
+in <code>right</code> at the same position.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -1347,7 +1402,8 @@
               <dd><span class="xref">(element: T) =&gt; K</span></dd>
             </dl>
             <p>
-              <p>A callback used to select the key for each element. Scalar</p>
+              <p>A callback used to select the key for each element.
+ Scalar</p>
 
               
             </p>
@@ -1374,7 +1430,8 @@
   
   
         <h4 id="_esfx_iter_fn_correspondsBy_function_2_" data-uid="@esfx/iter-fn!correspondsBy:function(2)">correspondsBy(left, right, leftKeySelector, rightKeySelector, keyEqualer)</h4>
-              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the key for every element in <code>left</code> corresponds to a matching key in <code>right</code> at the same position.</p>
+              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the key for every element in <code>left</code> corresponds to a matching key
+in <code>right</code> at the same position.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -1462,7 +1519,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;K&gt; | <a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare the equality of two keys. Scalar</p>
+              <p>An optional callback used to compare the equality of two keys.
+ Scalar</p>
 
               
             </p>
@@ -1516,7 +1574,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>An optional callback used to match each element. Scalar</p>
+              <p>An optional callback used to match each element.
+ Scalar</p>
 
               
             </p>
@@ -1533,7 +1592,8 @@
   
   
         <h4 id="_esfx_iter_fn_defaultIfEmpty_function_1_" data-uid="@esfx/iter-fn!defaultIfEmpty:function(1)">defaultIfEmpty(source, defaultValue)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> that contains the provided default value if <code>source</code> contains no elements.</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> that contains the provided default value if <code>source</code>
+contains no elements.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -1579,7 +1639,8 @@
               <dd><span class="xref">T</span></dd>
             </dl>
             <p>
-              <p>The default value. Subquery</p>
+              <p>The default value.
+ Subquery</p>
 
               
             </p>
@@ -1596,7 +1657,8 @@
   
   
         <h4 id="_esfx_iter_fn_defaultIfEmpty_function_2_" data-uid="@esfx/iter-fn!defaultIfEmpty:function(2)">defaultIfEmpty(source, defaultValue)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> that contains the provided default value if <code>source</code> contains no elements.</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> that contains the provided default value if <code>source</code>
+contains no elements.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -1633,7 +1695,8 @@
               <dd><span class="xref">T</span></dd>
             </dl>
             <p>
-              <p>The default value. Subquery</p>
+              <p>The default value.
+ Subquery</p>
 
               
             </p>
@@ -1650,7 +1713,8 @@
   
   
         <h4 id="_esfx_iter_fn_descendants_function_1_" data-uid="@esfx/iter-fn!descendants:function(1)">descendants(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the descendents of each node in the iterable. This is equivalent to the <code>descendant::*</code> selector in XPath, or the <code> </code> (space) combinator in CSS. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the descendents of each node in the iterable. This is equivalent to the <code>descendant::*</code> selector in XPath, or the <code> </code> (space) combinator in CSS.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -1762,7 +1826,8 @@
   
   
         <h4 id="_esfx_iter_fn_descendantsAndSelf_function_1_" data-uid="@esfx/iter-fn!descendantsAndSelf:function(1)">descendantsAndSelf(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the descendents of each node in the iterable, along with the node itself. This is equivalent to the <code>descendant-or-self::*</code> selector in XPath. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the descendents of each node in the iterable, along with the node itself. This is equivalent to the <code>descendant-or-self::*</code> selector in XPath.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -1874,7 +1939,8 @@
   
   
         <h4 id="_esfx_iter_fn_distinct_function_1_" data-uid="@esfx/iter-fn!distinct:function(1)">distinct(source, keyEqualer)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the distinct elements of <code>source</code><!-- -->. Subquery</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the distinct elements of <code>source</code><!-- -->.
+ Subquery</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -1945,7 +2011,8 @@
   
   
         <h4 id="_esfx_iter_fn_distinct_function_2_" data-uid="@esfx/iter-fn!distinct:function(2)">distinct(source, equaler)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the distinct elements of <code>source</code><!-- -->. Subquery</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the distinct elements of <code>source</code><!-- -->.
+ Subquery</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -1999,7 +2066,8 @@
   
   
         <h4 id="_esfx_iter_fn_distinctBy_function_1_" data-uid="@esfx/iter-fn!distinctBy:function(1)">distinctBy(source, keySelector, keyEqualer)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the distinct elements of <code>source</code><!-- -->. Subquery</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the distinct elements of <code>source</code><!-- -->.
+ Subquery</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2082,7 +2150,8 @@
   
   
         <h4 id="_esfx_iter_fn_distinctBy_function_2_" data-uid="@esfx/iter-fn!distinctBy:function(2)">distinctBy(source, keySelector, keyEqualer)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the distinct elements of <code>source</code><!-- -->. Subquery</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the distinct elements of <code>source</code><!-- -->.
+ Subquery</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2156,7 +2225,8 @@
   
   
         <h4 id="_esfx_iter_fn_drop_function_1_" data-uid="@esfx/iter-fn!drop:function(1)">drop(source, count)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements up to the supplied count.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements up to the supplied
+count.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2202,7 +2272,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The number of elements to skip. Subquery</p>
+              <p>The number of elements to skip.
+ Subquery</p>
 
               
             </p>
@@ -2219,7 +2290,8 @@
   
   
         <h4 id="_esfx_iter_fn_drop_function_2_" data-uid="@esfx/iter-fn!drop:function(2)">drop(source, count)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements up to the supplied count.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements up to the supplied
+count.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2256,7 +2328,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The number of elements to skip. Subquery</p>
+              <p>The number of elements to skip.
+ Subquery</p>
 
               
             </p>
@@ -2273,7 +2346,8 @@
   
   
         <h4 id="_esfx_iter_fn_dropRight_function_1_" data-uid="@esfx/iter-fn!dropRight:function(1)">dropRight(source, count)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the last elements up to the supplied count.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the last elements up to the supplied
+count.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2319,7 +2393,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The number of elements to skip. Subquery</p>
+              <p>The number of elements to skip.
+ Subquery</p>
 
               
             </p>
@@ -2336,7 +2411,8 @@
   
   
         <h4 id="_esfx_iter_fn_dropRight_function_2_" data-uid="@esfx/iter-fn!dropRight:function(2)">dropRight(source, count)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the last elements up to the supplied count.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the last elements up to the supplied
+count.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2373,7 +2449,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The number of elements to skip. Subquery</p>
+              <p>The number of elements to skip.
+ Subquery</p>
 
               
             </p>
@@ -2390,7 +2467,8 @@
   
   
         <h4 id="_esfx_iter_fn_dropUntil_function_1_" data-uid="@esfx/iter-fn!dropUntil:function(1)">dropUntil(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that do not match the supplied predicate.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that do not match
+the supplied predicate.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2436,7 +2514,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -2453,7 +2532,8 @@
   
   
         <h4 id="_esfx_iter_fn_dropUntil_function_2_" data-uid="@esfx/iter-fn!dropUntil:function(2)">dropUntil(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that do not match the supplied predicate.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that do not match
+the supplied predicate.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2490,7 +2570,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -2507,7 +2588,8 @@
   
   
         <h4 id="_esfx_iter_fn_dropWhile_function_1_" data-uid="@esfx/iter-fn!dropWhile:function(1)">dropWhile(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that match the supplied predicate.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that match
+the supplied predicate.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2553,7 +2635,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -2570,7 +2653,8 @@
   
   
         <h4 id="_esfx_iter_fn_dropWhile_function_2_" data-uid="@esfx/iter-fn!dropWhile:function(2)">dropWhile(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that match the supplied predicate.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery containing all elements except the first elements that match
+the supplied predicate.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2607,7 +2691,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -2624,7 +2709,8 @@
   
   
         <h4 id="_esfx_iter_fn_elementAt_function_1_" data-uid="@esfx/iter-fn!elementAt:function(1)">elementAt(source, offset)</h4>
-              <div class="markdown level1 summary"><p>Finds the value at the provided offset. A negative offset starts from the last element.</p>
+              <div class="markdown level1 summary"><p>Finds the value at the provided offset. A negative offset starts from the
+last element.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2661,7 +2747,8 @@
               <dd>number | <a class="xref" href="interval/index.html#_esfx_interval_Index_class">Index</a></dd>
             </dl>
             <p>
-              <p>An offset. Scalar</p>
+              <p>An offset.
+ Scalar</p>
 
               
             </p>
@@ -2678,7 +2765,8 @@
   
   
         <h4 id="_esfx_iter_fn_empty_function_1_" data-uid="@esfx/iter-fn!empty:function(1)">empty()</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> with no elements. Query</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> with no elements.
+ Query</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2709,7 +2797,8 @@
   
   
         <h4 id="_esfx_iter_fn_endsWith_function_1_" data-uid="@esfx/iter-fn!endsWith:function(1)">endsWith(left, right, equaler)</h4>
-              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of <code>left</code> end with the same sequence of elements in <code>right</code><!-- -->.</p>
+              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of <code>left</code> end
+with the same sequence of elements in <code>right</code><!-- -->.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2757,7 +2846,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare the equality of two elements. Scalar</p>
+              <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
 
               
             </p>
@@ -2774,7 +2864,8 @@
   
   
         <h4 id="_esfx_iter_fn_endsWith_function_2_" data-uid="@esfx/iter-fn!endsWith:function(2)">endsWith(left, right, equaler)</h4>
-              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of <code>left</code> end with the same sequence of elements in <code>right</code><!-- -->.</p>
+              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of <code>left</code> end
+with the same sequence of elements in <code>right</code><!-- -->.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -2831,7 +2922,8 @@
               <dd><span class="xref">(left: T, right: U) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>An optional callback used to compare the equality of two elements. Scalar</p>
+              <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
 
               
             </p>
@@ -2894,7 +2986,8 @@
               <dd>(element: T) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Scalar</p>
+              <p>A callback used to match each element.
+ Scalar</p>
 
               
             </p>
@@ -2948,7 +3041,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Scalar</p>
+              <p>A callback used to match each element.
+ Scalar</p>
 
               
             </p>
@@ -3022,7 +3116,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
               
             </p>
@@ -3087,7 +3182,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
               
             </p>
@@ -3181,7 +3277,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -3266,7 +3363,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -3329,7 +3427,8 @@
               <dd><span class="xref">T[]</span></dd>
             </dl>
             <p>
-              <p>The values to exclude. Subquery</p>
+              <p>The values to exclude.
+ Subquery</p>
 
               
             </p>
@@ -3383,7 +3482,8 @@
               <dd><span class="xref">T[]</span></dd>
             </dl>
             <p>
-              <p>The values to exclude. Subquery</p>
+              <p>The values to exclude.
+ Subquery</p>
 
               
             </p>
@@ -3455,7 +3555,8 @@
               <dd>(element: T, offset: number) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -3518,7 +3619,8 @@
               <dd>(element: T, offset: number) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -3581,7 +3683,8 @@
               <dd><span class="xref">(element: T, offset: number) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -3635,7 +3738,8 @@
               <dd><span class="xref">(element: T, offset: number) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -3718,7 +3822,8 @@
               <dd><span class="xref">(key: K, offset: number) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each key. Subquery</p>
+              <p>A callback used to match each key.
+ Subquery</p>
 
               
             </p>
@@ -3792,7 +3897,8 @@
               <dd><span class="xref">(key: K, offset: number) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each key. Subquery</p>
+              <p>A callback used to match each key.
+ Subquery</p>
 
               
             </p>
@@ -3844,7 +3950,8 @@
               <dd><a class="xref" href="iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Iterable</code> object. Subquery</p>
+              <p>An <code>Iterable</code> object.
+ Subquery</p>
 
               
             </p>
@@ -3887,7 +3994,8 @@
               <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Iterable</code> object. Subquery</p>
+              <p>An <code>Iterable</code> object.
+ Subquery</p>
 
               
             </p>
@@ -3959,7 +4067,8 @@
               <dd><span class="xref">(value: T) =&gt; K</span></dd>
             </dl>
             <p>
-              <p>A callback used to select the key for each element. Subquery</p>
+              <p>A callback used to select the key for each element.
+ Subquery</p>
 
               
             </p>
@@ -4022,7 +4131,8 @@
               <dd><span class="xref">(value: T) =&gt; K</span></dd>
             </dl>
             <p>
-              <p>A callback used to select the key for each element. Subquery</p>
+              <p>A callback used to select the key for each element.
+ Subquery</p>
 
               
             </p>
@@ -4094,7 +4204,8 @@
               <dd>(element: T, offset: number) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -4157,7 +4268,8 @@
               <dd>(element: T, offset: number) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -4220,7 +4332,8 @@
               <dd><span class="xref">(element: T, offset: number) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -4274,7 +4387,8 @@
               <dd><span class="xref">(element: T, offset: number) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -4357,7 +4471,8 @@
               <dd><span class="xref">(key: K, offset: number) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each key. Subquery</p>
+              <p>A callback used to match each key.
+ Subquery</p>
 
               
             </p>
@@ -4431,7 +4546,8 @@
               <dd><span class="xref">(key: K, offset: number) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each key. Subquery</p>
+              <p>A callback used to match each key.
+ Subquery</p>
 
               
             </p>
@@ -4503,7 +4619,8 @@
               <dd><span class="xref">(value: T) =&gt; K</span></dd>
             </dl>
             <p>
-              <p>A callback used to select the key for each element. Subquery</p>
+              <p>A callback used to select the key for each element.
+ Subquery</p>
 
               
             </p>
@@ -4566,7 +4683,8 @@
               <dd><span class="xref">(value: T) =&gt; K</span></dd>
             </dl>
             <p>
-              <p>A callback used to select the key for each element. Subquery</p>
+              <p>A callback used to select the key for each element.
+ Subquery</p>
 
               
             </p>
@@ -4629,7 +4747,8 @@
               <dd>(element: T) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>An optional callback used to match each element. Scalar</p>
+              <p>An optional callback used to match each element.
+ Scalar</p>
 
               
             </p>
@@ -4683,7 +4802,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>An optional callback used to match each element. Scalar</p>
+              <p>An optional callback used to match each element.
+ Scalar</p>
 
               
             </p>
@@ -4700,7 +4820,8 @@
   
   
         <h4 id="_esfx_iter_fn_firstChild_function_1_" data-uid="@esfx/iter-fn!firstChild:function(1)">firstChild(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the first child of each node in the iterable. This is equivalent to the <code>child::*[first()]</code> selector in XPath, or the <code>:first-child</code> pseudo class in CSS. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the first child of each node in the iterable. This is equivalent to the <code>child::*[first()]</code> selector in XPath, or the <code>:first-child</code> pseudo class in CSS.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -4858,7 +4979,8 @@
               <dd>(element: T) =&gt; <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;U&gt;</dd>
             </dl>
             <p>
-              <p>A callback used to map each element into an iterable. Subquery</p>
+              <p>A callback used to map each element into an iterable.
+ Subquery</p>
 
               
             </p>
@@ -4941,7 +5063,8 @@
               <dd><span class="xref">(element: T, innerElement: U) =&gt; R</span></dd>
             </dl>
             <p>
-              <p>A callback used to map an element and one of its projected values into a result. Subquery</p>
+              <p>A callback used to map an element and one of its projected values into a result.
+ Subquery</p>
 
               
             </p>
@@ -4958,7 +5081,8 @@
   
   
         <h4 id="_esfx_iter_fn_following_function_1_" data-uid="@esfx/iter-fn!following:function(1)">following(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the nodes that follow each node in the iterable. This is equivalent to the <code>following-sibling::*</code> selector in XPath or the <code>~</code> combinator in CSS. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the nodes that follow each node in the iterable. This is equivalent to the <code>following-sibling::*</code> selector in XPath or the <code>~</code> combinator in CSS.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -5070,7 +5194,8 @@
   
   
         <h4 id="_esfx_iter_fn_followingSiblings_function_1_" data-uid="@esfx/iter-fn!followingSiblings:function(1)">followingSiblings(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the siblings that follow each node in the iterable. This is equivalent to the <code>following-sibling::*</code> selector in XPath or the <code>~</code> combinator in CSS. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the siblings that follow each node in the iterable. This is equivalent to the <code>following-sibling::*</code> selector in XPath or the <code>~</code> combinator in CSS.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -5219,7 +5344,8 @@
               <dd><span class="xref">(element: T, offset: number) =&gt; void</span></dd>
             </dl>
             <p>
-              <p>The callback to invoke. Scalar</p>
+              <p>The callback to invoke.
+ Scalar</p>
 
               
             </p>
@@ -5236,7 +5362,8 @@
   
   
         <h4 id="_esfx_iter_fn_fullJoin_function_1_" data-uid="@esfx/iter-fn!fullJoin:function(1)">fullJoin(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the correlated elements between an outer <code>Iterable</code> object and an inner <code>Iterable</code> object.</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the correlated elements between an outer <code>Iterable</code> object and an inner
+<code>Iterable</code> object.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -5344,7 +5471,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Join</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Join</p>
 
               
             </p>
@@ -5361,7 +5489,8 @@
   
   
         <h4 id="_esfx_iter_fn_generate_function_1_" data-uid="@esfx/iter-fn!generate:function(1)">generate(count, generator)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> whose values are provided by a callback executed a provided number of times.</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> whose values are provided by a callback executed a provided number of
+times.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -5398,7 +5527,8 @@
               <dd><span class="xref">(offset: number) =&gt; T</span></dd>
             </dl>
             <p>
-              <p>The callback to execute. Query</p>
+              <p>The callback to execute.
+ Query</p>
 
               
             </p>
@@ -5481,7 +5611,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -5595,7 +5726,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -5669,7 +5801,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -5763,7 +5896,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -5877,7 +6011,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -6002,7 +6137,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Join</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Join</p>
 
               
             </p>
@@ -6067,7 +6203,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare the equality of two elements. Scalar</p>
+              <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
 
               
             </p>
@@ -6141,7 +6278,8 @@
               <dd><span class="xref">(left: T, right: U) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>An optional callback used to compare the equality of two elements. Scalar</p>
+              <p>An optional callback used to compare the equality of two elements.
+ Scalar</p>
 
               
             </p>
@@ -6158,7 +6296,8 @@
   
   
         <h4 id="_esfx_iter_fn_includesSequence_function_1_" data-uid="@esfx/iter-fn!includesSequence:function(1)">includesSequence(left, right, equaler)</h4>
-              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of <code>left</code> include an exact sequence of elements from <code>right</code><!-- -->.</p>
+              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of <code>left</code> include
+an exact sequence of elements from <code>right</code><!-- -->.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -6206,7 +6345,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>A callback used to compare the equality of two elements. Scalar</p>
+              <p>A callback used to compare the equality of two elements.
+ Scalar</p>
 
               
             </p>
@@ -6223,7 +6363,8 @@
   
   
         <h4 id="_esfx_iter_fn_includesSequence_function_2_" data-uid="@esfx/iter-fn!includesSequence:function(2)">includesSequence(left, right, equaler)</h4>
-              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of <code>left</code> include an exact sequence of elements from <code>right</code><!-- -->.</p>
+              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of <code>left</code> include
+an exact sequence of elements from <code>right</code><!-- -->.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -6280,7 +6421,8 @@
               <dd><span class="xref">(left: T, right: U) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to compare the equality of two elements. Scalar</p>
+              <p>A callback used to compare the equality of two elements.
+ Scalar</p>
 
               
             </p>
@@ -6354,7 +6496,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
               
             </p>
@@ -6428,7 +6571,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
               
             </p>
@@ -6493,7 +6637,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
               
             </p>
@@ -6587,7 +6732,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -6681,7 +6827,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -6766,7 +6913,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -6783,7 +6931,8 @@
   
   
         <h4 id="_esfx_iter_fn_into_function_1_" data-uid="@esfx/iter-fn!into:function(1)">into(source, callback)</h4>
-              <div class="markdown level1 summary"><p>Pass the entire source to the provided callback, returning a scalar result. Useful as the last step in a query.</p>
+              <div class="markdown level1 summary"><p>Pass the entire source to the provided callback, returning a scalar result. Useful as the last step
+in a query.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -6838,7 +6987,8 @@
               <dd><span class="xref">(source: S) =&gt; R</span></dd>
             </dl>
             <p>
-              <p>A callback function. Subquery</p>
+              <p>A callback function.
+ Subquery</p>
 
               
             </p>
@@ -6963,7 +7113,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Join</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Join</p>
 
               
             </p>
@@ -6980,7 +7131,8 @@
   
   
         <h4 id="_esfx_iter_fn_last_function_1_" data-uid="@esfx/iter-fn!last:function(1)">last(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Gets the last element of a <code>Iterable</code><!-- -->, optionally filtering elements using the supplied callback.</p>
+              <div class="markdown level1 summary"><p>Gets the last element of a <code>Iterable</code><!-- -->, optionally filtering elements using the supplied
+callback.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -7026,7 +7178,8 @@
               <dd>(element: T) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>An optional callback used to match each element. Scalar</p>
+              <p>An optional callback used to match each element.
+ Scalar</p>
 
               
             </p>
@@ -7043,7 +7196,8 @@
   
   
         <h4 id="_esfx_iter_fn_last_function_2_" data-uid="@esfx/iter-fn!last:function(2)">last(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Gets the last element of a <code>Iterable</code><!-- -->, optionally filtering elements using the supplied callback.</p>
+              <div class="markdown level1 summary"><p>Gets the last element of a <code>Iterable</code><!-- -->, optionally filtering elements using the supplied
+callback.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -7080,7 +7234,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>An optional callback used to match each element. Scalar</p>
+              <p>An optional callback used to match each element.
+ Scalar</p>
 
               
             </p>
@@ -7097,7 +7252,8 @@
   
   
         <h4 id="_esfx_iter_fn_lastChild_function_1_" data-uid="@esfx/iter-fn!lastChild:function(1)">lastChild(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the last child of each node in the iterable. This is equivalent to the <code>child::*[last()]</code> selector in XPath, or the <code>:last-child</code> pseudo class in CSS. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the last child of each node in the iterable. This is equivalent to the <code>child::*[last()]</code> selector in XPath, or the <code>:last-child</code> pseudo class in CSS.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -7255,7 +7411,8 @@
               <dd><span class="xref">(element: T, offset: number) =&gt; U</span></dd>
             </dl>
             <p>
-              <p>A callback used to map each element. Subquery</p>
+              <p>A callback used to map each element.
+ Subquery</p>
 
               
             </p>
@@ -7272,7 +7429,8 @@
   
   
         <h4 id="_esfx_iter_fn_materialize_function_1_" data-uid="@esfx/iter-fn!materialize:function(1)">materialize(source)</h4>
-              <div class="markdown level1 summary"><p>Eagerly evaluate the <code>Iterable</code><!-- -->, returning a new <code>Iterable</code><!-- -->. Subquery</p>
+              <div class="markdown level1 summary"><p>Eagerly evaluate the <code>Iterable</code><!-- -->, returning a new <code>Iterable</code><!-- -->.
+ Subquery</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -7401,7 +7559,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;T&gt; | <a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare two elements. Scalar</p>
+              <p>An optional callback used to compare two elements.
+ Scalar</p>
 
               
             </p>
@@ -7475,7 +7634,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare the keys. Scalar</p>
+              <p>An optional callback used to compare the keys.
+ Scalar</p>
 
               
             </p>
@@ -7529,7 +7689,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;T&gt; | <a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare two elements. Scalar</p>
+              <p>An optional callback used to compare two elements.
+ Scalar</p>
 
               
             </p>
@@ -7603,7 +7764,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare the keys. Scalar</p>
+              <p>An optional callback used to compare the keys.
+ Scalar</p>
 
               
             </p>
@@ -7620,7 +7782,8 @@
   
   
         <h4 id="_esfx_iter_fn_nthChild_function_1_" data-uid="@esfx/iter-fn!nthChild:function(1)">nthChild(source, offset, predicate)</h4>
-              <div class="markdown level1 summary"><p>Creates a <code>HierarchyIterable</code> for the child of each element at the specified offset. A negative offset starts from the last child. This is equivalent to the <code>:nth-child()</code> pseudo-class in CSS.</p>
+              <div class="markdown level1 summary"><p>Creates a <code>HierarchyIterable</code> for the child of each element at the specified offset. A negative offset
+starts from the last child. This is equivalent to the <code>:nth-child()</code> pseudo-class in CSS.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -7677,7 +7840,8 @@
               <dd>(element: TNode) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>An optional callback used to filter the results. Hierarchy</p>
+              <p>An optional callback used to filter the results.
+ Hierarchy</p>
 
               
             </p>
@@ -7781,7 +7945,8 @@
               <dd><span class="xref">T</span></dd>
             </dl>
             <p>
-              <p>The only element for the <code>Iterable</code><!-- -->. Query</p>
+              <p>The only element for the <code>Iterable</code><!-- -->.
+ Query</p>
 
               
             </p>
@@ -7864,7 +8029,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare two keys. Order</p>
+              <p>An optional callback used to compare two keys.
+ Order</p>
 
               
             </p>
@@ -7938,7 +8104,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare two keys. Order</p>
+              <p>An optional callback used to compare two keys.
+ Order</p>
 
               
             </p>
@@ -8021,7 +8188,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare two keys. Order</p>
+              <p>An optional callback used to compare two keys.
+ Order</p>
 
               
             </p>
@@ -8095,7 +8263,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare two keys. Order</p>
+              <p>An optional callback used to compare two keys.
+ Order</p>
 
               
             </p>
@@ -8112,7 +8281,9 @@
   
   
         <h4 id="_esfx_iter_fn_pageBy_function_1_" data-uid="@esfx/iter-fn!pageBy:function(1)">pageBy(source, pageSize)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> that splits an <code>Iterable</code> into one or more pages. While advancing from page to page is evaluated lazily, the elements of the page are evaluated eagerly.</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> that splits an <code>Iterable</code> into one or more pages.
+While advancing from page to page is evaluated lazily, the elements of the page are
+evaluated eagerly.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -8158,7 +8329,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The number of elements per page. Subquery</p>
+              <p>The number of elements per page.
+ Subquery</p>
 
               
             </p>
@@ -8175,7 +8347,9 @@
   
   
         <h4 id="_esfx_iter_fn_pageBy_function_2_" data-uid="@esfx/iter-fn!pageBy:function(2)">pageBy(source, pageSize, pageSelector)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> that splits an <code>Iterable</code> into one or more pages. While advancing from page to page is evaluated lazily, the elements of the page are evaluated eagerly.</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> that splits an <code>Iterable</code> into one or more pages.
+While advancing from page to page is evaluated lazily, the elements of the page are
+evaluated eagerly.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -8241,7 +8415,8 @@
               <dd>(page: number, offset: number, values: <a class="xref" href="iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface">HierarchyIterable</a>&lt;TNode, T&gt;) =&gt; R</dd>
             </dl>
             <p>
-              <p>A callback used to create a result for a page. Subquery</p>
+              <p>A callback used to create a result for a page.
+ Subquery</p>
 
               
             </p>
@@ -8258,7 +8433,9 @@
   
   
         <h4 id="_esfx_iter_fn_pageBy_function_3_" data-uid="@esfx/iter-fn!pageBy:function(3)">pageBy(source, pageSize)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> that splits an <code>Iterable</code> into one or more pages. While advancing from page to page is evaluated lazily, the elements of the page are evaluated eagerly.</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> that splits an <code>Iterable</code> into one or more pages.
+While advancing from page to page is evaluated lazily, the elements of the page are
+evaluated eagerly.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -8295,7 +8472,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The number of elements per page. Subquery</p>
+              <p>The number of elements per page.
+ Subquery</p>
 
               
             </p>
@@ -8312,7 +8490,9 @@
   
   
         <h4 id="_esfx_iter_fn_pageBy_function_4_" data-uid="@esfx/iter-fn!pageBy:function(4)">pageBy(source, pageSize, pageSelector)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> that splits an <code>Iterable</code> into one or more pages. While advancing from page to page is evaluated lazily, the elements of the page are evaluated eagerly.</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> that splits an <code>Iterable</code> into one or more pages.
+While advancing from page to page is evaluated lazily, the elements of the page are
+evaluated eagerly.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -8369,7 +8549,8 @@
               <dd>(page: number, offset: number, values: <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;) =&gt; R</dd>
             </dl>
             <p>
-              <p>A callback used to create a result for a page. Subquery</p>
+              <p>A callback used to create a result for a page.
+ Subquery</p>
 
               
             </p>
@@ -8386,7 +8567,8 @@
   
   
         <h4 id="_esfx_iter_fn_parents_function_1_" data-uid="@esfx/iter-fn!parents:function(1)">parents(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the parent of each node in the iterable. This is equivalent to the <code>parent::*</code> or <code>..</code> selectors in XPath. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the parent of each node in the iterable. This is equivalent to the <code>parent::*</code> or <code>..</code> selectors in XPath.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -8498,7 +8680,8 @@
   
   
         <h4 id="_esfx_iter_fn_patch_function_1_" data-uid="@esfx/iter-fn!patch:function(1)">patch(source, start, skipCount, range)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the elements of <code>source</code> with the provided range patched into the results.</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the elements of <code>source</code> with the provided range
+patched into the results.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -8566,7 +8749,8 @@
               <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>The range to patch into the result. Subquery</p>
+              <p>The range to patch into the result.
+ Subquery</p>
 
               
             </p>
@@ -8583,7 +8767,8 @@
   
   
         <h4 id="_esfx_iter_fn_patch_function_2_" data-uid="@esfx/iter-fn!patch:function(2)">patch(source, start, skipCount, range)</h4>
-              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the elements of <code>source</code> with the provided range patched into the results.</p>
+              <div class="markdown level1 summary"><p>Creates an <code>Iterable</code> for the elements of <code>source</code> with the provided range
+patched into the results.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -8642,7 +8827,8 @@
               <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>The range to patch into the result. Subquery</p>
+              <p>The range to patch into the result.
+ Subquery</p>
 
               
             </p>
@@ -8659,7 +8845,8 @@
   
   
         <h4 id="_esfx_iter_fn_preceding_function_1_" data-uid="@esfx/iter-fn!preceding:function(1)">preceding(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the nodes that precede each node in the iterable. This is equivalent to the <code>preceding::**</code> selector in XPath. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the nodes that precede each node in the iterable. This is equivalent to the <code>preceding::**</code> selector in XPath.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -8771,7 +8958,8 @@
   
   
         <h4 id="_esfx_iter_fn_precedingSiblings_function_1_" data-uid="@esfx/iter-fn!precedingSiblings:function(1)">precedingSiblings(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the siblings that precede each node in the iterable. This is equivalent to the <code>preceding-sibling::**</code> selector in XPath. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the siblings that precede each node in the iterable. This is equivalent to the <code>preceding-sibling::**</code> selector in XPath.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -8928,7 +9116,8 @@
               <dd><span class="xref">T</span></dd>
             </dl>
             <p>
-              <p>The value to prepend. Subquery</p>
+              <p>The value to prepend.
+ Subquery</p>
 
               
             </p>
@@ -8981,7 +9170,8 @@
               <dd><span class="xref">T</span></dd>
             </dl>
             <p>
-              <p>The value to prepend. Subquery</p>
+              <p>The value to prepend.
+ Subquery</p>
 
               
             </p>
@@ -9036,7 +9226,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The amount by which to change between each itereated value. Query</p>
+              <p>The amount by which to change between each itereated value.
+ Query</p>
 
               
             </p>
@@ -9090,7 +9281,8 @@
               <dd><span class="xref">(current: T, element: T, offset: number) =&gt; T</span></dd>
             </dl>
             <p>
-              <p>the callback used to compute the result. Scalar</p>
+              <p>the callback used to compute the result.
+ Scalar</p>
 
               
             </p>
@@ -9164,7 +9356,8 @@
               <dd><span class="xref">U</span></dd>
             </dl>
             <p>
-              <p>An optional seed value. Scalar</p>
+              <p>An optional seed value.
+ Scalar</p>
 
               
             </p>
@@ -9268,7 +9461,8 @@
               <dd><span class="xref">(result: U, count: number) =&gt; R</span></dd>
             </dl>
             <p>
-              <p>An optional callback used to compute the final result. Scalar</p>
+              <p>An optional callback used to compute the final result.
+ Scalar</p>
 
               
             </p>
@@ -9322,7 +9516,8 @@
               <dd><span class="xref">(current: T, element: T, offset: number) =&gt; T</span></dd>
             </dl>
             <p>
-              <p>the callback used to compute the result. Scalar</p>
+              <p>the callback used to compute the result.
+ Scalar</p>
 
               
             </p>
@@ -9396,7 +9591,8 @@
               <dd><span class="xref">U</span></dd>
             </dl>
             <p>
-              <p>An optional seed value. Scalar</p>
+              <p>An optional seed value.
+ Scalar</p>
 
               
             </p>
@@ -9500,7 +9696,8 @@
               <dd><span class="xref">(result: U, count: number) =&gt; R</span></dd>
             </dl>
             <p>
-              <p>An optional callback used to compute the final result. Scalar</p>
+              <p>An optional callback used to compute the final result.
+ Scalar</p>
 
               
             </p>
@@ -9554,7 +9751,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The number of times to repeat the value. Query</p>
+              <p>The number of times to repeat the value.
+ Query</p>
 
               
             </p>
@@ -9571,7 +9769,8 @@
   
   
         <h4 id="_esfx_iter_fn_reverse_function_1_" data-uid="@esfx/iter-fn!reverse:function(1)">reverse(source)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery whose elements are in the reverse order. Ordering</p>
+              <div class="markdown level1 summary"><p>Creates a subquery whose elements are in the reverse order.
+ Ordering</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -9622,7 +9821,8 @@
   
   
         <h4 id="_esfx_iter_fn_reverse_function_2_" data-uid="@esfx/iter-fn!reverse:function(2)">reverse(source)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery whose elements are in the reverse order. Ordering</p>
+              <div class="markdown level1 summary"><p>Creates a subquery whose elements are in the reverse order.
+ Ordering</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -9664,7 +9864,8 @@
   
   
         <h4 id="_esfx_iter_fn_root_function_1_" data-uid="@esfx/iter-fn!root:function(1)">root(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the root element of each node in the iterable. This is equivalent to the <code>/</code> selector in XPath, or the <code>:root</code> selector in CSS. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the root element of each node in the iterable. This is equivalent to the <code>/</code> selector in XPath, or the <code>:root</code> selector in CSS.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -9813,7 +10014,8 @@
               <dd><span class="xref">(current: T, element: T, offset: number) =&gt; T</span></dd>
             </dl>
             <p>
-              <p>The callback used to compute each result. Subquery</p>
+              <p>The callback used to compute each result.
+ Subquery</p>
 
               
             </p>
@@ -9887,7 +10089,8 @@
               <dd><span class="xref">U</span></dd>
             </dl>
             <p>
-              <p>An optional seed value. Subquery</p>
+              <p>An optional seed value.
+ Subquery</p>
 
               
             </p>
@@ -9941,7 +10144,8 @@
               <dd><span class="xref">(current: T, element: T, offset: number) =&gt; T</span></dd>
             </dl>
             <p>
-              <p>The callback used to compute each result. Subquery</p>
+              <p>The callback used to compute each result.
+ Subquery</p>
 
               
             </p>
@@ -10015,7 +10219,8 @@
               <dd><span class="xref">U</span></dd>
             </dl>
             <p>
-              <p>An optional seed value. Subquery</p>
+              <p>An optional seed value.
+ Subquery</p>
 
               
             </p>
@@ -10032,7 +10237,8 @@
   
   
         <h4 id="_esfx_iter_fn_self_function_1_" data-uid="@esfx/iter-fn!self:function(1)">self(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects each node in the iterable. This is equivalent to the <code>self::*</code> or <code>.</code> selectors in XPath. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects each node in the iterable. This is equivalent to the <code>self::*</code> or <code>.</code> selectors in XPath.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -10162,7 +10368,8 @@
   
   
         <h4 id="_esfx_iter_fn_siblings_function_1_" data-uid="@esfx/iter-fn!siblings:function(1)">siblings(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the siblings of each node in the iterable, excluding the node itself. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the siblings of each node in the iterable, excluding the node itself.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -10274,7 +10481,8 @@
   
   
         <h4 id="_esfx_iter_fn_siblingsAndSelf_function_1_" data-uid="@esfx/iter-fn!siblingsAndSelf:function(1)">siblingsAndSelf(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Selects the siblings of each node in the iterable, including the node itself. This equivalent to the <code>../*</code> selector in XPath. Hierarchy</p>
+              <div class="markdown level1 summary"><p>Selects the siblings of each node in the iterable, including the node itself. This equivalent to the <code>../*</code> selector in XPath.
+ Hierarchy</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -10432,7 +10640,8 @@
               <dd>(element: T) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>An optional callback used to match each element. Scalar</p>
+              <p>An optional callback used to match each element.
+ Scalar</p>
 
               
             </p>
@@ -10486,7 +10695,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>An optional callback used to match each element. Scalar</p>
+              <p>An optional callback used to match each element.
+ Scalar</p>
 
               
             </p>
@@ -10503,7 +10713,8 @@
   
   
         <h4 id="_esfx_iter_fn_some_function_1_" data-uid="@esfx/iter-fn!some:function(1)">some(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether <code>source</code> contains any elements, optionally filtering the elements using the supplied callback.</p>
+              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether <code>source</code> contains any elements,
+optionally filtering the elements using the supplied callback.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -10540,7 +10751,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>An optional callback used to match each element. Scalar</p>
+              <p>An optional callback used to match each element.
+ Scalar</p>
 
               
             </p>
@@ -10557,8 +10769,11 @@
   
   
         <h4 id="_esfx_iter_fn_span_function_1_" data-uid="@esfx/iter-fn!span:function(1)">span(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Creates a tuple whose first element is an <code>Iterable</code> containing the first span of elements that match the supplied predicate, and whose second element is an <code>Iterable</code> containing the remaining elements.</p>
-<p>The first <code>Iterable</code> is eagerly evaluated, while the second <code>Iterable</code> is lazily evaluated.</p>
+              <div class="markdown level1 summary"><p>Creates a tuple whose first element is an <code>Iterable</code> containing the first span of
+elements that match the supplied predicate, and whose second element is an <code>Iterable</code>
+containing the remaining elements.</p>
+<p>The first <code>Iterable</code> is eagerly evaluated, while the second <code>Iterable</code> is lazily
+evaluated.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -10613,7 +10828,8 @@
               <dd>(element: T, offset: number) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>The predicate used to match elements. Scalar</p>
+              <p>The predicate used to match elements.
+ Scalar</p>
 
               
             </p>
@@ -10630,8 +10846,11 @@
   
   
         <h4 id="_esfx_iter_fn_span_function_2_" data-uid="@esfx/iter-fn!span:function(2)">span(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Creates a tuple whose first element is an <code>Iterable</code> containing the first span of elements that match the supplied predicate, and whose second element is an <code>Iterable</code> containing the remaining elements.</p>
-<p>The first <code>Iterable</code> is eagerly evaluated, while the second <code>Iterable</code> is lazily evaluated.</p>
+              <div class="markdown level1 summary"><p>Creates a tuple whose first element is an <code>Iterable</code> containing the first span of
+elements that match the supplied predicate, and whose second element is an <code>Iterable</code>
+containing the remaining elements.</p>
+<p>The first <code>Iterable</code> is eagerly evaluated, while the second <code>Iterable</code> is lazily
+evaluated.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -10677,7 +10896,8 @@
               <dd><span class="xref">(element: T, offset: number) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>The predicate used to match elements. Scalar</p>
+              <p>The predicate used to match elements.
+ Scalar</p>
 
               
             </p>
@@ -10694,8 +10914,11 @@
   
   
         <h4 id="_esfx_iter_fn_span_function_3_" data-uid="@esfx/iter-fn!span:function(3)">span(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Creates a tuple whose first element is an <code>Iterable</code> containing the first span of elements that match the supplied predicate, and whose second element is an <code>Iterable</code> containing the remaining elements.</p>
-<p>The first <code>Iterable</code> is eagerly evaluated, while the second <code>Iterable</code> is lazily evaluated.</p>
+              <div class="markdown level1 summary"><p>Creates a tuple whose first element is an <code>Iterable</code> containing the first span of
+elements that match the supplied predicate, and whose second element is an <code>Iterable</code>
+containing the remaining elements.</p>
+<p>The first <code>Iterable</code> is eagerly evaluated, while the second <code>Iterable</code> is lazily
+evaluated.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -10741,7 +10964,8 @@
               <dd>(element: T, offset: number) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>The predicate used to match elements. Scalar</p>
+              <p>The predicate used to match elements.
+ Scalar</p>
 
               
             </p>
@@ -10758,8 +10982,11 @@
   
   
         <h4 id="_esfx_iter_fn_span_function_4_" data-uid="@esfx/iter-fn!span:function(4)">span(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Creates a tuple whose first element is an <code>Iterable</code> containing the first span of elements that match the supplied predicate, and whose second element is an <code>Iterable</code> containing the remaining elements.</p>
-<p>The first <code>Iterable</code> is eagerly evaluated, while the second <code>Iterable</code> is lazily evaluated.</p>
+              <div class="markdown level1 summary"><p>Creates a tuple whose first element is an <code>Iterable</code> containing the first span of
+elements that match the supplied predicate, and whose second element is an <code>Iterable</code>
+containing the remaining elements.</p>
+<p>The first <code>Iterable</code> is eagerly evaluated, while the second <code>Iterable</code> is lazily
+evaluated.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -10796,7 +11023,8 @@
               <dd><span class="xref">(element: T, offset: number) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>The predicate used to match elements. Scalar</p>
+              <p>The predicate used to match elements.
+ Scalar</p>
 
               
             </p>
@@ -10879,7 +11107,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> used to compare key equality. Grouping</p>
+              <p>An <code>Equaler</code> used to compare key equality.
+ Grouping</p>
 
               
             </p>
@@ -10993,7 +11222,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> used to compare key equality. Grouping</p>
+              <p>An <code>Equaler</code> used to compare key equality.
+ Grouping</p>
 
               
             </p>
@@ -11067,7 +11297,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> used to compare key equality. Grouping</p>
+              <p>An <code>Equaler</code> used to compare key equality.
+ Grouping</p>
 
               
             </p>
@@ -11161,7 +11392,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> used to compare key equality. Grouping</p>
+              <p>An <code>Equaler</code> used to compare key equality.
+ Grouping</p>
 
               
             </p>
@@ -11275,7 +11507,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> used to compare key equality. Grouping</p>
+              <p>An <code>Equaler</code> used to compare key equality.
+ Grouping</p>
 
               
             </p>
@@ -11292,8 +11525,11 @@
   
   
         <h4 id="_esfx_iter_fn_spanUntil_function_1_" data-uid="@esfx/iter-fn!spanUntil:function(1)">spanUntil(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Creates a tuple whose first element is an <code>Iterable</code> containing the first span of elements that do not match the supplied predicate, and whose second element is an <code>Iterable</code> containing the remaining elements.</p>
-<p>The first <code>Iterable</code> is eagerly evaluated, while the second <code>Iterable</code> is lazily evaluated.</p>
+              <div class="markdown level1 summary"><p>Creates a tuple whose first element is an <code>Iterable</code> containing the first span of
+elements that do not match the supplied predicate, and whose second element is an <code>Iterable</code>
+containing the remaining elements.</p>
+<p>The first <code>Iterable</code> is eagerly evaluated, while the second <code>Iterable</code> is lazily
+evaluated.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -11330,7 +11566,8 @@
               <dd><span class="xref">(element: T, offset: number) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>The predicate used to match elements. Scalar</p>
+              <p>The predicate used to match elements.
+ Scalar</p>
 
               
             </p>
@@ -11347,8 +11584,11 @@
   
   
         <h4 id="_esfx_iter_fn_spanUntil_function_2_" data-uid="@esfx/iter-fn!spanUntil:function(2)">spanUntil(source, predicate)</h4>
-              <div class="markdown level1 summary"><p>Creates a tuple whose first element is an <code>Iterable</code> containing the first span of elements that do not match the supplied predicate, and whose second element is an <code>Iterable</code> containing the remaining elements.</p>
-<p>The first <code>Iterable</code> is eagerly evaluated, while the second <code>Iterable</code> is lazily evaluated.</p>
+              <div class="markdown level1 summary"><p>Creates a tuple whose first element is an <code>Iterable</code> containing the first span of
+elements that do not match the supplied predicate, and whose second element is an <code>Iterable</code>
+containing the remaining elements.</p>
+<p>The first <code>Iterable</code> is eagerly evaluated, while the second <code>Iterable</code> is lazily
+evaluated.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -11385,7 +11625,8 @@
               <dd><span class="xref">(element: T, offset: number) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>The predicate used to match elements. Scalar</p>
+              <p>The predicate used to match elements.
+ Scalar</p>
 
               
             </p>
@@ -11402,7 +11643,8 @@
   
   
         <h4 id="_esfx_iter_fn_startsWith_function_1_" data-uid="@esfx/iter-fn!startsWith:function(1)">startsWith(left, right, equaler)</h4>
-              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this Query start with the same sequence of elements in another Iterable.</p>
+              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this Query start
+with the same sequence of elements in another Iterable.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -11450,7 +11692,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_EqualityComparison_type">EqualityComparison</a>&lt;T&gt; | <a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>A callback used to compare the equality of two elements. Scalar</p>
+              <p>A callback used to compare the equality of two elements.
+ Scalar</p>
 
               
             </p>
@@ -11467,7 +11710,8 @@
   
   
         <h4 id="_esfx_iter_fn_startsWith_function_2_" data-uid="@esfx/iter-fn!startsWith:function(2)">startsWith(left, right, equaler)</h4>
-              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this Query start with the same sequence of elements in another Iterable.</p>
+              <div class="markdown level1 summary"><p>Computes a scalar value indicating whether the elements of this Query start
+with the same sequence of elements in another Iterable.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -11524,7 +11768,8 @@
               <dd><span class="xref">(left: T, right: U) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to compare the equality of two elements. Scalar</p>
+              <p>A callback used to compare the equality of two elements.
+ Scalar</p>
 
               
             </p>
@@ -11557,7 +11802,8 @@
               <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;number&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Iterable</code> object. Scalar</p>
+              <p>An <code>Iterable</code> object.
+ Scalar</p>
 
               
             </p>
@@ -11611,7 +11857,8 @@
               <dd><span class="xref">(element: T) =&gt; number</span></dd>
             </dl>
             <p>
-              <p>A callback used to convert a value in <code>source</code> to a number. Scalar</p>
+              <p>A callback used to convert a value in <code>source</code> to a number.
+ Scalar</p>
 
               
             </p>
@@ -11628,7 +11875,9 @@
   
   
         <h4 id="_esfx_iter_fn_symmetricDifference_function_1_" data-uid="@esfx/iter-fn!symmetricDifference:function(1)">symmetricDifference(left, right, equaler)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between two <code>Iterable</code> objects. The result is an <code>Iterable</code> containings the elements that exist in only left or right, but not in both.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between two <code>Iterable</code> objects.
+The result is an <code>Iterable</code> containings the elements that exist in only left or right, but not
+in both.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -11685,7 +11934,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
               
             </p>
@@ -11702,7 +11952,9 @@
   
   
         <h4 id="_esfx_iter_fn_symmetricDifference_function_2_" data-uid="@esfx/iter-fn!symmetricDifference:function(2)">symmetricDifference(left, right, equaler)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between two <code>Iterable</code> objects. The result is an <code>Iterable</code> containings the elements that exist in only left or right, but not in both.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between two <code>Iterable</code> objects.
+The result is an <code>Iterable</code> containings the elements that exist in only left or right, but not
+in both.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -11759,7 +12011,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
               
             </p>
@@ -11776,7 +12029,9 @@
   
   
         <h4 id="_esfx_iter_fn_symmetricDifference_function_3_" data-uid="@esfx/iter-fn!symmetricDifference:function(3)">symmetricDifference(left, right, equaler)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between two <code>Iterable</code> objects. The result is an <code>Iterable</code> containings the elements that exist in only left or right, but not in both.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between two <code>Iterable</code> objects.
+The result is an <code>Iterable</code> containings the elements that exist in only left or right, but not
+in both.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -11824,7 +12079,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
               
             </p>
@@ -11841,7 +12097,9 @@
   
   
         <h4 id="_esfx_iter_fn_symmetricDifferenceBy_function_1_" data-uid="@esfx/iter-fn!symmetricDifferenceBy:function(1)">symmetricDifferenceBy(left, right, keySelector, keyEqualer)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between two <code>Iterable</code> objects, where set identity is determined by the selected key. The result is an <code>Iterable</code> containings the elements that exist in only left or right, but not in both.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between two <code>Iterable</code> objects, where set identity is determined by the selected key.
+The result is an <code>Iterable</code> containings the elements that exist in only left or right, but not
+in both.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -11918,7 +12176,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -11935,7 +12194,9 @@
   
   
         <h4 id="_esfx_iter_fn_symmetricDifferenceBy_function_2_" data-uid="@esfx/iter-fn!symmetricDifferenceBy:function(2)">symmetricDifferenceBy(left, right, keySelector, keyEqualer)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between two <code>Iterable</code> objects, where set identity is determined by the selected key. The result is an <code>Iterable</code> containings the elements that exist in only left or right, but not in both.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between two <code>Iterable</code> objects, where set identity is determined by the selected key.
+The result is an <code>Iterable</code> containings the elements that exist in only left or right, but not
+in both.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -12012,7 +12273,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -12029,7 +12291,9 @@
   
   
         <h4 id="_esfx_iter_fn_symmetricDifferenceBy_function_3_" data-uid="@esfx/iter-fn!symmetricDifferenceBy:function(3)">symmetricDifferenceBy(left, right, keySelector, keyEqualer)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between two <code>Iterable</code> objects, where set identity is determined by the selected key. The result is an <code>Iterable</code> containings the elements that exist in only left or right, but not in both.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery for the symmetric difference between two <code>Iterable</code> objects, where set identity is determined by the selected key.
+The result is an <code>Iterable</code> containings the elements that exist in only left or right, but not
+in both.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -12097,7 +12361,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -12114,7 +12379,8 @@
   
   
         <h4 id="_esfx_iter_fn_take_function_1_" data-uid="@esfx/iter-fn!take:function(1)">take(source, count)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery containing the first elements up to the supplied count.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery containing the first elements up to the supplied
+count.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -12160,7 +12426,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The number of elements to take. Subquery</p>
+              <p>The number of elements to take.
+ Subquery</p>
 
               
             </p>
@@ -12177,7 +12444,8 @@
   
   
         <h4 id="_esfx_iter_fn_take_function_2_" data-uid="@esfx/iter-fn!take:function(2)">take(source, count)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery containing the first elements up to the supplied count.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery containing the first elements up to the supplied
+count.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -12214,7 +12482,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The number of elements to take. Subquery</p>
+              <p>The number of elements to take.
+ Subquery</p>
 
               
             </p>
@@ -12231,7 +12500,8 @@
   
   
         <h4 id="_esfx_iter_fn_takeRight_function_1_" data-uid="@esfx/iter-fn!takeRight:function(1)">takeRight(source, count)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery containing the last elements up to the supplied count.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery containing the last elements up to the supplied
+count.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -12277,7 +12547,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The number of elements to take. Subquery</p>
+              <p>The number of elements to take.
+ Subquery</p>
 
               
             </p>
@@ -12294,7 +12565,8 @@
   
   
         <h4 id="_esfx_iter_fn_takeRight_function_2_" data-uid="@esfx/iter-fn!takeRight:function(2)">takeRight(source, count)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery containing the last elements up to the supplied count.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery containing the last elements up to the supplied
+count.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -12331,7 +12603,8 @@
               <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
-              <p>The number of elements to take. Subquery</p>
+              <p>The number of elements to take.
+ Subquery</p>
 
               
             </p>
@@ -12403,7 +12676,8 @@
               <dd>(element: T) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -12466,7 +12740,8 @@
               <dd>(element: T) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -12529,7 +12804,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -12583,7 +12859,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -12655,7 +12932,8 @@
               <dd>(element: T) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -12718,7 +12996,8 @@
               <dd>(element: T) =&gt; <span class="xref">element</span> is U</dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -12781,7 +13060,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -12835,7 +13115,8 @@
               <dd><span class="xref">(element: T) =&gt; boolean</span></dd>
             </dl>
             <p>
-              <p>A callback used to match each element. Subquery</p>
+              <p>A callback used to match each element.
+ Subquery</p>
 
               
             </p>
@@ -12898,7 +13179,8 @@
               <dd><span class="xref">(element: T, offset: number) =&gt; void</span></dd>
             </dl>
             <p>
-              <p>The callback to invoke. Subquery</p>
+              <p>The callback to invoke.
+ Subquery</p>
 
               
             </p>
@@ -12952,7 +13234,8 @@
               <dd><span class="xref">(element: T, offset: number) =&gt; void</span></dd>
             </dl>
             <p>
-              <p>The callback to invoke. Subquery</p>
+              <p>The callback to invoke.
+ Subquery</p>
 
               
             </p>
@@ -13035,7 +13318,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare two keys. Order</p>
+              <p>An optional callback used to compare two keys.
+ Order</p>
 
               
             </p>
@@ -13109,7 +13393,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare two keys. Order</p>
+              <p>An optional callback used to compare two keys.
+ Order</p>
 
               
             </p>
@@ -13192,7 +13477,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare two keys. Order</p>
+              <p>An optional callback used to compare two keys.
+ Order</p>
 
               
             </p>
@@ -13266,7 +13552,8 @@
               <dd><a class="xref" href="equatable.html#_esfx_equatable_Comparison_type">Comparison</a>&lt;K&gt; | <a class="xref" href="equatable/comparer-interface.html#_esfx_equatable_Comparer_interface">Comparer</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An optional callback used to compare two keys. Order</p>
+              <p>An optional callback used to compare two keys.
+ Order</p>
 
               
             </p>
@@ -13309,7 +13596,8 @@
               <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Iterable</code> object. Scalar</p>
+              <p>An <code>Iterable</code> object.
+ Scalar</p>
 
               
             </p>
@@ -13372,7 +13660,8 @@
               <dd><span class="xref">(element: T) =&gt; V</span></dd>
             </dl>
             <p>
-              <p>A callback that selects a value for each element. Scalar</p>
+              <p>A callback that selects a value for each element.
+ Scalar</p>
 
               
             </p>
@@ -13446,7 +13735,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Scalar</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Scalar</p>
 
               
             </p>
@@ -13540,7 +13830,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Scalar</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Scalar</p>
 
               
             </p>
@@ -13594,7 +13885,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Scalar</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Scalar</p>
 
               
             </p>
@@ -13668,7 +13960,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;V&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Scalar</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Scalar</p>
 
               
             </p>
@@ -13863,7 +14156,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Scalar</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Scalar</p>
 
               
             </p>
@@ -13957,7 +14251,8 @@
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Scalar</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Scalar</p>
 
               
             </p>
@@ -14020,7 +14315,8 @@
               <dd><span class="xref">(element: T) =&gt; K</span></dd>
             </dl>
             <p>
-              <p>A callback used to select a key for each element. Scalar</p>
+              <p>A callback used to select a key for each element.
+ Scalar</p>
 
               
             </p>
@@ -14103,7 +14399,8 @@
               <dd><span class="xref">(element: T) =&gt; V</span></dd>
             </dl>
             <p>
-              <p>A callback that selects a value for each element. Scalar</p>
+              <p>A callback that selects a value for each element.
+ Scalar</p>
 
               
             </p>
@@ -14194,7 +14491,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">TProto</span></dd>
             </dl>
             <p>
-              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
               
             </p>
@@ -14205,7 +14503,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">(element: T) =&gt; K</span></dd>
             </dl>
             <p>
-              <p>A callback used to select a key for each element. Scalar</p>
+              <p>A callback used to select a key for each element.
+ Scalar</p>
 
               
             </p>
@@ -14287,7 +14586,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">TProto</span></dd>
             </dl>
             <p>
-              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
               
             </p>
@@ -14298,7 +14598,8 @@ typeof obj.toString; // undefined
               <dd>(element: T) =&gt; <span class="xref">PropertyKey</span></dd>
             </dl>
             <p>
-              <p>A callback used to select a key for each element. Scalar</p>
+              <p>A callback used to select a key for each element.
+ Scalar</p>
 
               
             </p>
@@ -14380,7 +14681,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">object | null | undefined</span></dd>
             </dl>
             <p>
-              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
               
             </p>
@@ -14391,7 +14693,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">(element: T) =&gt; K</span></dd>
             </dl>
             <p>
-              <p>A callback used to select a key for each element. Scalar</p>
+              <p>A callback used to select a key for each element.
+ Scalar</p>
 
               
             </p>
@@ -14464,7 +14767,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">object | null | undefined</span></dd>
             </dl>
             <p>
-              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
               
             </p>
@@ -14475,7 +14779,8 @@ typeof obj.toString; // undefined
               <dd>(element: T) =&gt; <span class="xref">PropertyKey</span></dd>
             </dl>
             <p>
-              <p>A callback used to select a key for each element. Scalar</p>
+              <p>A callback used to select a key for each element.
+ Scalar</p>
 
               
             </p>
@@ -14575,7 +14880,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">TProto</span></dd>
             </dl>
             <p>
-              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
               
             </p>
@@ -14608,7 +14914,8 @@ typeof obj.toString; // undefined
               <dd>(key: K, value: V) =&gt; <span class="xref">TypedPropertyDescriptor</span>&lt;V&gt;</dd>
             </dl>
             <p>
-              <p>A callback that defines the <code>PropertyDescriptor</code> for each property. Scalar</p>
+              <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
 
               
             </p>
@@ -14699,7 +15006,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">TProto</span></dd>
             </dl>
             <p>
-              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
               
             </p>
@@ -14732,7 +15040,8 @@ typeof obj.toString; // undefined
               <dd>(key: <span class="xref">PropertyKey</span>, value: V) =&gt; <span class="xref">TypedPropertyDescriptor</span>&lt;V&gt;</dd>
             </dl>
             <p>
-              <p>A callback that defines the <code>PropertyDescriptor</code> for each property. Scalar</p>
+              <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
 
               
             </p>
@@ -14823,7 +15132,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">object | null | undefined</span></dd>
             </dl>
             <p>
-              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
               
             </p>
@@ -14856,7 +15166,8 @@ typeof obj.toString; // undefined
               <dd>(key: K, value: V) =&gt; <span class="xref">TypedPropertyDescriptor</span>&lt;V&gt;</dd>
             </dl>
             <p>
-              <p>A callback that defines the <code>PropertyDescriptor</code> for each property. Scalar</p>
+              <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
 
               
             </p>
@@ -14938,7 +15249,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">object | null | undefined</span></dd>
             </dl>
             <p>
-              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
               
             </p>
@@ -14971,7 +15283,8 @@ typeof obj.toString; // undefined
               <dd>(key: <span class="xref">PropertyKey</span>, value: V) =&gt; <span class="xref">TypedPropertyDescriptor</span>&lt;V&gt;</dd>
             </dl>
             <p>
-              <p>A callback that defines the <code>PropertyDescriptor</code> for each property. Scalar</p>
+              <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
 
               
             </p>
@@ -15053,7 +15366,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">object | null | undefined</span></dd>
             </dl>
             <p>
-              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code> prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
+              <p>The prototype for the object. If <code>prototype</code> is <code>null</code><!-- -->, an object with a <code>null</code>
+prototype is created. If <code>prototype</code> is <code>undefined</code><!-- -->, the default <code>Object.prototype</code> is used.</p>
 
               
             </p>
@@ -15086,7 +15400,8 @@ typeof obj.toString; // undefined
               <dd>(key: <span class="xref">PropertyKey</span>, value: V) =&gt; <span class="xref">PropertyDescriptor</span></dd>
             </dl>
             <p>
-              <p>A callback that defines the <code>PropertyDescriptor</code> for each property. Scalar</p>
+              <p>A callback that defines the <code>PropertyDescriptor</code> for each property.
+ Scalar</p>
 
               
             </p>
@@ -15103,7 +15418,8 @@ typeof obj.toString; // undefined
   
   
         <h4 id="_esfx_iter_fn_topMost_function_1_" data-uid="@esfx/iter-fn!topMost:function(1)">topMost(source, predicate, equaler)</h4>
-              <div class="markdown level1 summary"><p>Filters a <code>HierarchyIterable</code> to the top-most elements. Elements that are a descendant of any other element in the iterable are removed.</p>
+              <div class="markdown level1 summary"><p>Filters a <code>HierarchyIterable</code> to the top-most elements. Elements that are a descendant of any other
+element in the iterable are removed.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -15169,7 +15485,8 @@ typeof obj.toString; // undefined
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;TNode&gt;</dd>
             </dl>
             <p>
-              <p>An optional <code>Equaler</code> used to compare equality between nodes. Hierarchy</p>
+              <p>An optional <code>Equaler</code> used to compare equality between nodes.
+ Hierarchy</p>
 
               
             </p>
@@ -15186,7 +15503,8 @@ typeof obj.toString; // undefined
   
   
         <h4 id="_esfx_iter_fn_topMost_function_2_" data-uid="@esfx/iter-fn!topMost:function(2)">topMost(source, predicate, equaler)</h4>
-              <div class="markdown level1 summary"><p>Creates a <code>HierarchyIterable</code> for the top-most elements. Elements that are a descendant of any other element are removed.</p>
+              <div class="markdown level1 summary"><p>Creates a <code>HierarchyIterable</code> for the top-most elements. Elements that are a descendant of any other
+element are removed.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -15243,7 +15561,8 @@ typeof obj.toString; // undefined
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;TNode&gt;</dd>
             </dl>
             <p>
-              <p>An optional <code>Equaler</code> used to compare equality between nodes. Hierarchy</p>
+              <p>An optional <code>Equaler</code> used to compare equality between nodes.
+ Hierarchy</p>
 
               
             </p>
@@ -15286,7 +15605,8 @@ typeof obj.toString; // undefined
               <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Iterable</code> object. Scalar</p>
+              <p>An <code>Iterable</code> object.
+ Scalar</p>
 
               
             </p>
@@ -15349,7 +15669,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">(element: T) =&gt; V</span></dd>
             </dl>
             <p>
-              <p>A callback that selects a value for each element. Scalar</p>
+              <p>A callback that selects a value for each element.
+ Scalar</p>
 
               
             </p>
@@ -15423,7 +15744,8 @@ typeof obj.toString; // undefined
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
               
             </p>
@@ -15497,7 +15819,8 @@ typeof obj.toString; // undefined
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
               
             </p>
@@ -15562,7 +15885,8 @@ typeof obj.toString; // undefined
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare equality.
+ Subquery</p>
 
               
             </p>
@@ -15656,7 +15980,8 @@ typeof obj.toString; // undefined
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -15750,7 +16075,8 @@ typeof obj.toString; // undefined
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -15835,7 +16161,8 @@ typeof obj.toString; // undefined
               <dd><a class="xref" href="equatable/equaler-interface.html#_esfx_equatable_Equaler_interface">Equaler</a>&lt;K&gt;</dd>
             </dl>
             <p>
-              <p>An <code>Equaler</code> object used to compare key equality. Subquery</p>
+              <p>An <code>Equaler</code> object used to compare key equality.
+ Subquery</p>
 
               
             </p>
@@ -15880,7 +16207,8 @@ typeof obj.toString; // undefined
               <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;T&gt;</dd>
             </dl>
             <p>
-              <p>A <code>Iterable</code> Scalar</p>
+              <p>A <code>Iterable</code>
+ Scalar</p>
 
               
             </p>
@@ -15947,7 +16275,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">(value: T) =&gt; U</span></dd>
             </dl>
             <p>
-              <p>A callback that converts a result into a tuple. Scalar</p>
+              <p>A callback that converts a result into a tuple.
+ Scalar</p>
 
               
             </p>
@@ -15966,7 +16295,8 @@ typeof obj.toString; // undefined
   
   
         <h4 id="_esfx_iter_fn_zip_function_1_" data-uid="@esfx/iter-fn!zip:function(1)">zip(left, right)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery that combines two <code>Iterable</code> objects by combining elements in tuples.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery that combines two <code>Iterable</code> objects by combining elements
+in tuples.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -16012,7 +16342,8 @@ typeof obj.toString; // undefined
               <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;U&gt;</dd>
             </dl>
             <p>
-              <p>A <code>Iterable</code><!-- -->. Join</p>
+              <p>A <code>Iterable</code><!-- -->.
+ Join</p>
 
               
             </p>
@@ -16029,7 +16360,8 @@ typeof obj.toString; // undefined
   
   
         <h4 id="_esfx_iter_fn_zip_function_2_" data-uid="@esfx/iter-fn!zip:function(2)">zip(left, right, selector)</h4>
-              <div class="markdown level1 summary"><p>Creates a subquery that combines two <code>Iterable</code> objects by combining elements using the supplied callback.</p>
+              <div class="markdown level1 summary"><p>Creates a subquery that combines two <code>Iterable</code> objects by combining elements
+using the supplied callback.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
@@ -16095,7 +16427,8 @@ typeof obj.toString; // undefined
               <dd><span class="xref">(left: T, right: U) =&gt; R</span></dd>
             </dl>
             <p>
-              <p>A callback used to combine two elements. Join</p>
+              <p>A callback used to combine two elements.
+ Join</p>
 
               
             </p>
@@ -16116,6 +16449,9 @@ typeof obj.toString; // undefined
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/iter-fn.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

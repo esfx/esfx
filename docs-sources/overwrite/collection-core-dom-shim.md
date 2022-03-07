@@ -4,18 +4,18 @@ uid: '@esfx/collection-core-dom-shim!'
 
 Provides a global shim to add default @"@esfx/collection-core!" behaviors to global DOM objects.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/collection-core-dom-shim
 ```
 
-# Usage
+## Usage
 
 The global shim adds a default implementation the collection interfaces to the following global DOM objects:
 
@@ -134,7 +134,7 @@ The global shim adds a default implementation the collection interfaces to the f
 
 To install the global shim, import @"@esfx/collection-core-dom-shim!":
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import "@esfx/collection-core-dom-shim"; // triggers global-scope side effects
 import { ReadonlyIndexedCollection } from "@esfx/collection-core";
@@ -142,7 +142,7 @@ import { ReadonlyIndexedCollection } from "@esfx/collection-core";
 document.anchors[ReadonlyIndexedCollection.size]; // gets the number of anchors in the document
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 require("@esfx/collection-core-dom-shim"); // triggers global-scope side effects
 const { ReadonlyIndexedCollection } = require("@esfx/collection-core");

@@ -1,9 +1,9 @@
 // fixes https://github.com/microsoft/tsdoc/issues/128#issuecomment-565673442
 
-const { NodeParser } = require("@microsoft/tsdoc/lib/parser/NodeParser");
-var Token_1 = require("@microsoft/tsdoc/lib/parser/Token");
-var StringChecks_1 = require("@microsoft/tsdoc/lib/parser/StringChecks");
-var nodes_1 = require("@microsoft/tsdoc/lib/nodes");
+const { NodeParser } = require("@microsoft/tsdoc/lib-commonjs/parser/NodeParser");
+var Token_1 = require("@microsoft/tsdoc/lib-commonjs/parser/Token");
+var StringChecks_1 = require("@microsoft/tsdoc/lib-commonjs/parser/StringChecks");
+var nodes_1 = require("@microsoft/tsdoc/lib-commonjs/nodes");
 
 NodeParser.prototype._parseParamBlock = function (tokenReader, docBlockTag) {
     var startMarker = tokenReader.createMarker();

@@ -4,20 +4,20 @@ uid: '@esfx/collections-multimap!'
 
 Provides the @"@esfx/collections-multimap!MultiMap:class" class, a collection class that maps a single key to multiple values.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/collections-multimap
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { MultiMap } from "@esfx/collections-multimap";
 
@@ -30,7 +30,7 @@ multi.size; // 3
 [...multi.get("b")]; // [3]
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 import { MultiMap } from "@esfx/collections-multimap";
 
@@ -44,3 +44,5 @@ multi.size; // 3
 ```
 
 ***
+
+## API

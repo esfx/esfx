@@ -4,20 +4,20 @@ uid: '@esfx/async-barrier!'
 
 The `@esfx/async-barrier` package provides the @"@esfx/async-barrier!AsyncBarrier:class" class, an async coordination primitive.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-barrier
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { AsyncBarrier } from "@esfx/async-barrier";
 
@@ -80,7 +80,7 @@ main();
 // Post-phase action: count=16, phase=3
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { AsyncBarrier } = require("@esfx/async-barrier");
 
@@ -144,3 +144,5 @@ main();
 ```
 
 ***
+
+## API

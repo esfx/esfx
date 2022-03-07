@@ -4,20 +4,20 @@ uid: '@esfx/async-autoresetevent!'
 
 The `@esfx/async-autoresetevent` package provides the @"@esfx/async-autoresetevent!AsyncAutoResetEvent:class" class, an async coordination primitive.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-autoresetevent
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { AsyncAutoResetEvent } from "@esfx/async-autoresetevent";
 
@@ -46,7 +46,7 @@ doSomeActivity();
 waitForActivity();
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { AsyncAutoResetEvent } = require("@esfx/async-autoresetevent");
 
@@ -76,3 +76,5 @@ waitForActivity();
 ```
 
 ***
+
+## API

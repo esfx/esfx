@@ -4,20 +4,20 @@ uid: '@esfx/collections-hashset!'
 
 Provides the @"@esfx/collections-hashset!HashSet:class" class, a collection class that utilizes @"@esfx/collection-core!" and @"@esfx/equatable!".
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/collections-hashset
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { HashSet } from "@esfx/collections-hashset";
 import { Equatable, Equaler, Comparable, Comparer } from "@esfx/equatable";
@@ -66,7 +66,7 @@ hashSet.add(obj2);
 hashSet.length; // 1
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { HashSet } = require("@esfx/collections-hashset");
 const { Equatable, Equaler, Comparable, Comparer } = require("@esfx/equatable");
@@ -114,3 +114,5 @@ hashSet.length; // 1
 ```
 
 ***
+
+## API

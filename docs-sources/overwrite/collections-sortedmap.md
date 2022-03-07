@@ -4,20 +4,20 @@ uid: '@esfx/collections-sortedmap!'
 
 Provides the @"@esfx/collections-sortedmap!SortedMap:class" class, a collection class that utilizes @"@esfx/collection-core!" and @"@esfx/equatable!".
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/collections-sortedmap
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { SortedMap } from "@esfx/collections-sortedmap";
 import { Equatable, Equaler, Comparable, Comparer } from "@esfx/equatable";
@@ -68,7 +68,7 @@ sortedMap.set(obj2, "obj2");
 [...sortedMap.keys()]; // Bob Clark,Alice Johnson
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { SortedMap } = require("@esfx/collections-sortedmap");
 const { Equatable, Equaler, Comparable, Comparer } = require("@esfx/equatable");
@@ -118,3 +118,5 @@ sortedMap.set(obj2, "obj2");
 ```
 
 ***
+
+## API

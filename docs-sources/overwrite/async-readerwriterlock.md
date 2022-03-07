@@ -4,20 +4,20 @@ uid: '@esfx/async-readerwriterlock!'
 
 The `@esfx/async-readerwriterlock` package provides the @"@esfx/async-readerwriterlock!AsyncReaderWriterLock:class" class, an async coordination primitive.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-readerwriterlock
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { AsyncReaderWriterLock } from "@esfx/async-readerwriterlock";
 
@@ -86,7 +86,7 @@ async function updateUser(id: string, oldData: User, newData: User) {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { AsyncReaderWriterLock } = require("@esfx/async-readerwriterlock");
 
@@ -154,3 +154,5 @@ async function updateUser(id, oldData, newData) {
 ```
 
 ***
+
+## API

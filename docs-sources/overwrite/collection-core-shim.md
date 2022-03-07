@@ -4,18 +4,18 @@ uid: '@esfx/collection-core-shim!'
 
 Provides a global shim to add default @"@esfx/collection-core!" behaviors to global objects.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/collection-core-shim
 ```
 
-# Usage
+## Usage
 
 The global shim adds a default implementation the collection interfaces to the following global objects:
 
@@ -78,7 +78,7 @@ The global shim adds a default implementation the collection interfaces to the f
 
 To install the global shim, import @"@esfx/collection-core-shim!":
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import "@esfx/collection-core-shim"; // triggers global-scope side effects
 import { Collection } from "@esfx/collection-core";
@@ -86,7 +86,7 @@ import { Collection } from "@esfx/collection-core";
 [1, 2, 3][Collection.size]; // 3
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 require("@esfx/collection-core-shim"); // triggers global-scope side effects
 const { Collection } = require("@esfx/collection-core");

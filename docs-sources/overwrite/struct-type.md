@@ -4,22 +4,22 @@ uid: '@esfx/struct-type!'
 
 Define structured types using @"@esfx/ArrayBuffer!" and @"@esfx/SharedArrayBuffer!".
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/struct-type
 ```
 
-# Usage
+## Usage
 
-## Basic Usage
+### Basic Usage
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { StructType, int32 } from "@esfx/struct-type";
 
@@ -65,7 +65,7 @@ console.log(l1[1][0]); // 3
 console.log(l1[1][1]); // 4
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { StructType, int32 } = require("@esfx/struct-type");
 
@@ -113,9 +113,9 @@ console.log(l1[1][1]); // 4
 
 ***
 
-## Using with Workers
+### Using with Workers
 
-### [TypeScript](#tab/ts)
+#### [TypeScript](#tab/ts)
 ```ts
 import { StructType, int32 } from "@esfx/struct-type";
 import { Worker, isMainThread, parentPort, workerData } from "worker_threads";
@@ -155,7 +155,7 @@ else if (parentPort) {
 }
 ```
 
-### [JavaScript (CommonJS)](#tab/js)
+#### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { StructType, int32 } = require("@esfx/struct-type");
 const { Worker, isMainThread, parentPort, workerData } = require("worker_threads");
@@ -196,3 +196,5 @@ else if (parentPort) {
 ```
 
 ***
+
+## API

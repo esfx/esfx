@@ -4,21 +4,23 @@ uid: '@esfx/decorators-stage1-core!'
 
 Provides a low-level API for working with ECMAScript Stage 1 Decorators.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/decorators-stage1-core
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 ```
 
 ***
+
+## API

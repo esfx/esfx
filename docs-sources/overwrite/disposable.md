@@ -4,20 +4,20 @@ uid: '@esfx/disposable!'
 
 Provides a low-level API for defining explicit resource management that third-party libraries can use to interoperate.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/disposable
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Disposable } from "@esfx/disposable";
 
@@ -42,7 +42,7 @@ class MyFileResouce {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Disposable } = require("@esfx/disposable");
 
@@ -66,3 +66,5 @@ class MyFileResouce {
 ```
 
 ***
+
+## API

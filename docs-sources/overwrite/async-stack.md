@@ -4,20 +4,20 @@ uid: '@esfx/async-stack!'
 
 The `@esfx/async-stack` package provides the @"@esfx/async-stack!AsyncStack:class" class, an async coordination primitive.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-stack
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { AsyncStack } from "@esfx/async-stack";
 
@@ -45,7 +45,7 @@ async function main() {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { AsyncStack } = require("@esfx/async-stack");
 
@@ -74,3 +74,5 @@ async function main() {
 ```
 
 ***
+
+## API

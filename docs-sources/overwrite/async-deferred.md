@@ -3,20 +3,20 @@ uid: '@esfx/async-deferred!'
 ---
 The `@esfx/async-deferred` package provides the @"@esfx/async-deferred!Deferred:class" class, an async coordination primitive.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-deferred
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Deferred } from "@esfx/async-deferred";
 
@@ -32,7 +32,7 @@ deferred.reject(new Error());
 deferred.promise;
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Deferred } = require("@esfx/async-deferred");
 
@@ -49,3 +49,5 @@ deferred.promise;
 ```
 
 ***
+
+## API

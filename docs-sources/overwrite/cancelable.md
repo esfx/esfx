@@ -14,20 +14,20 @@ The `@esfx/cancelable` package provides a low-level Symbol-based API for definin
 > - @"@esfx/cancelable-dom-shim!"
 > - [prex](https://github.com/rbuckton/prex#readme) (version 0.4.6 or later)
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/cancelable
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Cancelable } from "@esfx/cancelable";
 
@@ -51,7 +51,7 @@ function doSomeWork(cancelable: Cancelable) {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Cancelable } = require("@esfx/cancelable");
 
@@ -76,3 +76,5 @@ function doSomeWork(cancelable) {
 ```
 
 ***
+
+## API

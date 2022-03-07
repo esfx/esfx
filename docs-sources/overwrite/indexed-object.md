@@ -8,20 +8,20 @@ The underlying implementation uses a `Proxy` to trap integer indexes in a fashio
 the [Integer-Indexed Exotic Object](https://tc39.github.io/ecma262/#integer-indexed-exotic-object) 
 in the ECMAScript specification.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/indexed-object
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { IntegerIndexedObject } from "indexed-object";
 
@@ -46,7 +46,7 @@ console.log(booleans[0]); // false
 console.log(booleans[1]); // true
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { IntegerIndexedObject } = require("indexed-object");
 
@@ -74,3 +74,5 @@ console.log(booleans[1]); // true
 ```
 
 ***
+
+## API

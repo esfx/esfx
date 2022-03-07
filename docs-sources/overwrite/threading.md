@@ -14,7 +14,7 @@ Provides a number Thread synchronization primitives for use with Workers from th
 - @"@esfx/threading-sleep!"
 - @"@esfx/threading-spinwait!"
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/threading

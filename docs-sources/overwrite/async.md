@@ -21,7 +21,7 @@ Provides a number of asynchronous coordination primitives from the following pac
 - @"@esfx/async-stack!"
 - @"@esfx/async-waitqueue!"
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async

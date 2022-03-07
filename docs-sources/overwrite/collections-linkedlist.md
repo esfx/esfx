@@ -4,20 +4,20 @@ uid: '@esfx/collections-linkedlist!'
 
 Provides the @"@esfx/collections-linkedlist!LinkedList:class" class, a linked-list implementation that utilizes @"@esfx/collection-core!" and @"@esfx/equatable!".
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/collections-linkedlist
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { LinkedList, LinkedListNode } from "equatable/collections-linkedlist";
 
@@ -28,7 +28,7 @@ n2.value = "second updated";
 [...list]; // first,second updated
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { LinkedList } = require("equatable/collections-linkedlist");
 
@@ -40,3 +40,5 @@ n2.value = "second updated";
 ```
 
 ***
+
+## API

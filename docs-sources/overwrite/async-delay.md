@@ -3,20 +3,20 @@ uid: '@esfx/async-delay!'
 ---
 The `@esfx/async-delay` package provides the @"@esfx/async-delay!delay:function(1)" function.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-delay
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { delay } from "@esfx/async-delay";
 
@@ -26,7 +26,7 @@ async function doSomeAction() {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { delay } = require("@esfx/async-delay");
 
@@ -37,3 +37,5 @@ async function doSomeAction() {
 ```
 
 ***
+
+## API

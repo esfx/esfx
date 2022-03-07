@@ -4,12 +4,14 @@ uid: '@esfx/async-lockable!'
 
 A low-level Symbol-based common API for async coordination primitives.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-lockable
 ```
+
+## API

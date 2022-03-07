@@ -9,3 +9,6 @@ references:
   name: AbortSignal
   href: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
   fullName: AbortSignal
+- uid: '@esfx/async-canceltoken!~DOMAbortSignal:type'
+  name: AbortSignal
+  href: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal

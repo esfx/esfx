@@ -4,18 +4,18 @@ uid: '@esfx/cancelable-dom-shim!'
 
 The `@esfx/cancelable-dom-shim` package provides a global shim to make the DOM @"@esfx/AbortController!" and @"@esfx/AbortSignal!" classes compatible with @"@esfx/cancelable!".
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/cancelable-dom-shim
 ```
 
-# Usage
+## Usage
 
 The global shim adds a default implementation the collection interfaces to the following global DOM objects:
 
@@ -27,7 +27,7 @@ The global shim adds a default implementation the collection interfaces to the f
 
 To install the global shim, import `@esfx/cancelable/global`:
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import "@esfx/cancelable-dom-shim"; // triggers global-scope side effects
 import { Cancelable } from "@esfx/cancelable";
@@ -36,7 +36,7 @@ const abortController = new AbortController();
 const signal = abortController[Cancelable.cancelSignal]();
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 require("@esfx/cancelable-dom-shim"); // triggers global-scope side effects
 const { Cancelable } = require("@esfx/cancelable");

@@ -4,20 +4,20 @@ uid: '@esfx/reflect-metadata-compat!'
 
 Provides a global shim that provides a drop-in replacement for [reflect-metadata](https://npmjs.com/packages/reflect-metadata).
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/reflect-metadata-compat
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import "@esfx/reflect-metadata-compat";
 

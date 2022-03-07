@@ -4,20 +4,20 @@ uid: '@esfx/events!'
 
 Provides a low-level API for defining events.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/events
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Event } from "@esfx/events";
 
@@ -36,7 +36,7 @@ svc.loadedEvent.on(() => console.log("loaded"));
 svc.load();
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Event } = require("@esfx/events");
 
@@ -59,3 +59,5 @@ svc.load();
 ```
 
 ***
+
+## API

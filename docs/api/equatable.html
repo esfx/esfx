@@ -84,14 +84,14 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides a low level API for defining equality.</p>
-<h1 id="overview">Overview</h1>
+<h2 id="overview">Overview</h2>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
 </ul>
-<h1 id="installation">Installation</h1>
+<h2 id="installation">Installation</h2>
 <pre><code class="lang-sh">npm i @esfx/equatable
-</code></pre><h1 id="usage">Usage</h1>
+</code></pre><h2 id="usage">Usage</h2>
 <div class="tabGroup" id="tabgroup_UkZEEmCMpF">
 <ul role="tablist">
 <li role="presentation">
@@ -190,6 +190,7 @@ obj1 === obj2; // false
 Equaler.defaultEqualer.equals(obj1, obj2); // true
 </code></pre></section>
 </div>
+<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces
@@ -422,7 +423,13 @@ Equaler.defaultEqualer.equals(obj1, obj2); // true
   
   
         <h4 id="_esfx_equatable_Comparison_type" data-uid="@esfx/equatable!Comparison:type">Comparison</h4>
-              <div class="markdown level1 summary"><p>Describes a function that can be used to compare the relational equality of two values, returning a value indicating one of the following conditions: - A negative value indicates <code>x</code> is lesser than <code>y</code><!-- -->. - A positive value indicates <code>x</code> is greater than <code>y</code><!-- -->. - A zero value indicates <code>x</code> and <code>y</code> are equivalent.</p>
+              <div class="markdown level1 summary"><p>Describes a function that can be used to compare the relational equality of two values, returning a
+value indicating one of the following conditions:</p>
+<ul>
+<li>A negative value indicates <code>x</code> is lesser than <code>y</code><!-- -->.</li>
+<li>A positive value indicates <code>x</code> is greater than <code>y</code><!-- -->.</li>
+<li>A zero value indicates <code>x</code> and <code>y</code> are equivalent.</li>
+</ul>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>

@@ -4,20 +4,20 @@ uid: '@esfx/lazy!'
 
 Provides a class to simplify lazy-initialization logic.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/lazy
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Lazy } from "@esfx/lazy";
 
@@ -39,7 +39,7 @@ lazy3.hasValue; // true
 lazy3.value; // "test"
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Lazy } = require("@esfx/lazy");
 
@@ -62,3 +62,5 @@ lazy3.value; // "test"
 ```
 
 ***
+
+## API

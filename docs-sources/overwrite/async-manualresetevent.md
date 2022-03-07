@@ -4,20 +4,20 @@ uid: '@esfx/async-manualresetevent!'
 
 The `@esfx/async-manualresetevent` package provides the @"@esfx/async-manualresetevent!AsyncManualResetEvent:class" class, an async coordination primitive.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-manualresetevent
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { AsyncManualResetEvent } from "@esfx/async-manualresetevent";
 
@@ -46,7 +46,7 @@ doSomeActivity();
 doSomeOtherActivity();
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { AsyncManualResetEvent } = require("@esfx/async-manualresetevent");
 
@@ -76,3 +76,5 @@ doSomeOtherActivity();
 ```
 
 ***
+
+## API

@@ -4,20 +4,20 @@ uid: '@esfx/cancelable-dom!'
 
 The `@esfx/cancelable-dom` package provides a DOM interop library for @"@esfx/cancelable!".
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/cancelable-dom
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { Cancelable } from "@esfx/cancelable";
 import { toAbortSignal } from "@esfx/cancelable-dom";
@@ -27,7 +27,7 @@ async function doSomeWork(cancelable: Cancelable) {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { Cancelable } = require("@esfx/cancelable");
 const { toAbortSignal } = require("@esfx/cancelable-dom");
@@ -38,3 +38,5 @@ async function doSomeWork(cancelable) {
 ```
 
 ***
+
+## API

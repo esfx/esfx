@@ -4,20 +4,20 @@ uid: '@esfx/async-semaphore!'
 
 The `@esfx/async-semaphore` package provides the @"@esfx/async-semaphore!AsyncSemaphore:class" class, an async coordination primitive.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/async-semaphore
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 import { AsyncSemaphore } from "@esfx/async-semaphore";
 
@@ -48,7 +48,7 @@ async function updateResource(updates: UpdateObject) {
 }
 ```
 
-## [JavaScript (CommonJS)](#tab/js)
+### [JavaScript (CommonJS)](#tab/js)
 ```js
 const { AsyncSemaphore } = require("@esfx/async-semaphore");
 
@@ -80,3 +80,5 @@ async function updateResource(updates) {
 ```
 
 ***
+
+## API

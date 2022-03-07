@@ -10,7 +10,7 @@ Provides a number of common collection classes from the following packages:
 - @"@esfx/collections-hashset!"
 - @"@esfx/collections-linkedlist!"
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/collections

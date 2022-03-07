@@ -4,21 +4,23 @@ uid: '@esfx/decorators!'
 
 Provides a number of frequently used decorators.
 
-# Overview
+## Overview
 
 * [Installation](#installation)
 * [Usage](#usage)
 
-# Installation
+## Installation
 
 ```sh
 npm i @esfx/decorators
 ```
 
-# Usage
+## Usage
 
-## [TypeScript](#tab/ts)
+### [TypeScript](#tab/ts)
 ```ts
 ```
 
 ***
+
+## API

@@ -105,3 +105,6 @@ references:
   name: 'null'
   fullName: 'null'
   href: https://tc39.github.io/ecma262/#sec-ecmascript-language-types-null-type
+- uid: '@esfx/cancelable!~ErrorOptions:type'
+  name: ErrorOptions
+  href: https://tc39.es/ecma262/#sec-installerrorcause
