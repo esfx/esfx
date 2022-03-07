@@ -4,7 +4,17 @@
     "description": "CancelToken async coordination primitive.",
     "type": "commonjs",
     "main": "./dist/index.js",
-    "exports": "./dist/index.js",
+    "exports": {
+        ".": "./dist/index.js",
+        "./dom": "./dist/dom.js"
+    },
+    "typesVersions": {
+        "*": {
+            "index": ["./dist/index.d.ts"],
+            "dom": ["./dist/dom.d.ts"],
+            "dom.events": ["./dist/dom.events.d.ts"]
+        }
+    },
     "types": "./dist/index.d.ts",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
@@ -14,6 +24,9 @@
     },
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
+    },
+    "scripts": {
+        "prebuild": "node scripts/generateDomEventTypes.js"
     },
     "dependencies": {
         "@esfx/cancelable": "^1.0.0-pre.30",

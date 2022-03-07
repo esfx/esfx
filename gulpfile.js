@@ -29,8 +29,8 @@ function makeProjects(projects) {
     const builders = [];
     const cleaners = [];
     for (const project of projects) {
-        const build = { [project]: () => buildProject(project) }[project];
-        const clean = { [`clean:${project}`]: () => cleanProject(project) }[`clean:${project}`];
+        const build = fname(project, () => buildProject(project));
+        const clean = fname(`clean:${project}`, () => cleanProject(project));
         gulp.task(project, build);
         gulp.task(`clean:${project}`, clean);
         builders.push(build);
