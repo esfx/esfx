@@ -1,9 +1,8 @@
 .vscode
 __tests__
-api-extractor.json
-jest.config.js
-lerna.json
-src
 obj
-tsconfig.json
-tsconfig.tsbuildinfo
+src
+internal
+api-extractor.json
+tsconfig*.json
+*.tsbuildinfo

@@ -1,9 +1,8 @@
 .vscode
+__tests__
 obj
 src
-dist/internal/*.d.ts
-dist/internal/*.d.ts.map
-__tests__
+internal
 api-extractor.json
-tsconfig.json
-tsconfig.tsbuildinfo
+tsconfig*.json
+*.tsbuildinfo

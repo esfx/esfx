@@ -1,8 +1,8 @@
 .vscode
+__tests__
 obj
 src
-__tests__
+internal
 api-extractor.json
-tsconfig.json
-tsconfig.tsbuildinfo
-esbuild.config.js
+tsconfig*.json
+*.tsbuildinfo

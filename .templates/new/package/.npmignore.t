@@ -2,9 +2,10 @@
 to: <%=packagePath%>/.npmignore
 ---
 .vscode
+__tests__
 obj
 src
-__tests__
+internal
 api-extractor.json
-tsconfig.json
-tsconfig.tsbuildinfo
+tsconfig*.json
+*.tsbuildinfo
