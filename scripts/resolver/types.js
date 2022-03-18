@@ -13,8 +13,11 @@
  * @typedef {ResolverOptsBase & JestResolverOptsMixin} ResolverOpts
  */
 
+const conditionalBrand = Symbol();
+const relativeExportsBrand = Symbol();
+
 /**
- * @typedef {{ [key: string]: string | PackageJsonConditionalExports | undefined; }} PackageJsonConditionalExports
+ * @typedef {{ [key: string]: string | PackageJsonConditionalExports | undefined; } & { [conditionalBrand]?: never}} PackageJsonConditionalExports
  */
 
 /**
@@ -26,7 +29,7 @@
  */
 
 /**
- * @typedef {{ [key: string]: PackageJsonRelativeExport | undefined }} PackageJsonRelativeExports
+ * @typedef {{ [key: string]: PackageJsonRelativeExport | null | undefined } & { [relativeExportsBrand]?: never }} PackageJsonRelativeExports
  */
 
 /**

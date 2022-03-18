@@ -1,7 +1,6 @@
 // @ts-check
 const ts = require("typescript");
 const diff = require("diff");
-const { forEachChild } = require("typescript");
 const chalk = /** @type {typeof import("chalk").default} */(/** @type {*} */(require("chalk")));
 
 /** @enum {number} */
@@ -83,6 +82,7 @@ exports.TrailingTriviaOption = TrailingTriviaOption;
  * @property {(sourceFile: ts.SourceFile, afterNode: ts.Node, newNode: ts.Node, containingList?: ts.NodeArray<ts.Node>) => void} insertNodeInListAfter
  * @property {(sourceFile: ts.SourceFile, list: ts.NodeArray<ts.Node>, newNode: ts.Node) => void} insertNodeAtEndOfList
  * @property {(sourceFile: ts.SourceFile, pos: number, newNode: ts.Node, options?: InsertNodeOptions) => void} insertNodeAt
+ * @property {(oldFile: ts.SourceFile | undefined, fileName: string, statements: readonly ts.Statement[]) => void} createNewFile
  * @property {() => ts.FileTextChanges[]} getChanges
  */
 
@@ -224,6 +224,11 @@ function wrapChangeTracker(tracker) {
             collectPositions(newNode);
             tracker.insertNodeAt(sourceFile, pos, newNode, options);
         },
+        createNewFile(oldFile, fileName, statements) {
+            collectPositions(oldFile);
+            statements?.forEach(collectPositions);
+            tracker.createNewFile(oldFile, fileName, statements);
+        },
         getChanges() {
             const changes = tracker.getChanges();
             restorePositions();
@@ -242,7 +247,7 @@ function wrapChangeTracker(tracker) {
             node.forEach(collectPositions);
         }
         else {
-            forEachChild(node, collectPositions, collectPositions);
+            ts.forEachChild(node, collectPositions, collectPositions);
         }
     }
 
@@ -289,7 +294,10 @@ function deleteExtraneousComma(tracker, sourceFile, node) {
  * @returns {string}
  */
 function applyChanges(text, changes) {
-    return /** @type {*} */(ts).textChanges.applyChanges(text, changes);
+    /** @type {string} */
+    const newText = /** @type {*} */(ts).textChanges.applyChanges(text, changes);
+    const match = text === "" ? /^\((\{.*\})\);\r?\n?$/s.exec(newText) : null;
+    return match ? match[1] + "\n" : newText;
 }
 exports.applyChanges = applyChanges;
 
@@ -299,6 +307,8 @@ exports.applyChanges = applyChanges;
  * @param {string} afterText
  */
 function createPatch(fileName, beforeText, afterText) {
+    if (!beforeText.endsWith("\n")) beforeText += "\n";
+    if (!afterText.endsWith("\n")) afterText += "\n";
     const patch = diff.createPatch(fileName, beforeText, afterText, undefined, undefined, { context: 2 });
     const patchLines = patch.split(/\r?\n/g).slice(2).map(line =>
         line.startsWith("---") ? chalk.blue(line) :

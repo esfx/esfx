@@ -8,6 +8,7 @@ const { pickProperty, isDefinedAndNot } = require("../../utils");
  */
 function verifyPackageTsconfigJsonStructure(context) {
     const { packagePath, packageTsconfigJsonFile, addError, formatLocation } = context;
+
     const packageTsconfigObject = packageTsconfigJsonFile.statements[0].expression;
     if (!ts.isObjectLiteralExpression(packageTsconfigObject)) {
         addError({

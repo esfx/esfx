@@ -3,78 +3,60 @@
     "version": "1.0.0-pre.24",
     "description": "An fp-style iteration API for ECMAScript iterables.",
     "type": "commonjs",
-    "main": "./dist/index.js",
-    "types": "index",
-    "typesVersions": {
-        "*": {
-            "index": [
-                "./dist/index.d.ts"
-            ],
-            "index.js": [
-                "./dist/index.d.ts"
-            ],
-            "grouping": [
-                "./dist/grouping.d.ts"
-            ],
-            "grouping.js": [
-                "./dist/grouping.d.ts"
-            ],
-            "hierarchy": [
-                "./dist/hierarchy.d.ts"
-            ],
-            "hierarchy.js": [
-                "./dist/hierarchy.d.ts"
-            ],
-            "joins": [
-                "./dist/joins.d.ts"
-            ],
-            "joins.js": [
-                "./dist/joins.d.ts"
-            ],
-            "ordering": [
-                "./dist/ordering.d.ts"
-            ],
-            "ordering.js": [
-                "./dist/ordering.d.ts"
-            ],
-            "queries": [
-                "./dist/queries.d.ts"
-            ],
-            "queries.js": [
-                "./dist/queries.d.ts"
-            ],
-            "scalars": [
-                "./dist/scalars.d.ts"
-            ],
-            "scalars.js": [
-                "./dist/scalars.d.ts"
-            ],
-            "subqueries": [
-                "./dist/subqueries.d.ts"
-            ],
-            "subqueries.js": [
-                "./dist/subqueries.d.ts"
-            ]
+    "types": "./dist/types/index.d.ts",
+    "main": "./dist/cjs/index.js",
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        },
+        "./grouping": {
+            "types": "./dist/types/grouping.d.ts",
+            "require": "./dist/cjs/grouping.js",
+            "import": "./dist/esm/grouping.js"
+        },
+        "./hierarchy": {
+            "types": "./dist/types/hierarchy.d.ts",
+            "require": "./dist/cjs/hierarchy.js",
+            "import": "./dist/esm/hierarchy.js"
+        },
+        "./joins": {
+            "types": "./dist/types/joins.d.ts",
+            "require": "./dist/cjs/joins.js",
+            "import": "./dist/esm/joins.js"
+        },
+        "./ordering": {
+            "types": "./dist/types/ordering.d.ts",
+            "require": "./dist/cjs/ordering.js",
+            "import": "./dist/esm/ordering.js"
+        },
+        "./queries": {
+            "types": "./dist/types/queries.d.ts",
+            "require": "./dist/cjs/queries.js",
+            "import": "./dist/esm/queries.js"
+        },
+        "./scalars": {
+            "types": "./dist/types/scalars.d.ts",
+            "require": "./dist/cjs/scalars.js",
+            "import": "./dist/esm/scalars.js"
+        },
+        "./subqueries": {
+            "types": "./dist/types/subqueries.d.ts",
+            "require": "./dist/cjs/subqueries.js",
+            "import": "./dist/esm/subqueries.js"
         }
     },
-    "exports": {
-        ".": "./dist/index.js",
-        "./index": "./dist/index.js",
-        "./index.js": "./dist/index.js",
-        "./grouping": "./dist/grouping.js",
-        "./grouping.js": "./dist/grouping.js",
-        "./hierarchy": "./dist/hierarchy.js",
-        "./hierarchy.js": "./dist/hierarchy.js",
-        "./joins": "./dist/joins.js",
-        "./joins.js": "./dist/joins.js",
-        "./ordering": "./dist/ordering.js",
-        "./ordering.js": "./dist/ordering.js",
-        "./queries": "./dist/queries.js",
-        "./queries.js": "./dist/queries.js",
-        "./scalars": "./dist/scalars.js",
-        "./scalars.js": "./dist/scalars.js",
-        "./subqueries": "./dist/subqueries.js",
-        "./subqueries.js": "./dist/subqueries.js"
+    "typesVersions": {
+        "*": {
+            "grouping": ["./dist/types/grouping.d.ts"],
+            "hierarchy": ["./dist/types/hierarchy.d.ts"],
+            "joins": ["./dist/types/joins.d.ts"],
+            "ordering": ["./dist/types/ordering.d.ts"],
+            "queries": ["./dist/types/queries.d.ts"],
+            "scalars": ["./dist/types/scalars.d.ts"],
+            "subqueries": ["./dist/types/subqueries.d.ts"]
+        }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",

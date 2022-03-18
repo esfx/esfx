@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const { pickProperty, tryReadJsonFile } = require("../../utils");
 const { verifyPackage } = require("../package");
+const { isPackageJsonConditionalExports, isPackageJsonRelativeExports } = require("../../../resolver/utils");
 
 /**
  * @type {import("../../types").ContainerVerifierRule}
@@ -42,8 +43,10 @@ function verifyContainerPackages(context) {
         let _expectedProjects;
         /** @type {Map<string, import("typescript").StringLiteral>} */
         let _actualProjects;
-        /** @type {[string, string][]} */
-        let _exportMapEntries;
+        /** @type {import("../../../resolver/types").PackageJsonExports} */
+        let _exportsMap;
+        /** @type {import("../../../resolver/types").PackageJsonExports} */
+        let _actualExportsMap;
         /** @type {import("../../types").PackageVerifierContext} */
         const context = {
             paths,
@@ -55,8 +58,9 @@ function verifyContainerPackages(context) {
             packageTsconfigJsonFile,
             expectedContainerProjects,
             get expectedProjects() { return _expectedProjects ||= collectPackageDependencies(context, context.packageJsonFile); },
-            get actualProjects() { return _actualProjects || collectProjectReferences(context.packageTsconfigJsonFile); },
-            get exportMapEntries() { return _exportMapEntries || collectExportMapEntries(context.packagePath); },
+            get actualProjects() { return _actualProjects ||= collectProjectReferences(context.packageTsconfigJsonFile); },
+            get generatedExportsMap() { return _exportsMap ||= generateExportsMap(context.packagePath); },
+            get actualExportsMap() { return _actualExportsMap ||= buildActualExportsMap(context.packageJsonFile); },
             baseRelativePackageJsonPath: path.relative(basePath, packageJsonPath),
             baseRelativePackageLockJsonPath: hasPackageLock ? path.relative(basePath, packageLockJsonPath) : undefined,
             baseRelativePackageTsconfigJsonPath: path.relative(basePath, packageTsconfigJsonPath),
@@ -104,25 +108,63 @@ exports.verifyContainerPackages = verifyContainerPackages;
 }
 
 /**
- * @param {string} packagePath 
+ * 
+ * @param {import("typescript").JsonSourceFile} packageJsonFile 
  */
-function collectExportMapEntries(packagePath) {
-    // check for multiple exports
-    /** @type {[string, string][]} */
-    const exportMapEntries = [];
+function buildActualExportsMap(packageJsonFile) {
+    const object = packageJsonFile.statements[0].expression;
+    if (!ts.isObjectLiteralExpression(object)) return;
+
+    const exports = pickProperty(object, "exports");
+    if (!exports) return;
 
     /**
+     * @param {ts.JsonObjectExpression} node 
+     */
+    function visit(node) {
+        switch (node.kind) {
+            case ts.SyntaxKind.StringLiteral: return node.text;
+            case ts.SyntaxKind.NumericLiteral: return +node.text;
+            case ts.SyntaxKind.TrueKeyword: return true;
+            case ts.SyntaxKind.FalseKeyword: return false;
+            case ts.SyntaxKind.NullKeyword: return null;
+            case ts.SyntaxKind.PrefixUnaryExpression: return node.operator === ts.SyntaxKind.MinusToken ? -visit(node.operand) : visit(node.operand);
+            case ts.SyntaxKind.ArrayLiteralExpression: return node.elements.map(child => visit(/** @type {ts.JsonObjectExpression} */(child)));
+            case ts.SyntaxKind.ObjectLiteralExpression: return Object.fromEntries(
+                node.properties.map(prop => {
+                    if (!ts.isPropertyAssignment(prop) || !ts.isStringLiteral(prop.name)) throw new Error("Illegal state");
+                    return [prop.name.text, visit(/** @type {ts.JsonObjectExpression} */(prop.initializer))]
+                })
+            );
+        }
+    }
+
+    return visit(exports);
+}
+
+/**
+ * @param {string} packagePath 
+ * @returns {import("../../../resolver/types").PackageJsonExports}
+ */
+function generateExportsMap(packagePath) {
+    // check for multiple exports
+    /** @type {import("../../../resolver/types").PackageJsonRelativeExports} */
+    const exportMapEntries = {};
+
+    /**
+     * @param {"import" | "require" | "types"} type
      * @param {string} exportDir
      * @param {string} relativeDir
      * @param {string} dir
      * @param {number} depth
      */
-    const collectEntries = (exportDir, relativeDir, dir, depth) => {
+    const collectEntries = (type, exportDir, relativeDir, dir, depth) => {
         if (depth >= 2) return;
         for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
             if (entry.isDirectory()) {
                 if (entry.name === "internal" || entry.name === "__tests__") continue;
                 collectEntries(
+                    type,
                     `${exportDir}/${entry.name}`,
                     `${relativeDir}/${entry.name}`,
                     path.join(dir, entry.name),
@@ -133,14 +175,30 @@ function collectExportMapEntries(packagePath) {
                 const file = path.basename(entry.name, ".ts") + ".js";
                 const exportName = entry.name === "index.ts" ? exportDir : `${exportDir}/${file}`;
                 const relativeName = `${relativeDir}/${file}`;
-                exportMapEntries.push([exportName, relativeName]);
+                let value = exportMapEntries[exportName];
+                if (value === undefined) {
+                    value = { [type]: relativeName };
+                }
+                else if (!isPackageJsonConditionalExports(value)) {
+                    throw new Error("Not supported");
+                }
+                else {
+                    value[type] = relativeName;
+                }
+                exportMapEntries[exportName] = value;
             }
         }
     }
 
     const srcPath = path.join(packagePath, "src");
-    collectEntries(".", "./dist", srcPath, 0);
+    collectEntries("types", ".", "./dist/types", srcPath, 0);
+    collectEntries("require", ".", "./dist/cjs", srcPath, 0);
+    collectEntries("import", ".", "./dist/esm", srcPath, 0);
 
+    for (const _ in exportMapEntries) {
+        return exportMapEntries;
+    }
+
+    collectEntries("require", ".", "./dist", srcPath, 0);
     return exportMapEntries;
 }
-

@@ -3,51 +3,41 @@
     "version": "1.0.0-pre.23",
     "description": "A Symbol-based API for defining an Iterable with an inherent hierarchy.",
     "type": "commonjs",
-    "main": "./dist/index.js",
+    "types": "./dist/types/index.d.ts",
+    "main": "./dist/cjs/index.js",
     "exports": {
-        ".": "./dist/index.js",
-        "./hierarchy": "./dist/hierarchy.js",
-        "./hierarchy.js": "./dist/hierarchy.js",
-        "./ordered": "./dist/ordered.js",
-        "./ordered.js": "./dist/ordered.js",
-        "./provider": "./dist/provider.js",
-        "./provider.js": "./dist/provider.js",
-        "./axis": "./dist/axis.js",
-        "./axis.js": "./dist/axis.js"
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        },
+        "./hierarchy": {
+            "types": "./dist/types/hierarchy.d.ts",
+            "require": "./dist/cjs/hierarchy.js",
+            "import": "./dist/esm/hierarchy.js"
+        },
+        "./ordered": {
+            "types": "./dist/types/ordered.d.ts",
+            "require": "./dist/cjs/ordered.js",
+            "import": "./dist/esm/ordered.js"
+        },
+        "./provider": {
+            "types": "./dist/types/provider.d.ts",
+            "require": "./dist/cjs/provider.js",
+            "import": "./dist/esm/provider.js"
+        },
+        "./axis": {
+            "types": "./dist/types/axis.d.ts",
+            "require": "./dist/cjs/axis.js",
+            "import": "./dist/esm/axis.js"
+        }
     },
-    "types": "index",
     "typesVersions": {
         "*": {
-            "index": [
-                "./dist/index.d.ts"
-            ],
-            "index.js": [
-                "./dist/index.d.ts"
-            ],
-            "axis": [
-                "./dist/axis.d.ts"
-            ],
-            "axis.js": [
-                "./dist/axis.d.ts"
-            ],
-            "hierarchy": [
-                "./dist/hierarchy.d.ts"
-            ],
-            "hierarchy.js": [
-                "./dist/hierarchy.d.ts"
-            ],
-            "ordered": [
-                "./dist/ordered.d.ts"
-            ],
-            "ordered.js": [
-                "./dist/ordered.d.ts"
-            ],
-            "provider": [
-                "./dist/provider.d.ts"
-            ],
-            "provider.js": [
-                "./dist/provider.d.ts"
-            ]
+            "axis": ["./dist/types/axis.d.ts"],
+            "hierarchy": ["./dist/types/hierarchy.d.ts"],
+            "ordered": ["./dist/types/ordered.d.ts"],
+            "provider": ["./dist/types/provider.d.ts"]
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",

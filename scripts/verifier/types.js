@@ -1,7 +1,10 @@
 // @ts-check
 
 /**
- * @typedef {import("typescript").JsonObjectExpression & { parent: import("typescript").PropertyAssignment & { name: import("typescript").StringLiteral }}} PropertyAssignmentInitializer
+ * @typedef {import("typescript").PropertyAssignment & { readonly parent: JsonObjectLiteralExpression; readonly name: import("typescript").StringLiteral; readonly initializer: PropertyAssignmentInitializer }} JsonPropertyAssignment
+ * @typedef {import("typescript").ObjectLiteralExpression & { readonly properties: import("typescript").NodeArray<JsonPropertyAssignment> }} JsonObjectLiteralExpression
+ * @typedef {import("typescript").JsonObjectExpression & { readonly parent: JsonPropertyAssignment }} PropertyAssignmentInitializer
+ * @typedef {import("typescript").ArrayLiteralExpression & { readonly elements: import("typescript").NodeArray<import("typescript").JsonObjectExpression>} } JsonArrayLiteralExpression
  */
 
 /**
@@ -37,7 +40,8 @@
  * @property {import("typescript").ArrayLiteralExpression} [references]
  * @property {Map<string, import("typescript").StringLiteral>} expectedProjects
  * @property {Map<string, import("typescript").StringLiteral>} actualProjects
- * @property {[string, string][]} exportMapEntries
+ * @property {import("../resolver/types").PackageJsonExports} generatedExportsMap
+ * @property {import("../resolver/types").PackageJsonExports} [actualExportsMap]
  * @property {(diagnostic: Diagnostic) => void} addError
  * @property {(diagnostic: Diagnostic) => void} addWarning
  * @property {(sourceFile: import("typescript").SourceFile, location: import("typescript").TextRange) => string} formatLocation

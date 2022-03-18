@@ -3,13 +3,42 @@
     "version": "1.0.0-pre.30",
     "description": "A low-level API for defining explicit resource management.",
     "type": "commonjs",
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts",
+    "types": "./dist/types/index.d.ts",
+    "main": "./dist/cjs/index.js",
     "exports": {
-        ".": "./dist/index.js",
-        "./*": "./dist/*",
-        "./*.json": null,
-        "./internal/*": null
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        },
+        "./disposable": {
+            "types": "./dist/types/disposable.d.ts",
+            "require": "./dist/cjs/disposable.js",
+            "import": "./dist/esm/disposable.js"
+        },
+        "./disposableStack": {
+            "types": "./dist/types/disposableStack.d.ts",
+            "require": "./dist/cjs/disposableStack.js",
+            "import": "./dist/esm/disposableStack.js"
+        },
+        "./asyncDisposable": {
+            "types": "./dist/types/asyncDisposable.d.ts",
+            "require": "./dist/cjs/asyncDisposable.js",
+            "import": "./dist/esm/asyncDisposable.js"
+        },
+        "./asyncDisposableStack": {
+            "types": "./dist/types/asyncDisposableStack.d.ts",
+            "require": "./dist/cjs/asyncDisposableStack.js",
+            "import": "./dist/esm/asyncDisposableStack.js"
+        }
+    },
+    "typesVersions": {
+        "*": {
+            "asyncDisposable": ["./dist/types/asyncDisposable.d.ts"],
+            "asyncDisposableStack": ["./dist/types/asyncDisposableStack.d.ts"],
+            "disposable": ["./dist/types/disposable.d.ts"],
+            "disposableStack": ["./dist/types/disposableStack.d.ts"]
+        }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",

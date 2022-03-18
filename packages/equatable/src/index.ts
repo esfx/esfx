@@ -15,7 +15,7 @@
 */
 
 import /*#__INLINE__*/ { isMissing, isNumber } from "@esfx/internal-guards";
-import { hashUnknown } from './internal/hashCode';
+import { hashUnknown } from './internal/hashCode.js';
 
 /**
  * Represents a value that can compare its equality with another value.

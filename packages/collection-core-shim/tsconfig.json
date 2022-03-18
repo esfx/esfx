@@ -3,7 +3,8 @@
     "compilerOptions": {
         "target": "esnext",
         "rootDir": "src",
-        "outDir": "dist"
+        "outDir": "dist/cjs",
+        "declarationDir": "dist/types"
     },
     "include": ["src/**/*.ts"],
     "references": [

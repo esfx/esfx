@@ -3,30 +3,24 @@
     "version": "1.0.0-pre.23",
     "description": "Utility types for TypeScript.",
     "type": "commonjs",
-    "main": "./dist/index.js",
-    "types": "index",
-    "typesVersions": {
-        "*": {
-            "index": [
-                "./dist/index.d.ts"
-            ],
-            "index.js": [
-                "./dist/index.d.ts"
-            ],
-            "test": [
-                "./dist/test.d.ts"
-            ],
-            "test.js": [
-                "./dist/test.d.ts"
-            ]
+    "types": "./dist/types/index.d.ts",
+    "main": "./dist/cjs/index.js",
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        },
+        "./test": {
+            "types": "./dist/types/test.d.ts",
+            "require": "./dist/cjs/test.js",
+            "import": "./dist/esm/test.js"
         }
     },
-    "exports": {
-        ".": "./dist/index.js",
-        "./index": "./dist/index.js",
-        "./index.js": "./dist/index.js",
-        "./test": "./dist/test.js",
-        "./test.js": "./dist/test.js"
+    "typesVersions": {
+        "*": {
+            "test": ["./dist/types/test.d.ts"]
+        }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",

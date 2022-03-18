@@ -1,6 +1,6 @@
 {
     "extends": "../../api-extractor-base.json",
-    "mainEntryPointFilePath": "dist/index.d.ts",
+    "mainEntryPointFilePath": "dist/types/index.d.ts",
     "messages": {
         "extractorMessageReporting": {
             "ae-forgotten-export": {

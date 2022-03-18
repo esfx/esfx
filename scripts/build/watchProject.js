@@ -9,7 +9,7 @@ const { buildSolution, buildNextInvalidatedProject } = require("./buildSolution"
 async function watchProjects(projects) {
     const host = ts.createSolutionBuilderWithWatchHost();
     const builder = ts.createSolutionBuilder(host, projects, { });
-    const resolvedProjects = await buildSolution(host, builder);
+    const { resolvedProjects } = await buildSolution(host, builder);
     await startWatching(host, builder, resolvedProjects);
 }
 
@@ -234,8 +234,8 @@ function queueRebuild(watcherState) {
     if (watcherState.timeout) watcherState.host.clearTimeout(watcherState.timeout);
     watcherState.timeout = watcherState.host.setTimeout(async () => {
         watcherState.timeout = undefined;
-        const invalidatedProject = await buildNextInvalidatedProject(watcherState.host, watcherState.builder);
-        if (invalidatedProject) {
+        const result = await buildNextInvalidatedProject(watcherState.host, watcherState.builder);
+        if (result) {
             queueRebuild(watcherState);
         }
     }, 250);

@@ -4,9 +4,15 @@
     "description": "A low-level API for working with ECMAScript Stage 1 Decorators.",
     "private": true,
     "type": "commonjs",
-    "main": "./dist/index.js",
-    "exports": "./dist/index.js",
-    "types": "./dist/index.d.ts",
+    "types": "./dist/types/index.d.ts",
+    "main": "./dist/cjs/index.js",
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {

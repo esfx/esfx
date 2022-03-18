@@ -2,10 +2,16 @@
     "name": "@esfx/async-iter-fromsync",
     "version": "1.0.0-pre.23",
     "description": "An API to convert an ECMAScript Iterable into an AsyncIterable.",
-    "main": "./dist/index.js",
+    "types": "./dist/types/index.d.ts",
+    "main": "./dist/cjs/index.js",
     "type": "commonjs",
-    "exports": "./dist/index.js",
-    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {

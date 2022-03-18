@@ -1,7 +1,7 @@
 // @ts-check
 const ts = require("typescript");
 const assert = require("assert");
-const { tryCast } = require("./utils");
+const { tryCast, toPath } = require("./utils");
 
 /**
  * @typedef CodeFixBase
@@ -13,6 +13,46 @@ const { tryCast } = require("./utils");
  * @typedef ResolvedCodeFixBase
  * @property {ts.JsonSourceFile} file
  * @property {string} [description]
+ */
+
+/**
+ * @typedef BatchCodeFixBase
+ * @property {"batch"} action
+ * @property {Exclude<CodeFix, BatchCodeFix>[]} fixes
+ * @property {never} [antecedent]
+ */
+
+/**
+ * @typedef ResolvedBatchCodeFixBase
+ * @property {"batch"} action
+ * @property {Exclude<ResolvedCodeFix, ResolvedBatchCodeFix>[]} fixes
+ * @property {never} [antecedent]
+ */
+
+/**
+ * @typedef {CodeFixBase & BatchCodeFixBase} BatchCodeFix
+ * @typedef {ResolvedCodeFixBase & ResolvedBatchCodeFixBase} ResolvedBatchCodeFix
+ */
+
+/**
+ * @typedef AddFileCodeFixBase
+ * @property {"addFile"} action
+ * @property {string} newFileName
+ * @property {readonly ts.Statement[]} body
+ * @property {never} [antecedent]
+ */
+
+/**
+ * @typedef ResolvedAddFileCodeFixBase
+ * @property {"addFile"} action
+ * @property {string} newFileName
+ * @property {readonly ts.Statement[]} body
+ * @property {never} [antecedent]
+ */
+
+/**
+ * @typedef {CodeFixBase & AddFileCodeFixBase} AddFileCodeFix
+ * @typedef {ResolvedCodeFixBase & ResolvedAddFileCodeFixBase} ResolvedAddFileCodeFix
  */
 
 /**
@@ -110,11 +150,11 @@ const { tryCast } = require("./utils");
  */
 
 /**
- * @typedef {RemovePropertyCodeFix | RemoveElementCodeFix | AppendPropertyCodeFix | AppendElementCodeFix | InsertPropertyCodeFix | ReplaceValueCodeFix} CodeFix
+ * @typedef {BatchCodeFix | AddFileCodeFix | RemovePropertyCodeFix | RemoveElementCodeFix | AppendPropertyCodeFix | AppendElementCodeFix | InsertPropertyCodeFix | ReplaceValueCodeFix} CodeFix
  */
 
 /**
- * @typedef {ResolvedRemovePropertyCodeFix | ResolvedRemoveElementCodeFix | ResolvedAppendPropertyCodeFix | ResolvedAppendElementCodeFix | ResolvedInsertPropertyCodeFix | ResolvedReplaceValueCodeFix} ResolvedCodeFix
+ * @typedef {ResolvedBatchCodeFix | ResolvedAddFileCodeFix | ResolvedRemovePropertyCodeFix | ResolvedRemoveElementCodeFix | ResolvedAppendPropertyCodeFix | ResolvedAppendElementCodeFix | ResolvedInsertPropertyCodeFix | ResolvedReplaceValueCodeFix} ResolvedCodeFix
  */
 
 /**
@@ -397,7 +437,9 @@ function chainAntecedent(antecedent, tracker) {
  */
 function getJsonSourceFile(node) {
     const sourceFile = node.getSourceFile();
-    if (sourceFile.languageVersion !== ts.ScriptTarget.JSON) throw new TypeError();
+    const scriptKind = /** @type {*} */(sourceFile).scriptKind;
+    if (scriptKind !== ts.ScriptKind.JSON) throw new TypeError(`Wrong language version for file '${sourceFile.fileName}'. Expected JSON, received ${scriptKind === undefined ? "undefined" : ts.ScriptKind[scriptKind]}`);
+    // if (sourceFile.languageVersion !== ts.ScriptTarget.JSON) throw new TypeError(`Wrong language version for file '${sourceFile.fileName}'. Expected JSON, received ${ts.ScriptTarget[sourceFile.languageVersion]}`);
     return /** @type {ts.JsonSourceFile} */(sourceFile);
 }
 
@@ -407,6 +449,11 @@ function getJsonSourceFile(node) {
  */
 function resolveFix(fix) {
     switch (fix.action) {
+        case "batch":
+            fix.fixes.forEach(resolveFix);
+            break;
+        case "addFile":
+            break;
         case "removeProperty":
             if (!ts.isPropertyAssignment(fix.property)) fix.property = fix.property.parent;
             fix.file ??= getJsonSourceFile(fix.property);
@@ -430,6 +477,7 @@ function resolveFix(fix) {
             break;
     }
 }
+exports.resolveFix = resolveFix;
 
 /**
  * @param {CodeFix} fix
@@ -445,6 +493,15 @@ function applyFix(fix, tracker, fixed) {
 
     tracker = chainAntecedent(fix.antecedent, tracker);
     switch (fix.action) {
+        case "batch": {
+            for (const child of fix.fixes) applyFix(child, tracker, fixed);
+            break;
+        }
+        case "addFile": {
+            const newFileName = toPath(fix.newFileName);
+            tracker.createNewFile(fix.file ?? ts.createSourceFile(newFileName, "", ts.ScriptTarget.JSON, false, ts.ScriptKind.JSON), newFileName, fix.body);
+            break;
+        }
         case "removeProperty":
             tracker.delete(fix.file, fix.property);
             break;
@@ -478,6 +535,7 @@ exports.applyFix = applyFix;
  function getFixDescription(fix) {
     if (fix.description) return fix.description;
     switch (fix.action) {
+        case "addFile": return "Create a new file";
         case "appendElement": return "Add element to end of array";
         case "removeElement": return "Remove element from array";
         case "appendProperty": return "Add property to object";

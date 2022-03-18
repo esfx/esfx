@@ -1,4 +1,7 @@
 {
+    "packages/async-canceltoken/package.json": [
+        "Expected.*to have a 'types' property"
+    ],
     "packages/fn/package.json": [
         "Expected.*to have an 'exports' property",
         "Expected.*to have a 'types' property",

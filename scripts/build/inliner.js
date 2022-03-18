@@ -152,7 +152,7 @@ function inliner(program, context, mode) {
             }
         }
         else if (ts.isImportDeclaration(node)) {
-            if (!node.importClause || !ts.isStringLiteral(node.moduleSpecifier)) return;
+            if (!node.importClause || !node.moduleSpecifier || !ts.isStringLiteral(node.moduleSpecifier)) return;
             if (mode === "all" || isInlined(node) || isInlined(node.importClause)) {
                 const moduleSpecifier = node.moduleSpecifier.text;
                 const moduleReference = resolveModule(moduleSpecifier);

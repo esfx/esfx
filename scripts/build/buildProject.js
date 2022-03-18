@@ -10,7 +10,8 @@ const { buildSolution } = require("./buildSolution");
 async function buildProjects(projects, force) {
     const host = ts.createSolutionBuilderHost();
     const builder = ts.createSolutionBuilder(host, projects, { force });
-    await buildSolution(host, builder);
+    const { exitStatus } = await buildSolution(host, builder);
+    if (exitStatus !== ts.ExitStatus.Success) throw new Error("Build failed.");
 }
 
 const enqueueBuildProject = createProjectQueue(projects => buildProjects(projects, /*force*/ false));

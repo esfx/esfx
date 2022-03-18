@@ -3,9 +3,15 @@
     "version": "1.0.0-pre.30",
     "description": "Provides 'AsyncStack', an async coordination primitive.",
     "type": "commonjs",
-    "main": "./dist/index.js",
-    "exports": "./dist/index.js",
-    "types": "./dist/index.d.ts",
+    "types": "./dist/types/index.d.ts",
+    "main": "./dist/cjs/index.js",
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {
