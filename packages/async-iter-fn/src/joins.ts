@@ -21,7 +21,7 @@ import { identity, tuple } from '@esfx/fn';
 import { defaultIfEmpty, empty, map, union } from "@esfx/iter-fn";
 import { Grouping } from "@esfx/iter-grouping";
 import { Lookup } from "@esfx/iter-lookup";
-import { createGroupingsAsync } from './internal/utils';
+import { createGroupingsAsync } from './internal/utils.js';
 
 class AsyncGroupJoinIterable<O, I, K, R> implements AsyncIterable<R> {
     private _outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>;

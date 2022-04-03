@@ -14,6 +14,7 @@ module.exports = {
         '/dist/',
         '/workers/',
         '/data/',
+        '/obj/',
         '/test\\.ts$'
     ],
     globals: {

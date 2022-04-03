@@ -22,7 +22,7 @@ import { Comparison, Comparer } from '@esfx/equatable';
 import { OrderedIterable } from '@esfx/iter-ordered';
 import { toAsyncOrderedIterable } from '@esfx/async-iter-ordered-fromsync';
 import { toAsyncIterable } from '@esfx/async-iter-fromsync';
-import { AsyncOrderedHierarchyIterable } from './ordered';
+import type { AsyncOrderedHierarchyIterable } from './ordered.js';
 
 /**
  * Represents an `Iterable` with a navigable hierarchy.

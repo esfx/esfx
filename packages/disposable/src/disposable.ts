@@ -14,8 +14,8 @@
    limitations under the License.
 */
 
-import { CreateScope, DisposeResources } from "./internal/utils";
 import /*#__INLINE__*/ { isFunction, isIterableObject, isObject } from "@esfx/internal-guards";
+import { CreateScope, DisposeResources } from "./internal/utils.js";
 
 /**
  * Indicates an object that has resources that can be explicitly disposed.

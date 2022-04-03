@@ -14,9 +14,9 @@
    limitations under the License.
 */
 
-import type { StructFieldDefinition, StructInitProperties, StructInitElements, StructFieldRuntimeType } from '.';
-import { StructTypeInfo } from './typeInfo';
 import { numstr } from '@esfx/type-model';
+import type { StructFieldDefinition, StructInitProperties, StructInitElements, StructFieldRuntimeType } from './index.js';
+import { StructTypeInfo } from './typeInfo.js';
 
 /* @internal */
 export let getDataView: (struct: Struct) => DataView;

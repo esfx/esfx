@@ -15,9 +15,9 @@
 */
 
 import { MatchingKeys } from '@esfx/type-model';
-import { StructPrimitiveType, StructFieldDefinition, StructType, Struct as StructBase } from './index';
-import { NumberType, sizeOf, getValueFromView, putValueInView, Alignment } from './numbers';
-import { Struct as Struct_ } from "./struct";
+import { StructPrimitiveType, StructFieldDefinition, StructType, Struct as StructBase } from './index.js';
+import { NumberType, sizeOf, getValueFromView, putValueInView, Alignment } from './numbers.js';
+import { Struct as Struct_ } from "./struct.js";
 
 type StructTypeLike =
     | StructType

@@ -20,8 +20,8 @@ import { HashSet } from "@esfx/collections-hashset";
 import { HashMap } from "@esfx/collections-hashmap";
 import { HierarchyIterable } from '@esfx/iter-hierarchy';
 import { identity, isDefined } from '@esfx/fn';
-import { toHashSet, toArray } from './scalars';
-import { flowHierarchy } from './internal/utils';
+import { flowHierarchy } from './internal/utils.js';
+import { toHashSet, toArray } from './scalars.js';
 
 class AppendIterable<T> implements Iterable<T> {
     private _source: Iterable<T>;

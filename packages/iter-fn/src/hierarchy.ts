@@ -22,7 +22,7 @@ import { alwaysTrue } from '@esfx/fn';
 import { Hierarchical, HierarchyIterable, HierarchyProvider, OrderedHierarchyIterable } from "@esfx/iter-hierarchy";
 import { OrderedIterable } from '@esfx/iter-ordered';
 import { Axis } from '@esfx/iter-hierarchy/axis';
-import { toArray } from './scalars';
+import { toArray } from './scalars.js';
 
 function isHierarchyElement<T>(provider: HierarchyProvider<T>, value: T) {
     return value !== undefined && (provider.owns === undefined || provider.owns(value));

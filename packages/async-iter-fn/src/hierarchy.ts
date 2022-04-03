@@ -24,7 +24,7 @@ import { alwaysTrue } from '@esfx/fn';
 import { Index } from '@esfx/interval';
 import { Axis, Hierarchical, HierarchyIterable, HierarchyProvider } from "@esfx/iter-hierarchy";
 import { OrderedIterable } from '@esfx/iter-ordered';
-import { toArrayAsync } from './scalars';
+import { toArrayAsync } from './scalars.js';
 
 function isHierarchyElement<T>(provider: HierarchyProvider<T>, value: T) {
     return value !== undefined && (provider.owns === undefined || provider.owns(value));

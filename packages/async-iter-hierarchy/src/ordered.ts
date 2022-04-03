@@ -16,7 +16,7 @@
 
 import { Comparer, Comparison } from '@esfx/equatable';
 import { AsyncOrderedIterable } from '@esfx/async-iter-ordered';
-import { AsyncHierarchyIterable } from './hierarchy';
+import { AsyncHierarchyIterable } from './hierarchy.js';
 
 /**
  * Represents an `AsyncIterable` with a navigable hierarchy that is inherently ordered.

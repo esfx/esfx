@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-export * from "./axis";
-export * from "./provider";
-export * from "./hierarchy";
-export * from "./ordered";
+export * from "./axis.js";
+export * from "./provider.js";
+export * from "./hierarchy.js";
+export * from "./ordered.js";

@@ -36,9 +36,9 @@
 /* @internal */
 import /*#__INLINE__*/ { isFunction, isMissing, isObject } from "@esfx/internal-guards";
 /* @internal */
-import { AsyncDisposable } from "../asyncDisposable";
+import { AsyncDisposable } from "../asyncDisposable.js";
 /* @internal */
-import { Disposable } from "../disposable";
+import { Disposable } from "../disposable.js";
 
 export { };
 

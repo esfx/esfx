@@ -18,4 +18,4 @@
 /// <reference path="./dom.types.ts" />
 /// <reference path="./dom.types.generated.ts" />
 
-export * from "./index";
+export * from "./index.js";

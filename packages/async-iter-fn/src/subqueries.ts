@@ -21,8 +21,8 @@ import { HashSet } from "@esfx/collections-hashset";
 import { Equaler } from "@esfx/equatable";
 import { identity, isDefined } from '@esfx/fn';
 import { HierarchyIterable } from '@esfx/iter-hierarchy';
-import { flowHierarchy } from './internal/utils';
-import { toArrayAsync, toHashSetAsync } from './scalars';
+import { flowHierarchy } from './internal/utils.js';
+import { toArrayAsync, toHashSetAsync } from './scalars.js';
 
 class AsyncAppendIterable<T> implements AsyncIterable<T> {
     private _source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>;

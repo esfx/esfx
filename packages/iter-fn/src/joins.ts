@@ -19,9 +19,9 @@ import { Equaler } from "@esfx/equatable";
 import { Grouping } from "@esfx/iter-grouping";
 import { Lookup } from "@esfx/iter-lookup";
 import { identity, tuple } from '@esfx/fn';
-import { empty } from './queries';
-import { union, map, defaultIfEmpty } from './subqueries';
-import { createGroupings } from './internal/utils';
+import { empty } from './queries.js';
+import { union, map, defaultIfEmpty } from './subqueries.js';
+import { createGroupings } from './internal/utils.js';
 
 class GroupJoinIterable<O, I, K, R> implements Iterable<R> {
     private _outer: Iterable<O>;

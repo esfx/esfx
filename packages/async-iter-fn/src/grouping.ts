@@ -22,7 +22,7 @@ import { identity } from "@esfx/fn";
 import { Grouping, HierarchyGrouping } from "@esfx/iter-grouping";
 import { HierarchyIterable } from "@esfx/iter-hierarchy";
 import { HierarchyPage, Page } from "@esfx/iter-page";
-import { createGroupingsAsync, flowHierarchy } from "./internal/utils";
+import { createGroupingsAsync, flowHierarchy } from "./internal/utils.js";
 
 class AsyncPageByIterable<T, R> implements AsyncIterable<R> {
     private _source: AsyncIterable<T>;

@@ -85,6 +85,18 @@ function LOAD_AS_FILE(X, options) {
     for (const ext of extensions) {
         if (isFile(X + ext)) return X + ext;
     }
+
+    // MODIFIED to pick up .ts file for .js import (matches TS module resolution)
+    for (const ext of extensions) {
+        if (/^\.[mc]?jsx?$/.test(ext) && X.endsWith(ext)) {
+            const X2 = X.slice(0, -ext.length);
+            for (const ext2 of extensions) {
+                if (/^\.[mc]?tsx?$/.test(ext2)) {
+                    if (isFile(X2 + ext2)) return X2 + ext2;
+                }
+            }
+        }
+    }
 }
 exports.LOAD_AS_FILE = LOAD_AS_FILE;
 

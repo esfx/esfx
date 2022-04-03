@@ -14,9 +14,9 @@
    limitations under the License.
 */
 
-import { NumberType, NumberTypeToType, coerceValue } from './numbers';
-import { StructPrimitiveType } from '.';
-import { PrimitiveTypeInfo } from './typeInfo';
+import { NumberType, NumberTypeToType, coerceValue } from './numbers.js';
+import type { StructPrimitiveType } from './index.js';
+import { PrimitiveTypeInfo } from './typeInfo.js';
 
 function createPrimitiveType<K extends string, N extends NumberType>(name: K, nt: N): StructPrimitiveType<K, NumberTypeToType[N]> {
     const typeInfo = new PrimitiveTypeInfo(nt);

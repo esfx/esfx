@@ -23,9 +23,9 @@ import { identity, T } from '@esfx/fn';
 import { Index } from "@esfx/interval";
 import { HierarchyIterable } from '@esfx/iter-hierarchy';
 import { Lookup } from "@esfx/iter-lookup";
-import { createGroupings, flowHierarchy } from './internal/utils';
-import { consume, ConsumeOptions, empty } from './queries';
-import { prepend, takeRight } from './subqueries';
+import { createGroupings, flowHierarchy } from './internal/utils.js';
+import { consume, ConsumeOptions, empty } from './queries.js';
+import { prepend, takeRight } from './subqueries.js';
 
 /**
  * Computes a scalar value by applying an accumulator callback over each element.

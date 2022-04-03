@@ -21,7 +21,7 @@ import { identity } from '@esfx/fn';
 import { Grouping, HierarchyGrouping } from "@esfx/iter-grouping";
 import { HierarchyIterable } from '@esfx/iter-hierarchy';
 import { Page, HierarchyPage } from "@esfx/iter-page";
-import { flowHierarchy } from './internal/utils';
+import { flowHierarchy } from './internal/utils.js';
 
 class PageByIterable<T, R> implements Iterable<R> {
     private _source: Iterable<T>;

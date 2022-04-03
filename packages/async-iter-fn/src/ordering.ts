@@ -21,8 +21,8 @@ import { toAsyncOrderedIterable } from "@esfx/async-iter-ordered-fromsync";
 import { Comparer, Comparison } from "@esfx/equatable";
 import { HierarchyIterable, OrderedHierarchyIterable } from '@esfx/iter-hierarchy';
 import { OrderedIterable } from "@esfx/iter-ordered";
-import { flowHierarchy } from './internal/utils';
-import { toArrayAsync } from './scalars';
+import { flowHierarchy } from './internal/utils.js';
+import { toArrayAsync } from './scalars.js';
 
 class AsyncReverseIterable<T> implements AsyncIterable<T> {
     private _source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>;

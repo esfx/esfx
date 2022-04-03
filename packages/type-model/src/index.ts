@@ -29,6 +29,12 @@ declare const kIgnore: unique symbol;
 /** A type useful as a base constraint for an array that should be inferred as a tuple. */
 export type consttuple<T> = readonly T[] | readonly [];
 
+type _SupportsNumericExtraction = "100" extends `${Is<infer N, number>}` ? N extends 100 ? true : false : false;
+type _numstrUsingNumericExtraction<I extends keyof any> =
+    I extends number ? `${I}` extends `${bigint}` ? I | `${I}` : never :
+    I extends `${Is<infer S, number>}` ? I | S :
+    never;
+
 type numbers255 = [
     0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
     0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f,
@@ -50,13 +56,18 @@ type numbers255 = [
 
 type strings255 = numbers255 extends infer T ? { [P in keyof T]: P } : never;
 
+type _numstrUsingTable<I extends keyof any> =
+    I extends numbers255[number] ? I | strings255[I] :
+    I extends strings255[number] ? I | numbers255[I] :
+    never;
+
 /**
  * Gets a union of the number and numeric string value for a number or numeric string index between 0 and 255
  */
 export type numstr<I extends keyof any> =
-    I extends numbers255[number] ? I | strings255[I] :
-    I extends strings255[number] ? I | numbers255[I] :
-    never;
+    _SupportsNumericExtraction extends true ?
+        _numstrUsingNumericExtraction<I> :
+        _numstrUsingTable<I>;
 
 /**
  * A union of all of the primitive types in TypeScript.
@@ -221,6 +232,11 @@ export type Intersection<A extends any[]> =
  */
 export type Union<A extends any[]> = A[number];
 
+/**
+ * Constrains `T` to `U`.
+ */
+export type Is<T extends U, U> = T;
+
 // TODO(rbuckton): Investigate whether UnionToIntersection should be kept. Intersections are ordered
 //                 while unions are unordered.
 // /**
@@ -231,7 +247,7 @@ export type Union<A extends any[]> = A[number];
 /**
  * Maps to `true` if `A` is precisely the `any` type; otherwise, `false`.
  */
-export type IsAny<A> = (1 | 2) extends (A extends never ? 1 : 2) ? true : false;
+export type IsAny<A> = boolean extends (A extends never ? true : false) ? true : false;
 
 /**
  * Maps to `true` if `A` is precisely the `never` type; otherwise, `false`.
@@ -401,6 +417,18 @@ export type SameType<A, B> =
 export type SameTypes<L extends any[]> =
     L extends [] ? never :
     SameType<{ [P in keyof L]: SameType<L[P], L[number]> }[number], true>;
+
+/**
+ * Maps to `true` if `A` and `B` are identical types; otherwise, `false`.
+ */
+export type ExactType<A, B> = (<T>() => T extends A ? 0 : 1) extends (<T>() => T extends B ? 0 : 1) ? true : false;
+
+/**
+ * Maps to `true` if all elements of the tuple `L` are identical; otherwise, `false`.
+ */
+export type ExactTypes<L extends any[]> =
+    L extends [] ? never :
+    SameType<{ [P in keyof L]: ExactType<L[P], L[number]> }[number], true>;
 
 /**
  * Maps to `true` if either `A` or `B` are relatable to each other.

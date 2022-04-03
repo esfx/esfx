@@ -14,11 +14,11 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isIterable, isIterableObject, isObject } from '@esfx/internal-guards';
 import { Comparer, Comparison } from '@esfx/equatable';
 import { OrderedIterable } from '@esfx/iter-ordered';
-import /*#__INLINE__*/ { isIterable, isIterableObject, isObject } from '@esfx/internal-guards';
-import { OrderedHierarchyIterable } from './ordered';
-import { HierarchyProvider } from './provider';
+import { OrderedHierarchyIterable } from './ordered.js';
+import { HierarchyProvider } from './provider.js';
 
 /**
  * Describes an object that has a navigable hierarchy.

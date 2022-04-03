@@ -104,11 +104,30 @@ function ESM_RESOLVE(specifier, parentURL, conditions, options) {
 
     //  7. If the file at resolved is a directory, then
     //      1. Throw an Unsupported Directory Import error.
-    const resolvedPath = fileURLToPath(resolved);
+    let resolvedPath = fileURLToPath(resolved);
     if (isDirectory(resolvedPath)) throw ERR_UNSUPPORTED_DIR_IMPORT(resolvedPath, parentURL);
 
     //  8. If the file at resolved does not exist, then
     //      1. Throw a Module Not Found error.
+
+    // MODIFIED to pick up .ts file for .js import (matches TS module resolution)
+    if (!isFile(resolvedPath)) {
+        const match = /\.([cm]?)js(x?)$/.exec(resolvedPath);
+        if (match) {
+            const resolvedPath2 = resolvedPath.slice(0, -match[0].length);
+            const ext1 = `.${match[1]}ts${match[2]}`;
+            if (isFile(resolvedPath2 + ext1)) {
+                resolvedPath = resolvedPath2 + ext1;
+            }
+            else {
+                const ext2 = `.${match[1]}tsx`;
+                if (isFile(resolvedPath2 + ext2)) {
+                    resolvedPath = resolvedPath2 + ext2;
+                }
+            }
+        }
+    }
+
     if (!isFile(resolvedPath)) throw ERR_MODULE_NOT_FOUND(resolvedPath, parentURL, "module");
 
     //  9. Set resolved to the real path of resolved.

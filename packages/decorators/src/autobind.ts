@@ -42,7 +42,7 @@
    SOFTWARE.
 */
 
-import { createDecoratorOrDecoratorFactory, MemberDescriptor, ClassDescriptor, isMethod, MethodMemberDescriptor, isClass, createMemberDescriptor, defaultFieldAttributes, isNonStatic, defaultMethodAttributes, createDecorator } from "@esfx/decorators-stage1-core";
+import { ClassDescriptor, createDecorator, createMemberDescriptor, defaultFieldAttributes, defaultMethodAttributes, isClass, isMethod, isNonStatic, MemberDescriptor, MethodMemberDescriptor } from "@esfx/decorators-stage1-core";
 
 let mapStore: WeakMap<object, WeakMap<Function, Function>> | undefined;
 

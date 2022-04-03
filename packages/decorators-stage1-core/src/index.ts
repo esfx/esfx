@@ -16,7 +16,7 @@
 
 import /*#__INLINE__*/ { isPresent, isFunction, isNumber, isObject, isPropertyKey } from '@esfx/internal-guards';
 import { AccessorPropertyDescriptor, MethodPropertyDescriptor } from '@esfx/type-model';
-import { DecoratorSignature, MappedDecoratorFactorySignature, MappedDecoratorOrDecoratorFactorySignature, MappedDecoratorSignature } from './typeModel';
+import type { DecoratorSignature, MappedDecoratorFactorySignature, MappedDecoratorOrDecoratorFactorySignature, MappedDecoratorSignature } from './typeModel';
 
 /** @experimental */
 export interface ClassDescriptor<T extends Function = Function> {

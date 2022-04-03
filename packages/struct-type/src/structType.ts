@@ -14,9 +14,9 @@
    limitations under the License.
 */
 
-import type { StructFieldDefinition, StructType as StructType_ } from ".";
-import { Struct, getDataView } from "./struct";
-import { StructTypeInfo } from './typeInfo';
+import type { StructFieldDefinition, StructType as StructType_ } from "./index.js";
+import { Struct, getDataView } from "./struct.js";
+import { StructTypeInfo } from './typeInfo.js';
 
 type CreateStructTypeFieldsNameOverload<TDef extends readonly StructFieldDefinition[]> = [TDef, string?];
 type CreateStructTypeBaseFieldsNameOverload<TBase extends readonly StructFieldDefinition[], TDef extends readonly StructFieldDefinition[]> = [StructType_<TBase>, TDef, string?];

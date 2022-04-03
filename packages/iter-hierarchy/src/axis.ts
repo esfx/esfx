@@ -14,9 +14,9 @@
    limitations under the License.
 */
 
-import { HierarchyProvider } from "./provider";
-import { Index } from "@esfx/interval";
 import /*#__INLINE__*/ { isNumber } from '@esfx/internal-guards';
+import { Index } from "@esfx/interval";
+import { HierarchyProvider } from "./provider.js";
 
 type HasPreviousSibling<T> = Pick<Required<HierarchyProvider<T>>, "previousSibling">;
 type HasNextSibling<T> = Pick<Required<HierarchyProvider<T>>, "nextSibling">;

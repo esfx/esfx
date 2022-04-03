@@ -15,11 +15,11 @@
 */
 
 export * from "@esfx/fn";
-export * from "./grouping";
-export * from "./hierarchy";
-export * from "./joins";
-export * from "./ordering";
-export * from "./queries";
-export * from "./scalars";
-export * from "./subqueries";
+export * from "./grouping.js";
+export * from "./hierarchy.js";
+export * from "./joins.js";
+export * from "./ordering.js";
+export * from "./queries.js";
+export * from "./scalars.js";
+export * from "./subqueries.js";
 

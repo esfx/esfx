@@ -15,8 +15,8 @@
 */
 
 import /*#__INLINE__*/ { isFunction, isObject } from "@esfx/internal-guards";
-import { Disposable } from "./disposable";
-import { AddDisposableResource, DisposableResourceRecord, DisposeMethod, DisposeResources, GetDisposeMethod, GetMethod, SpeciesConstructor } from "./internal/utils";
+import { Disposable } from "./disposable.js";
+import { AddDisposableResource, DisposableResourceRecord, DisposeMethod, DisposeResources, GetDisposeMethod, GetMethod, SpeciesConstructor } from "./internal/utils.js";
 
 const weakDisposableState = new WeakMap<Disposable, "pending" | "disposed">();
 const weakDisposableResourceStack = new WeakMap<Disposable, DisposableResourceRecord<"sync">[]>();

@@ -15,5 +15,5 @@
 */
 
 export { Hierarchical, HierarchyProvider } from "@esfx/iter-hierarchy";
-export * from "./hierarchy";
-export * from "./ordered";
+export * from "./hierarchy.js";
+export * from "./ordered.js";

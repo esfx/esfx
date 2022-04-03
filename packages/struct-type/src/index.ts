@@ -15,8 +15,8 @@
 */
 
 import { conststring, constsymbol, numstr } from "@esfx/type-model";
-import * as structType from "./structType";
-import * as primitives from "./primitives";
+import * as structType from "./structType.js";
+import * as primitives from "./primitives.js";
 
 /**
  * Represents a primitive struct type.

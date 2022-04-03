@@ -16,10 +16,10 @@
 
 import /*#__INLINE__*/ { isBoolean, isFunction, isIterableObject } from "@esfx/internal-guards";
 import { Comparer, Comparison } from "@esfx/equatable";
-import { OrderedIterable } from "@esfx/iter-ordered";
 import { HierarchyIterable, OrderedHierarchyIterable } from '@esfx/iter-hierarchy';
-import { toArray } from './scalars';
-import { flowHierarchy } from './internal/utils';
+import { OrderedIterable } from "@esfx/iter-ordered";
+import { flowHierarchy } from './internal/utils.js';
+import { toArray } from './scalars.js';
 
 class ReverseIterable<T> implements Iterable<T> {
     private _source: Iterable<T>;

@@ -52,6 +52,7 @@ import {
     Union,
     RequiredKeyof,
     OptionalKeyof,
+    ExactType,
 } from "..";
 
 it("type-model", () => {
@@ -491,6 +492,33 @@ it("type-model", () => {
     ];
 }
 // #endregion SameTypes tests
+
+// #region ExactType tests
+{
+    type A = { a: number };
+    type B = { b: number };
+    type Ab = { a: number, b?: number };
+    type Ac = { a: number, c?: number };
+    type Ba = { b: number, a?: number };
+    type _ = [
+        Test<ExpectType<ExactType<any, any>,            true>>,
+        Test<ExpectType<ExactType<never, never>,        true>>,
+        Test<ExpectType<ExactType<unknown, unknown>,    true>>,
+        Test<ExpectType<ExactType<any, true>,           false>>,
+        Test<ExpectType<ExactType<never, true>,         false>>,
+        Test<ExpectType<ExactType<unknown, true>,       false>>,
+        Test<ExpectType<ExactType<true, true>,          true>>,
+        Test<ExpectType<ExactType<false, true>,         false>>,
+        Test<ExpectType<ExactType<A, A>,                true>>,
+        Test<ExpectType<ExactType<A, B>,                false>>,
+        Test<ExpectType<ExactType<Ab, Ba>,              false>>,
+        Test<ExpectType<ExactType<Ab, Ac>,              false>>,
+        Test<ExpectType<ExactType<true, any>,           false>>,
+        Test<ExpectType<ExactType<true, never>,         false>>,
+        Test<ExpectType<ExactType<true, unknown>,       false>>,
+    ];
+}
+// #endregion ExactType tests
 
 // #region Relatable tests
 {

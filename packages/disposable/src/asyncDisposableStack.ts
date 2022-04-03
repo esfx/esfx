@@ -14,10 +14,10 @@
    limitations under the License.
 */
 
-import { AsyncDisposable } from "./asyncDisposable";
-import { Disposable } from "./disposable";
-import { AddDisposableResource, DisposableResourceRecord, DisposeMethod, DisposeResources, GetDisposeMethod, GetMethod, SpeciesConstructor } from "./internal/utils";
-import /*#__INLINE__*/ { isFunction, isIterableObject, isObject } from "@esfx/internal-guards";
+import /*#__INLINE__*/ { isFunction, isObject } from "@esfx/internal-guards";
+import { AsyncDisposable } from "./asyncDisposable.js";
+import { Disposable } from "./disposable.js";
+import { AddDisposableResource, DisposableResourceRecord, DisposeMethod, DisposeResources, GetDisposeMethod, GetMethod, SpeciesConstructor } from "./internal/utils.js";
 
 const weakAsyncDisposableState = new WeakMap<AsyncDisposable, "pending" | "disposed">();
 const weakAsyncDisposableResourceStack = new WeakMap<AsyncDisposable, DisposableResourceRecord<"async">[]>();

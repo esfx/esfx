@@ -14,14 +14,14 @@
    limitations under the License.
 */
 
-export * from "./autobind";
-export * from "./autoproperty";
-export * from "./configurable";
-export * from "./nonconfigurable";
-export * from "./enumerable";
-export * from "./nonenumerable";
-export * from "./lazyinit";
-export * from "./mixin";
-export * from "./obsolete";
-export * from "./readonly";
-export * from "./writable";
+export * from "./autobind.js";
+export * from "./autoproperty.js";
+export * from "./configurable.js";
+export * from "./nonconfigurable.js";
+export * from "./enumerable.js";
+export * from "./nonenumerable.js";
+export * from "./lazyinit.js";
+export * from "./mixin.js";
+export * from "./obsolete.js";
+export * from "./readonly.js";
+export * from "./writable.js";

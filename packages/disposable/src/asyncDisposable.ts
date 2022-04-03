@@ -14,9 +14,9 @@
    limitations under the License.
 */
 
-import { Disposable } from "./disposable";
-import { CreateScope, DisposeResources } from "./internal/utils";
 import /*#__INLINE__*/ { isAsyncIterableObject, isFunction, isIterableObject, isObject } from "@esfx/internal-guards";
+import { Disposable } from "./disposable.js";
+import { CreateScope, DisposeResources } from "./internal/utils.js";
 
 /**
  * Indicates an object that has resources that can be explicitly disposed asynchronously.
