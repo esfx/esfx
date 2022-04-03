@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import { Equaler, Comparer } from "@esfx/equatable";
+import { Comparer, Equaler } from "@esfx/equatable";
 import /*#__INLINE__*/ { isMissing } from "@esfx/internal-guards";
 
 /**
@@ -46,6 +46,7 @@ export function alwaysTrue(): true {
 }
 
 export { alwaysTrue as T };
+export { alwaysFalse as F };
 
 /**
  * A function that always returns `false`.
@@ -54,7 +55,6 @@ export function alwaysFalse(): false {
     return false;
 }
 
-export { alwaysFalse as F };
 
 /**
  * Returns a function that always throws the provided error.
@@ -283,7 +283,7 @@ function recursiveLazy(): never {
 }
 
 /**
- * Returns a function that will evaluate once when called will subsequently always return the same result.
+ * Returns a function that will evaluate once when called and will subsequently always return the same result.
  *
  * ```ts
  * let count = 0;
@@ -293,7 +293,7 @@ function recursiveLazy(): never {
  * count; // 1
  * ```
  */
-export function lazy<T, A extends unknown[]>(factory: (...args: A) => T, ...args: A) {
+export function lazy<A extends unknown[], T>(factory: (...args: A) => T, ...args: A) {
     let f = (): T => {
         f = recursiveLazy;
         try {
@@ -302,6 +302,7 @@ export function lazy<T, A extends unknown[]>(factory: (...args: A) => T, ...args
         catch (e) {
             f = alwaysFail(e);
         }
+        factory = undefined!;
         return f();
     };
     return () => f();

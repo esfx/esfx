@@ -14,6 +14,8 @@
    limitations under the License.
 */
 
-export * from "./common";
-import * as Op from "./operators";
+export * from "./common.js";
+export * from "./memoize.js";
+export * from "./defaultMemoizeCache.js";
+import * as Op from "./operators.js";
 export { Op };
