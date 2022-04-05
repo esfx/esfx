@@ -83,7 +83,39 @@
   <h1 id="_esfx_async_iter_ordered_fromsync_" data-uid="@esfx/async-iter-ordered-fromsync!" class="text-break">Package @esfx/async-iter-ordered-fromsync
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>An API to convert an <a class="xref" href="iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface">OrderedIterable</a> into an <a class="xref" href="async-iter-ordered/asyncorderediterable-interface.html#_esfx_async_iter_ordered_AsyncOrderedIterable_interface">AsyncOrderedIterable</a>.</p>
+<h3 id="installation">Installation</h3>
+<pre><code class="lang-sh">npm i @esfx/async-iter-ordered-fromsync
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_bsDd7vdDht">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_bsDd7vdDht_ts" role="tab" aria-controls="tabpanel_bsDd7vdDht_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_bsDd7vdDht_js" role="tab" aria-controls="tabpanel_bsDd7vdDht_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_bsDd7vdDht_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { toAsyncOrderedIterable } from &quot;@esfx/async-iter-ordered-fromsync&quot;;
+import { AsyncOrderedIterable } from &quot;@esfx/async-iter-ordered&quot;;
+import { OrderedIterable } from &quot;@esfx/iter-ordered&quot;;
+
+async function f&lt;T&gt;(source: AsyncOrderedIterable&lt;T&gt; | OrderedIterable&lt;T | PromiseLike&lt;T&gt;&gt;) {
+    const asyncIterable = toAsyncOrderedIterable(source);
+    // ...
+}
+</code></pre></section>
+<section id="tabpanel_bsDd7vdDht_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-typescript">const { toAsyncOrderedIterable } = require(&quot;@esfx/async-iter-ordered-fromsync&quot;);
+
+async function f(source) {
+    const asyncIterable = toAsyncOrderedIterable(source);
+    // ...
+}
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="functions">Functions
   </h3>
@@ -135,6 +167,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/async-iter-ordered-fromsync/docsrc/overwrite/async-iter-ordered-fromsync.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

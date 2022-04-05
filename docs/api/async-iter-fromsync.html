@@ -83,7 +83,37 @@
   <h1 id="_esfx_async_iter_fromsync_" data-uid="@esfx/async-iter-fromsync!" class="text-break">Package @esfx/async-iter-fromsync
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>An API to convert an ECMAScript <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a> into an <a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>.</p>
+<h3 id="installation">Installation</h3>
+<pre><code class="lang-sh">npm i @esfx/async-iter-fromsync
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_5pRgwtdd3b">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_5pRgwtdd3b_ts" role="tab" aria-controls="tabpanel_5pRgwtdd3b_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_5pRgwtdd3b_js" role="tab" aria-controls="tabpanel_5pRgwtdd3b_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_5pRgwtdd3b_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { toAsyncIterable } from &quot;@esfx/async-iter-fromsync&quot;;
+
+async function f&lt;T&gt;(source: AsyncIterable&lt;T&gt; | Iterable&lt;T | PromiseLike&lt;T&gt;&gt;) {
+    const asyncIterable = toAsyncIterable(source);
+    // ...
+}
+</code></pre></section>
+<section id="tabpanel_5pRgwtdd3b_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-typescript">const { toAsyncIterable } = require(&quot;@esfx/async-iter-fromsync&quot;);
+
+async function f(source) {
+    const asyncIterable = toAsyncIterable(source);
+    // ...
+}
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="functions">Functions
   </h3>
@@ -136,6 +166,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/async-iter-fromsync/docsrc/overwrite/async-iter-fromsync.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

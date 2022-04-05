@@ -5,7 +5,8 @@ to: <%=packagePath%>/tsconfig.json
     "extends": "../tsconfig-base",
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "dist"
+        "outDir": "dist/cjs",
+        "declarationDir": "dist/types"
     },
     "include": ["src/**/*.ts"],
     "references": [

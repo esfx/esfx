@@ -84,124 +84,129 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides a global shim to add default <a class="xref" href="collection-core.html">@esfx/collection-core</a> behaviors to global objects.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/collection-core-shim
-</code></pre><h2 id="usage">Usage</h2>
-<p>The global shim adds a default implementation the collection interfaces to the following global objects:</p>
-<ul>
-<li><code>Array</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/collection-interface.html#_esfx_collection_core_Collection_interface">Collection</a></li>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/indexedcollection-interface.html#_esfx_collection_core_IndexedCollection_interface">IndexedCollection</a></li>
-</ul>
-</li>
-<li><code>Uint8Array</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
-</ul>
-</li>
-<li><code>Uint8ClampedArray</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
-</ul>
-</li>
-<li><code>Uint16Array</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
-</ul>
-</li>
-<li><code>Uint32Array</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
-</ul>
-</li>
-<li><code>Int8Array</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
-</ul>
-</li>
-<li><code>Int16Array</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
-</ul>
-</li>
-<li><code>Int32Array</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
-</ul>
-</li>
-<li><code>Float32Array</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
-</ul>
-</li>
-<li><code>Float64Array</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
-</ul>
-</li>
-<li><code>BigUint64Array</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
-</ul>
-</li>
-<li><code>BigInt64Array</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
-</ul>
-</li>
-<li><code>Set</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-<li><a class="xref" href="collection-core/collection-interface.html#_esfx_collection_core_Collection_interface">Collection</a></li>
-</ul>
-</li>
-<li><code>Map</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection</a></li>
-<li><a class="xref" href="collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection_interface">KeyedCollection</a></li>
-</ul>
-</li>
-</ul>
-<p>To install the global shim, import <a class="xref" href="collection-core-shim.html">@esfx/collection-core-shim</a>:</p>
-<div class="tabGroup" id="tabgroup_l0WHLsWwZI">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_6ZAGhhnSpR">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_l0WHLsWwZI_ts" role="tab" aria-controls="tabpanel_l0WHLsWwZI_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_6ZAGhhnSpR_ts" role="tab" aria-controls="tabpanel_6ZAGhhnSpR_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_l0WHLsWwZI_js" role="tab" aria-controls="tabpanel_l0WHLsWwZI_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_6ZAGhhnSpR_js" role="tab" aria-controls="tabpanel_6ZAGhhnSpR_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_l0WHLsWwZI_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import &quot;@esfx/collection-core-shim&quot;; // triggers global-scope side effects
+<section id="tabpanel_6ZAGhhnSpR_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import &quot;@esfx/collection-core-shim&quot;; // triggers global-scope side effects
 import { Collection } from &quot;@esfx/collection-core&quot;;
 
 [1, 2, 3][Collection.size]; // 3
 </code></pre></section>
-<section id="tabpanel_l0WHLsWwZI_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">require(&quot;@esfx/collection-core-shim&quot;); // triggers global-scope side effects
+<section id="tabpanel_6ZAGhhnSpR_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">require(&quot;@esfx/collection-core-shim&quot;); // triggers global-scope side effects
 const { Collection } = require(&quot;@esfx/collection-core&quot;);
 
 [1, 2, 3][Collection.size]; // 3
 </code></pre></section>
 </div>
+<h3 id="remarks">Remarks</h3>
+<p>The global shim adds a default implementation the collection interfaces to the following global objects:</p>
+<ul>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-array-objects">Array</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
+<li><a class="xref" href="collection-core/collection-interface.html#_esfx_collection_core_Collection_interface">Collection</a></li>
+<li><a class="xref" href="collection-core/indexedcollection-interface.html#_esfx_collection_core_IndexedCollection_interface">IndexedCollection</a></li>
+<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-typedarray-objects">Uint8Array</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
+<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-typedarray-objects">Uint8ClampedArray</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
+<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-typedarray-objects">Uint16Array</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
+<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-typedarray-objects">Uint32Array</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
+<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-typedarray-objects">Int8Array</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
+<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-typedarray-objects">Int16Array</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
+<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-typedarray-objects">Int32Array</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
+<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-typedarray-objects">Float32Array</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
+<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-typedarray-objects">Float64Array</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
+<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-typedarray-objects">BigUint64Array</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
+<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-typedarray-objects">BigInt64Array</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
+<li><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-set-objects">Set</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
+<li><a class="xref" href="collection-core/collection-interface.html#_esfx_collection_core_Collection_interface">Collection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-map-objects">Map</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection</a></li>
+<li><a class="xref" href="collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection_interface">KeyedCollection</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-weakset-objects">WeakSet</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlycontainer-interface.html#_esfx_collection_core_ReadonlyContainer_interface">ReadonlyContainer</a></li>
+<li><a class="xref" href="collection-core/container-interface.html#_esfx_collection_core_Container_interface">Container</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://tc39.es/ecma262/#sec-weakmap-objects">WeakMap</a> implements:<ul>
+<li><a class="xref" href="collection-core/readonlykeyedcontainer-interface.html#_esfx_collection_core_ReadonlyKeyedContainer_interface">ReadonlyKeyedContainer</a></li>
+<li><a class="xref" href="collection-core/keyedcontainer-interface.html#_esfx_collection_core_KeyedContainer_interface">KeyedContainer</a></li>
+</ul>
+</li>
+</ul>
 </div>
   <div class="markdown level0 remarks"></div>
 </article>
@@ -212,7 +217,7 @@ const { Collection } = require(&quot;@esfx/collection-core&quot;);
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/collection-core-shim.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/collection-core-shim/docsrc/overwrite/collection-core-shim.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

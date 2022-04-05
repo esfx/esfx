@@ -84,26 +84,21 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Define structured types using @&quot;@esfx/ArrayBuffer!&quot; and @&quot;@esfx/SharedArrayBuffer!&quot;.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/struct-type
-</code></pre><h2 id="usage">Usage</h2>
-<h3 id="basic-usage">Basic Usage</h3>
-<div class="tabGroup" id="tabgroup_JIn7VBh5PP">
+</code></pre><h3 id="usage">Usage</h3>
+<h4 id="basic-usage">Basic Usage</h4>
+<div class="tabGroup" id="tabgroup_a2p6G8FiZb">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_JIn7VBh5PP_ts" role="tab" aria-controls="tabpanel_JIn7VBh5PP_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_a2p6G8FiZb_ts" role="tab" aria-controls="tabpanel_a2p6G8FiZb_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_JIn7VBh5PP_js" role="tab" aria-controls="tabpanel_JIn7VBh5PP_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_a2p6G8FiZb_js" role="tab" aria-controls="tabpanel_a2p6G8FiZb_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_JIn7VBh5PP_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { StructType, int32 } from &quot;@esfx/struct-type&quot;;
+<section id="tabpanel_a2p6G8FiZb_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { StructType, int32 } from &quot;@esfx/struct-type&quot;;
 
 // simple types
 const Point = StructType([
@@ -128,11 +123,8 @@ const p2 = new Point([3, 4]); // by field ordinal
 
 // copy contents
 const buffer = new ArrayBuffer(16);
-const l = new Line([p1, p2]);
-l.writeTo(buffer);
-
-// create from a buffer
-const l2 = new Line(buffer);
+const l1 = new Line([p1, p2]);
+l1.writeTo(buffer);
 
 // read from field names
 console.log(l1.from.x); // 1
@@ -145,9 +137,12 @@ console.log(l1[0][0]); // 1
 console.log(l1[0][1]); // 2
 console.log(l1[1][0]); // 3
 console.log(l1[1][1]); // 4
+
+// create from a buffer
+const l2 = new Line(buffer);
 </code></pre></section>
-<section id="tabpanel_JIn7VBh5PP_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { StructType, int32 } = require(&quot;@esfx/struct-type&quot;);
+<section id="tabpanel_a2p6G8FiZb_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">const { StructType, int32 } = require(&quot;@esfx/struct-type&quot;);
 
 // simple types
 const Point = StructType([
@@ -172,11 +167,8 @@ const p2 = new Point([3, 4]); // by field ordinal
 
 // copy contents
 const buffer = new ArrayBuffer(16);
-const l = new Line([p1, p2]);
-l.writeTo(buffer);
-
-// create from a buffer
-const l2 = new Line(buffer);
+const l1 = new Line([p1, p2]);
+l1.writeTo(buffer);
 
 // read from field names
 console.log(l1.from.x); // 1
@@ -189,20 +181,23 @@ console.log(l1[0][0]); // 1
 console.log(l1[0][1]); // 2
 console.log(l1[1][0]); // 3
 console.log(l1[1][1]); // 4
+
+// create from a buffer
+const l2 = new Line(buffer);
 </code></pre></section>
 </div>
-<h3 id="using-with-workers">Using with Workers</h3>
-<div class="tabGroup" id="tabgroup_JIn7VBh5PP-1">
+<h4 id="using-with-workers">Using with Workers</h4>
+<div class="tabGroup" id="tabgroup_a2p6G8FiZb-1">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_JIn7VBh5PP-1_ts" role="tab" aria-controls="tabpanel_JIn7VBh5PP-1_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_a2p6G8FiZb-1_ts" role="tab" aria-controls="tabpanel_a2p6G8FiZb-1_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_JIn7VBh5PP-1_js" role="tab" aria-controls="tabpanel_JIn7VBh5PP-1_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_a2p6G8FiZb-1_js" role="tab" aria-controls="tabpanel_a2p6G8FiZb-1_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_JIn7VBh5PP-1_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { StructType, int32 } from &quot;@esfx/struct-type&quot;;
+<section id="tabpanel_a2p6G8FiZb-1_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { StructType, int32 } from &quot;@esfx/struct-type&quot;;
 import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
 
 const ThreadData = StructType([
@@ -239,8 +234,8 @@ else if (parentPort) {
     worker_thread();
 }
 </code></pre></section>
-<section id="tabpanel_JIn7VBh5PP-1_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { StructType, int32 } = require(&quot;@esfx/struct-type&quot;);
+<section id="tabpanel_a2p6G8FiZb-1_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">const { StructType, int32 } = require(&quot;@esfx/struct-type&quot;);
 const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
 
 const ThreadData = StructType([
@@ -278,7 +273,6 @@ else if (parentPort) {
 }
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces
@@ -664,7 +658,7 @@ else if (parentPort) {
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/struct-type.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/struct-type/docsrc/overwrite/struct-type.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

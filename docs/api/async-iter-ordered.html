@@ -83,7 +83,106 @@
   <h1 id="_esfx_async_iter_ordered_" data-uid="@esfx/async-iter-ordered!" class="text-break">Package @esfx/async-iter-ordered
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>A Symbol-based API for defining an ECMAScript @&quot;!AsyncIterable&quot; with an inherent order.</p>
+<h3 id="installation">Installation</h3>
+<pre><code class="lang-sh">npm i @esfx/async-iter-ordered
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_2GLvbDpjLE">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_2GLvbDpjLE_ts" role="tab" aria-controls="tabpanel_2GLvbDpjLE_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_2GLvbDpjLE_js" role="tab" aria-controls="tabpanel_2GLvbDpjLE_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_2GLvbDpjLE_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { AsyncOrderedIterable } from &quot;@esfx/async-iter-ordered&quot;;
+import { Comparer, Comparison } from &quot;@esfx/equatable&quot;;
+import { toArrayAsync } from &quot;@esfx/async-iter-fn&quot;;
+
+interface Book {
+    title: string;
+    isbn: string;
+    // ...
+}
+
+class BooksAsyncOrderedIterable implements AsyncOrderedIterable&lt;Book&gt; {
+    private _books: AsyncIterable&lt;Book&gt;;
+    private _orderBy: readonly { keySelector: (element: Book) =&gt; unknown, keyComparer: Comparer&lt;unknown&gt;, descending: boolean }[];
+
+    private constructor(books: AsyncIterable&lt;Book&gt;, orderBy: readonly { keySelector: (element: Book) =&gt; unknown, keyComparer: Comparer&lt;unknown&gt;, descending: boolean }[]) {
+        this._books = books;
+        this._orderBy = orderBy;
+    }
+
+    static orderBy&lt;K&gt;(books: AsyncIterable&lt;Book&gt;, keySelector: (element: Book) =&gt; K, keyComparer: Comparison&lt;K&gt; | Comparer&lt;K&gt;, descending: boolean): AsyncOrderedIterable&lt;Book&gt; {
+        if (typeof keyComparer === &quot;function&quot;) keyComparer = Comparer.create(keyComparer);
+        return new BooksAsyncOrderedIterable(books, [{ keySelector, keyComparer, descending }]);
+    }
+
+    [AsyncOrderedIterable.thenByAsync]&lt;K&gt;(keySelector: (element: Book) =&gt; K, keyComparer: Comparison&lt;K&gt; | Comparer&lt;K&gt;, descending: boolean): AsyncOrderedIterable&lt;Book&gt; {
+        if (typeof keyComparer === &quot;function&quot;) keyComparer = Comparer.create(keyComparer);
+        return new BooksAsyncOrderedIterable(this._books, [...this._orderBy, { keySelector, keyComparer, descending }]);
+    }
+
+    async * [Symbol.asyncIterator]() {
+        const books = await toArrayAsync(this._books);
+        books.sort((a, b) =&gt; {
+            for (const { keySelector, keyComparer, descending } of this._orderBy) {
+                const aKey = keySelector(a);
+                const bKey = keySelector(b);
+                const result = descending ? keyComparer.compare(bKey, aKey) : keyComparer.compare(aKey, bKey);
+                if (result !== 0) return result;
+            }
+            return 0;
+        });
+        yield* books.values();
+    }
+}
+</code></pre></section>
+<section id="tabpanel_2GLvbDpjLE_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-typescript">const { AsyncOrderedIterable } = require(&quot;@esfx/async-iter-ordered&quot;);
+const { Comparer } = require(&quot;@esfx/equatable&quot;);
+const { toArrayAsync } = require(&quot;@esfx/async-iter-fn&quot;);
+
+class BooksAsyncOrderedIterable {
+    #books;
+    #orderBy;
+
+    /** @private */
+    constructor(books, orderBy) {
+        this.#books = books;
+        this.#orderBy = orderBy;
+    }
+
+    static orderBy(books, keySelector, descending) {
+        if (typeof keyComparer === &quot;function&quot;) keyComparer = Comparer.create(keyComparer);
+        return new BooksAsyncOrderedIterable(books, [{ keySelector, keyComparer, descending }]);
+    }
+
+    [AsyncOrderedIterable.thenByAsync](keySelector, keyComparer, descending) {
+        if (typeof keyComparer === &quot;function&quot;) keyComparer = Comparer.create(keyComparer);
+        return new BooksAsyncOrderedIterable(this.#books, [...this.#orderBy, { keySelector, keyComparer, descending }]);
+    }
+
+    async * [Symbol.asyncIterator]() {
+        const books = await toArrayAsync(this.#books);
+        books.sort((a, b) =&gt; {
+            for (const { keySelector, keyComparer, descending } of this.#orderBy) {
+                const aKey = keySelector(a);
+                const bKey = keySelector(b);
+                const result = descending ? keyComparer.compare(bKey, aKey) : keyComparer.compare(aKey, bKey);
+                if (result !== 0) return result;
+            }
+            return 0;
+        });
+        yield* books.values();
+    }
+}
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces
   </h3>
@@ -101,6 +200,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/async-iter-ordered/docsrc/overwrite/async-iter-ordered.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

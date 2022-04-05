@@ -84,11 +84,6 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>The <code>@esfx/async-waitqueue</code> package provides the <a class="xref" href="async-waitqueue/waitqueue.html#_esfx_async_waitqueue_WaitQueue_class">WaitQueue</a> class, an async coordination primitive used to queue and resolve promises.</p>
-<h3 id="overview">Overview</h3>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
 <h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/async-waitqueue
 </code></pre><h3 id="usage">Usage</h3>
@@ -102,7 +97,7 @@
 </li>
 </ul>
 <section id="tabpanel_AjHSR0GoOn_ts" role="tabpanel" data-tab="ts">
-<pre><code>import { WaitQueue } from &quot;@esfx/async-waitqueue&quot;;
+<pre><code class="lang-typescript">import { WaitQueue } from &quot;@esfx/async-waitqueue&quot;;
 
 async function main() {
     const queue = new WaitQueue&lt;number&gt;();
@@ -120,7 +115,7 @@ async function main() {
 }
 </code></pre></section>
 <section id="tabpanel_AjHSR0GoOn_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code>const { WaitQueue } = require(&quot;@esfx/async-waitqueue&quot;);
+<pre><code class="lang-javascript">const { WaitQueue } = require(&quot;@esfx/async-waitqueue&quot;);
 
 async function main() {
     const queue = new WaitQueue();

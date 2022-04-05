@@ -14,10 +14,10 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isFunction, isIterable, isUndefined } from '@esfx/internal-guards';
+import /*#__INLINE__*/ { binarySearch } from '@esfx/internal-binarysearch';
 import { KeyedCollection, ReadonlyKeyedCollection } from "@esfx/collection-core";
 import { Comparer, Comparison } from "@esfx/equatable";
-import /*#__INLINE__*/ { binarySearch } from '@esfx/internal-binarysearch';
-import /*#__INLINE__*/ { isFunction, isIterable, isUndefined } from '@esfx/internal-guards';
 
 export class SortedMap<K, V> implements KeyedCollection<K, V> {
     private _keys: K[] = [];

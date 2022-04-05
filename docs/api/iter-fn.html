@@ -84,35 +84,29 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>An iteration and query API for ECMAScript iterables.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/iter-fn
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_h16LCy2qsx">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_ZBiw7pL91N">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_h16LCy2qsx_ts" role="tab" aria-controls="tabpanel_h16LCy2qsx_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_ZBiw7pL91N_ts" role="tab" aria-controls="tabpanel_ZBiw7pL91N_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_h16LCy2qsx_js" role="tab" aria-controls="tabpanel_h16LCy2qsx_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_ZBiw7pL91N_js" role="tab" aria-controls="tabpanel_ZBiw7pL91N_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_h16LCy2qsx_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { map } from &quot;@esfx/iter-fn&quot;;
+<section id="tabpanel_ZBiw7pL91N_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { map } from &quot;@esfx/iter-fn&quot;;
 const x = map([1, 2, 3], x =&gt; x * 2);
 x; // [2, 4, 6]
 </code></pre></section>
-<section id="tabpanel_h16LCy2qsx_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-ts">const { map } = require(&quot;@esfx/iter-fn&quot;);
+<section id="tabpanel_ZBiw7pL91N_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">const { map } = require(&quot;@esfx/iter-fn&quot;);
 const x = map([1, 2, 3], x =&gt; x * 2);
 x; // [2, 4, 6]
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces
@@ -496,7 +490,7 @@ end.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></div>
           <p>
         </div>
   
@@ -551,7 +545,7 @@ end.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></div>
           <p>
         </div>
   
@@ -1169,7 +1163,7 @@ have enough space to write the requested number of elements (i.e. arrays are *no
           <div class="property">
             <dl class="parameter">
               <dt>start</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The offset into the array at which to start writing.</p>
@@ -1180,7 +1174,7 @@ have enough space to write the requested number of elements (i.e. arrays are *no
           <div class="property">
             <dl class="parameter">
               <dt>count</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements to write to the array.
@@ -1259,7 +1253,7 @@ in <code>right</code> at the same position.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -1335,7 +1329,7 @@ in <code>right</code> at the same position.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -1421,7 +1415,7 @@ in <code>right</code> at the same position.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -1528,7 +1522,7 @@ in <code>right</code> at the same position.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -1583,7 +1577,7 @@ in <code>right</code> at the same position.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></div>
           <p>
         </div>
   
@@ -2269,7 +2263,7 @@ count.</p>
           <div class="property">
             <dl class="parameter">
               <dt>count</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements to skip.
@@ -2325,7 +2319,7 @@ count.</p>
           <div class="property">
             <dl class="parameter">
               <dt>count</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements to skip.
@@ -2390,7 +2384,7 @@ count.</p>
           <div class="property">
             <dl class="parameter">
               <dt>count</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements to skip.
@@ -2446,7 +2440,7 @@ count.</p>
           <div class="property">
             <dl class="parameter">
               <dt>count</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements to skip.
@@ -2855,7 +2849,7 @@ with the same sequence of elements in <code>right</code><!-- -->.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -2931,7 +2925,7 @@ with the same sequence of elements in <code>right</code><!-- -->.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -3050,7 +3044,7 @@ with the same sequence of elements in <code>right</code><!-- -->.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -5513,7 +5507,7 @@ times.</p>
           <div class="property">
             <dl class="parameter">
               <dt>count</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of times to execute the callback.</p>
@@ -5701,7 +5695,7 @@ times.</p>
           <div class="property">
             <dl class="parameter">
               <dt>elementSelector</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-ecmascript-language-types-undefined-type">undefined</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-ecmascript-language-types-undefined-type">undefined</a></dd>
             </dl>
             <p>
               <p>A callback used to select a value for an element.</p>
@@ -6212,7 +6206,7 @@ times.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -6287,7 +6281,7 @@ times.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -6354,7 +6348,7 @@ an exact sequence of elements from <code>right</code><!-- -->.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -6430,7 +6424,7 @@ an exact sequence of elements from <code>right</code><!-- -->.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -7826,7 +7820,7 @@ starts from the last child. This is equivalent to the <code>:nth-child()</code> 
           <div class="property">
             <dl class="parameter">
               <dt>offset</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The offset for the child.</p>
@@ -7890,7 +7884,7 @@ starts from the last child. This is equivalent to the <code>:nth-child()</code> 
           <div class="property">
             <dl class="parameter">
               <dt>offset</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               
@@ -8326,7 +8320,7 @@ evaluated eagerly.</p>
           <div class="property">
             <dl class="parameter">
               <dt>pageSize</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements per page.
@@ -8401,7 +8395,7 @@ evaluated eagerly.</p>
           <div class="property">
             <dl class="parameter">
               <dt>pageSize</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements per page.</p>
@@ -8469,7 +8463,7 @@ evaluated eagerly.</p>
           <div class="property">
             <dl class="parameter">
               <dt>pageSize</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements per page.
@@ -8535,7 +8529,7 @@ evaluated eagerly.</p>
           <div class="property">
             <dl class="parameter">
               <dt>pageSize</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements per page.</p>
@@ -8724,7 +8718,7 @@ patched into the results.</p>
           <div class="property">
             <dl class="parameter">
               <dt>start</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The offset at which to patch the range.</p>
@@ -8735,7 +8729,7 @@ patched into the results.</p>
           <div class="property">
             <dl class="parameter">
               <dt>skipCount</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements to skip from start.</p>
@@ -8802,7 +8796,7 @@ patched into the results.</p>
           <div class="property">
             <dl class="parameter">
               <dt>start</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The offset at which to patch the range.</p>
@@ -8813,7 +8807,7 @@ patched into the results.</p>
           <div class="property">
             <dl class="parameter">
               <dt>skipCount</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements to skip from start.</p>
@@ -9201,7 +9195,7 @@ patched into the results.</p>
           <div class="property">
             <dl class="parameter">
               <dt>start</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The starting number of the range.</p>
@@ -9212,7 +9206,7 @@ patched into the results.</p>
           <div class="property">
             <dl class="parameter">
               <dt>end</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The ending number of the range.</p>
@@ -9223,7 +9217,7 @@ patched into the results.</p>
           <div class="property">
             <dl class="parameter">
               <dt>increment</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The amount by which to change between each itereated value.
@@ -9748,7 +9742,7 @@ patched into the results.</p>
           <div class="property">
             <dl class="parameter">
               <dt>count</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of times to repeat the value.
@@ -10760,7 +10754,7 @@ optionally filtering the elements using the supplied callback.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -11197,7 +11191,7 @@ evaluated.</p>
           <div class="property">
             <dl class="parameter">
               <dt>elementSelector</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-ecmascript-language-types-undefined-type">undefined</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-ecmascript-language-types-undefined-type">undefined</a></dd>
             </dl>
             <p>
               <p>A callback used to select a value for an element.</p>
@@ -11701,7 +11695,7 @@ with the same sequence of elements in another Iterable.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -11777,7 +11771,7 @@ with the same sequence of elements in another Iterable.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -11811,7 +11805,7 @@ with the same sequence of elements in another Iterable.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></div>
           <p>
         </div>
   
@@ -11866,7 +11860,7 @@ with the same sequence of elements in another Iterable.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></div>
           <p>
         </div>
   
@@ -12423,7 +12417,7 @@ count.</p>
           <div class="property">
             <dl class="parameter">
               <dt>count</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements to take.
@@ -12479,7 +12473,7 @@ count.</p>
           <div class="property">
             <dl class="parameter">
               <dt>count</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements to take.
@@ -12544,7 +12538,7 @@ count.</p>
           <div class="property">
             <dl class="parameter">
               <dt>count</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements to take.
@@ -12600,7 +12594,7 @@ count.</p>
           <div class="property">
             <dl class="parameter">
               <dt>count</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of elements to take.
@@ -14324,7 +14318,7 @@ count.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><span class="xref">Map</span>&lt;K, T&gt;</div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-map-objects">Map</a>&lt;K, T&gt;</div>
           <p>
         </div>
   
@@ -14408,7 +14402,7 @@ count.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><span class="xref">Map</span>&lt;K, V&gt;</div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-map-objects">Map</a>&lt;K, V&gt;</div>
           <p>
         </div>
   
@@ -15409,7 +15403,7 @@ prototype is created. If <code>prototype</code> is <code>undefined</code><!-- --
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><span class="xref">object</span></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></div>
           <p>
         </div>
   
@@ -15614,7 +15608,7 @@ element are removed.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><span class="xref">Set</span>&lt;T&gt;</div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-set-objects">Set</a>&lt;T&gt;</div>
           <p>
         </div>
   
@@ -15678,7 +15672,7 @@ element are removed.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><span class="xref">Set</span>&lt;V&gt;</div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-set-objects">Set</a>&lt;V&gt;</div>
           <p>
         </div>
   
@@ -16450,7 +16444,7 @@ using the supplied callback.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/iter-fn.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/iter-fn/docsrc/overwrite/iter-fn.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

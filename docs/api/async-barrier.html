@@ -84,11 +84,6 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>The <code>@esfx/async-barrier</code> package provides the <a class="xref" href="async-barrier/asyncbarrier.html#_esfx_async_barrier_AsyncBarrier_class">AsyncBarrier</a> class, an async coordination primitive.</p>
-<h3 id="overview">Overview</h3>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
 <h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/async-barrier
 </code></pre><h3 id="usage">Usage</h3>
@@ -104,7 +99,7 @@
 </li>
 </ul>
 <section id="tabpanel_+udNnGCYMy_ts" role="tabpanel" data-tab="ts">
-<pre><code>import { AsyncBarrier } from &quot;@esfx/async-barrier&quot;;
+<pre><code class="lang-typescript">import { AsyncBarrier } from &quot;@esfx/async-barrier&quot;;
 
 async function main() {
     let count = 0;
@@ -166,7 +161,7 @@ main().catch(e =&gt; console.error(e));
 // Post-phase action: count=16, phase=3
 </code></pre></section>
 <section id="tabpanel_+udNnGCYMy_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code>const { AsyncBarrier } = require(&quot;@esfx/async-barrier&quot;);
+<pre><code class="lang-javascript">const { AsyncBarrier } = require(&quot;@esfx/async-barrier&quot;);
 
 async function main() {
     let count = 0;

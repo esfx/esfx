@@ -84,31 +84,27 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides a low-level API for defining explicit resource management that third-party libraries can use to interoperate.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/disposable
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_MmP6RDS6US">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_xu9vK2SF6l">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_MmP6RDS6US_ts" role="tab" aria-controls="tabpanel_MmP6RDS6US_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_xu9vK2SF6l_ts" role="tab" aria-controls="tabpanel_xu9vK2SF6l_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_MmP6RDS6US_js" role="tab" aria-controls="tabpanel_MmP6RDS6US_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_xu9vK2SF6l_js" role="tab" aria-controls="tabpanel_xu9vK2SF6l_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_MmP6RDS6US_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Disposable } from &quot;@esfx/disposable&quot;;
+<section id="tabpanel_xu9vK2SF6l_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { Disposable } from &quot;@esfx/disposable&quot;;
+import * as fs from &quot;fs&quot;;
 
 class MyFileResouce {
     private _handle?: number;
 
     constructor() {
-        this._handle = fs.openSync(&quot;path/to/file&quot;);
+        this._handle = fs.openSync(&quot;path/to/file&quot;, &quot;r&quot;);
     }
 
     close() {
@@ -117,19 +113,20 @@ class MyFileResouce {
             this._handle = undefined;
         }
     }
-
+    
     // provide low-level &#39;dispose&#39; primitive for interop
     [Disposable.dispose]() {
         this.close();
     }
 }
 </code></pre></section>
-<section id="tabpanel_MmP6RDS6US_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Disposable } = require(&quot;@esfx/disposable&quot;);
+<section id="tabpanel_xu9vK2SF6l_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">const { Disposable } = require(&quot;@esfx/disposable&quot;);
+const fs = require(&quot;fs&quot;);
 
 class MyFileResouce {
     constructor() {
-        this._handle = fs.openSync(&quot;path/to/file&quot;);
+        this._handle = fs.openSync(&quot;path/to/file&quot;, &quot;r&quot;);
     }
 
     close() {
@@ -138,7 +135,7 @@ class MyFileResouce {
             this._handle = undefined;
         }
     }
-
+    
     // provide low-level &#39;dispose&#39; primitive for interop
     [Disposable.dispose]() {
         this.close();
@@ -146,7 +143,6 @@ class MyFileResouce {
 }
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
@@ -210,7 +206,7 @@ class MyFileResouce {
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/disposable.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/disposable/docsrc/overwrite/disposable.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

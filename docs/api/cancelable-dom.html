@@ -84,41 +84,34 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>The <code>@esfx/cancelable-dom</code> package provides a DOM interop library for <a class="xref" href="cancelable.html">@esfx/cancelable</a>.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/cancelable-dom
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_nEMjP+jNKb">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_KhfkIBr9Qb">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_nEMjP+jNKb_ts" role="tab" aria-controls="tabpanel_nEMjP+jNKb_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_KhfkIBr9Qb_ts" role="tab" aria-controls="tabpanel_KhfkIBr9Qb_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_nEMjP+jNKb_js" role="tab" aria-controls="tabpanel_nEMjP+jNKb_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_KhfkIBr9Qb_js" role="tab" aria-controls="tabpanel_KhfkIBr9Qb_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_nEMjP+jNKb_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Cancelable } from &quot;@esfx/cancelable&quot;;
+<section id="tabpanel_KhfkIBr9Qb_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import type { Cancelable } from &quot;@esfx/cancelable&quot;;
 import { toAbortSignal } from &quot;@esfx/cancelable-dom&quot;;
 
 async function doSomeWork(cancelable: Cancelable) {
     await fetch(&quot;some/uri&quot;, { signal: toAbortSignal(cancelable) });
 }
 </code></pre></section>
-<section id="tabpanel_nEMjP+jNKb_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Cancelable } = require(&quot;@esfx/cancelable&quot;);
-const { toAbortSignal } = require(&quot;@esfx/cancelable-dom&quot;);
+<section id="tabpanel_KhfkIBr9Qb_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">const { toAbortSignal } = require(&quot;@esfx/cancelable-dom&quot;);
 
 async function doSomeWork(cancelable) {
     await fetch(&quot;some/uri&quot;, { signal: toAbortSignal(cancelable) });
 }
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="functions">Functions
@@ -193,7 +186,7 @@ async function doSomeWork(cancelable) {
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/cancelable-dom.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/cancelable-dom/docsrc/overwrite/cancelable-dom.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

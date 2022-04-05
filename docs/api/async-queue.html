@@ -84,11 +84,6 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>The <code>@esfx/async-queue</code> package provides the <a class="xref" href="async-queue/asyncqueue.html#_esfx_async_queue_AsyncQueue_class">AsyncQueue</a> class, an async coordination primitive.</p>
-<h3 id="overview">Overview</h3>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
 <h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/async-queue
 </code></pre><h3 id="usage">Usage</h3>
@@ -102,7 +97,7 @@
 </li>
 </ul>
 <section id="tabpanel_fAdDRroqMg_ts" role="tabpanel" data-tab="ts">
-<pre><code>import { AsyncQueue } from &quot;@esfx/async-queue&quot;;
+<pre><code class="lang-typescript">import { AsyncQueue } from &quot;@esfx/async-queue&quot;;
 
 async function main() {
     const queue = new AsyncQueue&lt;number&gt;();
@@ -128,7 +123,7 @@ async function main() {
 }
 </code></pre></section>
 <section id="tabpanel_fAdDRroqMg_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code>const { AsyncQueue } = require(&quot;@esfx/async-queue&quot;);
+<pre><code class="lang-javascript">const { AsyncQueue } = require(&quot;@esfx/async-queue&quot;);
 
 async function main() {
     const queue = new AsyncQueue();

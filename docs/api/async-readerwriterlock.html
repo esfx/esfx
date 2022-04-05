@@ -84,11 +84,6 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>The <code>@esfx/async-readerwriterlock</code> package provides the <a class="xref" href="async-readerwriterlock/asyncreaderwriterlock.html#_esfx_async_readerwriterlock_AsyncReaderWriterLock_class">AsyncReaderWriterLock</a> class, an async coordination primitive.</p>
-<h3 id="overview">Overview</h3>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
 <h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/async-readerwriterlock
 </code></pre><h3 id="usage">Usage</h3>
@@ -102,8 +97,7 @@
 </li>
 </ul>
 <section id="tabpanel_AhGygu4xf5_ts" role="tabpanel" data-tab="ts">
-<pre><code>// &lt;usage&gt;
-import { AsyncReaderWriterLock } from &quot;@esfx/async-readerwriterlock&quot;;
+<pre><code class="lang-typescript">import { AsyncReaderWriterLock } from &quot;@esfx/async-readerwriterlock&quot;;
 
 interface User { id: string, name: string, email: string }
 
@@ -168,12 +162,9 @@ async function updateUser(id: string, oldData: User, newData: User) {
         lk.unlock(); // release the read lock
     }
 }
-// &lt;/usage&gt;
-
-declare var writeUserToDisk, readUserFromDisk;
 </code></pre></section>
 <section id="tabpanel_AhGygu4xf5_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code>const { AsyncReaderWriterLock } = require(&quot;@esfx/async-readerwriterlock&quot;);
+<pre><code class="lang-javascript">const { AsyncReaderWriterLock } = require(&quot;@esfx/async-readerwriterlock&quot;);
 
 // &#39;rwlock&#39; protects access to &#39;userCache&#39; and data stored on disk
 const rwlock = new AsyncReaderWriterLock();

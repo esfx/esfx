@@ -94,32 +94,28 @@ protocol for interoperable libraries that depend on cancellation.</p>
 <li><a href="https://github.com/rbuckton/prex#readme">prex</a> (version 0.4.6 or later)</li>
 </ul>
 </div>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/cancelable
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_XVqrk2aSRF">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_2msBQJSsHn">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_XVqrk2aSRF_ts" role="tab" aria-controls="tabpanel_XVqrk2aSRF_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_2msBQJSsHn_ts" role="tab" aria-controls="tabpanel_2msBQJSsHn_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_XVqrk2aSRF_js" role="tab" aria-controls="tabpanel_XVqrk2aSRF_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_2msBQJSsHn_js" role="tab" aria-controls="tabpanel_2msBQJSsHn_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_XVqrk2aSRF_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Cancelable } from &quot;@esfx/cancelable&quot;;
+<section id="tabpanel_2msBQJSsHn_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { Cancelable } from &quot;@esfx/cancelable&quot;;
+import { fork } from &quot;child_process&quot;;
 
 function doSomeWork(cancelable: Cancelable) {
-    return new Promise((resolve, reject) =&gt; {
+    return new Promise&lt;void&gt;((resolve, reject) =&gt; {
         const cancelSignal = cancelable[Cancelable.cancelSignal]();
         if (cancelSignal.signaled) throw new Error(&quot;Operation canceled.&quot;);
 
-        const child = fork(&quot;worker.js&quot;);
+        const worker = fork(&quot;worker.js&quot;);
         const subscription = cancelSignal.subscribe(() =&gt; {
             // cancellation requested, abort worker
             worker.kill();
@@ -133,15 +129,16 @@ function doSomeWork(cancelable: Cancelable) {
     });
 }
 </code></pre></section>
-<section id="tabpanel_XVqrk2aSRF_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Cancelable } = require(&quot;@esfx/cancelable&quot;);
+<section id="tabpanel_2msBQJSsHn_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">const { Cancelable } = require(&quot;@esfx/cancelable&quot;);
+const { fork } = require(&quot;child_process&quot;);
 
 function doSomeWork(cancelable) {
     return new Promise((resolve, reject) =&gt; {
         const cancelSignal = cancelable[Cancelable.cancelSignal]();
         if (cancelSignal.signaled) throw new Error(&quot;Operation canceled.&quot;);
 
-        const child = fork(&quot;worker.js&quot;);
+        const worker = fork(&quot;worker.js&quot;);
         const subscription = cancelSignal.subscribe(() =&gt; {
             // cancellation requested, abort worker
             worker.kill();
@@ -156,7 +153,6 @@ function doSomeWork(cancelable) {
 }
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
@@ -195,7 +191,7 @@ function doSomeWork(cancelable) {
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/cancelable.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/cancelable/docsrc/overwrite/cancelable.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

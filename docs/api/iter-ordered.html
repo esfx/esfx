@@ -83,7 +83,103 @@
   <h1 id="_esfx_iter_ordered_" data-uid="@esfx/iter-ordered!" class="text-break">Package @esfx/iter-ordered
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>A Symbol-based API for defining an <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a> with an inherent order.</p>
+<h3 id="installation">Installation</h3>
+<pre><code class="lang-sh">npm i @esfx/iter-ordered
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_h7+IytmlNw">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_h7+IytmlNw_ts" role="tab" aria-controls="tabpanel_h7+IytmlNw_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_h7+IytmlNw_js" role="tab" aria-controls="tabpanel_h7+IytmlNw_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_h7+IytmlNw_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { OrderedIterable } from &quot;@esfx/iter-ordered&quot;;
+import { Comparer, Comparison } from &quot;@esfx/equatable&quot;;
+
+interface Book {
+    title: string;
+    isbn: string;
+    // ...
+}
+
+class BooksOrderedIterable implements OrderedIterable&lt;Book&gt; {
+    private _books: Iterable&lt;Book&gt;;
+    private _orderBy: readonly { keySelector: (element: Book) =&gt; unknown, keyComparer: Comparer&lt;unknown&gt;, descending: boolean }[];
+
+    private constructor(books: Iterable&lt;Book&gt;, orderBy: readonly { keySelector: (element: Book) =&gt; unknown, keyComparer: Comparer&lt;unknown&gt;, descending: boolean }[]) {
+        this._books = books;
+        this._orderBy = orderBy;
+    }
+
+    static orderBy&lt;K&gt;(books: Iterable&lt;Book&gt;, keySelector: (element: Book) =&gt; K, keyComparer: Comparison&lt;K&gt; | Comparer&lt;K&gt;, descending: boolean): OrderedIterable&lt;Book&gt; {
+        if (typeof keyComparer === &quot;function&quot;) keyComparer = Comparer.create(keyComparer);
+        return new BooksOrderedIterable(books, [{ keySelector, keyComparer, descending }]);
+    }
+
+    [OrderedIterable.thenBy]&lt;K&gt;(keySelector: (element: Book) =&gt; K, keyComparer: Comparison&lt;K&gt; | Comparer&lt;K&gt;, descending: boolean): OrderedIterable&lt;Book&gt; {
+        if (typeof keyComparer === &quot;function&quot;) keyComparer = Comparer.create(keyComparer);
+        return new BooksOrderedIterable(this._books, [...this._orderBy, { keySelector, keyComparer, descending }]);
+    }
+
+    * [Symbol.iterator]() {
+        const books = [...this._books];
+        books.sort((a, b) =&gt; {
+            for (const { keySelector, keyComparer, descending } of this._orderBy) {
+                const aKey = keySelector(a);
+                const bKey = keySelector(b);
+                const result = descending ? keyComparer.compare(bKey, aKey) : keyComparer.compare(aKey, bKey);
+                if (result !== 0) return result;
+            }
+            return 0;
+        });
+        yield * books.values();
+    }
+}
+</code></pre></section>
+<section id="tabpanel_h7+IytmlNw_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-typescript">const { OrderedIterable } = require(&quot;@esfx/iter-ordered&quot;);
+const { Comparer } = require(&quot;@esfx/equatable&quot;);
+
+class BooksOrderedIterable {
+    #books;
+    #orderBy;
+
+    constructor(books, orderBy) {
+        this.#books = books;
+        this.#orderBy = orderBy;
+    }
+
+    static orderBy(books, keySelector, keyComparer, descending) {
+        if (typeof keyComparer === &quot;function&quot;) keyComparer = Comparer.create(keyComparer);
+        return new BooksOrderedIterable(books, [{ keySelector, keyComparer, descending }]);
+    }
+
+    [OrderedIterable.thenBy](keySelector, keyComparer, descending) {
+        if (typeof keyComparer === &quot;function&quot;) keyComparer = Comparer.create(keyComparer);
+        return new BooksOrderedIterable(this.#books, [...this.#orderBy, { keySelector, keyComparer, descending }]);
+    }
+
+    * [Symbol.iterator]() {
+        const books = [...this.#books];
+        books.sort((a, b) =&gt; {
+            for (const { keySelector, keyComparer, descending } of this.#orderBy) {
+                const aKey = keySelector(a);
+                const bKey = keySelector(b);
+                const result = descending ? keyComparer.compare(bKey, aKey) : keyComparer.compare(aKey, bKey);
+                if (result !== 0) return result;
+            }
+            return 0;
+        });
+        yield * books.values();
+    }
+}
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces
   </h3>
@@ -101,6 +197,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/iter-ordered/docsrc/overwrite/iter-ordered.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

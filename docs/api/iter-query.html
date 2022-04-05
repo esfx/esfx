@@ -83,7 +83,38 @@
   <h1 id="_esfx_iter_query_" data-uid="@esfx/iter-query!" class="text-break">Package @esfx/iter-query
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>An iteration and query API for ECMAScript iterables.</p>
+<h3 id="installation">Installation</h3>
+<pre><code class="lang-sh">npm i @esfx/iter-query
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_+cTxuJooK9">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_+cTxuJooK9_ts" role="tab" aria-controls="tabpanel_+cTxuJooK9_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_+cTxuJooK9_js" role="tab" aria-controls="tabpanel_+cTxuJooK9_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_+cTxuJooK9_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { Query } from &quot;@esfx/iter-query&quot;;
+
+let q = Query
+  .from(books)
+  .filter(book =&gt; book.author === &quot;Alice&quot;)
+  .groupBy(book =&gt; book.releaseYear);
+
+</code></pre></section>
+<section id="tabpanel_+cTxuJooK9_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-typescript">const { Query } = require(&quot;@esfx/iter-query&quot;);
+
+let q = Query
+  .from(books)
+  .filter(book =&gt; book.author === &quot;Alice&quot;)
+  .groupBy(book =&gt; book.releaseYear);
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
@@ -721,6 +752,9 @@ these operations is deferred until the either a scalar value is requested from t
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/iter-query/docsrc/overwrite/iter-query.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

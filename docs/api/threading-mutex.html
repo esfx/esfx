@@ -83,29 +83,24 @@
   <h1 id="_esfx_threading_mutex_" data-uid="@esfx/threading-mutex!" class="text-break">Package @esfx/threading-mutex
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="threading-mutex/mutex.html#_esfx_threading_mutex_Mutex_class">Mutex</a> class which can be used to protect shared resources across Workers using a @&quot;@esfx/SharedArrayBuffer!&quot;.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+  <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="threading-mutex/mutex.html#_esfx_threading_mutex_Mutex_class">Mutex</a> class which can be used to protect shared resources across Workers using a @&quot;!SharedArrayBuffer&quot;.</p>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/threading-mutex
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_jPLC21AD3J">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_J5zp31rx7j">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_jPLC21AD3J_ts" role="tab" aria-controls="tabpanel_jPLC21AD3J_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_J5zp31rx7j_ts" role="tab" aria-controls="tabpanel_J5zp31rx7j_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_jPLC21AD3J_js" role="tab" aria-controls="tabpanel_jPLC21AD3J_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_J5zp31rx7j_js" role="tab" aria-controls="tabpanel_J5zp31rx7j_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_jPLC21AD3J_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
-import { Mutex } from &quot;@esfx/threading-mutex&quot;;
+<section id="tabpanel_J5zp31rx7j_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { Mutex } from &quot;@esfx/threading-mutex&quot;;
 import { StructType, int32 } from &quot;@esfx/struct-type&quot;;
 import { sleep } from &quot;@esfx/threading-sleep&quot;;
+import { Worker, isMainThread, workerData } from &quot;worker_threads&quot;;
 
 const SharedData = StructType([
     { name: &quot;x&quot;, type: int32 },
@@ -160,11 +155,11 @@ else {
     worker_thread();
 }
 </code></pre></section>
-<section id="tabpanel_jPLC21AD3J_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
-const { Mutex } = require(&quot;@esfx/threading-mutex&quot;);
+<section id="tabpanel_J5zp31rx7j_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-typescript">const { Mutex } = require(&quot;@esfx/threading-mutex&quot;);
 const { StructType, int32 } = require(&quot;@esfx/struct-type&quot;);
 const { sleep } = require(&quot;@esfx/threading-sleep&quot;);
+const { Worker, isMainThread, workerData } = require(&quot;worker_threads&quot;);
 
 const SharedData = StructType([
     { name: &quot;x&quot;, type: int32 },
@@ -220,7 +215,6 @@ else {
 }
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
@@ -235,7 +229,7 @@ else {
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/threading-mutex.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/threading-mutex/docsrc/overwrite/threading-mutex.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

@@ -84,25 +84,20 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="collections-sortedmap/sortedmap.html#_esfx_collections_sortedmap_SortedMap_class">SortedMap</a> class, a collection class that utilizes <a class="xref" href="collection-core.html">@esfx/collection-core</a> and <a class="xref" href="equatable.html">@esfx/equatable</a>.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/collections-sortedmap
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_jeI5mT8afG">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_NN3j4Cwlag">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_jeI5mT8afG_ts" role="tab" aria-controls="tabpanel_jeI5mT8afG_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_NN3j4Cwlag_ts" role="tab" aria-controls="tabpanel_NN3j4Cwlag_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_jeI5mT8afG_js" role="tab" aria-controls="tabpanel_jeI5mT8afG_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_NN3j4Cwlag_js" role="tab" aria-controls="tabpanel_NN3j4Cwlag_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_jeI5mT8afG_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { SortedMap } from &quot;@esfx/collections-sortedmap&quot;;
+<section id="tabpanel_NN3j4Cwlag_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { SortedMap } from &quot;@esfx/collections-sortedmap&quot;;
 import { Equatable, Equaler, Comparable, Comparer } from &quot;@esfx/equatable&quot;;
 
 class Person {
@@ -140,18 +135,18 @@ const obj2 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
 
 // ECMAScript native map iterates in insertion order
 const map = new Map&lt;Person, string&gt;(); // native ECMAScript Map
-set.set(obj1, &quot;obj1&quot;);
-set.set(obj2, &quot;obj2&quot;);
-[...set.keys()]; // Alice Johnson,Bob Clark
+map.set(obj1, &quot;obj1&quot;);
+map.set(obj2, &quot;obj2&quot;);
+[...map.keys()]; // Alice Johnson, Bob Clark
 
 // SortedMap uses Comparable.compareTo if available
 const sortedMap = new SortedMap&lt;Person, string&gt;();
 sortedMap.set(obj1, &quot;obj1&quot;);
 sortedMap.set(obj2, &quot;obj2&quot;);
-[...sortedMap.keys()]; // Bob Clark,Alice Johnson
+[...sortedMap.keys()]; // Bob Clark, Alice Johnson
 </code></pre></section>
-<section id="tabpanel_jeI5mT8afG_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { SortedMap } = require(&quot;@esfx/collections-sortedmap&quot;);
+<section id="tabpanel_NN3j4Cwlag_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">const { SortedMap } = require(&quot;@esfx/collections-sortedmap&quot;);
 const { Equatable, Equaler, Comparable, Comparer } = require(&quot;@esfx/equatable&quot;);
 
 class Person {
@@ -187,18 +182,17 @@ const obj2 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
 
 // ECMAScript native map iterates in insertion order
 const map = new Map(); // native ECMAScript Map
-set.set(obj1, &quot;obj1&quot;);
-set.set(obj2, &quot;obj2&quot;);
-[...set.keys()]; // Alice Johnson,Bob Clark
+map.set(obj1, &quot;obj1&quot;);
+map.set(obj2, &quot;obj2&quot;);
+[...map.keys()]; // Alice Johnson, Bob Clark
 
 // SortedMap uses Comparable.compareTo if available
 const sortedMap = new SortedMap();
 sortedMap.set(obj1, &quot;obj1&quot;);
 sortedMap.set(obj2, &quot;obj2&quot;);
-[...sortedMap.keys()]; // Bob Clark,Alice Johnson
+[...sortedMap.keys()]; // Bob Clark, Alice Johnson
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
@@ -217,7 +211,7 @@ sortedMap.set(obj2, &quot;obj2&quot;);
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/collections-sortedmap.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/collections-sortedmap/docsrc/overwrite/collections-sortedmap.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

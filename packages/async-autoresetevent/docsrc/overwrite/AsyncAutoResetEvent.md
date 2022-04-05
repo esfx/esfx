@@ -11,11 +11,9 @@ Because the first event is initially signaled, the first operation is released i
 > The following example is derived from https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0#examples
 
 #### [TypeScript](#tab/ts)
-[!code[](../examples/AsyncAutoResetEvent.ts)]
-
+[!code-typescript[](../examples/AsyncAutoResetEvent.ts)]
 #### [JavaScript (CommonJS)](#tab/js)
-[!code[](../examples/AsyncAutoResetEvent.js)]
-
+[!code-javascript[](../examples/AsyncAutoResetEvent.js)]
 ***
 
 ---

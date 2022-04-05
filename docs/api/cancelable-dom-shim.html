@@ -83,52 +83,47 @@
   <h1 id="_esfx_cancelable_dom_shim_" data-uid="@esfx/cancelable-dom-shim!" class="text-break">Package @esfx/cancelable-dom-shim
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>The <code>@esfx/cancelable-dom-shim</code> package provides a global shim to make the DOM @&quot;@esfx/AbortController!&quot; and @&quot;@esfx/AbortSignal!&quot; classes compatible with <a class="xref" href="cancelable.html">@esfx/cancelable</a>.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+  <div class="markdown level0 conceptual"><p>The <code>@esfx/cancelable-dom-shim</code> package provides a global shim to make the DOM <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">AbortController</a> and <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">AbortSignal</a> classes compatible with <a class="xref" href="cancelable.html">@esfx/cancelable</a>.</p>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/cancelable-dom-shim
-</code></pre><h2 id="usage">Usage</h2>
-<p>The global shim adds a default implementation the collection interfaces to the following global DOM objects:</p>
-<ul>
-<li>@&quot;@esfx/AbortController!&quot; implements:<ul>
-<li><a class="xref" href="cancelable/cancelablesource-interface.html#_esfx_cancelable_CancelableSource_interface">CancelableSource</a></li>
-<li><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></li>
-</ul>
-</li>
-<li>@&quot;@esfx/AbortSignal!&quot; implements:<ul>
-<li><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></li>
-</ul>
-</li>
-</ul>
-<p>To install the global shim, import <code>@esfx/cancelable/global</code>:</p>
-<div class="tabGroup" id="tabgroup_hSXXymtUxx">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_2P3N7K5OZr">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_hSXXymtUxx_ts" role="tab" aria-controls="tabpanel_hSXXymtUxx_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_2P3N7K5OZr_ts" role="tab" aria-controls="tabpanel_2P3N7K5OZr_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_hSXXymtUxx_js" role="tab" aria-controls="tabpanel_hSXXymtUxx_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_2P3N7K5OZr_js" role="tab" aria-controls="tabpanel_2P3N7K5OZr_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_hSXXymtUxx_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import &quot;@esfx/cancelable-dom-shim&quot;; // triggers global-scope side effects
+<section id="tabpanel_2P3N7K5OZr_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import &quot;@esfx/cancelable-dom-shim&quot;; // triggers global-scope side effects
 import { Cancelable } from &quot;@esfx/cancelable&quot;;
 
 const abortController = new AbortController();
 const signal = abortController[Cancelable.cancelSignal]();
 </code></pre></section>
-<section id="tabpanel_hSXXymtUxx_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">require(&quot;@esfx/cancelable-dom-shim&quot;); // triggers global-scope side effects
+<section id="tabpanel_2P3N7K5OZr_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">require(&quot;@esfx/cancelable-dom-shim&quot;); // triggers global-scope side effects
 const { Cancelable } = require(&quot;@esfx/cancelable&quot;);
 
 const abortController = new AbortController();
 const signal = abortController[Cancelable.cancelSignal]();
 </code></pre></section>
 </div>
+<h3 id="remarks">Remarks</h3>
+<p>This shim adds a default implementation of the <a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> interface to the following global DOM objects:</p>
+<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">AbortController</a> implements:<ul>
+<li><a class="xref" href="cancelable/cancelablesource-interface.html#_esfx_cancelable_CancelableSource_interface">CancelableSource</a></li>
+<li><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></li>
+</ul>
+</li>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">AbortSignal</a> implements:<ul>
+<li><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></li>
+</ul>
+</li>
+</ul>
 </div>
   <div class="markdown level0 remarks"></div>
 </article>
@@ -139,7 +134,7 @@ const signal = abortController[Cancelable.cancelSignal]();
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/cancelable-dom-shim.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/cancelable-dom-shim/docsrc/overwrite/cancelable-dom-shim.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

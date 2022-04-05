@@ -20,10 +20,10 @@ Pressing **Enter** a fourth and final time calls @set to signal the event and al
 > The following example is derived from https://docs.microsoft.com/en-us/dotnet/api/system.threading.manualresetevent?view=net-6.0#examples
 
 #### [TypeScript](#tab/ts)
-[!code[](../examples/AsyncManualResetEvent.ts)]
+[!code-typescript[](../examples/AsyncManualResetEvent.ts)]
 
 #### [JavaScript (CommonJS)](#tab/js)
-[!code[](../examples/AsyncManualResetEvent.js)]
+[!code-javascript[](../examples/AsyncManualResetEvent.js)]
 
 ***
 

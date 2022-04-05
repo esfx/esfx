@@ -58,7 +58,7 @@ module.exports = {
             type: "input",
             name: "packageName",
             message: "package name",
-            initial: internal ? `@esfx/internal-${name}` : `@esfx/${name}`,
+            initial: internal ? `@esfx-internal/${name}` : `@esfx/${name}`,
             validate: value => packages.some(pkg => pkg.name === value)
                 ? `Package '${value}' already exists.`
                 : true
@@ -73,20 +73,13 @@ module.exports = {
             initial: internal ? "This package provides internal utilities for '@esfx' and is not intended for use in user-code." : "",
         });
 
-        const { exportMap = false } = await prompter.prompt({
-            type: "confirm",
-            name: "exportMap",
-            message: "will this package use a custom package.json 'exports' map?",
-            initial: true
-        });
-
         const { dependenciesSelection } = await prompter.prompt([{
             type: "multiselect",
             name: "dependenciesSelection",
             message: "dependencies",
             limit: 10,
             choices: packages
-                .filter(pkg => pkg.name !== "esfx" && pkg.name !== "@esfx/internal-generate-export-map")
+                .filter(pkg => pkg.name !== "esfx")
                 .map(pkg => ({ name: pkg.name, value: pkg.name }))
                 .sort((a, b) =>
                     compare(packageWeight(a), packageWeight(b)) ||
@@ -106,7 +99,6 @@ module.exports = {
             name,
             version: project.version,
             internal,
-            exportMap,
             rootPath: cleanPath(relativeRootPath),
             prefix: cleanPath(relativePrefix),
             packagePath: cleanPath(relativePackagePath),

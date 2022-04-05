@@ -84,22 +84,18 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides a global shim that provides a drop-in replacement for <a href="https://npmjs.com/packages/reflect-metadata">reflect-metadata</a>.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/reflect-metadata-compat
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_HA6LZ42gWJ">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_ff01SjiZer">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_HA6LZ42gWJ_ts" role="tab" aria-controls="tabpanel_HA6LZ42gWJ_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_ff01SjiZer_ts" role="tab" aria-controls="tabpanel_ff01SjiZer_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 </ul>
-<section id="tabpanel_HA6LZ42gWJ_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import &quot;@esfx/reflect-metadata-compat&quot;;
+<section id="tabpanel_ff01SjiZer_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">// &lt;usage&gt;
+import &quot;@esfx/reflect-metadata-compat&quot;;
 
 // TypeScript compiled with --emitDecoratorMetadata
 class MyClass {
@@ -112,6 +108,9 @@ class MyClass {
 const c = new MyClass();
 Reflect.getMetadata(&quot;design:returntype&quot;, c, &quot;method&quot;); // String
 Reflect.getMetadata(&quot;design:paramtypes&quot;, c, &quot;method&quot;); // [Number]
+
+// &lt;/usage&gt;
+declare var someDecorator;
 </code></pre></section>
 </div>
 </div>
@@ -124,7 +123,7 @@ Reflect.getMetadata(&quot;design:paramtypes&quot;, c, &quot;method&quot;); // [N
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/reflect-metadata-compat.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/reflect-metadata-compat/docsrc/overwrite/reflect-metadata-compat.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

@@ -1,10 +1,19 @@
 ### YamlMime:XRefMap
 sorted: false
 references:
+- uid: '!AbortController'
+  name: AbortController
+  href: https://developer.mozilla.org/en-US/docs/Web/API/AbortController
+  fullName: AbortController
 - uid: AbortController
   name: AbortController
   href: https://developer.mozilla.org/en-US/docs/Web/API/AbortController
   fullName: AbortController
+
+- uid: '!AbortSignal'
+  name: AbortSignal
+  href: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
+  fullName: AbortSignal
 - uid: AbortSignal
   name: AbortSignal
   href: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
@@ -12,3 +21,151 @@ references:
 - uid: '@esfx/async-canceltoken!~DOMAbortSignal:type'
   name: AbortSignal
   href: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
+
+- uid: '!AudioParamMap:interface'
+  name: AudioParamMap
+  href: https://developer.mozilla.org/en-US/docs/Web/API/AudioParamMap
+
+- uid: '!AudioTrackList:interface'
+  name: AudioTrackList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/AudioTrackList
+
+- uid: '!CSSRuleList:interface'
+  name: CSSRuleList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/CSSRuleList
+
+- uid: '!CSSStyleDeclaration:interface'
+  name: CSSStyleDeclaration
+  href: https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration
+
+- uid: '!DOMRectList:interface'
+  name: DOMRectList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/Element/getClientRects#return_value
+
+- uid: '!DOMStringList:interface'
+  name: DOMStringList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/DOMStringList
+
+- uid: '!DOMTokenList:interface'
+  name: DOMTokenList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList
+
+- uid: '!DataTransferItemList:interface'
+  name: DataTransferItemList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItemList
+
+- uid: '!FileList:interface'
+  name: FileList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/FileList
+
+- uid: '!FormData:interface'
+  name: FormData
+  href: https://developer.mozilla.org/en-US/docs/Web/API/FormData
+
+# - uid: '!HTMLAllCollection:interface'
+#   name: HTMLAllCollection
+#   href: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection
+
+# - uid: '!HTMLCollectionBase:interface'
+#   name: HTMLCollectionBase
+#   href: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection
+
+# - uid: '!HTMLCollectionOf:interface'
+#   name: HTMLCollectionOf
+#   href: https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection
+
+- uid: '!HTMLFormElement:interface'
+  name: HTMLFormElement
+  href: https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement
+
+- uid: '!HTMLSelectElement:interface'
+  name: HTMLSelectElement
+  href: https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement
+
+- uid: '!Headers:interface'
+  name: Headers
+  href: https://developer.mozilla.org/en-US/docs/Web/API/Headers
+
+- uid: '!MediaKeyStatusMap:interface'
+  name: MediaKeyStatusMap
+  href: https://developer.mozilla.org/en-US/docs/Web/API/MediaKeyStatusMap
+
+- uid: '!MediaList:interface'
+  name: MediaList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/MediaList
+
+- uid: '!MimeTypeArray:interface'
+  name: MimeTypeArray
+  href: https://developer.mozilla.org/en-US/docs/Web/API/MimeTypeArray
+
+- uid: '!NamedNodeMap:interface'
+  name: NamedNodeMap
+  href: https://developer.mozilla.org/en-US/docs/Web/API/NamedNodeMap
+
+- uid: '!NodeList:interface'
+  name: NodeList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/NodeList
+
+- uid: '!Plugin:interface'
+  name: Plugin
+  href: https://developer.mozilla.org/en-US/docs/Web/API/Plugin
+
+- uid: '!PluginArray:interface'
+  name: PluginArray
+  href: https://developer.mozilla.org/en-US/docs/Web/API/PluginArray
+
+- uid: '!RTCStatsReport:interface'
+  name: RTCStatsReport
+  href: https://developer.mozilla.org/en-US/docs/Web/API/RTCStatsReport
+
+- uid: '!SVGLengthList:interface'
+  name: SVGLengthList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/SVGLengthList
+
+- uid: '!SVGNumberList:interface'
+  name: SVGNumberList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/SVGNumberList
+
+- uid: '!SVGStringList:interface'
+  name: SVGStringList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/SVGStringList
+
+- uid: '!SourceBufferList:interface'
+  name: SourceBufferList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/SourceBufferList
+
+- uid: '!SpeechGrammarList:interface'
+  name: SpeechGrammarList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/SpeechGrammarList
+
+- uid: '!SpeechRecognitionResult:interface'
+  name: SpeechRecognitionResult
+  href: https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognitionResult
+
+- uid: '!SpeechRecognitionResultList:interface'
+  name: SpeechRecognitionResultList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognitionResultList
+
+- uid: '!StyleSheetList:interface'
+  name: StyleSheetList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/StyleSheetList
+
+- uid: '!TextTrackCueList:interface'
+  name: TextTrackCueList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/TextTrackCueList
+
+- uid: '!TextTrackList:interface'
+  name: TextTrackList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/TextTrackList
+
+- uid: '!TouchList:interface'
+  name: TouchList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/TouchList
+
+- uid: '!URLSearchParams:interface'
+  name: URLSearchParams
+  href: https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+
+- uid: '!VideoTrackList:interface'
+  name: VideoTrackList
+  href: https://developer.mozilla.org/en-US/docs/Web/API/VideoTrackList

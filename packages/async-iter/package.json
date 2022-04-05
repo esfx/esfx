@@ -2,9 +2,9 @@
     "name": "@esfx/async-iter",
     "version": "1.0.0-pre.24",
     "description": "An iteration and query API for ECMAScript async iterables.",
+    "type": "commonjs",
     "types": "./dist/types/index.d.ts",
     "main": "./dist/cjs/index.js",
-    "type": "commonjs",
     "exports": {
         ".": {
             "types": "./dist/types/index.d.ts",

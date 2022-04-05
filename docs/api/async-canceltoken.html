@@ -84,11 +84,6 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>The <code>@esfx/async-canceltoken</code> package provides the <a class="xref" href="async-canceltoken/canceltoken.html#_esfx_async_canceltoken_CancelToken_class">CancelToken</a> class, an implementation of <code>@esfx/cancelable</code>.</p>
-<h3 id="overview">Overview</h3>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
 <h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/async-canceltoken
 </code></pre><h3 id="usage">Usage</h3>
@@ -107,7 +102,7 @@
 </li>
 </ul>
 <section id="tabpanel_PQmeUwsYVN_ts" role="tabpanel" data-tab="ts">
-<pre><code>import { CancelToken, CancelError } from &quot;@esfx/async-canceltoken&quot;;
+<pre><code class="lang-typescript">import { CancelToken, CancelError } from &quot;@esfx/async-canceltoken&quot;;
 
 // consume a cancel token
 async function doWork(token = CancelToken.none) {
@@ -154,7 +149,7 @@ setTimeout(() =&gt; source.cancel(), 1000 * 10);
 
 </code></pre></section>
 <section id="tabpanel_PQmeUwsYVN_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code>const { CancelToken, CancelError } = require(&quot;@esfx/async-canceltoken&quot;);
+<pre><code class="lang-javascript">const { CancelToken, CancelError } = require(&quot;@esfx/async-canceltoken&quot;);
 
 // consume a cancel token
 async function doWork(token = CancelToken.none) {
@@ -211,7 +206,7 @@ setTimeout(() =&gt; source.cancel(), 1000 * 10);
 </li>
 </ul>
 <section id="tabpanel_PQmeUwsYVN-1_ts" role="tabpanel" data-tab="ts">
-<pre><code>import { CancelToken } from &quot;@esfx/async-canceltoken&quot;;
+<pre><code class="lang-typescript">import { CancelToken } from &quot;@esfx/async-canceltoken&quot;;
 
 // You can compose a cancellation graph with a root CancelToken, allowing you to cancel a large
 // number of asynchronous operations all at once
@@ -238,7 +233,7 @@ async function downloadFile(url: string, path: string, token = CancelToken.none)
 }
 </code></pre></section>
 <section id="tabpanel_PQmeUwsYVN-1_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code>const { CancelToken } = require(&quot;@esfx/async-canceltoken&quot;);
+<pre><code class="lang-javascript">const { CancelToken } = require(&quot;@esfx/async-canceltoken&quot;);
 
 // You can compose a cancellation graph with a root CancelToken, allowing you to cancel a large
 // number of asynchronous operations all at once

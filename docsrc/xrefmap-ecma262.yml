@@ -1,110 +1,202 @@
 ### YamlMime:XRefMap
 sorted: false
 references:
-- uid: ArrayBuffer
-  name: ArrayBuffer
-  href: https://tc39.github.io/ecma262/#sec-arraybuffer-objects
-  fullName: ArrayBuffer
+# intrinsic types
+- uid: undefined
+  name: undefined
+  fullName: undefined
+  href: https://tc39.es/ecma262/#sec-ecmascript-language-types-undefined-type
+- uid: 'null'
+  name: 'null'
+  fullName: 'null'
+  href: https://tc39.es/ecma262/#sec-ecmascript-language-types-null-type
+- uid: string
+  name: string
+  fullName: string
+  href: https://tc39.es/ecma262/#sec-string-objects
+- uid: symbol
+  name: symbol
+  fullName: symbol
+  href: https://tc39.es/ecma262/#sec-symbol-objects
+- uid: number
+  name: number
+  fullName: number
+  href: https://tc39.es/ecma262/#sec-number-objects
+- uid: bigint
+  name: bigint
+  fullName: bigint
+  href: https://tc39.es/ecma262/#sec-bigint-objects
+- uid: boolean
+  name: boolean
+  fullName: boolean
+  href: https://tc39.es/ecma262/#sec-boolean-objects
+- uid: object
+  name: object
+  fullName: object
+  href: https://tc39.es/ecma262/#sec-object-objects
+
+- uid: '!Array:interface'
+  name: Array
+  fullName: Array
+  href: https://tc39.es/ecma262/#sec-array-objects
+- uid: '!Int8Array:interface'
+  name: Int8Array
+  fullName: Int8Array
+  href: https://tc39.es/ecma262/#sec-typedarray-objects
+- uid: '!Uint8Array:interface'
+  name: Uint8Array
+  fullName: Uint8Array
+  href: https://tc39.es/ecma262/#sec-typedarray-objects
+- uid: '!Uint8ClampedArray:interface'
+  name: Uint8ClampedArray
+  fullName: Uint8ClampedArray
+  href: https://tc39.es/ecma262/#sec-typedarray-objects
+- uid: '!Int16Array:interface'
+  name: Int16Array
+  fullName: Int16Array
+  href: https://tc39.es/ecma262/#sec-typedarray-objects
+- uid: '!Uint16Array:interface'
+  name: Uint16Array
+  fullName: Uint16Array
+  href: https://tc39.es/ecma262/#sec-typedarray-objects
+- uid: '!Int32Array:interface'
+  name: Int32Array
+  fullName: Int32Array
+  href: https://tc39.es/ecma262/#sec-typedarray-objects
+- uid: '!Uint32Array:interface'
+  name: Uint32Array
+  fullName: Uint32Array
+  href: https://tc39.es/ecma262/#sec-typedarray-objects
+- uid: '!BigInt64Array:interface'
+  name: BigInt64Array
+  fullName: BigInt64Array
+  href: https://tc39.es/ecma262/#sec-typedarray-objects
+- uid: '!BigUint64Array:interface'
+  name: BigUint64Array
+  fullName: BigUint64Array
+  href: https://tc39.es/ecma262/#sec-typedarray-objects
+- uid: '!Float32Array:interface'
+  name: Float32Array
+  fullName: Float32Array
+  href: https://tc39.es/ecma262/#sec-typedarray-objects
+- uid: '!Float64Array:interface'
+  name: Float64Array
+  fullName: Float64Array
+  href: https://tc39.es/ecma262/#sec-typedarray-objects
+- uid: '!DataView:interface'
+  name: DataView
+  fullName: DataView
+  href: https://tc39.es/ecma262/#sec-dataview-objects
+- uid: '!Map:interface'
+  name: Map
+  fullName: Map
+  href: https://tc39.es/ecma262/#sec-map-objects
+- uid: '!Set:interface'
+  name: Set
+  fullName: Set
+  href: https://tc39.es/ecma262/#sec-set-objects
+- uid: '!WeakMap:interface'
+  name: WeakMap
+  fullName: WeakMap
+  href: https://tc39.es/ecma262/#sec-weakmap-objects
+- uid: '!WeakSet:interface'
+  name: WeakSet
+  fullName: WeakSet
+  href: https://tc39.es/ecma262/#sec-weakset-objects
+- uid: '!WeakRef:interface'
+  name: WeakRef
+  fullName: WeakRef
+  href: https://tc39.es/ecma262/#sec-weakref-objects
+- uid: '!FinalizationRegistry:interface'
+  name: FinalizationRegistry
+  fullName: FinalizationRegistry
+  href: https://tc39.es/ecma262/#sec-finalizationregistry-objects
+
 - uid: '!ArrayBuffer:interface'
   name: ArrayBuffer
-  href: https://tc39.github.io/ecma262/#sec-arraybuffer-objects
   fullName: ArrayBuffer
-- uid: SharedArrayBuffer
-  name: SharedArrayBuffer
-  href: https://tc39.github.io/ecma262/#sec-sharedarraybuffer-objects
-  fullName: SharedArrayBuffer
+  href: https://tc39.es/ecma262/#sec-arraybuffer-objects
+- uid: ArrayBuffer
+  name: ArrayBuffer
+  fullName: ArrayBuffer
+  href: https://tc39.es/ecma262/#sec-arraybuffer-objects
+
 - uid: '!SharedArrayBuffer:interface'
   name: SharedArrayBuffer
-  href: https://tc39.github.io/ecma262/#sec-sharedarraybuffer-objects
   fullName: SharedArrayBuffer
-- uid: Promise
-  name: Promise
-  fullName: Promise
-  href: https://tc39.github.io/ecma262/#sec-promise-objects
+  href: https://tc39.es/ecma262/#sec-sharedarraybuffer-objects
+- uid: SharedArrayBuffer
+  name: SharedArrayBuffer
+  fullName: SharedArrayBuffer
+  href: https://tc39.es/ecma262/#sec-sharedarraybuffer-objects
+
 - uid: '!Promise:interface'
   name: Promise
   fullName: Promise
-  href: https://tc39.github.io/ecma262/#sec-promise-objects
+  href: https://tc39.es/ecma262/#sec-promise-objects
+- uid: Promise
+  name: Promise
+  fullName: Promise
+  href: https://tc39.es/ecma262/#sec-promise-objects
 - uid: '!PromiseLike:interface'
   name: PromiseLike
   fullName: PromiseLike
-  href: https://tc39.github.io/ecma262/#sec-promise-objects
-- uid: Generator
-  name: Generator
-  fullName: Generator
-  href: https://tc39.github.io/ecma262/#sec-generator-objects
+  href: https://tc39.es/ecma262/#sec-promise-objects
+
 - uid: '!Generator:interface'
   name: Generator
   fullName: Generator
-  href: https://tc39.github.io/ecma262/#sec-generator-objects
-- uid: AsyncGenerator
-  name: AsyncGenerator
-  fullName: AsyncGenerator
-  href: https://tc39.github.io/ecma262/#sec-asyncgenerator-objects
+  href: https://tc39.es/ecma262/#sec-generator-objects
+- uid: Generator
+  name: Generator
+  fullName: Generator
+  href: https://tc39.es/ecma262/#sec-generator-objects
+
 - uid: '!AsyncGenerator:interface'
   name: AsyncGenerator
   fullName: AsyncGenerator
-  href: https://tc39.github.io/ecma262/#sec-asyncgenerator-objects
-- uid: Iterable
-  name: Iterable
-  fullName: Iterable
-  href: https://tc39.es/ecma262/#sec-iterable-interface
+  href: https://tc39.es/ecma262/#sec-asyncgenerator-objects
+- uid: AsyncGenerator
+  name: AsyncGenerator
+  fullName: AsyncGenerator
+  href: https://tc39.es/ecma262/#sec-asyncgenerator-objects
+
 - uid: '!Iterable:interface'
   name: Iterable
   fullName: Iterable
   href: https://tc39.es/ecma262/#sec-iterable-interface
-- uid: Iterator
-  name: Iterator
-  fullName: Iterator
-  href: https://tc39.es/ecma262/#sec-iterator-interface
+- uid: Iterable
+  name: Iterable
+  fullName: Iterable
+  href: https://tc39.es/ecma262/#sec-iterable-interface
+
 - uid: '!Iterator:interface'
   name: Iterator
   fullName: Iterator
   href: https://tc39.es/ecma262/#sec-iterator-interface
-- uid: AsyncIterable
-  name: AsyncIterable
-  fullName: AsyncIterable
-  href: https://tc39.es/ecma262/#sec-asynciterable-interface
+- uid: Iterator
+  name: Iterator
+  fullName: Iterator
+  href: https://tc39.es/ecma262/#sec-iterator-interface
+
 - uid: '!AsyncIterable:interface'
   name: AsyncIterable
   fullName: AsyncIterable
   href: https://tc39.es/ecma262/#sec-asynciterable-interface
-- uid: AsyncIterator
-  name: AsyncIterator
-  fullName: AsyncIterator
-  href: https://tc39.es/ecma262/#sec-asynciterator-interface
+- uid: AsyncIterable
+  name: AsyncIterable
+  fullName: AsyncIterable
+  href: https://tc39.es/ecma262/#sec-asynciterable-interface
+
 - uid: '!AsyncIterator:interface'
   name: AsyncIterator
   fullName: AsyncIterator
   href: https://tc39.es/ecma262/#sec-asynciterator-interface
-- uid: boolean
-  name: boolean
-  fullName: boolean
-  href: https://tc39.github.io/ecma262/#sec-boolean-objects
-- uid: symbol
-  name: symbol
-  fullName: symbol
-  href: https://tc39.github.io/ecma262/#sec-symbol-objects
-- uid: number
-  name: number
-  fullName: number
-  href: https://tc39.github.io/ecma262/#sec-number-objects
-- uid: bigint
-  name: bigint
-  fullName: bigint
-  href: https://tc39.github.io/ecma262/#sec-bigint-objects
-- uid: string
-  name: string
-  fullName: string
-  href: https://tc39.github.io/ecma262/#sec-string-objects
-- uid: undefined
-  name: undefined
-  fullName: undefined
-  href: https://tc39.github.io/ecma262/#sec-ecmascript-language-types-undefined-type
-- uid: 'null'
-  name: 'null'
-  fullName: 'null'
-  href: https://tc39.github.io/ecma262/#sec-ecmascript-language-types-null-type
+- uid: AsyncIterator
+  name: AsyncIterator
+  fullName: AsyncIterator
+  href: https://tc39.es/ecma262/#sec-asynciterator-interface
+
 - uid: '@esfx/cancelable!~ErrorOptions:type'
   name: ErrorOptions
   href: https://tc39.es/ecma262/#sec-installerrorcause

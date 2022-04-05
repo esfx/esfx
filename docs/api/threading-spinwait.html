@@ -84,27 +84,22 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="threading-spinwait/spinwait.html#_esfx_threading_spinwait_SpinWait_class">SpinWait</a> class, a thread synchronization primitive for use with Workers.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/threading-spinwait
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_gzcnJKzrrR">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_hAfKKQZRoy">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_gzcnJKzrrR_ts" role="tab" aria-controls="tabpanel_gzcnJKzrrR_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_hAfKKQZRoy_ts" role="tab" aria-controls="tabpanel_hAfKKQZRoy_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_gzcnJKzrrR_js" role="tab" aria-controls="tabpanel_gzcnJKzrrR_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_hAfKKQZRoy_js" role="tab" aria-controls="tabpanel_hAfKKQZRoy_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_gzcnJKzrrR_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
-import { SpinWait } from &quot;@esfx/threading-spinwait&quot;;
+<section id="tabpanel_hAfKKQZRoy_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { SpinWait } from &quot;@esfx/threading-spinwait&quot;;
 import { StructType, int32 } from &quot;@esfx/struct-type&quot;;
+import { Worker, isMainThread, workerData } from &quot;worker_threads&quot;;
 
 const SharedData = StructType([
     { name: &quot;ready&quot;, type: int32 },
@@ -137,10 +132,10 @@ else {
     worker_thread();
 }
 </code></pre></section>
-<section id="tabpanel_gzcnJKzrrR_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
-const { SpinWait } = require(&quot;@esfx/threading-spinwait&quot;);
+<section id="tabpanel_hAfKKQZRoy_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-typescript">const { SpinWait } = require(&quot;@esfx/threading-spinwait&quot;);
 const { StructType, int32 } = require(&quot;@esfx/struct-type&quot;);
+const { Worker, isMainThread, workerData } = require(&quot;worker_threads&quot;);
 
 const SharedData = StructType([
     { name: &quot;ready&quot;, type: int32 },
@@ -174,7 +169,6 @@ else {
 }
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
@@ -189,7 +183,7 @@ else {
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/threading-spinwait.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/threading-spinwait/docsrc/overwrite/threading-spinwait.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

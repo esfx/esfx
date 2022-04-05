@@ -107,7 +107,7 @@ Because the first event is initially signaled, the first operation is released i
 </li>
 </ul>
 <section id="tabpanel_B-zhg3-I9s_ts" role="tabpanel" data-tab="ts">
-<pre><code>import { AsyncAutoResetEvent } from &quot;@esfx/async-autoresetevent&quot;;
+<pre><code class="lang-typescript">import { AsyncAutoResetEvent } from &quot;@esfx/async-autoresetevent&quot;;
 import { delay } from &quot;@esfx/async-delay&quot;;
 import * as readline from &quot;readline&quot;;
 
@@ -159,7 +159,7 @@ async function asyncOperation(name: string) {
 await main();
 </code></pre></section>
 <section id="tabpanel_B-zhg3-I9s_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code>const { AsyncAutoResetEvent } = require(&quot;@esfx/async-autoresetevent&quot;);
+<pre><code class="lang-javascript">const { AsyncAutoResetEvent } = require(&quot;@esfx/async-autoresetevent&quot;);
 const { delay } = require(&quot;@esfx/async-delay&quot;);
 const readline = require(&quot;readline&quot;);
 
@@ -240,7 +240,7 @@ there are no operations currently waiting on the event, the event will remain si
     <div class="property">
       <dl class="parameter">
         <dt>initialState</dt>
-        <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></dd>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></dd>
       </dl>
       <p>
         <p>A value indicating whether to set the initial state to signaled.</p>
@@ -295,7 +295,7 @@ The event is then automatically reset.</p>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+    <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
     <p><p><code>true</code> if the operation successfully resolved a waiting Promise; otherwise, <code>false</code><!-- -->.</p>
 </p>
   </div>
@@ -347,7 +347,7 @@ The event is then automatically reset.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/packages/async-autoresetevent/docsrc/overwrite/AsyncAutoResetEvent.md/#L22" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/async-autoresetevent/docsrc/overwrite/AsyncAutoResetEvent.md/#L20" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

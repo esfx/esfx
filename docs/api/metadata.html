@@ -84,25 +84,20 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides an API for defining metadata about an object.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/metadata
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_OncAPhiysh">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_vu0gycsyJ+">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_OncAPhiysh_ts" role="tab" aria-controls="tabpanel_OncAPhiysh_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_vu0gycsyJ+_ts" role="tab" aria-controls="tabpanel_vu0gycsyJ+_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_OncAPhiysh_js" role="tab" aria-controls="tabpanel_OncAPhiysh_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_vu0gycsyJ+_js" role="tab" aria-controls="tabpanel_vu0gycsyJ+_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_OncAPhiysh_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Metadata, getClassMetadata, getMemberMetadata, getParameterMetadata } from &quot;@esfx/metadata&quot;;
+<section id="tabpanel_vu0gycsyJ+_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { Metadata, getObjectMetadata, getPropertyMetadata, getParameterMetadata } from &quot;@esfx/metadata&quot;;
 
 const Service = name =&gt; Metadata(&quot;Service&quot;, name);
 const ReturnType = type =&gt; Metadata(&quot;ReturnType&quot;, type);
@@ -117,17 +112,17 @@ class MyClass {
 }
 
 const c = new MyClass();
-getClassMetadata(MyClass, &quot;Service&quot;); // &quot;MyService&quot;
-getMemberMetadata(c, &quot;method&quot;, &quot;ReturnType&quot;); // &quot;string&quot;
+getObjectMetadata(MyClass, &quot;Service&quot;); // &quot;MyService&quot;
+getPropertyMetadata(c, &quot;method&quot;, &quot;ReturnType&quot;); // &quot;string&quot;
 getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;number&quot;
 </code></pre></section>
-<section id="tabpanel_OncAPhiysh_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const {
+<section id="tabpanel_vu0gycsyJ+_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">const {
     defineClassMetadata,
     defineMemberMetadata,
     defineParameterMetadata,
-    getClassMetadata,
-    getMemberMetadata,
+    getObjectMetadata,
+    getPropertyMetadata,
     getParameterMetadata
 } = require(&quot;@esfx/metadata&quot;);
 
@@ -142,12 +137,11 @@ defineMemberMetadata(MyClass.prototype, &quot;method&quot;, &quot;ReturnType&quo
 defineParameterMetadata(MyClass.prototype, &quot;method&quot;, 0, &quot;Type&quot;, &quot;number&quot;);
 
 const c = new MyClass();
-getClassMetadata(MyClass, &quot;Service&quot;); // &quot;MyService&quot;
-getMemberMetadata(c, &quot;method&quot;, &quot;ReturnType&quot;); // &quot;string&quot;
+getObjectMetadata(MyClass, &quot;Service&quot;); // &quot;MyService&quot;
+getPropertyMetadata(c, &quot;method&quot;, &quot;ReturnType&quot;); // &quot;string&quot;
 getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;number&quot;
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="functions">Functions
@@ -168,7 +162,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The object.</p>
@@ -223,7 +217,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -245,7 +239,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>parameterIndex</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The ordinal index of the parameter.</p>
@@ -300,7 +294,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -366,7 +360,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The object.</p>
@@ -388,7 +382,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -410,7 +404,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -432,7 +426,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>parameterIndex</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The ordinal index of the parameter.</p>
@@ -454,7 +448,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -476,7 +470,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -509,7 +503,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -531,7 +525,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -553,7 +547,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></div>
           <p>
         </div>
   
@@ -575,7 +569,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>An object.</p>
@@ -608,7 +602,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The object.</p>
@@ -652,7 +646,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The object.</p>
@@ -685,7 +679,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -707,7 +701,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></div>
           <p>
         </div>
   
@@ -729,7 +723,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>An object.</p>
@@ -762,7 +756,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The object.</p>
@@ -806,7 +800,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The object.</p>
@@ -839,7 +833,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -861,7 +855,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>parameterIndex</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The ordinal index of the parameter.</p>
@@ -905,7 +899,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -927,7 +921,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>parameterIndex</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The ordinal index of the parameter.</p>
@@ -960,7 +954,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -1015,7 +1009,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -1059,7 +1053,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -1081,7 +1075,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>parameterIndex</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The ordinal index of the parameter.</p>
@@ -1125,7 +1119,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -1147,7 +1141,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>parameterIndex</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The ordinal index of the parameter.</p>
@@ -1180,7 +1174,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -1235,7 +1229,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -1279,7 +1273,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The object.</p>
@@ -1301,7 +1295,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -1323,7 +1317,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The object.</p>
@@ -1345,7 +1339,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -1367,7 +1361,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -1389,7 +1383,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>parameterIndex</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The ordinal index of the parameter.</p>
@@ -1411,7 +1405,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -1433,7 +1427,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -1466,7 +1460,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -1488,7 +1482,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -1510,7 +1504,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>parameterIndex</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The ordinal index of the parameter.</p>
@@ -1532,7 +1526,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -1554,7 +1548,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
           <div class="property">
             <dl class="parameter">
               <dt>target</dt>
-              <dd><span class="xref">object</span></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-object-objects">object</a></dd>
             </dl>
             <p>
               <p>The target object.</p>
@@ -1587,7 +1581,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.github.io/ecma262/#sec-boolean-objects">boolean</a></div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
           <p>
         </div>
   
@@ -1669,7 +1663,7 @@ getParameterMetadata(c, &quot;method&quot;, 0, &quot;Type&quot;); // &quot;numbe
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/metadata.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/metadata/docsrc/overwrite/metadata.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

@@ -84,11 +84,6 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>The <code>@esfx/async-deferred</code> package provides the <a class="xref" href="async-deferred/deferred.html#_esfx_async_deferred_Deferred_class">Deferred</a> class, an async coordination primitive.</p>
-<h3 id="overview">Overview</h3>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
 <h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/async-deferred
 </code></pre><h3 id="usage">Usage</h3>
@@ -102,7 +97,7 @@
 </li>
 </ul>
 <section id="tabpanel_SBZCGKq-5A_ts" role="tabpanel" data-tab="ts">
-<pre><code>import { Deferred } from &quot;@esfx/async-deferred&quot;;
+<pre><code class="lang-typescript">import { Deferred } from &quot;@esfx/async-deferred&quot;;
 
 const deferred = new Deferred&lt;number&gt;();
 
@@ -116,7 +111,7 @@ deferred.reject(new Error());
 deferred.promise;
 </code></pre></section>
 <section id="tabpanel_SBZCGKq-5A_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code>const { Deferred } = require(&quot;@esfx/async-deferred&quot;);
+<pre><code class="lang-javascript">const { Deferred } = require(&quot;@esfx/async-deferred&quot;);
 
 const deferred = new Deferred();
 

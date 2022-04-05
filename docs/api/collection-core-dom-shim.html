@@ -84,66 +84,79 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides a global shim to add default <a class="xref" href="collection-core.html">@esfx/collection-core</a> behaviors to global DOM objects.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/collection-core-dom-shim
-</code></pre><h2 id="usage">Usage</h2>
-<p>The global shim adds a default implementation the collection interfaces to the following global DOM objects:</p>
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_T4rJIkN2Zm">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_T4rJIkN2Zm_ts" role="tab" aria-controls="tabpanel_T4rJIkN2Zm_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_T4rJIkN2Zm_js" role="tab" aria-controls="tabpanel_T4rJIkN2Zm_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_T4rJIkN2Zm_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import &quot;@esfx/collection-core-dom-shim&quot;; // triggers global-scope side effects
+import { ReadonlyIndexedCollection } from &quot;@esfx/collection-core&quot;;
+
+document.forms[ReadonlyIndexedCollection.size]; // gets the number of forms in the document
+</code></pre></section>
+<section id="tabpanel_T4rJIkN2Zm_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">require(&quot;@esfx/collection-core-dom-shim&quot;); // triggers global-scope side effects
+const { ReadonlyIndexedCollection } = require(&quot;@esfx/collection-core&quot;);
+
+document.forms[ReadonlyIndexedCollection.size]; // gets the number of forms in the document
+</code></pre></section>
+</div>
+<h3 id="remarks">Remarks</h3>
+<p>This shim adds a default implementation of the collection interfaces to the following global DOM objects:</p>
 <ul>
-<li><code>AudioParamMap</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AudioParamMap">AudioParamMap</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection</a></li>
 </ul>
 </li>
-<li><code>AudioTrackList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AudioTrackList">AudioTrackList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>CSSRuleList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/CSSRuleList">CSSRuleList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>CSSStyleDeclaration</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration">CSSStyleDeclaration</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>ClientRectList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMRectList">DOMRectList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>DOMRectList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMStringList">DOMStringList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>DOMStringList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/DOMTokenList">DOMTokenList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>DOMTokenList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItemList">DataTransferItemList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>DataTransferItemList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/FileList">FileList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>FileList</code> implements:<ul>
-<li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
-<li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
-</ul>
-</li>
-<li><code>FormData</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">FormData</a> implements:<ul>
 <li><a class="xref" href="collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection_interface">KeyedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection</a></li>
 </ul>
@@ -163,149 +176,126 @@
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>HTMLFormElement</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement">HTMLFormElement</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>HTMLSelectElement</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement">HTMLSelectElement</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>Headers</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/Headers">Headers</a> implements:<ul>
 <li><a class="xref" href="collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection_interface">KeyedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection</a></li>
 </ul>
 </li>
-<li><code>MediaKeyStatusMap</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/MediaKeyStatusMap">MediaKeyStatusMap</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection</a></li>
 </ul>
 </li>
-<li><code>MediaList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/MediaList">MediaList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>MimeTypeArray</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/MimeTypeArray">MimeTypeArray</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>NamedNodeMap</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/NamedNodeMap">NamedNodeMap</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>NodeList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList">NodeList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>Plugin</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/Plugin">Plugin</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>PluginArray</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/PluginArray">PluginArray</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>RTCStatsReport</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/RTCStatsReport">RTCStatsReport</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection</a></li>
 </ul>
 </li>
-<li><code>SVGLengthList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/SVGLengthList">SVGLengthList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>SVGNumberList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/SVGNumberList">SVGNumberList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>SVGStringList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/SVGStringList">SVGStringList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>SourceBufferList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/SourceBufferList">SourceBufferList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>SpeechGrammarList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechGrammarList">SpeechGrammarList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>SpeechRecognitionResult</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognitionResult">SpeechRecognitionResult</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>SpeechRecognitionResultList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognitionResultList">SpeechRecognitionResultList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>StyleSheetList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/StyleSheetList">StyleSheetList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>TextTrackCueList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/TextTrackCueList">TextTrackCueList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>TextTrackList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/TextTrackList">TextTrackList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>TouchList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/TouchList">TouchList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
-<li><code>URLSearchParams</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams">URLSearchParams</a> implements:<ul>
 <li><a class="xref" href="collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection_interface">KeyedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection</a></li>
 </ul>
 </li>
-<li><code>VideoTrackList</code> implements:<ul>
+<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/VideoTrackList">VideoTrackList</a> implements:<ul>
 <li><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></li>
 <li><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></li>
 </ul>
 </li>
 </ul>
-<p>To install the global shim, import <a class="xref" href="collection-core-dom-shim.html">@esfx/collection-core-dom-shim</a>:</p>
-<div class="tabGroup" id="tabgroup_KkQQApsy0J">
-<ul role="tablist">
-<li role="presentation">
-<a href="#tabpanel_KkQQApsy0J_ts" role="tab" aria-controls="tabpanel_KkQQApsy0J_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
-</li>
-<li role="presentation">
-<a href="#tabpanel_KkQQApsy0J_js" role="tab" aria-controls="tabpanel_KkQQApsy0J_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
-</li>
-</ul>
-<section id="tabpanel_KkQQApsy0J_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import &quot;@esfx/collection-core-dom-shim&quot;; // triggers global-scope side effects
-import { ReadonlyIndexedCollection } from &quot;@esfx/collection-core&quot;;
-
-document.anchors[ReadonlyIndexedCollection.size]; // gets the number of anchors in the document
-</code></pre></section>
-<section id="tabpanel_KkQQApsy0J_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">require(&quot;@esfx/collection-core-dom-shim&quot;); // triggers global-scope side effects
-const { ReadonlyIndexedCollection } = require(&quot;@esfx/collection-core&quot;);
-
-document.anchors[ReadonlyIndexedCollection.size]; // gets the number of anchors in the document
-</code></pre></section>
-</div>
 </div>
   <div class="markdown level0 remarks"></div>
 </article>
@@ -316,7 +306,7 @@ document.anchors[ReadonlyIndexedCollection.size]; // gets the number of anchors 
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/collection-core-dom-shim.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/collection-core-dom-shim/docsrc/overwrite/collection-core-dom-shim.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

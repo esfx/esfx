@@ -84,47 +84,56 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides a low-level Symbol-based API for defining common collection behaviors.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/collection-core
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_1L0Cs1o5q2">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_JrnvAdsTmf">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_1L0Cs1o5q2_ts" role="tab" aria-controls="tabpanel_1L0Cs1o5q2_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_JrnvAdsTmf_ts" role="tab" aria-controls="tabpanel_JrnvAdsTmf_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_1L0Cs1o5q2_js" role="tab" aria-controls="tabpanel_1L0Cs1o5q2_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_JrnvAdsTmf_js" role="tab" aria-controls="tabpanel_JrnvAdsTmf_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_1L0Cs1o5q2_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Collection } from &quot;@esfx/collection-core&quot;;
+<section id="tabpanel_JrnvAdsTmf_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { Collection } from &quot;@esfx/collection-core&quot;;
 
 class MyCollection&lt;T&gt; {
     private _items = new Set&lt;T&gt;();
 
     // Your implementation
-    get count() { return this._items.size; }
-    contains(value): T { return this._items.has(value); }
-    add(value: T) { this._items.add(value); }
-    remove(value: T) { return this._items.delete(value); }
-    clear() { this._items.clear(); }
+    get count() {
+        return this._items.size;
+    }
+
+    contains(value: T) {
+        return this._items.has(value);
+    }
+
+    add(value: T) {
+        this._items.add(value);
+    }
+
+    remove(value: T) {
+        return this._items.delete(value);
+    }
+
+    clear() {
+        this._items.clear();
+    }
 
     // Implement the `Collection` interface for cross-library consistency
     get [Collection.size]() { return this.count; }
-    [Collection.has](value) { return this.contains(value); }
-    [Collection.add](value) { this.add(value); }
-    [Collection.delete](value) { return this.remove(value); }
+    [Collection.has](value: T) { return this.contains(value); }
+    [Collection.add](value: T) { this.add(value); }
+    [Collection.delete](value: T) { return this.remove(value); }
     [Collection.clear]() { this.clear(); }
     [Symbol.iterator]() { return this._items.values(); }
 }
 </code></pre></section>
-<section id="tabpanel_1L0Cs1o5q2_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Collection } = require(&quot;@esfx/collection-core&quot;);
+<section id="tabpanel_JrnvAdsTmf_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">const { Collection } = require(&quot;@esfx/collection-core&quot;);
 
 class MyCollection {
     constructor() {
@@ -132,11 +141,25 @@ class MyCollection {
     }
 
     // Your implementation
-    get count() { return this._items.size; }
-    contains(value) { return this._items.has(value); }
-    add(value) { this._items.add(value); }
-    remove(value) { return this._items.delete(value); }
-    clear() { this._items.clear(); }
+    get count() {
+        return this._items.size;
+    }
+
+    contains(value) {
+        return this._items.has(value);
+    }
+
+    add(value) {
+        this._items.add(value);
+    }
+
+    remove(value) {
+        return this._items.delete(value);
+    }
+
+    clear() {
+        this._items.clear();
+    }
 
     // Implement the `Collection` interface for cross-library consistency
     get [Collection.size]() { return this.count; }
@@ -148,7 +171,6 @@ class MyCollection {
 }
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces
@@ -215,7 +237,7 @@ class MyCollection {
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/collection-core.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/collection-core/docsrc/overwrite/collection-core.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

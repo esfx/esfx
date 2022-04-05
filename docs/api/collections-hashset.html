@@ -84,25 +84,20 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="collections-hashset/hashset.html#_esfx_collections_hashset_HashSet_class">HashSet</a> class, a collection class that utilizes <a class="xref" href="collection-core.html">@esfx/collection-core</a> and <a class="xref" href="equatable.html">@esfx/equatable</a>.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/collections-hashset
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_qgbZ98B5dA">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_fEKeK0lPqE">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_qgbZ98B5dA_ts" role="tab" aria-controls="tabpanel_qgbZ98B5dA_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_fEKeK0lPqE_ts" role="tab" aria-controls="tabpanel_fEKeK0lPqE_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_qgbZ98B5dA_js" role="tab" aria-controls="tabpanel_qgbZ98B5dA_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_fEKeK0lPqE_js" role="tab" aria-controls="tabpanel_fEKeK0lPqE_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_qgbZ98B5dA_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { HashSet } from &quot;@esfx/collections-hashset&quot;;
+<section id="tabpanel_fEKeK0lPqE_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { HashSet } from &quot;@esfx/collections-hashset&quot;;
 import { Equatable, Equaler, Comparable, Comparer } from &quot;@esfx/equatable&quot;;
 
 class Person {
@@ -141,15 +136,15 @@ const obj2 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
 const set = new Set&lt;Person&gt;(); // native ECMAScript Set
 set.add(obj1);
 set.add(obj2);
-set.length; // 2
+set.size; // 2
 
 const hashSet = new HashSet&lt;Person&gt;();
 hashSet.add(obj1);
 hashSet.add(obj2);
-hashSet.length; // 1
+hashSet.size; // 1
 </code></pre></section>
-<section id="tabpanel_qgbZ98B5dA_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { HashSet } = require(&quot;@esfx/collections-hashset&quot;);
+<section id="tabpanel_fEKeK0lPqE_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-javascript">const { HashSet } = require(&quot;@esfx/collections-hashset&quot;);
 const { Equatable, Equaler, Comparable, Comparer } = require(&quot;@esfx/equatable&quot;);
 
 class Person {
@@ -186,15 +181,14 @@ const obj2 = new Person(&quot;Bob&quot;, &quot;Clark&quot;);
 const set = new Set(); // native ECMAScript Set
 set.add(obj1);
 set.add(obj2);
-set.length; // 2
+set.size; // 2
 
 const hashSet = new HashSet();
 hashSet.add(obj1);
 hashSet.add(obj2);
-hashSet.length; // 1
+hashSet.size; // 1
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
@@ -213,7 +207,7 @@ hashSet.length; // 1
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/collections-hashset.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/collections-hashset/docsrc/overwrite/collections-hashset.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

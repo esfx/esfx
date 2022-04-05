@@ -84,37 +84,31 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="threading-sleep.html#_esfx_threading_sleep_sleep_function_1_">sleep(ms)</a> function which causes the current execution thread to sleep until the timeout expires.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/threading-sleep
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_yU3yZHfn0b">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_SQnGxnslc8">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_yU3yZHfn0b_ts" role="tab" aria-controls="tabpanel_yU3yZHfn0b_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_SQnGxnslc8_ts" role="tab" aria-controls="tabpanel_SQnGxnslc8_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_yU3yZHfn0b_js" role="tab" aria-controls="tabpanel_yU3yZHfn0b_js" data-tab="js" tabindex="-1">JavaScript</a>
+<a href="#tabpanel_SQnGxnslc8_js" role="tab" aria-controls="tabpanel_SQnGxnslc8_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_yU3yZHfn0b_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { sleep } from &quot;@esfx/threading-sleep&quot;;
+<section id="tabpanel_SQnGxnslc8_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { sleep } from &quot;@esfx/threading-sleep&quot;;
 
 // block the main thread for half a second
 sleep(500);
 </code></pre></section>
-<section id="tabpanel_yU3yZHfn0b_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { sleep } = require(&quot;@esfx/threading-sleep&quot;);
+<section id="tabpanel_SQnGxnslc8_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-typescript">const { sleep } = require(&quot;@esfx/threading-sleep&quot;);
 
 // block the main thread for half a second
 sleep(500);
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="functions">Functions
@@ -135,7 +129,7 @@ sleep(500);
           <div class="property">
             <dl class="parameter">
               <dt>ms</dt>
-              <dd><a class="xref" href="https://tc39.github.io/ecma262/#sec-number-objects">number</a></dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
             </dl>
             <p>
               <p>The number of milliseconds to suspend the thread. Must be a finite, positive value, or zero.</p>
@@ -160,7 +154,7 @@ sleep(500);
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/threading-sleep.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/threading-sleep/docsrc/overwrite/threading-sleep.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

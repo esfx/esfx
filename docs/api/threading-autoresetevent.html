@@ -84,27 +84,22 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides the <a class="xref" href="threading-autoresetevent/autoresetevent.html#_esfx_threading_autoresetevent_AutoResetEvent_class">AutoResetEvent</a> class, a threading primitive for use with Workers.</p>
-<h2 id="overview">Overview</h2>
-<ul>
-<li><a href="#installation">Installation</a></li>
-<li><a href="#usage">Usage</a></li>
-</ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/threading-autoresetevent
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_pdAc9uqftY">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_Mge7ki0cKJ">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_pdAc9uqftY_ts" role="tab" aria-controls="tabpanel_pdAc9uqftY_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_Mge7ki0cKJ_ts" role="tab" aria-controls="tabpanel_Mge7ki0cKJ_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_pdAc9uqftY_js" role="tab" aria-controls="tabpanel_pdAc9uqftY_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_Mge7ki0cKJ_js" role="tab" aria-controls="tabpanel_Mge7ki0cKJ_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_pdAc9uqftY_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
-import { createInterface } from &quot;readline&quot;;
+<section id="tabpanel_Mge7ki0cKJ_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { createInterface } from &quot;readline&quot;;
 import { AutoResetEvent } from &quot;@esfx/threading-autoresetevent&quot;;
+import { Worker, isMainThread, parentPort, workerData } from &quot;worker_threads&quot;;
 
 function worker_thread() {
     const workerReadyEvent = new AutoResetEvent(workerData[0]);
@@ -116,7 +111,7 @@ function worker_thread() {
     let count = 0;
     while (true) {
         // wait for the main thread to set &#39;continueEvent&#39;
-        continueEvent.wait();
+        continueEvent.waitOne();
         parentPort.postMessage(`counter=${count++}`);
     }
 }
@@ -132,7 +127,7 @@ function main() {
     });
 
     // wait for the worker to tell us it is ready
-    workerReadyEvent.wait();
+    workerReadyEvent.waitOne();
 
     console.log(&quot;worker is ready. Press ENTER to continue the worker...&quot;);
     worker.on(&quot;message&quot;, message =&gt; {
@@ -153,10 +148,10 @@ else {
     worker_thread();
 }
 </code></pre></section>
-<section id="tabpanel_pdAc9uqftY_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
-const { createInterface } = require(&quot;readline&quot;);
+<section id="tabpanel_Mge7ki0cKJ_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-typescript">const { createInterface } = require(&quot;readline&quot;);
 const { AutoResetEvent } = require(&quot;@esfx/threading-autoresetevent&quot;);
+const { Worker, isMainThread, parentPort, workerData } = require(&quot;worker_threads&quot;);
 
 function worker_thread() {
     const workerReadyEvent = new AutoResetEvent(workerData[0]);
@@ -168,7 +163,7 @@ function worker_thread() {
     let count = 0;
     while (true) {
         // wait for the main thread to set &#39;continueEvent&#39;
-        continueEvent.wait();
+        continueEvent.waitOne();
         parentPort.postMessage(`counter=${count++}`);
     }
 }
@@ -184,7 +179,7 @@ function main() {
     });
 
     // wait for the worker to tell us it is ready
-    workerReadyEvent.wait();
+    workerReadyEvent.waitOne();
 
     console.log(&quot;worker is ready. Press ENTER to continue the worker...&quot;);
     worker.on(&quot;message&quot;, message =&gt; {
@@ -206,7 +201,6 @@ else {
 }
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
@@ -221,7 +215,7 @@ else {
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/threading-autoresetevent.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/threading-autoresetevent/docsrc/overwrite/threading-autoresetevent.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

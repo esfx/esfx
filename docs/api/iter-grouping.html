@@ -83,7 +83,43 @@
   <h1 id="_esfx_iter_grouping_" data-uid="@esfx/iter-grouping!" class="text-break">Package @esfx/iter-grouping
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 conceptual"><p>An API for describing grouped iterables.</p>
+<h3 id="installation">Installation</h3>
+<pre><code class="lang-sh">npm i @esfx/iter-grouping
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_9-wgc1tgF+">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_9-wgc1tgF+_ts" role="tab" aria-controls="tabpanel_9-wgc1tgF+_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_9-wgc1tgF+_js" role="tab" aria-controls="tabpanel_9-wgc1tgF+_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_9-wgc1tgF+_ts" role="tabpanel" data-tab="ts">
+<pre><code class="lang-typescript">import { groupBy } from &quot;@esfx/iter-fn&quot;;
+import { Grouping } from &quot;@esfx/iter-grouping&quot;;
+
+const people = [{ familyName: &quot;Smith&quot;, givenName: &quot;Alice&quot; }, { familyName: &quot;Smith&quot;, givenName: &quot;Bob&quot; }];
+for (const group of groupBy(people, person =&gt; person.familyName)) {
+    group.key; // &quot;Smith&quot;
+    group.values; // Iterable of &quot;Alice&quot;, &quot;Bob&quot;
+    group instanceof Grouping; // true
+}
+</code></pre></section>
+<section id="tabpanel_9-wgc1tgF+_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code class="lang-typescript">const { groupBy } = require(&quot;@esfx/iter-fn&quot;);
+const { Grouping } = require(&quot;@esfx/iter-grouping&quot;);
+
+const people = [{ familyName: &quot;Smith&quot;, givenName: &quot;Alice&quot; }, { familyName: &quot;Smith&quot;, givenName: &quot;Bob&quot; }];
+for (const group of groupBy(people, person =&gt; person.familyName)) {
+    group.key; // &quot;Smith&quot;
+    group.values; // Iterable of &quot;Alice&quot;, &quot;Bob&quot;
+    group instanceof Grouping; // true
+}
+</code></pre></section>
+</div>
+</div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
@@ -99,6 +135,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/iter-grouping/docsrc/overwrite/iter-grouping.md/#L2" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
