@@ -84,25 +84,25 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>The <code>@esfx/async-semaphore</code> package provides the <a class="xref" href="async-semaphore/asyncsemaphore.html#_esfx_async_semaphore_AsyncSemaphore_class">AsyncSemaphore</a> class, an async coordination primitive.</p>
-<h2 id="overview">Overview</h2>
+<h3 id="overview">Overview</h3>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
 </ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/async-semaphore
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_n7ODA63E91">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_P2KVjlI10b">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_n7ODA63E91_ts" role="tab" aria-controls="tabpanel_n7ODA63E91_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_P2KVjlI10b_ts" role="tab" aria-controls="tabpanel_P2KVjlI10b_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_n7ODA63E91_js" role="tab" aria-controls="tabpanel_n7ODA63E91_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_P2KVjlI10b_js" role="tab" aria-controls="tabpanel_P2KVjlI10b_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_n7ODA63E91_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { AsyncSemaphore } from &quot;@esfx/async-semaphore&quot;;
+<section id="tabpanel_P2KVjlI10b_ts" role="tabpanel" data-tab="ts">
+<pre><code>import { AsyncSemaphore } from &quot;@esfx/async-semaphore&quot;;
 
 // create a semaphore that allows one participant
 const semaphore = new AsyncSemaphore(1);
@@ -130,8 +130,8 @@ async function updateResource(updates: UpdateObject) {
     }
 }
 </code></pre></section>
-<section id="tabpanel_n7ODA63E91_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { AsyncSemaphore } = require(&quot;@esfx/async-semaphore&quot;);
+<section id="tabpanel_P2KVjlI10b_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code>const { AsyncSemaphore } = require(&quot;@esfx/async-semaphore&quot;);
 
 // create a semaphore that allows one participant
 const semaphore = new AsyncSemaphore(1);
@@ -160,7 +160,6 @@ async function updateResource(updates) {
 }
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
@@ -177,7 +176,7 @@ or pool of resources.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/async-semaphore.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/async-semaphore/docsrc/overwrite/async-semaphore.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

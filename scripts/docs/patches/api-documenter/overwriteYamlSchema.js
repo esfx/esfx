@@ -5,6 +5,7 @@ const { YamlDocumenter } = require("@microsoft/api-documenter/lib/documenters/Ya
 let modifiedSchema;
 
 const prev_writeYamlFile = YamlDocumenter.prototype._writeYamlFile;
+
 YamlDocumenter.prototype._writeYamlFile = function (dataObject, filePath, yamlMimeType, schema) {
     if (schema) {
         if (!modifiedSchema) {

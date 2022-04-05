@@ -7,6 +7,9 @@
  * @param {boolean} options.renameTsSymbolicNames
  * @param {boolean} options.disableConvertToSDP
  * @param {boolean} options.documentAliases
+ * @param {boolean} options.documentClassInterfaceSyntax
+ * @param {boolean} options.documentParent
+ * @param {boolean} options.documentApiNames
  * @param {boolean} options.overwriteYamlSchema
  */
 module.exports = function(options) {
@@ -17,5 +20,8 @@ module.exports = function(options) {
     if (options.renameTsSymbolicNames) require("./renameTsSymbolicNames");
     if (options.disableConvertToSDP) require("./disableConvertToSDP");
     if (options.documentAliases) require("./documentAliases");
+    if (options.documentClassInterfaceSyntax) require("./documentClassInterfaceSyntax");
+    if (options.documentParent) require("./documentParent");
+    if (options.documentApiNames) require("./documentApiNames");
     if (options.overwriteYamlSchema) require("./overwriteYamlSchema");
 };

@@ -88,6 +88,140 @@
 single waiting asynchronous operation.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare class AsyncAutoResetEvent </code></pre>
+  </div>
+  <h3 id="_esfx_async_autoresetevent_AsyncAutoResetEvent_class_examples">Examples</h3>
+  <p>The following example shows how to use <a class="xref" href="asyncautoresetevent.html#_esfx_async_autoresetevent_AsyncAutoResetEvent_class">AsyncAutoResetEvent</a> to release one asynchronous operation at a time whenever the user presses <strong>Enter</strong>.
+Because the first event is initially signaled, the first operation is released immediately. This resets the signaled state, causing the remaining operations to pause until the event is once again signaled.</p>
+<div class="NOTE"><h5>Note</h5><p>The following example is derived from <a href="https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0#examples">https://docs.microsoft.com/en-us/dotnet/api/system.threading.autoresetevent?view=net-6.0#examples</a></p>
+</div>
+<div class="tabGroup" id="tabgroup_B-zhg3-I9s">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_B-zhg3-I9s_ts" role="tab" aria-controls="tabpanel_B-zhg3-I9s_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_B-zhg3-I9s_js" role="tab" aria-controls="tabpanel_B-zhg3-I9s_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_B-zhg3-I9s_ts" role="tabpanel" data-tab="ts">
+<pre><code>import { AsyncAutoResetEvent } from &quot;@esfx/async-autoresetevent&quot;;
+import { delay } from &quot;@esfx/async-delay&quot;;
+import * as readline from &quot;readline&quot;;
+
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+const question = (text: string) =&gt; new Promise&lt;string&gt;(resolve =&gt; rl.question(text, resolve));
+
+const first = new AsyncAutoResetEvent(/*initialState*/ true);
+const second = new AsyncAutoResetEvent(/*initialState*/ false);
+
+async function main() {
+    await question(`Press Enter to start three asynchronous operations.`);
+
+    const promises: Promise&lt;void&gt;[] = [];
+    for (let i = 0; i &lt; 3; i++) {
+        promises.push(asyncOperation(`operation #${i + 1}`));
+    }
+
+    await delay(250);
+
+    for (let i = 0; i &lt; 2; i++) {
+        await question(`Press Enter to release an operation.`);
+        first.set();
+        await delay(250);
+    }
+
+    console.log(&quot;All operations are now waiting on the second event.&quot;);
+
+    for (let i = 0; i &lt; 3; i++) {
+        await question(`Press Enter to release an operation.`);
+        second.set();
+        await delay(250);
+    }
+
+    await Promise.all(promises);
+}
+
+async function asyncOperation(name: string) {
+    console.log(`${name} is waiting on the first event.`);
+    await first.wait();
+    console.log(`${name} was released from the first event.`);
+
+    console.log(`${name} is waiting on the second event.`);
+    await second.wait();
+    console.log(`${name} was released from the second event.`);
+
+    console.log(`${name} is complete.`);
+}
+
+await main();
+</code></pre></section>
+<section id="tabpanel_B-zhg3-I9s_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code>const { AsyncAutoResetEvent } = require(&quot;@esfx/async-autoresetevent&quot;);
+const { delay } = require(&quot;@esfx/async-delay&quot;);
+const readline = require(&quot;readline&quot;);
+
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+const question = (text) =&gt; new Promise(resolve =&gt; rl.question(text, resolve));
+
+const first = new AsyncAutoResetEvent(/*initialState*/ true);
+const second = new AsyncAutoResetEvent(/*initialState*/ false);
+
+async function main() {
+    await question(`Press Enter to start three asynchronous operations.`);
+
+    const promises = [];
+    for (let i = 0; i &lt; 3; i++) {
+        promises.push(asyncOperation(`operation #${i + 1}`));
+    }
+
+    await delay(250);
+
+    for (let i = 0; i &lt; 2; i++) {
+        await question(`Press Enter to release an operation.`);
+        first.set();
+        await delay(250);
+    }
+
+    console.log(&quot;All operations are now waiting on the second event.&quot;);
+
+    for (let i = 0; i &lt; 3; i++) {
+        await question(`Press Enter to release an operation.`);
+        second.set();
+        await delay(250);
+    }
+
+    await Promise.all(promises);
+}
+
+async function asyncOperation(name) {
+    console.log(`${name} is waiting on the first event.`);
+    await first.wait();
+    console.log(`${name} was released from the first event.`);
+
+    console.log(`${name} is waiting on the second event.`);
+    await second.wait();
+    console.log(`${name} was released from the second event.`);
+
+    console.log(`${name} is complete.`);
+}
+
+main().catch(e =&gt; {
+    console.error(e);
+    process.exit(-1);
+});
+</code></pre></section>
+</div>
+
+  <h3 id="_esfx_async_autoresetevent_AsyncAutoResetEvent_class_remarks">Remarks</h3>
+  <div class="markdown level0 remarks"><p>The <a class="xref" href="asyncautoresetevent.html#_esfx_async_autoresetevent_AsyncAutoResetEvent_class">AsyncAutoResetEvent</a> and <a class="xref" href="../async-manualresetevent/asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_class">AsyncManualResetEvent</a> classes are used to provide signaling between concurrent asynchronous operations.</p>
+<p>An asynchronous operation can wait until an event is signaled by awaiting the result of <a class="xref" href="asyncautoresetevent.html#_esfx_async_autoresetevent_AsyncAutoResetEvent_wait_member_1_">wait(cancelable)</a>. This causes the operation to pause until the event
+becomes signaled. Calling <a class="xref" href="asyncautoresetevent.html#_esfx_async_autoresetevent_AsyncAutoResetEvent_set_member_1_">set()</a> will signal and release a single waiting operation, immediately returning the event to the non-signaled state. If 
+there are no operations currently waiting on the event, the event will remain signaled until the next call to <a class="xref" href="asyncautoresetevent.html#_esfx_async_autoresetevent_AsyncAutoResetEvent_wait_member_1_">wait(cancelable)</a>.</p>
+<p>Calling <a class="xref" href="asyncautoresetevent.html#_esfx_async_autoresetevent_AsyncAutoResetEvent_reset_member_1_">reset()</a> resets the event to the non-signaled state.</p>
+</div>
   <h3 id="constructors">Constructors
   </h3>
   
@@ -212,6 +346,9 @@ The event is then automatically reset.</p>
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/async-autoresetevent/docsrc/overwrite/AsyncAutoResetEvent.md/#L22" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

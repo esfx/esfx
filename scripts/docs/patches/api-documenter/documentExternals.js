@@ -4,8 +4,8 @@ const jsyaml = require("js-yaml");
 const { YamlDocumenter } = require("@microsoft/api-documenter/lib/documenters/YamlDocumenter");
 
 const externalTypes = new Set();
-const domYaml = jsyaml.load(fs.readFileSync(path.resolve(__dirname, "../../../../docs-sources/xrefmap-dom.yml")));
-const ecma262Yaml = jsyaml.load(fs.readFileSync(path.resolve(__dirname, "../../../../docs-sources/xrefmap-ecma262.yml")));
+const domYaml = jsyaml.load(fs.readFileSync(path.resolve(__dirname, "../../../../docsrc/xrefmap-dom.yml")));
+const ecma262Yaml = jsyaml.load(fs.readFileSync(path.resolve(__dirname, "../../../../docsrc/xrefmap-ecma262.yml")));
 
 for (const yaml of [domYaml, ecma262Yaml]) {
     for (const ref of yaml.references) {
@@ -17,10 +17,11 @@ function isExternalType(type) {
     return externalTypes.has(type);
 }
 
-const saved_renderType = YamlDocumenter.prototype._renderType;
+const prev_renderType = YamlDocumenter.prototype._renderType;
+
 YamlDocumenter.prototype._renderType = function(contextUid, typeExcerpt) {
     const typeName = typeExcerpt.text.trim();
-    const uid = saved_renderType.call(this, contextUid, typeExcerpt);
+    const uid = prev_renderType.call(this, contextUid, typeExcerpt);
     if (typeName === uid && isExternalType(typeName)) {
         const yamlReferences = this._ensureYamlReferences();
         const existingUid = yamlReferences.typeNameToUid.get(typeName);

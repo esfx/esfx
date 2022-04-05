@@ -85,6 +85,32 @@
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+        <h4><a class="xref" href="fn/defaultmemoizecache.html#_esfx_fn_DefaultMemoizeCache_class">DefaultMemoizeCache</a></h4>
+        <section><p>The default implementation of a <a class="xref" href="fn/memoizecache.html#_esfx_fn_MemoizeCache_interface">MemoizeCache</a><!-- -->, as used by <a class="xref" href="fn.html#_esfx_fn_memoize_function_1_">memoize()</a><!-- -->.</p>
+<p>Non-primitive keys have a lifetime scoped to both the life of the key (using a <code>WeakMap</code><!-- -->) and
+the life of the cache. Results associated with a non-primitive key can be garbage collected if
+the key is garbage collected.</p>
+<p>Primitive keys have a lifetime scoped to the life of the cache, so results associated with a
+primitive key can only be garbage collected if the cache is garbage collected.</p>
+</section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+        <h4><a class="xref" href="fn/memoizecache.html#_esfx_fn_MemoizeCache_interface">MemoizeCache</a></h4>
+        <section><p>Describes the minimum implementation of a cache for <a class="xref" href="fn.html#_esfx_fn_memoize_function_1_">memoize()</a><!-- -->.</p>
+</section>
+        <h4><a class="xref" href="fn/memoizecacheentry.html#_esfx_fn_MemoizeCacheEntry_interface">MemoizeCacheEntry</a></h4>
+        <section><p>Describes the minimum implementation of a cache entry for a <a class="xref" href="fn/memoizecache.html#_esfx_fn_MemoizeCache_interface">MemoizeCache</a><!-- -->.</p>
+</section>
+        <h4><a class="xref" href="fn/memoizecachefulfilledresult.html#_esfx_fn_MemoizeCacheFulfilledResult_interface">MemoizeCacheFulfilledResult</a></h4>
+        <section><p>Describes a cache result that has a value.</p>
+</section>
+        <h4><a class="xref" href="fn/memoizecacherejectedresult.html#_esfx_fn_MemoizeCacheRejectedResult_interface">MemoizeCacheRejectedResult</a></h4>
+        <section><p>Describes a cache result that has an exception.</p>
+</section>
+        <h4><a class="xref" href="fn/memoizeoptions.html#_esfx_fn_MemoizeOptions_interface">MemoizeOptions</a></h4>
+        <section></section>
     <h3 id="functions">Functions
   </h3>
   
@@ -3341,7 +3367,7 @@ fn({ sayHello(name) { console.log(`Hello, ${name}!`); } }); // prints: &quot;Hel
   
   
         <h4 id="_esfx_fn_lazy_function_1_" data-uid="@esfx/fn!lazy:function(1)">lazy(factory, args)</h4>
-              <div class="markdown level1 summary"><p>Returns a function that will evaluate once when called will subsequently always return the same result.</p>
+              <div class="markdown level1 summary"><p>Returns a function that will evaluate once when called and will subsequently always return the same result.</p>
 <pre><code class="lang-ts">let count = 0;
 const fn = lazy(() =&gt; count++);
 fn(); // 0
@@ -3351,13 +3377,13 @@ count; // 1
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare function lazy&lt;T, A extends unknown[]&gt;(factory: (...args: A) =&gt; T, ...args: A): () =&gt; T;</code></pre>
+          <pre><code class="lang-typeScript hljs">export declare function lazy&lt;A extends unknown[], T&gt;(factory: (...args: A) =&gt; T, ...args: A): () =&gt; T;</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>
           <div class="property">
             <dl class="parameter">
-              <dt>T</dt>
+              <dt>A</dt>
               <dd></dd>
             </dl>
             <p>
@@ -3366,7 +3392,7 @@ count; // 1
           </div>
           <div class="property">
             <dl class="parameter">
-              <dt>A</dt>
+              <dt>T</dt>
               <dd></dd>
             </dl>
             <p>
@@ -3400,6 +3426,73 @@ count; // 1
         <div class="property">
           <div><span class="xref">() =&gt; T</span></div>
           <p>
+        </div>
+  
+  
+  
+  
+  
+        <h4 id="_esfx_fn_memoize_function_1_" data-uid="@esfx/fn!memoize:function(1)">memoize(factory, options)</h4>
+              <div class="markdown level1 summary"><p>Memoize a callback. An invocation for a memoized function will only evaluate once for the
+same argument list. You can control caching behavior for <code>memoize</code> by passing a custom <code>cache</code>
+object.</p>
+<p>The default cache behavior is provided by <a class="xref" href="fn/defaultmemoizecache.html#_esfx_fn_DefaultMemoizeCache_class">DefaultMemoizeCache</a><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare function memoize&lt;A extends unknown[], T&gt;(factory: (...args: A) =&gt; T, options?: MemoizeOptions&lt;A, T&gt;): (...args: A) =&gt; T;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+        <h5 class="parameters">Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>factory</dt>
+              <dd><span class="xref">(...args: A) =&gt; T</span></dd>
+            </dl>
+            <p>
+              <p>The callback function to evaluate.</p>
+
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>options</dt>
+              <dd><a class="xref" href="fn/memoizeoptions.html#_esfx_fn_MemoizeOptions_interface">MemoizeOptions</a>&lt;A, T&gt;</dd>
+            </dl>
+            <p>
+              <p>Options that control caching behavior.</p>
+
+              
+            </p>
+          </div>
+  
+        <h5 class="returns">Returns</h5>
+        <div class="property">
+          <div><span class="xref">(...args: A) =&gt; T</span></div>
+          <p><p>The memoized function.</p>
+</p>
         </div>
   
   
@@ -4467,6 +4560,34 @@ hasOwn(obj, &quot;y&quot;); // false
           <div><span class="xref">(this_: T, ...args: A) =&gt; R</span></div>
           <p>
         </div>
+  
+  
+  
+    <h3 id="typealiases">Type Aliases
+  </h3>
+  
+  
+        <h4 id="_esfx_fn_MemoizeCacheSettledResult_type" data-uid="@esfx/fn!MemoizeCacheSettledResult:type">MemoizeCacheSettledResult</h4>
+              <div class="markdown level1 summary"><p>Describes a cache result.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type MemoizeCacheSettledResult&lt;T&gt; = MemoizeCacheFulfilledResult&lt;T&gt; | MemoizeCacheRejectedResult;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
   
   
   

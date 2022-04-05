@@ -89,6 +89,2166 @@
 </code></pre><h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
+    <h3 id="interfaces">Interfaces
+  </h3>
+        <h4><a class="xref" href="type-model/accessorpropertydescriptor.html#_esfx_type_model_AccessorPropertyDescriptor_interface">AccessorPropertyDescriptor</a></h4>
+        <section><p>A PropertyDescriptor constrained to the valid attributes for an accessor.</p>
+</section>
+        <h4><a class="xref" href="type-model/methodpropertydescriptor.html#_esfx_type_model_MethodPropertyDescriptor_interface">MethodPropertyDescriptor</a></h4>
+        <section><p>A PropertyDescriptor constrained to the valid attributes for a method.</p>
+</section>
+    <h3 id="typealiases">Type Aliases
+  </h3>
+  
+  
+        <h4 id="_esfx_type_model_AbstractConstructor_type" data-uid="@esfx/type-model!AbstractConstructor:type">AbstractConstructor</h4>
+              <div class="markdown level1 summary"><p>Represents an abstract class constructor.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AbstractConstructor&lt;T = {}, A extends any[] = any[]&gt; = abstract new (...args: A) =&gt; T;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_And_type" data-uid="@esfx/type-model!And:type">And</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if both <code>A</code> and <code>B</code> are <code>true</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type And&lt;A extends boolean, B extends boolean&gt; = IsNever&lt;A&gt; extends true ? never : IsNever&lt;B&gt; extends true ? never : A extends false ? false : B extends false ? false : true;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>B</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_AnyExclude_type" data-uid="@esfx/type-model!AnyExclude:type">AnyExclude</h4>
+              <div class="markdown level1 summary"><p>Gets a union of <code>Exclude&lt;T&#39;, U&gt;</code> for each constituent <code>T&#39;</code> of <code>T</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AnyExclude&lt;T, U&gt; = T extends unknown ? Exclude&lt;T, U&gt; : never;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>U</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_AnyExtract_type" data-uid="@esfx/type-model!AnyExtract:type">AnyExtract</h4>
+              <div class="markdown level1 summary"><p>Gets a union of <code>Extract&lt;T&#39;, U&gt;</code> for each constituent <code>T&#39;</code> of <code>T</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AnyExtract&lt;T, U&gt; = T extends unknown ? Extract&lt;T, U&gt; : never;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>U</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_AnyKeyof_type" data-uid="@esfx/type-model!AnyKeyof:type">AnyKeyof</h4>
+              <div class="markdown level1 summary"><p>Gets a union of <code>keyof T&#39;</code> of each constituent <code>T&#39;</code> of <code>T</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AnyKeyof&lt;T&gt; = T extends unknown ? keyof T : never;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Assign_type" data-uid="@esfx/type-model!Assign:type">Assign</h4>
+              <div class="markdown level1 summary"><p>Combine the properties of <code>A</code> and <code>B</code><!-- -->, chosing the properties in <code>B</code> if the types differ.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Assign&lt;A extends object, B extends object&gt; = Reshape&lt;Diff&lt;A, B&gt; &amp; B&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>B</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_AsyncGeneratorNextType_type" data-uid="@esfx/type-model!AsyncGeneratorNextType:type">AsyncGeneratorNextType</h4>
+              <div class="markdown level1 summary"><p>Gets the type that can be sent to a generator via its <code>next</code> method.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AsyncGeneratorNextType&lt;T&gt; = T extends {
+    [Symbol.asyncIterator](): {
+        next(value?: infer U): any;
+    };
+} ? U : never;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_AsyncGeneratorReturnType_type" data-uid="@esfx/type-model!AsyncGeneratorReturnType:type">AsyncGeneratorReturnType</h4>
+              <div class="markdown level1 summary"><p>Gets the type that can be returned from a generator when it has finished executing.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AsyncGeneratorReturnType&lt;T&gt; = T extends {
+    [Symbol.asyncIterator](): {
+        next(...args: any): PromiseLike&lt;infer R&gt;;
+    };
+} ? R extends {
+    done?: boolean;
+    value?: any;
+} ? R[&quot;done&quot;] extends false | undefined ? never : Await&lt;R[&quot;value&quot;]&gt; : never : never;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_AsyncIteratedType_type" data-uid="@esfx/type-model!AsyncIteratedType:type">AsyncIteratedType</h4>
+              <div class="markdown level1 summary"><p>Gets the type yielded by an AsyncIterable.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AsyncIteratedType&lt;T&gt; = T extends {
+    [Symbol.asyncIterator](): {
+        next(...args: any): PromiseLike&lt;infer R&gt;;
+    };
+} ? R extends {
+    done?: boolean;
+    value?: any;
+} ? R[&quot;done&quot;] extends true ? never : Await&lt;R[&quot;value&quot;]&gt; : never : never;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Await_type" data-uid="@esfx/type-model!Await:type">Await</h4>
+              <div class="markdown level1 summary"><p>Maps <code>T</code> to its awaited type if <code>T</code> is a promise.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Await&lt;T&gt; = T extends {
+    then(onfulfilled: infer U): any;
+} ? U extends ((value: infer V) =&gt; any) ? Await&lt;V&gt; : never : T;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_AwaitAll_type" data-uid="@esfx/type-model!AwaitAll:type">AwaitAll</h4>
+              <div class="markdown level1 summary"><p>Maps each element of <code>T</code> to its awaited type if the element is a promise.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type AwaitAll&lt;T extends any[]&gt; = {
+    [P in keyof T]: Await&lt;T[P]&gt;;
+};</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Conjoin_type" data-uid="@esfx/type-model!Conjoin:type">Conjoin</h4>
+              <div class="markdown level1 summary"><p>Joins a union of disjoint object types into a single object type.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Conjoin&lt;T extends object&gt; = {
+    [P in AnyKeyof&lt;T&gt;]: AnyExtract&lt;T, {
+        readonly [U in P]: unknown;
+    }&gt;[P];
+};</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_constnumber_type" data-uid="@esfx/type-model!constnumber:type">constnumber</h4>
+              <div class="markdown level1 summary"><p>A type useful as a base constraint for a number that should be inferred as a number literal type.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type constnumber = number &amp; {} | 0;</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Constructor_type" data-uid="@esfx/type-model!Constructor:type">Constructor</h4>
+              <div class="markdown level1 summary"><p>Represents a concrete ECMAScript constructor object.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Constructor&lt;T = {}, A extends any[] = any[]&gt; = new (...args: A) =&gt; T;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_conststring_type" data-uid="@esfx/type-model!conststring:type">conststring</h4>
+              <div class="markdown level1 summary"><p>A type useful as a base constraint for a string that should be inferred as a string literal type.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type conststring = string &amp; {} | &quot;&quot;;</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_constsymbol_type" data-uid="@esfx/type-model!constsymbol:type">constsymbol</h4>
+              <div class="markdown level1 summary"><p>A type useful as a base constraint for a symbol that should be inferred as a unique symbol type.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type constsymbol = symbol &amp; {} | typeof kIgnore;</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_consttuple_type" data-uid="@esfx/type-model!consttuple:type">consttuple</h4>
+              <div class="markdown level1 summary"><p>A type useful as a base constraint for an array that should be inferred as a tuple.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type consttuple&lt;T&gt; = readonly T[] | readonly [];</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Diff_type" data-uid="@esfx/type-model!Diff:type">Diff</h4>
+              <div class="markdown level1 summary"><p>Remove from <code>A</code> all properties with the same types that exist in <code>B</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Diff&lt;A extends object, B extends object&gt; = Omit&lt;A, keyof B&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>B</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Disjoin_type" data-uid="@esfx/type-model!Disjoin:type">Disjoin</h4>
+              <div class="markdown level1 summary"><p>Split an object into a union of objects for each key/value pair.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Disjoin&lt;T extends object&gt; = IsNever&lt;T&gt; extends true ? never : IsAny&lt;T&gt; extends true ? any : __DisjoinRest&lt;{
+    [K in keyof T]: {
+        [P in K]: T[P];
+    };
+}[keyof T]&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_DisjoinOverlaps_type" data-uid="@esfx/type-model!DisjoinOverlaps:type">DisjoinOverlaps</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if any type in <code>A</code> is assignable to or shares a property with any type in <code>B</code><!-- -->; otherwise, <code>false</code><!-- -->.
+This is similar to <code>Overlaps</code><!-- -->, except object types in <code>A</code> and <code>B</code> are mapped through <code>Disjoin</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type DisjoinOverlaps&lt;A, B&gt; = Overlaps&lt;A extends object ? Disjoin&lt;A&gt; : A, B extends object ? Disjoin&lt;B&gt; : B&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>B</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Every_type" data-uid="@esfx/type-model!Every:type">Every</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if every element of the tuple <code>L</code> is <code>true</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Every&lt;L extends boolean[]&gt; = L extends [] ? never : __EveryRest&lt;{
+    [P in keyof L]: IsNever&lt;L[P]&gt; extends true ? &quot;never&quot; : IsAny&lt;L[P]&gt; extends true ? &quot;boolean&quot; : boolean extends L[P] ? &quot;boolean&quot; : L[P] extends false ? &quot;false&quot; : never;
+}[number]&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>L</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_ExactType_type" data-uid="@esfx/type-model!ExactType:type">ExactType</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>A</code> and <code>B</code> are identical types; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type ExactType&lt;A, B&gt; = (&lt;T&gt;() =&gt; T extends A ? 0 : 1) extends (&lt;T&gt;() =&gt; T extends B ? 0 : 1) ? true : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>B</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_ExactTypes_type" data-uid="@esfx/type-model!ExactTypes:type">ExactTypes</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if all elements of the tuple <code>L</code> are identical; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type ExactTypes&lt;L extends any[]&gt; = L extends [] ? never : SameType&lt;{
+    [P in keyof L]: ExactType&lt;L[P], L[number]&gt;;
+}[number], true&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>L</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Falsy_type" data-uid="@esfx/type-model!Falsy:type">Falsy</h4>
+              <div class="markdown level1 summary"><p>A union of all of the falsy types in TypeScript.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Falsy = null | undefined | false | 0 | 0n | '';</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_FunctionKeys_type" data-uid="@esfx/type-model!FunctionKeys:type">FunctionKeys</h4>
+              <div class="markdown level1 summary"><p>Maps to the keys of <code>T</code> whose values are functions.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type FunctionKeys&lt;T, F extends Function = Function&gt; = MatchingKeys&lt;T, F&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>F</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_GeneratorNextType_type" data-uid="@esfx/type-model!GeneratorNextType:type">GeneratorNextType</h4>
+              <div class="markdown level1 summary"><p>Gets the type that can be sent to a generator via its <code>next</code> method.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type GeneratorNextType&lt;T&gt; = T extends {
+    [Symbol.iterator](): {
+        next(value?: infer U): any;
+    };
+} ? U : never;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_GeneratorReturnType_type" data-uid="@esfx/type-model!GeneratorReturnType:type">GeneratorReturnType</h4>
+              <div class="markdown level1 summary"><p>Gets the type that can be returned from a generator when it has finished executing.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type GeneratorReturnType&lt;T&gt; = T extends {
+    [Symbol.iterator](): {
+        next(...args: any): infer R;
+    };
+} ? R extends {
+    done?: boolean;
+    value: any;
+} ? R[&quot;done&quot;] extends false | undefined ? never : R[&quot;value&quot;] : never : never;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Intersect_type" data-uid="@esfx/type-model!Intersect:type">Intersect</h4>
+              <div class="markdown level1 summary"><p>Pick from <code>A</code> all properties with the same types that exist in <code>B</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Intersect&lt;A extends object, B extends object&gt; = Pick&lt;A &amp; B, Extract&lt;keyof A, keyof B&gt; &amp; Extract&lt;keyof B, keyof A&gt;&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>B</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Intersection_type" data-uid="@esfx/type-model!Intersection:type">Intersection</h4>
+              <div class="markdown level1 summary"><p>Maps an ordered tuple of types into an intersection of those types.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Intersection&lt;A extends any[]&gt; = A extends [infer H, ...infer T] ? H &amp; Intersection&lt;T&gt; : unknown;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Is_type" data-uid="@esfx/type-model!Is:type">Is</h4>
+              <div class="markdown level1 summary"><p>Constrains <code>T</code> to <code>U</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Is&lt;T extends U, U&gt; = T;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>U</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsAny_type" data-uid="@esfx/type-model!IsAny:type">IsAny</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>A</code> is precisely the <code>any</code> type; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsAny&lt;A&gt; = boolean extends (A extends never ? true : false) ? true : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsCallable_type" data-uid="@esfx/type-model!IsCallable:type">IsCallable</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if the type has a call signature; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsCallable&lt;T&gt; = IsAny&lt;T&gt; extends true ? boolean : IsNever&lt;T&gt; extends true ? never : SameType&lt;T, Function&gt; extends true ? true : [
+    T
+] extends [(...args: any) =&gt; any] ? true : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsConstructable_type" data-uid="@esfx/type-model!IsConstructable:type">IsConstructable</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if the type has a construct signature; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsConstructable&lt;T&gt; = IsAny&lt;T&gt; extends true ? boolean : IsNever&lt;T&gt; extends true ? never : SameType&lt;T, Function&gt; extends true ? true : [
+    T
+] extends [new (...args: any) =&gt; any] ? true : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsEmpty_type" data-uid="@esfx/type-model!IsEmpty:type">IsEmpty</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>T</code> is an empty object (<code>{}</code><!-- -->).</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsEmpty&lt;T extends object&gt; = IsNever&lt;keyof T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsNever_type" data-uid="@esfx/type-model!IsNever:type">IsNever</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>A</code> is precisely the <code>never</code> type; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsNever&lt;A&gt; = [A] extends [never] ? true : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsProperSubsetOf_type" data-uid="@esfx/type-model!IsProperSubsetOf:type">IsProperSubsetOf</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>Sub</code> is a proper subset of <code>Super</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsProperSubsetOf&lt;Sub, Super&gt; = IsAny&lt;Sub&gt; extends true ? boolean : IsAny&lt;Super&gt; extends true ? boolean : SameType&lt;Sub, Super&gt; extends true ? false : __IsSubsetOf&lt;Sub, Super&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>Sub</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>Super</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsProperSupersetOf_type" data-uid="@esfx/type-model!IsProperSupersetOf:type">IsProperSupersetOf</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>Super</code> is a proper superset of <code>Sub</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsProperSupersetOf&lt;Super, Sub&gt; = IsProperSubsetOf&lt;Sub, Super&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>Super</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>Sub</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsSubsetOf_type" data-uid="@esfx/type-model!IsSubsetOf:type">IsSubsetOf</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>Sub</code> is a subset of <code>Super</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsSubsetOf&lt;Sub, Super&gt; = IsAny&lt;Sub&gt; extends true ? boolean : IsAny&lt;Super&gt; extends true ? boolean : __IsSubsetOf&lt;Sub, Super&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>Sub</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>Super</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsSubtypeOf_type" data-uid="@esfx/type-model!IsSubtypeOf:type">IsSubtypeOf</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>Sub</code> is a subtype of <code>Super</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsSubtypeOf&lt;Sub, Super&gt; = IsNever&lt;Super&gt; extends true ? IsNever&lt;Sub&gt; : IsNever&lt;Sub&gt; extends true ? true : IsAny&lt;Super&gt; extends true ? true : IsAny&lt;Sub&gt; extends true ? true : Sub extends Super ? true : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>Sub</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>Super</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsSupersetOf_type" data-uid="@esfx/type-model!IsSupersetOf:type">IsSupersetOf</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>Super</code> is a superset of <code>Sub</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsSupersetOf&lt;Super, Sub&gt; = IsSubsetOf&lt;Sub, Super&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>Super</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>Sub</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsSupertypeOf_type" data-uid="@esfx/type-model!IsSupertypeOf:type">IsSupertypeOf</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>Super</code> is a supertype of <code>Sub</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsSupertypeOf&lt;Super, Sub&gt; = IsSubtypeOf&lt;Sub, Super&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>Super</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>Sub</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsUnion_type" data-uid="@esfx/type-model!IsUnion:type">IsUnion</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>T</code> is a union of multiple types; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsUnion&lt;T&gt; = IsNever&lt;T&gt; extends true ? false : __IsUnionRest&lt;T, [T]&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IsUnknown_type" data-uid="@esfx/type-model!IsUnknown:type">IsUnknown</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>A</code> is precisely the <code>unknown</code> type; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IsUnknown&lt;A&gt; = IsAny&lt;A&gt; extends true ? false : unknown extends A ? true : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_IteratedType_type" data-uid="@esfx/type-model!IteratedType:type">IteratedType</h4>
+              <div class="markdown level1 summary"><p>Gets the type yielded by an Iterable.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type IteratedType&lt;T&gt; = T extends {
+    [Symbol.iterator](): {
+        next(...args: any): infer R;
+    };
+} ? R extends {
+    done?: boolean;
+    value: any;
+} ? R[&quot;done&quot;] extends true ? never : R[&quot;value&quot;] : never : never;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_MatchingKeys_type" data-uid="@esfx/type-model!MatchingKeys:type">MatchingKeys</h4>
+              <div class="markdown level1 summary"><p>Maps to the keys of <code>T</code> whose values match <code>TMatch</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type MatchingKeys&lt;T, TMatch&gt; = {
+    [P in keyof T]: T[P] extends TMatch ? P : never;
+}[keyof T];</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TMatch</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Mutable_type" data-uid="@esfx/type-model!Mutable:type">Mutable</h4>
+              <div class="markdown level1 summary"><p>Maps to a mutable copy of T.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Mutable&lt;T&gt; = {
+    -readonly [P in keyof T]: T[P];
+};</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_NonFunctionKeys_type" data-uid="@esfx/type-model!NonFunctionKeys:type">NonFunctionKeys</h4>
+              <div class="markdown level1 summary"><p>Maps to the keys of <code>T</code> whose values are not functions.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type NonFunctionKeys&lt;T, F extends Function = Function&gt; = NonMatchingKeys&lt;T, F&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>F</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_NonMatchingKeys_type" data-uid="@esfx/type-model!NonMatchingKeys:type">NonMatchingKeys</h4>
+              <div class="markdown level1 summary"><p>Maps to the keys of <code>T</code> whose values do not match <code>TMatch</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type NonMatchingKeys&lt;T, TMatch&gt; = Exclude&lt;keyof T, MatchingKeys&lt;T, TMatch&gt;&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TMatch</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_NonOptional_type" data-uid="@esfx/type-model!NonOptional:type">NonOptional</h4>
+              <div class="markdown level1 summary"><p>Strips <code>undefined</code> from a type.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type NonOptional&lt;T&gt; = T extends undefined ? never : T;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Not_type" data-uid="@esfx/type-model!Not:type">Not</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if <code>A</code> is <code>false</code><!-- -->, otherwise <code>true</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Not&lt;A extends boolean&gt; = IsNever&lt;A&gt; extends true ? never : A extends false ? true : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Nullable_type" data-uid="@esfx/type-model!Nullable:type">Nullable</h4>
+              <div class="markdown level1 summary"><p>Indicates a type that may be <code>null</code> or <code>undefined</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Nullable&lt;T&gt; = T | undefined | null;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_numstr_type" data-uid="@esfx/type-model!numstr:type">numstr</h4>
+              <div class="markdown level1 summary"><p>Gets a union of the number and numeric string value for a number or numeric string index between 0 and 255</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type numstr&lt;I extends keyof any&gt; = _SupportsNumericExtraction extends true ? _numstrUsingNumericExtraction&lt;I&gt; : _numstrUsingTable&lt;I&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>I</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_One_type" data-uid="@esfx/type-model!One:type">One</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if exactly one element of the tuple <code>L</code> is <code>true</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type One&lt;L extends boolean[]&gt; = L extends [] ? never : __OneRest&lt;{
+    [P in keyof L]: IsNever&lt;L[P]&gt; extends true ? &quot;never&quot; : IsAny&lt;L[P]&gt; extends true ? &quot;boolean&quot; : boolean extends L[P] ? &quot;boolean&quot; : L[P] extends true ? [P] : never;
+}[number]&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>L</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Optional_type" data-uid="@esfx/type-model!Optional:type">Optional</h4>
+              <div class="markdown level1 summary"><p>Indicates a type that may be <code>undefined</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Optional&lt;T&gt; = T | undefined;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_OptionalKeyof_type" data-uid="@esfx/type-model!OptionalKeyof:type">OptionalKeyof</h4>
+              <div class="markdown level1 summary"><p>Gets a union of the keys of <code>T</code> that are optional.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type OptionalKeyof&lt;T&gt; = Exclude&lt;keyof T, RequiredKeyof&lt;T&gt;&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Or_type" data-uid="@esfx/type-model!Or:type">Or</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if either <code>A</code> or <code>B</code> are <code>true</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Or&lt;A extends boolean, B extends boolean&gt; = IsNever&lt;A&gt; extends true ? never : IsNever&lt;B&gt; extends true ? never : A extends true ? true : B extends true ? true : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>B</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Overlaps_type" data-uid="@esfx/type-model!Overlaps:type">Overlaps</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if any type in <code>A</code> is assignable to any type in <code>B</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Overlaps&lt;A, B&gt; = IsNever&lt;A&gt; extends true ? false : IsNever&lt;B&gt; extends true ? false : IsAny&lt;A&gt; extends true ? true : IsAny&lt;B&gt; extends true ? true : 1 extends (A extends unknown ? A extends B ? 1 : 2 : 3) ? true : 1 extends (B extends unknown ? B extends A ? 1 : 2 : 3) ? true : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>B</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Pop_type" data-uid="@esfx/type-model!Pop:type">Pop</h4>
+              <div class="markdown level1 summary"><p>Maps to a tuple where the first element is the last element of <code>L</code> and the second element are the remaining elements of <code>L</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Pop&lt;L extends any[]&gt; = L extends [...infer H, infer T] ? [T, H] : [never, never];</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>L</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Primitive_type" data-uid="@esfx/type-model!Primitive:type">Primitive</h4>
+              <div class="markdown level1 summary"><p>A union of all of the primitive types in TypeScript.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Primitive = string | symbol | boolean | number | bigint;</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_PromisedType_type" data-uid="@esfx/type-model!PromisedType:type">PromisedType</h4>
+              <div class="markdown level1 summary"><p>Gets the promised type of a Promise.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type PromisedType&lt;T&gt; = T extends {
+    then(onfulfilled: infer U): any;
+} ? U extends ((value: infer V) =&gt; any) ? V : never : never;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Push_type" data-uid="@esfx/type-model!Push:type">Push</h4>
+              <div class="markdown level1 summary"><p>Push an element on to the end of a tuple.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Push&lt;H extends any[], T&gt; = [...H, T];</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>H</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Relatable_type" data-uid="@esfx/type-model!Relatable:type">Relatable</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if either <code>A</code> or <code>B</code> are relatable to each other.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Relatable&lt;A, B&gt; = IsNever&lt;A&gt; extends true ? false : IsNever&lt;B&gt; extends true ? false : IsAny&lt;A&gt; extends true ? true : IsAny&lt;B&gt; extends true ? true : [
+    A
+] extends [B] ? true : [
+    B
+] extends [A] ? true : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>B</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_RequiredKeyof_type" data-uid="@esfx/type-model!RequiredKeyof:type">RequiredKeyof</h4>
+              <div class="markdown level1 summary"><p>Gets a union of the keys of <code>T</code> that are non-optional.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type RequiredKeyof&lt;T&gt; = _RequiredKeyof&lt;T, keyof T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Reshape_type" data-uid="@esfx/type-model!Reshape:type">Reshape</h4>
+              <div class="markdown level1 summary"><p>Map an intersection of object types into a single object type.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Reshape&lt;T extends object&gt; = Pick&lt;T, keyof T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Reverse_type" data-uid="@esfx/type-model!Reverse:type">Reverse</h4>
+              <div class="markdown level1 summary"><p>Reverse the order of the elements of a tuple.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Reverse&lt;L extends any[]&gt; = L extends [infer H, ...infer T] ? [...Reverse&lt;T&gt;, H] : [];</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>L</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_SameType_type" data-uid="@esfx/type-model!SameType:type">SameType</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if both <code>A</code> and <code>B</code> are assignable to each other; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type SameType&lt;A, B&gt; = IsNever&lt;A&gt; extends true ? IsNever&lt;B&gt; : IsNever&lt;B&gt; extends true ? false : [
+    A,
+    B
+] extends [B, A] ? true : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>B</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_SameTypes_type" data-uid="@esfx/type-model!SameTypes:type">SameTypes</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if all elements of the tuple <code>L</code> are assignable to each other; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type SameTypes&lt;L extends any[]&gt; = L extends [] ? never : SameType&lt;{
+    [P in keyof L]: SameType&lt;L[P], L[number]&gt;;
+}[number], true&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>L</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Shift_type" data-uid="@esfx/type-model!Shift:type">Shift</h4>
+              <div class="markdown level1 summary"><p>Maps to a tuple where the first element is the first element of <code>L</code> and the second element are the remaining elements of <code>L</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Shift&lt;L extends any[]&gt; = L extends [infer H, ...infer T] ? [H, T] : [never, never];</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>L</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Some_type" data-uid="@esfx/type-model!Some:type">Some</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if any element of the tuple <code>L</code> is <code>true</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Some&lt;L extends boolean[]&gt; = L extends [] ? never : __SomeRest&lt;{
+    [P in keyof L]: IsNever&lt;L[P]&gt; extends true ? &quot;never&quot; : IsAny&lt;L[P]&gt; extends true ? &quot;boolean&quot; : boolean extends L[P] ? &quot;boolean&quot; : L[P] extends true ? &quot;true&quot; : never;
+}[number]&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>L</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Union_type" data-uid="@esfx/type-model!Union:type">Union</h4>
+              <div class="markdown level1 summary"><p>Maps an ordered tuple of types into a union of those types.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Union&lt;A extends any[]&gt; = A[number];</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_Unshift_type" data-uid="@esfx/type-model!Unshift:type">Unshift</h4>
+              <div class="markdown level1 summary"><p>Inserts an element at the start of a tuple.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Unshift&lt;T extends any[], H&gt; = [H, ...T];</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>H</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_XOr_type" data-uid="@esfx/type-model!XOr:type">XOr</h4>
+              <div class="markdown level1 summary"><p>Maps to <code>true</code> if only one of either <code>A</code> or <code>B</code> are <code>true</code><!-- -->; otherwise, <code>false</code><!-- -->.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type XOr&lt;A extends boolean, B extends boolean&gt; = IsNever&lt;A&gt; extends true ? never : IsNever&lt;B&gt; extends true ? never : A extends true ? Not&lt;B&gt; : B extends true ? Not&lt;A&gt; : false;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>A</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>B</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
 </article>
           </div>
           
@@ -97,7 +2257,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/type-model.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/docsrc/overwrite/type-model.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

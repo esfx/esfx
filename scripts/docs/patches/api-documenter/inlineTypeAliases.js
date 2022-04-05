@@ -2,6 +2,7 @@ const { YamlDocumenter } = require("@microsoft/api-documenter/lib/documenters/Ya
 const { ApiItemKind } = require("@microsoft/api-extractor-model/lib/items/ApiItem");
 
 const prev_shouldEmbed = YamlDocumenter.prototype._shouldEmbed;
+
 YamlDocumenter.prototype._shouldEmbed = function (apiItemKind) {
     if (apiItemKind === ApiItemKind.TypeAlias) {
         return true;

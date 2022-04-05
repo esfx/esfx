@@ -2,6 +2,7 @@
 
 // @ts-check
 let ts = require("typescript");
+// @ts-ignore
 ts = tryRequire("@microsoft/api-extractor/node_modules/typescript") || ts;
 
 const { TypeScriptHelpers } = require("@microsoft/api-extractor/lib/analyzer/TypeScriptHelpers");
@@ -58,6 +59,7 @@ ExportAnalyzer.prototype._tryMatchImportDeclaration = function (declaration, dec
                 // Create a synthetic AstDeclaration for the synthetic namespace.
                 const astDeclaration = new AstDeclaration({
                     astSymbol: astSymbol,
+                    // @ts-ignore
                     declaration: fakeNamespace,
                     parent: undefined
                 });

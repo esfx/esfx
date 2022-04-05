@@ -84,25 +84,25 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>The <code>@esfx/async-stack</code> package provides the <a class="xref" href="async-stack/asyncstack.html#_esfx_async_stack_AsyncStack_class">AsyncStack</a> class, an async coordination primitive.</p>
-<h2 id="overview">Overview</h2>
+<h3 id="overview">Overview</h3>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
 </ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/async-stack
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_InZHGO1cgq">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_FG6jF0m39O">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_InZHGO1cgq_ts" role="tab" aria-controls="tabpanel_InZHGO1cgq_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_FG6jF0m39O_ts" role="tab" aria-controls="tabpanel_FG6jF0m39O_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_InZHGO1cgq_js" role="tab" aria-controls="tabpanel_InZHGO1cgq_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_FG6jF0m39O_js" role="tab" aria-controls="tabpanel_FG6jF0m39O_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_InZHGO1cgq_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { AsyncStack } from &quot;@esfx/async-stack&quot;;
+<section id="tabpanel_FG6jF0m39O_ts" role="tabpanel" data-tab="ts">
+<pre><code>import { AsyncStack } from &quot;@esfx/async-stack&quot;;
 
 async function main() {
     const stack = new AsyncStack&lt;number&gt;();
@@ -116,19 +116,19 @@ async function main() {
     await stack.pop(); // 1
 
     // take two more pending items from the stack
-    const p3 = stack.get();
-    const p4 = stack.get();
+    const p3 = stack.pop();
+    const p4 = stack.pop();
 
     // put two more items on the stack
-    stack.put(3);
-    stack.put(4);
+    stack.push(3);
+    stack.push(4);
 
     await p3; // 3
     await p4; // 4
 }
 </code></pre></section>
-<section id="tabpanel_InZHGO1cgq_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { AsyncStack } = require(&quot;@esfx/async-stack&quot;);
+<section id="tabpanel_FG6jF0m39O_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code>const { AsyncStack } = require(&quot;@esfx/async-stack&quot;);
 
 async function main() {
     const stack = new AsyncStack();
@@ -142,19 +142,18 @@ async function main() {
     await stack.pop(); // 1
 
     // take two more pending items from the stack
-    const p3 = stack.get();
-    const p4 = stack.get();
+    const p3 = stack.pop();
+    const p4 = stack.pop();
 
     // put two more items on the stack
-    stack.put(3);
-    stack.put(4);
+    stack.push(3);
+    stack.push(4);
 
     await p3; // 3
     await p4; // 4
 }
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
@@ -170,7 +169,7 @@ async function main() {
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/async-stack.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/async-stack/docsrc/overwrite/async-stack.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

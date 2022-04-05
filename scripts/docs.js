@@ -15,6 +15,7 @@ require("./docs/patches/tsdoc")({
 
 require("./docs/patches/api-extractor")({
     exportStarAsNamespace: false,
+    ignoreUnhandledExports: true,
 });
 
 require("./docs/patches/api-documenter")({
@@ -25,6 +26,9 @@ require("./docs/patches/api-documenter")({
     renameTsSymbolicNames: true,
     disableConvertToSDP: true,
     documentAliases: true,
+    documentClassInterfaceSyntax: true,
+    documentParent: true,
+    documentApiNames: true,
     overwriteYamlSchema: true
 });
 
@@ -299,8 +303,15 @@ async function installDocFx(force) {
 
 exports.installDocFx = installDocFx;
 
-async function docfx(serve = false) {
-    await del("docs");
-    await exec(path.resolve(".docfx/bin/docfx.exe"), serve ? ["--serve"] : [], { verbose: true });
+/**
+ * 
+ * @param {object} options
+ * @param {boolean} [options.serve] 
+ * @param {boolean} [options.build]
+ * @param {boolean} [options.incremental]
+ */
+async function docfx({ serve = false, build = true, incremental = false } = {}) {
+    if (build && !incremental) await del("docs");
+    await exec(path.resolve(".docfx/bin/docfx.exe"), serve ? build ? ["--serve"] : ["serve", "docs"] : [], { verbose: true });
 }
 exports.docfx = docfx;

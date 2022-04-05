@@ -1,49 +1,95 @@
+// @ts-check
 const { YamlDocumenter } = require("@microsoft/api-documenter/lib/documenters/YamlDocumenter");
-const { DeclarationReference } = require('@microsoft/tsdoc/lib-commonjs/beta/DeclarationReference');
+const { DeclarationReference, ComponentRoot, ModuleSource } = require('@microsoft/tsdoc/lib-commonjs/beta/DeclarationReference');
 
-/** @type {WeakMap<YamlDocumenter, Set<string>>} */
-const weakKnownAliases = new WeakMap();
+const prev_onCustomizeYamlItem = YamlDocumenter.prototype["onCustomizeYamlItem"];
 
 /**
- *
  * @param {import("@microsoft/api-documenter/lib/yaml/IYamlApiFile").IYamlItem} yamlItem
  */
-YamlDocumenter.prototype.onCustomizeYamlItem = function (yamlItem) {
+YamlDocumenter.prototype["onCustomizeYamlItem"] = function (yamlItem) {
+    prev_onCustomizeYamlItem.call(this, yamlItem);
     if (!yamlItem.uid) return;
-    let knownAliases = weakKnownAliases.get(this);
-    if (!knownAliases) weakKnownAliases.set(this, knownAliases = new Set());
+
     const uid = DeclarationReference.parse(yamlItem.uid);
     if (uid.isEmpty) return;
+
     if (!uid.symbol) {
-        if (uid.source.scopeName === "@esfx") {
-            tryRecordAlias(uid.source.unscopedPackageName);
+        if (uid.source instanceof ModuleSource && uid.source.scopeName === "@esfx") {
+            recordAlias(uid.source.unscopedPackageName);
         }
         return;
     }
-    switch (uid.symbol.meaning) {
-        case "function":
-        case "constructor":
-        case "call":
-        case "new":
-            if (uid.symbol.overloadIndex === 1) {
-                tryRecordAlias(uid.withSymbol(uid.symbol.withOverloadIndex(undefined)).toString());
-                tryRecordAlias(uid.withSymbol(uid.symbol.withOverloadIndex(undefined).withMeaning(undefined)).toString());
-            }
-            break;
-        case "class":
-        case "interface":
-        case "type":
-        case "enum":
-        case "namespace":
-        case "var":
-            tryRecordAlias(uid.withSymbol(uid.symbol.withMeaning(undefined)).toString());
-            break;
+
+    // only add aliases for the first overload (if overloaded)
+    if (uid.symbol.overloadIndex === 1 || uid.symbol.overloadIndex === undefined) {
+        // given `@esfx/package!Type#foo:member(1)`:
+
+        // @esfx/package!Type#foo:member
+        recordAlias(uid
+            .withOverloadIndex(undefined));
+
+        // @esfx/package!Type#foo:1
+        recordAlias(uid
+            .withMeaning(undefined));
+
+        // @esfx/package!Type#foo
+        recordAlias(uid
+            .withOverloadIndex(undefined)
+            .withMeaning(undefined));
+
+        // Type#foo:member(1)
+        recordAlias(uid
+            .withSource(undefined));
+
+        // Type#foo:member
+        recordAlias(uid
+            .withSource(undefined)
+            .withOverloadIndex(undefined));
+
+        // Type#foo:1
+        recordAlias(uid
+            .withSource(undefined)
+            .withMeaning(undefined));
+
+        // Type#foo
+        recordAlias(uid
+            .withSource(undefined)
+            .withOverloadIndex(undefined)
+            .withMeaning(undefined));
+
+        // foo:member(1)
+        recordAlias(uid
+            .withSource(undefined)
+            .withComponentPath(new ComponentRoot(uid.symbol.componentPath.component)));
+
+        // foo:member
+        recordAlias(uid
+            .withSource(undefined)
+            .withComponentPath(new ComponentRoot(uid.symbol.componentPath.component))
+            .withOverloadIndex(undefined));
+        
+        // foo:1
+        recordAlias(uid
+            .withSource(undefined)
+            .withComponentPath(new ComponentRoot(uid.symbol.componentPath.component))
+            .withMeaning(undefined));
+
+        // foo
+        recordAlias(uid
+            .withSource(undefined)
+            .withComponentPath(new ComponentRoot(uid.symbol.componentPath.component))
+            .withOverloadIndex(undefined)
+            .withMeaning(undefined));
     }
 
-    function tryRecordAlias(alias) {
-        if (knownAliases.has(alias)) return;
-        knownAliases.add(alias);
-        yamlItem.alias ??= [];
-        yamlItem.alias.push(alias);
+    /**
+     * @param {DeclarationReference | string} alias
+     */
+    function recordAlias(alias) {
+        // @ts-ignore
+        const aliases = (yamlItem.alias ??= []);
+        alias = alias.toString();
+        if (alias !== yamlItem.uid && !aliases.includes(alias)) aliases.push(alias);
     }
 };

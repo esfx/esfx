@@ -87,6 +87,164 @@
   <div class="markdown level0 summary"><p>Asynchronously notifies one or more waiting Promises that an event has occurred.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">export declare class AsyncManualResetEvent </code></pre>
+  </div>
+  <h3 id="_esfx_async_manualresetevent_AsyncManualResetEvent_class_examples">Examples</h3>
+  <p>The following example shows how to use <a class="xref" href="asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_class">AsyncManualResetEvent</a> to release asynchronous operations. In this demonstration,
+we start three asynchronous operations that pause when awaiting the result of <a class="xref" href="asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_wait_member_1_">wait(cancelable)</a> because the event is unsignaled.
+After pressing <strong>Enter</strong>, the event becomes signaled and all three operations can continue. </p>
+<p>Pressing <strong>Enter</strong> again then demonstrates that two more asynchronous operations won&#39;t pause when awaiting the result of 
+<a class="xref" href="asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_wait_member_1_">wait(cancelable)</a> because the event is now unsignaled.</p>
+<p>Pressing <strong>Enter</strong> a third time calls <a class="xref" href="asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_reset_member_1_">reset()</a> on the event and demonstrates that a new asynchronous operation will once
+again pause when awaiting the result of <a class="xref" href="asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_wait_member_1_">wait(cancelable)</a> now that the event has become signaled.</p>
+<p>Pressing <strong>Enter</strong> a fourth and final time calls <a class="xref" href="asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_set_member_1_">set()</a> to signal the event and allow the final operation to conclude.</p>
+<div class="NOTE"><h5>Note</h5><p>The following example is derived from <a href="https://docs.microsoft.com/en-us/dotnet/api/system.threading.manualresetevent?view=net-6.0#examples">https://docs.microsoft.com/en-us/dotnet/api/system.threading.manualresetevent?view=net-6.0#examples</a></p>
+</div>
+<div class="tabGroup" id="tabgroup_D0XtF7uyZL">
+<ul role="tablist">
+<li role="presentation">
+<a href="#tabpanel_D0XtF7uyZL_ts" role="tab" aria-controls="tabpanel_D0XtF7uyZL_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+</li>
+<li role="presentation">
+<a href="#tabpanel_D0XtF7uyZL_js" role="tab" aria-controls="tabpanel_D0XtF7uyZL_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+</li>
+</ul>
+<section id="tabpanel_D0XtF7uyZL_ts" role="tabpanel" data-tab="ts">
+<pre><code>import { AsyncManualResetEvent } from &quot;@esfx/async-manualresetevent&quot;;
+import { delay } from &quot;@esfx/async-delay&quot;;
+import * as readline from &quot;readline&quot;;
+
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+const question = (text: string) =&gt; new Promise&lt;string&gt;(resolve =&gt; rl.question(text, resolve));
+
+const evt = new AsyncManualResetEvent();
+
+async function main() {
+    console.log(`Starting three operations that will pause while waiting for the event.`);
+
+    let promises: Promise&lt;void&gt;[] = [];
+    for (let i = 0; i &lt; 3; i++) {
+        promises.push(asyncOperation(`operation #${i + 1}`));
+    }
+
+    await delay(500);
+    await question(`When all three operations have started, press Enter to release them.`);
+
+    evt.set();
+
+    await delay(500);
+    await Promise.all(promises);
+
+    console.log(`When the event is signaled, operations will not pause.`);
+    await question(`Press Enter to demonstrate.`);
+
+    promises = [];
+    for (let i = 3; i &lt; 4; i++) {
+        promises.push(asyncOperation(`operation #${i + 1}`));
+    }
+
+    await delay(500);
+    await Promise.all(promises);
+
+    console.log(`When the event is reset, operations will again pause.`);
+    await question(`Press Enter to demonstrate.`);
+
+    evt.reset();
+
+    promises = [];
+    promises.push(asyncOperation(&quot;operation #5&quot;));
+
+    await delay(500);
+    await question(`Press Enter to signal the event and conclude the demonstration.`);
+    
+    evt.set();
+
+    await Promise.all(promises);
+}
+
+async function asyncOperation(name: string) {
+    console.log(`${name} is waiting on the event.`);
+    await evt.wait();
+    console.log(`${name} was released from the event.`);
+}
+
+await main();
+</code></pre></section>
+<section id="tabpanel_D0XtF7uyZL_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code>import { AsyncManualResetEvent } from &quot;@esfx/async-manualresetevent&quot;;
+import { delay } from &quot;@esfx/async-delay&quot;;
+import * as readline from &quot;readline&quot;;
+
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+const question = text =&gt; new Promise(resolve =&gt; rl.question(text, resolve));
+
+const evt = new AsyncManualResetEvent();
+
+async function main() {
+    console.log(`Starting three operations that will pause while waiting for the event.`);
+
+    let promises = [];
+    for (let i = 0; i &lt; 3; i++) {
+        promises.push(asyncOperation(`operation #${i + 1}`));
+    }
+
+    await delay(500);
+    await question(`When all three operations have started, press Enter to release them.`);
+
+    evt.set();
+
+    await delay(500);
+    await Promise.all(promises);
+
+    console.log(`When the event is signaled, operations will not pause.`);
+    await question(`Press Enter to demonstrate.`);
+
+    promises = [];
+    for (let i = 3; i &lt; 4; i++) {
+        promises.push(asyncOperation(`operation #${i + 1}`));
+    }
+
+    await delay(500);
+    await Promise.all(promises);
+
+    console.log(`When the event is reset, operations will again pause.`);
+    await question(`Press Enter to demonstrate.`);
+
+    evt.reset();
+
+    promises = [];
+    promises.push(asyncOperation(&quot;operation #5&quot;));
+
+    await delay(500);
+    await question(`Press Enter to signal the event and conclude the demonstration.`);
+    
+    evt.set();
+
+    await Promise.all(promises);
+}
+
+async function asyncOperation(name) {
+    console.log(`${name} is waiting on the event.`);
+    await evt.wait();
+    console.log(`${name} was released from the event.`);
+}
+
+main().catch(e =&gt; {
+    console.error(e);
+    process.exit(-1);
+});
+</code></pre></section>
+</div>
+
+  <h3 id="_esfx_async_manualresetevent_AsyncManualResetEvent_class_remarks">Remarks</h3>
+  <div class="markdown level0 remarks"><p>The <a class="xref" href="../async-autoresetevent/asyncautoresetevent.html#_esfx_async_autoresetevent_AsyncAutoResetEvent_class">AsyncAutoResetEvent</a> and <a class="xref" href="asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_class">AsyncManualResetEvent</a> classes are used to provide signaling between concurrent asynchronous operations.</p>
+<p>An asynchronous operation can wait until an event is signaled by awaiting the result of <a class="xref" href="asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_wait_member_1_">wait(cancelable)</a>. This causes the operation to pause until the event
+becomes signaled. Calling <a class="xref" href="asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_set_member_1_">set()</a> will signal and release all waiting operations. The event will remain in the signaled state until <a class="xref" href="asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_reset_member_1_">reset()</a> is called,
+which resets the event to the non-signaled state.</p>
+<p>You can use <a class="xref" href="asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_isSet_member">isSet</a> to check whether the event is currently signaled to avoid calling <a class="xref" href="asyncmanualresetevent.html#_esfx_async_manualresetevent_AsyncManualResetEvent_wait_member_1_">wait(cancelable)</a> (and avoid the <code>await</code> that entails).</p>
+</div>
   <h3 id="constructors">Constructors
   </h3>
   
@@ -234,6 +392,9 @@
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/async-manualresetevent/docsrc/overwrite/AsyncManualResetEvent.md/#L31" class="contribution-link">Improve this Doc</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">

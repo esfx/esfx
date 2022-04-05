@@ -36,9 +36,9 @@
    limitations under the License.
 */
 
+import /*#__INLINE__*/ { isNumber } from "@esfx/internal-guards";
 import { AsyncManualResetEvent } from "@esfx/async-manualresetevent";
 import { Cancelable } from "@esfx/cancelable";
-import /*#__INLINE__*/ { isNumber } from "@esfx/internal-guards";
 
 /**
  * An event that is set when all participants have signaled.

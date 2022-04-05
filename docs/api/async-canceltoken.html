@@ -84,30 +84,30 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>The <code>@esfx/async-canceltoken</code> package provides the <a class="xref" href="async-canceltoken/canceltoken.html#_esfx_async_canceltoken_CancelToken_class">CancelToken</a> class, an implementation of <code>@esfx/cancelable</code>.</p>
-<h2 id="overview">Overview</h2>
+<h3 id="overview">Overview</h3>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
 </ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/async-canceltoken
-</code></pre><h2 id="usage">Usage</h2>
+</code></pre><h3 id="usage">Usage</h3>
 <ul>
 <li><a href="#basic-usage">Basic Usage</a></li>
 <li><a href="#linking-tokens">Linking Tokens</a></li>
 </ul>
-<h3 id="basic-usage">Basic Usage</h3>
-<div class="tabGroup" id="tabgroup_WeZakle-RY">
+<h4 id="basic-usage">Basic Usage</h4>
+<div class="tabGroup" id="tabgroup_PQmeUwsYVN">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_WeZakle-RY_ts" role="tab" aria-controls="tabpanel_WeZakle-RY_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_PQmeUwsYVN_ts" role="tab" aria-controls="tabpanel_PQmeUwsYVN_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_WeZakle-RY_js" role="tab" aria-controls="tabpanel_WeZakle-RY_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_PQmeUwsYVN_js" role="tab" aria-controls="tabpanel_PQmeUwsYVN_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_WeZakle-RY_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { CancelToken } from &quot;@esfx/async-canceltoken&quot;;
+<section id="tabpanel_PQmeUwsYVN_ts" role="tabpanel" data-tab="ts">
+<pre><code>import { CancelToken, CancelError } from &quot;@esfx/async-canceltoken&quot;;
 
 // consume a cancel token
 async function doWork(token = CancelToken.none) {
@@ -123,7 +123,7 @@ function doSomeOtherWork(token = CancelToken.none) {
         token.throwIfSignaled(); // throw if cancellation has already been signaled.
 
         // setup some external async operation...
-        const worker = ...;
+        const worker = createWorker();
 
         // listen for cancellation and abort the worker.
         const subscription = token.subscribe(() =&gt; {
@@ -138,20 +138,23 @@ function doSomeOtherWork(token = CancelToken.none) {
 
 // call an async function that supports cancellation
 const source = CancelToken.source();
-doWork(source.token).then(() =&gt; {
-    // operation completed...
-    source.close();
-}, err =&gt; {
-    if (err instanceof CancelError) {
-        // operation was canceled..
-    }
-});
+doWork(source.token).then(
+    () =&gt; {
+        // operation completed...
+        source.close();
+    },
+    err =&gt; {
+        if (err instanceof CancelError) {
+            // operation was canceled.
+        }
+    });
 
 // cancel operation after 10 seconds
 setTimeout(() =&gt; source.cancel(), 1000 * 10);
+
 </code></pre></section>
-<section id="tabpanel_WeZakle-RY_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { CancelToken } = require(&quot;@esfx/async-canceltoken&quot;);
+<section id="tabpanel_PQmeUwsYVN_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code>const { CancelToken, CancelError } = require(&quot;@esfx/async-canceltoken&quot;);
 
 // consume a cancel token
 async function doWork(token = CancelToken.none) {
@@ -167,14 +170,14 @@ function doSomeOtherWork(token = CancelToken.none) {
         token.throwIfSignaled(); // throw if cancellation has already been signaled.
 
         // setup some external async operation...
-        const worker = ...;
+        const worker = createWorker();
 
         // listen for cancellation and abort the worker.
         const subscription = token.subscribe(() =&gt; {
             worker.abort();
             reject(new CancelError());
         });
-
+        
         // start working, resolve when done
         worker.start(resolve);
     });
@@ -182,31 +185,60 @@ function doSomeOtherWork(token = CancelToken.none) {
 
 // call an async function that supports cancellation
 const source = CancelToken.source();
-doWork(source.token).then(() =&gt; {
-    // operation completed...
-    source.close();
-}, err =&gt; {
-    if (err instanceof CancelError) {
-        // operation was canceled..
-    }
-});
+doWork(source.token).then(
+    () =&gt; {
+        // operation completed...
+        source.close();
+    },
+    err =&gt; {
+        if (err instanceof CancelError) {
+            // operation was canceled..
+        }
+    });
 
 // cancel operation after 10 seconds
 setTimeout(() =&gt; source.cancel(), 1000 * 10);
 </code></pre></section>
 </div>
-<h3 id="linking-tokens">Linking Tokens</h3>
-<div class="tabGroup" id="tabgroup_WeZakle-RY-1">
+<h4 id="linking-tokens">Linking Tokens</h4>
+<div class="tabGroup" id="tabgroup_PQmeUwsYVN-1">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_WeZakle-RY-1_ts" role="tab" aria-controls="tabpanel_WeZakle-RY-1_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_PQmeUwsYVN-1_ts" role="tab" aria-controls="tabpanel_PQmeUwsYVN-1_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_WeZakle-RY-1_js" role="tab" aria-controls="tabpanel_WeZakle-RY-1_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_PQmeUwsYVN-1_js" role="tab" aria-controls="tabpanel_PQmeUwsYVN-1_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_WeZakle-RY-1_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { CancelToken } from &quot;@esfx/async-canceltoken&quot;;
+<section id="tabpanel_PQmeUwsYVN-1_ts" role="tabpanel" data-tab="ts">
+<pre><code>import { CancelToken } from &quot;@esfx/async-canceltoken&quot;;
+
+// You can compose a cancellation graph with a root CancelToken, allowing you to cancel a large
+// number of asynchronous operations all at once
+
+let rootSource = CancelToken.source();
+
+function cancelAllDownloads() {
+    // explicitly cancel all downloads
+    rootSource.cancel();
+
+    // reset the root source
+    rootSource = CancelToken.source();
+}
+
+async function downloadFile(url: string, path: string, token = CancelToken.none) {
+    // add own source for timeout after 60 seconds
+    const timeoutSource = CancelToken.source();
+    setTimeout(() =&gt; timeoutSource.cancel(), 60 * 1000);
+
+    // download can be canceled by either &#39;rootSource&#39;, &#39;timeoutSource&#39; or &#39;token&#39;:
+    const linkedToken = CancelToken.race([rootSource.token, timeoutSource.token, token]);
+
+    // ... use linkedToken to observe cancellation.
+}
+</code></pre></section>
+<section id="tabpanel_PQmeUwsYVN-1_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code>const { CancelToken } = require(&quot;@esfx/async-canceltoken&quot;);
 
 // You can compose a cancellation graph with a root CancelToken, allowing you to cancel a large
 // number of asynchronous operations all at once
@@ -232,35 +264,7 @@ async function downloadFile(url, path, token = CancelToken.none) {
     // ... use linkedToken to observe cancellation.
 }
 </code></pre></section>
-<section id="tabpanel_WeZakle-RY-1_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { CancelToken } = require(&quot;@esfx/async-canceltoken&quot;);
-
-// You can compose a cancellation graph with a root CancelToken, allowing you to cancel a large
-// number of asynchronous operations all at once
-
-let rootSource = CancelToken.source();
-
-function cancelAllDownloads() {
-    // explicitly cancel all downloads
-    rootSource.cancel();
-
-    // reset the root source
-    rootSource = CancelToken.source();
-}
-
-async function downloadFile(url, path, token = CancelToken.none) {
-    // add own source for timeout after 60 seconds
-    const timeoutSource = CancelToken.source();
-    setTimeout(() =&gt; timeoutSource.cancel(), 60 * 1000);
-
-    // download can be canceled by either &#39;rootSource&#39;, &#39;timeoutSource&#39; or &#39;token&#39;:
-    const linkedToken = CancelToken.race([rootSource.token, timeoutSource.token, token]);
-
-    // ... use linkedToken to observe cancellation.
-}
-</code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
@@ -281,7 +285,7 @@ async function downloadFile(url, path, token = CancelToken.none) {
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/async-canceltoken.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/async-canceltoken/docsrc/overwrite/async-canceltoken.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

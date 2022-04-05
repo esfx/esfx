@@ -84,25 +84,27 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>The <code>@esfx/async-barrier</code> package provides the <a class="xref" href="async-barrier/asyncbarrier.html#_esfx_async_barrier_AsyncBarrier_class">AsyncBarrier</a> class, an async coordination primitive.</p>
-<h2 id="overview">Overview</h2>
+<h3 id="overview">Overview</h3>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
 </ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/async-barrier
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_Q0Gifs4NdT">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="NOTE"><h5>Note</h5><p>The following example is derived from <a href="https://docs.microsoft.com/en-us/dotnet/api/system.threading.barrier?view=net-6.0#examples">https://docs.microsoft.com/en-us/dotnet/api/system.threading.barrier?view=net-6.0#examples</a></p>
+</div>
+<div class="tabGroup" id="tabgroup_+udNnGCYMy">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_Q0Gifs4NdT_ts" role="tab" aria-controls="tabpanel_Q0Gifs4NdT_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_+udNnGCYMy_ts" role="tab" aria-controls="tabpanel_+udNnGCYMy_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_Q0Gifs4NdT_js" role="tab" aria-controls="tabpanel_Q0Gifs4NdT_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_+udNnGCYMy_js" role="tab" aria-controls="tabpanel_+udNnGCYMy_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_Q0Gifs4NdT_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { AsyncBarrier } from &quot;@esfx/async-barrier&quot;;
+<section id="tabpanel_+udNnGCYMy_ts" role="tabpanel" data-tab="ts">
+<pre><code>import { AsyncBarrier } from &quot;@esfx/async-barrier&quot;;
 
 async function main() {
     let count = 0;
@@ -120,19 +122,19 @@ async function main() {
 
     // Remove one participant
     barrier.remove();
-    barrier.participantcount; // 4
+    barrier.participantCount; // 4
 
     const action = async () =&gt; {
         count++;
 
-        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 4 and 
-        // &#39;phase&#39; will be 0.
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 4
+        // and &#39;phase&#39; will be 0.
         await barrier.signalAndWait();
 
         count++;
 
-        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 8 and 
-        // &#39;phase&#39; will be 1.
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 8
+        // and &#39;phase&#39; will be 1.
         await barrier.signalAndWait();
 
         count++;
@@ -145,8 +147,8 @@ async function main() {
             console.log(`Caught error: ${e.message}`);
         }
 
-        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 16 and 
-        // &#39;phase&#39; will be 3.
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 16 
+        // and &#39;phase&#39; will be 3.
         await barrier.signalAndWait();
     };
 
@@ -154,7 +156,8 @@ async function main() {
     await Promise.all([action(), action(), action(), action()]);
 }
 
-main();
+main().catch(e =&gt; console.error(e));
+
 // prints:
 // Post-phase action: count=4, phase=0
 // Post-phase action: count=8, phase=1
@@ -162,8 +165,8 @@ main();
 // Caught error: Oops
 // Post-phase action: count=16, phase=3
 </code></pre></section>
-<section id="tabpanel_Q0Gifs4NdT_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { AsyncBarrier } = require(&quot;@esfx/async-barrier&quot;);
+<section id="tabpanel_+udNnGCYMy_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code>const { AsyncBarrier } = require(&quot;@esfx/async-barrier&quot;);
 
 async function main() {
     let count = 0;
@@ -181,19 +184,19 @@ async function main() {
 
     // Remove one participant
     barrier.remove();
-    barrier.participantcount; // 4
+    barrier.participantCount; // 4
 
     const action = async () =&gt; {
         count++;
 
-        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 4 and 
-        // &#39;phase&#39; will be 0.
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 4
+        // and &#39;phase&#39; will be 0.
         await barrier.signalAndWait();
 
         count++;
 
-        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 8 and 
-        // &#39;phase&#39; will be 1.
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 8 
+        // and &#39;phase&#39; will be 1.
         await barrier.signalAndWait();
 
         count++;
@@ -206,8 +209,8 @@ async function main() {
             console.log(`Caught error: ${e.message}`);
         }
 
-        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 16 and 
-        // &#39;phase&#39; will be 3.
+        // Wait for the current phase to end. During the post-phase action &#39;count&#39; will be 16 
+        // and &#39;phase&#39; will be 3.
         await barrier.signalAndWait();
     };
 
@@ -215,7 +218,8 @@ async function main() {
     await Promise.all([action(), action(), action(), action()]);
 }
 
-main();
+main().catch(e =&gt; console.error(e));
+
 // prints:
 // Post-phase action: count=4, phase=0
 // Post-phase action: count=8, phase=1
@@ -224,7 +228,6 @@ main();
 // Post-phase action: count=16, phase=3
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
@@ -241,7 +244,7 @@ multiple phases.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/async-barrier.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/async-barrier/docsrc/overwrite/async-barrier.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

@@ -128,7 +128,7 @@ docsApiExtractor.name = "docs:api-extractor";
 
 const docsApiDocumenter = fname("docs:api-documenter", () => apiDocumenter(docPackages));
 
-const docsDocfx = fname("docs:docfx", () => docfx(argv.serve || false));
+const docsDocfx = fname("docs:docfx", () => docfx({ serve: argv.serve, build: true }));
 
 gulp.task("install:docfx", () => installDocFx(argv.force));
 gulp.task("docs:api-extractor", docsApiExtractor);
@@ -146,3 +146,13 @@ gulp.task("docs", gulp.series(
     docsDocfx
 ));
 
+const docsDocfxServe = fname("docs:docfx:serve", () => docfx({ serve: true, build: false }));
+const docsDocfxBuild = fname("docs:docfx:build", () => docfx({ serve: false, build: true, incremental: true }));
+
+gulp.task("docs:serve", docsDocfxServe);
+gulp.task("docs:dev", gulp.parallel(
+    docsDocfxServe,
+    fname("watch:api-extractor", () => gulp.watch(["api-extractor-base.json", "packages/*/api-extractor.json", "packages/*/dist/*.d.ts"], { delay: 1_000 }, docsApiExtractor)),
+    fname("watch:api-documenter", () => gulp.watch(["packages/*/obj/api/*"], docsApiDocumenter)),
+    fname("watch:docfx", () => gulp.watch(["obj/yml/**/*", "docsrc/**/*", "packages/*/docsrc/**/*", "docfx.json"], docsDocfxBuild))
+));

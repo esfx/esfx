@@ -84,30 +84,30 @@
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>The <code>@esfx/async-countdown</code> package provides the <a class="xref" href="async-countdown/asynccountdownevent.html#_esfx_async_countdown_AsyncCountdownEvent_class">AsyncCountdownEvent</a> class, an async coordination primitive.</p>
-<h2 id="overview">Overview</h2>
+<h3 id="overview">Overview</h3>
 <ul>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#usage">Usage</a></li>
 </ul>
-<h2 id="installation">Installation</h2>
+<h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/async-countdown
-</code></pre><h2 id="usage">Usage</h2>
-<div class="tabGroup" id="tabgroup_c8tNA7mCuT">
+</code></pre><h3 id="usage">Usage</h3>
+<div class="tabGroup" id="tabgroup_yBOQnjCZ-L">
 <ul role="tablist">
 <li role="presentation">
-<a href="#tabpanel_c8tNA7mCuT_ts" role="tab" aria-controls="tabpanel_c8tNA7mCuT_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
+<a href="#tabpanel_yBOQnjCZ-L_ts" role="tab" aria-controls="tabpanel_yBOQnjCZ-L_ts" data-tab="ts" tabindex="0" aria-selected="true">TypeScript</a>
 </li>
 <li role="presentation">
-<a href="#tabpanel_c8tNA7mCuT_js" role="tab" aria-controls="tabpanel_c8tNA7mCuT_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
+<a href="#tabpanel_yBOQnjCZ-L_js" role="tab" aria-controls="tabpanel_yBOQnjCZ-L_js" data-tab="js" tabindex="-1">JavaScript (CommonJS)</a>
 </li>
 </ul>
-<section id="tabpanel_c8tNA7mCuT_ts" role="tabpanel" data-tab="ts">
-<pre><code class="lang-ts">import { AsyncCountdownEvent } from &quot;@esfx/cancelable&quot;;
+<section id="tabpanel_yBOQnjCZ-L_ts" role="tabpanel" data-tab="ts">
+<pre><code>import { AsyncCountdownEvent } from &quot;@esfx/async-countdown&quot;;
 
 async function main() {
     // create an AsyncCountdownEvent with 4 participants
     const countdown = new AsyncCountdownEvent(4);
-
+    
     const worker = async () =&gt; {
         // dome some work async...
 
@@ -127,13 +127,13 @@ async function main() {
 
 main().catch(e =&gt; console.error(e));
 </code></pre></section>
-<section id="tabpanel_c8tNA7mCuT_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
-<pre><code class="lang-js">const { AsyncCountdownEvent } = require(&quot;@esfx/cancelable&quot;);
+<section id="tabpanel_yBOQnjCZ-L_js" role="tabpanel" data-tab="js" aria-hidden="true" hidden="hidden">
+<pre><code>const { AsyncCountdownEvent } = require(&quot;@esfx/async-countdown&quot;);
 
 async function main() {
     // create an AsyncCountdownEvent with 4 participants
     const countdown = new AsyncCountdownEvent(4);
-
+    
     const worker = async () =&gt; {
         // dome some work async...
 
@@ -154,7 +154,6 @@ async function main() {
 main().catch(e =&gt; console.error(e));
 </code></pre></section>
 </div>
-<h2 id="api">API</h2>
 </div>
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
@@ -170,7 +169,7 @@ main().catch(e =&gt; console.error(e));
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/esfx/esfx/blob/main/docs-sources/overwrite/async-countdown.md/#L2" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/esfx/esfx/blob/main/packages/async-countdown/docsrc/overwrite/async-countdown.md/#L2" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

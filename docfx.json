@@ -1,19 +1,21 @@
 {
   "build": {
-    "template": ["default", "docs-sources/templates/esfx"],
+    "template": ["default", "docsrc/templates/esfx"],
     "content": [
-      { "files": ["**/*.yml", "**/*.md"], "src": "docs-sources/content" },
-      { "files": ["**/*.yml", "**/*.md"], "src": "obj/yml", "dest": "api" }
+      { "files": ["**/*.yml", "**/*.md"], "src": "docsrc/content" },
+      { "files": ["**/*.yml", "**/*.md"], "src": "obj/yml", "dest": "api" },
+      { "files": ["*/docsrc/content/**/*.yml", "*/docsrc/content/**/*.md"], "src": "packages" }
     ],
     "resource": [
-      { "files": ["**"], "src": "docs-sources/resources" }
+      { "files": ["**"], "src": "docsrc/resources" }
     ],
     "overwrite": [
-      { "files": ["**/*.md"], "src": "docs-sources/overwrite" }
+      { "files": ["**/*.md"], "src": "docsrc/overwrite" },
+      { "files": ["*/docsrc/overwrite/**/*.md"], "src": "packages" }
     ],
     "xref": [
-      "docs-sources/xrefmap-dom.yml",
-      "docs-sources/xrefmap-ecma262.yml"
+      "docsrc/xrefmap-dom.yml",
+      "docsrc/xrefmap-ecma262.yml"
     ],
     "exportRawModel": true,
     "rawModelOutputFolder": "obj/raw",
