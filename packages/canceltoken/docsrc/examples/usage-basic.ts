@@ -1,5 +1,5 @@
 // <usage>
-const { CancelToken, CancelError } = require("@esfx/async-canceltoken");
+import { CancelToken, CancelError } from "@esfx/canceltoken";
 
 // consume a cancel token
 async function doWork(token = CancelToken.none) {
@@ -22,7 +22,7 @@ function doSomeOtherWork(token = CancelToken.none) {
             worker.abort();
             reject(new CancelError());
         });
-        
+
         // start working, resolve when done
         worker.start(resolve);
     });
@@ -37,10 +37,12 @@ doWork(source.token).then(
     },
     err => {
         if (err instanceof CancelError) {
-            // operation was canceled..
+            // operation was canceled.
         }
     });
 
 // cancel operation after 10 seconds
 setTimeout(() => source.cancel(), 1000 * 10);
+
 // </usage>
+declare function createWorker(): { abort(): void; start(done: (value: unknown) => void): void; };

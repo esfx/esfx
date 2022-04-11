@@ -1,4 +1,4 @@
-const { CancelToken } = require("@esfx/async-canceltoken");
+const { CancelToken } = require("@esfx/canceltoken");
 
 // You can compose a cancellation graph with a root CancelToken, allowing you to cancel a large
 // number of asynchronous operations all at once

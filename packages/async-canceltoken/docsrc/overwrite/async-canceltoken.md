@@ -2,31 +2,8 @@
 uid: '@esfx/async-canceltoken!'
 ---
 
-The `@esfx/async-canceltoken` package provides the @CancelToken class, an implementation of `@esfx/cancelable`.
+The `@esfx/async-canceltoken` package has been renamed to `@esfx/canceltoken`. Please update your references.
 
-### Installation
+# See Also
 
-```sh
-npm i @esfx/async-canceltoken
-```
-
-### Usage
-
-* [Basic Usage](#basic-usage)
-* [Linking Tokens](#linking-tokens)
-
-#### Basic Usage
-
-##### [TypeScript](#tab/ts)
-[!code-typescript[](../examples/usage-basic.ts#usage)]
-##### [JavaScript (CommonJS)](#tab/js)
-[!code-javascript[](../examples/usage-basic.js#usage)]
-***
-
-#### Linking Tokens
-
-##### [TypeScript](#tab/ts)
-[!code-typescript[](../examples/usage-linking.ts)]
-##### [JavaScript (CommonJS)](#tab/js)
-[!code-javascript[](../examples/usage-linking.js)]
-***
+Please see [here](xref:@esfx/canceltoken!) for documentation on the `@esfx/canceltoken` package.

@@ -19,6 +19,79 @@ describe("CancelToken", () => {
             it("can be signaled", () => expect(CancelToken.canceled.canBeSignaled).toBe(true));
         });
 
+        describe("source()", () => {
+            it("linked tokens", () => {
+                const source1 = CancelToken.source();
+                const source2 = CancelToken.source();
+                const token = CancelToken.source([source1.token, source2.token]).token;
+                source1.cancel();
+                expect(token.canBeSignaled).toBe(true);
+                expect(token.signaled).toBe(true);
+                expect(source2.token.canBeSignaled).toBe(true);
+                expect(source2.token.signaled).toBe(false);
+            });
+
+            it("linked tokens state observed immediately", () => {
+                const mainSource = CancelToken.source();
+                const tokenA = CancelToken.source([mainSource.token]).token;
+                const tokenB = CancelToken.source([mainSource.token]).token;
+                const tokenAB = CancelToken.source([tokenA, tokenB]).token;
+                let mainSignaled: boolean = false;
+                let aSignaled: boolean = false;
+                let bSignaled: boolean = false;
+                let abSignaled: boolean = false;
+                tokenAB.subscribe(() => {
+                    mainSignaled = mainSource.token.signaled;
+                    aSignaled = tokenA.signaled;
+                    bSignaled = tokenB.signaled;
+                    abSignaled = tokenAB.signaled;
+                });
+                mainSource.cancel();
+                expect(mainSignaled).toBe(true);
+                expect(aSignaled).toBe(true);
+                expect(bSignaled).toBe(true);
+                expect(abSignaled).toBe(true);
+            });
+
+            it("error when argument not iterable", () => {
+                expect(() => CancelToken.source(<any>{})).toThrow(TypeError);
+            });
+
+            it("error when element not a token", () => {
+                expect(() => CancelToken.source(<any>[{}])).toThrow(TypeError);
+            });
+
+            it("linked tokens already canceled", () => {
+                const source1 = CancelToken.source();
+                source1.cancel();
+                const linkedToken = CancelToken.source([source1.token]).token;
+                expect(linkedToken.canBeSignaled).toBe(true);
+                expect(linkedToken.signaled).toBe(true);
+            });
+
+            it("one linked token is closed", () => {
+                const source1 = CancelToken.source();
+                source1.close();
+
+                const source2 = CancelToken.source();
+                const linkedToken = CancelToken.source([source1.token, source2.token]).token;
+                expect(linkedToken.canBeSignaled).toBe(true);
+                expect(linkedToken.signaled).toBe(false);
+            });
+
+            it("all linked tokens are closed", () => {
+                const source1 = CancelToken.source();
+                source1.close();
+
+                const source2 = CancelToken.source();
+                source2.close();
+
+                const linkedToken = CancelToken.source([source1.token, source2.token]).token;
+                expect(linkedToken.canBeSignaled).toBe(true);
+                expect(linkedToken.signaled).toBe(false);
+            });
+        });
+
         describe("race()", () => {
             it("linked tokens", () => {
                 const source1 = CancelToken.source();

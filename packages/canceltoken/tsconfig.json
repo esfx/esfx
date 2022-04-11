@@ -7,12 +7,12 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        // devDependencies:
-        { "path": "../canceltoken" },
-        { "path": "../../internal/guards" },
-
-        // dependencies:
-        { "path": "../async-waitqueue" },
+        // dependencies
         { "path": "../cancelable" },
+        { "path": "../disposable" },
+
+        // devDependencies
+        { "path": "../../internal/linked-list" },
+        { "path": "../../internal/guards" },
     ]
 }

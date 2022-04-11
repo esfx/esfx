@@ -1,4 +1,4 @@
-import { CancelToken } from "@esfx/async-canceltoken";
+import { CancelToken } from "@esfx/canceltoken";
 
 // You can compose a cancellation graph with a root CancelToken, allowing you to cancel a large
 // number of asynchronous operations all at once

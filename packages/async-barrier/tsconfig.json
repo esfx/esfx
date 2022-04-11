@@ -12,7 +12,7 @@
         { "path": "../cancelable" },
 
         // devDependencies:
-        { "path": "../async-canceltoken" },
+        { "path": "../canceltoken" },
         { "path": "../../internal/guards" }
     ]
 }

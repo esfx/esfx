@@ -1,7 +1,7 @@
 {
-    "name": "@esfx/async-barrier",
+    "name": "@esfx/canceltoken",
     "version": "1.0.0-pre.30",
-    "description": "Provides 'AsyncBarrier', an async coordination primitive.",
+    "description": "Proviced CancelToken a cancellation primitive.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
     "main": "./dist/cjs/index.js",
@@ -10,6 +10,16 @@
             "types": "./dist/types/index.d.ts",
             "require": "./dist/cjs/index.js",
             "import": "./dist/esm/index.js"
+        },
+        "./dom": {
+            "types": "./dist/types/dom.d.ts",
+            "require": "./dist/cjs/dom.js",
+            "import": "./dist/esm/dom.js"
+        }
+    },
+    "typesVersions": {
+        "*": {
+            "dom": ["./dist/types/dom.d.ts"]
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
@@ -21,12 +31,16 @@
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
     },
+    "scripts": {
+        "prebuild": "node scripts/generateDomEventTypes.js"
+    },
     "dependencies": {
-        "@esfx/async-waitqueue": "^1.0.0-pre.30",
-        "@esfx/cancelable": "^1.0.0-pre.30"
+        "@esfx/cancelable": "^1.0.0-pre.30",
+        "@esfx/disposable": "^1.0.0-pre.30",
+        "tslib": "^2.3.1"
     },
     "devDependencies": {
-        "@esfx/canceltoken": "^1.0.0-pre.30",
+        "@esfx/internal-linked-list": "^1.0.0-pre.30",
         "@esfx/internal-guards": "^1.0.0-pre.23"
     },
     "publishConfig": {

@@ -14,9 +14,9 @@
    limitations under the License.
 */
 
+export * from "@esfx/canceltoken";
 export * from "@esfx/async-autoresetevent";
 export * from "@esfx/async-barrier";
-export * from "@esfx/async-canceltoken";
 export * from "@esfx/async-conditionvariable";
 export * from "@esfx/async-countdown";
 export * from "@esfx/async-deferred";

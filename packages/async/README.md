@@ -1,8 +1,8 @@
 Provides a number of asynchronous coordination primitives from the following packages:
 
+- [`@esfx/canceltoken`](../canceltoken/README.md)
 - [`@esfx/async-autoresetevent`](../async-autoresetevent/README.md)
 - [`@esfx/async-barrier`](../async-barrier/README.md)
-- [`@esfx/async-canceltoken`](../async-canceltoken/README.md)
 - [`@esfx/async-conditionvariable`](../async-conditionvariable/README.md)
 - [`@esfx/async-countdown`](../async-countdown/README.md)
 - [`@esfx/async-deferred`](../async-deferred/README.md)

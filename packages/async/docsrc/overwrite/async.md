@@ -4,9 +4,9 @@ uid: '@esfx/async!'
 
 Provides a number of asynchronous coordination primitives from the following packages:
 
+- @"@esfx/canceltoken!"
 - @"@esfx/async-autoresetevent!"
 - @"@esfx/async-barrier!"
-- @"@esfx/async-canceltoken!"
 - @"@esfx/async-conditionvariable!"
 - @"@esfx/async-countdown!"
 - @"@esfx/async-deferred!"

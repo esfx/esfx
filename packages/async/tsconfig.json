@@ -10,7 +10,7 @@
     "references": [
         { "path": "../async-autoresetevent" },
         { "path": "../async-barrier" },
-        { "path": "../async-canceltoken" },
+        { "path": "../canceltoken" },
         { "path": "../async-conditionvariable" },
         { "path": "../async-lockable" },
         { "path": "../async-countdown" },

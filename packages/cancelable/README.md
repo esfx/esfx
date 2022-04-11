@@ -6,7 +6,7 @@ The `@esfx/cancelable` package provides a low-level Symbol-based API for definin
 > protocol for interoperable libraries that depend on cancellation.
 >
 > For an implementation of this protocol, please consider the following packages:
-> - [`@esfx/async-canceltoken`](../async-canceltoken#readme)
+> - [`@esfx/canceltoken`](../canceltoken#readme)
 > - [`@esfx/cancelable-dom`](../cancelable-dom#readme)
 > - [`@esfx/cancelable-dom-shim`](../cancelable-dom-shim#readme)
 > - [`prex`](https://github.com/rbuckton/prex#readme) (version 0.4.6 or later)

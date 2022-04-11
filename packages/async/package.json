@@ -24,7 +24,6 @@
     "dependencies": {
         "@esfx/async-autoresetevent": "^1.0.0-pre.30",
         "@esfx/async-barrier": "^1.0.0-pre.30",
-        "@esfx/async-canceltoken": "^1.0.0-pre.30",
         "@esfx/async-conditionvariable": "^1.0.0-pre.30",
         "@esfx/async-countdown": "^1.0.0-pre.30",
         "@esfx/async-deferred": "^1.0.0-pre.19",
@@ -36,7 +35,8 @@
         "@esfx/async-queue": "^1.0.0-pre.30",
         "@esfx/async-readerwriterlock": "^1.0.0-pre.30",
         "@esfx/async-semaphore": "^1.0.0-pre.30",
-        "@esfx/async-stack": "^1.0.0-pre.30"
+        "@esfx/async-stack": "^1.0.0-pre.30",
+        "@esfx/canceltoken": "^1.0.0-pre.30"
     },
     "publishConfig": {
         "access": "public"

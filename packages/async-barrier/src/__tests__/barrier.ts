@@ -1,4 +1,4 @@
-import { CancelToken } from '@esfx/async-canceltoken';
+import { CancelToken } from '@esfx/canceltoken';
 import { CancelError, Cancelable } from '@esfx/cancelable';
 import { AsyncBarrier } from "..";
 

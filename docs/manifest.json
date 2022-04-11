@@ -177,31 +177,7 @@
       "output": {
         ".html": {
           "relative_path": "api/async-canceltoken.html",
-          "hash": "ynDW+JzeoZfqvl/GVNZZDCHrXju88gdXy+Vt0X82VIQ="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "UniversalReference",
-      "source_relative_path": "obj/yml/async-canceltoken/cancelsource.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/async-canceltoken/cancelsource.html",
-          "hash": "nEFb4HGYydRsJ/9DsyzdX+quURo3l6s8NxPqyT6W9GM="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "UniversalReference",
-      "source_relative_path": "obj/yml/async-canceltoken/canceltoken.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/async-canceltoken/canceltoken.html",
-          "hash": "8FjNv/6BB3lWotKc1rBnWNfbuMDfS1SXbdDSOAsa8MA="
+          "hash": "ffzJFmBSHG9sngesQL9Ln/bA9/SonRubLEPuycHr3Eo="
         }
       },
       "is_incremental": false,
@@ -801,7 +777,7 @@
       "output": {
         ".html": {
           "relative_path": "api/async.html",
-          "hash": "q7k33u+qa+dsu7eoa5/kK5eNwIODiTB5s9+S0p/r67w="
+          "hash": "4PDQSzsc3fTdKvdMWQz56n1+smVrlkoeIQPKtYw29Ro="
         }
       },
       "is_incremental": false,
@@ -837,7 +813,7 @@
       "output": {
         ".html": {
           "relative_path": "api/cancelable.html",
-          "hash": "PeOnAPmg7mmDDnymbzqDyQpWwDn4pRuXReRnkv5TbdM="
+          "hash": "f4Ff9Ck15x5xMKYhFBMzIKXoy8vwDCi3pNFefybOosY="
         }
       },
       "is_incremental": false,
@@ -946,6 +922,42 @@
         ".html": {
           "relative_path": "api/cancelable/cancelsubscription-namespace.html",
           "hash": "MklpBWqT2bE0OO39GNj/dC1ut6DKsuxnkdp6WoztRl0="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/canceltoken.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/canceltoken.html",
+          "hash": "b9kTY5M894xLQFLx42GR7JiqI0nJKgAy364PrrzSEpc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/canceltoken/cancelsource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/canceltoken/cancelsource.html",
+          "hash": "k1vz25prPNwytCthjpysN6ZYMD92qhX36cFmD+o9za8="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/canceltoken/canceltoken.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/canceltoken/canceltoken.html",
+          "hash": "6/syt+zhO5Omy6Q2v1KJBFJ2snQdhAGDCFm4wCvxxFQ="
         }
       },
       "is_incremental": false,
@@ -3105,7 +3117,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "59SxKW1vzF1SFN1H2XLysPQ67zs72w9uXiqoZkd1Txo="
+          "hash": "eMTgNuJ/hKiK5ekhDQsOkxTIg3vg5vcIoN0oSwgt60o="
         }
       },
       "is_incremental": false,
