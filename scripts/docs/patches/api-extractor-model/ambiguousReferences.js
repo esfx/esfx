@@ -3,32 +3,49 @@ const { ModelReferenceResolver } = require("@microsoft/api-extractor-model/lib/m
 const { ApiItemContainerMixin } = require("@microsoft/api-extractor-model/lib/mixins/ApiItemContainerMixin");
 const { ApiItemKind } = require("@microsoft/api-extractor-model/lib/items/ApiItem");
 const { ApiDeclaredItem } = require("@microsoft/api-extractor-model/lib/items/ApiDeclaredItem");
+const { ApiModel } = require("@microsoft/api-extractor-model/lib/model/ApiModel");
+const { BetaOrLegacyDocDeclarationReference } = require("../tsdoc/betaOrLegacyDocDeclarationReference");
+const { DeclarationReference, ComponentNavigation, ComponentReference, ComponentString, SymbolReference } = require("@microsoft/tsdoc/lib-commonjs/beta/DeclarationReference");
+const { meaningToSelector, isGlobal, getPackageName, getImportPath, getMemberReferences } = require("../utils/declarationReferenceUtils");
 
 /** @typedef {import("@microsoft/api-extractor-model/lib/model/ApiPackage").ApiPackage} ApiPackage */
 /** @typedef {import("@microsoft/api-extractor-model/lib/model/ApiClass").ApiClass} ApiClass */
 /** @typedef {import("@microsoft/api-extractor-model/lib/model/ApiNamespace").ApiNamespace} ApiNamespace */
 /** @typedef {import("@microsoft/api-extractor-model/lib/items/ApiItem").ApiItem} ApiItem */
-/** @typedef {import("@microsoft/api-extractor-model/lib/model/ApiModel").ApiModel} ApiModel */
 /** @typedef {import("@microsoft/api-extractor-model/lib/model/ModelReferenceResolver").IResolveDeclarationReferenceResult} IResolveDeclarationReferenceResult */
 /** @typedef {ApiItem & ApiItemContainerMixin} ApiItemContainer */
 
 /**
- * @param {import("@microsoft/tsdoc").DocDeclarationReference} declarationReference
+ * @param {import("@microsoft/tsdoc").DocDeclarationReference | DeclarationReference} declarationReference
  * @param {ApiItem | undefined} contextApiItem
  */
-ModelReferenceResolver.prototype.resolve = function(declarationReference, contextApiItem) {
+ModelReferenceResolver.prototype.resolve = resolveAmbiguousReference;
+
+/**
+ * @this {ApiModel}
+ * @param {import("@microsoft/tsdoc").DocDeclarationReference | DeclarationReference} declarationReference
+ * @param {ApiItem | undefined} contextApiItem
+ */
+function resolveAmbiguousReference(declarationReference, contextApiItem) {
     /** @type {IResolveDeclarationReferenceResult} */
     const result = {
         resolvedApiItem: undefined,
         errorMessage: undefined
     };
 
+    if (isGlobal(declarationReference)) {
+        result.errorMessage = `Cannot resolve a global source.`;
+        return result;
+    }
+
+    const packageName = getPackageName(declarationReference);
+
     // Is this an absolute reference?
-    if (declarationReference.packageName !== undefined) {
+    if (packageName !== undefined) {
         // @ts-ignore
-        const apiPackage = this._apiModel.tryGetPackageByName(declarationReference.packageName);
+        const apiPackage = this._apiModel.tryGetPackageByName(packageName);
         if (apiPackage === undefined) {
-            result.errorMessage = `The package "${declarationReference.packageName}" could not be located`;
+            result.errorMessage = `The package "${packageName}" could not be located`;
             return result;
         }
         return resolveForPackage.call(this, declarationReference, apiPackage);
@@ -39,8 +56,19 @@ ModelReferenceResolver.prototype.resolve = function(declarationReference, contex
 
     // If the package name is omitted, try to infer it from the context
     if (contextApiItem !== undefined) {
+        // try to infer from local context by walking up the AST
+        let currentApiItem = contextApiItem;
+        while (currentApiItem) {
+            const result = resolveForItems.call(this, declarationReference, new Set([currentApiItem]));
+            if (result.errorMessage === undefined) {
+                return result;
+            }
+            currentApiItem = currentApiItem.parent;
+        }
+
         apiPackage = contextApiItem.getAssociatedPackage();
     }
+
     if (apiPackage === undefined) {
         result.errorMessage =
             `The reference does not include a package name, and the package could not be inferred` +
@@ -48,7 +76,7 @@ ModelReferenceResolver.prototype.resolve = function(declarationReference, contex
         return result;
     }
 
-    const importPath = declarationReference.importPath || '';
+    const importPath = getImportPath(declarationReference) || '';
 
     // First, try to resolve using the package for the context item
     /** @type {IResolveDeclarationReferenceResult} */
@@ -133,8 +161,33 @@ function collectReferencedPackagesOfItem(item, apiModel, packages) {
 }
 
 /**
+ * @param {import("@microsoft/tsdoc").DocMemberReference | import("@microsoft/tsdoc/lib-commonjs/beta/DeclarationReference").SymbolReference} memberReference 
+ */
+function getMemberSymbol(memberReference) {
+    return memberReference instanceof SymbolReference ? memberReference.componentPath.component instanceof ComponentReference ? memberReference.componentPath.component.reference : undefined :
+        memberReference.memberSymbol.symbolReference;
+}
+
+/**
+ * @param {import("@microsoft/tsdoc").DocMemberReference | import("@microsoft/tsdoc/lib-commonjs/beta/DeclarationReference").SymbolReference} memberReference 
+ */
+function getMemberIdentifier(memberReference) {
+    return memberReference instanceof SymbolReference ? memberReference.componentPath.component instanceof ComponentString ? memberReference.componentPath.component.text : undefined :
+        memberReference.memberIdentifier.identifier;
+}
+
+/**
+ * @param {import("@microsoft/tsdoc").DocMemberReference | import("@microsoft/tsdoc/lib-commonjs/beta/DeclarationReference").SymbolReference} memberReference 
+ */
+function getMemberSelector(memberReference) {
+    return memberReference instanceof SymbolReference ?
+        meaningToSelector(memberReference.meaning, memberReference.componentPath instanceof ComponentNavigation ? memberReference.componentPath.navigation : undefined, memberReference.overloadIndex) :
+        memberReference.selector;
+}
+
+/**
  * @this {ModelReferenceResolver}
- * @param {import("@microsoft/tsdoc").DocDeclarationReference} declarationReference
+ * @param {import("@microsoft/tsdoc").DocDeclarationReference | DeclarationReference} declarationReference
  * @param {import("@microsoft/api-extractor-model/lib/model/ApiPackage").ApiPackage} apiPackage
  */
 function resolveForPackage(declarationReference, apiPackage) {
@@ -144,29 +197,45 @@ function resolveForPackage(declarationReference, apiPackage) {
         errorMessage: undefined
     };
 
-    const importPath = declarationReference.importPath || '';
+    const importPath = getImportPath(declarationReference) || '';
     const foundEntryPoints = apiPackage.findEntryPointsByPath(importPath);
     if (foundEntryPoints.length !== 1) {
         result.errorMessage = `The import path "${importPath}" could not be resolved`;
         return result;
     }
+
     /** @type {ReadonlySet<ApiItem>} */
-    let currentItems = new Set([foundEntryPoints[0]]);
+    const currentItems = new Set([foundEntryPoints[0]]);
+    return resolveForItems.call(this, declarationReference, currentItems);
+}
+
+/**
+ * @this {ModelReferenceResolver}
+ * @param {import("@microsoft/tsdoc").DocDeclarationReference | DeclarationReference} declarationReference
+ * @param {ReadonlySet<ApiItem>} currentItems
+ */
+function resolveForItems(declarationReference, currentItems) {
+    /** @type {IResolveDeclarationReferenceResult} */
+    const result = {
+        resolvedApiItem: undefined,
+        errorMessage: undefined
+    };
+
     /** @type {string | undefined} */
     let lastIdentifier = undefined;
     // Now search for the member reference
-    for (const memberReference of declarationReference.memberReferences) {
-        if (memberReference.memberSymbol !== undefined) {
+    for (const memberReference of getMemberReferences(declarationReference)) {
+        const memberSymbol = getMemberSymbol(memberReference);
+        if (memberSymbol !== undefined) {
             result.errorMessage = `Symbols are not yet supported in declaration references`;
             return result;
         }
 
-        if (memberReference.memberIdentifier === undefined) {
+        const identifier = getMemberIdentifier(memberReference);
+        if (identifier === undefined) {
             result.errorMessage = `Missing member identifier`;
             return result;
         }
-
-        const identifier = memberReference.memberIdentifier.identifier;
 
         /** @type {Set<ApiItemContainer>} */
         const currentItemsAsContainers = new Set();
@@ -211,7 +280,7 @@ function resolveForPackage(declarationReference, apiPackage) {
         /** @type {Set<ApiItem>} */
         const nextItems = new Set();
         for (const foundMembers of currentItemsWithFoundMembers.values()) {
-            const memberSelector = memberReference.selector;
+            const memberSelector = getMemberSelector(memberReference);
             if (memberSelector === undefined) {
                 for (const member of foundMembers) {
                     nextItems.add(member);
@@ -280,6 +349,7 @@ function resolveForPackage(declarationReference, apiPackage) {
     for (const currentItem of candidates.slice(1)) {
         const preferredItem = pickItem(result.resolvedApiItem, currentItem);
         if (preferredItem === undefined) {
+            const importPath = getImportPath(declarationReference) || '';
             result.errorMessage = lastIdentifier !== undefined ?
                 `The member reference ${JSON.stringify(lastIdentifier)} was ambiguous` :
                 `Member references could not be resolved from import path "${importPath}"`;
@@ -388,3 +458,16 @@ function pickItem(left, right) {
     // for any other collision, pick neither
     return undefined;
 }
+
+const prevResolveDeclarationReference = ApiModel.prototype.resolveDeclarationReference;
+ApiModel.prototype.resolveDeclarationReference = function (declRef, apiItem) {
+    if (declRef instanceof BetaOrLegacyDocDeclarationReference && declRef.betaDeclarationReference) {
+        declRef = declRef.betaDeclarationReference;
+    }
+    if (declRef instanceof DeclarationReference) {
+        const result = prevResolveDeclarationReference.call(this, declRef, apiItem);
+        if (!result.errorMessage) return result;
+        return resolveAmbiguousReference.call(this["_resolver"], declRef, apiItem);
+    }
+    return prevResolveDeclarationReference.call(this, declRef, apiItem);
+};

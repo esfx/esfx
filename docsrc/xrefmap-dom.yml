@@ -1,7 +1,7 @@
 ### YamlMime:XRefMap
 sorted: false
 references:
-- uid: '!AbortController'
+- uid: '!AbortController:interface'
   name: AbortController
   href: https://developer.mozilla.org/en-US/docs/Web/API/AbortController
   fullName: AbortController
@@ -10,7 +10,7 @@ references:
   href: https://developer.mozilla.org/en-US/docs/Web/API/AbortController
   fullName: AbortController
 
-- uid: '!AbortSignal'
+- uid: '!AbortSignal:interface'
   name: AbortSignal
   href: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
   fullName: AbortSignal
@@ -18,7 +18,7 @@ references:
   name: AbortSignal
   href: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
   fullName: AbortSignal
-- uid: '@esfx/async-canceltoken!~DOMAbortSignal:type'
+- uid: '@esfx/canceltoken!~DOMAbortSignal:type'
   name: AbortSignal
   href: https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal
 

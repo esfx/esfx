@@ -200,3 +200,41 @@ references:
 - uid: '@esfx/cancelable!~ErrorOptions:type'
   name: ErrorOptions
   href: https://tc39.es/ecma262/#sec-installerrorcause
+
+- uid: '!Error:interface'
+  name: Error
+  fullName: Error
+  href: https://tc39.es/ecma262/#sec-error-interface
+- uid: '!EvalError:interface'
+  name: EvalError
+  fullName: EvalError
+  href: https://tc39.es/ecma262/#sec-native-error-types-used-in-this-standard-evalerror
+- uid: '!RangeError:interface'
+  name: RangeError
+  fullName: RangeError
+  href: https://tc39.es/ecma262/#sec-native-error-types-used-in-this-standard-rangeerror
+- uid: '!ReferenceError:interface'
+  name: ReferenceError
+  fullName: ReferenceError
+  href: https://tc39.es/ecma262/#sec-native-error-types-used-in-this-standard-referenceerror
+- uid: '!SyntaxError:interface'
+  name: SyntaxError
+  fullName: SyntaxError
+  href: https://tc39.es/ecma262/#sec-native-error-types-used-in-this-standard-syntaxerror
+- uid: '!TypeError:interface'
+  name: TypeError
+  fullName: TypeError
+  href: https://tc39.es/ecma262/#sec-native-error-types-used-in-this-standard-typeerror
+- uid: '!URIError:interface'
+  name: URIError
+  fullName: URIError
+  href: https://tc39.es/ecma262/#sec-native-error-types-used-in-this-standard-urierror
+- uid: '!AggregateError:interface'
+  name: AggregateError
+  fullName: AggregateError
+  href: https://tc39.es/ecma262/#sec-aggregate-error-objects
+
+- uid: '!RegExp:interface'
+  name: RegExp
+  fullName: RegExp
+  href: https://tc39.es/ecma262/#sec-regexp-regular-expression-objects

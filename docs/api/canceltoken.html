@@ -222,12 +222,12 @@ function cancelAllDownloads() {
 }
 
 async function downloadFile(url: string, path: string, token = CancelToken.none) {
-    // add own source for timeout after 60 seconds
-    const timeoutSource = CancelToken.source();
-    setTimeout(() =&gt; timeoutSource.cancel(), 60 * 1000);
+    // Get a token that times out after 60 seconds
+    const timeoutToken = CancelToken.timeout(60 * 1000);
 
-    // download can be canceled by either &#39;rootSource&#39;, &#39;timeoutSource&#39; or &#39;token&#39;:
-    const linkedToken = CancelToken.race([rootSource.token, timeoutSource.token, token]);
+    // download can be canceled by either &#39;rootSource&#39;, &#39;timeoutToken&#39; or &#39;token&#39;:
+    const linkedSource = CancelToken.source([rootSource.token, timeoutToken, token]);
+    const linkedToken = linkedSource.token;
 
     // ... use linkedToken to observe cancellation.
 }
@@ -249,12 +249,12 @@ function cancelAllDownloads() {
 }
 
 async function downloadFile(url, path, token = CancelToken.none) {
-    // add own source for timeout after 60 seconds
-    const timeoutSource = CancelToken.source();
-    setTimeout(() =&gt; timeoutSource.cancel(), 60 * 1000);
+    // Get a token that times out after 60 seconds
+    const timeoutToken = CancelToken.timeout(60 * 1000);
 
-    // download can be canceled by either &#39;rootSource&#39;, &#39;timeoutSource&#39; or &#39;token&#39;:
-    const linkedToken = CancelToken.race([rootSource.token, timeoutSource.token, token]);
+    // download can be canceled by either &#39;rootSource&#39;, &#39;timeoutToken&#39; or &#39;token&#39;:
+    const linkedSource = CancelToken.source([rootSource.token, timeoutToken, token]);
+    const linkedToken = linkedSource.token;
 
     // ... use linkedToken to observe cancellation.
 }
@@ -270,7 +270,7 @@ async function downloadFile(url, path, token = CancelToken.none) {
     <h3 id="interfaces">Interfaces
   </h3>
         <h4><a class="xref" href="canceltoken/cancelsource.html#_esfx_canceltoken_CancelSource_interface">CancelSource</a></h4>
-        <section><p>Signals a CancelToken when cancellation has been requested.</p>
+        <section><p>Signals a <a class="xref" href="canceltoken/canceltoken.html#_esfx_canceltoken_CancelToken_class">CancelToken</a> when cancellation has been requested.</p>
 </section>
 </article>
           </div>

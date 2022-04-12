@@ -105,7 +105,7 @@ gulp.task("verify", verify);
 gulp.task("default", gulp.series(build, verify, test));
 
 const docPackagePattern = argv.docPackagePattern && new RegExp(argv.docPackagePattern, "i");
-const docPackages = publicPackages.filter(docPackage => fs.existsSync(path.resolve(docPackage, "api-extractor.json")) && (!docPackagePattern || docPackagePattern.test(docPackage)));
+const docPackages = publicPackages.filter(docPackage => fs.existsSync(path.resolve(docPackage, "api-extractor.json")));
 
 const cleanDocsOutputs = () => del([
     "packages/*/obj",
@@ -123,10 +123,10 @@ gulp.task("clean:docs", gulp.parallel(
     cleanLegacyOutputs
 ));
 
-const docsApiExtractor = gulp.parallel(docPackages.map(docPackage => fname(`docs:api-extractor:${docPackage}`, () => apiExtractor(docPackage, { force: argv.force, verbose: argv.verbose }))));
+const docsApiExtractor = gulp.parallel(docPackages.map(docPackage => fname(`docs:api-extractor:${docPackage}`, () => apiExtractor({ projectFolder: docPackage, force: argv.force, verbose: argv.verbose, docPackagePattern }))));
 docsApiExtractor.name = "docs:api-extractor";
 
-const docsApiDocumenter = fname("docs:api-documenter", () => apiDocumenter(docPackages));
+const docsApiDocumenter = fname("docs:api-documenter", () => apiDocumenter({ projectFolders: docPackages, docPackagePattern }));
 
 const docsDocfx = fname("docs:docfx", () => docfx({ serve: argv.serve, build: true }));
 

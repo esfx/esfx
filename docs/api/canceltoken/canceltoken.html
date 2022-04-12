@@ -211,7 +211,8 @@
   
   
   <h4 id="_esfx_canceltoken_CancelToken__Cancelable_cancelSignal__member_1_" data-uid="@esfx/canceltoken!CancelToken#[Cancelable.cancelSignal]:member(1)">[Cancelable.cancelSignal]()</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets the CancelSignal for this Cancelable.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -233,7 +234,7 @@
   
   
   <h4 id="_esfx_canceltoken_CancelToken_all_member_1_" data-uid="@esfx/canceltoken!CancelToken.all:member(1)">all(cancelables)</h4>
-  <div class="markdown level1 summary"><p>Returns a <code>CancelToken</code> that becomes signaled when **all** of the provided cancelables are signaled.</p>
+  <div class="markdown level1 summary"><p>Returns a <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_class">CancelToken</a> that becomes signaled when all of the provided cancelables are signaled.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -246,10 +247,10 @@
     <div class="property">
       <dl class="parameter">
         <dt>cancelables</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | <span class="xref">DOMAbortSignal</span> | null | undefined&gt;</dd>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">DOMAbortSignal</a> | null | undefined&gt;</dd>
       </dl>
       <p>
-        <p>An iterable of <code>Cancelable</code> objects.</p>
+        <p>An iterable of <a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> objects.</p>
 
         
       </p>
@@ -268,7 +269,7 @@
   
   
   <h4 id="_esfx_canceltoken_CancelToken_canceledWith_member_1_" data-uid="@esfx/canceltoken!CancelToken.canceledWith:member(1)">canceledWith(reason)</h4>
-  <div class="markdown level1 summary"><p>Gets a <code>CancelToken</code> that is already canceled with the provided reason.</p>
+  <div class="markdown level1 summary"><p>Gets a <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_class">CancelToken</a> that is already canceled with the provided reason.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -315,7 +316,7 @@
     <div class="property">
       <dl class="parameter">
         <dt>cancelable</dt>
-        <dd><a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | <span class="xref">DOMAbortSignal</span> | null | undefined</dd>
+        <dd><a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">DOMAbortSignal</a> | null | undefined</dd>
       </dl>
       <p>
         
@@ -336,7 +337,7 @@
   
   
   <h4 id="_esfx_canceltoken_CancelToken_race_member_1_" data-uid="@esfx/canceltoken!CancelToken.race:member(1)">race(cancelables)</h4>
-  <div class="markdown level1 summary"><p>Returns a <code>CancelToken</code> that becomes signaled when **any** of the provided cancelables are signaled.</p>
+  <div class="markdown level1 summary"><p>Returns a <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_class">CancelToken</a> that becomes signaled when any of the provided cancelables are signaled.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -349,10 +350,10 @@
     <div class="property">
       <dl class="parameter">
         <dt>cancelables</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | <span class="xref">DOMAbortSignal</span> | null | undefined&gt;</dd>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">DOMAbortSignal</a> | null | undefined&gt;</dd>
       </dl>
       <p>
-        <p>An iterable of <code>Cancelable</code> objects.</p>
+        <p>An iterable of <a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> objects.</p>
 
         
       </p>
@@ -369,8 +370,8 @@
   
   
   <h5 id="_esfx_canceltoken_CancelToken_race_member_1__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This is similar to calling  with the provided cancelables. In general,
-calling  is preferred as it provides better resource management.</p>
+  <div class="markdown level1 remarks"><p>This is similar to calling <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_source_member_1_">CancelToken.source()</a> with the provided <code>cancelables</code><!-- -->. In general,
+calling <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_source_member_1_">CancelToken.source()</a> is preferred as it provides better resource management.</p>
 </div>
   
   
@@ -388,10 +389,10 @@ calling  is preferred as it provides better resource management.</p>
     <div class="property">
       <dl class="parameter">
         <dt>cancelables</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | <span class="xref">DOMAbortSignal</span> | null | undefined&gt;</dd>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">DOMAbortSignal</a> | null | undefined&gt;</dd>
       </dl>
       <p>
-        <p>An optional iterable of <code>Cancelable</code> objects. If present,
+        <p>An optional iterable of <a class="xref" href="../cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> objects. If present,
 the source becomes linked to the provided cancelables and will be canceled
 when a linked cancelable is canceled.</p>
 
@@ -410,7 +411,7 @@ when a linked cancelable is canceled.</p>
   
   
   <h5 id="_esfx_canceltoken_CancelToken_source_member_1__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Calling  with <code>cancelables</code> is similar to , except you can
+  <div class="markdown level1 remarks"><p>Calling <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_source_member_1_">CancelToken.source()</a> with <code>cancelables</code> is similar to <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_race_member_1_">CancelToken.race()</a><!-- -->, except you can
 individually cancel or close the resulting source. This can be better for memory or GC purposes,
 since when the resulting source is canceled or closed it can be unlinked from the cancelables,
 removing references from each cancelable to the resulting source which could otherwise prevent
@@ -453,7 +454,7 @@ garbage collection.</p>
   
   
   <h4 id="_esfx_canceltoken_CancelToken_throwIfSignaled_member_1_" data-uid="@esfx/canceltoken!CancelToken#throwIfSignaled:member(1)">throwIfSignaled()</h4>
-  <div class="markdown level1 summary"><p>Throws a CancelError if the token was signaled.</p>
+  <div class="markdown level1 summary"><p>Throws a <a class="xref" href="../cancelable/cancelerror.html#_esfx_cancelable_CancelError_class">CancelError</a> if the token was signaled.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -476,7 +477,7 @@ garbage collection.</p>
   
   
   <h4 id="_esfx_canceltoken_CancelToken_timeout_member_1_" data-uid="@esfx/canceltoken!CancelToken.timeout:member(1)">timeout(ms, reason)</h4>
-  <div class="markdown level1 summary"><p>Gets a <code>CancelToken</code> that will be canceled with the provided reason after a timeout has elapsed.</p>
+  <div class="markdown level1 summary"><p>Gets a <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_class">CancelToken</a> that will be canceled with the provided reason after a timeout has elapsed.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>

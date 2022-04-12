@@ -4573,6 +4573,10 @@ references:
   name: AsyncDisposable
   href: api/disposable/asyncdisposable-namespace.html#_esfx_disposable_AsyncDisposable_namespace
   fullName: AsyncDisposable
+- uid: '@esfx/disposable!AsyncDisposableLike:type'
+  name: AsyncDisposableLike
+  href: api/disposable.html#_esfx_disposable_AsyncDisposableLike_type
+  fullName: AsyncDisposableLike
 - uid: '@esfx/disposable!AsyncDisposableScope#fail:member(1)'
   name: fail(error)
   href: api/disposable/asyncdisposablescope.html#_esfx_disposable_AsyncDisposableScope_fail_member_1_

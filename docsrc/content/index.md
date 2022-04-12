@@ -9,9 +9,9 @@ The `@esfx` suite of packages is designed to provide low-level interoperability 
 The main packages in the `@esfx` suite include:
 
 - @"@esfx/async!" - Provides a number of asynchronous coordination primitives from the following packages:
+    - @"@esfx/canceltoken!"
     - @"@esfx/async-autoresetevent!"
     - @"@esfx/async-barrier!"
-    - @"@esfx/async-canceltoken!"
     - @"@esfx/async-conditionvariable!"
     - @"@esfx/async-countdown!"
     - @"@esfx/async-deferred!"

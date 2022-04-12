@@ -17,4 +17,4 @@
 export { Disposable, DisposableScope } from "./disposable.js";
 export { AsyncDisposable, AsyncDisposableScope } from "./asyncDisposable.js";
 export { DisposableStack, DisposableLike } from "./disposableStack.js";
-export { AsyncDisposableStack } from "./asyncDisposableStack.js";
+export { AsyncDisposableStack, AsyncDisposableLike } from "./asyncDisposableStack.js";

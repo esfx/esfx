@@ -14,12 +14,12 @@ function cancelAllDownloads() {
 }
 
 async function downloadFile(url, path, token = CancelToken.none) {
-    // add own source for timeout after 60 seconds
-    const timeoutSource = CancelToken.source();
-    setTimeout(() => timeoutSource.cancel(), 60 * 1000);
+    // Get a token that times out after 60 seconds
+    const timeoutToken = CancelToken.timeout(60 * 1000);
 
-    // download can be canceled by either 'rootSource', 'timeoutSource' or 'token':
-    const linkedToken = CancelToken.race([rootSource.token, timeoutSource.token, token]);
+    // download can be canceled by either 'rootSource', 'timeoutToken' or 'token':
+    const linkedSource = CancelToken.source([rootSource.token, timeoutToken, token]);
+    const linkedToken = linkedSource.token;
 
     // ... use linkedToken to observe cancellation.
 }

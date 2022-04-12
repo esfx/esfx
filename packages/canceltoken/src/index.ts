@@ -277,11 +277,11 @@ class CancelState {
 }
 
 /**
- * Signals a CancelToken when cancellation has been requested.
+ * Signals a {@link CancelToken} when cancellation has been requested.
  */
 export interface CancelSource extends CancelableSource, Disposable {
     /**
-     * Gets the CancelToken linked to this source.
+     * Gets the {@link CancelToken} linked to this source.
      */
     readonly token: CancelToken;
 
@@ -439,7 +439,7 @@ export class CancelToken implements Cancelable, CancelSignal {
     /**
      * Creates a new {@link CancelSource}.
      *
-     * @param cancelables An optional iterable of `Cancelable` objects. If present,
+     * @param cancelables An optional iterable of {@link @esfx/cancelable!Cancelable} objects. If present,
      * the source becomes linked to the provided cancelables and will be canceled
      * when a linked cancelable is canceled.
      *
@@ -471,11 +471,11 @@ export class CancelToken implements Cancelable, CancelSignal {
     }
 
     /**
-     * Returns a `CancelToken` that becomes signaled when **any** of the provided cancelables are signaled.
+     * Returns a {@link CancelToken} that becomes signaled when any of the provided cancelables are signaled.
      *
-     * @param cancelables An iterable of `Cancelable` objects.
+     * @param cancelables An iterable of {@link @esfx/cancelable!Cancelable} objects.
      *
-     * @remarks This is similar to calling {@link source} with the provided cancelables. In general,
+     * @remarks This is similar to calling {@link source} with the provided `cancelables`. In general,
      * calling {@link source} is preferred as it provides better resource management.
      */
     static race(cancelables: Iterable<Cancelable | DOMAbortSignal | null | undefined>) {
@@ -496,9 +496,9 @@ export class CancelToken implements Cancelable, CancelSignal {
     }
 
     /**
-     * Returns a `CancelToken` that becomes signaled when **all** of the provided cancelables are signaled.
+     * Returns a {@link CancelToken} that becomes signaled when all of the provided cancelables are signaled.
      *
-     * @param cancelables An iterable of `Cancelable` objects.
+     * @param cancelables An iterable of {@link @esfx/cancelable!Cancelable} objects.
      */
     static all(cancelables: Iterable<Cancelable | DOMAbortSignal | null | undefined>) {
         if (!isIterableObject(cancelables)) {
@@ -562,7 +562,7 @@ export class CancelToken implements Cancelable, CancelSignal {
     }
 
     /**
-     * Gets a `CancelToken` that is already canceled with the provided reason.
+     * Gets a {@link CancelToken} that is already canceled with the provided reason.
      */
     static canceledWith(reason: unknown) {
         const cancelState = new CancelState();
@@ -571,7 +571,7 @@ export class CancelToken implements Cancelable, CancelSignal {
     }
 
     /**
-     * Gets a `CancelToken` that will be canceled with the provided reason after a timeout has elapsed.
+     * Gets a {@link CancelToken} that will be canceled with the provided reason after a timeout has elapsed.
      */
     static timeout(ms: number, reason?: unknown) {
         if (!isPositiveFiniteNumber(ms)) throw new RangeError("Argument out of range: ms");
@@ -582,7 +582,7 @@ export class CancelToken implements Cancelable, CancelSignal {
     }
 
     /**
-     * Throws a CancelError if the token was signaled.
+     * Throws a {@link @esfx/cancelable!CancelError} if the token was signaled.
      */
     throwIfSignaled() {
         const cancel = weakCancelTokenState.get(this);
@@ -606,6 +606,7 @@ export class CancelToken implements Cancelable, CancelSignal {
     }
 
     // #region Cancelable
+    /** {@inheritDoc @esfx/cancelable!Cancelable#[Cancelable.cancelSignal]:member(1)} */
     [Cancelable.cancelSignal](): CancelToken {
         return this;
     }

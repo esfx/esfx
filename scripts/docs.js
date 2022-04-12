@@ -11,11 +11,13 @@
 require("./docs/patches/tsdoc")({
     paramTagHyphen: true,
     emitSoftBreak: true,
+    parseBetaDeclarationReference: true,
 });
 
 require("./docs/patches/api-extractor")({
     exportStarAsNamespace: false,
     ignoreUnhandledExports: true,
+    ambiguousReferences: true
 });
 
 require("./docs/patches/api-documenter")({
@@ -43,7 +45,7 @@ const del = require("del");
 const { default: chalk } = require("chalk");
 
 const { Extractor, ExtractorConfig, ExtractorMessageCategory, ExtractorLogLevel } = require("@microsoft/api-extractor");
-const { ApiModel, ApiDocumentedItem, ApiDeclaredItem, ApiItemContainerMixin, ApiParameterListMixin } = require("@microsoft/api-extractor-model");
+const { ApiModel, ApiDocumentedItem, ApiDeclaredItem, ApiItemContainerMixin, ApiParameterListMixin, ApiPackage } = require("@microsoft/api-extractor-model");
 const { YamlDocumenter } = require("@microsoft/api-documenter/lib/documenters/YamlDocumenter");
 const { exec } = require("./exec");
 const { newer } = require("./newer");
@@ -55,68 +57,22 @@ const { default: fetch } = require("node-fetch");
 const unzip = require("extract-zip");
 
 const { TSDocConfigFile } = require("@microsoft/tsdoc-config");
-const { TSDocTagDefinition, TSDocTagSyntaxKind, StandardTags } = require("@microsoft/tsdoc");
-const { AedocDefinitions } = require("@microsoft/api-extractor-model/lib/aedoc/AedocDefinitions");
-
-// const categoryTag = new TSDocTagDefinition({
-//     tagName: "@category",
-//     syntaxKind: TSDocTagSyntaxKind.ModifierTag
-// });
-
-// const seeTag = new TSDocTagDefinition({
-//     tagName: "@see",
-//     syntaxKind: TSDocTagSyntaxKind.ModifierTag
-// });
-
-// const typeParamTag = StandardTags.typeParam || new TSDocTagDefinition({
-//     tagName: "@typeParam",
-//     syntaxKind: TSDocTagSyntaxKind.BlockTag,
-//     allowMultiple: true
-// });
-
-// let isTsDocConfigured = false;
-
-// function configureTsDoc() {
-//     if (!isTsDocConfigured) {
-//         const foundCategoryTag = AedocDefinitions.tsdocConfiguration.tryGetTagDefinition("@category");
-//         if (!foundCategoryTag) {
-//             AedocDefinitions.tsdocConfiguration.addTagDefinitions([categoryTag], true);
-//         }
-//         else {
-//             AedocDefinitions.tsdocConfiguration.setSupportForTags([foundCategoryTag], true);
-//         }
-
-//         const foundSeeTag = AedocDefinitions.tsdocConfiguration.tryGetTagDefinition("@see");
-//         if (!foundSeeTag) {
-//             AedocDefinitions.tsdocConfiguration.addTagDefinitions([seeTag], true);
-//         }
-//         else {
-//             AedocDefinitions.tsdocConfiguration.setSupportForTags([foundSeeTag], true);
-//         }
-
-//         const foundTypeParamTag = AedocDefinitions.tsdocConfiguration.tryGetTagDefinition("@typeParam");
-//         if (!foundTypeParamTag) {
-//             AedocDefinitions.tsdocConfiguration.addTagDefinitions([typeParamTag], true);
-//         }
-//         else {
-//             AedocDefinitions.tsdocConfiguration.setSupportForTags([foundTypeParamTag], true);
-//         }
-
-//         isTsDocConfigured = true;
-//     }
-// }
 
 /**
- * @param {string} docPackage
- * @param {object} [options]
+ * @param {object} options
+ * @param {string} options.projectFolder
+ * @param {RegExp} [options.docPackagePattern]
  * @param {boolean} [options.verbose]
  * @param {boolean} [options.force]
  */
-async function apiExtractor(docPackage, options = {}) {
-    // configureTsDoc();
-    const { verbose, force } = options
-    const configObjectFullPath = path.resolve(docPackage, "api-extractor.json");
-    const packageJsonFullPath = path.resolve(docPackage, "package.json");
+async function apiExtractor({ projectFolder, verbose, force, docPackagePattern }) {
+    if (docPackagePattern && !docPackagePattern.test(projectFolder)) {
+        log(`Project '${projectFolder}' did not match '--docPackagePattern' and was skipped.`);
+        return;
+    }
+
+    const configObjectFullPath = path.resolve(projectFolder, "api-extractor.json");
+    const packageJsonFullPath = path.resolve(projectFolder, "package.json");
     const configObject = ExtractorConfig.loadFile(configObjectFullPath);
     const config = ExtractorConfig.prepare({
         configObject,
@@ -124,10 +80,10 @@ async function apiExtractor(docPackage, options = {}) {
         packageJsonFullPath,
         tsdocConfigFile: TSDocConfigFile.loadFile(path.resolve("tsdoc.json"))
     });
-    const inputs = [...glob.sync(`${docPackage}/index.d.ts`), ...glob.sync(`${docPackage}/dist/**/*.d.ts`)];
+    const inputs = [...glob.sync(`${projectFolder}/index.d.ts`), ...glob.sync(`${projectFolder}/dist/**/*.d.ts`)];
     if (!force && inputs.length > 0 && !newer(inputs, config.apiJsonFilePath)) {
         if (verbose) {
-            log(`API for '${docPackage}' is unchanged, skipping.`);
+            log(`API for '${projectFolder}' is unchanged, skipping.`);
         }
         return;
     }
@@ -153,7 +109,7 @@ async function apiExtractor(docPackage, options = {}) {
                     log(messageText);
                     break;
                 case "verbose":
-                    if (options.verbose) {
+                    if (verbose) {
                         log.info(chalk.cyan(messageText));
                     }
                     break;
@@ -161,7 +117,7 @@ async function apiExtractor(docPackage, options = {}) {
         }
     });
     if (!result.succeeded) {
-        throw new Error(`api-extractor failed for ${docPackage}`);
+        throw new Error(`api-extractor failed for ${projectFolder}`);
     }
 }
 exports.apiExtractor = apiExtractor;
@@ -173,43 +129,77 @@ function replaceVars(file, vars) {
 }
 
 /**
- * @param {string[]} projectFolders
+ * @param {object} options
+ * @param {string[]} options.projectFolders
+ * @param {RegExp} [options.docPackagePattern]
+ * @param {string} [options.apiDir]
+ * @param {string} [options.yamlDir]
  */
-async function apiDocumenter(projectFolders, apiDir = "<projectFolder>/obj/api", yamlDir = "obj/yml") {
-    const outputDirs = [...new Set(projectFolders.map(projectFolder => path.resolve(replaceVars(yamlDir, { projectFolder }))))];
+async function apiDocumenter({ projectFolders, apiDir = "<projectFolder>/obj/api", yamlDir = "obj/yml", docPackagePattern }) {
+    const matchingProjectFolders = docPackagePattern ? projectFolders.filter(projectFolder => docPackagePattern.test(projectFolder)) : projectFolders;
+    const matchingProjectFolderSet = new Set(matchingProjectFolders);
+
+    const outputDirs = [...new Set(matchingProjectFolders.map(projectFolder => path.resolve(replaceVars(yamlDir, { projectFolder }))))];
     await del(outputDirs);
 
     /** @type {Map<string, ApiModel>} */
     const apiModels = new Map();
+    /** @type {Set<import("@microsoft/api-extractor-model").ApiPackage>} */
+    const matchingProjects = new Set();
 
     for (const projectFolder of projectFolders) {
-        const inputDir = path.resolve(replaceVars(apiDir, { projectFolder }));
         const outputDir = path.resolve(replaceVars(yamlDir, { projectFolder }));
-        let apiModel = apiModels.get(outputDir);
-        if (!apiModel) apiModels.set(outputDir, apiModel = new ApiModel());
+        if (!apiModels.has(outputDir) && matchingProjectFolderSet.has(projectFolder)) {
+            apiModels.set(outputDir, new ApiModel());
+        }
+    }
+
+    for (const projectFolder of projectFolders) {
+        const outputDir = path.resolve(replaceVars(yamlDir, { projectFolder }));
+        const apiModel = apiModels.get(outputDir);
+        if (!apiModel) continue;
+
+        const inputDir = path.resolve(replaceVars(apiDir, { projectFolder }));
         for (const entry of await fs.promises.readdir(inputDir)) {
             if (!entry.endsWith(".api.json")) continue;
-            apiModel.loadPackage(path.resolve(inputDir, entry));
+            const apiPackage = apiModel.loadPackage(path.resolve(inputDir, entry));
+            if (matchingProjectFolderSet.has(projectFolder)) {
+                matchingProjects.add(apiPackage);
+            }
         }
+    }
+
+    for (const apiModel of apiModels.values()) {
         fixupModel(apiModel, apiModel);
     }
 
     for (const [outputDir, apiModel] of apiModels) {
         const documenter = new YamlDocumenter(apiModel, /*newDocfxNamespaces*/ true);
+        
+        // Patch documenter to ignore unmatchd projects.
+        const prev_visitApiItems = documenter["_visitApiItems"];
+        documenter["_visitApiItems"] = function visitApiItems(outputFolder, apiItem, parentYamlFile) {
+            this["_visitApiItems"] = prev_visitApiItems;
+            try {
+                if (apiItem instanceof ApiPackage && !matchingProjects.has(apiItem)) {
+                    return;
+                }
+                return prev_visitApiItems.call(this, outputFolder, apiItem, parentYamlFile);
+            }
+            finally {
+                this["_visitApiItems"] = visitApiItems;
+            }
+        }
+        
+        const prev_writeTocFile = documenter["_writeTocFile"];
+        documenter["_writeTocFile"] = function (outputFolder, apiItems) {
+            return prev_writeTocFile.call(this, outputFolder, apiItems.filter(apiItem => matchingProjects.has(apiItem)));
+        };
+        
         documenter.generateFiles(outputDir);
     }
 }
 exports.apiDocumenter = apiDocumenter;
-
-// let nameSymbol;
-
-// function getNameSymbol(apiItem) {
-//     if (nameSymbol === undefined) {
-//         const symbols = Object.getOwnPropertySymbols(apiItem);
-//         nameSymbol = symbols.find(sym => sym.toString() === "Symbol(ApiNameMixin._name)");
-//     }
-//     return nameSymbol;
-// }
 
 /**
  * @param {import("@microsoft/api-extractor-model").ApiItem} apiItem
@@ -235,16 +225,6 @@ function fixupModel(apiItem, apiModel) {
             }
         }
     }
-
-    // if (apiItem.displayName === "__computed" && apiItem instanceof ApiDeclaredItem) {
-    //     const match = /\[[^\[\]]+\]/.exec(apiItem.excerpt.text);
-    //     if (match) {
-    //         const nameSymbol = getNameSymbol(apiItem);
-    //         if (nameSymbol) {
-    //             apiItem[nameSymbol] = match[0];
-    //         }
-    //     }
-    // }
 
     // Recurse members
     if (ApiItemContainerMixin.isBaseClassOf(apiItem)) {
@@ -273,7 +253,7 @@ function copyInheritedDocs(targetDocComment, sourceDocComment) {
 }
 
 /**
- * @param {boolean} force 
+ * @param {boolean} force
  */
 async function installDocFx(force) {
     if (!force && fs.existsSync("./.docfx/bin/docfx.exe")) return;
@@ -304,9 +284,9 @@ async function installDocFx(force) {
 exports.installDocFx = installDocFx;
 
 /**
- * 
+ *
  * @param {object} options
- * @param {boolean} [options.serve] 
+ * @param {boolean} [options.serve]
  * @param {boolean} [options.build]
  * @param {boolean} [options.incremental]
  */
