@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Package @esfx/collection-core
+    <title>@esfx/collection-core Package
    | @esfx API Reference </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Package @esfx/collection-core
+    <meta name="title" content="@esfx/collection-core Package
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.57.2.0">
     
@@ -80,7 +80,7 @@
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="@esfx/collection-core!">
   
-  <h1 id="_esfx_collection_core_" data-uid="@esfx/collection-core!" class="text-break">Package @esfx/collection-core
+  <h1 id="_esfx_collection_core_" data-uid="@esfx/collection-core!" class="text-break">@esfx/collection-core Package
   </h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"><p>Provides a low-level Symbol-based API for defining common collection behaviors.</p>
@@ -175,32 +175,47 @@ class MyCollection {
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces
   </h3>
-        <h4><a class="xref" href="collection-core/collection-interface.html#_esfx_collection_core_Collection_interface">Collection</a></h4>
+        <h4><a class="xref" href="collection-core/collection-interface.html#_esfx_collection_core_Collection_interface">Collection&lt;T&gt;</a></h4>
+        <section><p>A <a class="xref" href="collection-core/collection-interface.html#_esfx_collection_core_Collection_interface">Collection&lt;T&gt;</a> describes a collection object, such as an <a class="xref" href="https://tc39.es/ecma262/#sec-array-objects">Array</a> or <a class="xref" href="https://tc39.es/ecma262/#sec-set-objects">Set</a>,
+that can contain other values, has a known size, and may have its contents modified.</p>
+</section>
+        <h4><a class="xref" href="collection-core/container-interface.html#_esfx_collection_core_Container_interface">Container&lt;T&gt;</a></h4>
+        <section><p>A <a class="xref" href="collection-core/container-interface.html#_esfx_collection_core_Container_interface">Container&lt;T&gt;</a> describes a container object, such as an <a class="xref" href="https://tc39.es/ecma262/#sec-array-objects">Array</a>, <a class="xref" href="https://tc39.es/ecma262/#sec-set-objects">Set</a>, or <a class="xref" href="https://tc39.es/ecma262/#sec-weakset-objects">WeakSet</a>,
+that can contain other values and may have its contents modified.</p>
+</section>
+        <h4><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection&lt;T&gt;</a></h4>
         <section></section>
-        <h4><a class="xref" href="collection-core/container-interface.html#_esfx_collection_core_Container_interface">Container</a></h4>
+        <h4><a class="xref" href="collection-core/indexedcollection-interface.html#_esfx_collection_core_IndexedCollection_interface">IndexedCollection&lt;T&gt;</a></h4>
         <section></section>
-        <h4><a class="xref" href="collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface">FixedSizeIndexedCollection</a></h4>
+        <h4><a class="xref" href="collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection_interface">KeyedCollection&lt;K, V&gt;</a></h4>
         <section></section>
-        <h4><a class="xref" href="collection-core/indexedcollection-interface.html#_esfx_collection_core_IndexedCollection_interface">IndexedCollection</a></h4>
+        <h4><a class="xref" href="collection-core/keyedcontainer-interface.html#_esfx_collection_core_KeyedContainer_interface">KeyedContainer&lt;K, V&gt;</a></h4>
         <section></section>
-        <h4><a class="xref" href="collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection_interface">KeyedCollection</a></h4>
+        <h4><a class="xref" href="collection-core/keyedmulticollection-interface.html#_esfx_collection_core_KeyedMultiCollection_interface">KeyedMultiCollection&lt;K, V&gt;</a></h4>
         <section></section>
-        <h4><a class="xref" href="collection-core/keyedcontainer-interface.html#_esfx_collection_core_KeyedContainer_interface">KeyedContainer</a></h4>
-        <section></section>
-        <h4><a class="xref" href="collection-core/keyedmulticollection-interface.html#_esfx_collection_core_KeyedMultiCollection_interface">KeyedMultiCollection</a></h4>
-        <section></section>
-        <h4><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection</a></h4>
-        <section></section>
-        <h4><a class="xref" href="collection-core/readonlycontainer-interface.html#_esfx_collection_core_ReadonlyContainer_interface">ReadonlyContainer</a></h4>
-        <section></section>
-        <h4><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection</a></h4>
-        <section></section>
-        <h4><a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection</a></h4>
-        <section></section>
-        <h4><a class="xref" href="collection-core/readonlykeyedcontainer-interface.html#_esfx_collection_core_ReadonlyKeyedContainer_interface">ReadonlyKeyedContainer</a></h4>
-        <section></section>
-        <h4><a class="xref" href="collection-core/readonlykeyedmulticollection-interface.html#_esfx_collection_core_ReadonlyKeyedMultiCollection_interface">ReadonlyKeyedMultiCollection</a></h4>
-        <section></section>
+        <h4><a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection&lt;T&gt;</a></h4>
+        <section><p>A <a class="xref" href="collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface">ReadonlyCollection&lt;T&gt;</a> describes a collection object, such as an <a class="xref" href="https://tc39.es/ecma262/#sec-array-objects">Array</a> or <a class="xref" href="https://tc39.es/ecma262/#sec-set-objects">Set</a>,
+that can contain other values and has a known size.</p>
+</section>
+        <h4><a class="xref" href="collection-core/readonlycontainer-interface.html#_esfx_collection_core_ReadonlyContainer_interface">ReadonlyContainer&lt;T&gt;</a></h4>
+        <section><p>A <a class="xref" href="collection-core/readonlycontainer-interface.html#_esfx_collection_core_ReadonlyContainer_interface">ReadonlyContainer&lt;T&gt;</a> describes a container object, such as an <a class="xref" href="https://tc39.es/ecma262/#sec-array-objects">Array</a>, <a class="xref" href="https://tc39.es/ecma262/#sec-set-objects">Set</a>, or <a class="xref" href="https://tc39.es/ecma262/#sec-weakset-objects">WeakSet</a>,
+that can contain other values.</p>
+</section>
+        <h4><a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection&lt;T&gt;</a></h4>
+        <section><p>A <a class="xref" href="collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface">ReadonlyIndexedCollection&lt;T&gt;</a> describes an indexed collection object, such as an <a class="xref" href="https://tc39.es/ecma262/#sec-array-objects">Array</a>,
+that can contain other values, has a known size, and whose elements can be accessed by ordinal index.</p>
+</section>
+        <h4><a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection&lt;K, V&gt;</a></h4>
+        <section><p>A <a class="xref" href="collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface">ReadonlyKeyedCollection&lt;K, V&gt;</a> describes a keyed collection object, such as a <a class="xref" href="https://tc39.es/ecma262/#sec-map-objects">Map</a>,
+that can contain other values, has a known size, and whose elements can be accessed by key.</p>
+</section>
+        <h4><a class="xref" href="collection-core/readonlykeyedcontainer-interface.html#_esfx_collection_core_ReadonlyKeyedContainer_interface">ReadonlyKeyedContainer&lt;K, V&gt;</a></h4>
+        <section><p>A <a class="xref" href="collection-core/readonlykeyedcontainer-interface.html#_esfx_collection_core_ReadonlyKeyedContainer_interface">ReadonlyKeyedContainer&lt;K, V&gt;</a> describes a keyed container object, such as a <a class="xref" href="https://tc39.es/ecma262/#sec-map-objects">Map</a> or <a class="xref" href="https://tc39.es/ecma262/#sec-weakmap-objects">WeakMap</a>,
+that can contain other values and whose elements can be accessed by key.</p>
+</section>
+        <h4><a class="xref" href="collection-core/readonlykeyedmulticollection-interface.html#_esfx_collection_core_ReadonlyKeyedMultiCollection_interface">ReadonlyKeyedMultiCollection&lt;K, V&gt;</a></h4>
+        <section><p>A <a class="xref" href="collection-core/readonlykeyedmulticollection-interface.html#_esfx_collection_core_ReadonlyKeyedMultiCollection_interface">ReadonlyKeyedMultiCollection&lt;K, V&gt;</a> describes a keyed collection object that can contain other values, has a known size, and whose elements can be accessed by key, where each key can represent one or more elements.</p>
+</section>
     <h3 id="namespaces">Namespaces
   </h3>
         <h4><a class="xref" href="collection-core/collection-namespace.html#_esfx_collection_core_Collection_namespace">Collection</a></h4>

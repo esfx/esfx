@@ -1150,9 +1150,9 @@ references:
   href: api/async-iter-hierarchy/asynchierarchyiterable-namespace.html
   fullName: AsyncHierarchyIterable.hasInstance(x)
 - uid: '@esfx/async-iter-hierarchy!AsyncHierarchyIterable:interface'
-  name: AsyncHierarchyIterable
+  name: AsyncHierarchyIterable<TNode, T>
   href: api/async-iter-hierarchy/asynchierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_interface
-  fullName: AsyncHierarchyIterable
+  fullName: AsyncHierarchyIterable<TNode, T>
 - uid: '@esfx/async-iter-hierarchy!AsyncHierarchyIterable:namespace'
   name: AsyncHierarchyIterable
   href: api/async-iter-hierarchy/asynchierarchyiterable-namespace.html#_esfx_async_iter_hierarchy_AsyncHierarchyIterable_namespace
@@ -1166,9 +1166,9 @@ references:
   href: api/async-iter-hierarchy/asyncorderedhierarchyiterable-namespace.html
   fullName: AsyncOrderedHierarchyIterable.hasInstance(value)
 - uid: '@esfx/async-iter-hierarchy!AsyncOrderedHierarchyIterable:interface'
-  name: AsyncOrderedHierarchyIterable
+  name: AsyncOrderedHierarchyIterable<TNode, T>
   href: api/async-iter-hierarchy/asyncorderedhierarchyiterable-interface.html#_esfx_async_iter_hierarchy_AsyncOrderedHierarchyIterable_interface
-  fullName: AsyncOrderedHierarchyIterable
+  fullName: AsyncOrderedHierarchyIterable<TNode, T>
 - uid: '@esfx/async-iter-hierarchy!AsyncOrderedHierarchyIterable:namespace'
   name: AsyncOrderedHierarchyIterable
   href: api/async-iter-hierarchy/asyncorderedhierarchyiterable-namespace.html#_esfx_async_iter_hierarchy_AsyncOrderedHierarchyIterable_namespace
@@ -1190,9 +1190,9 @@ references:
   href: api/async-iter-ordered/asyncorderediterable-namespace.html
   fullName: AsyncOrderedIterable.thenByAsync
 - uid: '@esfx/async-iter-ordered!AsyncOrderedIterable:interface'
-  name: AsyncOrderedIterable
+  name: AsyncOrderedIterable<T>
   href: api/async-iter-ordered/asyncorderediterable-interface.html#_esfx_async_iter_ordered_AsyncOrderedIterable_interface
-  fullName: AsyncOrderedIterable
+  fullName: AsyncOrderedIterable<T>
 - uid: '@esfx/async-iter-ordered!AsyncOrderedIterable:namespace'
   name: AsyncOrderedIterable
   href: api/async-iter-ordered/asyncorderediterable-namespace.html#_esfx_async_iter_ordered_AsyncOrderedIterable_namespace
@@ -2326,17 +2326,17 @@ references:
   href: api/async-lockable/lockhandle.html#_esfx_async_lockable_LockHandle_unlock_member_1_
   fullName: LockHandle.unlock()
 - uid: '@esfx/async-lockable!LockHandle:interface'
-  name: LockHandle
+  name: LockHandle<TMutex>
   href: api/async-lockable/lockhandle.html#_esfx_async_lockable_LockHandle_interface
-  fullName: LockHandle
+  fullName: LockHandle<TMutex>
 - uid: '@esfx/async-lockable!UpgradeableLockHandle#upgrade:member(1)'
   name: upgrade(cancelable)
   href: api/async-lockable/upgradeablelockhandle.html#_esfx_async_lockable_UpgradeableLockHandle_upgrade_member_1_
   fullName: UpgradeableLockHandle.upgrade(cancelable)
 - uid: '@esfx/async-lockable!UpgradeableLockHandle:interface'
-  name: UpgradeableLockHandle
+  name: UpgradeableLockHandle<TMutex, TUpgradedMutex>
   href: api/async-lockable/upgradeablelockhandle.html#_esfx_async_lockable_UpgradeableLockHandle_interface
-  fullName: UpgradeableLockHandle
+  fullName: UpgradeableLockHandle<TMutex, TUpgradedMutex>
 - uid: '@esfx/async-manualresetevent!'
   name: '@esfx/async-manualresetevent'
   href: api/async-manualresetevent.html
@@ -2878,9 +2878,9 @@ references:
   href: api/collection-core/collection-interface.html#_esfx_collection_core_Collection__Collection_delete__member_1_
   fullName: Collection.[Collection.delete](value)
 - uid: '@esfx/collection-core!Collection._delete:var'
-  name: _delete
+  name: delete
   href: api/collection-core/collection-namespace.html
-  fullName: Collection._delete
+  fullName: delete
 - uid: '@esfx/collection-core!Collection.clear:var'
   name: clear
   href: api/collection-core/collection-namespace.html
@@ -2898,9 +2898,9 @@ references:
   href: api/collection-core/collection-namespace.html
   fullName: Collection.name
 - uid: '@esfx/collection-core!Collection:interface'
-  name: Collection
+  name: Collection<T>
   href: api/collection-core/collection-interface.html#_esfx_collection_core_Collection_interface
-  fullName: Collection
+  fullName: Collection<T>
 - uid: '@esfx/collection-core!Collection:namespace'
   name: Collection
   href: api/collection-core/collection-namespace.html#_esfx_collection_core_Collection_namespace
@@ -2914,9 +2914,9 @@ references:
   href: api/collection-core/container-interface.html#_esfx_collection_core_Container__Container_delete__member_1_
   fullName: Container.[Container.delete](value)
 - uid: '@esfx/collection-core!Container._delete:var'
-  name: _delete
+  name: delete
   href: api/collection-core/container-namespace.html
-  fullName: Container._delete
+  fullName: delete
 - uid: '@esfx/collection-core!Container.add:var'
   name: add
   href: api/collection-core/container-namespace.html
@@ -2930,9 +2930,9 @@ references:
   href: api/collection-core/container-namespace.html
   fullName: Container.name
 - uid: '@esfx/collection-core!Container:interface'
-  name: Container
+  name: Container<T>
   href: api/collection-core/container-interface.html#_esfx_collection_core_Container_interface
-  fullName: Container
+  fullName: Container<T>
 - uid: '@esfx/collection-core!Container:namespace'
   name: Container
   href: api/collection-core/container-namespace.html#_esfx_collection_core_Container_namespace
@@ -2958,9 +2958,9 @@ references:
   href: api/collection-core/fixedsizeindexedcollection-namespace.html
   fullName: FixedSizeIndexedCollection.setAt
 - uid: '@esfx/collection-core!FixedSizeIndexedCollection:interface'
-  name: FixedSizeIndexedCollection
+  name: FixedSizeIndexedCollection<T>
   href: api/collection-core/fixedsizeindexedcollection-interface.html#_esfx_collection_core_FixedSizeIndexedCollection_interface
-  fullName: FixedSizeIndexedCollection
+  fullName: FixedSizeIndexedCollection<T>
 - uid: '@esfx/collection-core!FixedSizeIndexedCollection:namespace'
   name: FixedSizeIndexedCollection
   href: api/collection-core/fixedsizeindexedcollection-namespace.html#_esfx_collection_core_FixedSizeIndexedCollection_namespace
@@ -2974,9 +2974,9 @@ references:
   href: api/collection-core/indexedcollection-interface.html#_esfx_collection_core_IndexedCollection__IndexedCollection_removeAt__member_1_
   fullName: IndexedCollection.[IndexedCollection.removeAt](index)
 - uid: '@esfx/collection-core!IndexedCollection._delete:var'
-  name: _delete
+  name: delete
   href: api/collection-core/indexedcollection-namespace.html
-  fullName: IndexedCollection._delete
+  fullName: delete
 - uid: '@esfx/collection-core!IndexedCollection.hasInstance:function(1)'
   name: hasInstance(value)
   href: api/collection-core/indexedcollection-namespace.html
@@ -2998,9 +2998,9 @@ references:
   href: api/collection-core/indexedcollection-namespace.html
   fullName: IndexedCollection.removeAt
 - uid: '@esfx/collection-core!IndexedCollection:interface'
-  name: IndexedCollection
+  name: IndexedCollection<T>
   href: api/collection-core/indexedcollection-interface.html#_esfx_collection_core_IndexedCollection_interface
-  fullName: IndexedCollection
+  fullName: IndexedCollection<T>
 - uid: '@esfx/collection-core!IndexedCollection:namespace'
   name: IndexedCollection
   href: api/collection-core/indexedcollection-namespace.html#_esfx_collection_core_IndexedCollection_namespace
@@ -3010,9 +3010,9 @@ references:
   href: api/collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection__KeyedCollection_clear__member_1_
   fullName: KeyedCollection.[KeyedCollection.clear]()
 - uid: '@esfx/collection-core!KeyedCollection._delete:var'
-  name: _delete
+  name: delete
   href: api/collection-core/keyedcollection-namespace.html
-  fullName: KeyedCollection._delete
+  fullName: delete
 - uid: '@esfx/collection-core!KeyedCollection.clear:var'
   name: clear
   href: api/collection-core/keyedcollection-namespace.html
@@ -3030,9 +3030,9 @@ references:
   href: api/collection-core/keyedcollection-namespace.html
   fullName: KeyedCollection.name
 - uid: '@esfx/collection-core!KeyedCollection:interface'
-  name: KeyedCollection
+  name: KeyedCollection<K, V>
   href: api/collection-core/keyedcollection-interface.html#_esfx_collection_core_KeyedCollection_interface
-  fullName: KeyedCollection
+  fullName: KeyedCollection<K, V>
 - uid: '@esfx/collection-core!KeyedCollection:namespace'
   name: KeyedCollection
   href: api/collection-core/keyedcollection-namespace.html#_esfx_collection_core_KeyedCollection_namespace
@@ -3062,9 +3062,9 @@ references:
   href: api/collection-core/keyedcontainer-namespace.html
   fullName: KeyedContainer.set
 - uid: '@esfx/collection-core!KeyedContainer:interface'
-  name: KeyedContainer
+  name: KeyedContainer<K, V>
   href: api/collection-core/keyedcontainer-interface.html#_esfx_collection_core_KeyedContainer_interface
-  fullName: KeyedContainer
+  fullName: KeyedContainer<K, V>
 - uid: '@esfx/collection-core!KeyedContainer:namespace'
   name: KeyedContainer
   href: api/collection-core/keyedcontainer-namespace.html#_esfx_collection_core_KeyedContainer_namespace
@@ -3114,9 +3114,9 @@ references:
   href: api/collection-core/keyedmulticollection-namespace.html
   fullName: KeyedMultiCollection.name
 - uid: '@esfx/collection-core!KeyedMultiCollection:interface'
-  name: KeyedMultiCollection
+  name: KeyedMultiCollection<K, V>
   href: api/collection-core/keyedmulticollection-interface.html#_esfx_collection_core_KeyedMultiCollection_interface
-  fullName: KeyedMultiCollection
+  fullName: KeyedMultiCollection<K, V>
 - uid: '@esfx/collection-core!KeyedMultiCollection:namespace'
   name: KeyedMultiCollection
   href: api/collection-core/keyedmulticollection-namespace.html#_esfx_collection_core_KeyedMultiCollection_namespace
@@ -3146,9 +3146,9 @@ references:
   href: api/collection-core/readonlycollection-namespace.html
   fullName: ReadonlyCollection.size
 - uid: '@esfx/collection-core!ReadonlyCollection:interface'
-  name: ReadonlyCollection
+  name: ReadonlyCollection<T>
   href: api/collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection_interface
-  fullName: ReadonlyCollection
+  fullName: ReadonlyCollection<T>
 - uid: '@esfx/collection-core!ReadonlyCollection:namespace'
   name: ReadonlyCollection
   href: api/collection-core/readonlycollection-namespace.html#_esfx_collection_core_ReadonlyCollection_namespace
@@ -3170,9 +3170,9 @@ references:
   href: api/collection-core/readonlycontainer-namespace.html
   fullName: ReadonlyContainer.name
 - uid: '@esfx/collection-core!ReadonlyContainer:interface'
-  name: ReadonlyContainer
+  name: ReadonlyContainer<T>
   href: api/collection-core/readonlycontainer-interface.html#_esfx_collection_core_ReadonlyContainer_interface
-  fullName: ReadonlyContainer
+  fullName: ReadonlyContainer<T>
 - uid: '@esfx/collection-core!ReadonlyContainer:namespace'
   name: ReadonlyContainer
   href: api/collection-core/readonlycontainer-namespace.html#_esfx_collection_core_ReadonlyContainer_namespace
@@ -3206,9 +3206,9 @@ references:
   href: api/collection-core/readonlyindexedcollection-namespace.html
   fullName: ReadonlyIndexedCollection.name
 - uid: '@esfx/collection-core!ReadonlyIndexedCollection:interface'
-  name: ReadonlyIndexedCollection
+  name: ReadonlyIndexedCollection<T>
   href: api/collection-core/readonlyindexedcollection-interface.html#_esfx_collection_core_ReadonlyIndexedCollection_interface
-  fullName: ReadonlyIndexedCollection
+  fullName: ReadonlyIndexedCollection<T>
 - uid: '@esfx/collection-core!ReadonlyIndexedCollection:namespace'
   name: ReadonlyIndexedCollection
   href: api/collection-core/readonlyindexedcollection-namespace.html#_esfx_collection_core_ReadonlyIndexedCollection_namespace
@@ -3250,9 +3250,9 @@ references:
   href: api/collection-core/readonlykeyedcollection-namespace.html
   fullName: ReadonlyKeyedCollection.values
 - uid: '@esfx/collection-core!ReadonlyKeyedCollection:interface'
-  name: ReadonlyKeyedCollection
+  name: ReadonlyKeyedCollection<K, V>
   href: api/collection-core/readonlykeyedcollection-interface.html#_esfx_collection_core_ReadonlyKeyedCollection_interface
-  fullName: ReadonlyKeyedCollection
+  fullName: ReadonlyKeyedCollection<K, V>
 - uid: '@esfx/collection-core!ReadonlyKeyedCollection:namespace'
   name: ReadonlyKeyedCollection
   href: api/collection-core/readonlykeyedcollection-namespace.html#_esfx_collection_core_ReadonlyKeyedCollection_namespace
@@ -3282,9 +3282,9 @@ references:
   href: api/collection-core/readonlykeyedcontainer-namespace.html
   fullName: ReadonlyKeyedContainer.name
 - uid: '@esfx/collection-core!ReadonlyKeyedContainer:interface'
-  name: ReadonlyKeyedContainer
+  name: ReadonlyKeyedContainer<K, V>
   href: api/collection-core/readonlykeyedcontainer-interface.html#_esfx_collection_core_ReadonlyKeyedContainer_interface
-  fullName: ReadonlyKeyedContainer
+  fullName: ReadonlyKeyedContainer<K, V>
 - uid: '@esfx/collection-core!ReadonlyKeyedContainer:namespace'
   name: ReadonlyKeyedContainer
   href: api/collection-core/readonlykeyedcontainer-namespace.html#_esfx_collection_core_ReadonlyKeyedContainer_namespace
@@ -3350,9 +3350,9 @@ references:
   href: api/collection-core/readonlykeyedmulticollection-namespace.html
   fullName: ReadonlyKeyedMultiCollection.values
 - uid: '@esfx/collection-core!ReadonlyKeyedMultiCollection:interface'
-  name: ReadonlyKeyedMultiCollection
+  name: ReadonlyKeyedMultiCollection<K, V>
   href: api/collection-core/readonlykeyedmulticollection-interface.html#_esfx_collection_core_ReadonlyKeyedMultiCollection_interface
-  fullName: ReadonlyKeyedMultiCollection
+  fullName: ReadonlyKeyedMultiCollection<K, V>
 - uid: '@esfx/collection-core!ReadonlyKeyedMultiCollection:namespace'
   name: ReadonlyKeyedMultiCollection
   href: api/collection-core/readonlykeyedmulticollection-namespace.html#_esfx_collection_core_ReadonlyKeyedMultiCollection_namespace
@@ -3490,9 +3490,9 @@ references:
   href: api/collections-hashmap/readonlyhashmap.html#_esfx_collections_hashmap_ReadonlyHashMap_equaler_member
   fullName: ReadonlyHashMap.equaler
 - uid: '@esfx/collections-hashmap!ReadonlyHashMap:interface'
-  name: ReadonlyHashMap
+  name: ReadonlyHashMap<K, V>
   href: api/collections-hashmap/readonlyhashmap.html#_esfx_collections_hashmap_ReadonlyHashMap_interface
-  fullName: ReadonlyHashMap
+  fullName: ReadonlyHashMap<K, V>
 - uid: '@esfx/collections-hashset!'
   name: '@esfx/collections-hashset'
   href: api/collections-hashset.html
@@ -3602,9 +3602,9 @@ references:
   href: api/collections-hashset/readonlyhashset.html#_esfx_collections_hashset_ReadonlyHashSet_equaler_member
   fullName: ReadonlyHashSet.equaler
 - uid: '@esfx/collections-hashset!ReadonlyHashSet:interface'
-  name: ReadonlyHashSet
+  name: ReadonlyHashSet<T>
   href: api/collections-hashset/readonlyhashset.html#_esfx_collections_hashset_ReadonlyHashSet_interface
-  fullName: ReadonlyHashSet
+  fullName: ReadonlyHashSet<T>
 - uid: '@esfx/collections-linkedlist!'
   name: '@esfx/collections-linkedlist'
   href: api/collections-linkedlist.html
@@ -4006,9 +4006,9 @@ references:
   href: api/collections-multimap/multimapoptions.html#_esfx_collections_multimap_MultiMapOptions_valueEqualer_member
   fullName: MultiMapOptions.valueEqualer
 - uid: '@esfx/collections-multimap!MultiMapOptions:interface'
-  name: MultiMapOptions
+  name: MultiMapOptions<K, V>
   href: api/collections-multimap/multimapoptions.html#_esfx_collections_multimap_MultiMapOptions_interface
-  fullName: MultiMapOptions
+  fullName: MultiMapOptions<K, V>
 - uid: '@esfx/collections-multimap!ReadonlyMultiMap#entries:member(1)'
   name: entries()
   href: api/collections-multimap/readonlymultimap.html#_esfx_collections_multimap_ReadonlyMultiMap_entries_member_1_
@@ -4050,9 +4050,9 @@ references:
   href: api/collections-multimap/readonlymultimap.html#_esfx_collections_multimap_ReadonlyMultiMap_values_member_1_
   fullName: ReadonlyMultiMap.values()
 - uid: '@esfx/collections-multimap!ReadonlyMultiMap:interface'
-  name: ReadonlyMultiMap
+  name: ReadonlyMultiMap<K, V>
   href: api/collections-multimap/readonlymultimap.html#_esfx_collections_multimap_ReadonlyMultiMap_interface
-  fullName: ReadonlyMultiMap
+  fullName: ReadonlyMultiMap<K, V>
 - uid: '@esfx/collections-sortedmap!'
   name: '@esfx/collections-sortedmap'
   href: api/collections-sortedmap.html
@@ -4066,9 +4066,9 @@ references:
   href: api/collections-sortedmap/readonlysortedmap.html#_esfx_collections_sortedmap_ReadonlySortedMap_comparer_member
   fullName: ReadonlySortedMap.comparer
 - uid: '@esfx/collections-sortedmap!ReadonlySortedMap:interface'
-  name: ReadonlySortedMap
+  name: ReadonlySortedMap<K, V>
   href: api/collections-sortedmap/readonlysortedmap.html#_esfx_collections_sortedmap_ReadonlySortedMap_interface
-  fullName: ReadonlySortedMap
+  fullName: ReadonlySortedMap<K, V>
 - uid: '@esfx/collections-sortedmap!SortedMap#[KeyedCollection.clear]:member(1)'
   name: '[KeyedCollection.clear]()'
   href: api/collections-sortedmap/sortedmap.html#_esfx_collections_sortedmap_SortedMap__KeyedCollection_clear__member_1_
@@ -4178,9 +4178,9 @@ references:
   href: api/collections-sortedset/readonlysortedset.html#_esfx_collections_sortedset_ReadonlySortedSet_comparer_member
   fullName: ReadonlySortedSet.comparer
 - uid: '@esfx/collections-sortedset!ReadonlySortedSet:interface'
-  name: ReadonlySortedSet
+  name: ReadonlySortedSet<T>
   href: api/collections-sortedset/readonlysortedset.html#_esfx_collections_sortedset_ReadonlySortedSet_interface
-  fullName: ReadonlySortedSet
+  fullName: ReadonlySortedSet<T>
 - uid: '@esfx/collections-sortedset!SortedSet#[Collection.add]:member(1)'
   name: '[Collection.add](value)'
   href: api/collections-sortedset/sortedset.html#_esfx_collections_sortedset_SortedSet__Collection_add__member_1_
@@ -4318,9 +4318,9 @@ references:
   href: api/decorators-stage1-core/accessormemberdescriptor.html#_esfx_decorators_stage1_core_AccessorMemberDescriptor_descriptor_member
   fullName: AccessorMemberDescriptor.descriptor
 - uid: '@esfx/decorators-stage1-core!AccessorMemberDescriptor:interface'
-  name: AccessorMemberDescriptor
+  name: AccessorMemberDescriptor<T>
   href: api/decorators-stage1-core/accessormemberdescriptor.html#_esfx_decorators_stage1_core_AccessorMemberDescriptor_interface
-  fullName: AccessorMemberDescriptor
+  fullName: AccessorMemberDescriptor<T>
 - uid: '@esfx/decorators-stage1-core!ClassDecoratorArguments:type'
   name: ClassDecoratorArguments
   href: api/decorators-stage1-core.html#_esfx_decorators_stage1_core_ClassDecoratorArguments_type
@@ -4334,9 +4334,9 @@ references:
   href: api/decorators-stage1-core/classdescriptor.html#_esfx_decorators_stage1_core_ClassDescriptor_target_member
   fullName: ClassDescriptor.target
 - uid: '@esfx/decorators-stage1-core!ClassDescriptor:interface'
-  name: ClassDescriptor
+  name: ClassDescriptor<T>
   href: api/decorators-stage1-core/classdescriptor.html#_esfx_decorators_stage1_core_ClassDescriptor_interface
-  fullName: ClassDescriptor
+  fullName: ClassDescriptor<T>
 - uid: '@esfx/decorators-stage1-core!createClassDescriptor:function(1)'
   name: createClassDescriptor(target)
   href: api/decorators-stage1-core.html#_esfx_decorators_stage1_core_createClassDescriptor_function_1_
@@ -4402,9 +4402,9 @@ references:
   href: api/decorators-stage1-core/fieldmemberdescriptor.html#_esfx_decorators_stage1_core_FieldMemberDescriptor_descriptor_member
   fullName: FieldMemberDescriptor.descriptor
 - uid: '@esfx/decorators-stage1-core!FieldMemberDescriptor:interface'
-  name: FieldMemberDescriptor
+  name: FieldMemberDescriptor<T>
   href: api/decorators-stage1-core/fieldmemberdescriptor.html#_esfx_decorators_stage1_core_FieldMemberDescriptor_interface
-  fullName: FieldMemberDescriptor
+  fullName: FieldMemberDescriptor<T>
 - uid: '@esfx/decorators-stage1-core!getDecoratorInfoFromArguments:function(1)'
   name: getDecoratorInfoFromArguments(args)
   href: api/decorators-stage1-core.html#_esfx_decorators_stage1_core_getDecoratorInfoFromArguments_function_1_
@@ -4494,17 +4494,17 @@ references:
   href: api/decorators-stage1-core/memberdescriptor.html#_esfx_decorators_stage1_core_MemberDescriptor_target_member
   fullName: MemberDescriptor.target
 - uid: '@esfx/decorators-stage1-core!MemberDescriptor:interface'
-  name: MemberDescriptor
+  name: MemberDescriptor<T>
   href: api/decorators-stage1-core/memberdescriptor.html#_esfx_decorators_stage1_core_MemberDescriptor_interface
-  fullName: MemberDescriptor
+  fullName: MemberDescriptor<T>
 - uid: '@esfx/decorators-stage1-core!MethodMemberDescriptor#descriptor:member'
   name: descriptor
   href: api/decorators-stage1-core/methodmemberdescriptor.html#_esfx_decorators_stage1_core_MethodMemberDescriptor_descriptor_member
   fullName: MethodMemberDescriptor.descriptor
 - uid: '@esfx/decorators-stage1-core!MethodMemberDescriptor:interface'
-  name: MethodMemberDescriptor
+  name: MethodMemberDescriptor<T>
   href: api/decorators-stage1-core/methodmemberdescriptor.html#_esfx_decorators_stage1_core_MethodMemberDescriptor_interface
-  fullName: MethodMemberDescriptor
+  fullName: MethodMemberDescriptor<T>
 - uid: '@esfx/decorators-stage1-core!ParameterDecoratorArguments:type'
   name: ParameterDecoratorArguments
   href: api/decorators-stage1-core.html#_esfx_decorators_stage1_core_ParameterDecoratorArguments_type
@@ -4778,9 +4778,9 @@ references:
   href: api/equatable/comparer-namespace.html
   fullName: Comparer.tupleStructuralComparer
 - uid: '@esfx/equatable!Comparer:interface'
-  name: Comparer
+  name: Comparer<T>
   href: api/equatable/comparer-interface.html#_esfx_equatable_Comparer_interface
-  fullName: Comparer
+  fullName: Comparer<T>
 - uid: '@esfx/equatable!Comparer:namespace'
   name: Comparer
   href: api/equatable/comparer-namespace.html#_esfx_equatable_Comparer_namespace
@@ -4834,9 +4834,9 @@ references:
   href: api/equatable/equaler-namespace.html
   fullName: Equaler.tupleStructuralEqualer
 - uid: '@esfx/equatable!Equaler:interface'
-  name: Equaler
+  name: Equaler<T>
   href: api/equatable/equaler-interface.html#_esfx_equatable_Equaler_interface
-  fullName: Equaler
+  fullName: Equaler<T>
 - uid: '@esfx/equatable!Equaler:namespace'
   name: Equaler
   href: api/equatable/equaler-namespace.html#_esfx_equatable_Equaler_namespace
@@ -5034,9 +5034,9 @@ references:
   href: api/events/event-class.html#_esfx_events_Event_class
   fullName: Event
 - uid: '@esfx/events!Event:interface'
-  name: Event
+  name: Event<F>
   href: api/events/event-interface.html#_esfx_events_Event_interface
-  fullName: Event
+  fullName: Event<F>
 - uid: '@esfx/events!EventListener:type'
   name: EventListener
   href: api/events.html#_esfx_events_EventListener_type
@@ -5378,17 +5378,17 @@ references:
   href: api/fn/memoizecache.html#_esfx_fn_MemoizeCache_get_member_1_
   fullName: MemoizeCache.get(args)
 - uid: '@esfx/fn!MemoizeCache:interface'
-  name: MemoizeCache
+  name: MemoizeCache<A, T>
   href: api/fn/memoizecache.html#_esfx_fn_MemoizeCache_interface
-  fullName: MemoizeCache
+  fullName: MemoizeCache<A, T>
 - uid: '@esfx/fn!MemoizeCacheEntry#result:member'
   name: result
   href: api/fn/memoizecacheentry.html#_esfx_fn_MemoizeCacheEntry_result_member
   fullName: MemoizeCacheEntry.result
 - uid: '@esfx/fn!MemoizeCacheEntry:interface'
-  name: MemoizeCacheEntry
+  name: MemoizeCacheEntry<T>
   href: api/fn/memoizecacheentry.html#_esfx_fn_MemoizeCacheEntry_interface
-  fullName: MemoizeCacheEntry
+  fullName: MemoizeCacheEntry<T>
 - uid: '@esfx/fn!MemoizeCacheFulfilledResult#status:member'
   name: status
   href: api/fn/memoizecachefulfilledresult.html#_esfx_fn_MemoizeCacheFulfilledResult_status_member
@@ -5398,9 +5398,9 @@ references:
   href: api/fn/memoizecachefulfilledresult.html#_esfx_fn_MemoizeCacheFulfilledResult_value_member
   fullName: MemoizeCacheFulfilledResult.value
 - uid: '@esfx/fn!MemoizeCacheFulfilledResult:interface'
-  name: MemoizeCacheFulfilledResult
+  name: MemoizeCacheFulfilledResult<T>
   href: api/fn/memoizecachefulfilledresult.html#_esfx_fn_MemoizeCacheFulfilledResult_interface
-  fullName: MemoizeCacheFulfilledResult
+  fullName: MemoizeCacheFulfilledResult<T>
 - uid: '@esfx/fn!MemoizeCacheRejectedResult#reason:member'
   name: reason
   href: api/fn/memoizecacherejectedresult.html#_esfx_fn_MemoizeCacheRejectedResult_reason_member
@@ -5422,9 +5422,9 @@ references:
   href: api/fn/memoizeoptions.html#_esfx_fn_MemoizeOptions_cache_member
   fullName: MemoizeOptions.cache
 - uid: '@esfx/fn!MemoizeOptions:interface'
-  name: MemoizeOptions
+  name: MemoizeOptions<A, T>
   href: api/fn/memoizeoptions.html#_esfx_fn_MemoizeOptions_interface
-  fullName: MemoizeOptions
+  fullName: MemoizeOptions<A, T>
 - uid: '@esfx/fn!nAry:function(1)'
   name: nAry(f, length)
   href: api/fn.html#_esfx_fn_nAry_function_1_
@@ -8366,9 +8366,9 @@ references:
   href: api/iter-hierarchy/hierarchical-namespace.html
   fullName: Hierarchical.hierarchy
 - uid: '@esfx/iter-hierarchy!Hierarchical:interface'
-  name: Hierarchical
+  name: Hierarchical<TNode>
   href: api/iter-hierarchy/hierarchical-interface.html#_esfx_iter_hierarchy_Hierarchical_interface
-  fullName: Hierarchical
+  fullName: Hierarchical<TNode>
 - uid: '@esfx/iter-hierarchy!Hierarchical:namespace'
   name: Hierarchical
   href: api/iter-hierarchy/hierarchical-namespace.html#_esfx_iter_hierarchy_Hierarchical_namespace
@@ -8386,9 +8386,9 @@ references:
   href: api/iter-hierarchy/hierarchyiterable-namespace.html
   fullName: HierarchyIterable.hasInstance(x)
 - uid: '@esfx/iter-hierarchy!HierarchyIterable:interface'
-  name: HierarchyIterable
+  name: HierarchyIterable<TNode, T>
   href: api/iter-hierarchy/hierarchyiterable-interface.html#_esfx_iter_hierarchy_HierarchyIterable_interface
-  fullName: HierarchyIterable
+  fullName: HierarchyIterable<TNode, T>
 - uid: '@esfx/iter-hierarchy!HierarchyIterable:namespace'
   name: HierarchyIterable
   href: api/iter-hierarchy/hierarchyiterable-namespace.html#_esfx_iter_hierarchy_HierarchyIterable_namespace
@@ -8446,9 +8446,9 @@ references:
   href: api/iter-hierarchy/hierarchyprovider-namespace.html
   fullName: HierarchyProvider.hasInstance(value)
 - uid: '@esfx/iter-hierarchy!HierarchyProvider:interface'
-  name: HierarchyProvider
+  name: HierarchyProvider<TNode>
   href: api/iter-hierarchy/hierarchyprovider-interface.html#_esfx_iter_hierarchy_HierarchyProvider_interface
-  fullName: HierarchyProvider
+  fullName: HierarchyProvider<TNode>
 - uid: '@esfx/iter-hierarchy!HierarchyProvider:namespace'
   name: HierarchyProvider
   href: api/iter-hierarchy/hierarchyprovider-namespace.html#_esfx_iter_hierarchy_HierarchyProvider_namespace
@@ -8462,9 +8462,9 @@ references:
   href: api/iter-hierarchy/orderedhierarchyiterable-namespace.html
   fullName: OrderedHierarchyIterable.hasInstance(value)
 - uid: '@esfx/iter-hierarchy!OrderedHierarchyIterable:interface'
-  name: OrderedHierarchyIterable
+  name: OrderedHierarchyIterable<TNode, T>
   href: api/iter-hierarchy/orderedhierarchyiterable-interface.html#_esfx_iter_hierarchy_OrderedHierarchyIterable_interface
-  fullName: OrderedHierarchyIterable
+  fullName: OrderedHierarchyIterable<TNode, T>
 - uid: '@esfx/iter-hierarchy!OrderedHierarchyIterable:namespace'
   name: OrderedHierarchyIterable
   href: api/iter-hierarchy/orderedhierarchyiterable-namespace.html#_esfx_iter_hierarchy_OrderedHierarchyIterable_namespace
@@ -8518,9 +8518,9 @@ references:
   href: api/iter-ordered/orderediterable-namespace.html
   fullName: OrderedIterable.thenBy
 - uid: '@esfx/iter-ordered!OrderedIterable:interface'
-  name: OrderedIterable
+  name: OrderedIterable<T>
   href: api/iter-ordered/orderediterable-interface.html#_esfx_iter_ordered_OrderedIterable_interface
-  fullName: OrderedIterable
+  fullName: OrderedIterable<T>
 - uid: '@esfx/iter-ordered!OrderedIterable:namespace'
   name: OrderedIterable
   href: api/iter-ordered/orderediterable-namespace.html#_esfx_iter_ordered_OrderedIterable_namespace
@@ -9814,9 +9814,9 @@ references:
   href: api/ref/reference.html#_esfx_ref_Reference_value_member
   fullName: Reference.value
 - uid: '@esfx/ref!Reference:interface'
-  name: Reference
+  name: Reference<T>
   href: api/ref/reference.html#_esfx_ref_Reference_interface
-  fullName: Reference
+  fullName: Reference<T>
 - uid: '@esfx/reflect-metadata-compat!'
   name: '@esfx/reflect-metadata-compat'
   href: api/reflect-metadata-compat.html
@@ -9898,17 +9898,17 @@ references:
   href: api/struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_SIZE_member
   fullName: StructPrimitiveType.SIZE
 - uid: '@esfx/struct-type!StructPrimitiveType:interface'
-  name: StructPrimitiveType
+  name: StructPrimitiveType<K, T>
   href: api/struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface
-  fullName: StructPrimitiveType
+  fullName: StructPrimitiveType<K, T>
 - uid: '@esfx/struct-type!StructType#SIZE:member'
   name: SIZE
   href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType_SIZE_member
   fullName: StructType.SIZE
 - uid: '@esfx/struct-type!StructType:interface'
-  name: StructType
+  name: StructType<TDef>
   href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType_interface
-  fullName: StructType
+  fullName: StructType<TDef>
 - uid: '@esfx/struct-type!StructType:var'
   name: StructType
   href: api/struct-type.html#_esfx_struct_type_StructType_var
@@ -10390,9 +10390,9 @@ references:
   href: api/type-model/accessorpropertydescriptor.html#_esfx_type_model_AccessorPropertyDescriptor_set_member_1_
   fullName: AccessorPropertyDescriptor.set(v)
 - uid: '@esfx/type-model!AccessorPropertyDescriptor:interface'
-  name: AccessorPropertyDescriptor
+  name: AccessorPropertyDescriptor<T>
   href: api/type-model/accessorpropertydescriptor.html#_esfx_type_model_AccessorPropertyDescriptor_interface
-  fullName: AccessorPropertyDescriptor
+  fullName: AccessorPropertyDescriptor<T>
 - uid: '@esfx/type-model!And:type'
   name: And
   href: api/type-model.html#_esfx_type_model_And_type
@@ -10586,9 +10586,9 @@ references:
   href: api/type-model/methodpropertydescriptor.html#_esfx_type_model_MethodPropertyDescriptor_writable_member
   fullName: MethodPropertyDescriptor.writable
 - uid: '@esfx/type-model!MethodPropertyDescriptor:interface'
-  name: MethodPropertyDescriptor
+  name: MethodPropertyDescriptor<T>
   href: api/type-model/methodpropertydescriptor.html#_esfx_type_model_MethodPropertyDescriptor_interface
-  fullName: MethodPropertyDescriptor
+  fullName: MethodPropertyDescriptor<T>
 - uid: '@esfx/type-model!Mutable:type'
   name: Mutable
   href: api/type-model.html#_esfx_type_model_Mutable_type

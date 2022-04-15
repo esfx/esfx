@@ -1,5 +1,5 @@
 ---
-uid: '@esfx/collection-core!KeyedCollection:namespace._delete'
+uid: '@esfx/collection-core!KeyedCollection._delete:var'
 name: delete
 fullName: delete
 syntax:

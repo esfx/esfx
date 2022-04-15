@@ -31,6 +31,7 @@ require("./docs/patches/api-documenter")({
     documentClassInterfaceSyntax: true,
     documentParent: true,
     documentApiNames: true,
+    includeTypeParametersInName: true,
     overwriteYamlSchema: true
 });
 

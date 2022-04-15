@@ -15,10 +15,8 @@ YamlDocumenter.prototype._generateYamlItem = function (apiItem) {
     switch (apiItem.kind) {
         case ApiItemKind.Class:
         case ApiItemKind.Interface:
-            const syntax = {
-                content: /** @type {import("@microsoft/api-extractor-model").ApiClass | import("@microsoft/api-extractor-model").ApiInterface} */(apiItem).getExcerptWithModifiers()
-            };
-            yamlItem.syntax = syntax;
+            yamlItem.syntax ??= {};
+            yamlItem.syntax.content ??= /** @type {import("@microsoft/api-extractor-model").ApiClass | import("@microsoft/api-extractor-model").ApiInterface} */(apiItem).getExcerptWithModifiers();
             break;
     }
     return yamlItem;

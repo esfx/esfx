@@ -10,6 +10,7 @@
  * @param {boolean} options.documentClassInterfaceSyntax
  * @param {boolean} options.documentParent
  * @param {boolean} options.documentApiNames
+ * @param {boolean} options.includeTypeParametersInName
  * @param {boolean} options.overwriteYamlSchema
  */
 module.exports = function(options) {
@@ -23,5 +24,6 @@ module.exports = function(options) {
     if (options.documentClassInterfaceSyntax) require("./documentClassInterfaceSyntax");
     if (options.documentParent) require("./documentParent");
     if (options.documentApiNames) require("./documentApiNames");
+    if (options.includeTypeParametersInName) require("./includeTypeParametersInName");
     if (options.overwriteYamlSchema) require("./overwriteYamlSchema");
 };

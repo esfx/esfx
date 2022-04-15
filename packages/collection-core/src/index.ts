@@ -16,6 +16,10 @@
 
 import /*#__INLINE__*/ { isIterableObject, isObject } from "@esfx/internal-guards";
 
+/**
+ * A {@link ReadonlyContainer} describes a container object, such as an Array, Set, or WeakSet,
+ * that can contain other values.
+ */
 export interface ReadonlyContainer<T> {
     /**
      * Tests whether an element is present in the container.
@@ -36,11 +40,7 @@ export namespace ReadonlyContainer {
     export const name = "ReadonlyContainer";
 
     /**
-     * Tests whether a value supports the minimal representation of a `ReadonlyContainer`.
-     */
-    export function hasInstance(value: any): value is ReadonlyContainer<unknown>;
-    /**
-     * Tests whether a value supports the minimal representation of a `ReadonlyContainer`.
+     * Tests whether a value supports the minimal representation of a {@link ReadonlyContainer}.
      */
     export function hasInstance(value: any): value is ReadonlyContainer<unknown> {
         return isObject(value)
@@ -48,6 +48,10 @@ export namespace ReadonlyContainer {
     }
 }
 
+/**
+ * A {@link Container} describes a container object, such as an Array, Set, or WeakSet, that 
+ * can contain other values and may have its contents modified.
+ */
 export interface Container<T> extends ReadonlyContainer<T> {
     /**
      * Adds an element to the container.
@@ -81,11 +85,7 @@ export namespace Container {
     export const name = "Container";
 
     /**
-     * Tests whether a value supports the minimal representation of a `Container`.
-     */
-    export function hasInstance(value: any): value is Container<unknown>;
-    /**
-     * Tests whether a value supports the minimal representation of a `Container`.
+     * Tests whether a value supports the minimal representation of a {@link Container}.
      */
     export function hasInstance(value: any): value is Container<unknown> {
         return ReadonlyContainer.hasInstance(value)
@@ -102,6 +102,10 @@ export declare namespace Container {
     export { _delete as delete };
 }
 
+/**
+ * A {@link ReadonlyCollection} describes a collection object, such as an Array or Set, that
+ * can contain other values and has a known size.
+ */
 export interface ReadonlyCollection<T> extends Iterable<T>, ReadonlyContainer<T> {
     /**
      * Gets the number of elements in the collection.
@@ -109,7 +113,7 @@ export interface ReadonlyCollection<T> extends Iterable<T>, ReadonlyContainer<T>
     readonly [ReadonlyCollection.size]: number;
 
     /**
-     * Tests whether an element is present in the collection.
+     * (Inherited from `ReadonlyContainer[ReadonlyContainer.has]`) Tests whether an element is present in the container.
      */
     [ReadonlyCollection.has](value: T): boolean;
 }
@@ -150,6 +154,10 @@ export namespace ReadonlyCollection {
     }
 }
 
+/**
+ * A {@link Collection} describes a collection object, such as an Array or Set, that can 
+ * contain other values, has a known size, and may have its contents modified.
+ */
 export interface Collection<T> extends ReadonlyCollection<T>, Container<T> {
     /**
      * Adds an element to the collection.
@@ -219,6 +227,10 @@ export declare namespace Collection {
     export { _delete as delete };
 }
 
+/**
+ * A {@link ReadonlyIndexedCollection} describes an indexed collection object, such as an Array, that
+ * can contain other values, has a known size, and whose elements can be accessed by ordinal index.
+ */
 export interface ReadonlyIndexedCollection<T> extends ReadonlyCollection<T> {
     /**
      * Gets the index for a value in the collection, or `-1` if the value was not found.
@@ -631,6 +643,11 @@ export declare namespace KeyedCollection {
     export { _delete as delete };
 }
 
+/**
+ * A {@link ReadonlyKeyedMultiCollection} describes a keyed collection object that can contain other
+ * values, has a known size, and whose elements can be accessed by key, where each key can represent
+ * one or more elements.
+ */
 export interface ReadonlyKeyedMultiCollection<K, V> extends Iterable<[K, V]> {
     /**
      * Gets the number of elements in the collection.
