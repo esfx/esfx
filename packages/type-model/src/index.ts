@@ -127,12 +127,18 @@ type _RequiredKeyof<T, K extends keyof T = keyof T> =
 /**
  * Gets a union of the keys of `T` that are non-optional.
  */
-export type RequiredKeyof<T> = _RequiredKeyof<T, keyof T>;
+export type RequiredKeys<T> = _RequiredKeyof<T, keyof T>;
 
 /**
  * Gets a union of the keys of `T` that are optional.
  */
-export type OptionalKeyof<T> = Exclude<keyof T, RequiredKeyof<T>>;
+export type OptionalKeys<T> = Exclude<keyof T, RequiredKeys<T>>;
+
+/** @deprecated Use `RequiredKeys<T>` instead. */
+export type RequiredKeyof<T> = RequiredKeys<T>;
+
+/** @deprecated Use `OptionalKeys<T>` instead. */
+export type OptionalKeyof<T> = OptionalKeys<T>;
 
 /**
  * Gets a union of `keyof T'` of each constituent `T'` of `T`.

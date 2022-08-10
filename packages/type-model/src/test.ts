@@ -14,6 +14,8 @@
    limitations under the License.
 */
 
+import { IsAny, IsNever, OptionalKeys } from "./index";
+
 /**
  * A helper type for testing types, used in conjunction with {@link ExpectType}:
  *
@@ -37,9 +39,12 @@ export type Test<T extends { pass: true }> = T;
  * ```
  */
 export type ExpectType<Actual, Expected> =
-   [Expected] extends [never] ? [Actual] extends [never] ? { pass: true } : { pass: false, Expected: Expected, Actual: Actual } :
-   [Actual] extends [never] ? { pass: false, Expected: Expected, Actual: Actual } :
-   boolean extends (Expected extends never ? true : false) ? boolean extends (Actual extends never ? true : false) ? { pass: true } : { pass: false, Expected: Expected, Actual: Actual } :
-   boolean extends (Actual extends never ? true : false) ? { pass: false, Expected: Expected, Actual: Actual } :
-   (<T>() => T extends Expected ? 0 : 1) extends (<T>() => T extends Actual ? 0 : 1) ? { pass: true } :
-   { pass: false, Expected: Expected, Actual: Actual };
+   // never
+   IsNever<Actual> extends true ? IsNever<Expected> extends true ? { pass: true } : { pass: false, Actual: Actual, Expected: Expected } :
+   IsNever<Expected> extends true ? { pass: false, Actual: Actual, Expected: Expected } :
+   // any
+   IsAny<Actual> extends true ? IsAny<Expected> extends true ? { pass: true } : { pass: false, Actual: Actual, Expected: Expected } :
+   IsAny<Expected> extends true ? { pass: false, Actual: Actual, Expected: Expected } :
+   // identical
+   (<T>() => T extends [Expected, OptionalKeys<Expected>, Actual, OptionalKeys<Actual>] ? 0 : 1) extends (<T>() => T extends [Actual, OptionalKeys<Actual>, Expected, OptionalKeys<Expected>] ? 0 : 1) ? { pass: true } :
+   { pass: false, Actual: Actual, Expected: Expected };
