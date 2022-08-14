@@ -85,6 +85,7 @@ NodeParser.prototype["_parseDeclarationReference"] = function(tokenReader, token
                 currentBracket = bracketStack.pop();
                 tokens.push([tokenReader.createMarker(), tokenReader.readToken()]);
                 break;
+            case TokenKind.Hyphen:
             case TokenKind.AsciiWord:
             case TokenKind.Period:
             case TokenKind.PoundSymbol:

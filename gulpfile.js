@@ -4,6 +4,7 @@ const del = require("del");
 const path = require("path");
 const { buildProject, cleanProject } = require("./scripts/build");
 const { exec, ArgsBuilder } = require("./scripts/exec");
+const { Semaphore } = require("./scripts/semaphore");
 const { apiExtractor, apiDocumenter, docfx, installDocFx } = require("./scripts/docs");
 const { fname } = require("./scripts/fname");
 const yargs = require("yargs")
@@ -123,12 +124,14 @@ gulp.task("clean:docs", gulp.parallel(
     cleanLegacyOutputs
 ));
 
+const docsSem = new Semaphore();
+
 const docsApiExtractor = gulp.parallel(docPackages.map(docPackage => fname(`docs:api-extractor:${docPackage}`, () => apiExtractor({ projectFolder: docPackage, force: argv.force, verbose: argv.verbose, docPackagePattern }))));
 docsApiExtractor.name = "docs:api-extractor";
-
-const docsApiDocumenter = fname("docs:api-documenter", () => apiDocumenter({ projectFolders: docPackages, docPackagePattern }));
-
+const docsApiDocumenter = fname(`docs:api-documenter`, () => apiDocumenter({ projectFolders: docPackages, docPackagePattern }));
 const docsDocfx = fname("docs:docfx", () => docfx({ serve: argv.serve, build: true }));
+const docsDocfxServe = fname("docs:docfx:serve", () => docfx({ serve: true, build: false }));
+const docsDocfxBuild = fname(`docs:docfx`, () => docfx({ serve: false, build: true, incremental: true }));
 
 gulp.task("install:docfx", () => installDocFx(argv.force));
 gulp.task("docs:api-extractor", docsApiExtractor);
@@ -145,14 +148,47 @@ gulp.task("docs", gulp.series(
     ),
     docsDocfx
 ));
-
-const docsDocfxServe = fname("docs:docfx:serve", () => docfx({ serve: true, build: false }));
-const docsDocfxBuild = fname("docs:docfx:build", () => docfx({ serve: false, build: true, incremental: true }));
-
 gulp.task("docs:serve", docsDocfxServe);
+
+const DOCSDEV_STEP_EXTRACT = 0;
+const DOCSDEV_STEP_DOCUMENT = 1;
+const DOCSDEV_STEP_DOCFX = 2;
+const DOCSDEV_STEP_IDLE = 3;
+
+let docsDevStep = DOCSDEV_STEP_IDLE;
+async function docsDev(step) {
+    if (docsDevStep < step) return;
+    await docsSem.wait();
+    try {
+        if (docsDevStep < step) return;
+        docsDevStep = step;
+        while (true) {
+            switch (step) {
+                case DOCSDEV_STEP_EXTRACT:
+                    await new Promise((resolve, reject) => { docsApiExtractor(e => e ? reject(e) : resolve()); });
+                    step = DOCSDEV_STEP_DOCUMENT;
+                    continue;
+
+                case DOCSDEV_STEP_DOCUMENT:
+                    await docsApiDocumenter();
+                    step = DOCSDEV_STEP_DOCFX;
+                    continue;
+
+                case DOCSDEV_STEP_DOCFX:
+                    await docsDocfxBuild();
+                    step = DOCSDEV_STEP_IDLE;
+                    return;
+            }
+        }
+    }
+    finally {
+        docsSem.release();
+    }
+}
+
 gulp.task("docs:dev", gulp.parallel(
     docsDocfxServe,
-    fname("watch:api-extractor", () => gulp.watch(["api-extractor-base.json", "packages/*/api-extractor.json", "packages/*/dist/*.d.ts"], { delay: 1_000 }, docsApiExtractor)),
-    fname("watch:api-documenter", () => gulp.watch(["packages/*/obj/api/*"], docsApiDocumenter)),
-    fname("watch:docfx", () => gulp.watch(["obj/yml/**/*", "docsrc/**/*", "packages/*/docsrc/**/*", "docfx.json"], docsDocfxBuild))
+    fname("watch:api-extractor", () => gulp.watch(["api-extractor-base.json", "packages/*/api-extractor.json", "packages/*/dist/**/*.d.ts"], () => docsDev(DOCSDEV_STEP_EXTRACT))),
+    fname("watch:api-documenter", () => gulp.watch(["packages/*/obj/api/**/*"], () => docsDev(DOCSDEV_STEP_DOCUMENT))),
+    fname("watch:docfx", () => gulp.watch(["obj/yml/**/*", "docsrc/**/*", "packages/*/docsrc/**/*", "docfx.json"], { ignorePermissionErrors: true }, () => docsDev(DOCSDEV_STEP_DOCFX))),
 ));

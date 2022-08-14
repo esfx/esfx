@@ -17,8 +17,7 @@
 import /*#__INLINE__*/ { isIterableObject, isObject } from "@esfx/internal-guards";
 
 /**
- * A {@link ReadonlyContainer} describes a container object, such as an Array, Set, or WeakSet,
- * that can contain other values.
+ * A {@link ReadonlyContainer} describes an object that can contain other values.
  */
 export interface ReadonlyContainer<T> {
     /**
@@ -49,8 +48,8 @@ export namespace ReadonlyContainer {
 }
 
 /**
- * A {@link Container} describes a container object, such as an Array, Set, or WeakSet, that 
- * can contain other values and may have its contents modified.
+ * A {@link Container} describes a container object that can contain other values and
+ * may have its contents modified.
  */
 export interface Container<T> extends ReadonlyContainer<T> {
     /**
@@ -77,7 +76,6 @@ export namespace Container {
      * A well-known symbol used to define the `Container#[Container.add]` method.
      */
     export const add = Symbol.for("@esfx/collection-core!Collection.add");
-
     Container.delete = Symbol.for("@esfx/collection-core!Collection.delete") as typeof Container.delete;
 
     // #endregion Collection<T>
@@ -111,11 +109,6 @@ export interface ReadonlyCollection<T> extends Iterable<T>, ReadonlyContainer<T>
      * Gets the number of elements in the collection.
      */
     readonly [ReadonlyCollection.size]: number;
-
-    /**
-     * (Inherited from `ReadonlyContainer[ReadonlyContainer.has]`) Tests whether an element is present in the container.
-     */
-    [ReadonlyCollection.has](value: T): boolean;
 }
 
 export namespace ReadonlyCollection {
@@ -133,7 +126,7 @@ export namespace ReadonlyCollection {
     export const size = Symbol.for("@esfx/collection-core!ReadonlyCollection.size");
 
     // #endregion ReadonlyCollection<T>
-    
+
     export const name = "ReadonlyCollection";
 
     /**
@@ -155,7 +148,7 @@ export namespace ReadonlyCollection {
 }
 
 /**
- * A {@link Collection} describes a collection object, such as an Array or Set, that can 
+ * A {@link Collection} describes a collection object, such as an Array or Set, that can
  * contain other values, has a known size, and may have its contents modified.
  */
 export interface Collection<T> extends ReadonlyCollection<T>, Container<T> {
@@ -383,7 +376,7 @@ export namespace IndexedCollection {
      * A well-known symbol used to define the `IndexedCollection#[IndexedCollection.insertAt]` method.
      */
     export const insertAt = Symbol.for("@esfx/collection-core!IndexedCollection.insertAt");
-    
+
     /**
      * A well-known symbol used to define the `IndexedCollection#[IndexedCollection.removeAt]` method.
      */
@@ -486,9 +479,9 @@ export namespace KeyedContainer {
      * A well-known symbol used to define the `KeyedContainer#[KeyedContainer.set]` method.
      */
     export const set = Symbol.for("@esfx/collection-core!KeyedCollection.set");
-    
+
     KeyedContainer.delete = Symbol.for("@esfx/collection-core!KeyedCollection.delete") as typeof KeyedCollection.delete;
-    
+
     // #endregion KeyedContainer<K, V>
 
     export const name = "KeyedContainer";
@@ -600,7 +593,7 @@ export namespace KeyedCollection {
     // #endregion ReadonlyKeyedCollection<K, V>
 
     // #region KeyedContainer<K, V>
-    
+
     export import set = KeyedContainer.set;
     KeyedCollection.delete = KeyedContainer.delete;
 
@@ -687,27 +680,27 @@ export namespace ReadonlyKeyedMultiCollection {
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.size]` property.
      */
     export const size = Symbol.for("@esfx/collection-core!ReadonlyKeyedMultiCollection.size");
-    
+
     /**
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.has]` method.
      */
     export const has = Symbol.for("@esfx/collection-core!ReadonlyKeyedMultiCollection.has");
-    
+
     /**
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.hasValue]` method.
      */
     export const hasValue = Symbol.for("@esfx/collection-core!ReadonlyKeyedMultiCollection.hasValue");
-    
+
     /**
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.get]` method.
      */
     export const get = Symbol.for("@esfx/collection-core!ReadonlyKeyedMultiCollection.get");
-    
+
     /**
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.keys]` method.
      */
     export const keys = Symbol.for("@esfx/collection-core!ReadonlyKeyedMultiCollection.keys");
-    
+
     /**
      * A well-known symbol used to define the `ReadonlyKeyedMultiCollection#[ReadonlyKeyedMultiCollection.values]` method.
      */
@@ -781,14 +774,14 @@ export namespace KeyedMultiCollection {
      * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.add]` method.
      */
     export const add = Symbol.for("@esfx/collection-core!KeyedMultiCollection.add");
-    
+
     KeyedMultiCollection.delete = Symbol.for("@esfx/collection-core!KeyedMultiCollection.delete") as typeof KeyedMultiCollection.delete;
-    
+
     /**
      * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.deleteValue]` method.
      */
     export const deleteValue = Symbol.for("@esfx/collection-core!KeyedMultiCollection.deleteValue");
-    
+
     /**
      * A well-known symbol used to define the `KeyedMultiCollection#[KeyedMultiCollection.clear]` method.
      */

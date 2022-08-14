@@ -20,7 +20,7 @@
     <meta property="docfx:tocrel" content="../toc.html">
     
     <meta property="docfx:rel" content="../../">
-    
+    <meta property="docfx:newtab" content="true">
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -84,7 +84,7 @@
   <h1 id="_esfx_fn_DefaultMemoizeCache_class" data-uid="@esfx/fn!DefaultMemoizeCache:class">DefaultMemoizeCache Class
   </h1>
   <h6><strong>Package</strong>: <a class="xref" href="../fn.html">@esfx/fn</a></h6>
-  <div class="markdown level0 summary"><p>The default implementation of a <a class="xref" href="memoizecache.html#_esfx_fn_MemoizeCache_interface">MemoizeCache</a><!-- -->, as used by <a class="xref" href="../fn.html#_esfx_fn_memoize_function_1_">memoize()</a><!-- -->.</p>
+  <div class="markdown level0 summary"><p>The default implementation of a <a class="xref" href="memoizecache.html#_esfx_fn_MemoizeCache_interface">MemoizeCache&lt;A, T&gt;</a>, as used by <a class="xref" href="../fn.html#_esfx_fn_memoize_function_1_">memoize(factory, options)</a>.</p>
 <p>Non-primitive keys have a lifetime scoped to both the life of the key (using a <code>WeakMap</code><!-- -->) and
 the life of the cache. Results associated with a non-primitive key can be garbage collected if
 the key is garbage collected.</p>

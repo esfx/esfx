@@ -20,7 +20,7 @@
     <meta property="docfx:tocrel" content="toc.html">
     
     <meta property="docfx:rel" content="../">
-    
+    <meta property="docfx:newtab" content="true">
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -91,7 +91,7 @@
     <h3 id="classes">Classes
   </h3>
         <h4><a class="xref" href="fn/defaultmemoizecache.html#_esfx_fn_DefaultMemoizeCache_class">DefaultMemoizeCache</a></h4>
-        <section><p>The default implementation of a <a class="xref" href="fn/memoizecache.html#_esfx_fn_MemoizeCache_interface">MemoizeCache</a><!-- -->, as used by <a class="xref" href="fn.html#_esfx_fn_memoize_function_1_">memoize()</a><!-- -->.</p>
+        <section><p>The default implementation of a <a class="xref" href="fn/memoizecache.html#_esfx_fn_MemoizeCache_interface">MemoizeCache&lt;A, T&gt;</a>, as used by <a class="xref" href="fn.html#_esfx_fn_memoize_function_1_">memoize(factory, options)</a>.</p>
 <p>Non-primitive keys have a lifetime scoped to both the life of the key (using a <code>WeakMap</code><!-- -->) and
 the life of the cache. Results associated with a non-primitive key can be garbage collected if
 the key is garbage collected.</p>
@@ -101,10 +101,10 @@ primitive key can only be garbage collected if the cache is garbage collected.</
     <h3 id="interfaces">Interfaces
   </h3>
         <h4><a class="xref" href="fn/memoizecache.html#_esfx_fn_MemoizeCache_interface">MemoizeCache&lt;A, T&gt;</a></h4>
-        <section><p>Describes the minimum implementation of a cache for <a class="xref" href="fn.html#_esfx_fn_memoize_function_1_">memoize()</a><!-- -->.</p>
+        <section><p>Describes the minimum implementation of a cache for <a class="xref" href="fn.html#_esfx_fn_memoize_function_1_">memoize(factory, options)</a>.</p>
 </section>
         <h4><a class="xref" href="fn/memoizecacheentry.html#_esfx_fn_MemoizeCacheEntry_interface">MemoizeCacheEntry&lt;T&gt;</a></h4>
-        <section><p>Describes the minimum implementation of a cache entry for a <a class="xref" href="fn/memoizecache.html#_esfx_fn_MemoizeCache_interface">MemoizeCache</a><!-- -->.</p>
+        <section><p>Describes the minimum implementation of a cache entry for a <a class="xref" href="fn/memoizecache.html#_esfx_fn_MemoizeCache_interface">MemoizeCache&lt;A, T&gt;</a>.</p>
 </section>
         <h4><a class="xref" href="fn/memoizecachefulfilledresult.html#_esfx_fn_MemoizeCacheFulfilledResult_interface">MemoizeCacheFulfilledResult&lt;T&gt;</a></h4>
         <section><p>Describes a cache result that has a value.</p>
@@ -3439,7 +3439,7 @@ count; // 1
               <div class="markdown level1 summary"><p>Memoize a callback. An invocation for a memoized function will only evaluate once for the
 same argument list. You can control caching behavior for <code>memoize</code> by passing a custom <code>cache</code>
 object.</p>
-<p>The default cache behavior is provided by <a class="xref" href="fn/defaultmemoizecache.html#_esfx_fn_DefaultMemoizeCache_class">DefaultMemoizeCache</a><!-- -->.</p>
+<p>The default cache behavior is provided by <a class="xref" href="fn/defaultmemoizecache.html#_esfx_fn_DefaultMemoizeCache_class">DefaultMemoizeCache</a>.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>

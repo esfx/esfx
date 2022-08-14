@@ -8,8 +8,7 @@ const prev_generateYamlItem = YamlDocumenter.prototype["_generateYamlItem"];
  * @param {import("@microsoft/api-extractor-model").ApiItem} apiItem
  * @returns {import("@microsoft/api-documenter/lib/yaml/IYamlApiFile").IYamlItem}
  */
-// @ts-ignore
-YamlDocumenter.prototype._generateYamlItem = function (apiItem) {
+YamlDocumenter.prototype["_generateYamlItem"] = function (apiItem) {
     /** @type {import("@microsoft/api-documenter/lib/yaml/IYamlApiFile").IYamlItem} */
     const yamlItem = prev_generateYamlItem.call(this, apiItem);
     switch (apiItem.kind) {

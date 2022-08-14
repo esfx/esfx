@@ -20,7 +20,7 @@
     <meta property="docfx:tocrel" content="../toc.html">
     
     <meta property="docfx:rel" content="../../">
-    
+    <meta property="docfx:newtab" content="true">
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -84,7 +84,7 @@
   <h1 id="_esfx_fn_MemoizeCache_interface" data-uid="@esfx/fn!MemoizeCache:interface">MemoizeCache&lt;A, T&gt; Interface
   </h1>
   <h6><strong>Package</strong>: <a class="xref" href="../fn.html">@esfx/fn</a></h6>
-  <div class="markdown level0 summary"><p>Describes the minimum implementation of a cache for <a class="xref" href="../fn.html#_esfx_fn_memoize_function_1_">memoize()</a><!-- -->.</p>
+  <div class="markdown level0 summary"><p>Describes the minimum implementation of a cache for <a class="xref" href="../fn.html#_esfx_fn_memoize_function_1_">memoize(factory, options)</a>.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -96,7 +96,7 @@
   
   
   <h4 id="_esfx_fn_MemoizeCache_get_member_1_" data-uid="@esfx/fn!MemoizeCache#get:member(1)">get(args)</h4>
-  <div class="markdown level1 summary"><p>Gets (or creates) a <a class="xref" href="memoizecacheentry.html#_esfx_fn_MemoizeCacheEntry_interface">MemoizeCacheEntry</a> unique to the provided arguments.</p>
+  <div class="markdown level1 summary"><p>Gets (or creates) a <a class="xref" href="memoizecacheentry.html#_esfx_fn_MemoizeCacheEntry_interface">MemoizeCacheEntry&lt;T&gt;</a> unique to the provided arguments.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -112,7 +112,7 @@
         <dd><span class="xref">Readonly</span>&lt;A&gt;</dd>
       </dl>
       <p>
-        <p>The arguments provided to <a class="xref" href="../fn.html#_esfx_fn_memoize_function_1_">memoize()</a><!-- -->.</p>
+        <p>The arguments provided to <a class="xref" href="../fn.html#_esfx_fn_memoize_function_1_">memoize(factory, options)</a>.</p>
 
         
       </p>
