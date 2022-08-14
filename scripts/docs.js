@@ -9,7 +9,7 @@
 
 // apply patches
 require("./docs/patches/tsdoc")({
-    paramTagHyphen: true,
+    paramTagHyphen: false, // Fixed in @microsoft/tsdoc@0.12.18
     emitSoftBreak: true,
     parseBetaDeclarationReference: true,
 });
@@ -29,10 +29,12 @@ require("./docs/patches/api-documenter")({
     disableConvertToSDP: true,
     documentAliases: true,
     documentClassInterfaceSyntax: true,
+    documentInheritedMembers: true,
     documentParent: true,
     documentApiNames: true,
     includeTypeParametersInName: true,
-    overwriteYamlSchema: true
+    overwriteYamlSchema: true,
+    forwardUnresolvedReferences: true
 });
 
 require("./docs/patches/api-extractor-model")({

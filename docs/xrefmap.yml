@@ -3121,10 +3121,6 @@ references:
   name: KeyedMultiCollection
   href: api/collection-core/keyedmulticollection-namespace.html#_esfx_collection_core_KeyedMultiCollection_namespace
   fullName: KeyedMultiCollection
-- uid: '@esfx/collection-core!ReadonlyCollection#[ReadonlyCollection.has]:member(1)'
-  name: '[ReadonlyCollection.has](value)'
-  href: api/collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection__ReadonlyCollection_has__member_1_
-  fullName: ReadonlyCollection.[ReadonlyCollection.has](value)
 - uid: '@esfx/collection-core!ReadonlyCollection#[ReadonlyCollection.size]:member'
   name: '[ReadonlyCollection.size]'
   href: api/collection-core/readonlycollection-interface.html#_esfx_collection_core_ReadonlyCollection__ReadonlyCollection_size__member

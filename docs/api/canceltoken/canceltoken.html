@@ -20,7 +20,7 @@
     <meta property="docfx:tocrel" content="../toc.html">
     
     <meta property="docfx:rel" content="../../">
-    
+    <meta property="docfx:newtab" content="true">
   </head>
   <body data-spy="scroll" data-target="#affix" data-offset="120">
     <div id="wrapper">
@@ -370,13 +370,13 @@
   
   
   <h5 id="_esfx_canceltoken_CancelToken_race_member_1__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This is similar to calling <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_source_member_1_">CancelToken.source()</a> with the provided <code>cancelables</code><!-- -->. In general,
-calling <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_source_member_1_">CancelToken.source()</a> is preferred as it provides better resource management.</p>
+  <div class="markdown level1 remarks"><p>This is similar to calling <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_source_member_1_">source(cancelables)</a> with the provided <code>cancelables</code><!-- -->. In general,
+calling <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_source_member_1_">source(cancelables)</a> is preferred as it provides better resource management.</p>
 </div>
   
   
   <h4 id="_esfx_canceltoken_CancelToken_source_member_1_" data-uid="@esfx/canceltoken!CancelToken.source:member(1)">source(cancelables)</h4>
-  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="cancelsource.html#_esfx_canceltoken_CancelSource_interface">CancelSource</a><!-- -->.</p>
+  <div class="markdown level1 summary"><p>Creates a new <a class="xref" href="cancelsource.html#_esfx_canceltoken_CancelSource_interface">CancelSource</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -411,7 +411,7 @@ when a linked cancelable is canceled.</p>
   
   
   <h5 id="_esfx_canceltoken_CancelToken_source_member_1__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Calling <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_source_member_1_">CancelToken.source()</a> with <code>cancelables</code> is similar to <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_race_member_1_">CancelToken.race()</a><!-- -->, except you can
+  <div class="markdown level1 remarks"><p>Calling <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_source_member_1_">source(cancelables)</a> with <code>cancelables</code> is similar to <a class="xref" href="canceltoken.html#_esfx_canceltoken_CancelToken_race_member_1_">race(cancelables)</a>, except you can
 individually cancel or close the resulting source. This can be better for memory or GC purposes,
 since when the resulting source is canceled or closed it can be unlinked from the cancelables,
 removing references from each cancelable to the resulting source which could otherwise prevent

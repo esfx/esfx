@@ -25,7 +25,8 @@
       "_appTitle": "@esfx API Reference",
       "_appLogoPath": "images/esfx-logo-white-38x38.svg",
       "_appFaviconPath": "images/favicon-32x32.png",
-      "_enableSearch": true
+      "_enableSearch": true,
+      "_enableNewTab": true
     },
     "dest": "docs"
   }

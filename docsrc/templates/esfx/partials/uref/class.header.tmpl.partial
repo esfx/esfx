@@ -32,6 +32,7 @@
   <h5>{{__global.inheritedMembers}}</h5>
 {{/inheritedMembers.0}}
 {{#inheritedMembers}}
+  {{#value}}
   <div>
   {{#definition}}
     <xref uid="{{definition}}" altProperty="fullName" displayProperty="name"/>
@@ -40,6 +41,17 @@
     <xref uid="{{uid}}" altProperty="fullName" displayProperty="name"/>
   {{/definition}}
   </div>
+  {{/value}}
+  {{^value}}
+  <div>
+  {{#definition}}
+    <xref uid="{{definition}}" altProperty="fullName" displayProperty="name"/>
+  {{/definition}}
+  {{^definition}}
+    <xref uid="{{uid}}" altProperty="fullName" displayProperty="name"/>
+  {{/definition}}
+  </div>
+  {{/value}}
 {{/inheritedMembers}}
 {{#inheritedMembers.0}}
 </div>

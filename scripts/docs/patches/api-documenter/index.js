@@ -8,10 +8,12 @@
  * @param {boolean} options.disableConvertToSDP
  * @param {boolean} options.documentAliases
  * @param {boolean} options.documentClassInterfaceSyntax
+ * @param {boolean} options.documentInheritedMembers
  * @param {boolean} options.documentParent
  * @param {boolean} options.documentApiNames
  * @param {boolean} options.includeTypeParametersInName
  * @param {boolean} options.overwriteYamlSchema
+ * @param {boolean} options.forwardUnresolvedReferences
  */
 module.exports = function(options) {
     if (options.emitSoftBreak) require("./emitSoftBreak");
@@ -26,4 +28,6 @@ module.exports = function(options) {
     if (options.documentApiNames) require("./documentApiNames");
     if (options.includeTypeParametersInName) require("./includeTypeParametersInName");
     if (options.overwriteYamlSchema) require("./overwriteYamlSchema");
+    if (options.forwardUnresolvedReferences) require("./forwardUnresolvedReferences");
+    if (options.documentInheritedMembers) require("./documentInheritedMembers");
 };
