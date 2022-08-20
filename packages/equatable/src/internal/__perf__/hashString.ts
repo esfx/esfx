@@ -1,13 +1,14 @@
-import { SAMPLE_SIZE, generateRandomStrings } from "./data/randomStrings";
+import { hashUnknown as hashUnknownNative } from "#hashCodeNative";
+import { randomInt } from "crypto";
+import { generateRandomStrings, SAMPLE_SIZE } from "./data/randomStrings";
+import { hashStringUsingMarvin32WithDataView } from "./scenarios/hashString/hashStringUsingMarvin32WithDataView";
+import { hashStringUsingMarvin32WithDataViewReuseBuffer } from "./scenarios/hashString/hashStringUsingMarvin32WithDataViewReuseBuffer";
+import { hashStringUsingMarvin32WithTypedArray } from "./scenarios/hashString/hashStringUsingMarvin32WithTypedArray";
+import { hashStringUsingMarvin32WithTypedArrayReuseBuffer } from "./scenarios/hashString/hashStringUsingMarvin32WithTypedArrayReuseBuffer";
 import { hashStringUsingMurmur3WithDataView } from "./scenarios/hashString/hashStringUsingMurmur3WithDataView";
 import { hashStringUsingMurmur3WithDataViewReuseBuffer } from "./scenarios/hashString/hashStringUsingMurmur3WithDataViewReuseBuffer";
 import { hashStringUsingMurmur3WithTypedArray } from "./scenarios/hashString/hashStringUsingMurmur3WithTypedArray";
 import { hashStringUsingMurmur3WithTypedArrayReuseBuffer } from "./scenarios/hashString/hashStringUsingMurmur3WithTypedArrayReuseBuffer";
-import { hashStringUsingMarvin32WithTypedArray } from "./scenarios/hashString/hashStringUsingMarvin32WithTypedArray";
-import { hashStringUsingMarvin32WithTypedArrayReuseBuffer } from "./scenarios/hashString/hashStringUsingMarvin32WithTypedArrayReuseBuffer";
-import { hashStringUsingMarvin32WithDataView } from "./scenarios/hashString/hashStringUsingMarvin32WithDataView";
-import { hashStringUsingMarvin32WithDataViewReuseBuffer } from "./scenarios/hashString/hashStringUsingMarvin32WithDataViewReuseBuffer";
-import { randomInt } from "crypto";
 
 jest.setTimeout(10_000_000);
 
@@ -17,14 +18,15 @@ beforeAll(() => {
     randomStrings = generateRandomStrings();
     randomString = randomStrings[randomInt(randomStrings.length - 1)];
     // prime each
-    hashStringUsingMurmur3WithDataView("")
-    hashStringUsingMurmur3WithDataViewReuseBuffer("")
-    hashStringUsingMurmur3WithTypedArray("")
-    hashStringUsingMurmur3WithTypedArrayReuseBuffer("")
-    hashStringUsingMarvin32WithTypedArray("")
-    hashStringUsingMarvin32WithTypedArrayReuseBuffer("")
-    hashStringUsingMarvin32WithDataView("")
-    hashStringUsingMarvin32WithDataViewReuseBuffer("")
+    hashStringUsingMurmur3WithDataView("");
+    hashStringUsingMurmur3WithDataViewReuseBuffer("");
+    hashStringUsingMurmur3WithTypedArray("");
+    hashStringUsingMurmur3WithTypedArrayReuseBuffer("");
+    hashStringUsingMarvin32WithTypedArray("");
+    hashStringUsingMarvin32WithTypedArrayReuseBuffer("");
+    hashStringUsingMarvin32WithDataView("");
+    hashStringUsingMarvin32WithDataViewReuseBuffer("");
+    hashUnknownNative("");
     afterAll(() => { randomStrings = undefined!; });
 });
 
@@ -58,6 +60,10 @@ it(hashStringUsingMarvin32WithDataView.name, () => {
 
 it(hashStringUsingMarvin32WithDataViewReuseBuffer.name, () => {
     expect(() => hashStringUsingMarvin32WithDataViewReuseBuffer(randomString)).not.toThrow();
+});
+
+it("hashUnknownNative", () => {
+    expect(() => hashUnknownNative(randomString)).not.toThrow();
 });
 
 it(`hash ${SAMPLE_SIZE} numbers`, async () => {
@@ -106,6 +112,12 @@ it(`hash ${SAMPLE_SIZE} numbers`, async () => {
         },
         [hashStringUsingMarvin32WithDataViewReuseBuffer.name]() {
             const f = hashStringUsingMarvin32WithDataViewReuseBuffer;
+            for (let i = 0; i < SAMPLE_SIZE; i++) {
+                f(randomStrings[i]);
+            }
+        },
+        hashUnknownNative() {
+            const f = hashUnknownNative;
             for (let i = 0; i < SAMPLE_SIZE; i++) {
                 f(randomStrings[i]);
             }

@@ -5,9 +5,14 @@
         "outDir": "dist/cjs",
         "declarationDir": "dist/types",
         "lib": ["es2020"],
-        "stripInternal": true
+        "stripInternal": true,
+        "baseUrl": ".",
+        "paths": {
+            "#hashCode": ["package.internal.d.ts"],
+            "#hashCodeNative": ["package.internal.d.ts"],
+        }
     },
-    "include": ["src/**/*.ts"],
+    "include": ["src/**/*.ts", "package.internal.d.ts"],
     "references": [
         // devDependencies
         { "path": "../../internal/guards" },

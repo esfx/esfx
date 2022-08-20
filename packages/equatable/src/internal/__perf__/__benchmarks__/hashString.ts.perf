@@ -3184,5 +3184,2089 @@
         "runSlowerRatio": 1
       }
     ]
+  },
+  {
+    "date": "Thu, 20 May 2021 06:56:21 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 11
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 14,
+        "errorPc": 5.076602780532825,
+        "opsForSeconds": 3.6552653457634285,
+        "durationMicroSeconds": 273577.95,
+        "runSlowerRatio": 4.871020430237673
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 30,
+        "errorPc": 8.258253385235275,
+        "opsForSeconds": 10.682689751721826,
+        "durationMicroSeconds": 93609.38333333335,
+        "runSlowerRatio": 1.666703104832157
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 12,
+        "errorPc": 5.565992684019657,
+        "opsForSeconds": 2.9774309985948757,
+        "durationMicroSeconds": 335860.00833333336,
+        "runSlowerRatio": 5.979944517792687
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 32,
+        "errorPc": 4.844586873185561,
+        "opsForSeconds": 11.48573098924878,
+        "durationMicroSeconds": 87064.55,
+        "runSlowerRatio": 1.5501731839113837
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 17,
+        "errorPc": 17.371665336292804,
+        "opsForSeconds": 4.6645379544673045,
+        "durationMicroSeconds": 214383.50588235297,
+        "runSlowerRatio": 3.817070919125315
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 15,
+        "errorPc": 4.882734958727791,
+        "opsForSeconds": 4.17641162712997,
+        "durationMicroSeconds": 239440,
+        "runSlowerRatio": 4.263198594097617
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 21,
+        "errorPc": 2.711908080791298,
+        "opsForSeconds": 6.45176493098931,
+        "durationMicroSeconds": 154996.34761904762,
+        "runSlowerRatio": 2.7596901572827823
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 48,
+        "errorPc": 1.157834079955552,
+        "opsForSeconds": 17.80487217715343,
+        "durationMicroSeconds": 56164.40208333334,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Thu, 20 May 2021 07:03:08 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 8
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 9,
+        "errorPc": 6.31292522369024,
+        "opsForSeconds": 1.60448574279819,
+        "durationMicroSeconds": 623252.6555555556,
+        "runSlowerRatio": 3.951646481002034
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 16,
+        "errorPc": 8.974614127158732,
+        "opsForSeconds": 4.497939184826113,
+        "durationMicroSeconds": 222324.03749999995,
+        "runSlowerRatio": 1.4096145320807656
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 8,
+        "errorPc": 12.32622843592212,
+        "opsForSeconds": 1.4568975759482528,
+        "durationMicroSeconds": 686390.05,
+        "runSlowerRatio": 4.351960318980999
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 16,
+        "errorPc": 6.482001104605019,
+        "opsForSeconds": 4.834421370221258,
+        "durationMicroSeconds": 206849.9875,
+        "runSlowerRatio": 1.3115034776242975
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 12,
+        "errorPc": 8.518586113722359,
+        "opsForSeconds": 2.961592586541437,
+        "durationMicroSeconds": 337656.1666666667,
+        "runSlowerRatio": 2.1408618012346885
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 9,
+        "errorPc": 10.070451818078267,
+        "opsForSeconds": 1.6618945671927978,
+        "durationMicroSeconds": 601722.8888888889,
+        "runSlowerRatio": 3.8151400001603415
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 11,
+        "errorPc": 7.974470633951633,
+        "opsForSeconds": 2.7972231406438204,
+        "durationMicroSeconds": 357497.39999999997,
+        "runSlowerRatio": 2.266662372129196
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 20,
+        "errorPc": 5.4207197850859625,
+        "opsForSeconds": 6.3403604393464015,
+        "durationMicroSeconds": 157719.73999999996,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 05:26:31 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 23
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 10,
+        "errorPc": 15.485671287434624,
+        "opsForSeconds": 2.533601317411879,
+        "durationMicroSeconds": 394695.08999999997,
+        "runSlowerRatio": 6.82232313028526
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 24,
+        "errorPc": 8.10327520456772,
+        "opsForSeconds": 7.638277163670904,
+        "durationMicroSeconds": 130919.57499999998,
+        "runSlowerRatio": 2.2629509901671585
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 11,
+        "errorPc": 20.955100243846406,
+        "opsForSeconds": 2.604585287157067,
+        "durationMicroSeconds": 383938.2818181818,
+        "runSlowerRatio": 6.636391196683401
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 20,
+        "errorPc": 6.151864835044083,
+        "opsForSeconds": 6.41205815749573,
+        "durationMicroSeconds": 155956.16499999998,
+        "runSlowerRatio": 2.695709621799664
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 16,
+        "errorPc": 16.933957805021826,
+        "opsForSeconds": 4.029816511624094,
+        "durationMicroSeconds": 248150.25625,
+        "runSlowerRatio": 4.289288810257532
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 17,
+        "errorPc": 6.911114439266456,
+        "opsForSeconds": 4.966855298091956,
+        "durationMicroSeconds": 201334.63529411764,
+        "runSlowerRatio": 3.4800786077541677
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 21,
+        "errorPc": 5.965594929552873,
+        "opsForSeconds": 6.699077227632188,
+        "durationMicroSeconds": 149274.29047619048,
+        "runSlowerRatio": 2.580213107471479
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 32,
+        "errorPc": 6.658479433955658,
+        "opsForSeconds": 17.285046870700267,
+        "durationMicroSeconds": 57853.473437499975,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 05:32:00 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 25
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 17,
+        "errorPc": 1.6406507187551471,
+        "opsForSeconds": 4.876382135219151,
+        "durationMicroSeconds": 205070.06470588234,
+        "runSlowerRatio": 4.014066383896956
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 46,
+        "errorPc": 0.5442261135594963,
+        "opsForSeconds": 16.88531931607115,
+        "durationMicroSeconds": 59223.04347826088,
+        "runSlowerRatio": 1.159239054803574
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 15,
+        "errorPc": 11.141951654382856,
+        "opsForSeconds": 3.931667307659494,
+        "durationMicroSeconds": 254345.01999999996,
+        "runSlowerRatio": 4.978580350856607
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 44,
+        "errorPc": 0.6637538877423103,
+        "opsForSeconds": 16.324822411903472,
+        "durationMicroSeconds": 61256.409090909074,
+        "runSlowerRatio": 1.1990404005709803
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 22,
+        "errorPc": 13.543779480977278,
+        "opsForSeconds": 7.033868942204265,
+        "durationMicroSeconds": 142169.2681818182,
+        "runSlowerRatio": 2.7828385437452776
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 19,
+        "errorPc": 4.332453035995817,
+        "opsForSeconds": 5.732166799175256,
+        "durationMicroSeconds": 174454.1,
+        "runSlowerRatio": 3.414785767719666
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 24,
+        "errorPc": 1.2196875048413718,
+        "opsForSeconds": 7.9260685388943255,
+        "durationMicroSeconds": 126165.95416666665,
+        "runSlowerRatio": 2.469587729145402
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 37,
+        "errorPc": 8.542913294366635,
+        "opsForSeconds": 19.574121604018853,
+        "durationMicroSeconds": 51087.86081081081,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 05:35:12 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 26
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 15,
+        "errorPc": 16.819317254543456,
+        "opsForSeconds": 4.231586013671634,
+        "durationMicroSeconds": 236318.01333333334,
+        "runSlowerRatio": 4.536033468371899
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 41,
+        "errorPc": 11.474274328748546,
+        "opsForSeconds": 15.030983990535605,
+        "durationMicroSeconds": 66529.24390243906,
+        "runSlowerRatio": 1.2770032749948388
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 15,
+        "errorPc": 3.1471657983997083,
+        "opsForSeconds": 4.484577895384006,
+        "durationMicroSeconds": 222986.42666666667,
+        "runSlowerRatio": 4.280138784536679
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 41,
+        "errorPc": 6.76831111792192,
+        "opsForSeconds": 15.05691587649686,
+        "durationMicroSeconds": 66414.66341463415,
+        "runSlowerRatio": 1.274803946555274
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 23,
+        "errorPc": 12.313386615335988,
+        "opsForSeconds": 7.060816810638255,
+        "durationMicroSeconds": 141626.67391304352,
+        "runSlowerRatio": 2.7184695902872296
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 17,
+        "errorPc": 21.67357667700225,
+        "opsForSeconds": 4.944803917145681,
+        "durationMicroSeconds": 202232.4882352941,
+        "runSlowerRatio": 3.881774910376787
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 23,
+        "errorPc": 3.4177419551719193,
+        "opsForSeconds": 7.679095538766009,
+        "durationMicroSeconds": 130223.66956521742,
+        "runSlowerRatio": 2.499593303066709
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 36,
+        "errorPc": 3.828568793293747,
+        "opsForSeconds": 19.194615782308958,
+        "durationMicroSeconds": 52097.94305555555,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 06:55:39 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 26
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 16,
+        "errorPc": 2.178187754630612,
+        "opsForSeconds": 4.7601616360485135,
+        "durationMicroSeconds": 210076.9,
+        "runSlowerRatio": 4.442045294947336
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 45,
+        "errorPc": 1.612248204794859,
+        "opsForSeconds": 16.728934238262106,
+        "durationMicroSeconds": 59776.671111111114,
+        "runSlowerRatio": 1.2639689592559937
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 14,
+        "errorPc": 5.8377012221536475,
+        "opsForSeconds": 4.139241604014071,
+        "durationMicroSeconds": 241590.15,
+        "runSlowerRatio": 5.108388352613358
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 42,
+        "errorPc": 5.08976651381121,
+        "opsForSeconds": 15.547842673897252,
+        "durationMicroSeconds": 64317.60476190477,
+        "runSlowerRatio": 1.3599863365029732
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 23,
+        "errorPc": 5.8699247243611214,
+        "opsForSeconds": 7.329443374664382,
+        "durationMicroSeconds": 136436.0086956522,
+        "runSlowerRatio": 2.8849194294466254
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 19,
+        "errorPc": 6.485153203438952,
+        "opsForSeconds": 5.773999812557732,
+        "durationMicroSeconds": 173190.16842105263,
+        "runSlowerRatio": 3.662080755979708
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 23,
+        "errorPc": 5.192999245406695,
+        "opsForSeconds": 7.465178027942746,
+        "durationMicroSeconds": 133955.27826086956,
+        "runSlowerRatio": 2.8324647475855596
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 38,
+        "errorPc": 2.7837642971357397,
+        "opsForSeconds": 21.144853598598115,
+        "durationMicroSeconds": 47292.83157894738,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 06:58:58 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 27
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 16,
+        "errorPc": 4.167284879158779,
+        "opsForSeconds": 4.483030510693107,
+        "durationMicroSeconds": 223063.39375,
+        "runSlowerRatio": 3.6043512283756773
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 44,
+        "errorPc": 1.632155739384276,
+        "opsForSeconds": 16.15841652806234,
+        "durationMicroSeconds": 61887.25227272727,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 15,
+        "errorPc": 3.165240048343761,
+        "opsForSeconds": 4.328658785852767,
+        "durationMicroSeconds": 231018.43999999994,
+        "runSlowerRatio": 3.7328921791831773
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 44,
+        "errorPc": 1.2090534904966392,
+        "opsForSeconds": 16.142829406541164,
+        "durationMicroSeconds": 61947.00909090909,
+        "runSlowerRatio": 1.0009655755585734
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 20,
+        "errorPc": 4.89498261386693,
+        "opsForSeconds": 6.350612354620988,
+        "durationMicroSeconds": 157465.13,
+        "runSlowerRatio": 2.544387159185485
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 17,
+        "errorPc": 8.966641421692342,
+        "opsForSeconds": 4.997198335450871,
+        "durationMicroSeconds": 200112.12941176473,
+        "runSlowerRatio": 3.2334951393528093
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 20,
+        "errorPc": 5.405759836063613,
+        "opsForSeconds": 6.290495061961376,
+        "durationMicroSeconds": 158970,
+        "runSlowerRatio": 2.5687034754660703
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 37,
+        "errorPc": 8.938105207471985,
+        "opsForSeconds": 15.400350957349291,
+        "durationMicroSeconds": 64933.58513513513,
+        "runSlowerRatio": 1.0492239152739107
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 0,
+        "errorPc": 0,
+        "opsForSeconds": 0,
+        "durationMicroSeconds": null,
+        "runSlowerRatio": null
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 06:59:55 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 27
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 16,
+        "errorPc": 2.332014986559168,
+        "opsForSeconds": 4.714996024226946,
+        "durationMicroSeconds": 212089.25625,
+        "runSlowerRatio": 2.9727147402599177
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 38,
+        "errorPc": 8.773981520437177,
+        "opsForSeconds": 14.016338181486349,
+        "durationMicroSeconds": 71345.31052631579,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 13,
+        "errorPc": 8.715213762996967,
+        "opsForSeconds": 3.5788742029021265,
+        "durationMicroSeconds": 279417.47692307684,
+        "runSlowerRatio": 3.916409850371503
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 30,
+        "errorPc": 13.156278469462352,
+        "opsForSeconds": 9.317068795496798,
+        "durationMicroSeconds": 107329.89333333336,
+        "runSlowerRatio": 1.5043720819428574
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 14,
+        "errorPc": 31.04505884245572,
+        "opsForSeconds": 3.5199423212194265,
+        "durationMicroSeconds": 284095.5642857143,
+        "runSlowerRatio": 3.981979504888767
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 13,
+        "errorPc": 24.422777691715435,
+        "opsForSeconds": 2.7831755326328937,
+        "durationMicroSeconds": 359301.8076923077,
+        "runSlowerRatio": 5.036095645834758
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 16,
+        "errorPc": 20.584403069928978,
+        "opsForSeconds": 4.4020697541518325,
+        "durationMicroSeconds": 227165.86875000002,
+        "runSlowerRatio": 3.184033639691142
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 24,
+        "errorPc": 21.075307119614518,
+        "opsForSeconds": 8.65018199081848,
+        "durationMicroSeconds": 115604.50416666668,
+        "runSlowerRatio": 1.620351825703048
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 0,
+        "errorPc": 0,
+        "opsForSeconds": 0,
+        "durationMicroSeconds": null,
+        "runSlowerRatio": null
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:04:12 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 27
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 9,
+        "errorPc": 7.214457728151716,
+        "opsForSeconds": 1.876365642369087,
+        "durationMicroSeconds": 532945.1666666665,
+        "runSlowerRatio": 222.46821840530487
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 22,
+        "errorPc": 4.012049892790963,
+        "opsForSeconds": 7.043605424395797,
+        "durationMicroSeconds": 141972.74545454545,
+        "runSlowerRatio": 59.26392754610949
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 9,
+        "errorPc": 5.309175019778131,
+        "opsForSeconds": 1.8035042086774602,
+        "durationMicroSeconds": 554476.1111111111,
+        "runSlowerRatio": 231.455917611019
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 20,
+        "errorPc": 3.8148689784620764,
+        "opsForSeconds": 6.447581916608845,
+        "durationMicroSeconds": 155096.905,
+        "runSlowerRatio": 64.74236805886565
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 14,
+        "errorPc": 4.423410248712803,
+        "opsForSeconds": 3.760230310883487,
+        "durationMicroSeconds": 265941.15714285715,
+        "runSlowerRatio": 111.01227505309332
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 10,
+        "errorPc": 9.56493488043154,
+        "opsForSeconds": 2.3270488431728253,
+        "durationMicroSeconds": 429728.8399999999,
+        "runSlowerRatio": 179.3824494743424
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 13,
+        "errorPc": 4.587742999659884,
+        "opsForSeconds": 3.4637677239995273,
+        "durationMicroSeconds": 288702.96153846156,
+        "runSlowerRatio": 120.51377424718831
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 17,
+        "errorPc": 19.23108331511568,
+        "opsForSeconds": 6.74768546450114,
+        "durationMicroSeconds": 148198.96470588236,
+        "runSlowerRatio": 61.86294896684802
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 65,
+        "errorPc": 3.4471192241032593,
+        "opsForSeconds": 417.4317215347763,
+        "durationMicroSeconds": 2395.601360441147,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:04:12 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 27
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 9,
+        "errorPc": 6.579829799602901,
+        "opsForSeconds": 1.9389749850036442,
+        "durationMicroSeconds": 515736.41111111117,
+        "runSlowerRatio": 222.4669154880427
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 22,
+        "errorPc": 3.6497806784593667,
+        "opsForSeconds": 7.049193727640239,
+        "durationMicroSeconds": 141860.19545454544,
+        "runSlowerRatio": 61.19249956641981
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 9,
+        "errorPc": 9.405170913676917,
+        "opsForSeconds": 1.7016538354719684,
+        "durationMicroSeconds": 587663.5888888891,
+        "runSlowerRatio": 253.493263512431
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 20,
+        "errorPc": 3.9561239895315135,
+        "opsForSeconds": 6.29850974425122,
+        "durationMicroSeconds": 158767.7149999999,
+        "runSlowerRatio": 68.48568973255043
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 14,
+        "errorPc": 4.989743549357282,
+        "opsForSeconds": 3.7428442499044707,
+        "durationMicroSeconds": 267176.4928571429,
+        "runSlowerRatio": 115.24865992840718
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 10,
+        "errorPc": 12.516742145638272,
+        "opsForSeconds": 2.240820434274585,
+        "durationMicroSeconds": 446265.1200000001,
+        "runSlowerRatio": 192.49993329424316
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 13,
+        "errorPc": 5.32650797493764,
+        "opsForSeconds": 3.514909882712594,
+        "durationMicroSeconds": 284502.31538461545,
+        "runSlowerRatio": 122.72228834195285
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 22,
+        "errorPc": 7.5959995874909865,
+        "opsForSeconds": 7.40853440264078,
+        "durationMicroSeconds": 134979.46363636362,
+        "runSlowerRatio": 58.224442336189554
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 64,
+        "errorPc": 3.606316247745564,
+        "opsForSeconds": 431.3577841222346,
+        "durationMicroSeconds": 2318.261166968134,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:07:18 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 28
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 11,
+        "errorPc": 6.046022919646645,
+        "opsForSeconds": 2.54971651672286,
+        "durationMicroSeconds": 392200.4636363637,
+        "runSlowerRatio": 191.34010939260273
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 24,
+        "errorPc": 4.35398844616079,
+        "opsForSeconds": 7.760705877590001,
+        "durationMicroSeconds": 128854.25833333329,
+        "runSlowerRatio": 62.8632298305033
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 10,
+        "errorPc": 5.711026197479985,
+        "opsForSeconds": 2.1651721024936177,
+        "durationMicroSeconds": 461857.05000000005,
+        "runSlowerRatio": 225.32298317903167
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 23,
+        "errorPc": 10.184593508210483,
+        "opsForSeconds": 7.619827838934994,
+        "durationMicroSeconds": 131236.56086956523,
+        "runSlowerRatio": 64.02546718142986
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 15,
+        "errorPc": 5.816568200584239,
+        "opsForSeconds": 3.952701239134947,
+        "durationMicroSeconds": 252991.54666666663,
+        "runSlowerRatio": 123.42522435028442
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 10,
+        "errorPc": 13.661079997643325,
+        "opsForSeconds": 2.0671773518064844,
+        "durationMicroSeconds": 483751.43000000005,
+        "runSlowerRatio": 236.00444190409678
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 15,
+        "errorPc": 4.258061268051984,
+        "opsForSeconds": 4.365148006454366,
+        "durationMicroSeconds": 229087.30666666664,
+        "runSlowerRatio": 111.76322922121248
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 27,
+        "errorPc": 9.075227757548543,
+        "opsForSeconds": 9.394760312524008,
+        "durationMicroSeconds": 106442.31111111112,
+        "runSlowerRatio": 51.92926918843427
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 52,
+        "errorPc": 14.937932723188126,
+        "opsForSeconds": 487.86303722987805,
+        "durationMicroSeconds": 2049.7556151785407,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:07:18 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 28
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 11,
+        "errorPc": 6.063019733552501,
+        "opsForSeconds": 2.541553768730298,
+        "durationMicroSeconds": 393460.10000000003,
+        "runSlowerRatio": 194.29201416863498
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 25,
+        "errorPc": 3.361839667297721,
+        "opsForSeconds": 8.102008040562412,
+        "durationMicroSeconds": 123426.192,
+        "runSlowerRatio": 60.94829804812397
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 10,
+        "errorPc": 6.851591255903385,
+        "opsForSeconds": 2.147096323829705,
+        "durationMicroSeconds": 465745.29000000004,
+        "runSlowerRatio": 229.98670127836346
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 24,
+        "errorPc": 9.326641186197456,
+        "opsForSeconds": 7.813399863565016,
+        "durationMicroSeconds": 127985.25833333333,
+        "runSlowerRatio": 63.19958142001287
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 15,
+        "errorPc": 6.570558520577957,
+        "opsForSeconds": 3.979255662719563,
+        "durationMicroSeconds": 251303.28000000003,
+        "runSlowerRatio": 124.09446456803231
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 10,
+        "errorPc": 14.741448398887028,
+        "opsForSeconds": 2.086261792933802,
+        "durationMicroSeconds": 479326.23,
+        "runSlowerRatio": 236.69301835321644
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 15,
+        "errorPc": 4.096788548436937,
+        "opsForSeconds": 4.347671335060886,
+        "durationMicroSeconds": 230008.18666666665,
+        "runSlowerRatio": 113.57887079971269
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 28,
+        "errorPc": 7.662405862386887,
+        "opsForSeconds": 9.92066585241621,
+        "durationMicroSeconds": 100799.68571428568,
+        "runSlowerRatio": 49.77524776970764
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 55,
+        "errorPc": 12.090459926887052,
+        "opsForSeconds": 493.8036008444947,
+        "durationMicroSeconds": 2025.0966138963277,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:09:14 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 29
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 10,
+        "errorPc": 12.81817871259037,
+        "opsForSeconds": 2.5705334455833877,
+        "durationMicroSeconds": 389024.31,
+        "runSlowerRatio": 172.40738883260113
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 24,
+        "errorPc": 17.513948425776917,
+        "opsForSeconds": 8.481097312640635,
+        "durationMicroSeconds": 117909.27083333331,
+        "runSlowerRatio": 52.25490793501047
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 9,
+        "errorPc": 11.797850409045456,
+        "opsForSeconds": 1.6759332429608056,
+        "durationMicroSeconds": 596682.4777777778,
+        "runSlowerRatio": 264.4371195101746
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 17,
+        "errorPc": 4.508164149645824,
+        "opsForSeconds": 5.409459662120695,
+        "durationMicroSeconds": 184861.3470588235,
+        "runSlowerRatio": 81.92665939691278
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 14,
+        "errorPc": 8.279760576060989,
+        "opsForSeconds": 3.8415805711294304,
+        "durationMicroSeconds": 260309.5214285714,
+        "runSlowerRatio": 115.3637027921572
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 10,
+        "errorPc": 18.003156465702087,
+        "opsForSeconds": 2.20774929717405,
+        "durationMicroSeconds": 452949.98,
+        "runSlowerRatio": 200.73790073319302
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 15,
+        "errorPc": 5.507620722313912,
+        "opsForSeconds": 4.209187410196986,
+        "durationMicroSeconds": 237575.54666666672,
+        "runSlowerRatio": 105.28848351733542
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 32,
+        "errorPc": 3.4011572834230397,
+        "opsForSeconds": 11.096087086252485,
+        "durationMicroSeconds": 90121.859375,
+        "runSlowerRatio": 39.940111844379665
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 52,
+        "errorPc": 11.181887654173583,
+        "opsForSeconds": 443.17895925990115,
+        "durationMicroSeconds": 2256.424812382739,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:10:56 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 30
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 11,
+        "errorPc": 9.456155443661956,
+        "opsForSeconds": 2.8967504648296964,
+        "durationMicroSeconds": 345214.4090909091,
+        "runSlowerRatio": 152.90033103485072
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 24,
+        "errorPc": 14.47064317362006,
+        "opsForSeconds": 8.022507143791907,
+        "durationMicroSeconds": 124649.31250000001,
+        "runSlowerRatio": 55.20893868453087
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 12,
+        "errorPc": 12.820139287541943,
+        "opsForSeconds": 2.880906494513938,
+        "durationMicroSeconds": 347112.9666666666,
+        "runSlowerRatio": 153.74122896430418
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 28,
+        "errorPc": 5.301022050303507,
+        "opsForSeconds": 10.092402796013687,
+        "durationMicroSeconds": 99084.43214285716,
+        "runSlowerRatio": 43.885892581770634
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 18,
+        "errorPc": 4.986152809705311,
+        "opsForSeconds": 5.423193806809085,
+        "durationMicroSeconds": 184393.1888888889,
+        "runSlowerRatio": 81.67034422441587
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 13,
+        "errorPc": 3.7005877297125322,
+        "opsForSeconds": 3.2954125145419586,
+        "durationMicroSeconds": 303452.1461538461,
+        "runSlowerRatio": 134.4032357233979
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 18,
+        "errorPc": 4.170663687433001,
+        "opsForSeconds": 5.326658517273702,
+        "durationMicroSeconds": 187734.95555555556,
+        "runSlowerRatio": 83.15045981669408
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 34,
+        "errorPc": 6.745965719975522,
+        "opsForSeconds": 12.244982042373694,
+        "durationMicroSeconds": 81666.1058823529,
+        "runSlowerRatio": 36.1710701955394
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 63,
+        "errorPc": 4.720807050842867,
+        "opsForSeconds": 442.9141049978183,
+        "durationMicroSeconds": 2257.7741117658147,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:12:17 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 30
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 9,
+        "errorPc": 20.311433387805796,
+        "opsForSeconds": 1.8729562535480815,
+        "durationMicroSeconds": 533915.3,
+        "runSlowerRatio": 269.11738121871815
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 24,
+        "errorPc": 3.607068706183673,
+        "opsForSeconds": 8.132796916639814,
+        "durationMicroSeconds": 122958.92916666667,
+        "runSlowerRatio": 61.97684354576689
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 10,
+        "errorPc": 3.7394318409890484,
+        "opsForSeconds": 2.2822445436896235,
+        "durationMicroSeconds": 438165.14,
+        "runSlowerRatio": 220.85498396118822
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 27,
+        "errorPc": 6.487446163624874,
+        "opsForSeconds": 9.157493627910682,
+        "durationMicroSeconds": 109200.18518518521,
+        "runSlowerRatio": 55.04181630613714
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 17,
+        "errorPc": 5.111083877546019,
+        "opsForSeconds": 5.075824002550571,
+        "durationMicroSeconds": 197012.34705882354,
+        "runSlowerRatio": 99.30310464641829
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 11,
+        "errorPc": 6.3691139340340595,
+        "opsForSeconds": 2.580862044524187,
+        "durationMicroSeconds": 387467.4363636364,
+        "runSlowerRatio": 195.30105576991733
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 16,
+        "errorPc": 3.1493787304980607,
+        "opsForSeconds": 4.525632660110592,
+        "durationMicroSeconds": 220963.5812499999,
+        "runSlowerRatio": 111.37560645051644
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 33,
+        "errorPc": 3.513798866453451,
+        "opsForSeconds": 11.459506341135196,
+        "durationMicroSeconds": 87263.79393939395,
+        "runSlowerRatio": 43.984886179848274
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 72,
+        "errorPc": 2.9063896273750958,
+        "opsForSeconds": 504.04508209208115,
+        "durationMicroSeconds": 1983.9495226288423,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:16:02 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 30
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 9,
+        "errorPc": 11.427043398698933,
+        "opsForSeconds": 1.9760396411116807,
+        "durationMicroSeconds": 506062.72222222213,
+        "runSlowerRatio": 241.757530847484
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 24,
+        "errorPc": 5.75505482829742,
+        "opsForSeconds": 8.37446474957489,
+        "durationMicroSeconds": 119410.61666666667,
+        "runSlowerRatio": 57.04513408049855
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 11,
+        "errorPc": 24.67086421833292,
+        "opsForSeconds": 2.297526795950588,
+        "durationMicroSeconds": 435250.63636363635,
+        "runSlowerRatio": 207.9290066753078
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 24,
+        "errorPc": 8.050913976000514,
+        "opsForSeconds": 8.009490712528295,
+        "durationMicroSeconds": 124851.88333333338,
+        "runSlowerRatio": 59.64454940245624
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 15,
+        "errorPc": 6.281258811521717,
+        "opsForSeconds": 4.338907682305065,
+        "durationMicroSeconds": 230472.7533333333,
+        "runSlowerRatio": 110.10201172063567
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 12,
+        "errorPc": 9.360494595294794,
+        "opsForSeconds": 2.9069637867893223,
+        "durationMicroSeconds": 344001.5333333333,
+        "runSlowerRatio": 164.33726029299535
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 17,
+        "errorPc": 4.331166021576153,
+        "opsForSeconds": 5.02680231857413,
+        "durationMicroSeconds": 198933.62352941174,
+        "runSlowerRatio": 95.03506090277607
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 33,
+        "errorPc": 2.4235828932916204,
+        "opsForSeconds": 11.331239709388724,
+        "durationMicroSeconds": 88251.59696969698,
+        "runSlowerRatio": 42.159770399710276
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 70,
+        "errorPc": 3.426542132344069,
+        "opsForSeconds": 477.72246449190834,
+        "durationMicroSeconds": 2093.2655973454603,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:20:02 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 30
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 12,
+        "errorPc": 5.247695595922863,
+        "opsForSeconds": 2.9804914909948423,
+        "durationMicroSeconds": 335515.13333333336,
+        "runSlowerRatio": 116.66995147900623
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 27,
+        "errorPc": 14.116551321442012,
+        "opsForSeconds": 9.056064586510992,
+        "durationMicroSeconds": 110423.24074074074,
+        "runSlowerRatio": 38.397892850268384
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 11,
+        "errorPc": 12.304045406667841,
+        "opsForSeconds": 2.6027331916436927,
+        "durationMicroSeconds": 384211.49090909096,
+        "runSlowerRatio": 133.6033208299604
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 24,
+        "errorPc": 5.753364665855308,
+        "opsForSeconds": 7.771302987172299,
+        "durationMicroSeconds": 128678.55,
+        "runSlowerRatio": 44.74588086604601
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 15,
+        "errorPc": 4.758916494313775,
+        "opsForSeconds": 4.2698130140712545,
+        "durationMicroSeconds": 234202.2933333333,
+        "runSlowerRatio": 81.44005287631927
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 11,
+        "errorPc": 14.547512830928605,
+        "opsForSeconds": 2.5947045335644723,
+        "durationMicroSeconds": 385400.3363636364,
+        "runSlowerRatio": 134.01672257467413
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 16,
+        "errorPc": 3.098411905742914,
+        "opsForSeconds": 4.533200480337923,
+        "durationMicroSeconds": 220594.69999999998,
+        "runSlowerRatio": 76.7082327698063
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 24,
+        "errorPc": 13.711496348054125,
+        "opsForSeconds": 7.4672762951033995,
+        "durationMicroSeconds": 133917.63749999998,
+        "runSlowerRatio": 46.56768865857856
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 72,
+        "errorPc": 3.0150396598446334,
+        "opsForSeconds": 347.7337976379591,
+        "durationMicroSeconds": 2875.76303135522,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:23:56 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 30
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 9,
+        "errorPc": 15.484678263326837,
+        "opsForSeconds": 2.037888236955862,
+        "durationMicroSeconds": 490704.0444444445,
+        "runSlowerRatio": 159.75403261182095
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 20,
+        "errorPc": 3.9231956472584075,
+        "opsForSeconds": 6.418981905178864,
+        "durationMicroSeconds": 155787.94499999998,
+        "runSlowerRatio": 50.71845795409224
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 8,
+        "errorPc": 15.25527689930951,
+        "opsForSeconds": 1.4894589685518984,
+        "durationMicroSeconds": 671384.725,
+        "runSlowerRatio": 218.57659105736508
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 19,
+        "errorPc": 10.276043458670719,
+        "opsForSeconds": 6.025255014954524,
+        "durationMicroSeconds": 165968.07894736843,
+        "runSlowerRatio": 54.032711156268014
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 12,
+        "errorPc": 13.639362563700852,
+        "opsForSeconds": 3.2194524467959322,
+        "durationMicroSeconds": 310611.825,
+        "runSlowerRatio": 101.12305407396163
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 9,
+        "errorPc": 15.26108644789971,
+        "opsForSeconds": 1.6864939641880128,
+        "durationMicroSeconds": 592946.0888888888,
+        "runSlowerRatio": 193.0400409245693
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 14,
+        "errorPc": 5.247397683830638,
+        "opsForSeconds": 3.6793361804737517,
+        "durationMicroSeconds": 271788.1571428572,
+        "runSlowerRatio": 88.48358722794771
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 29,
+        "errorPc": 3.719772853723904,
+        "opsForSeconds": 10.087635112567224,
+        "durationMicroSeconds": 99131.26206896553,
+        "runSlowerRatio": 32.27325931528866
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 59,
+        "errorPc": 6.683332645134188,
+        "opsForSeconds": 325.5608638658931,
+        "durationMicroSeconds": 3071.6222709493904,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:25:20 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 30
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 11,
+        "errorPc": 14.356391256405438,
+        "opsForSeconds": 2.606959211255485,
+        "durationMicroSeconds": 383588.66363636364,
+        "runSlowerRatio": 249.68150319641873
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 29,
+        "errorPc": 4.289744103723892,
+        "opsForSeconds": 10.45933919265515,
+        "durationMicroSeconds": 95608.33448275861,
+        "runSlowerRatio": 62.23237268135515
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 11,
+        "errorPc": 22.147502788959684,
+        "opsForSeconds": 2.730932831788415,
+        "durationMicroSeconds": 366175.24545454554,
+        "runSlowerRatio": 238.346943967771
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 26,
+        "errorPc": 12.645101005579365,
+        "opsForSeconds": 9.303252578119144,
+        "durationMicroSeconds": 107489.28846153845,
+        "runSlowerRatio": 69.9657984315003
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 18,
+        "errorPc": 3.443994576748197,
+        "opsForSeconds": 5.639198267663357,
+        "durationMicroSeconds": 177330.17222222217,
+        "runSlowerRatio": 115.42589278523961
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 12,
+        "errorPc": 8.819126084455426,
+        "opsForSeconds": 2.961535429761486,
+        "durationMicroSeconds": 337662.68333333335,
+        "runSlowerRatio": 219.78784656661765
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 18,
+        "errorPc": 4.00121090420656,
+        "opsForSeconds": 5.336754548782739,
+        "durationMicroSeconds": 187379.80000000002,
+        "runSlowerRatio": 121.9672909233732
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 33,
+        "errorPc": 21.907396300729673,
+        "opsForSeconds": 11.564104738549608,
+        "durationMicroSeconds": 86474.48484848486,
+        "runSlowerRatio": 56.287063231810365
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 56,
+        "errorPc": 5.435745066273043,
+        "opsForSeconds": 650.9094946380196,
+        "durationMicroSeconds": 1536.3118962585033,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:34:11 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 31
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 12,
+        "errorPc": 6.596487380867115,
+        "opsForSeconds": 2.984871254667499,
+        "durationMicroSeconds": 335022.825,
+        "runSlowerRatio": 116.49038337295565
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 29,
+        "errorPc": 3.133659807238614,
+        "opsForSeconds": 10.030533289212824,
+        "durationMicroSeconds": 99695.59655172411,
+        "runSlowerRatio": 34.665035920779
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 11,
+        "errorPc": 7.456976801376326,
+        "opsForSeconds": 2.6481580640288995,
+        "durationMicroSeconds": 377620.96363636357,
+        "runSlowerRatio": 131.3021309030659
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 29,
+        "errorPc": 4.083268797833282,
+        "opsForSeconds": 10.060276319018438,
+        "durationMicroSeconds": 99400.84827586208,
+        "runSlowerRatio": 34.56254935242747
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 16,
+        "errorPc": 5.798522656228635,
+        "opsForSeconds": 4.978071129978277,
+        "durationMicroSeconds": 200881.01875000002,
+        "runSlowerRatio": 69.84809732452526
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 9,
+        "errorPc": 16.393835311596742,
+        "opsForSeconds": 2.1489940558824414,
+        "durationMicroSeconds": 465334,
+        "runSlowerRatio": 161.80072523855932
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 15,
+        "errorPc": 3.9798803129073965,
+        "opsForSeconds": 4.199559953309851,
+        "durationMicroSeconds": 238120.18666666673,
+        "runSlowerRatio": 82.79648359373654
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 28,
+        "errorPc": 5.971960058530536,
+        "opsForSeconds": 9.798496028844534,
+        "durationMicroSeconds": 102056.47857142855,
+        "runSlowerRatio": 35.48593536717848
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 70,
+        "errorPc": 3.2687108205392024,
+        "opsForSeconds": 347.7087967751321,
+        "durationMicroSeconds": 2875.969803682342,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:42:05 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 31
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 13,
+        "errorPc": 4.366579080178015,
+        "opsForSeconds": 3.2130117286544366,
+        "durationMicroSeconds": 311234.46923076926,
+        "runSlowerRatio": 387.93672073667767
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 29,
+        "errorPc": 8.34833780253441,
+        "opsForSeconds": 10.08449064454848,
+        "durationMicroSeconds": 99162.17241379312,
+        "runSlowerRatio": 123.60021716877642
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 15,
+        "errorPc": 5.1120579539370254,
+        "opsForSeconds": 3.9957697052515155,
+        "durationMicroSeconds": 250264.67333333328,
+        "runSlowerRatio": 311.941209240493
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 37,
+        "errorPc": 2.0355988099250655,
+        "opsForSeconds": 13.280993774408538,
+        "durationMicroSeconds": 75295.57027027027,
+        "runSlowerRatio": 93.85180468230405
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 22,
+        "errorPc": 2.581063502218087,
+        "opsForSeconds": 7.0114420040766445,
+        "durationMicroSeconds": 142624.0136363636,
+        "runSlowerRatio": 177.77302200859233
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 16,
+        "errorPc": 5.01831216129475,
+        "opsForSeconds": 4.929419189643537,
+        "durationMicroSeconds": 202863.65625,
+        "runSlowerRatio": 252.85843742431263
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 20,
+        "errorPc": 6.047997182923705,
+        "opsForSeconds": 6.295474771813436,
+        "durationMicroSeconds": 158844.25499999998,
+        "runSlowerRatio": 197.99066454580404
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 45,
+        "errorPc": 1.6845742513919004,
+        "opsForSeconds": 16.708502901431526,
+        "durationMicroSeconds": 59849.76666666668,
+        "runSlowerRatio": 74.59945639988459
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 88,
+        "errorPc": 1.8063369521176382,
+        "opsForSeconds": 1246.4452337026862,
+        "durationMicroSeconds": 802.2815386997817,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 07:43:29 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 31
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 7,
+        "errorPc": 61.690529078535526,
+        "opsForSeconds": 1.1125184469464984,
+        "durationMicroSeconds": 898861.5,
+        "runSlowerRatio": 655.1100548737946
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 9,
+        "errorPc": 14.523340548223565,
+        "opsForSeconds": 1.7110620082788026,
+        "durationMicroSeconds": 584432.3555555554,
+        "runSlowerRatio": 425.94717041281774
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 9,
+        "errorPc": 40.64215549228204,
+        "opsForSeconds": 1.3453500598613506,
+        "durationMicroSeconds": 743300.9666666668,
+        "runSlowerRatio": 541.7341126088331
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 31,
+        "errorPc": 6.705699418018551,
+        "opsForSeconds": 10.462354743282335,
+        "durationMicroSeconds": 95580.77741935482,
+        "runSlowerRatio": 69.6613753510118
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 22,
+        "errorPc": 1.998519746397908,
+        "opsForSeconds": 6.92196314048335,
+        "durationMicroSeconds": 144467.68636363637,
+        "runSlowerRatio": 105.29123111977984
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 18,
+        "errorPc": 4.535052896894045,
+        "opsForSeconds": 5.2853627545595865,
+        "durationMicroSeconds": 189201.77222222224,
+        "runSlowerRatio": 137.89441797509318
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 19,
+        "errorPc": 6.904687237998047,
+        "opsForSeconds": 6.067826290013482,
+        "durationMicroSeconds": 164803.66315789474,
+        "runSlowerRatio": 120.11253882246686
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 44,
+        "errorPc": 4.934783103655347,
+        "opsForSeconds": 16.161706394099976,
+        "durationMicroSeconds": 61874.65454545455,
+        "runSlowerRatio": 45.0956107638049
+      },
+      {
+        "name": "hashStringNative",
+        "samplesCount": 60,
+        "errorPc": 8.413071825181252,
+        "opsForSeconds": 728.8220208272294,
+        "durationMicroSeconds": 1372.0770934788407,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 18:54:31 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 20
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 13,
+        "errorPc": 6.189255346972788,
+        "opsForSeconds": 3.5749217807114384,
+        "durationMicroSeconds": 279726.39999999997,
+        "runSlowerRatio": 374.87381803749594
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 37,
+        "errorPc": 5.48058494066075,
+        "opsForSeconds": 12.889819046101133,
+        "durationMicroSeconds": 77580.60810810812,
+        "runSlowerRatio": 103.96923124580736
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 14,
+        "errorPc": 4.637044071802116,
+        "opsForSeconds": 3.9274636734156854,
+        "durationMicroSeconds": 254617.25000000003,
+        "runSlowerRatio": 341.22392682888574
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 38,
+        "errorPc": 3.155631958562676,
+        "opsForSeconds": 14.098298083136028,
+        "durationMicroSeconds": 70930.54736842107,
+        "runSlowerRatio": 95.05718840799248
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 22,
+        "errorPc": 4.541200532828742,
+        "opsForSeconds": 7.039884433257145,
+        "durationMicroSeconds": 142047.78636363635,
+        "runSlowerRatio": 190.36457058722706
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 15,
+        "errorPc": 15.753941952261972,
+        "opsForSeconds": 4.638475087090463,
+        "durationMicroSeconds": 215588.09333333327,
+        "runSlowerRatio": 288.91921417245806
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 22,
+        "errorPc": 12.711454542996117,
+        "opsForSeconds": 6.479736098020736,
+        "durationMicroSeconds": 154327.2727272727,
+        "runSlowerRatio": 206.8208576472819
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 36,
+        "errorPc": 3.820757427331198,
+        "opsForSeconds": 19.13493408041786,
+        "durationMicroSeconds": 52260.4361111111,
+        "runSlowerRatio": 70.03654005226838
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 86,
+        "errorPc": 2.222351656714483,
+        "opsForSeconds": 1340.1445771207007,
+        "durationMicroSeconds": 746.1881479597515,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 18:58:03 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 20
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 13,
+        "errorPc": 11.96399912419525,
+        "opsForSeconds": 3.5968707003561002,
+        "durationMicroSeconds": 278019.4461538462,
+        "runSlowerRatio": 391.04679821722044
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 39,
+        "errorPc": 5.745241828147275,
+        "opsForSeconds": 13.867848084053666,
+        "durationMicroSeconds": 72109.24102564104,
+        "runSlowerRatio": 101.42487590363349
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 15,
+        "errorPc": 2.13643943219663,
+        "opsForSeconds": 4.237382698653444,
+        "durationMicroSeconds": 235994.73333333337,
+        "runSlowerRatio": 331.9371581477775
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 39,
+        "errorPc": 4.311920806893037,
+        "opsForSeconds": 14.37571468496948,
+        "durationMicroSeconds": 69561.75897435898,
+        "runSlowerRatio": 97.84172834524855
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 23,
+        "errorPc": 2.400358125494753,
+        "opsForSeconds": 7.472621613992699,
+        "durationMicroSeconds": 133821.84347826085,
+        "runSlowerRatio": 188.22641418666092
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 19,
+        "errorPc": 4.659408537467458,
+        "opsForSeconds": 5.8689278142265655,
+        "durationMicroSeconds": 170388.87368421053,
+        "runSlowerRatio": 239.65957931294568
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 22,
+        "errorPc": 3.376950901677304,
+        "opsForSeconds": 7.297319601635343,
+        "durationMicroSeconds": 137036.61818181816,
+        "runSlowerRatio": 192.74813873581405
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 37,
+        "errorPc": 6.3038326673814105,
+        "opsForSeconds": 19.79439826019009,
+        "durationMicroSeconds": 50519.343243243246,
+        "runSlowerRatio": 71.05771807190452
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 88,
+        "errorPc": 4.199853290487771,
+        "opsForSeconds": 1406.5447709755845,
+        "durationMicroSeconds": 710.962082853855,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 19:05:33 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 22
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 15,
+        "errorPc": 4.116477261114706,
+        "opsForSeconds": 4.001258529182712,
+        "durationMicroSeconds": 249921.3666666667,
+        "runSlowerRatio": 342.49632838854905
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 40,
+        "errorPc": 2.043269975690142,
+        "opsForSeconds": 14.399136282209248,
+        "durationMicroSeconds": 69448.61,
+        "runSlowerRatio": 95.1735109884093
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 14,
+        "errorPc": 3.853994232743089,
+        "opsForSeconds": 3.9247414015924362,
+        "durationMicroSeconds": 254793.8571428571,
+        "runSlowerRatio": 349.17366902757163
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 39,
+        "errorPc": 2.763556318696201,
+        "opsForSeconds": 14.03705480130981,
+        "durationMicroSeconds": 71240.01538461537,
+        "runSlowerRatio": 97.62848222624093
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 23,
+        "errorPc": 1.7933636319748238,
+        "opsForSeconds": 7.56038479334444,
+        "durationMicroSeconds": 132268.40000000002,
+        "runSlowerRatio": 181.26277863328465
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 18,
+        "errorPc": 8.107144749191253,
+        "opsForSeconds": 5.548068060986583,
+        "durationMicroSeconds": 180242.92222222223,
+        "runSlowerRatio": 247.0078485184897
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 23,
+        "errorPc": 4.640713984303495,
+        "opsForSeconds": 7.3496037796647595,
+        "durationMicroSeconds": 136061.7565217391,
+        "runSlowerRatio": 186.4612564516987
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 35,
+        "errorPc": 3.222604098653456,
+        "opsForSeconds": 18.524097310152882,
+        "durationMicroSeconds": 53983.73714285713,
+        "runSlowerRatio": 73.98019629422551
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 84,
+        "errorPc": 1.9105660181777036,
+        "opsForSeconds": 1370.416355178445,
+        "durationMicroSeconds": 729.7052433891799,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 19:34:28 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 22
+    },
+    "tests": [
+      {
+        "name": "hashStringUsingMurmur3WithDataView",
+        "samplesCount": 14,
+        "errorPc": 4.815477960881996,
+        "opsForSeconds": 3.9746572447227417,
+        "durationMicroSeconds": 251594.0214285714,
+        "runSlowerRatio": 292.0683289507748
+      },
+      {
+        "name": "hashStringUsingMurmur3WithDataViewReuseBuffer",
+        "samplesCount": 35,
+        "errorPc": 6.410518312784795,
+        "opsForSeconds": 12.473901035062923,
+        "durationMicroSeconds": 80167.38285714286,
+        "runSlowerRatio": 93.06402995784276
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArray",
+        "samplesCount": 12,
+        "errorPc": 8.697619286656321,
+        "opsForSeconds": 2.9621088516748184,
+        "durationMicroSeconds": 337597.31666666665,
+        "runSlowerRatio": 391.9071032659345
+      },
+      {
+        "name": "hashStringUsingMurmur3WithTypedArrayReuseBuffer",
+        "samplesCount": 34,
+        "errorPc": 6.218284737774827,
+        "opsForSeconds": 12.235983905362586,
+        "durationMicroSeconds": 81726.16176470586,
+        "runSlowerRatio": 94.87357196583874
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArray",
+        "samplesCount": 22,
+        "errorPc": 2.876002858246976,
+        "opsForSeconds": 7.032500991023234,
+        "durationMicroSeconds": 142196.9227272728,
+        "runSlowerRatio": 165.07235492751124
+      },
+      {
+        "name": "hashStringUsingMarvin32WithTypedArrayReuseBuffer",
+        "samplesCount": 17,
+        "errorPc": 5.952050104936042,
+        "opsForSeconds": 4.942196362066701,
+        "durationMicroSeconds": 202339.1882352941,
+        "runSlowerRatio": 234.8897968782476
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataView",
+        "samplesCount": 22,
+        "errorPc": 8.592849488345186,
+        "opsForSeconds": 6.770659065801696,
+        "durationMicroSeconds": 147696.1090909091,
+        "runSlowerRatio": 171.45620364814604
+      },
+      {
+        "name": "hashStringUsingMarvin32WithDataViewReuseBuffer",
+        "samplesCount": 34,
+        "errorPc": 10.038252579240737,
+        "opsForSeconds": 12.557635855152844,
+        "durationMicroSeconds": 79632.82352941175,
+        "runSlowerRatio": 92.44347526942462
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 76,
+        "errorPc": 4.447502925839473,
+        "opsForSeconds": 1160.8714996182619,
+        "durationMicroSeconds": 861.4217855540752,
+        "runSlowerRatio": 1
+      }
+    ]
   }
 ]

@@ -1,6 +1,8 @@
-import { SAMPLE_SIZE, generateRandomBigInts } from "./data/randomBigInts";
-import { hashBigIntUsingNumberConstructor, hashBigIntUsingNumberConstructorAndAsUintN } from "./scenarios/hashBigInt/hashBigIntUsingNumberConstructor";
+/// <reference path="../../../package.internal.d.ts" />
+import { hashUnknown as hashUnknownNative } from "#hashCodeNative";
+import { generateRandomBigInts, SAMPLE_SIZE } from "./data/randomBigInts";
 import { hashBigIntUsingBigUint64Array, hashBigIntUsingBigUint64ArrayAndAsUintN } from "./scenarios/hashBigInt/hashBigIntUsingBigUint64Array";
+import { hashBigIntUsingNumberConstructor, hashBigIntUsingNumberConstructorAndAsUintN } from "./scenarios/hashBigInt/hashBigIntUsingNumberConstructor";
 
 jest.setTimeout(10_000_000);
 
@@ -49,6 +51,12 @@ describe("hashBigInt", () => {
                     f(randomNumbers[i]);
                 }
             },
+            hashUnknownNative() {
+                const f = hashUnknownNative;
+                for (let i = 0; i < SAMPLE_SIZE; i++) {
+                    f(randomNumbers[i]);
+                }
+            }
         });
     });
 });

@@ -1,9 +1,10 @@
-import { SAMPLE_SIZE, generateRandomNumbers } from "./data/randomNumbers";
-import { hashNumberByTypeUsingDataView } from "./scenarios/hashNumber/hashNumberByTypeUsingDataView";
-import { hashNumberByTypeUsingTypedArray } from "./scenarios/hashNumber/hashNumberByTypeUsingTypedArray";
+import { hashUnknown as hashUnknownNative } from "#hashCodeNative";
+import { generateRandomNumbers, SAMPLE_SIZE } from "./data/randomNumbers";
 import { hashNumberByFloat64DataViewOnly } from "./scenarios/hashNumber/hashNumberByFloat64DataViewOnly";
 import { hashNumberByFloat64TypedArrayOnly } from "./scenarios/hashNumber/hashNumberByFloat64TypedArrayOnly";
 import { hashNumberByTypeExperiment1, hashNumberByTypeExperiment2, hashNumberByTypeExperiment3 } from "./scenarios/hashNumber/hashNumberByTypeExperiments";
+import { hashNumberByTypeUsingDataView } from "./scenarios/hashNumber/hashNumberByTypeUsingDataView";
+import { hashNumberByTypeUsingTypedArray } from "./scenarios/hashNumber/hashNumberByTypeUsingTypedArray";
 
 jest.setTimeout(10_000_000);
 
@@ -18,6 +19,7 @@ beforeAll(() => {
     hashNumberByTypeExperiment1(0);
     hashNumberByTypeExperiment2(0);
     hashNumberByTypeExperiment3(0);
+    hashUnknownNative(0);
     afterAll(() => { randomNumbers = undefined!; });
 });
 
@@ -65,5 +67,11 @@ it(`hash ${SAMPLE_SIZE} numbers`, async () => {
                 f(randomNumbers[i]);
             }
         },
+        hashUnknownNative() {
+            const f = hashUnknownNative;
+            for (let i = 0; i < SAMPLE_SIZE; i++) {
+                f(randomNumbers[i]);
+            }
+        }
     });
 });

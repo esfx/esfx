@@ -121,6 +121,62 @@ gulp.task("verify", verify);
 
 gulp.task("default", gulp.series(build, verify, test));
 
+/**
+ * @param {string[]} projects
+ */
+function makeProjects(projects) {
+    const builders = [];
+    const cleaners = [];
+    for (const project of projects) {
+        /** @type {gulp.TaskFunction} */
+        const buildTypeScript = () => buildProject(project);
+        buildTypeScript.displayName = `build:typescript:${project}`;
+        const buildTasks = [buildTypeScript];
+
+        /** @type {gulp.TaskFunction} */
+        const cleanTypeScript = () => cleanProject(project);
+        cleanTypeScript.displayName = `clean:typescript:${project}`;
+        const cleanTasks = [cleanTypeScript];
+
+        if (fs.existsSync(path.join(project, "binding.gyp"))) {
+            /** @type {gulp.TaskFunction} */
+            const configureBinding = () => exec("npx", ["node-gyp", "configure", `--directory=${project}`]);
+            configureBinding.displayName = `configure:node-gyp:${project}`;
+
+            /** @type {gulp.TaskFunction} */
+            const buildBinding = () => exec("npx", ["node-gyp", "build", `--directory=${project}`]);
+            buildBinding.displayName = `build:node-gyp:${project}`;
+            buildTasks.push(gulp.series(configureBinding, buildBinding));
+
+            /** @type {gulp.TaskFunction} */
+            const cleanBinding = () => del(`${project}/build`);
+            cleanBinding.displayName = `clean:node-gyp:${project}`;
+            cleanTasks.push(cleanBinding);
+        }
+
+        if (fs.existsSync(path.join(project, "api-extractor.json"))) {
+            /** @type {gulp.TaskFunction} */
+            const cleanDocs = () => del(`${project}/obj`);
+            cleanDocs.displayName = `clean:docs:${project}`;
+            cleanTasks.push(cleanDocs);
+        }
+
+        const build = gulp.parallel(...buildTasks);
+        build.displayName = project;
+
+        const clean = gulp.parallel(...cleanTasks);
+        clean.displayName = `clean:${project}`;
+
+        gulp.task(project, build);
+        gulp.task(`clean:${project}`, clean);
+        builders.push(build);
+        cleaners.push(clean);
+    }
+    const build = gulp.parallel(builders);
+    const clean = gulp.parallel(cleaners);
+    return { build, clean };
+}
+
 const docPackagePattern = argv.docPackagePattern && new RegExp(argv.docPackagePattern, "i");
 const docPackages = publicPackages.filter(docPackage => fs.existsSync(path.resolve(docPackage, "api-extractor.json")));
 

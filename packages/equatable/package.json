@@ -12,6 +12,16 @@
             "import": "./dist/esm/index.js"
         }
     },
+    "imports": {
+        "#hashCode": {
+            "node": "./build/Release/native.node",
+            "require": "./dist/cjs/internal/hashCode.js",
+            "import": "./dist/esm/internal/hashCode.js"
+        },
+        "#hashCodeNative": {
+            "node": "./build/Release/native.node"
+        }
+    },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "repository": {

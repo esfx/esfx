@@ -180,5 +180,109 @@
         "runSlowerRatio": 1
       }
     ]
+  },
+  {
+    "date": "Fri, 21 May 2021 18:52:39 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 17
+    },
+    "tests": [
+      {
+        "name": "HashMap",
+        "samplesCount": 63,
+        "errorPc": 5.940762050997031,
+        "opsForSeconds": 98.93206647943235,
+        "durationMicroSeconds": 10107.946145124712,
+        "runSlowerRatio": 7.469178434369696
+      },
+      {
+        "name": "Map",
+        "samplesCount": 82,
+        "errorPc": 2.7583017817537305,
+        "opsForSeconds": 738.9412574158054,
+        "durationMicroSeconds": 1353.2875448004602,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 18:53:42 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 18
+    },
+    "tests": [
+      {
+        "name": "HashMap",
+        "samplesCount": 60,
+        "errorPc": 4.8953527225894415,
+        "opsForSeconds": 89.43075002410163,
+        "durationMicroSeconds": 11181.836222222217,
+        "runSlowerRatio": 7.796615653754729
+      },
+      {
+        "name": "Map",
+        "samplesCount": 79,
+        "errorPc": 2.142296474207585,
+        "opsForSeconds": 697.2571855649369,
+        "durationMicroSeconds": 1434.1910283646237,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 18:57:15 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 20
+    },
+    "tests": [
+      {
+        "name": "HashMap",
+        "samplesCount": 61,
+        "errorPc": 7.689658164622827,
+        "opsForSeconds": 87.50223892767703,
+        "durationMicroSeconds": 11428.279004683836,
+        "runSlowerRatio": 7.866950783051704
+      },
+      {
+        "name": "Map",
+        "samplesCount": 74,
+        "errorPc": 6.076467343575316,
+        "opsForSeconds": 688.375807050866,
+        "durationMicroSeconds": 1452.6948648648647,
+        "runSlowerRatio": 1
+      }
+    ]
+  },
+  {
+    "date": "Fri, 21 May 2021 19:01:54 GMT",
+    "git": {
+      "branch": "hashPerf -> null",
+      "commit": "e0428cbbed9f33505d154c40a995664ddd44a004",
+      "changes": 20
+    },
+    "tests": [
+      {
+        "name": "HashMap",
+        "samplesCount": 72,
+        "errorPc": 11.399152241089997,
+        "opsForSeconds": 101.46246379769843,
+        "durationMicroSeconds": 9855.861592261905,
+        "runSlowerRatio": 9.024163034186854
+      },
+      {
+        "name": "Map",
+        "samplesCount": 91,
+        "errorPc": 1.8797108634869937,
+        "opsForSeconds": 915.6138151607122,
+        "durationMicroSeconds": 1092.1635119982063,
+        "runSlowerRatio": 1
+      }
+    ]
   }
 ]

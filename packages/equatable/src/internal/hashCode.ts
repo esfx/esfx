@@ -18,31 +18,31 @@ import { createSeed, hash } from './marvin32';
 
 // TODO: See if we can use native apis to compute hashes in NodeJS
 
+class Counter { next = 1; }
+
 export function createHashUnknown() {
     const defaultStringSeed = createSeed();
     const defaultGlobalSymbolSeed = createSeed();
     const defaultLocalSymbolSeed = createSeed();
     const defaultBigIntSeed = createSeed();
     const [defaultObjectSeed] = createSeed();
-    
+
     let objectSeed = defaultObjectSeed;
     let stringSeed = defaultStringSeed;
     let bigIntSeed = defaultBigIntSeed;
     let localSymbolSeed = defaultLocalSymbolSeed;
     let globalSymbolSeed = defaultGlobalSymbolSeed;
-    
+
     const endianness = (new Uint16Array(new Uint8Array([0x01, 0x02]).buffer))[0] == 0x0102 ? "big-endian" : "little-endian";
     const [lo, hi] = endianness === "little-endian" ? [0, 1] : [1, 0];
-    
-    class Counter { next = 1; }
-    
+
     let objectCounter: Counter | undefined;
     let localSymbolCounter: Counter | undefined;
     let weakObjectHashes: WeakMap<object, number> | undefined;
     let globalSymbolHashes: Map<symbol, number> | undefined;
     let localSymbolHashes: Map<symbol, number> | undefined;
     let buffer4k: Buffer | undefined;
-    
+
     const buffer64 = new ArrayBuffer(8);
     const float64Array = new Float64Array(buffer64);
     const uint32Array = new Uint32Array(buffer64);
