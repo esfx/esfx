@@ -1,16 +1,17 @@
 // @ts-check
 const ts = require("typescript");
-const { createProjectQueue } = require("./projectQueue");
-const { buildSolution } = require("./buildSolution");
+const { createProjectQueue } = require("./projectQueue.js");
+const { buildSolution, prebuildSolution } = require("./buildSolution.js");
 
 /**
  * @param {readonly string[]} projects
  * @param {boolean} force
  */
 async function buildProjects(projects, force) {
+    await prebuildSolution(projects);
     const host = ts.createSolutionBuilderHost();
     const builder = ts.createSolutionBuilder(host, projects, { force });
-    const { exitStatus } = await buildSolution(host, builder);
+    const { exitStatus } = await buildSolution(host, builder, /*execPrebuildScripts*/ false);
     if (exitStatus !== ts.ExitStatus.Success) throw new Error("Build failed.");
 }
 

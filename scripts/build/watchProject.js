@@ -1,15 +1,17 @@
 // @ts-check
 const ts = require("typescript");
 const { createProjectQueue } = require("./projectQueue");
-const { buildSolution, buildNextInvalidatedProject } = require("./buildSolution");
+const { buildSolution, buildNextInvalidatedProject, prebuildSolution } = require("./buildSolution");
 
 /**
  * @param {readonly string[]} projects
  */
 async function watchProjects(projects) {
+    await prebuildSolution(projects);
+
     const host = ts.createSolutionBuilderWithWatchHost();
     const builder = ts.createSolutionBuilder(host, projects, { });
-    const { resolvedProjects } = await buildSolution(host, builder);
+    const { resolvedProjects } = await buildSolution(host, builder, /*execPrebuildScripts*/ false);
     await startWatching(host, builder, resolvedProjects);
 }
 
@@ -58,7 +60,7 @@ function startWatching(host, builder, projects) {
             getCurrentDirectory: host.getCurrentDirectory,
             fileExists: host.fileExists,
             readFile: host.readFile,
-            readDirectory: host.readDirectory,
+            readDirectory: host.readDirectory || (() => { throw new Error(); })(),
             onUnRecoverableConfigFileDiagnostic: () => {},
         });
         watchConfigFile(watcherState, project, cfg);
@@ -231,6 +233,7 @@ function triggerRebuild(watcherState, resolved, reload) {
  * @param {WatcherState} watcherState 
  */
 function queueRebuild(watcherState) {
+    if (!watcherState.host.clearTimeout || !watcherState.host.setTimeout) throw new Error();
     if (watcherState.timeout) watcherState.host.clearTimeout(watcherState.timeout);
     watcherState.timeout = watcherState.host.setTimeout(async () => {
         watcherState.timeout = undefined;

@@ -6,17 +6,48 @@ const { createInliner } = require("./inliner");
 const { exec } = require("../exec");
 
 /**
+ * @param {readonly string[]} projects
+ */
+async function prebuildSolution(projects) {
+    /**
+     * @typedef {readonly ts.ResolvedConfigFileName[]} BuildOrder
+     * @typedef {{ buildOrder: BuildOrder, circularDiagnostics: readonly ts.Diagnostic[] }} CircularBuildOrder
+     * @typedef {BuildOrder | CircularBuildOrder} AnyBuildOrder
+     */
+
+    const host = ts.createSolutionBuilderHost();
+    const builder = ts.createSolutionBuilder(host, projects, { force: true });
+    const anyBuildOrder = /** @type {AnyBuildOrder}*/(/** @type {*} */(builder).getBuildOrder());
+    const buildOrder = "buildOrder" in anyBuildOrder ? anyBuildOrder.buildOrder : anyBuildOrder;
+
+    // run prebuild scripts
+    for (const configFile of buildOrder) {
+        const packageDir = path.dirname(configFile);
+
+        let packageJson;
+        try { packageJson = JSON.parse(fs.readFileSync(path.resolve(packageDir, "package.json"), "utf8")); } catch { }
+
+        if (packageJson?.scripts?.prebuild) {
+            await exec("yarn", ["workspace", packageJson.name, "run", "prebuild"], { verbose: true });
+        }
+    }
+}
+
+exports.prebuildSolution = prebuildSolution;
+
+/**
  * @param {ts.SolutionBuilderHost} host
  * @param {ts.SolutionBuilder} builder
+ * @param {boolean} [execPrebuildScripts]
  */
-async function buildSolution(host, builder) {
+async function buildSolution(host, builder, execPrebuildScripts = true) {
     /** @type {ts.ResolvedConfigFileName[]} */
     const projects = [];
     let hasCycle = false;
     let hasErrors = false;
     let hasSuccesses = false;
     while (true) {
-        const result = await buildNextInvalidatedProject(host, builder);
+        const result = await buildNextInvalidatedProject(host, builder, execPrebuildScripts);
         if (!result) break;
         switch (result.exitStatus) {
             case ts.ExitStatus.Success:
@@ -44,27 +75,33 @@ exports.buildSolution = buildSolution;
 /**
  * @param {ts.SolutionBuilderHost} host
  * @param {ts.SolutionBuilder<ts.BuilderProgram>} builder
+ * @param {boolean} [execPrebuildScripts]
  */
-async function buildNextInvalidatedProject(host, builder) {
+async function buildNextInvalidatedProject(host, builder, execPrebuildScripts = true) {
     const invalidatedProject = builder.getNextInvalidatedProject();
     if (!invalidatedProject) return;
+
     let exitStatus;
     if (invalidatedProject.kind === ts.InvalidatedProjectKind.Build) {
         const packageDir = path.dirname(invalidatedProject.project);
 
-        let packageJson;
-        try { packageJson = JSON.parse(fs.readFileSync(path.resolve(packageDir, "package.json"), "utf8")); } catch { }
+        if (execPrebuildScripts) {
+            let packageJson;
+            try { packageJson = JSON.parse(fs.readFileSync(path.resolve(packageDir, "package.json"), "utf8")); } catch { }
 
-        if (packageJson?.scripts?.prebuild) {
-            await exec("yarn", ["workspace", packageJson.name, "run", "prebuild"], { verbose: true });
+            if (packageJson?.scripts?.prebuild) {
+                await exec("yarn", ["workspace", packageJson.name, "run", "prebuild"], { verbose: true });
+            }
         }
 
         // capture the program before we call 'done', as 'done' makes the program unreachable
         const program = invalidatedProject.getProgram();
+        if (!program) throw new Error("Program expected");
+
         exitStatus = invalidatedProject.done(
             /*cancellationToken*/ undefined,
             /*writeFile*/ undefined,
-            /*customTransformers*/ { before: [createInliner(invalidatedProject.getProgram())] }
+            /*customTransformers*/ { before: [createInliner(program)] }
         );
 
         // recompile as an esm module or cjs module, as needed.
@@ -79,12 +116,13 @@ async function buildNextInvalidatedProject(host, builder) {
     else {
         exitStatus = invalidatedProject.done();
     }
+
     return { exitStatus, invalidatedProject };
 }
 exports.buildNextInvalidatedProject = buildNextInvalidatedProject;
 
 /**
- * @param {ts.Program} program 
+ * @param {ts.Program} program
  * @param {string} outDir
  * @param {"commonjs" | "module"} moduleType
  */
@@ -106,6 +144,7 @@ function recompileAs(program, outDir, moduleType) {
         projectReferences: program.getProjectReferences(),
         oldProgram: program,
     });
+
     newProgram.emit(
         /*targetSourceFile*/ undefined,
         /*writeFile*/ undefined,
