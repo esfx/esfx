@@ -1,3 +1,5 @@
+/// <reference path="../../../package.internal.d.ts" />
+
 import { createHashUnknown } from "../hashCode";
 
 const { hashUnknown, getState, setState } = createHashUnknown();

@@ -1,3 +1,5 @@
+/// <reference path="../../../package.internal.d.ts" />
+
 const { hashUnknown } = require("#hashCode");
 
 it("null", () => expect(hashUnknown(null)).toBe(178506403));

@@ -1,4 +1,6 @@
-import { Equaler, Equatable, Comparable, StructuralEquatable, StructuralComparable } from "../index";
+/// <reference path="../../package.internal.d.ts" />
+
+import { Equaler, Equatable, Comparable, StructuralEquatable, StructuralComparable, rawHash, combineHashes } from "../index";
 
 describe("Equatable", () => {
     it("equals", () => {
@@ -117,7 +119,7 @@ describe("Equaler", () => {
         });
         describe("hash (value is not Equatable)", () => {
             it("Equatable object", () => {
-                expect(Equaler.defaultEqualer.hash(undefined)).toBe(0);
+                expect(Equaler.defaultEqualer.hash(undefined)).toBe(rawHash(undefined));
             });
         });
     });
@@ -128,7 +130,11 @@ describe("Equaler", () => {
             expect(Equaler.tupleEqualer.equals([1, 2, 3], [1, 2, 3, 4])).toBe(false);
         });
         describe("hash (value is not Equatable)", () => {
-            expect(Equaler.tupleEqualer.hash([1, 2, 3])).toBe(16643);
+            let hc = 0;
+            hc = combineHashes(hc, rawHash(1));
+            hc = combineHashes(hc, rawHash(2));
+            hc = combineHashes(hc, rawHash(3));
+            expect(Equaler.tupleEqualer.hash([1, 2, 3])).toBe(hc);
         });
     });
     it("combineHashes", () => {
