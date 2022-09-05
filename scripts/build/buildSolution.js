@@ -4,6 +4,7 @@ const path = require("path");
 const fs = require("fs");
 const { createInliner } = require("./inliner");
 const { exec } = require("../exec");
+const log = require("fancy-log");
 
 /**
  * @param {readonly string[]} projects
@@ -98,6 +99,8 @@ async function buildNextInvalidatedProject(host, builder, execPrebuildScripts = 
         const program = invalidatedProject.getProgram();
         if (!program) throw new Error("Program expected");
 
+        log(`Building '${packageDir}'...`);
+
         exitStatus = invalidatedProject.done(
             /*cancellationToken*/ undefined,
             /*writeFile*/ undefined,
@@ -107,10 +110,10 @@ async function buildNextInvalidatedProject(host, builder, execPrebuildScripts = 
         // recompile as an esm module or cjs module, as needed.
         const compilerOptions = invalidatedProject.getCompilerOptions();
         if (compilerOptions.outDir?.endsWith("/dist/cjs")) {
-            recompileAs(program, compilerOptions.outDir.slice(0, -"/dist/cjs".length) + "/dist/esm", "module");
+            recompileAs(invalidatedProject.project, program, compilerOptions.outDir.slice(0, -"/dist/cjs".length) + "/dist/esm", "module");
         }
         else if (compilerOptions.outDir?.endsWith("/dist/esm")) {
-            recompileAs(program, compilerOptions.outDir.slice(0, -"/dist/esm".length) + "/dist/cjs", "commonjs");
+            recompileAs(invalidatedProject.project, program, compilerOptions.outDir.slice(0, -"/dist/esm".length) + "/dist/cjs", "commonjs");
         }
     }
     else {
@@ -122,11 +125,12 @@ async function buildNextInvalidatedProject(host, builder, execPrebuildScripts = 
 exports.buildNextInvalidatedProject = buildNextInvalidatedProject;
 
 /**
+ * @param {ts.ResolvedConfigFileName} project
  * @param {ts.Program} program
  * @param {string} outDir
  * @param {"commonjs" | "module"} moduleType
  */
-function recompileAs(program, outDir, moduleType) {
+function recompileAs(project, program, outDir, moduleType) {
     const compilerOptions = program.getCompilerOptions();
     const newProgram = ts.createProgram({
         options: {
@@ -144,6 +148,8 @@ function recompileAs(program, outDir, moduleType) {
         projectReferences: program.getProjectReferences(),
         oldProgram: program,
     });
+
+    log(`Recompiling '${path.dirname(project)}' for '${moduleType}'...`);
 
     newProgram.emit(
         /*targetSourceFile*/ undefined,
