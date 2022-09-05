@@ -1,6 +1,6 @@
 {
     "name": "@esfx/type-model",
-    "version": "1.0.0-pre.23",
+    "version": "1.0.0-prenative.0",
     "description": "Utility types for TypeScript.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -19,7 +19,9 @@
     },
     "typesVersions": {
         "*": {
-            "test": ["./dist/types/test.d.ts"]
+            "test": [
+                "./dist/types/test.d.ts"
+            ]
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",

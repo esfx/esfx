@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-hierarchy",
-    "version": "1.0.0-pre.23",
+    "version": "1.0.0-prenative.0",
     "description": "A Symbol-based API for defining an ECMAScript AsyncIterable with an inherent hierarchy.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -24,8 +24,12 @@
     },
     "typesVersions": {
         "*": {
-            "hierarchy": ["./dist/types/hierarchy.d.ts"],
-            "ordered": ["./dist/types/ordered.d.ts"]
+            "hierarchy": [
+                "./dist/types/hierarchy.d.ts"
+            ],
+            "ordered": [
+                "./dist/types/ordered.d.ts"
+            ]
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
@@ -38,14 +42,14 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-iter-fromsync": "^1.0.0-pre.23",
-        "@esfx/async-iter-ordered": "^1.0.0-pre.23",
-        "@esfx/async-iter-ordered-fromsync": "^1.0.0-pre.23",
-        "@esfx/equatable": "^1.0.0-pre.19",
-        "@esfx/internal-assert": "^1.0.0-pre.23",
-        "@esfx/internal-guards": "^1.0.0-pre.23",
-        "@esfx/iter-hierarchy": "^1.0.0-pre.23",
-        "@esfx/iter-ordered": "^1.0.0-pre.23",
+        "@esfx/async-iter-fromsync": "^1.0.0-prenative.0",
+        "@esfx/async-iter-ordered": "^1.0.0-prenative.0",
+        "@esfx/async-iter-ordered-fromsync": "^1.0.0-prenative.0",
+        "@esfx/equatable": "^1.0.0-prenative.0",
+        "@esfx/internal-assert": "^1.0.0-prenative.0",
+        "@esfx/internal-guards": "^1.0.0-prenative.0",
+        "@esfx/iter-hierarchy": "^1.0.0-prenative.0",
+        "@esfx/iter-ordered": "^1.0.0-prenative.0",
         "tslib": "^2.3.1"
     },
     "publishConfig": {

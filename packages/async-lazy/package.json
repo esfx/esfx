@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-lazy",
-    "version": "1.0.0-pre.30",
+    "version": "1.0.0-prenative.0",
     "description": "Lazy-initialized asynchronous value",
     "types": "./dist/types/index.d.ts",
     "main": "./dist/cjs/index.js",
@@ -21,10 +21,8 @@
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
     },
-    "dependencies": {
-    },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.23"
+        "@esfx/internal-guards": "^1.0.0-prenative.0"
     },
     "publishConfig": {
         "access": "public"

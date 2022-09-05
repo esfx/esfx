@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading",
-    "version": "1.0.0-pre.30",
+    "version": "1.0.0-prenative.0",
     "description": "Thread synchronization primitives for use with Workers.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -22,15 +22,15 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/threading-autoresetevent": "^1.0.0-pre.30",
-        "@esfx/threading-conditionvariable": "^1.0.0-pre.30",
-        "@esfx/threading-countdown": "^1.0.0-pre.30",
-        "@esfx/threading-lockable": "^1.0.0-pre.23",
-        "@esfx/threading-manualresetevent": "^1.0.0-pre.30",
-        "@esfx/threading-mutex": "^1.0.0-pre.30",
-        "@esfx/threading-semaphore": "^1.0.0-pre.30",
-        "@esfx/threading-sleep": "^1.0.0-pre.19",
-        "@esfx/threading-spinwait": "^1.0.0-pre.23",
+        "@esfx/threading-autoresetevent": "^1.0.0-prenative.0",
+        "@esfx/threading-conditionvariable": "^1.0.0-prenative.0",
+        "@esfx/threading-countdown": "^1.0.0-prenative.0",
+        "@esfx/threading-lockable": "^1.0.0-prenative.0",
+        "@esfx/threading-manualresetevent": "^1.0.0-prenative.0",
+        "@esfx/threading-mutex": "^1.0.0-prenative.0",
+        "@esfx/threading-semaphore": "^1.0.0-prenative.0",
+        "@esfx/threading-sleep": "^1.0.0-prenative.0",
+        "@esfx/threading-spinwait": "^1.0.0-prenative.0",
         "tslib": "^2.3.1"
     },
     "publishConfig": {

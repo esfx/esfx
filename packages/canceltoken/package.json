@@ -1,6 +1,6 @@
 {
     "name": "@esfx/canceltoken",
-    "version": "1.0.0-pre.30",
+    "version": "1.0.0-prenative.0",
     "description": "Proviced CancelToken a cancellation primitive.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -19,7 +19,9 @@
     },
     "typesVersions": {
         "*": {
-            "dom": ["./dist/types/dom.d.ts"]
+            "dom": [
+                "./dist/types/dom.d.ts"
+            ]
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
@@ -35,13 +37,13 @@
         "prebuild": "node scripts/generateDomEventTypes.js"
     },
     "dependencies": {
-        "@esfx/cancelable": "^1.0.0-pre.30",
-        "@esfx/disposable": "^1.0.0-pre.30",
+        "@esfx/cancelable": "^1.0.0-prenative.0",
+        "@esfx/disposable": "^1.0.0-prenative.0",
         "tslib": "^2.3.1"
     },
     "devDependencies": {
-        "@esfx/internal-linked-list": "^1.0.0-pre.30",
-        "@esfx/internal-guards": "^1.0.0-pre.23"
+        "@esfx/internal-guards": "^1.0.0-prenative.0",
+        "@esfx/internal-linked-list": "^1.0.0-prenative.0"
     },
     "publishConfig": {
         "access": "public"

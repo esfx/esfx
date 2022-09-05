@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collection-core",
-    "version": "1.0.0-pre.24",
+    "version": "1.0.0-prenative.0",
     "description": "A low-level Symbol-based API for defining common collection behaviors.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -21,10 +21,8 @@
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
     },
-    "dependencies": {
-    },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.23"
+        "@esfx/internal-guards": "^1.0.0-prenative.0"
     },
     "publishConfig": {
         "access": "public"

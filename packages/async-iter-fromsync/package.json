@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-fromsync",
-    "version": "1.0.0-pre.23",
+    "version": "1.0.0-prenative.0",
     "description": "An API to convert an ECMAScript Iterable into an AsyncIterable.",
     "types": "./dist/types/index.d.ts",
     "main": "./dist/cjs/index.js",
@@ -21,10 +21,8 @@
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
     },
-    "dependencies": {
-    },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.23"
+        "@esfx/internal-guards": "^1.0.0-prenative.0"
     },
     "publishConfig": {
         "access": "public"

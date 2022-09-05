@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-hierarchy",
-    "version": "1.0.0-pre.23",
+    "version": "1.0.0-prenative.0",
     "description": "A Symbol-based API for defining an Iterable with an inherent hierarchy.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -34,10 +34,18 @@
     },
     "typesVersions": {
         "*": {
-            "axis": ["./dist/types/axis.d.ts"],
-            "hierarchy": ["./dist/types/hierarchy.d.ts"],
-            "ordered": ["./dist/types/ordered.d.ts"],
-            "provider": ["./dist/types/provider.d.ts"]
+            "axis": [
+                "./dist/types/axis.d.ts"
+            ],
+            "hierarchy": [
+                "./dist/types/hierarchy.d.ts"
+            ],
+            "ordered": [
+                "./dist/types/ordered.d.ts"
+            ],
+            "provider": [
+                "./dist/types/provider.d.ts"
+            ]
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
@@ -50,14 +58,14 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.0.0-pre.19",
-        "@esfx/interval": "^1.0.0-pre.23",
-        "@esfx/iter-ordered": "^1.0.0-pre.23",
+        "@esfx/equatable": "^1.0.0-prenative.0",
+        "@esfx/interval": "^1.0.0-prenative.0",
+        "@esfx/iter-ordered": "^1.0.0-prenative.0",
         "tslib": "^2.3.1"
     },
     "devDependencies": {
-        "@esfx/internal-assert": "^1.0.0-pre.23",
-        "@esfx/internal-guards": "^1.0.0-pre.23"
+        "@esfx/internal-assert": "^1.0.0-prenative.0",
+        "@esfx/internal-guards": "^1.0.0-prenative.0"
     },
     "publishConfig": {
         "access": "public"

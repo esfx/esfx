@@ -1,6 +1,6 @@
 {
     "name": "@esfx/disposable",
-    "version": "1.0.0-pre.30",
+    "version": "1.0.0-prenative.0",
     "description": "A low-level API for defining explicit resource management.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -34,10 +34,18 @@
     },
     "typesVersions": {
         "*": {
-            "asyncDisposable": ["./dist/types/asyncDisposable.d.ts"],
-            "asyncDisposableStack": ["./dist/types/asyncDisposableStack.d.ts"],
-            "disposable": ["./dist/types/disposable.d.ts"],
-            "disposableStack": ["./dist/types/disposableStack.d.ts"]
+            "asyncDisposable": [
+                "./dist/types/asyncDisposable.d.ts"
+            ],
+            "asyncDisposableStack": [
+                "./dist/types/asyncDisposableStack.d.ts"
+            ],
+            "disposable": [
+                "./dist/types/disposable.d.ts"
+            ],
+            "disposableStack": [
+                "./dist/types/disposableStack.d.ts"
+            ]
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
@@ -49,10 +57,8 @@
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
     },
-    "dependencies": {
-    },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.23"
+        "@esfx/internal-guards": "^1.0.0-prenative.0"
     },
     "publishConfig": {
         "access": "public"
