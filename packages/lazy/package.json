@@ -1,6 +1,6 @@
 {
     "name": "@esfx/lazy",
-    "version": "1.0.0-prenative.0",
+    "version": "1.0.0-pre.31",
     "description": "Provides a class to simplify lazy-initialization logic",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -22,7 +22,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-prenative.0"
+        "@esfx/internal-guards": "^1.0.0-pre.31"
     },
     "publishConfig": {
         "access": "public"

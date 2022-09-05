@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async",
-    "version": "1.0.0-prenative.0",
+    "version": "1.0.0-pre.31",
     "description": "Provides a number of async coordination primitive.",
     "types": "./dist/types/index.d.ts",
     "main": "./dist/cjs/index.js",
@@ -22,21 +22,21 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-autoresetevent": "^1.0.0-prenative.0",
-        "@esfx/async-barrier": "^1.0.0-prenative.0",
-        "@esfx/async-conditionvariable": "^1.0.0-prenative.0",
-        "@esfx/async-countdown": "^1.0.0-prenative.0",
-        "@esfx/async-deferred": "^1.0.0-prenative.0",
-        "@esfx/async-delay": "^1.0.0-prenative.0",
-        "@esfx/async-lazy": "^1.0.0-prenative.0",
-        "@esfx/async-lockable": "^1.0.0-prenative.0",
-        "@esfx/async-manualresetevent": "^1.0.0-prenative.0",
-        "@esfx/async-mutex": "^1.0.0-prenative.0",
-        "@esfx/async-queue": "^1.0.0-prenative.0",
-        "@esfx/async-readerwriterlock": "^1.0.0-prenative.0",
-        "@esfx/async-semaphore": "^1.0.0-prenative.0",
-        "@esfx/async-stack": "^1.0.0-prenative.0",
-        "@esfx/canceltoken": "^1.0.0-prenative.0"
+        "@esfx/async-autoresetevent": "^1.0.0-pre.31",
+        "@esfx/async-barrier": "^1.0.0-pre.31",
+        "@esfx/async-conditionvariable": "^1.0.0-pre.31",
+        "@esfx/async-countdown": "^1.0.0-pre.31",
+        "@esfx/async-deferred": "^1.0.0-pre.31",
+        "@esfx/async-delay": "^1.0.0-pre.31",
+        "@esfx/async-lazy": "^1.0.0-pre.31",
+        "@esfx/async-lockable": "^1.0.0-pre.31",
+        "@esfx/async-manualresetevent": "^1.0.0-pre.31",
+        "@esfx/async-mutex": "^1.0.0-pre.31",
+        "@esfx/async-queue": "^1.0.0-pre.31",
+        "@esfx/async-readerwriterlock": "^1.0.0-pre.31",
+        "@esfx/async-semaphore": "^1.0.0-pre.31",
+        "@esfx/async-stack": "^1.0.0-pre.31",
+        "@esfx/canceltoken": "^1.0.0-pre.31"
     },
     "publishConfig": {
         "access": "public"
