@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections-sortedmap",
-    "version": "1.0.0-pre.31",
+    "version": "1.0.0-pre.32",
     "description": "Provides 'SortedMap', a collection class that utilizes '@esfx/collection-core' and '@esfx/equatable'.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -23,10 +23,10 @@
     },
     "dependencies": {
         "@esfx/collection-core": "^1.0.0-pre.31",
-        "@esfx/equatable": "^1.0.0-pre.31"
+        "@esfx/equatable": "^1.0.0-pre.32"
     },
     "devDependencies": {
-        "@esfx/internal-binarysearch": "^1.0.0-pre.31",
+        "@esfx/internal-binarysearch": "^1.0.0-pre.32",
         "@esfx/internal-guards": "^1.0.0-pre.31"
     },
     "publishConfig": {

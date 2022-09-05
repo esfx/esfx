@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections",
-    "version": "1.0.0-pre.31",
+    "version": "1.0.0-pre.32",
     "description": "Common collections API.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -22,12 +22,12 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collections-hashmap": "^1.0.0-pre.31",
-        "@esfx/collections-hashset": "^1.0.0-pre.31",
-        "@esfx/collections-linkedlist": "^1.0.0-pre.31",
-        "@esfx/collections-multimap": "^1.0.0-pre.31",
-        "@esfx/collections-sortedmap": "^1.0.0-pre.31",
-        "@esfx/collections-sortedset": "^1.0.0-pre.31"
+        "@esfx/collections-hashmap": "^1.0.0-pre.32",
+        "@esfx/collections-hashset": "^1.0.0-pre.32",
+        "@esfx/collections-linkedlist": "^1.0.0-pre.32",
+        "@esfx/collections-multimap": "^1.0.0-pre.32",
+        "@esfx/collections-sortedmap": "^1.0.0-pre.32",
+        "@esfx/collections-sortedset": "^1.0.0-pre.32"
     },
     "publishConfig": {
         "access": "public"
