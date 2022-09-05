@@ -29,8 +29,8 @@ const c2 = 0x1b873593;
 const n = 0xe6546b64;
 
 /* @internal */
-export function hash(buffer: ArrayBuffer, seed: number) {
-    const view = new DataView(buffer);
+export function hash(buffer: ArrayBuffer, count: number, seed: number) {
+    const view = new DataView(buffer, 0, count);
     let h = seed >>> 0;
     let i = 0;
     let k: number;

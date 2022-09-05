@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import { createSeed, hash } from './marvin32';
+import { createSeed, hash } from './murmur3.js';
 
 // TODO: See if we can use native apis to compute hashes in NodeJS
 
@@ -25,7 +25,7 @@ export function createHashUnknown() {
     const defaultGlobalSymbolSeed = createSeed();
     const defaultLocalSymbolSeed = createSeed();
     const defaultBigIntSeed = createSeed();
-    const [defaultObjectSeed] = createSeed();
+    const defaultObjectSeed = createSeed();
 
     let objectSeed = defaultObjectSeed;
     let stringSeed = defaultStringSeed;
@@ -103,7 +103,7 @@ export function createHashUnknown() {
 
     // see __perf__/hashString.ts for microbenchmarks
     // current winner: hashStringUsingMarvin32WithDataViewReuseBuffer
-    function hashStringWithSeed(x: string, encoding: BufferEncoding, [hi, lo]: readonly [number, number]) {
+    function hashStringWithSeed(x: string, encoding: BufferEncoding, seed: number) {
         let buffer: ArrayBuffer;
         let byteLength: number;
         if (x.length < 1024) {
@@ -115,7 +115,7 @@ export function createHashUnknown() {
             buffer = Buffer.from(x, "utf8").buffer;
             byteLength = buffer.byteLength;
         }
-        return hash(buffer, byteLength, lo, hi);
+        return hash(buffer, byteLength, seed);
     }
 
     function hashString(x: string) {
