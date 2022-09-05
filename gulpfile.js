@@ -140,17 +140,8 @@ function makeProjects(projects) {
 
         if (fs.existsSync(path.join(project, "binding.gyp"))) {
             /** @type {gulp.TaskFunction} */
-            const configureBinding = () => exec("npx", ["node-gyp", "configure", `--directory=${project}`]);
-            configureBinding.displayName = `configure:node-gyp:${project}`;
-
-            /** @type {gulp.TaskFunction} */
-            const buildBinding = () => exec("npx", ["node-gyp", "build", `--directory=${project}`]);
-            buildBinding.displayName = `build:node-gyp:${project}`;
-            buildTasks.push(gulp.series(configureBinding, buildBinding));
-
-            /** @type {gulp.TaskFunction} */
-            const cleanBinding = () => del(`${project}/build`);
-            cleanBinding.displayName = `clean:node-gyp:${project}`;
+            const cleanBinding = () => del(`${project}/build`, `${project}/dist/node`);
+            cleanBinding.displayName = `clean:node-pre-gyp:${project}`;
             cleanTasks.push(cleanBinding);
         }
 

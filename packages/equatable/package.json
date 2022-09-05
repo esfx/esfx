@@ -14,16 +14,31 @@
     },
     "imports": {
         "#hashCode": {
-            "node": "./build/Release/native.node",
-            "require": "./dist/cjs/internal/hashCode.js",
-            "import": "./dist/esm/internal/hashCode.js"
+            "node": "./lib/hashCodeNative.js",
+            "import": "./dist/esm/internal/hashCode.js",
+            "require": "./dist/cjs/internal/hashCode.js"
         },
         "#hashCodeNative": {
-            "node": "./build/Release/native.node"
+            "node": "./lib/hashCodeNative.js"
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
+    "scripts": {
+        "install": "node-pre-gyp install --fallback-to-build",
+        "prebuild": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64",
+        "build-node-win32-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=win32",
+        "build-node-linux-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=linux",
+        "build-node-darwin-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=darwin",
+        "build-node": "yarn build-node-win32-x64 & yarn build-node-linux-x64 & yarn build-node-darwin-x64",
+        "prepackage-node": "node-pre-gyp clean",
+        "package-node-win32-x64": "node-pre-gyp configure build package --runtime=node --target_arch=x64 --target_platform=win32",
+        "package-node-linux-x64": "node-pre-gyp configure build package --runtime=node --target_arch=x64 --target_platform=linux",
+        "package-node-darwin-x64": "node-pre-gyp configure build package --runtime=node --target_arch=x64 --target_platform=darwin",
+        "package-node": "yarn package-node-win32-x64 & yarn package-node-linux-x64 & yarn package-node-darwin-x64",
+        "prepublish-native": "yarn package-node",
+        "publish-native": "node scripts/node-pre-gyp-github.js publish --name \"v{version}\" --body \"v{version}\""
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/esfx/esfx.git"
@@ -32,9 +47,18 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
+        "@mapbox/node-pre-gyp": "^1.0.9"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.23"
+        "@esfx/internal-guards": "^1.0.0-pre.23",
+        "node-pre-gyp-github": "^1.4.4"
+    },
+    "binary": {
+        "module_name": "hashCodeNative",
+        "module_path": "./dist/node/{configuration}/{node_abi}-{platform}-{arch}/",
+        "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}.tar.gz",
+        "host": "https://github.com/esfx/esfx/releases/download/",
+        "remote_path": "{version}"
     },
     "publishConfig": {
         "access": "public"

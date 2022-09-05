@@ -11,10 +11,23 @@
   "bugs": {
     "url": "https://github.com/esfx/esfx/issues"
   },
-  "workspaces": [
-    "internal/*",
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "internal/*",
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/@mapbox/node-pre-gyp",
+      "**/@octokit/rest",
+      "**/@octokit/rest/**",
+      "**/@octokit/core",
+      "**/@octokit/core/**",
+      "**/node-pre-gyp-github",
+      "**/node-pre-gyp-github/**",
+      "**/is-plain-object",
+      "**/is-plain-object/**"
+    ]
+  },
   "devDependencies": {
     "@microsoft/api-documenter": "^7.15.3",
     "@microsoft/api-extractor": "^7.19.4",
@@ -27,6 +40,7 @@
     "@types/node-fetch": "^2.5.10",
     "benchmark": "^2.1.4",
     "chalk": "^2.4.2",
+    "commander": "^9.4.0",
     "del": "^3.0.0",
     "diff": "^5.0.0",
     "extract-zip": "^2.0.1",

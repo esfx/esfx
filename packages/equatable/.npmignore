@@ -1,9 +1,12 @@
-/obj
-/src
+/build
 /dist/types/internal/*.d.ts
 /dist/types/internal/*.d.ts.map
 /dist/cjs/internal/murmur3.*
 /dist/esm/internal/murmur3.*
+/dist/node
+/obj
+/scripts
+/src
 /package.internal.d.ts
 /api-extractor.json
 /tsconfig*.json
