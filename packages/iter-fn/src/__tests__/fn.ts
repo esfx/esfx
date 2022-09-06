@@ -279,7 +279,7 @@ describe("union()", () => {
     `("throws if 'other' is $type", ({ value, error }) => expect(() => fn.union([], value)).toThrow(error));
 });
 describe("except()", () => {
-    it("excepts", () => expect(fn.except([1, 1, 2, 3, 4], [2, 4, 5])).toEqualSequence([1, 3]));
+    it.only("excepts", () => expect(fn.except([1, 1, 2, 3, 4], [2, 4, 5])).toEqualSequence([1, 3]));
     it.each`
         type              | value         | error
         ${"undefined"}    | ${undefined}  | ${TypeError}
