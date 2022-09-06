@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-ordered-fromsync",
-    "version": "1.0.0-pre.32",
+    "version": "1.0.0-pre.33",
     "description": "An API to convert an OrderedIterable into an AsyncOrderedIterable",
     "types": "./dist/types/index.d.ts",
     "main": "./dist/cjs/index.js",
@@ -22,9 +22,9 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-iter-ordered": "^1.0.0-pre.32",
-        "@esfx/equatable": "^1.0.0-pre.32",
-        "@esfx/iter-ordered": "^1.0.0-pre.32"
+        "@esfx/async-iter-ordered": "^1.0.0-pre.33",
+        "@esfx/equatable": "^1.0.0-pre.33",
+        "@esfx/iter-ordered": "^1.0.0-pre.33"
     },
     "devDependencies": {
         "@esfx/internal-guards": "^1.0.0-pre.31"

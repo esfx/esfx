@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-deferred",
-    "version": "1.0.0-pre.31",
+    "version": "1.0.0-pre.33",
     "description": "Provides 'Deferred', an async coordination primitive.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

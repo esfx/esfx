@@ -1,6 +1,6 @@
 {
     "name": "@esfx/reflect-metadata-compat",
-    "version": "1.0.0-pre.31",
+    "version": "1.0.0-pre.33",
     "description": "A global shim that provides API compatibility with 'reflect-metadata'.",
     "private": true,
     "type": "commonjs",

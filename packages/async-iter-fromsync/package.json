@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-fromsync",
-    "version": "1.0.0-pre.31",
+    "version": "1.0.0-pre.33",
     "description": "An API to convert an ECMAScript Iterable into an AsyncIterable.",
     "types": "./dist/types/index.d.ts",
     "main": "./dist/cjs/index.js",

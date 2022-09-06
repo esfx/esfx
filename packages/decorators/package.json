@@ -1,6 +1,6 @@
 {
     "name": "@esfx/decorators",
-    "version": "1.0.0-pre.31",
+    "version": "1.0.0-pre.33",
     "description": "A set of decorators for common tasks.",
     "private": true,
     "type": "commonjs",
