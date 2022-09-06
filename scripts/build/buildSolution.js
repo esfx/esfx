@@ -133,6 +133,7 @@ exports.buildNextInvalidatedProject = buildNextInvalidatedProject;
 function recompileAs(project, program, outDir, moduleType) {
     const projectDir = path.dirname(project);
     const compilerOptions = program.getCompilerOptions();
+    const host = ts.createCompilerHost(compilerOptions);
     const newProgram = ts.createProgram({
         options: {
             ...compilerOptions,
@@ -144,11 +145,12 @@ function recompileAs(project, program, outDir, moduleType) {
             module: moduleType === "commonjs" ? ts.ModuleKind.CommonJS : ts.ModuleKind.ESNext,
             composite: false,
             incremental: false,
-            tsBuildInfoFile: `${projectDir}/tsconfig.${moduleType}.tsbuildinfo`
+            tsBuildInfoFile: undefined
         },
         rootNames: program.getRootFileNames(),
         projectReferences: program.getProjectReferences(),
         oldProgram: program,
+        host,
     });
 
     log(`Recompiling '${projectDir}' for '${moduleType}'...`);

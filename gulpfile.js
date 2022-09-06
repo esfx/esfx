@@ -30,7 +30,7 @@ function makeProjects(projects) {
     const builders = [];
     const cleaners = [];
     for (const project of projects) {
-        const build = fname(project, () => buildProject(project));
+        const build = fname(project, () => buildProject(project, { force: argv.force }));
         const clean = fname(`clean:${project}`, () => cleanProject(project));
         gulp.task(project, build);
         gulp.task(`clean:${project}`, clean);
@@ -129,7 +129,7 @@ function makeProjects(projects) {
     const cleaners = [];
     for (const project of projects) {
         /** @type {gulp.TaskFunction} */
-        const buildTypeScript = () => buildProject(project);
+        const buildTypeScript = () => buildProject(project, { force: argv.force });
         buildTypeScript.displayName = `build:typescript:${project}`;
         const buildTasks = [buildTypeScript];
 
