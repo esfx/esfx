@@ -213,7 +213,7 @@ export function findEntryIndex<K, V>(hashData: HashData<K, V>, key: K) {
         // Value in _buckets is 1-based
         i = buckets[hashCode % buckets.length] - 1;
         const length = entries.length;
-        while (i < length) {
+        while ((i >>> 0) < length) {
             const entry = entries[i];
             if (entry.hashCode === hashCode && equaler.equals(entry.key, key)) {
                 break;
@@ -240,7 +240,7 @@ export function insertEntry<K, V>(hashData: HashData<K, V>, key: K, value: V) {
     let bucket = hashCode % buckets.length;
     // Value in _buckets is 1-based
     let i = buckets[bucket] - 1;
-    while (i < entries.length) {
+    while ((i >>> 0) < entries.length) {
         const entry = entries[i];
         if (entry.hashCode === hashCode && equaler.equals(entry.key, key)) {
             entry.value = value;

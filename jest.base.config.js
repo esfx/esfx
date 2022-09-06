@@ -11,11 +11,18 @@ module.exports = {
         '/dist/',
         '/workers/',
         '/data/',
+        '/obj/',
+        '/build/',
     ],
+    roots: ['<rootDir>'],
     globals: {
         'ts-jest': {
-            tsconfig: 'tsconfig.json',
+            tsconfig: true,
             compiler: require.resolve('typescript')
         },
-    }
+    },
+    testMatch: [
+        "**/__test?(s)__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test?(s)).[jt]s?(x)"
+    ],
 };

@@ -6,3 +6,4 @@ src
 api-extractor.json
 tsconfig*.json
 *.tsbuildinfo
+jest*.config.js

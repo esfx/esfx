@@ -3,7 +3,9 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist/cjs",
-        "declarationDir": "dist/types"
+        "declarationDir": "dist/types",
+        "lib": ["es2021"],
+        "downlevelIteration": true
     },
     "include": ["src/**/*.ts"],
     "references": [

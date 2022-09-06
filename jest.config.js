@@ -1,27 +1,15 @@
+const fs = require("fs");
+const path = require("path");
+const internal = fs.readdirSync(path.resolve(__dirname, "internal"))
+    .filter(file => fs.existsSync(path.resolve(__dirname, "internal", file, "jest.config.js")))
+    .map(file => `<rootDir>/internal/${file}`);
+const packages = fs.readdirSync(path.resolve(__dirname, "packages"))
+    .filter(file => fs.existsSync(path.resolve(__dirname, "packages", file, "jest.config.js")))
+    .map(file => `<rootDir>/packages/${file}/jest.config.js`);
+
 module.exports = {
-    // preset: 'ts-jest',
-    // testEnvironment: 'node',
-    // setupFilesAfterEnv: ["./internal/jest-sequence"],
     projects: [
-        // '<rootDir>/internal/*',
-        // '<rootDir>/packages/*',
-        '<rootDir>/packages/equatable',
+        ...internal,
+        ...packages,
     ],
-    // transform: {
-    //     "^.+\\.tsx?": "ts-jest",
-    // },
-    // resolver: "<rootDir>/scripts/resolver.js",
-    // testPathIgnorePatterns: [
-    //     '/dist/',
-    //     '/workers/',
-    //     '/data/',
-    //     '/obj/',
-    //     '/test\\.ts$'
-    // ],
-    // globals: {
-    //     'ts-jest': {
-    //         tsconfig: 'tsconfig-base.json',
-    //         compiler: require.resolve('typescript')
-    //     },
-    // }
 };

@@ -10,7 +10,8 @@
         "paths": {
             "#hashCode": ["package.internal.d.ts"],
             "#hashCodeNative": ["package.internal.d.ts"],
-        }
+        },
+        "tsBuildInfoFile": "tsconfig.tsbuildinfo"
     },
     "include": ["src/**/*.ts", "package.internal.d.ts"],
     "references": [
