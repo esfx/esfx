@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-ordered",
-    "version": "1.0.0-pre.33",
+    "version": "1.0.0-pre.34",
     "description": "A Symbol-based API for defining an ECMAScript AsyncIterable with an inherent order.",
     "types": "./dist/types/index.d.ts",
     "main": "./dist/cjs/index.js",
@@ -22,10 +22,10 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.0.0-pre.33"
+        "@esfx/equatable": "^1.0.0-pre.34"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.31"
+        "@esfx/internal-guards": "^1.0.0-pre.34"
     },
     "publishConfig": {
         "access": "public"

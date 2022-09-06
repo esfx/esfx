@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter",
-    "version": "1.0.0-pre.33",
+    "version": "1.0.0-pre.34",
     "description": "An iteration and query API for ECMAScript iterables.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -22,24 +22,24 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "devDependencies": {
-        "@esfx/internal-jest-sequence": "^1.0.0-pre.31"
+        "@esfx/internal-jest-sequence": "^1.0.0-pre.34"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.0.0-pre.33",
-        "@esfx/collections-hashmap": "^1.0.0-pre.33",
-        "@esfx/collections-hashset": "^1.0.0-pre.33",
-        "@esfx/equatable": "^1.0.0-pre.33",
-        "@esfx/fn": "^1.0.0-pre.33",
-        "@esfx/internal-assert": "^1.0.0-pre.31",
-        "@esfx/internal-binarysearch": "^1.0.0-pre.33",
-        "@esfx/internal-guards": "^1.0.0-pre.31",
-        "@esfx/iter-fn": "^1.0.0-pre.33",
-        "@esfx/iter-grouping": "^1.0.0-pre.33",
-        "@esfx/iter-hierarchy": "^1.0.0-pre.33",
-        "@esfx/iter-lookup": "^1.0.0-pre.33",
-        "@esfx/iter-ordered": "^1.0.0-pre.33",
-        "@esfx/iter-page": "^1.0.0-pre.33",
-        "@esfx/iter-query": "^1.0.0-pre.33",
+        "@esfx/collection-core": "^1.0.0-pre.34",
+        "@esfx/collections-hashmap": "^1.0.0-pre.34",
+        "@esfx/collections-hashset": "^1.0.0-pre.34",
+        "@esfx/equatable": "^1.0.0-pre.34",
+        "@esfx/fn": "^1.0.0-pre.34",
+        "@esfx/internal-assert": "^1.0.0-pre.34",
+        "@esfx/internal-binarysearch": "^1.0.0-pre.34",
+        "@esfx/internal-guards": "^1.0.0-pre.34",
+        "@esfx/iter-fn": "^1.0.0-pre.34",
+        "@esfx/iter-grouping": "^1.0.0-pre.34",
+        "@esfx/iter-hierarchy": "^1.0.0-pre.34",
+        "@esfx/iter-lookup": "^1.0.0-pre.34",
+        "@esfx/iter-ordered": "^1.0.0-pre.34",
+        "@esfx/iter-page": "^1.0.0-pre.34",
+        "@esfx/iter-query": "^1.0.0-pre.34",
         "tslib": "^2.3.1"
     },
     "publishConfig": {

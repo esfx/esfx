@@ -1,6 +1,6 @@
 {
     "name": "@esfx/disposable",
-    "version": "1.0.0-pre.33",
+    "version": "1.0.0-pre.34",
     "description": "A low-level API for defining explicit resource management.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -58,7 +58,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.31"
+        "@esfx/internal-guards": "^1.0.0-pre.34"
     },
     "publishConfig": {
         "access": "public"
