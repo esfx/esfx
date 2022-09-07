@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-fn",
-    "version": "1.0.0-pre.34",
+    "version": "1.0.0-pre.35",
     "description": "An fp-style async iteration API for ECMAScript iterables.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -85,27 +85,27 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-iter-fromsync": "^1.0.0-pre.34",
-        "@esfx/async-iter-hierarchy": "^1.0.0-pre.34",
-        "@esfx/async-iter-ordered": "^1.0.0-pre.34",
-        "@esfx/async-iter-ordered-fromsync": "^1.0.0-pre.34",
-        "@esfx/collection-core": "^1.0.0-pre.34",
-        "@esfx/collections-hashmap": "^1.0.0-pre.34",
-        "@esfx/collections-hashset": "^1.0.0-pre.34",
-        "@esfx/equatable": "^1.0.0-pre.34",
-        "@esfx/fn": "^1.0.0-pre.34",
-        "@esfx/interval": "^1.0.0-pre.34",
-        "@esfx/iter-fn": "^1.0.0-pre.34",
-        "@esfx/iter-grouping": "^1.0.0-pre.34",
-        "@esfx/iter-hierarchy": "^1.0.0-pre.34",
-        "@esfx/iter-lookup": "^1.0.0-pre.34",
-        "@esfx/iter-ordered": "^1.0.0-pre.34",
-        "@esfx/iter-page": "^1.0.0-pre.34",
+        "@esfx/async-iter-fromsync": "^1.0.0-pre.35",
+        "@esfx/async-iter-hierarchy": "^1.0.0-pre.35",
+        "@esfx/async-iter-ordered": "^1.0.0-pre.35",
+        "@esfx/async-iter-ordered-fromsync": "^1.0.0-pre.35",
+        "@esfx/collection-core": "^1.0.0-pre.35",
+        "@esfx/collections-hashmap": "^1.0.0-pre.35",
+        "@esfx/collections-hashset": "^1.0.0-pre.35",
+        "@esfx/equatable": "^1.0.0-pre.35",
+        "@esfx/fn": "^1.0.0-pre.35",
+        "@esfx/interval": "^1.0.0-pre.35",
+        "@esfx/iter-fn": "^1.0.0-pre.35",
+        "@esfx/iter-grouping": "^1.0.0-pre.35",
+        "@esfx/iter-hierarchy": "^1.0.0-pre.35",
+        "@esfx/iter-lookup": "^1.0.0-pre.35",
+        "@esfx/iter-ordered": "^1.0.0-pre.35",
+        "@esfx/iter-page": "^1.0.0-pre.35",
         "tslib": "^2.3.1"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.34",
-        "@esfx/internal-jest-sequence": "^1.0.0-pre.34"
+        "@esfx/internal-guards": "^1.0.0-pre.35",
+        "@esfx/internal-jest-sequence": "^1.0.0-pre.35"
     },
     "publishConfig": {
         "access": "public"

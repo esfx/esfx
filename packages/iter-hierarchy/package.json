@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-hierarchy",
-    "version": "1.0.0-pre.34",
+    "version": "1.0.0-pre.35",
     "description": "A Symbol-based API for defining an Iterable with an inherent hierarchy.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -61,14 +61,14 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.0.0-pre.34",
-        "@esfx/interval": "^1.0.0-pre.34",
-        "@esfx/iter-ordered": "^1.0.0-pre.34",
+        "@esfx/equatable": "^1.0.0-pre.35",
+        "@esfx/interval": "^1.0.0-pre.35",
+        "@esfx/iter-ordered": "^1.0.0-pre.35",
         "tslib": "^2.3.1"
     },
     "devDependencies": {
-        "@esfx/internal-assert": "^1.0.0-pre.34",
-        "@esfx/internal-guards": "^1.0.0-pre.34"
+        "@esfx/internal-assert": "^1.0.0-pre.35",
+        "@esfx/internal-guards": "^1.0.0-pre.35"
     },
     "publishConfig": {
         "access": "public"

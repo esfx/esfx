@@ -1,6 +1,6 @@
 {
     "name": "@esfx/equatable",
-    "version": "1.0.0-pre.34",
+    "version": "1.0.0-pre.35",
     "description": "A low-level API for defining equality.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -28,7 +28,6 @@
         "install": "node-pre-gyp install --fallback-to-build",
         "prebuild": "node-pre-gyp configure build --runtime=node --target_arch=x64",
         "prepack": "node ../../scripts/verifyPackage.js",
-
         "build-node-win32-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=win32",
         "build-node-linux-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=linux",
         "build-node-darwin-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=darwin",
@@ -53,7 +52,7 @@
         "@mapbox/node-pre-gyp": "^1.0.9"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.34",
+        "@esfx/internal-guards": "^1.0.0-pre.35",
         "node-pre-gyp-github": "^1.4.4"
     },
     "binary": {
