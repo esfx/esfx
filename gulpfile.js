@@ -22,25 +22,10 @@ const yargs = require("yargs")
     .option("force", { type: "boolean", default: false })
     .option("verbose", { type: "boolean", default: false })
     .option("serve", { type: "boolean", default: false })
+    .option("prebuild", { type: "boolean", default: true })
     ;
 
 const { argv } = yargs;
-
-function makeProjects(projects) {
-    const builders = [];
-    const cleaners = [];
-    for (const project of projects) {
-        const build = fname(project, () => buildProject(project, { force: argv.force }));
-        const clean = fname(`clean:${project}`, () => cleanProject(project));
-        gulp.task(project, build);
-        gulp.task(`clean:${project}`, clean);
-        builders.push(build);
-        cleaners.push(clean);
-    }
-    const build = gulp.parallel(builders);
-    const clean = gulp.parallel(cleaners);
-    return { build, clean };
-}
 
 const internalPackages = fs.readdirSync("internal")
     .map(name => `internal/${name}`)
@@ -128,15 +113,67 @@ function makeProjects(projects) {
     const builders = [];
     const cleaners = [];
     for (const project of projects) {
-        /** @type {gulp.TaskFunction} */
-        const buildTypeScript = () => buildProject(project, { force: argv.force });
-        buildTypeScript.displayName = `build:typescript:${project}`;
-        const buildTasks = [buildTypeScript];
+        /** @type {gulp.TaskFunction | undefined} */
+        let prebuild;
 
-        /** @type {gulp.TaskFunction} */
-        const cleanTypeScript = () => cleanProject(project);
-        cleanTypeScript.displayName = `clean:typescript:${project}`;
-        const cleanTasks = [cleanTypeScript];
+        /** @type {gulp.TaskFunction[]} */
+        const buildTasks = [];
+
+        /** @type {gulp.TaskFunction[]} */
+        const cleanTasks = [];
+
+        let packageJson;
+        try { packageJson = JSON.parse(fs.readFileSync(path.join(project, "package.json"), "utf8")); } catch { }
+
+        if (packageJson?.scripts?.prebuild && argv.prebuild) {
+            prebuild = () => exec("yarn", ["workspace", packageJson.name, "run", "prebuild"], { verbose: true });
+            prebuild.displayName = `prebuild::yarn${project}`;
+        }
+
+        if (packageJson?.scripts?.clean && argv.clean) {
+            const cleanYarn = () => exec("yarn", ["workspace", packageJson.name, "run", "clean"], { verbose: true });
+            cleanYarn.displayName = `clean:yarn:${project}`;
+            cleanTasks.push(cleanYarn);
+        }
+
+        if (fs.existsSync(path.join(project, "tsconfig.esm.json"))) {
+            /** @type {gulp.TaskFunction} */
+            const buildTypeScriptCjs = () => buildProject(project, { force: argv.force });
+            buildTypeScriptCjs.displayName = `build:typescript:cjs:${project}`;
+
+            /** @type {gulp.TaskFunction} */
+            const buildTypeScriptEsm = () => buildProject(path.join(project, "tsconfig.esm.json"), { force: argv.force });
+            buildTypeScriptEsm.displayName = `build:typescript:esm:${project}`;
+
+            /** @type {gulp.TaskFunction} */
+            const cleanTypeScriptCjs = () => cleanProject(project);
+            cleanTypeScriptCjs.displayName = `clean:typescript:cjs:${project}`;
+
+            /** @type {gulp.TaskFunction} */
+            const cleanTypeScriptEsm = () => cleanProject(path.join(project, "tsconfig.esm.json"));
+            cleanTypeScriptEsm.displayName = `clean:typescript:esm:${project}`;
+
+            /** @type {gulp.TaskFunction} */
+            const buildTypeScript = gulp.parallel(buildTypeScriptCjs, buildTypeScriptEsm);
+            buildTypeScript.displayName = `build:typescript:${project}`;
+            buildTasks.push(buildTypeScript);
+
+            /** @type {gulp.TaskFunction} */
+            const cleanTypeScript = gulp.parallel(cleanTypeScriptCjs, cleanTypeScriptEsm);
+            cleanTypeScript.displayName = `clean:typescript:${project}`;
+            cleanTasks.push(cleanTypeScript);
+        }
+        else {
+            /** @type {gulp.TaskFunction} */
+            const buildTypeScript = () => buildProject(project, { force: argv.force });
+            buildTypeScript.displayName = `build:typescript:${project}`;
+            buildTasks.push(buildTypeScript);
+
+            /** @type {gulp.TaskFunction} */
+            const cleanTypeScript = () => cleanProject(project);
+            cleanTypeScript.displayName = `clean:typescript:${project}`;
+            cleanTasks.push(cleanTypeScript);
+        }
 
         if (fs.existsSync(path.join(project, "binding.gyp"))) {
             /** @type {gulp.TaskFunction} */
@@ -152,7 +189,9 @@ function makeProjects(projects) {
             cleanTasks.push(cleanDocs);
         }
 
-        const build = gulp.parallel(...buildTasks);
+        const build = prebuild ?
+            gulp.series(prebuild, gulp.parallel(...buildTasks)) :
+            gulp.parallel(...buildTasks);
         build.displayName = project;
 
         const clean = gulp.parallel(...cleanTasks);
@@ -160,6 +199,10 @@ function makeProjects(projects) {
 
         gulp.task(project, build);
         gulp.task(`clean:${project}`, clean);
+        if (prebuild) {
+            gulp.task(`prebuild:${project}`, prebuild);
+        }
+
         builders.push(build);
         cleaners.push(clean);
     }

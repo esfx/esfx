@@ -4,18 +4,18 @@
         "rootDir": "src",
         "outDir": "dist/cjs",
         "declarationDir": "dist/types",
+        "module": "commonjs",
         "lib": ["es2020"],
         "stripInternal": true,
         "baseUrl": ".",
         "paths": {
             "#hashCode": ["package.internal.d.ts"],
             "#hashCodeNative": ["package.internal.d.ts"],
-        },
-        "tsBuildInfoFile": "tsconfig.tsbuildinfo"
+        }
     },
     "include": ["src/**/*.ts", "package.internal.d.ts"],
     "references": [
         // devDependencies
         { "path": "../../internal/guards" },
-    ]
+    ],
 }

@@ -113,7 +113,7 @@ export class SortedSet<T> implements Collection<T> {
         }
     }
 
-    [Symbol.toStringTag]: string;
+    declare [Symbol.toStringTag]: string;
 
     get [Collection.size]() { return this.size; }
     [Collection.has](value: T) { return this.has(value); }

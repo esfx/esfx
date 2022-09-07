@@ -6,4 +6,6 @@ internal
 api-extractor.json
 tsconfig*.json
 *.tsbuildinfo
+*.log
 jest*.config.js
+.npmfiles

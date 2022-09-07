@@ -9,7 +9,7 @@
     "references": [
         // dependencies
         { "path": "../equatable" },
-        
+
         // devDependencies
         { "path": "../../internal/guards" },
     ]

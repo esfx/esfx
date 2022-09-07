@@ -141,7 +141,7 @@ export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any
         throw new RangeError();
     }
 
-    setIndex<I extends keyof TDef>(index: I, value: StructFieldRuntimeType<Extract<TDef[I], StructFieldDefinition>>) {
+    setIndex<I extends keyof TDef & number>(index: I, value: StructFieldRuntimeType<Extract<TDef[I], StructFieldDefinition>>) {
         if (index < this.#type.fields.length) {
             const field = this.#type.fields[index as number];
             field.writeTo(this, this.#dataView, field.coerce(value));

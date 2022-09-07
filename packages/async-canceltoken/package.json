@@ -14,6 +14,9 @@
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
+    "scripts": {
+        "prepack": "node ../../scripts/verifyPackage.js"
+    },
     "repository": {
         "type": "git",
         "url": "https://github.com/esfx/esfx.git"
@@ -21,7 +24,6 @@
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
     },
-    "scripts": {},
     "dependencies": {
         "@esfx/cancelable": "^1.0.0-pre.34",
         "@esfx/canceltoken": "^1.0.0-pre.34",

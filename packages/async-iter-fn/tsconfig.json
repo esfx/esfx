@@ -24,6 +24,7 @@
         { "path": "../iter-lookup" },
         { "path": "../iter-ordered" },
         { "path": "../iter-page" },
+
         // devDependencies
         { "path": "../../internal/jest-sequence" },
         { "path": "../../internal/guards" },

@@ -3,10 +3,11 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist/cjs",
-        "declarationDir": "dist/types"
+        "declarationDir": "dist/types",
+        "module": "commonjs",
     },
     "include": ["src/**/*.ts"],
     "references": [
-        { "path": "../../packages/type-model" }
-    ]
+        { "path": "../../packages/type-model" },
+    ],
 }

@@ -1,5 +1,5 @@
 import * as path from "path";
-import cjs = require("module");
+import cjs from "module";
 import { Worker as NodeWorker, MessagePort } from "worker_threads";
 import { RegisterOptions as TSNodeOptions, TSError } from "ts-node";
 import { EventEmitter } from 'events';

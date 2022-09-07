@@ -7,11 +7,11 @@
     },
     "include": ["src/**/*.ts"],
     "references": [
-        // devDependencies:
+        // devDependencies
         { "path": "../canceltoken" },
         { "path": "../../internal/guards" },
 
-        // dependencies:
+        // dependencies
         { "path": "../async-waitqueue" },
         { "path": "../cancelable" },
     ]

@@ -1,0 +1,16 @@
+{
+    "extends": "./tsconfig",
+    "compilerOptions": {
+        "outDir": "dist/esm",
+        "module": "esnext",
+    },
+    "references": [
+        // dependencies
+        { "path": "../disposable/tsconfig.esm.json" },
+
+        // devDependencies
+        { "path": "../../internal/ts-worker/tsconfig.esm.json" },
+        { "path": "../../internal/threading/tsconfig.esm.json" },
+        { "path": "../../internal/guards/tsconfig.esm.json" },
+    ],
+}

@@ -3,7 +3,10 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist/cjs",
-        "declarationDir": "dist/types"
+        "declarationDir": "dist/types",
+        "module": "commonjs",
     },
-    "include": ["src/**/*.ts"]
+    "include": ["src/**/*.ts"],
+    "references": [
+    ],
 }

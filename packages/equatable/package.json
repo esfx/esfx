@@ -26,7 +26,9 @@
     "license": "Apache-2.0",
     "scripts": {
         "install": "node-pre-gyp install --fallback-to-build",
-        "prebuild": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64",
+        "prebuild": "node-pre-gyp configure build --runtime=node --target_arch=x64",
+        "prepack": "node ../../scripts/verifyPackage.js",
+
         "build-node-win32-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=win32",
         "build-node-linux-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=linux",
         "build-node-darwin-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=darwin",

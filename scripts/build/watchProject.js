@@ -1,17 +1,15 @@
 // @ts-check
 const ts = require("typescript");
 const { createProjectQueue } = require("./projectQueue");
-const { buildSolution, buildNextInvalidatedProject, prebuildSolution } = require("./buildSolution");
+const { buildSolution, buildNextInvalidatedProject } = require("./buildSolution");
 
 /**
  * @param {readonly string[]} projects
  */
 async function watchProjects(projects) {
-    await prebuildSolution(projects);
-
     const host = ts.createSolutionBuilderWithWatchHost();
     const builder = ts.createSolutionBuilder(host, projects, { });
-    const { resolvedProjects } = await buildSolution(host, builder, /*execPrebuildScripts*/ false);
+    const { resolvedProjects } = await buildSolution(host, builder);
     await startWatching(host, builder, resolvedProjects);
 }
 

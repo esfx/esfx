@@ -10,7 +10,7 @@
         // dependencies
         { "path": "../cancelable" },
         { "path": "../async-manualresetevent" },
-        
+
         // devDependencies
         { "path": "../../internal/guards" },
     ]

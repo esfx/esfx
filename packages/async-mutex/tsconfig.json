@@ -12,7 +12,7 @@
         { "path": "../async-waitqueue" },
         { "path": "../cancelable" },
         { "path": "../disposable" },
-        
+
         // devDependencies
         { "path": "../../internal/guards" },
     ]

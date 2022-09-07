@@ -9,7 +9,7 @@
     "references": [
         // dependencies
         { "path": "../cancelable" },
-        
+
         // devDependencies
         { "path": "../../internal/guards" },
         { "path": "../../internal/linked-list" },

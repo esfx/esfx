@@ -9,7 +9,7 @@
     "references": [
         // dependencies
         { "path": "../threading-sleep" },
-        
+
         // devDependencies
         { "path": "../../internal/guards" },
     ]

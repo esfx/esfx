@@ -1,0 +1,15 @@
+{
+    "extends": "./tsconfig",
+    "compilerOptions": {
+        "outDir": "dist/esm",
+        "module": "esnext",
+    },
+    "references": [
+        { "path": "../collections-hashmap/tsconfig.esm.json" },
+        { "path": "../collections-hashset/tsconfig.esm.json" },
+        { "path": "../collections-sortedmap/tsconfig.esm.json" },
+        { "path": "../collections-sortedset/tsconfig.esm.json" },
+        { "path": "../collections-linkedlist/tsconfig.esm.json" },
+        { "path": "../collections-multimap/tsconfig.esm.json" },
+    ],
+}

@@ -34,6 +34,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "scripts": {
+        "prepack": "node ../../scripts/verifyPackage.js",
         "prebuild": "node scripts/generateDomEventTypes.js"
     },
     "dependencies": {

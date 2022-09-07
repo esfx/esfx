@@ -330,18 +330,19 @@ export function CreateScope<Hint extends "sync" | "async">(hint: Hint): ScopeCon
     // Credit to Mathieu Hofman for initial `for (const { using } of Disposable)` mechanism: https://github.com/mhofman/disposator/
     // See THIRD PARTY LICENSE NOTICE at the top of this file.
     // Modified to return a `fail` callback to emulate error suppression semantics of https://github.com/tc39/proposal-explicit-resource-management/
+    const scope: Scope<Hint> = {
+        using(resource) {
+            if (context.state !== "initialized") throw new Error("Illegal state.");
+            AddDisposableResource(context.disposables, resource, hint);
+            return resource;
+        },
+        fail(error) {
+            if (context.state !== "initialized") throw new Error("Illegal state.");
+            context.throwCompletion = { cause: error };
+        }
+    };
     const context: ScopeContext<Hint> = {
-        scope: Object.freeze({
-            using(resource) {
-                if (context.state !== "initialized") throw new Error("Illegal state.");
-                AddDisposableResource(context.disposables, resource, hint);
-                return resource;
-            },
-            fail(error) {
-                if (context.state !== "initialized") throw new Error("Illegal state.");
-                context.throwCompletion = { cause: error };
-            }
-        }),
+        scope: Object.freeze(scope),
         state: "initialized",
         disposables: [],
         throwCompletion: undefined,
