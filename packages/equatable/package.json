@@ -38,7 +38,7 @@
         "package-node-darwin-x64": "node-pre-gyp configure build package --runtime=node --target_arch=x64 --target_platform=darwin",
         "package-node": "yarn package-node-win32-x64 & yarn package-node-linux-x64 & yarn package-node-darwin-x64",
         "prepublish-native": "yarn package-node",
-        "publish-native": "node scripts/node-pre-gyp-github.js publish --name \"v{version}\" --body \"v{version}\"",
+        "publish-native": "node scripts/node-pre-gyp-github.js publish --name \"v{version}\" --body \"v{version}\" --release",
         "prepublishOnly": "yarn publish-native"
     },
     "repository": {
