@@ -1,6 +1,6 @@
 {
     "name": "@esfx/indexed-object",
-    "version": "1.0.0-pre.35",
+    "version": "1.0.0-pre.36",
     "description": "A base class for custom integer-indexed objects.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

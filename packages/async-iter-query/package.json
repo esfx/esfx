@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-query",
-    "version": "1.0.0-pre.35",
+    "version": "1.0.0-pre.36",
     "description": "An iteration and query API for ECMAscript async-iterables.",
     "types": "./dist/types/index.d.ts",
     "main": "./dist/cjs/index.js",
@@ -25,29 +25,29 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-iter-fn": "^1.0.0-pre.35",
-        "@esfx/async-iter-fromsync": "^1.0.0-pre.35",
-        "@esfx/async-iter-hierarchy": "^1.0.0-pre.35",
-        "@esfx/async-iter-ordered": "^1.0.0-pre.35",
-        "@esfx/async-iter-ordered-fromsync": "^1.0.0-pre.35",
-        "@esfx/collection-core": "^1.0.0-pre.35",
-        "@esfx/collections-hashmap": "^1.0.0-pre.35",
-        "@esfx/collections-hashset": "^1.0.0-pre.35",
-        "@esfx/equatable": "^1.0.0-pre.35",
-        "@esfx/fn": "^1.0.0-pre.35",
-        "@esfx/interval": "^1.0.0-pre.35",
-        "@esfx/iter-fn": "^1.0.0-pre.35",
-        "@esfx/iter-grouping": "^1.0.0-pre.35",
-        "@esfx/iter-hierarchy": "^1.0.0-pre.35",
-        "@esfx/iter-lookup": "^1.0.0-pre.35",
-        "@esfx/iter-ordered": "^1.0.0-pre.35",
-        "@esfx/iter-page": "^1.0.0-pre.35",
-        "@esfx/iter-query": "^1.0.0-pre.35",
+        "@esfx/async-iter-fn": "^1.0.0-pre.36",
+        "@esfx/async-iter-fromsync": "^1.0.0-pre.36",
+        "@esfx/async-iter-hierarchy": "^1.0.0-pre.36",
+        "@esfx/async-iter-ordered": "^1.0.0-pre.36",
+        "@esfx/async-iter-ordered-fromsync": "^1.0.0-pre.36",
+        "@esfx/collection-core": "^1.0.0-pre.36",
+        "@esfx/collections-hashmap": "^1.0.0-pre.36",
+        "@esfx/collections-hashset": "^1.0.0-pre.36",
+        "@esfx/equatable": "^1.0.0-pre.36",
+        "@esfx/fn": "^1.0.0-pre.36",
+        "@esfx/interval": "^1.0.0-pre.36",
+        "@esfx/iter-fn": "^1.0.0-pre.36",
+        "@esfx/iter-grouping": "^1.0.0-pre.36",
+        "@esfx/iter-hierarchy": "^1.0.0-pre.36",
+        "@esfx/iter-lookup": "^1.0.0-pre.36",
+        "@esfx/iter-ordered": "^1.0.0-pre.36",
+        "@esfx/iter-page": "^1.0.0-pre.36",
+        "@esfx/iter-query": "^1.0.0-pre.36",
         "tslib": "^2.3.1"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.35",
-        "@esfx/internal-jest-sequence": "^1.0.0-pre.35"
+        "@esfx/internal-guards": "^1.0.0-pre.36",
+        "@esfx/internal-jest-sequence": "^1.0.0-pre.36"
     },
     "publishConfig": {
         "access": "public"
