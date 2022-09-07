@@ -4,6 +4,7 @@ dist/esm/index.js
 dist/esm/index.js.map
 dist/types/index.d.ts
 dist/types/index.d.ts.map
+dist/esm/package.json
 LICENSE
 README.md
 package.json

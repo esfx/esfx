@@ -14,6 +14,7 @@ dist/esm/dom.types.js
 dist/esm/dom.types.js.map
 dist/esm/index.js
 dist/esm/index.js.map
+dist/esm/package.json
 dist/types/dom.d.ts
 dist/types/dom.d.ts.map
 dist/types/dom.types.d.ts

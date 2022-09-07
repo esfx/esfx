@@ -30,6 +30,7 @@ dist/esm/scalars.js
 dist/esm/scalars.js.map
 dist/esm/subqueries.js
 dist/esm/subqueries.js.map
+dist/esm/package.json
 dist/types/grouping.d.ts
 dist/types/grouping.d.ts.map
 dist/types/hierarchy.d.ts

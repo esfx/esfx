@@ -46,6 +46,7 @@ dist/esm/readonly.js
 dist/esm/readonly.js.map
 dist/esm/writable.js
 dist/esm/writable.js.map
+dist/esm/package.json
 dist/types/autobind.d.ts
 dist/types/autobind.d.ts.map
 dist/types/autoproperty.d.ts

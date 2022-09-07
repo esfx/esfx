@@ -18,6 +18,7 @@ dist/esm/ordered.js
 dist/esm/ordered.js.map
 dist/esm/provider.js
 dist/esm/provider.js.map
+dist/esm/package.json
 dist/types/axis.d.ts
 dist/types/axis.d.ts.map
 dist/types/hierarchy.d.ts

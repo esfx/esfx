@@ -10,6 +10,7 @@ dist/esm/index.js
 dist/esm/index.js.map
 dist/esm/ordered.js
 dist/esm/ordered.js.map
+dist/esm/package.json
 dist/types/hierarchy.d.ts
 dist/types/hierarchy.d.ts.map
 dist/types/index.d.ts

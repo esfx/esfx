@@ -146,6 +146,10 @@ function makeProjects(projects) {
             buildTypeScriptEsm.displayName = `build:typescript:esm:${project}`;
 
             /** @type {gulp.TaskFunction} */
+            const postbuildTypeScriptEsm = async () => fs.writeFileSync(path.join(project, "dist/esm/package.json"), JSON.stringify({ "type": "module" }), "utf8");
+            postbuildTypeScriptEsm.displayName = `postbuild:typescript:esm:${project}`;
+
+            /** @type {gulp.TaskFunction} */
             const cleanTypeScriptCjs = () => cleanProject(project);
             cleanTypeScriptCjs.displayName = `clean:typescript:cjs:${project}`;
 
@@ -154,7 +158,7 @@ function makeProjects(projects) {
             cleanTypeScriptEsm.displayName = `clean:typescript:esm:${project}`;
 
             /** @type {gulp.TaskFunction} */
-            const buildTypeScript = gulp.parallel(buildTypeScriptCjs, buildTypeScriptEsm);
+            const buildTypeScript = gulp.series(gulp.parallel(buildTypeScriptCjs, buildTypeScriptEsm), postbuildTypeScriptEsm);
             buildTypeScript.displayName = `build:typescript:${project}`;
             buildTasks.push(buildTypeScript);
 

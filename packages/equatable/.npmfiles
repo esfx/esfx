@@ -10,13 +10,14 @@ dist/esm/internal/murmur3.js
 dist/esm/internal/murmur3.js.map
 dist/esm/index.js
 dist/esm/index.js.map
+dist/esm/package.json
 dist/types/index.d.ts
 dist/types/index.d.ts.map
 lib/hashCodeNative.js
 lib/hashCode.cpp
 lib/hashCode.h
 lib/package.json
-binding.gyp
+# binding.gyp
 LICENSE
 package.json
 README.md

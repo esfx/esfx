@@ -22,6 +22,7 @@ dist/esm/disposableStack.js
 dist/esm/disposableStack.js.map
 dist/esm/index.js
 dist/esm/index.js.map
+dist/esm/package.json
 dist/types/internal/utils.d.ts
 dist/types/internal/utils.d.ts.map
 dist/types/asyncDisposable.d.ts

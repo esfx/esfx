@@ -18,6 +18,7 @@ dist/esm/memoize.js
 dist/esm/memoize.js.map
 dist/esm/operators.js
 dist/esm/operators.js.map
+dist/esm/package.json
 dist/types/common.d.ts
 dist/types/common.d.ts.map
 dist/types/defaultMemoizeCache.d.ts

@@ -15,3 +15,4 @@
 .npmfiles
 __tests__
 __perf__
+binding.gyp_

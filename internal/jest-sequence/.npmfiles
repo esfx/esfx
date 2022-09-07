@@ -18,10 +18,6 @@ dist/cjs/toStartWithSequenceAsync/index.js
 dist/cjs/toStartWithSequenceAsync/index.js.map
 dist/cjs/toStartWithSequenceAsync/predicate.js
 dist/cjs/toStartWithSequenceAsync/predicate.js.map
-dist/esm/index.js
-dist/esm/index.js.map
-dist/esm/sequence.js
-dist/esm/sequence.js.map
 dist/esm/toEqualSequence/index.js
 dist/esm/toEqualSequence/index.js.map
 dist/esm/toEqualSequence/predicate.js
@@ -38,6 +34,11 @@ dist/esm/toStartWithSequenceAsync/index.js
 dist/esm/toStartWithSequenceAsync/index.js.map
 dist/esm/toStartWithSequenceAsync/predicate.js
 dist/esm/toStartWithSequenceAsync/predicate.js.map
+dist/esm/index.js
+dist/esm/index.js.map
+dist/esm/sequence.js
+dist/esm/sequence.js.map
+dist/esm/package.json
 dist/types/index.d.ts
 dist/types/index.d.ts.map
 dist/types/sequence.d.ts

@@ -22,6 +22,7 @@ dist/esm/structType.js
 dist/esm/structType.js.map
 dist/esm/typeInfo.js
 dist/esm/typeInfo.js.map
+dist/esm/package.json
 dist/types/index.d.ts
 dist/types/index.d.ts.map
 dist/types/numbers.d.ts
