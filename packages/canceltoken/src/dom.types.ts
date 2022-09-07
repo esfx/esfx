@@ -644,6 +644,9 @@ interface RTCDtlsTransport {
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptionsWithCancelToken): void;
 }
 
+interface RTCIceTransportEventMap { }
+interface RTCSctpTransportEventMap { }
+
 interface RTCPeerConnection {
     addEventListener<K extends keyof RTCPeerConnectionEventMap>(type: K, listener: (this: RTCPeerConnection, ev: RTCPeerConnectionEventMap[K]) => any, options?: boolean | AddEventListenerOptionsWithCancelToken): void;
     addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptionsWithCancelToken): void;

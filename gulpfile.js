@@ -127,7 +127,7 @@ function makeProjects(projects) {
 
         if (packageJson?.scripts?.prebuild && argv.prebuild) {
             prebuild = () => exec("yarn", ["workspace", packageJson.name, "run", "prebuild"], { verbose: true });
-            prebuild.displayName = `prebuild::yarn${project}`;
+            prebuild.displayName = `prebuild::yarn:${project}`;
         }
 
         if (packageJson?.scripts?.clean && argv.clean) {
