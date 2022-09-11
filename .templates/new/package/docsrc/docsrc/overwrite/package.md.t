@@ -1,5 +1,5 @@
 ---
-to: <%=internal ? null : `${packagePath}/docsrc/overwrite/${unscopedPackageName}.md`%>
+to: "<%=internal ? null : `${packagePath}/docsrc/overwrite/${unscopedPackageName}.md`%>"
 ---
 ---
 uid: '<%=packageName%>!'

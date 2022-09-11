@@ -1,5 +1,5 @@
 ---
-to: <%=packagePath%>/LICENSE
+to: "<%=packagePath%>/LICENSE"
 ---
                                  Apache License
                            Version 2.0, January 2004

@@ -3,7 +3,7 @@ const path = require("path");
 const yargs = require('yargs-parser');
 const Project = require("@lerna/project");
 
-const TSLIB_VERSION = "1.9.3";
+const TSLIB_VERSION = "2.4.0";
 
 module.exports = {
     prompt: async ({ prompter, args }) => {
@@ -86,7 +86,30 @@ module.exports = {
                     compare(a.name, b.name))
         }]);
 
+        const dependenciesSet = new Set(dependenciesSelection);
+
         const dependencies = dependenciesSelection
+            .map(name => dependenciesMap.get(name))
+            .map(pkg => ({
+                name: pkg.name,
+                version: pkg.version,
+                path: cleanPath(path.relative(resolvedPackagePath, pkg.location))
+            }));
+
+        const { devDependenciesSelection } = await prompter.prompt([{
+            type: "multiselect",
+            name: "devDependenciesSelection",
+            message: "devDependencies",
+            limit: 10,
+            choices: packages
+                .filter(pkg => pkg.name !== "esfx" && !dependenciesSet.has(pkg.name))
+                .map(pkg => ({ name: pkg.name, value: pkg.name }))
+                .sort((a, b) =>
+                    compare(packageWeight(a), packageWeight(b)) ||
+                    compare(a.name, b.name))
+        }]);
+
+        const devDependencies = devDependenciesSelection
             .map(name => dependenciesMap.get(name))
             .map(pkg => ({
                 name: pkg.name,
@@ -108,7 +131,7 @@ module.exports = {
             unscopedPackageName,
             description,
             dependencies,
-            // devDependencies,
+            devDependencies,
             injectGulpfileBefore: `add new ${internal ? "internal" : "public"} projects above this line`,
         };
     }

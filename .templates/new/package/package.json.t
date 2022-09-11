@@ -1,5 +1,5 @@
 ---
-to: <%=packagePath%>/package.json
+to: "<%=packagePath%>/package.json"
 sh: cd <%= cwd %> && lerna bootstrap
 ---
 {

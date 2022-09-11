@@ -1,12 +1,13 @@
 ---
-to: <%=packagePath%>/.npmignore
+to: "<%=packagePath%>/.npmignore"
 ---
-.vscode
+/.vscode
+/.npmfiles
+/obj
+/docsrc
+/src
+/api-extractor.json
 __tests__
-obj
-docsrc
-src
-internal
-api-extractor.json
 tsconfig*.json
 *.tsbuildinfo
+jest*.config.js

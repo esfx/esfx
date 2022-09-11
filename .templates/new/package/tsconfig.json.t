@@ -1,5 +1,5 @@
 ---
-to: <%=packagePath%>/tsconfig.json
+to: "<%=packagePath%>/tsconfig.json"
 ---
 {
     "extends": "../tsconfig-base",
@@ -10,6 +10,12 @@ to: <%=packagePath%>/tsconfig.json
     },
     "include": ["src/**/*.ts"],
     "references": [
+        // devDependencies
+<% devDependencies.filter(pkg => !!pkg.path).forEach((pkg, i) => { -%>
+        { "path": <%-JSON.stringify(pkg.path)%> },
+<% }); -%>
+
+        // dependencies
 <% dependencies.filter(pkg => !!pkg.path).forEach((pkg, i) => { -%>
         { "path": <%-JSON.stringify(pkg.path)%> },
 <% }); -%>

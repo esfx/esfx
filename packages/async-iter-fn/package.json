@@ -101,7 +101,7 @@
         "@esfx/iter-lookup": "^1.0.0-pre.37",
         "@esfx/iter-ordered": "^1.0.0-pre.37",
         "@esfx/iter-page": "^1.0.0-pre.37",
-        "tslib": "^2.3.1"
+        "tslib": "^2.4.0"
     },
     "devDependencies": {
         "@esfx/internal-guards": "^1.0.0-pre.37",

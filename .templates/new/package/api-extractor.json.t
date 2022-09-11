@@ -1,5 +1,5 @@
 ---
-to: <%=packagePath%>/api-extractor.json
+to: "<%=packagePath%>/api-extractor.json"
 ---
 {
     "extends": "../../api-extractor-base.json",

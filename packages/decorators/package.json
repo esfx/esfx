@@ -120,7 +120,7 @@
     "dependencies": {
         "@esfx/decorators-stage1-core": "^1.0.0-pre.37",
         "@esfx/internal-guards": "^1.0.0-pre.37",
-        "tslib": "^2.3.1"
+        "tslib": "^2.4.0"
     },
     "publishConfig": {
         "access": "public"
