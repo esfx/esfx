@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import { combineHashes, Equaler, Equatable, rawHash } from '@esfx/equatable';
 import { MatchingKeys } from '@esfx/type-model';
 import { StructPrimitiveType, StructFieldDefinition, StructType, Struct as StructBase } from './index.js';
 import { NumberType, sizeOf, getValueFromView, putValueInView, Alignment } from './numbers.js';
@@ -162,6 +163,25 @@ export class StructFieldInfo {
     writeTo(_owner: Struct_, view: DataView, value: number | bigint | StructBase, isLittleEndian?: boolean) {
         this.typeInfo.writeTo(view, this.byteOffset, value, isLittleEndian);
     }
+
+    [Equatable.equals](other: unknown): boolean {
+        return other instanceof StructFieldInfo
+            && Equaler.defaultEqualer.equals(this.name, other.name)
+            && Equaler.defaultEqualer.equals(this.index, other.index)
+            && Equaler.defaultEqualer.equals(this.byteOffset, other.byteOffset)
+            && Equaler.defaultEqualer.equals(this.size, other.size)
+            && Equaler.defaultEqualer.equals(this.type, other.type);
+    }
+
+    [Equatable.hash](): number {
+        let hc = 0;
+        hc = combineHashes(hc, Equaler.defaultEqualer.hash(this.name));
+        hc = combineHashes(hc, Equaler.defaultEqualer.hash(this.index));
+        hc = combineHashes(hc, Equaler.defaultEqualer.hash(this.byteOffset));
+        hc = combineHashes(hc, Equaler.defaultEqualer.hash(this.size));
+        hc = combineHashes(hc, Equaler.defaultEqualer.hash(this.type));
+        return hc;
+    }
 }
 
 /* @internal */
@@ -172,7 +192,7 @@ export class StructTypeInfo extends TypeInfo {
     readonly fieldsByOffset: ReadonlyMap<number, StructFieldInfo>;
     readonly baseType: StructTypeInfo | undefined;
 
-    private _structType!: StructType;
+    #structType!: StructType;
 
     constructor(fields: readonly StructFieldDefinition[], baseType?: StructTypeInfo) {
         const fieldNames = new Set<string | symbol>();
@@ -222,7 +242,7 @@ export class StructTypeInfo extends TypeInfo {
     }
 
     get structType() {
-        return this._structType;
+        return this.#structType;
     }
 
     static get(type: StructTypeLike): StructTypeInfo;
@@ -237,15 +257,15 @@ export class StructTypeInfo extends TypeInfo {
     }
 
     coerce(value: any) {
-        return value instanceof this._structType ? value : new this._structType(value);
+        return value instanceof this.#structType ? value : new this.#structType(value);
     }
 
     readFrom(view: DataView, offset: number, isLittleEndian?: boolean) {
-        return new this._structType(view.buffer, view.byteOffset + offset);
+        return new this.#structType(view.buffer, view.byteOffset + offset);
     }
 
     writeTo(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean) {
-        if (!(value instanceof this._structType)) {
+        if (!(value instanceof this.#structType)) {
             throw new TypeError();
         }
         value.writeTo(view.buffer, view.byteOffset + offset);
@@ -254,7 +274,7 @@ export class StructTypeInfo extends TypeInfo {
     finishType<T extends StructType>(structType: T): T;
     finishType(structType: typeof Struct_): void;
     finishType<T extends StructType>(structType: T) {
-        this._structType = structType;
+        this.#structType = structType;
         Object.freeze(this.ownFields);
         Object.freeze(this.fields);
         Object.freeze(this.fieldsByName);
@@ -262,6 +282,28 @@ export class StructTypeInfo extends TypeInfo {
         Object.freeze(this);
         typeInfos.set(structType, this);
         return structType;
+    }
+
+    [Equatable.equals](other: unknown): boolean {
+        if (this === other) return true;
+        if (!(other instanceof StructTypeInfo)) return false;
+        if (!Equaler.defaultEqualer.equals(this.baseType, other.baseType)) return false;
+        if (this.ownFields.length !== other.ownFields.length) return false;
+        for (let i = 0; i < this.ownFields.length; i++) {
+            const thisField = this.ownFields[i];
+            const otherField = other.ownFields[i];
+            if (!Equaler.defaultEqualer.equals(thisField, otherField)) return false;
+        }
+        return true;
+    }
+
+    [Equatable.hash](): number {
+        let hc = 0;
+        hc = combineHashes(0, Equaler.defaultEqualer.hash(this.baseType));
+        for (let i = 0; i < this.ownFields.length; i++) {
+            hc = combineHashes(0, Equaler.defaultEqualer.hash(this.ownFields[i]));
+        }
+        return hc;
     }
 }
 

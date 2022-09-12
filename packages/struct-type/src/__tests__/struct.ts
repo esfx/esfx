@@ -1,3 +1,4 @@
+import { Equaler, Equatable, StructuralEquatable } from "@esfx/equatable";
 import { StructType, int32 } from "..";
 
 describe("simple struct", () => {
@@ -194,5 +195,216 @@ describe("baseType", () => {
         expect(p.x).toBe(1);
         expect(p.y).toBe(2);
         expect(p.z).toBe(3);
+    });
+});
+describe("Equatable.equals", () => {
+    const Point = StructType([
+        { name: "x", type: int32 },
+        { name: "y", type: int32 }
+    ]);
+    const Line = StructType([
+        { name: "from", type: Point },
+        { name: "to", type: Point }
+    ]);
+    it("same type, same values", () => {
+        const p1 = new Point({ x: 10, y: 20 });
+        const p2 = new Point({ x: 10, y: 20 });
+        expect(p1[Equatable.equals](p2)).toBe(true);
+        expect(p2[Equatable.equals](p1)).toBe(true);
+    });
+    it("complex type, same values", () => {
+        const l1 = new Line({ from: { x: 10, y: 20 }, to: { x: 15, y: 25 } });
+        const l2 = new Line({ from: { x: 10, y: 20 }, to: { x: 15, y: 25 } });
+        expect(l1[Equatable.equals](l2)).toBe(true);
+        expect(l2[Equatable.equals](l1)).toBe(true);
+    });
+    it("same type, different values", () => {
+        const p1 = new Point({ x: 10, y: 20 });
+        const p2 = new Point({ x: 10, y: 21 });
+        expect(p1[Equatable.equals](p2)).toBe(false);
+        expect(p2[Equatable.equals](p1)).toBe(false);
+    });
+    it("similar type, same values", () => {
+        const Vector = StructType([
+            { name: "x", type: int32 },
+            { name: "y", type: int32 }
+        ]);
+        const p = new Point({ x: 10, y: 20 });
+        const v = new Vector({ x: 10, y: 20 });
+        expect(p[Equatable.equals](v)).toBe(true);
+        expect(v[Equatable.equals](p)).toBe(true);
+    });
+    it("different type, same values", () => {
+        const Vector = StructType([
+            { name: "dx", type: int32 },
+            { name: "dy", type: int32 }
+        ]);
+        const p = new Point({ x: 10, y: 20 });
+        const v = new Vector({ dx: 10, dy: 20 });
+        expect(p[Equatable.equals](v)).toBe(false);
+        expect(v[Equatable.equals](p)).toBe(false);
+    });
+});
+describe("Equatable.hash", () => {
+    const Point = StructType([
+        { name: "x", type: int32 },
+        { name: "y", type: int32 }
+    ]);
+    const Line = StructType([
+        { name: "from", type: Point },
+        { name: "to", type: Point }
+    ]);
+    it("repeatable", () => {
+        const p = new Point({ x: 10, y: 20 });
+        expect(p[Equatable.hash]()).toBe(p[Equatable.hash]());
+    });
+    it("unique", () => {
+        const p1 = new Point({ x: 10, y: 20 });
+        const p2 = new Point({ x: 10, y: 21 });
+        expect(p1[Equatable.hash]()).not.toBe(p2[Equatable.hash]());
+    });
+    it("complex", () => {
+        const l1 = new Line({ from: { x: 10, y: 20 }, to: { x: 15, y: 25 } });
+        const l2 = new Line({ from: { x: 10, y: 20 }, to: { x: 15, y: 25 } });
+        expect(l1[Equatable.hash]()).toBe(l2[Equatable.hash]());
+    });
+    it("similar type, same values, same hash", () => {
+        const Vector = StructType([
+            { name: "x", type: int32 },
+            { name: "y", type: int32 }
+        ]);
+        const p = new Point({ x: 10, y: 20 });
+        const v = new Vector({ x: 10, y: 20 });
+        expect(p[Equatable.hash]()).toBe(v[Equatable.hash]());
+    });
+    it("different type, same values, different hash", () => {
+        const Vector = StructType([
+            { name: "dx", type: int32 },
+            { name: "dy", type: int32 }
+        ]);
+        const p = new Point({ x: 10, y: 20 });
+        const v = new Vector({ dx: 10, dy: 20 });
+        expect(p[Equatable.hash]()).not.toBe(v[Equatable.hash]());
+    });
+});
+describe("StructuralEquatable.structuralEquals", () => {
+    const Point = StructType([
+        { name: "x", type: int32 },
+        { name: "y", type: int32 }
+    ]);
+    const Line = StructType([
+        { name: "from", type: Point },
+        { name: "to", type: Point }
+    ]);
+    it("same type, same values", () => {
+        const p1 = new Point({ x: 10, y: 20 });
+        const p2 = new Point({ x: 10, y: 20 });
+        expect(p1[StructuralEquatable.structuralEquals](p2, Equaler.defaultEqualer)).toBe(true);
+        expect(p2[StructuralEquatable.structuralEquals](p1, Equaler.defaultEqualer)).toBe(true);
+    });
+    it("complex type, same values", () => {
+        const l1 = new Line({ from: { x: 10, y: 20 }, to: { x: 15, y: 25 } });
+        const l2 = new Line({ from: { x: 10, y: 20 }, to: { x: 15, y: 25 } });
+        expect(l1[StructuralEquatable.structuralEquals](l2, Equaler.defaultEqualer)).toBe(true);
+        expect(l2[StructuralEquatable.structuralEquals](l1, Equaler.defaultEqualer)).toBe(true);
+    });
+    it("same type, different values", () => {
+        const p1 = new Point({ x: 10, y: 20 });
+        const p2 = new Point({ x: 10, y: 21 });
+        expect(p1[StructuralEquatable.structuralEquals](p2, Equaler.defaultEqualer)).toBe(false);
+        expect(p2[StructuralEquatable.structuralEquals](p1, Equaler.defaultEqualer)).toBe(false);
+    });
+    it("similar type, same values", () => {
+        const Vector = StructType([
+            { name: "x", type: int32 },
+            { name: "y", type: int32 }
+        ]);
+        const p = new Point({ x: 10, y: 20 });
+        const v = new Vector({ x: 10, y: 20 });
+        expect(p[StructuralEquatable.structuralEquals](v, Equaler.defaultEqualer)).toBe(true);
+        expect(v[StructuralEquatable.structuralEquals](p, Equaler.defaultEqualer)).toBe(true);
+    });
+    it("different type, same values", () => {
+        const Vector = StructType([
+            { name: "dx", type: int32 },
+            { name: "dy", type: int32 }
+        ]);
+        const p = new Point({ x: 10, y: 20 });
+        const v = new Vector({ dx: 10, dy: 20 });
+        expect(p[StructuralEquatable.structuralEquals](v, Equaler.defaultEqualer)).toBe(false);
+        expect(v[StructuralEquatable.structuralEquals](p, Equaler.defaultEqualer)).toBe(false);
+    });
+    it("custom equaler", () => {
+        const p1 = new Point({ x: 10, y: 20 });
+        const p2 = new Point({ x: 10, y: 21 });
+        // custom equaler that treats 20 and 21 as the same value
+        const equaler = Equaler.create(
+            (a, b) =>
+                a === 20 && b === 21 ||
+                a === 21 && b === 20 ||
+                Equaler.defaultEqualer.equals(a, b),
+            x =>
+                x === 20 ? 0 :
+                x === 21 ? 0 :
+                Equaler.defaultEqualer.hash(x));
+        expect(p1[StructuralEquatable.structuralEquals](p2, equaler)).toBe(true);
+        expect(p2[StructuralEquatable.structuralEquals](p1, equaler)).toBe(true);
+    });
+});
+describe("StructuralEquatable.structuralHash", () => {
+    const Point = StructType([
+        { name: "x", type: int32 },
+        { name: "y", type: int32 }
+    ]);
+    const Line = StructType([
+        { name: "from", type: Point },
+        { name: "to", type: Point }
+    ]);
+    it("repeatable", () => {
+        const p = new Point({ x: 10, y: 20 });
+        expect(p[StructuralEquatable.structuralHash](Equaler.defaultEqualer)).toBe(p[StructuralEquatable.structuralHash](Equaler.defaultEqualer));
+    });
+    it("unique", () => {
+        const p1 = new Point({ x: 10, y: 20 });
+        const p2 = new Point({ x: 10, y: 21 });
+        expect(p1[StructuralEquatable.structuralHash](Equaler.defaultEqualer)).not.toBe(p2[StructuralEquatable.structuralHash](Equaler.defaultEqualer));
+    });
+    it("complex", () => {
+        const l1 = new Line({ from: { x: 10, y: 20 }, to: { x: 15, y: 25 } });
+        const l2 = new Line({ from: { x: 10, y: 20 }, to: { x: 15, y: 25 } });
+        expect(l1[StructuralEquatable.structuralHash](Equaler.defaultEqualer)).toBe(l2[StructuralEquatable.structuralHash](Equaler.defaultEqualer));
+    });
+    it("similar type, same values, same hash", () => {
+        const Vector = StructType([
+            { name: "x", type: int32 },
+            { name: "y", type: int32 }
+        ]);
+        const p = new Point({ x: 10, y: 20 });
+        const v = new Vector({ x: 10, y: 20 });
+        expect(p[StructuralEquatable.structuralHash](Equaler.defaultEqualer)).toBe(v[StructuralEquatable.structuralHash](Equaler.defaultEqualer));
+    });
+    it("different type, same values, different hash", () => {
+        const Vector = StructType([
+            { name: "dx", type: int32 },
+            { name: "dy", type: int32 }
+        ]);
+        const p = new Point({ x: 10, y: 20 });
+        const v = new Vector({ dx: 10, dy: 20 });
+        expect(p[StructuralEquatable.structuralHash](Equaler.defaultEqualer)).not.toBe(v[StructuralEquatable.structuralHash](Equaler.defaultEqualer));
+    });
+    it("custom equaler", () => {
+        const p1 = new Point({ x: 10, y: 20 });
+        const p2 = new Point({ x: 10, y: 21 });
+        // custom equaler that treats 20 and 21 as the same value
+        const equaler = Equaler.create(
+            (a, b) =>
+                a === 20 && b === 21 ||
+                a === 21 && b === 20 ||
+                Equaler.defaultEqualer.equals(a, b),
+            x =>
+                x === 20 ? 0 :
+                x === 21 ? 0 :
+                Equaler.defaultEqualer.hash(x));
+        expect(p1[StructuralEquatable.structuralHash](equaler)).toBe(p2[StructuralEquatable.structuralHash](equaler));
     });
 });

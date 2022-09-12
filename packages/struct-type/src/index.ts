@@ -17,6 +17,7 @@
 import { conststring, constsymbol, numstr } from "@esfx/type-model";
 import * as structType from "./structType.js";
 import * as primitives from "./primitives.js";
+import { Comparable, Equatable, StructuralComparable, StructuralEquatable } from "@esfx/equatable";
 
 /**
  * Represents a primitive struct type.
@@ -157,57 +158,62 @@ export interface StructFieldDefinition {
 /**
  * Represents an instance of a struct type.
  */
-export type Struct<TDef extends readonly StructFieldDefinition[] = any> = {
-    /**
-     * Gets the underlying `ArrayBuffer` or `SharedArrayBuffer` of a struct.
-     */
-    readonly buffer: ArrayBufferLike;
+export type Struct<TDef extends readonly StructFieldDefinition[] = any> = 
+    & Equatable
+    & StructuralEquatable
+    & {
+        /**
+         * Gets the underlying `ArrayBuffer` or `SharedArrayBuffer` of a struct.
+         */
+        readonly buffer: ArrayBufferLike;
 
-    /**
-     * Gets the byte offset into this struct's `buffer` at which the struct starts.
-     */
-    readonly byteOffset: number;
+        /**
+         * Gets the byte offset into this struct's `buffer` at which the struct starts.
+         */
+        readonly byteOffset: number;
 
-    /**
-     * Gets the size of this struct in bytes.
-     */
-    readonly byteLength: number;
+        /**
+         * Gets the size of this struct in bytes.
+         */
+        readonly byteLength: number;
 
-    /**
-     * Gets the value of a named field of this struct.
-     */
-    get<K extends TDef[number]["name"]>(key: K): StructFieldRuntimeType<Extract<TDef[number], { readonly name: K }>>;
+        /**
+         * Gets the value of a named field of this struct.
+         */
+        get<K extends TDef[number]["name"]>(key: K): StructFieldRuntimeType<Extract<TDef[number], { readonly name: K }>>;
 
-    /**
-     * Sets the value of a named field of this struct.
-     */
-    set<K extends TDef[number]["name"]>(key: K, value: StructFieldRuntimeType<Extract<TDef[number], { readonly name: K }>>): void;
+        /**
+         * Sets the value of a named field of this struct.
+         */
+        set<K extends TDef[number]["name"]>(key: K, value: StructFieldRuntimeType<Extract<TDef[number], { readonly name: K }>>): void;
 
-    /**
-     * Gets the value of an ordinal field of this struct.
-     */
-    getIndex<I extends numstr<keyof TDef>>(index: I): StructFieldRuntimeType<Extract<TDef[Extract<I, keyof TDef>], StructFieldDefinition>>;
+        /**
+         * Gets the value of an ordinal field of this struct.
+         */
+        getIndex<I extends numstr<keyof TDef>>(index: I): StructFieldRuntimeType<Extract<TDef[Extract<I, keyof TDef>], StructFieldDefinition>>;
 
-    /**
-     * Sets the value of an ordinal field of this struct.
-     */
-    setIndex<I extends numstr<keyof TDef>>(index: I, value: StructFieldRuntimeType<Extract<TDef[Extract<I, keyof TDef>], StructFieldDefinition>>): boolean;
+        /**
+         * Sets the value of an ordinal field of this struct.
+         */
+        setIndex<I extends numstr<keyof TDef>>(index: I, value: StructFieldRuntimeType<Extract<TDef[Extract<I, keyof TDef>], StructFieldDefinition>>): boolean;
 
-    /**
-     * Writes the value of this struct to an array buffer.
-     */
-    writeTo(buffer: ArrayBufferLike, byteOffset?: number): void;
-} & {
-    /**
-     * Gets or sets a named field of the struct.
-     */
-    [K in TDef[number]["name"]]: StructFieldRuntimeType<Extract<TDef[number], { readonly name: K }>>;
-} & {
-    /**
-     * Gets or sets an ordinal field of the struct.
-     */
-    [I in Extract<keyof TDef, `${number}`>]: StructFieldRuntimeType<Extract<TDef[I], StructFieldDefinition>>;
-};
+        /**
+         * Writes the value of this struct to an array buffer.
+         */
+        writeTo(buffer: ArrayBufferLike, byteOffset?: number): void;
+    }
+    & {
+        /**
+         * Gets or sets a named field of the struct.
+         */
+        [K in TDef[number]["name"]]: StructFieldRuntimeType<Extract<TDef[number], { readonly name: K }>>;
+    }
+    & {
+        /**
+         * Gets or sets an ordinal field of the struct.
+         */
+        [I in Extract<keyof TDef, `${number}`>]: StructFieldRuntimeType<Extract<TDef[I], StructFieldDefinition>>;
+    };
 
 /**
  * Gets the runtime type from a `StructFieldType`.

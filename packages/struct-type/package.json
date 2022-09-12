@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@esfx/type-model": "workspace:*",
+        "@esfx/equatable": "workspace:*",
         "tslib": "^2.4.0"
     },
     "publishConfig": {

@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import { combineHashes, Equaler, Equatable, StructuralEquatable } from '@esfx/equatable';
 import { numstr } from '@esfx/type-model';
 import type { StructFieldDefinition, StructInitProperties, StructInitElements, StructFieldRuntimeType } from './index.js';
 import { StructTypeInfo } from './typeInfo.js';
@@ -50,7 +51,7 @@ function isStructConstructorStructFieldArrayOverload<TDef extends readonly Struc
 }
 
 /* @internal */
-export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
+export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> implements Equatable, StructuralEquatable {
     static {
         _getDataView = struct => struct.#dataView;
     }
@@ -170,6 +171,35 @@ export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any
         const src = new Uint8Array(this.#buffer, this.#byteOffset, size);
         const dest = new Uint8Array(buffer, byteOffset, size);
         dest.set(src);
+    }
+
+    [Equatable.equals](other: unknown): boolean {
+        return this[StructuralEquatable.structuralEquals](other, Equaler.defaultEqualer);
+    }
+
+    [Equatable.hash](): number {
+        return this[StructuralEquatable.structuralHash](Equaler.defaultEqualer);
+    }
+
+    [StructuralEquatable.structuralEquals](other: unknown, equaler: Equaler<unknown>): boolean {
+        if (!(other instanceof Struct)) return false;
+        if (!Equaler.defaultEqualer.equals(this.#type, other.#type)) return false;
+        for (let i = 0; i < this.#type.fields.length; i++) {
+            const thisValue = this.#type.fields[i].readFrom(this, this.#dataView);
+            const otherValue = other.#type.fields[i].readFrom(other, other.#dataView);
+            if (!equaler.equals(thisValue, otherValue)) return false;
+        }
+        return true;
+    }
+
+    [StructuralEquatable.structuralHash](equaler: Equaler<unknown>): number {
+        let hc = 0;
+        hc = combineHashes(hc, Equaler.defaultEqualer.hash(this.#type));
+        for (let i = 0; i < this.#type.fields.length; i++) {
+            const field = this.#type.fields[i];
+            hc = combineHashes(hc, equaler.hash(field.readFrom(this, this.#dataView)));
+        }
+        return hc;
     }
 }
 
