@@ -36,6 +36,24 @@ inline uint32_t ComputeAddressHash(v8::internal::Address address) {
   return ComputeUnseededHash(static_cast<uint32_t>(address & 0xFFFFFFFFul));
 }
 
+template <class To, class From>
+std::enable_if_t<
+    sizeof(To) == sizeof(From) &&
+    std::is_trivially_copyable<From>::value &&
+    std::is_trivially_copyable<To>::value,
+    To>
+// constexpr support needs compiler magic
+bit_cast(const From& src) noexcept
+{
+    static_assert(std::is_trivially_constructible<To>::value,
+        "This implementation additionally requires "
+        "destination type to be trivially constructible");
+ 
+    To dst;
+    memcpy(&dst, &src, sizeof(To));
+    return dst;
+}
+
 uint32_t HashBigInt(v8::Local<v8::BigInt> bigint_key) {
     int sign_bit = 0;
     int word_count = bigint_key->WordCount();
@@ -62,7 +80,7 @@ void HashBigInt(const v8::FunctionCallbackInfo<v8::Value>& args) {
 
     v8::Local<v8::BigInt> bigint_key = args[0].As<v8::BigInt>();
     uint32_t hash = HashBigInt(bigint_key);
-    args.GetReturnValue().Set(v8::Int32::New(isolate, std::_Bit_cast<int32_t>(hash)));
+    args.GetReturnValue().Set(v8::Int32::New(isolate, bit_cast<int32_t>(hash)));
 }
 
 uint32_t HashNumber(v8::Local<v8::Number> number_key, v8::Local<v8::Context> context) {
@@ -85,12 +103,12 @@ void HashNumber(const v8::FunctionCallbackInfo<v8::Value>& args) {
 
     v8::Local<v8::Number> number_key = args[0].As<v8::Number>();
     uint32_t hash = HashNumber(number_key, isolate->GetCurrentContext());
-    args.GetReturnValue().Set(v8::Int32::New(isolate, std::_Bit_cast<int32_t>(hash)));
+    args.GetReturnValue().Set(v8::Int32::New(isolate, bit_cast<int32_t>(hash)));
 }
 
 uint32_t HashName(v8::Local<v8::Name> name_key) {
     int hash_int = name_key->GetIdentityHash();
-    return std::_Bit_cast<uint32_t>(hash_int);
+    return bit_cast<uint32_t>(hash_int);
 }
 
 void HashName(const v8::FunctionCallbackInfo<v8::Value>& args) {
@@ -103,12 +121,12 @@ void HashName(const v8::FunctionCallbackInfo<v8::Value>& args) {
 
     v8::Local<v8::Name> string_key = args[0].As<v8::Name>();
     uint32_t hash = HashName(string_key);
-    args.GetReturnValue().Set(v8::Int32::New(isolate, std::_Bit_cast<int32_t>(hash)));
+    args.GetReturnValue().Set(v8::Int32::New(isolate, bit_cast<int32_t>(hash)));
 }
 
 uint32_t HashObject(v8::Local<v8::Object> object_key) {
     int hash_int = object_key->GetIdentityHash();
-    return std::_Bit_cast<uint32_t>(hash_int);
+    return bit_cast<uint32_t>(hash_int);
 }
 
 void HashObject(const v8::FunctionCallbackInfo<v8::Value>& args) {
@@ -121,7 +139,7 @@ void HashObject(const v8::FunctionCallbackInfo<v8::Value>& args) {
 
     v8::Local<v8::Object> object_key = args[0].As<v8::Object>();
     uint32_t hash = HashObject(object_key);
-    args.GetReturnValue().Set(v8::Int32::New(isolate, std::_Bit_cast<int32_t>(hash)));
+    args.GetReturnValue().Set(v8::Int32::New(isolate, bit_cast<int32_t>(hash)));
 }
 
 void HashUnknown(const v8::FunctionCallbackInfo<v8::Value>& args) {
@@ -156,7 +174,7 @@ void HashUnknown(const v8::FunctionCallbackInfo<v8::Value>& args) {
         isolate->ThrowException(v8::Exception::TypeError(v8::String::NewFromUtf8(isolate, "Invalid arguments").ToLocalChecked()));
     }
 
-    args.GetReturnValue().Set(v8::Int32::New(isolate, std::_Bit_cast<int32_t>(hash)));
+    args.GetReturnValue().Set(v8::Int32::New(isolate, bit_cast<int32_t>(hash)));
 }
 
 void Init(v8::Local<v8::Object> exports) {
@@ -168,4 +186,4 @@ void Init(v8::Local<v8::Object> exports) {
     NODE_SET_METHOD(exports, "hashUnknown", HashUnknown);
 }
 
-NODE_MODULE(NODE_GYP_MODULE_NAME, Init);
+NODE_MODULE(NODE_GYP_MODULE_NAME, Init)

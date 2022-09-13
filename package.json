@@ -6,7 +6,12 @@
     "url": "https://github.com/esfx/esfx.git"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "prebuild-js": "yarn workspace @esfx/canceltoken run prebuild && yarn workspace @esfx/equatable run prebuild",
+    "build-js": "gulp ci --no-prebuild",
+    "build-windows": "yarn workspace @esfx/equatable run package-node-win32-x64",
+    "build-linux": "yarn workspace @esfx/equatable run package-node-linux-x64",
+    "build-macos": "yarn workspace @esfx/equatable run package-node-darwin-x64"
   },
   "bugs": {
     "url": "https://github.com/esfx/esfx/issues"

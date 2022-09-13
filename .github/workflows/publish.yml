@@ -1,0 +1,173 @@
+name: publish
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Version number to publish
+        required: true
+        type: string
+        default: 1.0.0-dev.0
+      force_publish:
+        description: Whether to force publication of all packages
+        required: false
+        type: boolean
+        default: false
+      prerelease:
+        description: Whether the associated GitHub Release should be marked as a prerelease
+        required: false
+        type: boolean
+        default: true
+      draft:
+        description: Whether the associated GitHub Release should be marked as a draft
+        required: false
+        type: boolean
+        default: true
+jobs:
+  js:
+    runs-on: ubuntu-latest
+    outputs:
+      changed_files: ${{ steps.detect_changes.outputs.changed_files }}
+      changed_packages: ${{ steps.detect_changes.outputs.changed_packages }}
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'yarn'
+    - name: yarn install
+      run: yarn install --ignore-scripts
+    - name: lerna version
+      run: lerna version ${{ github.event.inputs.version }} --no-git-tag-version --no-push --yes $([ ${{github.event.inputs.force_publish }} == true ] && echo "--force-publish")
+    - name: upload version artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: version-artifacts
+        path: |
+          internal/*/package*.json
+          packages/*/package*.json
+          package.json
+          lerna.json
+          yarn.lock
+    - name: detect changes
+      id: detect_changes
+      run: |
+        echo "::set-output name=changed_files::$(CHANGED_FILES=$(git status --porcelain -- package.json lerna.json yarn.lock internal/*/package.json packages/*/package.json | cut -c 4-) node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_FILES.split(/\n/g).filter(Boolean)))')";
+        echo "::set-output name=changed_packages::$(CHANGED_PACKAGE_LIST=$(git status --porcelain -- internal/*/package.json packages/*/package.json | cut -c 4-) node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_PACKAGE_LIST.split(/\n/g).filter(Boolean).reduce((obj, path) => ({ ...obj, [path]: true }), {})))')";
+    - name: lerna link
+      run: lerna link
+    - name: build
+      run: yarn run build-js
+    # - name: test
+    #   run: yarn run test
+    - name: upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: js-artifacts
+        path: |
+          internal/*/dist/**
+          packages/*/dist/**
+  native:
+    strategy:
+      matrix:
+        os:
+        - name: windows
+          target: windows-2019
+        - name: linux
+          target: ubuntu-latest
+        - name: macos
+          target: macos-latest
+        node:
+        - 16
+        - 18
+    name: "${{ matrix.os.name }} (node v${{ matrix.node }})"
+    runs-on: ${{ matrix.os.target }}
+    needs:
+    - js
+    # TODO: Do not build if binary packages not included in changed packages
+    # TODO: Test binaries
+    steps:
+    - uses: actions/checkout@v3
+    - name: use node v16
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node }}
+        cache: 'yarn'
+    - name: sync version
+      uses: actions/download-artifact@v3
+      with:
+        name: version-artifacts
+        path: ${{ github.workspace }}
+    - name: yarn install
+      run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
+    - name: build native binaries
+      run: yarn run build-${{ matrix.os.name }}
+    - name: upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: native-artifacts
+        path: packages/equatable/build/stage/**
+  # TODO: Build docs on windows
+  package:
+    runs-on: ubuntu-latest
+    needs:
+    - js
+    - native
+    steps:
+    - uses: actions/checkout@v3
+    - name: use node v16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        registry-url: 'https://registry.npmjs.org'
+    - name: sync version
+      uses: actions/download-artifact@v3
+      with:
+        name: version-artifacts
+        path: ${{ github.workspace }}
+    - name: yarn install
+      run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
+    - name: lerna link
+      run: lerna link
+    - name: download js artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: js-artifacts
+        path: ${{ github.workspace }}
+    - name: download native artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: native-artifacts
+        path: packages/equatable/build/stage
+    - name: verify packages
+      run: yarn workspaces run prepack
+    - name: commit and tag version
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+        git add -- ${{ join(fromJson(needs.js.outputs.changed_files), ' ') }}
+        git commit -m "v${{ github.event.inputs.version }}"
+        git tag "v${{ github.event.inputs.version }}" -m "v${{ github.event.inputs.version }}"
+        git push --follow-tags --no-verify --atomic origin ${{ github.ref_name }}
+    - name: create github release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: packages/*/build/stage/v${{ github.event.inputs.version }}/*.tar.gz
+        draft: ${{ github.event.inputs.draft }}
+        prerelease: ${{ github.event.inputs.prerelease }}
+        tag: "v${{ github.event.inputs.version }}"
+    # - name: publish to npm
+    #   env:
+    #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    #   run: |
+    #     lerna publish from-git --yes
+    # - name: list outputs # NOTE: this is temporary and will be removed
+    #   run: |
+    #     find internal/*/dist/** packages/*/dist/** -type f
+    # - name: list binaries # NOTE: this is temporary and will be removed
+    #   run: |
+    #     find packages/*/build/stage/** -type f
+    # TODO: Publish release on GitHub
+    # TODO: Publish binaries to GitHub Release
+    # TODO: Publish to NPM

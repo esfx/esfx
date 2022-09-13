@@ -17,7 +17,7 @@ lib/hashCodeNative.js
 lib/hashCode.cpp
 lib/hashCode.h
 lib/package.json
-# binding.gyp
+binding.gyp
 LICENSE
 package.json
 README.md
