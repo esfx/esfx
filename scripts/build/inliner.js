@@ -15,6 +15,7 @@
 */
 
 // @ts-check
+const { visitNodes, visitEachChild } = require("typescript");
 const ts = require("typescript");
 const { treeShaker } = require("./treeShaker");
 const { isExpressionIdentifier, isCommonJSImportStatement, isPotentiallyInlinableCallee, tryGetImportDeclarationLikeOfSymbol, getEffectiveModuleSpecifierOfImportDeclarationLike, getDeclarationOfKind, getModuleSymbol, isExternalOrCommonJsModule, cloneNode, isAssignmentTarget } = require("./utils");
@@ -32,6 +33,104 @@ function createInliner(program, mode = "marked") {
 }
 
 exports.createInliner = createInliner;
+
+/**
+ * @param {ts.TransformationContext} context
+ */
+function transformModule(context) {
+    const { factory } = context;
+    return { transformSourceFile, transformBundle };
+
+    /**
+     * @param {ts.SourceFile} node
+     */
+    function transformSourceFile(node) {
+        if (node.isDeclarationFile) return node;
+        node = ts.visitEachChild(node, topLevelStatementVisitor, context);
+        return node;
+    }
+
+    /**
+     * @param {ts.Bundle} bundle
+     */
+    function transformBundle(bundle) {
+        return factory.createBundle(bundle.sourceFiles.map(transformSourceFile), bundle.prepends);
+    }
+
+    /**
+     * @param {ts.Node} node
+     * @returns {ts.VisitResult<ts.Node>}
+     */
+    function topLevelStatementVisitor(node) {
+        if (ts.isFunctionDeclaration(node)) return visitFunctionDeclaration(node);
+        if (ts.isClassDeclaration(node)) return visitClassDeclaration(node);
+        if (ts.isVariableDeclaration(node)) return visitVariableDeclaration(node);
+        if (ts.isImportDeclaration(node)) throw new Error("Not supported");
+        if (ts.isExportDeclaration(node)) throw new Error("Not supported");
+        return node;
+    }
+
+    /**
+     * @param {ts.Node} node
+     * @returns {ts.VisitResult<ts.Node>}
+     */
+    function modifierVisitor(node) {
+        switch (node.kind) {
+            case ts.SyntaxKind.ExportKeyword:
+            case ts.SyntaxKind.DefaultKeyword:
+                return undefined;
+            default:
+                return node;
+        }
+    }
+
+    /**
+     * @param {ts.FunctionDeclaration} node
+     */
+    function visitFunctionDeclaration(node) {
+        if (node.modifiers?.some(mod => mod.kind === ts.SyntaxKind.ExportKeyword)) {
+            if (node.modifiers?.some(mod => mod.kind === ts.SyntaxKind.DefaultKeyword)) {
+                throw new Error("Not supported");
+            }
+            if (!node.name) throw new Error();
+            if (!node.body) throw new Error();
+            const visited = visitEachChild(node, modifierVisitor, context);
+            const exporter = factory.createPropertyAccessExpression(factory.createIdentifier("exports"), node.name);
+            const exportAssignment = factory.createAssignment(exporter, node.name);
+            const statement = factory.createExpressionStatement(exportAssignment);
+            return [visited, statement];
+        }
+        return node;
+    }
+
+    /**
+     * @param {ts.ClassDeclaration} node
+     */
+    function visitClassDeclaration(node) {
+        if (node.modifiers?.some(mod => mod.kind === ts.SyntaxKind.ExportKeyword)) {
+            if (node.modifiers?.some(mod => mod.kind === ts.SyntaxKind.DefaultKeyword)) {
+                throw new Error("Not supported");
+            }
+            if (!node.name) throw new Error();
+            const visited = visitEachChild(node, modifierVisitor, context);
+            const exporter = factory.createPropertyAccessExpression(factory.createIdentifier("exports"), node.name);
+            const exportAssignment = factory.createAssignment(exporter, node.name);
+            const statement = factory.createExpressionStatement(exportAssignment);
+            return [visited, statement];
+        }
+        return node;
+    }
+
+    /**
+     * @param {ts.VariableDeclaration} node
+     */
+    function visitVariableDeclaration(node) {
+        if (node.modifiers?.some(mod => mod.kind === ts.SyntaxKind.ExportKeyword)) {
+            throw new Error("Not supported");
+        }
+        return node;
+    }
+}
 
 const inlinedCommentRegExp = /\/\*{1,2}\s*[#@]__INLINE__\s*\*\/|\/\/\s*[#@]__INLINE__\s*$/i;
 
@@ -324,6 +423,7 @@ function inliner(program, context, mode) {
         if (!checker) return { inline: false };
 
         const referencedSym = checker.getSymbolAtLocation(node);
+        if (!referencedSym) return { inline: false };
         if (decision = functionInliningDecisionCache.get(referencedSym)) return decision;
 
         const sym = referencedSym.flags & ts.SymbolFlags.Alias ? checker.getAliasedSymbol(referencedSym) : referencedSym;
@@ -416,8 +516,8 @@ function inliner(program, context, mode) {
     function identifierReferencesGlobal(node) {
         const nodeSym = checker.getSymbolAtLocation(node);
         if (!nodeSym) return false;
-        /** @type {ts.Node} */
-        let decl = nodeSym.valueDeclaration ?? nodeSym.declarations[0];
+        /** @type {ts.Node | undefined} */
+        let decl = nodeSym.valueDeclaration ?? nodeSym.declarations?.[0];
         if (!decl) return false;
         if (ts.isVariableDeclaration(decl)) decl = decl.parent;
         if (ts.isVariableDeclarationList(decl)) decl = decl.parent;
@@ -454,6 +554,7 @@ function inliner(program, context, mode) {
 
         // get the symbol referenced by this node
         const referencedSym = checker.getSymbolAtLocation(node);
+        if (!referencedSym) return { inline: false };
         if (decision = constantInliningDecisionCache.get(referencedSym)) return decision;
 
         // if the symbol is an alias, resolve it
@@ -691,7 +792,7 @@ function inliner(program, context, mode) {
          * @param {ts.ArrayLiteralExpression} node
          */
         function tryInlineArrayLiteralExpression(node) {
-            const elements = node.elements.map(element =>  {
+            const elements = node.elements.map(element => {
                 if (ts.isSpreadElement(element)) return tryHandler(element, handlers.tryInlineSpreadElement, tryInlineSpreadElement);
                 return tryInlineExpression(element);
             });
@@ -938,7 +1039,11 @@ function inliner(program, context, mode) {
             const inlinedFile = moduleReference.generated;
             const inlinedProgram = createProgram({
                 rootNames: [inlinedFile],
-                options: { ...moduleReference.projectReference.commandLine.options, allowJs: true },
+                options: {
+                    ...moduleReference.projectReference.commandLine.options,
+                    module: ts.ModuleKind.CommonJS,
+                    allowJs: true
+                },
                 projectReferences: moduleReference.projectReference.commandLine.projectReferences
             });
             inlinedProgram.getTypeChecker();
@@ -972,7 +1077,10 @@ function inliner(program, context, mode) {
             }
 
             // do additional inlining on the new source file.
-            inlinedSourceFile = ts.transform(inlinedSourceFile, [coerceCustomTransformer(createInliner(inlinedProgram, "all"))]).transformed[0];
+            inlinedSourceFile = ts.transform(inlinedSourceFile, [
+                coerceCustomTransformer(createInliner(inlinedProgram, "all")),
+                coerceCustomTransformer(transformModule)
+            ]).transformed[0];
 
             // mark all nodes as synthesized. this causes the TypeScript emitter to emit the nodes verbatim.
             markSynthesized(inlinedSourceFile);
@@ -1305,7 +1413,7 @@ function inliner(program, context, mode) {
     }
 
     /**
-     * @param {ts.CreateProgramOptions} options 
+     * @param {ts.CreateProgramOptions} options
      */
     function createProgram(options) {
         const program = ts.createProgram(options);
