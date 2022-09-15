@@ -1,0 +1,99 @@
+name: nightly
+on:
+  # schedule:
+  #   - cron: '0 7 * * *'
+  workflow_dispatch:
+jobs:
+  # checks:
+  #   runs-on: ubuntu-latest
+  #   name: check for recent changes
+  #   outputs:
+  #     no_changes: ${{ steps.has_changes.outputs.no_changes }}
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: print latest commit
+  #     run: echo ${{ github.sha }}
+  #   - id: has_changes
+  #     continue-on-error: true
+  #     name: check for recent changes
+  #     if: ${{ github.event_name == 'schedule' }}
+  #     run: test -z $(git rev-list --after="24 hours" ${{ github.sha }}) && echo "::set-output name=no_changes::true"
+  windows:
+    # needs: checks
+    # if: ${{ needs.checks.outputs.no_changes != 'true' }}
+    runs-on: windows-2019
+    steps:
+    - uses: actions/checkout@v3
+    - name: use node v16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        cache: 'yarn'
+    - name: install dependencies
+      run: yarn install --ignore-scripts
+    - name: build windows binaries
+      run: yarn workspace @esfx/equatable run package-node-win32-x64
+    - name: upload build artifacts
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: windows-artifacts
+        path: |
+          packages/equatable/build/stage/
+  linux:
+    # needs: checks
+    # if: ${{ needs.checks.outputs.no_changes != 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: use node v16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: install dependencies
+      run: yarn install --ignore-scripts
+    - name: build linux binaries
+      run: yarn workspace @esfx/equatable run package-node-linux-x64
+    - name: upload build artifacts
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: linux-artifacts
+        path: |
+          packages/equatable/build/stage/
+  macos:
+    # needs: checks
+    # if: ${{ needs.checks.outputs.no_changes != 'true' }}
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: use node v16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: install dependencies
+      run: yarn install --ignore-scripts
+    - name: build macos binaries
+      run: yarn workspace @esfx/equatable run package-node-darwin-x64
+    - name: upload build artifacts
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: macos-artifacts
+        path: |
+          packages/equatable/build/stage/
+  js:
+    # needs: checks
+    # if: ${{ needs.checks.outputs.no_changes != 'true' }}
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: use node v16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: install dependencies
+      run: yarn install --ignore-scripts
+    - name: link workspace
+      run: lerna link
+    - name: prebuild
+      run: yarn workspace @esfx/canceltoken run prebuild
+    - name: build packages
+      run: gulp ci --no-prebuild

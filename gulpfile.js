@@ -16,6 +16,7 @@ const yargs = require("yargs")
     .option("runInBand", { type: "boolean", alias: "i", default: false })
     .option("watch", { type: "boolean", default: false })
     .option("watchAll", { type: "boolean", default: false })
+    .option("selectProjects", { type: "string", array: true })
     .option("fix", { type: "boolean", default: false })
     .option("interactive", { type: "boolean", default: true })
     .option("docPackagePattern", { type: "string" })
@@ -40,7 +41,7 @@ const publicPackages = fs.readdirSync("packages")
     .filter(pkg => fs.existsSync(`${pkg}/tsconfig.json`))
     .sort();
 
-const { build: build_packages, clean: clean_packages } = makeProjects(publicPackages);
+const { prebuild, build: build_packages, clean: clean_packages } = makeProjects(publicPackages);
 gulp.task("packages", build_packages);
 
 const clean_dist = () => del([
@@ -58,6 +59,8 @@ gulp.task("clean", clean);
 const build = gulp.parallel(build_internal, build_packages);
 gulp.task("build", build);
 
+gulp.task("prebuild", prebuild);
+
 const ci = gulp.series(clean, build);
 gulp.task("ci", ci);
 
@@ -72,6 +75,7 @@ const test = () => {
     args.addSwitch("--runInBand", argv.runInBand, false);
     args.addSwitch("--watch", argv.watch, false);
     args.addSwitch("--watchAll", argv.watchAll, false);
+    args.addSwitch("--selectProjects", argv.selectProjects.join(" "));
     return exec(process.execPath, [require.resolve("jest/bin/jest"), ...args], { verbose: true });
 };
 // gulp.task("test", gulp.series(build, test));
@@ -89,6 +93,7 @@ const perf = () => {
     args.addSwitch("--runInBand", argv.runInBand, false);
     args.addSwitch("--watch", argv.watch, false);
     args.addSwitch("--watchAll", argv.watchAll, false);
+    args.addSwitch("--selectProjects", argv.selectProjects.join(" "));
     return exec(process.execPath, [require.resolve("jest/bin/jest"), ...args], { verbose: true });
 };
 gulp.task("perf", perf);
@@ -110,6 +115,7 @@ gulp.task("default", gulp.series(build, verify, test));
  * @param {string[]} projects
  */
 function makeProjects(projects) {
+    const prebuilders = [];
     const builders = [];
     const cleaners = [];
     for (const project of projects) {
@@ -205,14 +211,18 @@ function makeProjects(projects) {
         gulp.task(`clean:${project}`, clean);
         if (prebuild) {
             gulp.task(`prebuild:${project}`, prebuild);
+            prebuilders.push(prebuild);
         }
 
         builders.push(build);
         cleaners.push(clean);
     }
+
+    if (!prebuilders.length) prebuilders.push(async () => { });
+    const prebuild = gulp.parallel(prebuilders);
     const build = gulp.parallel(builders);
     const clean = gulp.parallel(cleaners);
-    return { build, clean };
+    return { prebuild, build, clean };
 }
 
 const docPackagePattern = argv.docPackagePattern && new RegExp(argv.docPackagePattern, "i");

@@ -14,7 +14,7 @@
     },
     "imports": {
         "#hashCode": {
-            "//node": "./lib/hashCodeNative.js",
+            "node": "./lib/hashCodeNative.js",
             "import": "./dist/esm/internal/hashCode.js",
             "require": "./dist/cjs/internal/hashCode.js"
         },
@@ -26,16 +26,16 @@
     "license": "Apache-2.0",
     "scripts": {
         "prepack": "node ../../scripts/verifyPackage.js",
-        "//install": "node-pre-gyp install --fallback-to-build",
-        "//prebuild": "node-pre-gyp configure build --runtime=node --target_arch=x64",
-        "//build-node-win32-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=win32",
-        "//build-node-linux-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=linux",
-        "//build-node-darwin-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=darwin",
+        "install": "node-pre-gyp install --fallback-to-build",
+        "prebuild": "node-pre-gyp configure build --runtime=node --target_arch=x64",
+        "build-node-win32-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=win32",
+        "build-node-linux-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=linux",
+        "build-node-darwin-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=darwin",
         "//build-node": "yarn build-node-win32-x64 & yarn build-node-linux-x64 & yarn build-node-darwin-x64",
         "//prepackage-node": "node-pre-gyp clean",
-        "//package-node-win32-x64": "node-pre-gyp configure build package --runtime=node --target_arch=x64 --target_platform=win32",
-        "//package-node-linux-x64": "node-pre-gyp configure build package --runtime=node --target_arch=x64 --target_platform=linux",
-        "//package-node-darwin-x64": "node-pre-gyp configure build package --runtime=node --target_arch=x64 --target_platform=darwin",
+        "package-node-win32-x64": "node-pre-gyp configure rebuild package --runtime=node --target_arch=x64 --target_platform=win32",
+        "package-node-linux-x64": "node-pre-gyp configure rebuild package --runtime=node --target_arch=x64 --target_platform=linux",
+        "package-node-darwin-x64": "node-pre-gyp configure rebuild package --runtime=node --target_arch=x64 --target_platform=darwin",
         "//package-node": "yarn package-node-win32-x64 & yarn package-node-linux-x64 & yarn package-node-darwin-x64",
         "//prepublish-native": "yarn package-node",
         "//publish-native": "node scripts/node-pre-gyp-github.js publish --name \"v{version}\" --body \"v{version}\" --release",

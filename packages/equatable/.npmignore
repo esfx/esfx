@@ -11,8 +11,8 @@
 /jest*config.js
 /tsconfig*.json
 *.tsbuildinfo
+binding.gyp_
 .vscode
 .npmfiles
 __tests__
 __perf__
-binding.gyp_

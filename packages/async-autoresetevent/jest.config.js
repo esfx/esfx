@@ -1,4 +1,5 @@
 module.exports = {
     ...require("../../jest.base.config"),
-    roots: ["<rootDir>"]
+    displayName: "async-autoresetevent",
+    roots: ["<rootDir>"],
 };
