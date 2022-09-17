@@ -160,7 +160,7 @@ exports.getEffectiveNamedImportsOfImportDeclarationLike = getEffectiveNamedImpor
  * @param {ts.Symbol} symbol
  */
 function tryGetImportDeclarationLikeOfSymbol(symbol) {
-    /** @type {ts.Node} */
+    /** @type {ts.Node | undefined} */
     let node = symbol.valueDeclaration ?? symbol.declarations?.[0];
     if (!node) return;
     if (ts.isImportSpecifier(node)) node = node.parent.parent.parent;

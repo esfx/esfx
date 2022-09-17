@@ -15,7 +15,7 @@
 */
 
 // @ts-check
-const { visitNodes, visitEachChild } = require("typescript");
+const { visitNode, visitNodes, visitEachChild, getOriginalNode, getParseTreeNode } = require("typescript");
 const ts = require("typescript");
 const { treeShaker } = require("./treeShaker");
 const { isExpressionIdentifier, isCommonJSImportStatement, isPotentiallyInlinableCallee, tryGetImportDeclarationLikeOfSymbol, getEffectiveModuleSpecifierOfImportDeclarationLike, getDeclarationOfKind, getModuleSymbol, isExternalOrCommonJsModule, cloneNode, isAssignmentTarget } = require("./utils");
@@ -197,6 +197,16 @@ function inliner(program, context, mode) {
     function transformSourceFile(node) {
         if (node.isDeclarationFile) return node;
 
+        const saved_currentSourceFile = currentSourceFile;
+        const saved_possibleStarImports = possibleStarImports;
+        const saved_starImportsBySymbol = starImportsBySymbol;
+        const saved_bindingImportsBySymbol = bindingImportsBySymbol;
+        const saved_importUses = importUses;
+        const saved_elidableImports = elidableImports;
+        const saved_inlinedModules = inlinedModules;
+        const saved_functionInliningDecisionCache = functionInliningDecisionCache;
+        const saved_constantInliningDecisionCache = constantInliningDecisionCache;
+
         currentSourceFile = node;
         possibleStarImports = [];
         starImportsBySymbol = new Map();
@@ -213,16 +223,17 @@ function inliner(program, context, mode) {
         node = ts.visitEachChild(node, expressionInliningVisitor, context);
         markUsedImports();
         node = ts.visitEachChild(node, topLevelStatementVisitor, context);
+        node = ts.visitEachChild(node, importReferenceVisitor, context);
 
-        currentSourceFile = undefined;
-        possibleStarImports = undefined;
-        starImportsBySymbol = undefined;
-        bindingImportsBySymbol = undefined;
-        importUses = undefined;
-        elidableImports = undefined;
-        inlinedModules = undefined;
-        functionInliningDecisionCache = undefined;
-        constantInliningDecisionCache = undefined;
+        currentSourceFile = saved_currentSourceFile;
+        possibleStarImports = saved_possibleStarImports;
+        starImportsBySymbol = saved_starImportsBySymbol;
+        bindingImportsBySymbol = saved_bindingImportsBySymbol;
+        importUses = saved_importUses;
+        elidableImports = saved_elidableImports;
+        inlinedModules = saved_inlinedModules;
+        functionInliningDecisionCache = saved_functionInliningDecisionCache;
+        constantInliningDecisionCache = saved_constantInliningDecisionCache;
         return node;
     }
 
@@ -234,6 +245,7 @@ function inliner(program, context, mode) {
     }
 
     /**
+     * Tests whether a {@link ts.Node} is marked with an inlining comment.
      * @param {ts.Node} node
      */
     function isInlined(node) {
@@ -242,6 +254,7 @@ function inliner(program, context, mode) {
     }
 
     /**
+     * Collects all of the imports marked with an inlining comment.
      * @param {ts.Node} node
      */
     function collectInlinedImports(node) {
@@ -250,8 +263,8 @@ function inliner(program, context, mode) {
                 collectInlinedImports(stmt);
             }
         }
-        else if (ts.isImportDeclaration(node)) {
-            if (!node.importClause || !node.moduleSpecifier || !ts.isStringLiteral(node.moduleSpecifier)) return;
+        else if (ts.isImportDeclaration(node) && node.importClause && !node.importClause.isTypeOnly && node.moduleSpecifier && ts.isStringLiteral(node.moduleSpecifier)) {
+            // ^ indicates a valid inlinable import declaration
             if (mode === "all" || isInlined(node) || isInlined(node.importClause)) {
                 const moduleSpecifier = node.moduleSpecifier.text;
                 const moduleReference = resolveModule(moduleSpecifier);
@@ -447,7 +460,7 @@ function inliner(program, context, mode) {
                 if (resolution) {
                     const program = getProgramForGeneratedOutput(resolution);
                     const checker = program.getTypeChecker();
-                    sourceFile = program.getSourceFile(resolution.generated);
+                    sourceFile = program.getSourceFile(resolution.generated) ?? (() => { throw new TypeError(); })();
                     ensureExplicitSourceMapRanges(sourceFile);
                     const moduleSymbol = sourceFile && getModuleSymbol(sourceFile, checker);
                     const exportedSymbols = moduleSymbol && checker.getExportsOfModule(moduleSymbol);
@@ -488,7 +501,7 @@ function inliner(program, context, mode) {
         const inlined = tryInlineExpression(statement.expression, state, {
             tryInlineExpressionIdentifier(node, fallback) {
                 if (identifierReferencesParameterName(node, parameterName)) return placeholder;
-                return fallback(node);
+                return fallback?.(node);
             }
         });
         state.inlinerStack.pop();
@@ -592,7 +605,7 @@ function inliner(program, context, mode) {
                     if (resolution) {
                         const program = getProgramForGeneratedOutput(resolution);
                         const checker = program.getTypeChecker();
-                        sourceFile = program.getSourceFile(resolution.generated);
+                        sourceFile = program.getSourceFile(resolution.generated) ?? (() => { throw new TypeError(); })();
                         ensureExplicitSourceMapRanges(sourceFile);
                         const moduleSymbol = sourceFile && getModuleSymbol(sourceFile, checker);
                         const exportedSymbols = moduleSymbol && checker.getExportsOfModule(moduleSymbol);
@@ -796,7 +809,7 @@ function inliner(program, context, mode) {
                 if (ts.isSpreadElement(element)) return tryHandler(element, handlers.tryInlineSpreadElement, tryInlineSpreadElement);
                 return tryInlineExpression(element);
             });
-            return elements.every(Boolean) ? factory.updateArrayLiteralExpression(node, elements) : undefined;
+            return elements.every(isDefined) ? factory.updateArrayLiteralExpression(node, elements) : undefined;
         }
 
         /**
@@ -811,7 +824,7 @@ function inliner(program, context, mode) {
                 if (ts.isGetAccessor(prop)) return tryHandler(prop, handlers.tryInlineObjectGetAccessorDeclaration);
                 if (ts.isSetAccessor(prop)) return tryHandler(prop, handlers.tryInlineObjectSetAccessorDeclaration);
             });
-            return properties.every(Boolean) ? factory.updateObjectLiteralExpression(node, properties) : undefined;
+            return properties.every(isDefined) ? factory.updateObjectLiteralExpression(node, properties) : undefined;
         }
 
         /**
@@ -862,7 +875,7 @@ function inliner(program, context, mode) {
             }
             const expression = tryInlineExpression(node.expression);
             const argumentList = expression && node.arguments.map(tryInlineExpression);
-            return argumentList?.every(Boolean) ? factory.updateCallExpression(node, expression, undefined, argumentList) : undefined;
+            return expression && argumentList?.every(isDefined) ? factory.updateCallExpression(node, expression, undefined, argumentList) : undefined;
         }
 
         /**
@@ -872,7 +885,7 @@ function inliner(program, context, mode) {
             const expression = tryInlineExpression(node.expression);
             if (!node.arguments) return expression && factory.updateNewExpression(node, expression, undefined, undefined);
             const argumentList = expression && node.arguments.map(tryInlineExpression);
-            return argumentList?.every(Boolean) ? factory.updateNewExpression(node, expression, undefined, argumentList) : undefined;
+            return expression && argumentList?.every(isDefined) ? factory.updateNewExpression(node, expression, undefined, argumentList) : undefined;
         }
 
         /**
@@ -883,7 +896,7 @@ function inliner(program, context, mode) {
                 const expression = tryInlineExpression(span.expression);
                 return expression && factory.updateTemplateSpan(span, expression, span.literal);
             });
-            return templateSpans.every(Boolean) ? factory.updateTemplateExpression(node, node.head, templateSpans) : undefined;
+            return templateSpans.every(isDefined) ? factory.updateTemplateExpression(node, node.head, templateSpans) : undefined;
         }
 
         /**
@@ -956,19 +969,83 @@ function inliner(program, context, mode) {
     }
 
     /**
+     * @param {ts.Node} node
+     * @returns {ts.VisitResult<ts.Node>}
+     */
+    function importReferenceVisitor(node) {
+        if (ts.isIdentifier(node)) {
+            return tryTransformImportReference(node, /*forInvocation*/ false) ?? node;
+        }
+        if (ts.isCallExpression(node) && ts.isIdentifier(node.expression)) {
+            const importReference = tryTransformImportReference(node.expression, /*forInvocation*/ true);
+            if (importReference) {
+                const argumentsArray = visitNodes(node.arguments, importReferenceVisitor);
+                return factory.updateCallExpression(node, importReference, undefined, argumentsArray);
+            }
+        }
+        else if (ts.isTaggedTemplateExpression(node) && ts.isIdentifier(node.tag)) {
+            const importReference = tryTransformImportReference(node.tag, /*forInvocation*/ true);
+            if (importReference) {
+                const template = ts.visitNode(node.template, importReferenceVisitor);
+                return factory.updateTaggedTemplateExpression(node, importReference, undefined, template);
+            }
+        }
+        return visitEachChild(node, importReferenceVisitor, context);
+    }
+
+    /**
+     * @param {ts.Identifier} node
+     * @param {boolean} forInvocation
+     */
+    function tryTransformImportReference(node, forInvocation) {
+        const original = getParseTreeNode(node, ts.isIdentifier);
+        if (original && isExpressionIdentifier(original)) {
+            const program = tryGetProgramOfNode(node);
+            const checker = program?.getTypeChecker();
+            const referencedSym = checker?.getSymbolAtLocation(node);
+            const importLike = referencedSym && tryGetImportDeclarationLikeOfSymbol(referencedSym);
+            if (importLike && elidableImports.has(ts.getOriginalNode(importLike))) {
+                const moduleSpecifier = getModuleSpecifierOfImportLike(importLike);
+                const moduleReference = typeof moduleSpecifier === "string" ? resolveModule(moduleSpecifier) : undefined;
+                const id = moduleReference && inlinedModules.get(moduleReference.source);
+                if (id !== null && id !== undefined) {
+                    const importReference = factory.createPropertyAccessExpression(id, node);
+                    return forInvocation ? factory.createComma(factory.createNumericLiteral(0), importReference) :
+                        importReference;
+                }
+            }
+        }
+    }
+
+    /**
+     * @param {ts.ImportDeclaration | import("./utils").CommonJSImportStatement} node
+     */
+    function getModuleSpecifierOfImportLike(node) {
+        if (ts.isImportDeclaration(node)) {
+            if (ts.isStringLiteral(node.moduleSpecifier)) {
+                return node.moduleSpecifier.text;
+            }
+        }
+        else {
+            return node.declarationList.declarations[0].initializer.arguments[0].text;
+        }
+    }
+
+    /**
      * @param {ts.ImportDeclaration} node
      */
     function visitImportDeclaration(node) {
-        if (!elidableImports.has(ts.getOriginalNode(node)) || !ts.isStringLiteral(node.moduleSpecifier)) return node;
-        const moduleSpecifier = node.moduleSpecifier.text;
+        if (!elidableImports.has(ts.getOriginalNode(node)) || !ts.isStringLiteral(node.moduleSpecifier) || !node.importClause) return node;
+        const importClause = node.importClause;
+        const moduleSpecifier = getModuleSpecifierOfImportLike(node) ?? fail();
         const result = inlineImport(
             moduleSpecifier,
-            () => node.importClause.namedBindings && ts.isNamespaceImport(node.importClause.namedBindings) ?
-                factory.createIdentifier(ts.idText(node.importClause.namedBindings.name)) :
+            () => importClause.namedBindings && ts.isNamespaceImport(importClause.namedBindings) ?
+                factory.createIdentifier(ts.idText(importClause.namedBindings.name)) :
                 factory.getGeneratedNameForNode(node),
-            () => factory.createIdentifier(ts.idText(node.importClause.name)),
-            !!node.importClause.namedBindings,
-            !!node.importClause.name
+            () => factory.createIdentifier(ts.idText(checkDefined(importClause.name))),
+            !!importClause.namedBindings,
+            !!importClause.name
         );
         return result;
     }
@@ -978,7 +1055,7 @@ function inliner(program, context, mode) {
      */
     function visitCommonJSImportStatement(node) {
         if (!elidableImports.has(ts.getOriginalNode(node))) return node;
-        const moduleSpecifier = node.declarationList.declarations[0].initializer.arguments[0].text;
+        const moduleSpecifier = getModuleSpecifierOfImportLike(node) ?? fail();
         const result = inlineImport(
             moduleSpecifier,
             () => ts.isIdentifier(node.declarationList.declarations[0].name) ?
@@ -1181,12 +1258,12 @@ function inliner(program, context, mode) {
      */
     function getSymbolInDeclarationOutput(sym) {
         const resolution = getSymbolModuleResolution(sym);
-        if (resolution) {
+        if (resolution?.declaration) {
             const program = getProgramForDeclarationOutput(resolution);
             const checker = program?.getTypeChecker();
             const sourceFile = program?.getSourceFile(resolution.declaration);
-            const moduleSymbol = sourceFile && getModuleSymbol(sourceFile, checker);
-            const exportedSymbols = moduleSymbol && checker.getExportsOfModule(moduleSymbol);
+            const moduleSymbol = sourceFile && checker && getModuleSymbol(sourceFile, checker);
+            const exportedSymbols = moduleSymbol && checker?.getExportsOfModule(moduleSymbol);
             return exportedSymbols?.find(exportSymbol => exportSymbol.escapedName === sym.escapedName);
         }
     }
@@ -1217,7 +1294,7 @@ function inliner(program, context, mode) {
     /**
      * @template {ts.Node} T
      * @param {T} node
-     * @param {object} [options]
+     * @param {object} options
      * @param {ts.SourceMapSource} [options.source]
      * @param {boolean} [options.clearParent]
      * @param {boolean} [options.clearOriginal]
@@ -1284,7 +1361,7 @@ function inliner(program, context, mode) {
 
             // try to determine if this belongs to a project reference
             for (const projectReference of getProjectReferences()) {
-                if (resolution = findInputsAndOutputs(projectReference, resolvedFileName, moduleReference.packageId)) {
+                if (resolution = projectReference && moduleReference.packageId && findInputsAndOutputs(projectReference, resolvedFileName, moduleReference.packageId)) {
                     return cacheResolution(resolution, ...cacheKeys);
                 }
             }
@@ -1375,7 +1452,7 @@ function inliner(program, context, mode) {
     }
 
     function getProjectReferences() {
-        return projectReferences ??= program.getResolvedProjectReferences()?.filter(ref => !!ref) ?? [];
+        return projectReferences ??= program.getResolvedProjectReferences()?.filter(isDefined) ?? [];
     }
 
     /**
@@ -1446,6 +1523,27 @@ function coerceCustomTransformer(transformer) {
 }
 
 /**
+ * @template T
+ * @param {T} value
+ * @returns {value is NonNullable<T>}
+ */
+function isDefined(value) {
+    return value !== null && value !== undefined;
+}
+
+/**
+ * @template T
+ * @param {T} value
+ * @returns {NonNullable<T>}
+ */
+function checkDefined(value) {
+    return isDefined(value) ? value : fail(new TypeError());
+}
+
+/** @returns {never} */
+function fail(error = new TypeError()) { throw error; }
+
+/**
  * @typedef ModuleResolution
  * @property {ts.ResolvedProjectReference} projectReference
  * @property {ts.PackageId} [packageId]
@@ -1477,6 +1575,12 @@ function coerceCustomTransformer(transformer) {
  */
 
 /**
+ * @typedef InlineImportDecision
+ * @property {true} inline
+ * @property {(node: ts.Identifier) => ts.Expression} inliner
+ */
+
+/**
  * @typedef DoNotInlineDecision
  * @property {false} inline
  */
@@ -1490,9 +1594,13 @@ function coerceCustomTransformer(transformer) {
  */
 
 /**
+ * @typedef {InlineImportDecision | DoNotInlineDecision} ImportInliningDecision
+ */
+
+/**
  * @template {TBase} T
  * @template {ts.Node} TBase
- * @typedef {(node: T, fallback: (node: T) => TBase | undefined, inliner: (node: ts.Expression) => ts.Expression | undefined) => TBase | undefined} InlinerHandler
+ * @typedef {(node: T, fallback: ((node: T) => TBase | undefined) | undefined, inliner: (node: ts.Expression) => ts.Expression | undefined) => TBase | undefined} InlinerHandler
  */
 
 /**
