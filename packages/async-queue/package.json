@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-queue",
-    "version": "1.0.0-prenative.1",
+    "version": "1.0.0-pre.39",
     "description": "Provides 'AsyncQueue', an async coordination primitive.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,11 +25,11 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-waitqueue": "^1.0.0-prenative.1",
-        "@esfx/cancelable": "^1.0.0-prenative.1"
+        "@esfx/async-waitqueue": "^1.0.0-pre.39",
+        "@esfx/cancelable": "^1.0.0-pre.39"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-prenative.1"
+        "@esfx/internal-guards": "^1.0.0-pre.39"
     },
     "publishConfig": {
         "access": "public"

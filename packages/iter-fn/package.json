@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-fn",
-    "version": "1.0.0-prenative.1",
+    "version": "1.0.0-pre.39",
     "description": "An fp-style iteration API for ECMAScript iterables.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -85,22 +85,22 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.0.0-prenative.1",
-        "@esfx/collections-hashmap": "^1.0.0-prenative.1",
-        "@esfx/collections-hashset": "^1.0.0-prenative.1",
-        "@esfx/equatable": "^1.0.0-prenative.1",
-        "@esfx/fn": "^1.0.0-prenative.1",
-        "@esfx/interval": "^1.0.0-prenative.1",
-        "@esfx/iter-grouping": "^1.0.0-prenative.1",
-        "@esfx/iter-hierarchy": "^1.0.0-prenative.1",
-        "@esfx/iter-lookup": "^1.0.0-prenative.1",
-        "@esfx/iter-ordered": "^1.0.0-prenative.1",
-        "@esfx/iter-page": "^1.0.0-prenative.1",
+        "@esfx/collection-core": "^1.0.0-pre.39",
+        "@esfx/collections-hashmap": "^1.0.0-pre.39",
+        "@esfx/collections-hashset": "^1.0.0-pre.39",
+        "@esfx/equatable": "^1.0.0-pre.39",
+        "@esfx/fn": "^1.0.0-pre.39",
+        "@esfx/interval": "^1.0.0-pre.39",
+        "@esfx/iter-grouping": "^1.0.0-pre.39",
+        "@esfx/iter-hierarchy": "^1.0.0-pre.39",
+        "@esfx/iter-lookup": "^1.0.0-pre.39",
+        "@esfx/iter-ordered": "^1.0.0-pre.39",
+        "@esfx/iter-page": "^1.0.0-pre.39",
         "tslib": "^2.4.0"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-prenative.1",
-        "@esfx/internal-jest-sequence": "^1.0.0-prenative.1"
+        "@esfx/internal-guards": "^1.0.0-pre.39",
+        "@esfx/internal-jest-sequence": "^1.0.0-pre.39"
     },
     "publishConfig": {
         "access": "public"

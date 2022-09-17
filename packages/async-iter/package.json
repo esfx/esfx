@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter",
-    "version": "1.0.0-prenative.1",
+    "version": "1.0.0-pre.39",
     "description": "An iteration and query API for ECMAScript async iterables.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,22 +25,22 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-iter-fn": "^1.0.0-prenative.1",
-        "@esfx/async-iter-hierarchy": "^1.0.0-prenative.1",
-        "@esfx/async-iter-ordered": "^1.0.0-prenative.1",
-        "@esfx/async-iter-query": "^1.0.0-prenative.1",
-        "@esfx/collection-core": "^1.0.0-prenative.1",
-        "@esfx/collections-hashmap": "^1.0.0-prenative.1",
-        "@esfx/collections-hashset": "^1.0.0-prenative.1",
-        "@esfx/equatable": "^1.0.0-prenative.1",
-        "@esfx/fn": "^1.0.0-prenative.1",
-        "@esfx/iter-fn": "^1.0.0-prenative.1",
-        "@esfx/iter-grouping": "^1.0.0-prenative.1",
-        "@esfx/iter-hierarchy": "^1.0.0-prenative.1",
-        "@esfx/iter-lookup": "^1.0.0-prenative.1",
-        "@esfx/iter-ordered": "^1.0.0-prenative.1",
-        "@esfx/iter-page": "^1.0.0-prenative.1",
-        "@esfx/iter-query": "^1.0.0-prenative.1"
+        "@esfx/async-iter-fn": "^1.0.0-pre.39",
+        "@esfx/async-iter-hierarchy": "^1.0.0-pre.39",
+        "@esfx/async-iter-ordered": "^1.0.0-pre.39",
+        "@esfx/async-iter-query": "^1.0.0-pre.39",
+        "@esfx/collection-core": "^1.0.0-pre.39",
+        "@esfx/collections-hashmap": "^1.0.0-pre.39",
+        "@esfx/collections-hashset": "^1.0.0-pre.39",
+        "@esfx/equatable": "^1.0.0-pre.39",
+        "@esfx/fn": "^1.0.0-pre.39",
+        "@esfx/iter-fn": "^1.0.0-pre.39",
+        "@esfx/iter-grouping": "^1.0.0-pre.39",
+        "@esfx/iter-hierarchy": "^1.0.0-pre.39",
+        "@esfx/iter-lookup": "^1.0.0-pre.39",
+        "@esfx/iter-ordered": "^1.0.0-pre.39",
+        "@esfx/iter-page": "^1.0.0-pre.39",
+        "@esfx/iter-query": "^1.0.0-pre.39"
     },
     "publishConfig": {
         "access": "public"
