@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-deprecate",
-    "version": "1.0.0-pre.37",
+    "version": "1.0.0-pre.38",
     "description": "This package provides internal utilities for '@esfx' and is not intended for use in user-code.",
     "private": true,
     "type": "commonjs",
