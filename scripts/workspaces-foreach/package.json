@@ -1,0 +1,11 @@
+{
+    "name": "workspaces-foreach",
+    "version": "0.0.0",
+    "private": true,
+    "dependencies": {
+        "yargs": "^16.2.0"
+    },
+    "bin": {
+        "workspaces-foreach": "./index.js"
+    }
+}

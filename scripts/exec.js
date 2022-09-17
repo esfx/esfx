@@ -1,3 +1,4 @@
+const fs = require("fs");
 const path = require("path");
 const { spawn } = require("child_process");
 const { default: chalk } = require("chalk");
@@ -27,6 +28,7 @@ function exec(cmd, args = [], { ignoreExitCode, verbose, cwd, env, stdio = "inhe
             }
             log(`${prefix}$ ${chalk.green(cmd)} ${args.join(" ")}`);
         }
+
         const child = spawn(shell, shellArgs, { stdio, cwd, env, windowsVerbatimArguments: true, windowsHide: true });
         let stdout = "";
         let stderr = "";

@@ -23,7 +23,6 @@ const yargs = require("yargs")
     .option("force", { type: "boolean", default: false })
     .option("verbose", { type: "boolean", default: false })
     .option("serve", { type: "boolean", default: false })
-    .option("prebuild", { type: "boolean", default: true })
     ;
 
 const { argv } = yargs;
@@ -41,7 +40,7 @@ const publicPackages = fs.readdirSync("packages")
     .filter(pkg => fs.existsSync(`${pkg}/tsconfig.json`))
     .sort();
 
-const { prebuild, build: build_packages, clean: clean_packages } = makeProjects(publicPackages);
+const { build: build_packages, clean: clean_packages } = makeProjects(publicPackages);
 gulp.task("packages", build_packages);
 
 const clean_dist = () => del([
@@ -59,10 +58,12 @@ gulp.task("clean", clean);
 const build = gulp.parallel(build_internal, build_packages);
 gulp.task("build", build);
 
-gulp.task("prebuild", prebuild);
-
 const ci = gulp.series(clean, build);
 gulp.task("ci", ci);
+
+gulp.task("build-windows", () => exec(path.resolve("node_modules/.bin/workspaces-foreach"), ["run", "package-node-win32-x64"]));
+gulp.task("build-linux", () => exec(path.resolve("node_modules/.bin/workspaces-foreach"), ["run", "package-node-linux-x64"]));
+gulp.task("build-macos", () => exec(path.resolve("node_modules/.bin/workspaces-foreach"), ["run", "package-node-darwin-x64"]));
 
 const test = () => {
     const args = new ArgsBuilder();
@@ -98,7 +99,7 @@ const perf = () => {
 };
 gulp.task("perf", perf);
 
-// const watch = () => spawn('node', [require.resolve("jest/bin/jest"), "--watch"], { stdio: "inherit" });
+// const watch = () => spawn('node', [require.resolve("jest /bin/jest"), "--watch"], { stdio: "inherit" });
 // gulp.task("watch", watch);
 
 const verify = () => {
@@ -115,12 +116,11 @@ gulp.task("default", gulp.series(build, verify, test));
  * @param {string[]} projects
  */
 function makeProjects(projects) {
-    const prebuilders = [];
     const builders = [];
     const cleaners = [];
     for (const project of projects) {
-        /** @type {gulp.TaskFunction | undefined} */
-        let prebuild;
+        /** @type {gulp.TaskFunction[]} */
+        const prebuildTasks = [];
 
         /** @type {gulp.TaskFunction[]} */
         const buildTasks = [];
@@ -131,15 +131,16 @@ function makeProjects(projects) {
         let packageJson;
         try { packageJson = JSON.parse(fs.readFileSync(path.join(project, "package.json"), "utf8")); } catch { }
 
-        if (packageJson?.scripts?.prebuild && argv.prebuild) {
-            prebuild = () => exec("yarn", ["workspace", packageJson.name, "run", "prebuild"], { verbose: true });
+        if (packageJson?.scripts?.prebuild) {
+            const prebuild = () => exec("yarn", ["workspace", packageJson.name, "run", "prebuild"], { verbose: true });
             prebuild.displayName = `prebuild::yarn:${project}`;
+            prebuildTasks.push(prebuild);
         }
 
-        if (packageJson?.scripts?.clean && argv.clean) {
-            const cleanYarn = () => exec("yarn", ["workspace", packageJson.name, "run", "clean"], { verbose: true });
-            cleanYarn.displayName = `clean:yarn:${project}`;
-            cleanTasks.push(cleanYarn);
+        if (packageJson?.scripts?.clean) {
+            const clean = () => exec("yarn", ["workspace", packageJson.name, "run", "clean"], { verbose: true });
+            clean.displayName = `clean:yarn:${project}`;
+            cleanTasks.push(clean);
         }
 
         if (fs.existsSync(path.join(project, "tsconfig.esm.json"))) {
@@ -199,9 +200,13 @@ function makeProjects(projects) {
             cleanTasks.push(cleanDocs);
         }
 
-        const build = prebuild ?
-            gulp.series(prebuild, gulp.parallel(...buildTasks)) :
-            gulp.parallel(...buildTasks);
+        const prebuildOnly = prebuildTasks.length ? gulp.parallel(...prebuildTasks) : undefined;
+        if (prebuildOnly) prebuildOnly.displayName = `prebuild:${project}`;
+
+        const buildOnly = gulp.parallel(...buildTasks);
+        buildOnly.displayName = `build:${project}`;
+
+        const build = prebuildOnly ? gulp.series(prebuildOnly, buildOnly) : buildOnly;
         build.displayName = project;
 
         const clean = gulp.parallel(...cleanTasks);
@@ -209,20 +214,18 @@ function makeProjects(projects) {
 
         gulp.task(project, build);
         gulp.task(`clean:${project}`, clean);
-        if (prebuild) {
-            gulp.task(`prebuild:${project}`, prebuild);
-            prebuilders.push(prebuild);
+
+        if (prebuildOnly) {
+            gulp.task(`prebuild:${project}`, prebuildOnly);
         }
 
         builders.push(build);
         cleaners.push(clean);
     }
 
-    if (!prebuilders.length) prebuilders.push(async () => { });
-    const prebuild = gulp.parallel(prebuilders);
     const build = gulp.parallel(builders);
     const clean = gulp.parallel(cleaners);
-    return { prebuild, build, clean };
+    return { build, clean };
 }
 
 const docPackagePattern = argv.docPackagePattern && new RegExp(argv.docPackagePattern, "i");

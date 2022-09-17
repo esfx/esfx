@@ -31,7 +31,12 @@ on:
         description: draft
         required: false
         type: boolean
-        default: false
+        default: true
+      what_if:
+        description: what if?
+        required: false
+        type: boolean
+        default: true
 jobs:
   version:
     runs-on: ubuntu-latest
@@ -135,12 +140,11 @@ jobs:
       run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
     - name: link
       run: lerna link
-    - name: clean
-      run: gulp clean
-    - name: prebuild
-      run: yarn prebuild
     - name: build
-      run: gulp build --no-prebuild
+      run: |
+        gulp clean
+        yarn run prebuild
+        gulp build
     - name: test
       run: |
         yarn run test --selectProjects "collections-hash ts-worker"
@@ -157,6 +161,7 @@ jobs:
     - name: verify
       run: yarn workspaces run prepack
     - name: commit and tag version
+      if: ${{ !github.event.inputs.what_if }}
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
@@ -165,10 +170,12 @@ jobs:
         git tag -f "v${{ github.event.inputs.version }}" -m "v${{ github.event.inputs.version }}"
         git push --follow-tags --no-verify --atomic origin ${{ github.ref_name }}
     - name: collect native artifacts
+      if: ${{ !github.event.inputs.what_if }}
       id: native_artifacts
       run: |
         echo "::set-output name=native_artifacts::$(NATIVE_ARTIFACTS=$(find packages/* internal/* -path '*/*/build/stage/*/*.tar.gz') node -e 'process.stdout.write(JSON.stringify(process.env.NATIVE_ARTIFACTS.split(/\n/g).filter(Boolean)))')";
     - name: release
+      if: ${{ !github.event.inputs.what_if }}
       uses: ncipollo/release-action@v1
       with:
         artifacts: ${{ join(fromJson(steps.native_artifacts.outputs.native_artifacts)) }}
@@ -176,6 +183,7 @@ jobs:
         prerelease: ${{ github.event.inputs.prerelease }}
         tag: "v${{ github.event.inputs.version }}"
     - name: publish to npm
+      if: ${{ !github.event.inputs.what_if }}
       run: |
         lerna publish from-git --yes --no-verify-access --dist-tag ${{ github.event.inputs.dist_tag }}
       env:
