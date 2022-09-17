@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-ordered",
-    "version": "1.0.0-pre.38",
+    "version": "1.0.0-prenative.1",
     "description": "A Symbol-based API for defining an Iterable with an inherent order.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,10 +25,10 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.0.0-pre.38"
+        "@esfx/equatable": "^1.0.0-prenative.1"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.38"
+        "@esfx/internal-guards": "^1.0.0-prenative.1"
     },
     "publishConfig": {
         "access": "public"

@@ -1,6 +1,6 @@
 {
     "name": "@esfx/equatable",
-    "version": "1.0.0-pre.38",
+    "version": "1.0.0-prenative.1",
     "description": "A low-level API for defining equality.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -52,7 +52,7 @@
         "@mapbox/node-pre-gyp": "^1.0.9"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.38",
+        "@esfx/internal-guards": "^1.0.0-prenative.1",
         "node-pre-gyp-github": "^1.4.4"
     },
     "binary": {

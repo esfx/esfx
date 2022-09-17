@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections-hashset",
-    "version": "1.0.0-pre.38",
+    "version": "1.0.0-prenative.1",
     "description": "Provides 'HashSet', a collection class that utilizes '@esfx/collection-core' and '@esfx/equatable'.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,12 +25,12 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.0.0-pre.38",
-        "@esfx/equatable": "^1.0.0-pre.38"
+        "@esfx/collection-core": "^1.0.0-prenative.1",
+        "@esfx/equatable": "^1.0.0-prenative.1"
     },
     "devDependencies": {
-        "@esfx/internal-collections-hash": "^1.0.0-pre.38",
-        "@esfx/internal-guards": "^1.0.0-pre.38"
+        "@esfx/internal-collections-hash": "^1.0.0-prenative.1",
+        "@esfx/internal-guards": "^1.0.0-prenative.1"
     },
     "publishConfig": {
         "access": "public"

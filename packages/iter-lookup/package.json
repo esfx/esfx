@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-lookup",
-    "version": "1.0.0-pre.38",
+    "version": "1.0.0-prenative.1",
     "description": "A collection class used to map and look up iterables related to a key.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,13 +25,13 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collections-hashmap": "^1.0.0-pre.38",
-        "@esfx/equatable": "^1.0.0-pre.38",
-        "@esfx/iter-grouping": "^1.0.0-pre.38"
+        "@esfx/collections-hashmap": "^1.0.0-prenative.1",
+        "@esfx/equatable": "^1.0.0-prenative.1",
+        "@esfx/iter-grouping": "^1.0.0-prenative.1"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.38",
-        "@esfx/internal-jest-sequence": "^1.0.0-pre.38"
+        "@esfx/internal-guards": "^1.0.0-prenative.1",
+        "@esfx/internal-jest-sequence": "^1.0.0-prenative.1"
     },
     "publishConfig": {
         "access": "public"
