@@ -1,6 +1,6 @@
 {
     "name": "@esfx/interval",
-    "version": "1.0.0-pre.39",
+    "version": "1.0.0-pre.40",
     "description": "An implementation of Index and Interval types for ECMAScript",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,10 +25,10 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.0.0-pre.39"
+        "@esfx/equatable": "^1.0.0-pre.40"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.39"
+        "@esfx/internal-guards": "^1.0.0-pre.40"
     },
     "publishConfig": {
         "access": "public"
