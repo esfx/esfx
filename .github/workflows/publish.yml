@@ -65,8 +65,13 @@ jobs:
     - name: detect changes
       id: detect_changes
       run: |
-        echo "::set-output name=changed_files::$(CHANGED_FILES=$(git status --porcelain -- package.json lerna.json yarn.lock internal/*/package*.json packages/*/package*.json | cut -c 4-) node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_FILES.split(/\n/g).filter(Boolean)))')";
-        echo "::set-output name=changed_packages::$(CHANGED_PACKAGE_LIST=$(git status --porcelain -- internal/*/package.json packages/*/package.json | cut -c 4-) node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_PACKAGE_LIST.split(/\n/g).filter(Boolean).reduce((obj, path) => ({ ...obj, [path]: true }), {})))')";
+        CHANGED_FILES=$(git status --porcelain -- package.json lerna.json yarn.lock internal/*/package*.json packages/*/package*.json | cut -c 4-);
+        CHANGED_FILES_JSON=$(CHANGED_FILES=$CHANGED_FILES node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_FILES.split(/\n/g).filter(Boolean)))')
+        echo "::set-output name=changed_files::$CHANGED_FILES_JSON";
+
+        CHANGED_PACKAGES=$(git status --porcelain -- internal/*/package.json packages/*/package.json | cut -c 4-);
+        CHANGED_PACKAGES_JSON=$(CHANGED_PACKAGES=$CHANGED_PACKAGES node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_PACKAGES.split(/\n/g).filter(Boolean).reduce((obj, path) => ({ ...obj, [path]: true }), {})))');
+        echo "::set-output name=changed_packages::$CHANGED_PACKAGES_JSON";
 
   native:
     strategy:
@@ -127,7 +132,7 @@ jobs:
         node-version: 16
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
-    - name: sync version
+    - name: version
       uses: actions/download-artifact@v3
       with:
         name: version-artifacts
@@ -150,41 +155,51 @@ jobs:
         yarn run test --selectProjects "threading-autoresetevent threading-conditionvariable threading-manualresetevent threading-mutex threading-sleep"
         yarn run test --selectProjects "decorators disposable equatable equatable-shim fn fn-partial indexed-object lazy ref reflect-metadata-compat struct-type"
     - name: verify
-      run: gulp verify
+      run: |
+        gulp verify
+    - name: prepack
+      if: ${{ !github.event.inputs.draft }}
+      run: |
+        node node_modules/workspaces-foreach run prepack
+    # - name: pack
+    #   if: ${{ github.event.inputs.draft }}
+    #   run: |
+    #     echo "PACK_OUTPUTS<<EOF" >> $GITHUB_ENV;
+    #     echo $(node node_modules/workspaces-foreach pack --silent --files) >> $GITHUB_ENV;
+    #     echo "EOF" >> $GITHUB_ENV;
+    - name: commit and tag version
+      run: |
+        git config user.name "GitHub Actions Bot"
+        git config user.email "<>"
+        git add -- ${{ join(fromJson(needs.version.outputs.changed_files), ' ') }}
+        git commit -m "v${{ github.event.inputs.version }}"
+        git tag -f "v${{ github.event.inputs.version }}" -m "v${{ github.event.inputs.version }}"
+        git push --follow-tags --no-verify --atomic origin ${{ github.ref_name }}
     - name: download native artifacts
       uses: actions/download-artifact@v3
       with:
         name: native-artifacts
         path: ${{ github.workspace }}
-    - name: verify
-      run: yarn workspaces run prepack
-    # - name: commit and tag version
-    #   run: |
-    #     git config user.name "GitHub Actions Bot"
-    #     git config user.email "<>"
-    #     git add -- ${{ join(fromJson(needs.version.outputs.changed_files), ' ') }}
-    #     git commit -m "v${{ github.event.inputs.version }}"
-    #     git tag -f "v${{ github.event.inputs.version }}" -m "v${{ github.event.inputs.version }}"
-    #     git push --follow-tags --no-verify --atomic origin ${{ github.ref_name }}
     - name: collect native artifacts
-      id: native_artifacts
       run: |
-        echo "::set-output name=native_artifacts::$(NATIVE_ARTIFACTS=$(find packages/* internal/* -path '*/*/build/stage/*/*.tar.gz') node -e 'process.stdout.write(JSON.stringify(process.env.NATIVE_ARTIFACTS.split(/\n/g).filter(Boolean)))')";
-    - name: pack
-      id: pack
-      if: ${{ github.event.inputs.draft }}
-      run: |
-        echo "::set-output name=pack_outputs::$(node node_modules\workspaces-foreach pack --silent --json)";
-    - name: check pack output
-      run: |
-        echo ${{ steps.pack.outputs.pack_outputs }}
-    # - name: release
-    #   uses: ncipollo/release-action@v1
-    #   with:
-    #     artifacts: ${{ join(fromJson(steps.native_artifacts.outputs.native_artifacts)) }}
-    #     draft: ${{ github.event.inputs.draft }}
-    #     prerelease: ${{ github.event.inputs.prerelease }}
-    #     tag: "v${{ github.event.inputs.version }}"
+        NATIVE_ARTIFACTS=$(find packages/* internal/* -path '*/*/build/stage/*/*.tar.gz');
+        NATIVE_ARTIFACTS_JSON=$(NATIVE_ARTIFACTS=$NATIVE_ARTIFACTS node -e 'process.stdout.write(JSON.stringify(process.env.NATIVE_ARTIFACTS.split(/\n/g).filter(Boolean)))');
+        echo "NATIVE_ARTIFACTS<<EOF" >> $GITHUB_ENV
+        echo $NATIVE_ARTIFACTS_JSON >> $GITHUB_ENV
+        echo "EOF" >> $GITHUB_ENV
+
+        #echo "::set-output name=native_artifacts::$NATIVE_ARTIFACTS_JSON";
+    - name: create release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: "v${{ github.event.inputs.version }}"
+        commit: ${{ github.sha }}
+        draft: ${{ github.event.inputs.draft }}
+        prerelease: ${{ github.event.inputs.prerelease }}
+        artifacts: ${{ join(fromJson(env.NATIVE_ARTIFACTS)) }}
+        allowUpdates: true
+        # artifacts: ${{ join(fromJson(steps.native_artifacts.outputs.native_artifacts)) }}
+
     # - name: publish to npm
     #   if: ${{ !github.event.inputs.draft }}
     #   run: |
