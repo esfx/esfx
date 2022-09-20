@@ -5,10 +5,14 @@ const path = require("path");
 const assert = require("assert");
 
 /**
+ * Verifies the project references for `<package>/tsconfig.json` match the expected projects derived from `<package>/package.json`.
+ *
  * @type {import("../../types").PackageVerifierRule}
  */
 function verifyExpectedReferences(context) {
     const { packageTsconfigJsonFile, packageTsconfigObject, packageJsonFile, packagePath, expectedProjects, actualProjects, addError, formatLocation } = context;
+    if (!packageTsconfigObject) return;
+
     const referenceLocation = formatLocation(packageTsconfigJsonFile, context.references || packageTsconfigObject);
     for (const [expected, node] of expectedProjects) {
         if (!actualProjects.has(expected) && fs.existsSync(path.join(expected, "tsconfig.json"))) {

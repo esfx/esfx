@@ -14,5 +14,6 @@
         // devDependencies
         { "path": "../../internal/collections-hash" },
         { "path": "../../internal/guards" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

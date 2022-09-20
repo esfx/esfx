@@ -9,5 +9,6 @@
     "references": [
         // dependencies
         { "path": "../equatable" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

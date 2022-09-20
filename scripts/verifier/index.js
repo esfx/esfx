@@ -17,18 +17,18 @@ async function main() {
     const ignores = Object.fromEntries(
         Object.entries(/** @type {Record<string, string[]>} */(require("../verify.ignores.json")))
             .map(([key, values]) => [key, values.map(value => new RegExp(value, "i"))]));
-    
+
     /** @type {import("./types").Diagnostic[]} */
     const warningDiagnostics = [];
-    
+
     /** @type {import("./types").Diagnostic[]} */
     const errorDiagnostics = [];
-    
+
     /** @type {Map<string, ts.JsonSourceFile>} */
     const knownFiles = new Map();
-    
+
     const paths = { basePath, internalPath, packagesPath };
-    
+
     for (const base of [internalPath, packagesPath]) {
         const containerTsconfigJsonPath = path.resolve(base, "tsconfig.json");
         const baseRelativeContainerTsconfigJsonPath = path.relative(base, containerTsconfigJsonPath);
@@ -36,12 +36,12 @@ async function main() {
         if (containerTsconfigJsonFile) {
             knownFiles.set(containerTsconfigJsonFile.fileName, containerTsconfigJsonFile);
         }
-    
+
         const actualContainerProjects = containerTsconfigJsonFile && collectProjectReferences(containerTsconfigJsonFile);
-    
+
         /** @type {Map<string, import("typescript").JsonSourceFile>} */
         const expectedContainerProjects = new Map();
-    
+
         /** @type {import("./types").ContainerVerifierContext} */
         const context = {
             paths,
@@ -56,12 +56,12 @@ async function main() {
             addWarning,
             formatLocation: (sourceFile, location) => formatLocation(basePath, sourceFile, location)
         };
-    
+
         const result = verifyContainer(context);
         if (result === "continue") continue;
         if (result === "break") break;
     }
-    
+
     if (argv.fix) {
         await applyFixes(
             knownFiles,

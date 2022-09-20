@@ -9,27 +9,27 @@
         ".": {
             "types": "./dist/types/index.d.ts",
             "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.js"
+            "import": "./dist/esm/index.mjs"
         },
         "./disposable": {
             "types": "./dist/types/disposable.d.ts",
             "require": "./dist/cjs/disposable.js",
-            "import": "./dist/esm/disposable.js"
+            "import": "./dist/esm/disposable.mjs"
         },
         "./disposableStack": {
             "types": "./dist/types/disposableStack.d.ts",
             "require": "./dist/cjs/disposableStack.js",
-            "import": "./dist/esm/disposableStack.js"
+            "import": "./dist/esm/disposableStack.mjs"
         },
         "./asyncDisposable": {
             "types": "./dist/types/asyncDisposable.d.ts",
             "require": "./dist/cjs/asyncDisposable.js",
-            "import": "./dist/esm/asyncDisposable.js"
+            "import": "./dist/esm/asyncDisposable.mjs"
         },
         "./asyncDisposableStack": {
             "types": "./dist/types/asyncDisposableStack.d.ts",
             "require": "./dist/cjs/asyncDisposableStack.js",
-            "import": "./dist/esm/asyncDisposableStack.js"
+            "import": "./dist/esm/asyncDisposableStack.mjs"
         }
     },
     "typesVersions": {

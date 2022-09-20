@@ -4,6 +4,8 @@ const path = require("path");
 const { pickProperty, isDefinedAndNot } = require("../../utils");
 
 /**
+ * Verifies the structure of `<package>/tsconfig.json`.
+ *
  * @type {import("../../types").PackageVerifierRule}
  */
 function verifyPackageTsconfigJsonStructure(context) {
@@ -28,6 +30,7 @@ function verifyPackageTsconfigJsonStructure(context) {
         return "continue";
     }
     context.references = references;
+
     context.expectedContainerProjects.set(packagePath, packageTsconfigJsonFile);
 }
 exports.verifyPackageTsconfigJsonStructure = verifyPackageTsconfigJsonStructure;

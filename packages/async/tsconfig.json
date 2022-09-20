@@ -23,5 +23,6 @@
         { "path": "../async-readerwriterlock" },
         { "path": "../async-semaphore" },
         { "path": "../async-stack" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

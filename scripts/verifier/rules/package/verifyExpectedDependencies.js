@@ -5,10 +5,13 @@ const path = require("path");
 const assert = require("assert");
 
 /**
+ * Verifies the `"dependencies"` and `"devDependencies"` of `<package>/package.json` match the projects referenced by `<package>/tsconfig.json`.
+ *
  * @type {import("../../types").PackageVerifierRule}
  */
 function verifyExpectedDependencies(context) {
     const { packageTsconfigJsonFile, packagePath, packageJsonFile, packageJsonObject, formatLocation, expectedProjects, actualProjects, addWarning } = context;
+    if (!packageJsonObject) return;
 
     for (const [actual, node] of actualProjects) {
         if (!expectedProjects.has(actual)) {

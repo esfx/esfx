@@ -13,7 +13,7 @@ sh: cd <%= cwd %> && lerna bootstrap
         ".": {
             "types": "./dist/types/index.d.ts",
             "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.js"
+            "import": "./dist/esm/index.mjs"
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",

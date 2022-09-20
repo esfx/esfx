@@ -18,8 +18,12 @@ import { numstr } from '@esfx/type-model';
 import type { StructFieldDefinition, StructInitProperties, StructInitElements, StructFieldRuntimeType } from './index.js';
 import { StructTypeInfo } from './typeInfo.js';
 
+let _getDataView: (struct: Struct) => DataView;
+
 /* @internal */
-export let getDataView: (struct: Struct) => DataView;
+export function getDataView(struct: Struct): DataView {
+    return _getDataView(struct);
+}
 
 type StructConstructorEmptyOverload = [];
 type StructConstructorSharedOverload = [boolean];
@@ -48,7 +52,7 @@ function isStructConstructorStructFieldArrayOverload<TDef extends readonly Struc
 /* @internal */
 export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
     static {
-        getDataView = struct => struct.#dataView;
+        _getDataView = struct => struct.#dataView;
     }
 
     #buffer: ArrayBufferLike;

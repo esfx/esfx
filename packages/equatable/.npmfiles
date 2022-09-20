@@ -4,13 +4,9 @@ dist/cjs/internal/murmur3.js
 dist/cjs/internal/murmur3.js.map
 dist/cjs/index.js
 dist/cjs/index.js.map
-dist/esm/internal/hashCode.js
-dist/esm/internal/hashCode.js.map
-dist/esm/internal/murmur3.js
-dist/esm/internal/murmur3.js.map
-dist/esm/index.js
-dist/esm/index.js.map
-dist/esm/package.json
+dist/esm/internal/hashCode.mjs
+dist/esm/internal/murmur3.mjs
+dist/esm/index.mjs
 dist/types/index.d.ts
 dist/types/index.d.ts.map
 lib/hashCodeNative.js
@@ -18,6 +14,6 @@ lib/hashCode.cpp
 lib/hashCode.h
 lib/package.json
 binding.gyp
-LICENSE
 package.json
+LICENSE
 README.md

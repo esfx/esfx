@@ -10,6 +10,7 @@ module.exports = {
 
     Object,
     ObjectKeys: Object.keys,
+    ObjectValues: Object.values,
     ObjectEntries: Object.entries,
     ObjectGetOwnPropertyNames: Object.getOwnPropertyNames,
     ObjectGetOwnPropertyDescriptor: Object.getOwnPropertyDescriptor,

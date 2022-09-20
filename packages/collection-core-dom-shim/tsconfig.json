@@ -9,5 +9,6 @@
     "include": ["src/**/*.ts"],
     "references": [
         { "path": "../collection-core" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

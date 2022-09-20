@@ -3,10 +3,11 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist/cjs",
-        "declarationDir": "dist/types"
+        "declarationDir": "dist/types",
     },
     "include": ["src/**/*.ts"],
     "references": [
         { "path": "../../packages/equatable" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

@@ -15,5 +15,6 @@
         { "path": "../async-mutex" },
         { "path": "../../internal/linked-list" },
         { "path": "../../internal/guards" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

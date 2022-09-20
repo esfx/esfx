@@ -9,5 +9,6 @@
     "references": [
         { "path": "../../internal/guards" },
         { "path": "../type-model" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

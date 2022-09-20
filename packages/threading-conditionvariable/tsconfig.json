@@ -17,5 +17,6 @@
         { "path": "../../internal/guards" },
         { "path": "../struct-type" },
         { "path": "../threading-mutex" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

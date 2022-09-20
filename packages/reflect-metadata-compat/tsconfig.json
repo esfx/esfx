@@ -10,5 +10,6 @@
         { "path": "../../internal/guards" },
         { "path": "../metadata" },
         { "path": "../metadata-shim" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

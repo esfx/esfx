@@ -14,5 +14,6 @@
         // devDependencies
         { "path": "../../internal/binarysearch" },
         { "path": "../../internal/guards" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

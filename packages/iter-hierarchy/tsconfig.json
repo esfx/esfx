@@ -15,5 +15,6 @@
         // devDependencies
         { "path": "../../internal/assert" },
         { "path": "../../internal/guards" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

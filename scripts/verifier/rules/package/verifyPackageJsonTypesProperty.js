@@ -3,11 +3,13 @@ const ts = require("typescript");
 const { pickProperty, getExportsMapCardinality, pickPropertyMatching } = require("../../utils");
 
 /**
+ * Verifies the `"types"` field of `<package>/package.json` is correct.
+ *
  * @type {import("../../types").PackageVerifierRule}
  */
 function verifyPackageJsonTypesProperty(context) {
-    // if (context.basePath === context.paths.internalPath) return;
     const { packageJsonFile, packageJsonObject, packageTsconfigObject, baseRelativePackageJsonPath, generatedExportsMap, actualExportsMap, formatLocation, addWarning } = context;
+    if (!packageJsonObject) return;
 
     const headerProp =
         pickProperty(packageJsonObject, "exports") ||
@@ -31,7 +33,7 @@ function verifyPackageJsonTypesProperty(context) {
             addWarning({
                 message: `Expected 'package.json' to have a 'types' property whose value is '${expectedTypes}'`,
                 location: formatLocation(packageJsonFile, packageJsonObject),
-                fixes: [{
+                fixes: headerProp && [{
                     action: "insertProperty",
                     description: `Add missing 'types' property to '${baseRelativePackageJsonPath}'`,
                     file: packageJsonFile,

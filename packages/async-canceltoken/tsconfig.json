@@ -3,16 +3,18 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist/cjs",
-        "declarationDir": "dist/types"
+        "declarationDir": "dist/types",
     },
     "include": ["src/**/*.ts"],
     "references": [
         // dependencies
         { "path": "../cancelable" },
+        { "path": "../canceltoken" },
         { "path": "../disposable" },
 
         // devDependencies
         { "path": "../../internal/linked-list" },
         { "path": "../../internal/guards" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

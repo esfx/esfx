@@ -1,4 +1,6 @@
 // @ts-check
+// TODO: Verify typesVersions is correct.
+
 const ts = require("typescript");
 const fs = require("fs");
 const path = require("path");
@@ -6,11 +8,15 @@ const assert = require("assert");
 const { pickProperty, simplifyExportsMap, getExportsMapCardinality } = require("../../utils");
 
 /**
+ * Verifies the `"typesVersions"` field of `<package>/package.json` exists if needed.
+ *
  * @type {import("../../types").PackageVerifierRule}
  */
 function verifyPackageJsonTypesVersionsProperty(context) {
     // if (context.basePath === context.paths.internalPath) return "continue";
     const { packageJsonFile, packageJsonObject, baseRelativePackageJsonPath, formatLocation, generatedExportsMap, actualExportsMap, addWarning } = context;
+    if (!packageJsonObject) return;
+
     // const headerProp =
     //     pickProperty(packageJsonObject, "types") ||
     //     pickProperty(packageJsonObject, "exports") ||

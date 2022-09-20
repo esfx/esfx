@@ -9,42 +9,42 @@
         ".": {
             "types": "./dist/types/index.d.ts",
             "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.js"
+            "import": "./dist/esm/index.mjs"
         },
         "./grouping": {
             "types": "./dist/types/grouping.d.ts",
             "require": "./dist/cjs/grouping.js",
-            "import": "./dist/esm/grouping.js"
+            "import": "./dist/esm/grouping.mjs"
         },
         "./hierarchy": {
             "types": "./dist/types/hierarchy.d.ts",
             "require": "./dist/cjs/hierarchy.js",
-            "import": "./dist/esm/hierarchy.js"
+            "import": "./dist/esm/hierarchy.mjs"
         },
         "./joins": {
             "types": "./dist/types/joins.d.ts",
             "require": "./dist/cjs/joins.js",
-            "import": "./dist/esm/joins.js"
+            "import": "./dist/esm/joins.mjs"
         },
         "./ordering": {
             "types": "./dist/types/ordering.d.ts",
             "require": "./dist/cjs/ordering.js",
-            "import": "./dist/esm/ordering.js"
+            "import": "./dist/esm/ordering.mjs"
         },
         "./queries": {
             "types": "./dist/types/queries.d.ts",
             "require": "./dist/cjs/queries.js",
-            "import": "./dist/esm/queries.js"
+            "import": "./dist/esm/queries.mjs"
         },
         "./scalars": {
             "types": "./dist/types/scalars.d.ts",
             "require": "./dist/cjs/scalars.js",
-            "import": "./dist/esm/scalars.js"
+            "import": "./dist/esm/scalars.mjs"
         },
         "./subqueries": {
             "types": "./dist/types/subqueries.d.ts",
             "require": "./dist/cjs/subqueries.js",
-            "import": "./dist/esm/subqueries.js"
+            "import": "./dist/esm/subqueries.mjs"
         }
     },
     "typesVersions": {

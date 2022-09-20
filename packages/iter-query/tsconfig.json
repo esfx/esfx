@@ -25,5 +25,6 @@
         // devDependencies
         { "path": "../../internal/jest-sequence" },
         { "path": "../../internal/guards" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

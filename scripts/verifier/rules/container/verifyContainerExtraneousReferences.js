@@ -4,11 +4,14 @@ const path = require("path");
 const assert = require("assert");
 
 /**
+ * Verifies that `<container>/tsconfig.json` does not contain project references to non-existent packages.
+ *
  * @type {import("../../types").ContainerVerifierRule}
  */
 function verifyContainerExtraneousReferences(context) {
-    if (!context.actualContainerProjects) return;
     const { containerTsconfigJsonFile, basePath: base, expectedContainerProjects, actualContainerProjects, baseRelativeContainerTsconfigJsonPath, addWarning, formatLocation } = context;
+    if (!actualContainerProjects || !containerTsconfigJsonFile) return;
+
     for (const [actual, node] of actualContainerProjects) {
         if (!expectedContainerProjects.has(actual)) {
             const nodeLocation = formatLocation(containerTsconfigJsonFile, node);

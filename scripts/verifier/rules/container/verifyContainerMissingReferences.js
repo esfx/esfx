@@ -4,11 +4,14 @@ const path = require("path");
 const assert = require("assert");
 
 /**
+ * Verify that `<container>/tsconfig.json` contains a project reference for each `<package>/tsconfig.json` in the container.
+ *
  * @type {import("../../types").ContainerVerifierRule}
  */
 function verifyContainerMissingReferences(context) {
-    if (!context.actualContainerProjects) return;
     const { containerTsconfigJsonFile, containerTsconfigObject, expectedContainerProjects, actualContainerProjects, baseRelativeContainerTsconfigJsonPath, addError, formatLocation } = context;
+    if (!actualContainerProjects || !containerTsconfigJsonFile || !containerTsconfigObject) return;
+
     const referenceLocation = formatLocation(containerTsconfigJsonFile, context.references || containerTsconfigObject);
     for (const [expected, node] of expectedContainerProjects) {
         if (!actualContainerProjects.has(expected)) {

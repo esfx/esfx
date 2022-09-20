@@ -5,6 +5,7 @@ const fs = require("fs");
 const { createInliner } = require("./inliner");
 const { exec } = require("../exec");
 const log = require("fancy-log");
+const { convertCjsToEsm } = require("../cjs-to-esm");
 
 /**
  * @param {ts.SolutionBuilderHost} host
@@ -77,6 +78,15 @@ async function buildNextInvalidatedProject(host, builder) {
             /*writeFile*/ undefined,
             /*customTransformers*/ { before: [createInliner(program)] }
         );
+
+        const tsconfigJsonFile = ts.readJsonConfigFile(invalidatedProject.project, file => fs.readFileSync(file, "utf8"));
+        const tsconfigJson = ts.convertToObject(tsconfigJsonFile, []);
+        if (tsconfigJson.compilerOptions?.outDir &&
+            tsconfigJson.esmDir) {
+            const cjsDir = path.resolve(invalidatedProject.project, "..", tsconfigJson.compilerOptions.outDir);
+            const esmDir = path.resolve(invalidatedProject.project, "..", tsconfigJson.esmDir);
+            convertCjsToEsm(cjsDir, esmDir);
+        }
     }
     else {
         exitStatus = invalidatedProject.done();

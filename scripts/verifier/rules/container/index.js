@@ -6,6 +6,8 @@ const { verifyContainerPackages } = require("./verifyContainerPackages");
 const { verifyContainerTsconfigJsonStructure } = require("./verifyContainerTsconfigJsonStructure");
 
 /**
+ * Verifies `<container>/`, where `<container>` is either `internal` or `packages`.
+ *
  * @type {import("../../types").ContainerVerifierRule}
  */
 function verifyContainer(context) {
@@ -13,6 +15,5 @@ function verifyContainer(context) {
         verifyContainerPackages(context) ||
         verifyContainerMissingReferences(context) ||
         verifyContainerExtraneousReferences(context);
-
 }
 exports.verifyContainer = verifyContainer;

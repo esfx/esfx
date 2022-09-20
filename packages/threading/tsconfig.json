@@ -16,5 +16,6 @@
         { "path": "../threading-semaphore" },
         { "path": "../threading-sleep" },
         { "path": "../threading-spinwait" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

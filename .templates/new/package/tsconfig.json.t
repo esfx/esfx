@@ -6,7 +6,7 @@ to: "<%=packagePath%>/tsconfig.json"
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist/cjs",
-        "declarationDir": "dist/types"
+        "declarationDir": "dist/types",
     },
     "include": ["src/**/*.ts"],
     "references": [
@@ -19,5 +19,6 @@ to: "<%=packagePath%>/tsconfig.json"
 <% dependencies.filter(pkg => !!pkg.path).forEach((pkg, i) => { -%>
         { "path": <%-JSON.stringify(pkg.path)%> },
 <% }); -%>
-    ]
+    ],
+    "esmDir": "dist/esm",
 }

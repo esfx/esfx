@@ -14,5 +14,6 @@
         // devDependencies
         { "path": "../../internal/linked-list" },
         { "path": "../../internal/guards" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

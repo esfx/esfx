@@ -8,5 +8,6 @@
     "include": ["src/**/*.ts"],
     "references": [
         { "path": "../type-model" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

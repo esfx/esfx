@@ -10,5 +10,6 @@
     "references": [
         { "path": "../cancelable" },
         { "path": "../cancelable-dom" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

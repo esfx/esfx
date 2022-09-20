@@ -1,4 +1,7 @@
 // @ts-check
+// TODO: Verify the exports map is correct.
+// TODO: Verify the imports map is correct.
+
 const ts = require("typescript");
 const fs = require("fs");
 const path = require("path");
@@ -6,11 +9,14 @@ const assert = require("assert");
 const { pickProperty, simplifyExportsMap, createExportsMap, getExportsMapCardinality } = require("../../utils");
 
 /**
+ * Verifies the `"exports"` property of `<package>/package.json` exists.
+ *
  * @type {import("../../types").PackageVerifierRule}
  */
 function verifyPackageJsonExportsProperty(context) {
-    // if (context.basePath === context.paths.internalPath) return;
     const { packageJsonFile, packageJsonObject, baseRelativePackageJsonPath, formatLocation, generatedExportsMap: exportsMap, addWarning } = context;
+    if (!packageJsonObject) return;
+
     const headerProp =
         pickProperty(packageJsonObject, "main") ||
         pickProperty(packageJsonObject, "type") ||
@@ -27,7 +33,7 @@ function verifyPackageJsonExportsProperty(context) {
                 addWarning({
                     message: `Expected 'package.json' to have an 'exports' property whose value is '${simplified}'`,
                     location: formatLocation(packageJsonFile, packageJsonObject),
-                    fixes: [{
+                    fixes: headerProp && [{
                         action: "insertProperty",
                         description: `Add missing 'exports' string property to '${baseRelativePackageJsonPath}'`,
                         file: packageJsonFile,
@@ -43,7 +49,7 @@ function verifyPackageJsonExportsProperty(context) {
                 addWarning({
                     message: "Expected 'package.json' to have an 'exports' map",
                     location: formatLocation(packageJsonFile, packageJsonObject),
-                    fixes: [{
+                    fixes: headerProp && [{
                         action: "insertProperty",
                         description: `Add missing 'exports' export-map property to '${baseRelativePackageJsonPath}'`,
                         file: packageJsonFile,

@@ -6,21 +6,26 @@ const assert = require("assert");
 const { pickProperty } = require("../../utils");
 
 /**
+ * Verifies the `"type"` property of `<package>/package.json` is correct.
+ *
  * @type {import("../../types").PackageVerifierRule}
  */
 function verifyPackageJsonModuleTypeProperty(context) {
     // if (context.basePath === context.paths.internalPath) return;
     const { packageJsonFile, packageJsonObject, formatLocation, addError } = context;
+    if (!packageJsonObject) return;
+
     const headerProp =
         pickProperty(packageJsonObject, "description") ||
         pickProperty(packageJsonObject, "version") ||
         pickProperty(packageJsonObject, "name");
+
     const typeProp = pickProperty(packageJsonObject, "type");
     if (!typeProp) {
         addError({
             message: "Expected 'package.json' to have a 'type' property whose value is 'commonjs'",
             location: formatLocation(packageJsonFile, packageJsonObject),
-            fixes: [{
+            fixes: headerProp && [{
                 action: "insertProperty",
                 description: `Add missing 'type' property to '${context.baseRelativePackageJsonPath}'`,
                 file: packageJsonFile,
@@ -35,7 +40,7 @@ function verifyPackageJsonModuleTypeProperty(context) {
         addError({
             message: "Expected 'package.json' to have a 'type' property whose value is 'commonjs'",
             location: formatLocation(packageJsonFile, typeProp),
-            fixes: [{
+            fixes: headerProp && [{
                 action: "replaceValue",
                 description: `Replace value of 'type' property in '${context.baseRelativePackageJsonPath}'`,
                 file: packageJsonFile,

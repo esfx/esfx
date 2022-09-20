@@ -2,11 +2,13 @@ const fs = require("fs");
 const gulp = require("gulp");
 const del = require("del");
 const path = require("path");
+const ts = require("typescript");
 const { buildProject, cleanProject } = require("./scripts/build");
 const { exec, ArgsBuilder } = require("./scripts/exec");
 const { Semaphore } = require("./scripts/semaphore");
 const { apiExtractor, apiDocumenter, docfx, installDocFx } = require("./scripts/docs");
 const { fname } = require("./scripts/fname");
+const { BuildOrder } = require("./scripts/build/buildOrder");
 const yargs = require("yargs")
     .option("testNamePattern", { type: "string", alias: ["tests", "test", "T", "t"] })
     .option("testPathPattern", { type: "string", alias: ["files", "file", "F"] })
@@ -32,13 +34,17 @@ const internalPackages = fs.readdirSync("internal")
     .filter(pkg => fs.existsSync(`${pkg}/tsconfig.json`))
     .sort();
 
-const { build: build_internal, clean: clean_internal } = makeProjects(internalPackages);
-gulp.task("internal", build_internal);
-
 const publicPackages = fs.readdirSync("packages")
     .map(name => `packages/${name}`)
     .filter(pkg => fs.existsSync(`${pkg}/tsconfig.json`))
     .sort();
+
+// const buildOrder = new BuildOrder();
+// for (const pkg of internalPackages) buildOrder.add(pkg);
+// for (const pkg of publicPackages) buildOrder.add(pkg);
+
+const { build: build_internal, clean: clean_internal } = makeProjects(internalPackages);
+gulp.task("internal", build_internal);
 
 const { build: build_packages, clean: clean_packages } = makeProjects(publicPackages);
 gulp.task("packages", build_packages);
@@ -143,48 +149,15 @@ function makeProjects(projects) {
             cleanTasks.push(clean);
         }
 
-        if (fs.existsSync(path.join(project, "tsconfig.esm.json"))) {
-            /** @type {gulp.TaskFunction} */
-            const buildTypeScriptCjs = () => buildProject(project, { force: argv.force });
-            buildTypeScriptCjs.displayName = `build:typescript:cjs:${project}`;
+        /** @type {gulp.TaskFunction} */
+        const buildTypeScript = () => buildProject(project, { force: argv.force });
+        buildTypeScript.displayName = `build:typescript:${project}`;
+        buildTasks.push(buildTypeScript);
 
-            /** @type {gulp.TaskFunction} */
-            const buildTypeScriptEsm = () => buildProject(path.join(project, "tsconfig.esm.json"), { force: argv.force });
-            buildTypeScriptEsm.displayName = `build:typescript:esm:${project}`;
-
-            /** @type {gulp.TaskFunction} */
-            const postbuildTypeScriptEsm = async () => fs.writeFileSync(path.join(project, "dist/esm/package.json"), JSON.stringify({ "type": "module" }), "utf8");
-            postbuildTypeScriptEsm.displayName = `postbuild:typescript:esm:${project}`;
-
-            /** @type {gulp.TaskFunction} */
-            const cleanTypeScriptCjs = () => cleanProject(project);
-            cleanTypeScriptCjs.displayName = `clean:typescript:cjs:${project}`;
-
-            /** @type {gulp.TaskFunction} */
-            const cleanTypeScriptEsm = () => cleanProject(path.join(project, "tsconfig.esm.json"));
-            cleanTypeScriptEsm.displayName = `clean:typescript:esm:${project}`;
-
-            /** @type {gulp.TaskFunction} */
-            const buildTypeScript = gulp.series(gulp.parallel(buildTypeScriptCjs, buildTypeScriptEsm), postbuildTypeScriptEsm);
-            buildTypeScript.displayName = `build:typescript:${project}`;
-            buildTasks.push(buildTypeScript);
-
-            /** @type {gulp.TaskFunction} */
-            const cleanTypeScript = gulp.parallel(cleanTypeScriptCjs, cleanTypeScriptEsm);
-            cleanTypeScript.displayName = `clean:typescript:${project}`;
-            cleanTasks.push(cleanTypeScript);
-        }
-        else {
-            /** @type {gulp.TaskFunction} */
-            const buildTypeScript = () => buildProject(project, { force: argv.force });
-            buildTypeScript.displayName = `build:typescript:${project}`;
-            buildTasks.push(buildTypeScript);
-
-            /** @type {gulp.TaskFunction} */
-            const cleanTypeScript = () => cleanProject(project);
-            cleanTypeScript.displayName = `clean:typescript:${project}`;
-            cleanTasks.push(cleanTypeScript);
-        }
+        /** @type {gulp.TaskFunction} */
+        const cleanTypeScript = () => del(`${project}/dist`);
+        cleanTypeScript.displayName = `clean:typescript:${project}`;
+        cleanTasks.push(cleanTypeScript);
 
         if (fs.existsSync(path.join(project, "binding.gyp"))) {
             /** @type {gulp.TaskFunction} */

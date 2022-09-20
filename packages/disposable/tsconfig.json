@@ -11,5 +11,6 @@
     "references": [
         // devDependencies
         { "path": "../../internal/guards" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

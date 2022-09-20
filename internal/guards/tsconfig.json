@@ -3,11 +3,11 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist/cjs",
-        "declarationDir": "dist/types",
-        "module": "commonjs",
+        "declarationDir": "dist/types"
     },
     "include": ["src/**/*.ts"],
     "references": [
         { "path": "../../packages/type-model" },
     ],
+    "esmDir": "dist/esm"
 }

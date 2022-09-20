@@ -9,27 +9,27 @@
         ".": {
             "types": "./dist/types/index.d.ts",
             "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.js"
+            "import": "./dist/esm/index.mjs"
         },
         "./hierarchy": {
             "types": "./dist/types/hierarchy.d.ts",
             "require": "./dist/cjs/hierarchy.js",
-            "import": "./dist/esm/hierarchy.js"
+            "import": "./dist/esm/hierarchy.mjs"
         },
         "./ordered": {
             "types": "./dist/types/ordered.d.ts",
             "require": "./dist/cjs/ordered.js",
-            "import": "./dist/esm/ordered.js"
+            "import": "./dist/esm/ordered.mjs"
         },
         "./provider": {
             "types": "./dist/types/provider.d.ts",
             "require": "./dist/cjs/provider.js",
-            "import": "./dist/esm/provider.js"
+            "import": "./dist/esm/provider.mjs"
         },
         "./axis": {
             "types": "./dist/types/axis.d.ts",
             "require": "./dist/cjs/axis.js",
-            "import": "./dist/esm/axis.js"
+            "import": "./dist/esm/axis.mjs"
         }
     },
     "typesVersions": {

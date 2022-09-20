@@ -6,10 +6,13 @@ const assert = require("assert");
 const { pickProperty, pickPropertyMatching } = require("../../utils");
 
 /**
+ * Verifies the `"main"` field of `<package>/package.json` is correct.
+ *
  * @type {import("../../types").PackageVerifierRule}
  */
 function verifyPackageJsonMainProperty(context) {
-    const { packageJsonFile, packageJsonObject, packageTsconfigObject, formatLocation, addError } = context;
+    const { packageJsonFile, packageJsonObject, packageTsconfigJsonFile, packageTsconfigObject, formatLocation, addError } = context;
+    if (!packageJsonObject) return;
 
     const headerProp =
         pickProperty(packageJsonObject, "type") ||
@@ -17,11 +20,8 @@ function verifyPackageJsonMainProperty(context) {
         pickProperty(packageJsonObject, "version") ||
         pickProperty(packageJsonObject, "name");
 
-    const outDir = pickPropertyMatching(pickProperty(packageTsconfigObject, "compilerOptions"), "outDir", ts.isStringLiteral);
-
-    const expectedMain =
-        outDir?.text.endsWith("dist/cjs") ? "./dist/cjs/index.js" :
-        outDir?.text.endsWith("dist/esm") ? "./dist/esm/index.js" :
+    const tsconfigJson = ts.convertToObject(packageTsconfigJsonFile, []);
+    const expectedMain = tsconfigJson?.compilerOptions?.outDir?.includes("dist/cjs") ? "./dist/cjs/index.js" :
         "./dist/index.js";
 
     const mainProp = pickProperty(packageJsonObject, "main");
@@ -29,7 +29,7 @@ function verifyPackageJsonMainProperty(context) {
         addError({
             message: `Expected 'package.json' to have a 'main' property whose value is '${expectedMain}'`,
             location: formatLocation(packageJsonFile, packageJsonObject),
-            fixes: [{
+            fixes: headerProp && [{
                 action: "insertProperty",
                 description: `Add missing 'main' property to '${context.baseRelativePackageJsonPath}'`,
                 file: packageJsonFile,

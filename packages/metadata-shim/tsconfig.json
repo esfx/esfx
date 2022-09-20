@@ -8,5 +8,6 @@
     "include": ["src/**/*.ts"],
     "references": [
         { "path": "../metadata" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

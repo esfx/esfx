@@ -3,9 +3,10 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist/cjs",
-        "declarationDir": "dist/types"
+        "declarationDir": "dist/types",
     },
     "include": ["src/**/*.ts"],
     "references": [
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

@@ -2,7 +2,6 @@
 const ts = require("typescript");
 const fs = require("fs");
 const path = require("path");
-const { isPackageJsonConditionalExports, isPackageJsonRelativeExports } = require("../resolver/utils");
 
 /**
  * @param {string} basePath
@@ -106,13 +105,23 @@ exports.toPath = toPath;
 /**
  * @param {string} file
  * @param {((diagnostic: import("./types").Diagnostic) => void) | undefined} addError
+ * @param {Map<string, ts.JsonSourceFile>} [knownFiles]
  * @returns {import("typescript").JsonSourceFile | undefined}
  */
-function tryReadJsonFile(file, addError) {
+function tryReadJsonFile(file, addError, knownFiles) {
+    let data;
     try {
-        const data = fs.readFileSync(file, "utf8");
+        data = fs.readFileSync(file, "utf8");
+    }
+    catch (e) {
+        addError?.({ message: `File not found: ${file}`, code: "ENOENT" });
+        return;
+    }
+
+    try {
         const sourceFile = /** @type {ts.JsonSourceFile} */(ts.createSourceFile(toPath(file), data, ts.ScriptTarget.JSON, /*setParentNodes*/ true, ts.ScriptKind.JSON));
         /** @type {*} */(sourceFile).path = toPath(sourceFile.fileName);
+        knownFiles?.set(sourceFile.fileName, sourceFile);
         return sourceFile;
     }
     catch (e) {
@@ -157,19 +166,29 @@ exports.simplifyExportsMap = simplifyExportsMap;
 function simplifyPackageJsonRelativeExports(map, moduleType) {
     const entries = Object.entries(map);
     if (entries.length === 1 && entries[0][0] === ".") {
-        return simplifyPackageJsonRelativeExport(entries[0][1], moduleType);
+        const simplified = simplifyPackageJsonRelativeExportOrNull(entries[0][1], moduleType);
+        if (simplified !== null) return simplified;
     }
 
     let result;
     for (let i = 0; i < entries.length; i++) {
         const [key, value] = entries[i];
-        const simplified = simplifyPackageJsonRelativeExport(value, moduleType);
+        const simplified = simplifyPackageJsonRelativeExportOrNull(value, moduleType);
         if (result || simplified !== value) {
             result ||= entries.slice(0, i);
             result.push([key, simplified]);
         }
     }
     return result ? Object.fromEntries(result) : map;
+}
+
+/**
+ * @param {import("../resolver/types").PackageJsonRelativeExport | null} map
+ * @param {"commonjs" | "module"} moduleType
+ * @returns {import("../resolver/types").PackageJsonRelativeExport | null}
+ */
+function simplifyPackageJsonRelativeExportOrNull(map, moduleType) {
+    return map === null ? null : simplifyPackageJsonRelativeExport(map, moduleType);
 }
 
 /**
@@ -213,7 +232,7 @@ function simplifyPackageJsonConditionalExport(map, moduleType) {
     if (typeof map === "string") return map;
 
     const entries = Object.entries(map);
-    if (entries.length === 1 && entries[0][0] === (moduleType === "commonjs" ? "require" : "import")) {
+    if (entries.length === 1 && (entries[0][0] === (moduleType === "commonjs" ? "require" : "import") || entries[0][0] === "default")) {
         return simplifyPackageJsonConditionalExport(entries[0][1], moduleType);
     }
 
@@ -273,10 +292,18 @@ function createPackageJsonRelativeExports(map) {
     const node = ts.factory.createObjectLiteralExpression(Object.entries(map).sort((a, b) => compare(a[0], b[0])).map(([key, value]) =>
         ts.factory.createPropertyAssignment(
             ts.factory.createStringLiteral(key),
-            createPackageJsonRelativeExport(value)
+            createPackageJsonRelativeExportOrNull(value)
         )), true);
     ts.setEmitFlags(node, ts.EmitFlags.Indented);
     return node;
+}
+
+/**
+ * @param {import("../resolver/types").PackageJsonRelativeExport | null} map
+ */
+function createPackageJsonRelativeExportOrNull(map) {
+    return map === null ? ts.factory.createNull() :
+        createPackageJsonRelativeExport(map);
 }
 
 /**
@@ -439,3 +466,103 @@ function jsonObjectExpressionToJson(value) {
     return visit(value);
 }
 exports.jsonObjectExpressionToJson = jsonObjectExpressionToJson;
+
+/**
+ * @param {string} key
+ */
+function isSubpathKey(key) {
+    return key.startsWith(".");
+}
+
+/**
+ * @param {string} key
+ */
+function isConditionKey(key) {
+    if (isSubpathKey(key)) return false;
+    const n = +key;
+    return !(`${n}` === key && n >= 0 && n <= Number.MAX_SAFE_INTEGER && !key.includes("."));
+}
+
+/**
+ * @param {string} key
+ */
+function isImportKey(key) {
+    return key.startsWith("#");
+}
+
+/**
+ * @param {any} value
+ */
+function isPackageJsonRelativeExportArray(value) {
+    return Array.isArray(value) &&
+        value.every(isPackageJsonRelativeExport);
+}
+
+/**
+ * @param {unknown} value
+ * @return {value is import("../resolver/types").PackageJsonConditionalExports | string}
+ */
+function isPackageJsonConditionalExportsOrString(value) {
+    return typeof value === "string" || isPackageJsonConditionalExports(value);
+}
+
+/**
+ * @param {unknown} value
+ * @return {value is import("../resolver/types").PackageJsonConditionalExports}
+ */
+function isPackageJsonConditionalExports(value) {
+    return typeof value === "object" && value !== null &&
+        !Array.isArray(value) &&
+        Object.keys(value).every(isConditionKey) &&
+        Object.values(value).every(isPackageJsonConditionalExportsOrString);
+}
+exports.isPackageJsonConditionalExports = isPackageJsonConditionalExports;
+
+/**
+ * @param {unknown} value
+ */
+function isPackageJsonRelativeExport(value) {
+    return typeof value === "string" ||
+        isPackageJsonRelativeExportArray(value) ||
+        isPackageJsonConditionalExports(value);
+}
+
+/**
+ * @param {unknown} value
+ */
+function isPackageJsonRelativeExportOrNull(value) {
+    return typeof value === null ||
+        isPackageJsonRelativeExport(value);
+}
+
+/**
+ * @param {unknown} value
+ * @return {value is import("../resolver/types").PackageJsonRelativeExports}
+ */
+function isPackageJsonRelativeExports(value) {
+    return typeof value === "object" && value !== null &&
+        Object.keys(value).every(isSubpathKey) &&
+        Object.values(value).every(isPackageJsonRelativeExportOrNull);
+}
+exports.isPackageJsonRelativeExports = isPackageJsonRelativeExports;
+
+/**
+ * @param {unknown} value
+ * @returns {value is import("../resolver/types").PackageJsonExports}
+ */
+function isPackageJsonExports(value) {
+    return isPackageJsonRelativeExport(value) ||
+        isPackageJsonRelativeExports(value);
+}
+exports.isPackageJsonExports = isPackageJsonExports;
+
+/**
+ * @param {unknown} value
+ * @returns {value is import("../resolver/types").PackageJsonImports}
+ */
+function isPackageJsonImports(value) {
+    return typeof value === "object" && value !== null &&
+        Object.keys(value).every(isImportKey) &&
+        Object.values(value).every(isPackageJsonRelativeExportOrNull);
+}
+exports.isPackageJsonImports = isPackageJsonImports;

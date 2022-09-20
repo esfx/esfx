@@ -9,16 +9,14 @@
         ".": {
             "types": "./dist/types/index.d.ts",
             "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.js",
-            "browser": "./dist/esm/index.js"
+            "import": "./dist/esm/index.mjs"
         }
     },
     "imports": {
         "#hashCode": {
             "node": "./lib/hashCodeNative.js",
             "require": "./dist/cjs/internal/hashCode.js",
-            "import": "./dist/esm/internal/hashCode.js",
-            "browser": "./dist/esm/internal/hashCode.js"
+            "import": "./dist/esm/internal/hashCode.mjs"
         },
         "#hashCodeNative": {
             "node": "./lib/hashCodeNative.js"

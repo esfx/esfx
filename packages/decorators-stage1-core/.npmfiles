@@ -2,11 +2,8 @@ dist/cjs/index.js
 dist/cjs/index.js.map
 dist/cjs/typeModel.js
 dist/cjs/typeModel.js.map
-dist/esm/index.js
-dist/esm/index.js.map
-dist/esm/typeModel.js
-dist/esm/typeModel.js.map
-dist/esm/package.json
+dist/esm/index.mjs
+dist/esm/typeModel.mjs
 dist/types/index.d.ts
 dist/types/index.d.ts.map
 dist/types/typeModel.d.ts

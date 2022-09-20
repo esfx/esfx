@@ -15,5 +15,6 @@
         { "path": "../../internal/ts-worker" },
         { "path": "../../internal/threading" },
         { "path": "../../internal/guards" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

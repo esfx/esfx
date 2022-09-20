@@ -1,5 +1,5 @@
 // @ts-check
-const { verifyPackageJsonDependencies } = require("./verifyPackageJsonDependenciesExists");
+const { verifyPackageJsonStructure } = require("./verifyPackageJsonStructure");
 const { verifyPackageTsconfigJsonStructure } = require("./verifyPackageTsconfigJsonStructure");
 const { verifyExpectedReferences } = require("./verifyExpectedReferences");
 const { verifyExpectedDependencies } = require("./verifyExpectedDependencies");
@@ -11,10 +11,12 @@ const { verifyPackageJsonTypesProperty } = require("./verifyPackageJsonTypesProp
 const { verifyPackageJsonTypesVersionsProperty } = require("./verifyPackageJsonTypesVersionsProperty");
 
 /**
+ * Verifies a package.
+ *
  * @type {import("../../types").PackageVerifierRule}
  */
 function verifyPackage(context) {
-    return verifyPackageJsonDependencies(context) ||
+    return verifyPackageJsonStructure(context) ||
         verifyPackageTsconfigJsonStructure(context) ||
         verifyExpectedReferences(context) ||
         verifyExpectedDependencies(context) ||

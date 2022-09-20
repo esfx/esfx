@@ -9,6 +9,7 @@
 
 /**
  * @typedef Diagnostic
+ * @property {"ENOENT"} [code]
  * @property {string} message
  * @property {string} [location]
  * @property {string} [relatedLocation]
@@ -18,7 +19,10 @@
 
 /**
  * @typedef PackageVerifierContext
- * @property {{ basePath, internalPath, packagesPath }} paths
+ * @property {object} paths
+ * @property {string} paths.basePath
+ * @property {string} paths.internalPath
+ * @property {string} paths.packagesPath
  * @property {string} basePath
  * @property {string} packageName
  * @property {string} packagePath
@@ -53,13 +57,16 @@
 
 /**
  * @typedef ContainerVerifierContext
- * @property {{ basePath, internalPath, packagesPath }} paths
+ * @property {object} paths
+ * @property {string} paths.basePath
+ * @property {string} paths.internalPath
+ * @property {string} paths.packagesPath
  * @property {string} basePath
  * @property {string} baseRelativeContainerTsconfigJsonPath
  * @property {Map<string, import("typescript").JsonSourceFile>} knownFiles
  * @property {Map<string, import("typescript").JsonSourceFile>} expectedContainerProjects
- * @property {Map<string, import("typescript").StringLiteral>?} actualContainerProjects
- * @property {import("typescript").JsonSourceFile} containerTsconfigJsonFile
+ * @property {Map<string, import("typescript").StringLiteral> | undefined} actualContainerProjects
+ * @property {import("typescript").JsonSourceFile} [containerTsconfigJsonFile]
  * @property {import("typescript").ObjectLiteralExpression} [containerTsconfigObject]
  * @property {import("./codeFix").AppendPropertyCodeFix} [referencesFix]
  * @property {import("typescript").ArrayLiteralExpression} [references]

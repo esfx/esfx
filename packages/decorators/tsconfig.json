@@ -10,5 +10,6 @@
     "references": [
         { "path": "../../internal/guards" },
         { "path": "../decorators-stage1-core" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

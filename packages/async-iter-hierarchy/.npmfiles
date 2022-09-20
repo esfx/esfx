@@ -4,13 +4,9 @@ dist/cjs/index.js
 dist/cjs/index.js.map
 dist/cjs/ordered.js
 dist/cjs/ordered.js.map
-dist/esm/hierarchy.js
-dist/esm/hierarchy.js.map
-dist/esm/index.js
-dist/esm/index.js.map
-dist/esm/ordered.js
-dist/esm/ordered.js.map
-dist/esm/package.json
+dist/esm/hierarchy.mjs
+dist/esm/index.mjs
+dist/esm/ordered.mjs
 dist/types/hierarchy.d.ts
 dist/types/hierarchy.d.ts.map
 dist/types/index.d.ts

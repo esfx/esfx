@@ -15,5 +15,6 @@
         { "path": "../equatable" },
         { "path": "../iter-hierarchy" },
         { "path": "../iter-ordered" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

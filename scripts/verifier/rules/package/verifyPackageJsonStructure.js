@@ -1,14 +1,18 @@
 // @ts-check
 const ts = require("typescript");
-const path = require("path");
 const { pickProperty, isDefinedAndNot } = require("../../utils");
 
 /**
+ * Verifies the structure of `<package>/package.json`.
+ *
  * @type {import("../../types").PackageVerifierRule}
  */
-function verifyPackageJsonDependencies(context) {
+function verifyPackageJsonStructure(context) {
     const { packageJsonFile, addError, formatLocation } = context;
     const packageJsonObject = packageJsonFile.statements[0].expression;
+
+    // TODO: verify `name`, `description`, `version`, etc.
+
     if (!ts.isObjectLiteralExpression(packageJsonObject)) {
         addError({
             message: `Invalid package file: Expected an object.`,
@@ -38,4 +42,4 @@ function verifyPackageJsonDependencies(context) {
     }
     context.devDependencies = devDependencies;
 }
-exports.verifyPackageJsonDependencies = verifyPackageJsonDependencies;
+exports.verifyPackageJsonStructure = verifyPackageJsonStructure;

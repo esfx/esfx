@@ -9,12 +9,12 @@
         ".": {
             "types": "./dist/types/index.d.ts",
             "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.js"
+            "import": "./dist/esm/index.mjs"
         },
         "./dom": {
             "types": "./dist/types/dom.d.ts",
             "require": "./dist/cjs/dom.js",
-            "import": "./dist/esm/dom.js"
+            "import": "./dist/esm/dom.mjs"
         }
     },
     "typesVersions": {

@@ -24,5 +24,6 @@
         { "path": "../iter-page" },
         { "path": "../iter-ordered" },
         { "path": "../iter-hierarchy" },
-    ]
+    ],
+    "esmDir": "dist/esm"
 }

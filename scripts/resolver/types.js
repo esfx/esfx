@@ -17,7 +17,7 @@ const conditionalBrand = Symbol();
 const relativeExportsBrand = Symbol();
 
 /**
- * @typedef {{ [key: string]: string | PackageJsonConditionalExports | undefined; } & { [conditionalBrand]?: never}} PackageJsonConditionalExports
+ * @typedef {{ [key: string]: string | PackageJsonConditionalExports; } & { [conditionalBrand]?: never}} PackageJsonConditionalExports
  */
 
 /**
@@ -29,7 +29,7 @@ const relativeExportsBrand = Symbol();
  */
 
 /**
- * @typedef {{ [key: string]: PackageJsonRelativeExport | null | undefined } & { [relativeExportsBrand]?: never }} PackageJsonRelativeExports
+ * @typedef {{ [key: string]: PackageJsonRelativeExport | null } & { [relativeExportsBrand]?: never }} PackageJsonRelativeExports
  */
 
 /**
