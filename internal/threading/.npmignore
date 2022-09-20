@@ -7,3 +7,4 @@ api-extractor.json
 tsconfig*.json
 *.tsbuildinfo
 .npmfiles
+*.tgz

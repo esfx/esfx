@@ -3,7 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "dependencies": {
-        "yargs": "^16.2.0"
+        "yargs": "^16.2.0",
+        "find-yarn-workspace-root": "^2.0.0"
     },
     "bin": {
         "workspaces-foreach": "./index.js"

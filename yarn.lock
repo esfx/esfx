@@ -9101,10 +9101,9 @@ wordwrap@^1.0.0:
   resolved "https://registry.npmjs.org/wordwrap/-/wordwrap-1.0.0.tgz"
   integrity sha1-J1hIEIkUVqQXHI0CJkQa3pDLyus=
 
-"workspaces-foreach@file:scripts/workspaces-foreach":
+"workspaces-foreach@link:./scripts/workspaces-foreach":
   version "0.0.0"
-  dependencies:
-    yargs "^16.2.0"
+  uid ""
 
 wrap-ansi@^2.0.0:
   version "2.1.0"

@@ -1,5 +1,6 @@
 {
   "name": "esfx-monorepo",
+  "version": "1.0.0-pre.40",
   "private": true,
   "repository": {
     "type": "git",
@@ -8,8 +9,9 @@
   "scripts": {
     "test": "gulp test",
     "clean": "gulp clean",
-    "prebuild": "workspaces-foreach run prebuild",
+    "prebuild": "node node_modules/workspaces-foreach run prebuild",
     "ci": "gulp ci",
+    "pack": "node node_modules/workspaces-foreach pack",
     "build-windows": "gulp build-windows",
     "build-linux": "gulp build-linux",
     "build-macos": "gulp build-macos"
@@ -66,7 +68,7 @@
     "typescript": "^4.6.1-rc",
     "yargs": "^16.2.0",
     "yargs-unparser": "^2.0.0",
-    "workspaces-foreach": "file:scripts/workspaces-foreach"
+    "workspaces-foreach": "link:./scripts/workspaces-foreach"
   },
   "dependencies": {}
 }

@@ -8,3 +8,4 @@ tsconfig*.json
 *.tsbuildinfo
 jest*.config.js
 .npmfiles
+*.tgz

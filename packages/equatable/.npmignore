@@ -14,5 +14,6 @@
 binding.gyp_
 .vscode
 .npmfiles
+*.tgz
 __tests__
 __perf__

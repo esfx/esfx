@@ -67,9 +67,10 @@ gulp.task("build", build);
 const ci = gulp.series(clean, build);
 gulp.task("ci", ci);
 
-gulp.task("build-windows", () => exec(path.resolve("node_modules/.bin/workspaces-foreach"), ["run", "package-node-win32-x64"]));
-gulp.task("build-linux", () => exec(path.resolve("node_modules/.bin/workspaces-foreach"), ["run", "package-node-linux-x64"]));
-gulp.task("build-macos", () => exec(path.resolve("node_modules/.bin/workspaces-foreach"), ["run", "package-node-darwin-x64"]));
+gulp.task("build-windows", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-node-win32-x64"]));
+gulp.task("build-linux", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-node-linux-x64"]));
+gulp.task("build-macos", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-node-darwin-x64"]));
+gulp.task("pack", () => exec(process.execPath, ["node_modules/workspaces-foreach", "pack", "--silent", "--json"]));
 
 const test = () => {
     const args = new ArgsBuilder();
