@@ -54,7 +54,7 @@
         "module_path": "./dist/node/{configuration}/{node_abi}-{platform}-{arch}/",
         "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}.tar.gz",
         "host": "https://github.com/esfx/esfx/releases/download/",
-        "remote_path": "{version}"
+        "remote_path": "v{version}"
     },
     "publishConfig": {
         "access": "public"
