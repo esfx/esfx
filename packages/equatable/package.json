@@ -14,7 +14,10 @@
     },
     "imports": {
         "#hashCode": {
-            "node": "./lib/hashCodeNative.js",
+            "node": {
+                "require": "./lib/hashCodeNative.cjs",
+                "import": "./lib/hashCodeNative.mjs"
+            },
             "require": "./dist/cjs/internal/hashCode.js",
             "import": "./dist/esm/internal/hashCode.mjs"
         },

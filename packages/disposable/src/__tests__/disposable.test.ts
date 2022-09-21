@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import { jest } from "@jest/globals";
 import { Disposable, DisposableScope } from "../disposable";
 import "../internal/testUtils";
 

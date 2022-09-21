@@ -1,5 +1,5 @@
 /**
- * @typedef {Parameters<typeof import("jest-resolve").findNodeModule>[1]} ResolverOptsBase
+ * @typedef {import("jest-resolve").FindNodeModuleConfig} ResolverOptsBase
  */
 
 /**
@@ -64,9 +64,19 @@ const relativeExportsBrand = Symbol();
  */
 
 /**
- * @typedef EsmMatch
+ * @typedef UnresolvedEsmMatch
+ * @property {undefined} resolved
+ * @property {boolean} exact
+ */
+
+/**
+ * @typedef ResolvedEsmMatch
  * @property {import("url").URL} resolved
  * @property {boolean} exact
  */
 
-module.exports = {};
+/**
+ * @typedef {UnresolvedEsmMatch | ResolvedEsmMatch} EsmMatch
+ */
+
+ module.exports = {};

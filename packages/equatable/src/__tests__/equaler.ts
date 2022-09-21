@@ -1,6 +1,6 @@
 /// <reference path="../../package.internal.d.ts" />
 
-import { Equaler, Equatable, Comparable, StructuralEquatable, StructuralComparable, rawHash, combineHashes } from "../index";
+import { Equaler, Equatable, Comparable, StructuralEquatable, StructuralComparable, rawHash, combineHashes } from "../index.js";
 
 describe("Equatable", () => {
     it("equals", () => {
@@ -82,7 +82,7 @@ describe("StructuralComparable", () => {
 
 describe("Equaler", () => {
     describe("defaultEqualer", () => {
-        describe("equals (left is Equatable)", () => {
+        it("equals (left is Equatable)", () => {
             const a = {};
             const b = {};
             const obj = {
@@ -92,7 +92,7 @@ describe("Equaler", () => {
             expect(Equaler.defaultEqualer.equals(obj, a)).toBe(true);
             expect(Equaler.defaultEqualer.equals(obj, b)).toBe(false);
         });
-        describe("equals (right is Equatable)", () => {
+        it("equals (right is Equatable)", () => {
             const a = {};
             const b = {};
             const obj = {
@@ -102,7 +102,7 @@ describe("Equaler", () => {
             expect(Equaler.defaultEqualer.equals(a, obj)).toBe(true);
             expect(Equaler.defaultEqualer.equals(b, obj)).toBe(false);
         });
-        describe("equals (neither is Equatable)", () => {
+        it("equals (neither is Equatable)", () => {
             const a = {};
             const b = {};
             expect(Equaler.defaultEqualer.equals(a, a)).toBe(true);
@@ -124,12 +124,12 @@ describe("Equaler", () => {
         });
     });
     describe("tupleEqualer", () => {
-        describe("equals (neither is Equatable)", () => {
+        it("equals (neither is Equatable)", () => {
             expect(Equaler.tupleEqualer.equals([1, 2, 3], [1, 2, 3])).toBe(true);
             expect(Equaler.tupleEqualer.equals([1, 2, 3], [1, 2, 4])).toBe(false);
             expect(Equaler.tupleEqualer.equals([1, 2, 3], [1, 2, 3, 4])).toBe(false);
         });
-        describe("hash (value is not Equatable)", () => {
+        it("hash (value is not Equatable)", () => {
             let hc = 0;
             hc = combineHashes(hc, rawHash(1));
             hc = combineHashes(hc, rawHash(2));

@@ -1,7 +1,9 @@
+import { jest } from "@jest/globals";
 import { AutoResetEvent } from "..";
 import { Worker } from "@esfx/internal-ts-worker";
 
-it("test", () => new Promise<void>((resolve, reject) => {
+const itCjsOnly = typeof __dirname === "string" ? it : it.skip;
+itCjsOnly("test", () => new Promise<void>((resolve, reject) => {
     // NOTE: We need to give adequate time here for ts-node to parse/evaulate the dependency
     // graph.
     jest.setTimeout(20000);
@@ -9,7 +11,7 @@ it("test", () => new Promise<void>((resolve, reject) => {
     const data = new Int32Array(new SharedArrayBuffer(4));
     const workerScript = `
         import { parentPort, workerData } from "worker_threads";
-        import { AutoResetEvent } from "..";
+        import { AutoResetEvent } from "${typeof __dirname === "string" ? "../" : "../index.mjs" }";
         const event = new AutoResetEvent(workerData[0]);
         const data = new Int32Array(workerData[1]);
         parentPort!.postMessage(["before", Atomics.load(data, 0)]);

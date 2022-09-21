@@ -1,16 +1,17 @@
+import { jest } from "@jest/globals";
 import { DefaultMemoizeCache } from "../defaultMemoizeCache.js";
 import { memoize } from "../memoize.js";
 
 describe("memoize", () => {
     it("passes provided arguments", () => {
-        const fn = jest.fn();
+        const fn = jest.fn<(...args: any) => any>();
         const memo = memoize(fn);
         const obj = {};
         memo(1, obj);
         expect(fn).toHaveBeenCalledWith(1, obj);
     });
     it("returns return value", () => {
-        const fn = jest.fn();
+        const fn = jest.fn<(...args: any) => any>();
         const memo = memoize(fn);
         const obj = {};
         fn.mockReturnValueOnce(obj);
@@ -18,7 +19,7 @@ describe("memoize", () => {
         expect(result).toBe(obj);
     });
     it("returns same return value", () => {
-        const fn = jest.fn();
+        const fn = jest.fn<(...args: any) => any>();
         const memo = memoize(fn);
         const obj1 = {};
         const obj2 = {};
@@ -30,7 +31,7 @@ describe("memoize", () => {
         expect(memo()).toBe(obj1);
     });
     it("throws same error", () => {
-        const fn = jest.fn();
+        const fn = jest.fn<(...args: any) => any>();
         const memo = memoize(fn);
         const obj1 = new Error("a");
         const obj2 = new Error("b");
@@ -44,7 +45,7 @@ describe("memoize", () => {
         expect(fn).toHaveBeenCalledTimes(1);
     });
     it("throws if circular", () => {
-        const fn = jest.fn();
+        const fn = jest.fn<(...args: any) => any>();
         const memo = memoize(fn);
 
         fn.mockImplementationOnce(() => memo());
@@ -56,21 +57,21 @@ describe("memoize", () => {
         expect(fn).toHaveBeenCalledTimes(1);
     });
     it("evals once when no args", () => {
-        const fn = jest.fn();
+        const fn = jest.fn<(...args: any) => any>();
         const memo = memoize(fn);
         memo();
         memo();
         expect(fn).toHaveBeenCalledTimes(1);
     });
     it("evals once with same primitive arg", () => {
-        const fn = jest.fn();
+        const fn = jest.fn<(...args: any) => any>();
         const memo = memoize(fn);
         memo(1);
         memo(1);
         expect(fn).toHaveBeenCalledTimes(1);
     });
     it("evals once with same non-primitive arg", () => {
-        const fn = jest.fn();
+        const fn = jest.fn<(...args: any) => any>();
         const memo = memoize(fn);
         const obj = {};
         memo(obj);
@@ -78,7 +79,7 @@ describe("memoize", () => {
         expect(fn).toHaveBeenCalledTimes(1);
     });
     it("evals once for each different primitive arg", () => {
-        const fn = jest.fn();
+        const fn = jest.fn<(...args: any) => any>();
         const memo = memoize(fn);
         memo(1);
         memo(1);
@@ -87,7 +88,7 @@ describe("memoize", () => {
         expect(fn).toHaveBeenCalledTimes(2);
     });
     it("evals once for each different non-primitive arg", () => {
-        const fn = jest.fn();
+        const fn = jest.fn<(...args: any) => any>();
         const memo = memoize(fn);
         const obj1 = {};
         const obj2 = {};
@@ -98,7 +99,7 @@ describe("memoize", () => {
         expect(fn).toHaveBeenCalledTimes(2);
     });
     it("evals once for each different set of args (mixed primitive and non-primitive)", () => {
-        const fn = jest.fn();
+        const fn = jest.fn<(...args: any) => any>();
         const memo = memoize(fn);
         const obj1 = {};
         const obj2 = {};
@@ -122,8 +123,8 @@ describe("memoize", () => {
     });
     describe("custom cache", () => {
         it("passes args", () => {
-            const fn = jest.fn();
-            const get = jest.fn();
+            const fn = jest.fn<(...args: any) => any>();
+            const get = jest.fn<(...args: any) => any>();
             const obj = {};
             const memo = memoize(fn, { cache: { get }});
             get.mockReturnValueOnce({});
@@ -132,36 +133,36 @@ describe("memoize", () => {
             expect(get).toHaveBeenCalledWith([1, obj]);
         });
         it("throws if cache entry not an object", () => {
-            const fn = jest.fn();
-            const get = jest.fn();
+            const fn = jest.fn<(...args: any) => any>();
+            const get = jest.fn<(...args: any) => any>();
             const memo = memoize(fn, { cache: { get }});
             get.mockReturnValueOnce(1);
             expect(() => memo()).toThrow();
         });
         it("throws if cache entry result not an object", () => {
-            const fn = jest.fn();
-            const get = jest.fn();
+            const fn = jest.fn<(...args: any) => any>();
+            const get = jest.fn<(...args: any) => any>();
             const memo = memoize(fn, { cache: { get }});
             get.mockReturnValueOnce({ result: 1 });
             expect(() => memo()).toThrow();
         });
         it("throws if cache entry result has invalid status", () => {
-            const fn = jest.fn();
-            const get = jest.fn();
+            const fn = jest.fn<(...args: any) => any>();
+            const get = jest.fn<(...args: any) => any>();
             const memo = memoize(fn, { cache: { get }});
             get.mockReturnValueOnce({ result: { status: "foo" } });
             expect(() => memo()).toThrow();
         });
         it("returns value from fulfilled entry result", () => {
-            const fn = jest.fn();
-            const get = jest.fn();
+            const fn = jest.fn<(...args: any) => any>();
+            const get = jest.fn<(...args: any) => any>();
             const memo = memoize(fn, { cache: { get }});
             get.mockReturnValueOnce({ result: { status: "fulfilled", value: 1 } });
             expect(memo()).toBe(1);
         });
         it("throws reason from rejected entry result", () => {
-            const fn = jest.fn();
-            const get = jest.fn();
+            const fn = jest.fn<(...args: any) => any>();
+            const get = jest.fn<(...args: any) => any>();
             const memo = memoize(fn, { cache: { get }});
             const err1 = new Error("A");
             get.mockReturnValueOnce({ result: { status: "rejected", reason: err1 } });

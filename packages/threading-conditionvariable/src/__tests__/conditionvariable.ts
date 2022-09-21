@@ -1,10 +1,12 @@
+import { jest } from "@jest/globals";
 import { Worker } from "@esfx/internal-ts-worker";
 import { Mutex } from "@esfx/threading-mutex";
 import { ConditionVariable } from "..";
 
 import { Record, pushStep } from "./workers/utils";
 
-it("test", async () => {
+const itCjsOnly = typeof __dirname === "string" ? it : it.skip;
+itCjsOnly("test", async () => {
     // NOTE: We need to give adequate time here for ts-node to parse/evaulate the dependency
     // graph.
     jest.setTimeout(20000);

@@ -16,7 +16,7 @@
 
 function tryGetNodeDeprecate() {
     try {
-        const util = require('util') as typeof import('util');
+        const util = (void 0, require)('util') as typeof import('util');
         return util.deprecate;
     }
     catch {

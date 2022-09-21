@@ -1,10 +1,11 @@
+import { jest } from "@jest/globals";
 import { hashUnknown as hashUnknownNative } from "#hashCodeNative";
-import { generateRandomNumbers, SAMPLE_SIZE } from "./data/randomNumbers";
-import { hashNumberByFloat64DataViewOnly } from "./scenarios/hashNumber/hashNumberByFloat64DataViewOnly";
-import { hashNumberByFloat64TypedArrayOnly } from "./scenarios/hashNumber/hashNumberByFloat64TypedArrayOnly";
-import { hashNumberByTypeExperiment1, hashNumberByTypeExperiment2, hashNumberByTypeExperiment3 } from "./scenarios/hashNumber/hashNumberByTypeExperiments";
-import { hashNumberByTypeUsingDataView } from "./scenarios/hashNumber/hashNumberByTypeUsingDataView";
-import { hashNumberByTypeUsingTypedArray } from "./scenarios/hashNumber/hashNumberByTypeUsingTypedArray";
+import { generateRandomNumbers, SAMPLE_SIZE } from "./data/randomNumbers.js";
+import { hashNumberByFloat64DataViewOnly } from "./scenarios/hashNumber/hashNumberByFloat64DataViewOnly.js";
+import { hashNumberByFloat64TypedArrayOnly } from "./scenarios/hashNumber/hashNumberByFloat64TypedArrayOnly.js";
+import { hashNumberByTypeExperiment1, hashNumberByTypeExperiment2, hashNumberByTypeExperiment3 } from "./scenarios/hashNumber/hashNumberByTypeExperiments.js";
+import { hashNumberByTypeUsingDataView } from "./scenarios/hashNumber/hashNumberByTypeUsingDataView.js";
+import { hashNumberByTypeUsingTypedArray } from "./scenarios/hashNumber/hashNumberByTypeUsingTypedArray.js";
 
 jest.setTimeout(10_000_000);
 

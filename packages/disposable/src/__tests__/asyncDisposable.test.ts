@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import { jest } from "@jest/globals";
 import { AsyncDisposable, AsyncDisposableScope } from "../asyncDisposable";
 import "../internal/testUtils";
 
@@ -21,7 +22,7 @@ describe("The AsyncDisposable constructor [non-spec]", () => {
     describe("AsyncDisposable(onDispose)", () => {
         it("returns instance of AsyncDisposable", () => expect(new AsyncDisposable(() => {})).toBeInstanceOf(AsyncDisposable));
         it("Adds 'onDispose' as resource callback", async () => {
-            const fn = jest.fn();
+            const fn = jest.fn<() => Promise<void>>();
             const disposable = new AsyncDisposable(fn);
             await disposable[AsyncDisposable.asyncDispose]();
             expect(fn).toHaveBeenCalled();
@@ -35,7 +36,7 @@ describe("Properties of the AsyncDisposable constructor [non-spec]", () => {
     describe("AsyncDisposable.scope()", () => {
         it("is an own method", () => expect(AsyncDisposable).toHaveOwnMethod("scope"));
         it("disposes single resource", async () => {
-            const fn = jest.fn();
+            const fn = jest.fn<() => void>();
             const disposable = AsyncDisposable.create(fn);
             for await (const { using, fail } of AsyncDisposable.scope()) try {
                 using(disposable);
@@ -43,9 +44,9 @@ describe("Properties of the AsyncDisposable constructor [non-spec]", () => {
             expect(fn).toHaveBeenCalled();
         });
         it("disposes multiple resources", async () => {
-            const fn1 = jest.fn();
+            const fn1 = jest.fn<() => void>();
             const disposable1 = AsyncDisposable.create(fn1);
-            const fn2 = jest.fn();
+            const fn2 = jest.fn<() => void>();
             const disposable2 = AsyncDisposable.create(fn2);
             for await (const { using, fail } of AsyncDisposable.scope()) try {
                 using(disposable1);
@@ -73,7 +74,7 @@ describe("Properties of the AsyncDisposable constructor [non-spec]", () => {
             } catch (e) { fail(e); }
         });
         it("treat non-disposable function as disposable", async () => {
-            const fn = jest.fn();
+            const fn = jest.fn<() => void>();
             for await (const { using, fail } of AsyncDisposable.scope()) try {
                 using(AsyncDisposable.create(fn));
             } catch (e) { fail(e); }
@@ -193,23 +194,23 @@ describe("Properties of the AsyncDisposable constructor [non-spec]", () => {
     describe("AsyncDisposable.usingEach(iterable)", () => {
         it("is an own method", () => expect(AsyncDisposable).toHaveOwnMethod("usingEach"));
         it("disposes each", async () => {
-            const fn1 = jest.fn();
-            const fn2 = jest.fn();
+            const fn1 = jest.fn<() => void>();
+            const fn2 = jest.fn<() => void>();
             for await (const _ of AsyncDisposable.usingEach([AsyncDisposable.create(fn1), AsyncDisposable.create(fn2)]));
             expect(fn1).toHaveBeenCalled();
             expect(fn2).toHaveBeenCalled();
         });
         it("does not dispose later if earlier throws", async () => {
             const fn1 = () => { throw new Error(); };
-            const fn2 = jest.fn();
+            const fn2 = jest.fn<() => void>();
             await expect(async () => {
                 for await (const _ of AsyncDisposable.usingEach([AsyncDisposable.create(fn1), AsyncDisposable.create(fn2)]));
             }).rejects.toThrow();
             expect(fn2).not.toHaveBeenCalled();
         });
         it("is not eager", async () => {
-            const fn1 = jest.fn();
-            const fn2 = jest.fn();
+            const fn1 = jest.fn<() => void>();
+            const fn2 = jest.fn<() => void>();
             function* g() {
                 yield AsyncDisposable.create(fn1);
                 yield AsyncDisposable.create(fn2);
@@ -223,13 +224,13 @@ describe("Properties of the AsyncDisposable constructor [non-spec]", () => {
     });
     describe("AsyncDisposable.create(dispose)", () => {
         it("disposes resource stack [spec]", async () => {
-            const fn = jest.fn();
+            const fn = jest.fn<() => void>();
             const disposable = AsyncDisposable.create(fn);
             await disposable[AsyncDisposable.asyncDispose]();
             expect(fn).toHaveBeenCalled();
         });
         it("disposes resource only once [spec]", async () => {
-            const fn = jest.fn();
+            const fn = jest.fn<() => void>();
             const disposable = AsyncDisposable.create(fn);
             await disposable[AsyncDisposable.asyncDispose]();
             await disposable[AsyncDisposable.asyncDispose]();

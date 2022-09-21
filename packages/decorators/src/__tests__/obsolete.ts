@@ -1,6 +1,7 @@
+import { jest } from "@jest/globals";
 import { obsolete } from "../obsolete";
 
-let consoleWarnSpy: jest.SpyInstance;
+let consoleWarnSpy: globalThis.jest.SpyInstance;
 
 beforeEach(() => {
     consoleWarnSpy = jest.spyOn(global.console, "warn");

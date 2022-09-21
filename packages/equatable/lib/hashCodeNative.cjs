@@ -16,4 +16,10 @@
 
 const binary = require("@mapbox/node-pre-gyp");
 const path = require("path");
-module.exports = require(binary.find(path.resolve(path.join(__dirname, "../package.json"))));
+const hashCodeNative = require(binary.find(path.resolve(path.join(__dirname, "../package.json"))));
+exports.hashBigInt = hashCodeNative.hashBigInt;
+exports.hashNumber = hashCodeNative.hashNumber;
+exports.hashString = hashCodeNative.hashString;
+exports.hashSymbol = hashCodeNative.hashSymbol;
+exports.hashObject = hashCodeNative.hashObject;
+exports.hashUnknown = hashCodeNative.hashUnknown;

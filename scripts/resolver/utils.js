@@ -33,7 +33,10 @@ const {
 const {
     resolve: _pathResolve,
     dirname: _pathDirname,
-    join: _pathJoin
+    join: _pathJoin,
+    win32: {
+        isAbsolute: _win32IsAbsolute,
+    },
 } = require("path");
 const {
     fileURLToPath,
@@ -239,7 +242,7 @@ const cachedPackageConfigs = new Map();
  * @returns {import("./types").PackageJson}
  */
 function createEmptyPackageJson() {
-    return { main: undefined, name: undefined, type: "none", exports: undefined, imports: undefined };
+    return { main: undefined, name: /** @type {*} */(undefined), type: "none", exports: undefined, imports: undefined };
 }
 
 /**
@@ -310,13 +313,13 @@ exports.findPackageConfig = findPackageConfig;
 
 
 /**
- * @param {import("./types").PackageJsonExports} exports
+ * @param {import("./types").PackageJsonExports | undefined} exports
  * @returns {exports is import("./types").PackageJsonRelativeExports}
  */
 function isPackageJsonRelativeExports(exports) {
-    if (typeof exports !== "object") return;
+    if (typeof exports !== "object") return false;
     for (const key of ObjectGetOwnPropertyNames(exports)) {
-        if (key === "" || StringPrototypeStartsWith(key, ".")) return true;
+        if (StringPrototypeStartsWith(key, ".")) return true;
     }
     return false;
 }
@@ -327,9 +330,9 @@ exports.isPackageJsonRelativeExports = isPackageJsonRelativeExports;
  * @returns {exports is import("./types").PackageJsonConditionalExports}
  */
 function isPackageJsonConditionalExports(exports) {
-    if (typeof exports !== "object") return;
+    if (typeof exports !== "object") return false;
     for (const key of ObjectGetOwnPropertyNames(exports)) {
-        if (key !== "" && !StringPrototypeStartsWith(key, ".")) return true;
+        if (!StringPrototypeStartsWith(key, ".")) return true;
     }
     return false;
 }
@@ -341,6 +344,7 @@ exports.isPackageJsonConditionalExports = isPackageJsonConditionalExports;
  */
 function isUrlString(text) {
     try {
+        if (_win32IsAbsolute(text)) return false;
         const url = new URL(text);
         return !!url.protocol;
     }

@@ -1,11 +1,12 @@
 /// <reference path="../../../package.internal.d.ts" />
 
-import { createHashUnknown } from "../hashCode";
+import { createHashUnknown } from "../hashCode.js";
 
 const { hashUnknown, getState, setState } = createHashUnknown();
 
+let state: ReturnType<typeof getState>;
 beforeEach(() => {
-    const state = getState();
+    state = getState();
     setState({
         objectSeed: 0x1dc8529e,
         stringSeed: 0x6744b005,
@@ -13,11 +14,10 @@ beforeEach(() => {
         localSymbolSeed: 0x78819b01,
         globalSymbolSeed: 0x1875c170,
     });
-    afterEach(() => {
-        setState(state);
-    });
 });
-
+afterEach(() => {
+    setState(state);
+});
 
 it("null", () => expect(hashUnknown(null)).toBe(0));
 it("undefined", () => expect(hashUnknown(undefined)).toBe(0));

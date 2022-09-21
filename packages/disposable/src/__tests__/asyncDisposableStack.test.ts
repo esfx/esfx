@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import { jest } from "@jest/globals";
 import { AsyncDisposable } from "../asyncDisposable";
 import { AsyncDisposableStack } from "../asyncDisposableStack";
 import "../internal/testUtils";
@@ -44,7 +45,7 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
             expect(result).toBe(disposable);
         });
         it("disposes", async () => {
-            const fn = jest.fn();
+            const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
             const stack = new AsyncDisposableStack();
             stack.use({ [AsyncDisposable.asyncDispose]: fn });
             await stack.disposeAsync();
@@ -59,14 +60,14 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
             expect(steps).toEqual(["step 2", "step 1"]);
         });
         it("treats non-disposable function as disposable", async () => {
-            const fn = jest.fn();
+            const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
             const stack = new AsyncDisposableStack();
             stack.use(fn);
             await stack.disposeAsync();
             expect(fn).toHaveBeenCalled();
         });
         it("pass custom dispose for resource", async () => {
-            const fn = jest.fn();
+            const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
             const resource = {};
             const stack = new AsyncDisposableStack();
             const result = stack.use(resource, fn);
@@ -75,7 +76,7 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
             expect(fn).toHaveBeenCalled();
         });
         it("custom dispose invoked even if resource is null/undefined", async () => {
-            const fn = jest.fn();
+            const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
             const stack = new AsyncDisposableStack();
             stack.use(null, fn);
             await stack.disposeAsync();
@@ -104,14 +105,14 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
         });
         it("resources from initial stack not disposed after move", async () => {
             const stack = new AsyncDisposableStack();
-            const fn = stack.use(jest.fn());
+            const fn = stack.use(jest.fn<() => void>());
             stack.move();
             await stack[AsyncDisposable.asyncDispose]();
             expect(fn).not.toHaveBeenCalled();
         });
         it("resources from initial stack disposed after new stack from move is disposed", async () => {
             const stack = new AsyncDisposableStack();
-            const fn = stack.use(jest.fn());
+            const fn = stack.use(jest.fn<() => void>());
             const newStack = stack.move();
             await newStack[AsyncDisposable.asyncDispose]();
             expect(fn).toHaveBeenCalled();
@@ -131,14 +132,14 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
         it("is configurable", () => expect(AsyncDisposableStack.prototype).toHaveConfigurableProperty(AsyncDisposable.asyncDispose));
         it("length is 0", () => expect(AsyncDisposableStack.prototype[AsyncDisposable.asyncDispose].length).toBe(0));
         it("disposes", async () => {
-            const fn = jest.fn();
+            const fn = jest.fn<() => Promise<void>>();
             const stack = new AsyncDisposableStack();
             stack.use({ [AsyncDisposable.asyncDispose]: fn });
             await stack[AsyncDisposable.asyncDispose]();
             expect(fn).toHaveBeenCalled();
         });
         it("disposes once", async () => {
-            const fn = jest.fn();
+            const fn = jest.fn<() => Promise<void>>();
             const stack = new AsyncDisposableStack();
             stack.use(fn);
             await stack[AsyncDisposable.asyncDispose]();
@@ -162,7 +163,7 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
         it("is configurable", () => expect(AsyncDisposableStack.prototype).toHaveConfigurableProperty("disposeAsync"));
         it("returns a bound method", async () => {
             const stack = new AsyncDisposableStack();
-            const fn = stack.use(jest.fn());
+            const fn = stack.use(jest.fn<() => void>());
             const disposeAsync = stack.disposeAsync;
             await disposeAsync();
             expect(fn).toHaveBeenCalled();

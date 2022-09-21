@@ -4,8 +4,12 @@
         "rootDir": "src",
         "outDir": "dist/cjs",
         "declarationDir": "dist/types",
+        "baseUrl": ".",
+        "paths": {
+            "#resolve": ["package.internal.d.ts"]
+        }
     },
-    "include": ["src/**/*.ts"],
+    "include": ["src/**/*.ts", "package.internal.d.ts"],
     "references": [
     ],
     "esmDir": "dist/esm"
