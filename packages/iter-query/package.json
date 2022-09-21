@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-query",
-    "version": "1.0.0-pre.41",
+    "version": "1.0.0-dev.3",
     "description": "An iteration and query API for ECMAScript iterables.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,23 +25,23 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.0.0-pre.41",
-        "@esfx/collections-hashmap": "^1.0.0-pre.41",
-        "@esfx/collections-hashset": "^1.0.0-pre.41",
-        "@esfx/equatable": "^1.0.0-pre.41",
-        "@esfx/fn": "^1.0.0-pre.41",
-        "@esfx/interval": "^1.0.0-pre.41",
-        "@esfx/iter-fn": "^1.0.0-pre.41",
-        "@esfx/iter-grouping": "^1.0.0-pre.41",
-        "@esfx/iter-hierarchy": "^1.0.0-pre.41",
-        "@esfx/iter-lookup": "^1.0.0-pre.41",
-        "@esfx/iter-ordered": "^1.0.0-pre.41",
-        "@esfx/iter-page": "^1.0.0-pre.41",
+        "@esfx/collection-core": "^1.0.0-dev.3",
+        "@esfx/collections-hashmap": "^1.0.0-dev.3",
+        "@esfx/collections-hashset": "^1.0.0-dev.3",
+        "@esfx/equatable": "^1.0.0-dev.3",
+        "@esfx/fn": "^1.0.0-dev.3",
+        "@esfx/interval": "^1.0.0-dev.3",
+        "@esfx/iter-fn": "^1.0.0-dev.3",
+        "@esfx/iter-grouping": "^1.0.0-dev.3",
+        "@esfx/iter-hierarchy": "^1.0.0-dev.3",
+        "@esfx/iter-lookup": "^1.0.0-dev.3",
+        "@esfx/iter-ordered": "^1.0.0-dev.3",
+        "@esfx/iter-page": "^1.0.0-dev.3",
         "tslib": "^2.4.0"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.41",
-        "@esfx/internal-jest-sequence": "^1.0.0-pre.41"
+        "@esfx/internal-guards": "^1.0.0-dev.3",
+        "@esfx/internal-jest-sequence": "^1.0.0-dev.3"
     },
     "publishConfig": {
         "access": "public"
