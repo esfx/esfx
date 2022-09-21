@@ -1,6 +1,6 @@
 {
     "name": "@esfx/events",
-    "version": "1.0.0-pre.41",
+    "version": "1.0.0-dev.0",
     "description": "A low-level API for defining events.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -28,10 +28,10 @@
         "access": "public"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.0.0-pre.41"
+        "@esfx/disposable": "^1.0.0-dev.0"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.41"
+        "@esfx/internal-guards": "^1.0.0-dev.0"
     },
     "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b"
 }
