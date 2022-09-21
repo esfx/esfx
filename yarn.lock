@@ -9103,7 +9103,9 @@ wordwrap@^1.0.0:
 
 "workspaces-foreach@link:./scripts/workspaces-foreach":
   version "0.0.0"
-  uid ""
+  dependencies:
+    find-yarn-workspace-root "^2.0.0"
+    yargs "^16.2.0"
 
 wrap-ansi@^2.0.0:
   version "2.1.0"
@@ -9197,9 +9199,9 @@ write-pkg@^3.1.0:
     write-json-file "^2.2.0"
 
 ws@^7.2.3:
-  version "7.4.2"
-  resolved "https://registry.npmjs.org/ws/-/ws-7.4.2.tgz"
-  integrity sha512-T4tewALS3+qsrpGI/8dqNMLIVdq/g/85U98HPMa6F0m6xTbvhXU6RCQLqPH3+SlomNV/LdY6RXEbBpMH6EOJnA==
+  version "7.5.9"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-7.5.9.tgz#54fa7db29f4c7cec68b1ddd3a89de099942bb591"
+  integrity sha512-F+P9Jil7UiSKSkppIiD94dN07AwvFixvLIj1Og1Rl9GGMuNipJnV9JzjD6XuqmAeiswGvUmNLjr5cFuXwNS77Q==
 
 xml-name-validator@^3.0.0:
   version "3.0.0"
