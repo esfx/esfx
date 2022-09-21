@@ -1,3 +1,4 @@
+import { jest } from "@jest/globals";
 import { Worker } from "..";
 import { TSError } from 'ts-node';
 

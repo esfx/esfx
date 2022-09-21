@@ -6,6 +6,8 @@
 /obj
 /scripts
 /src
+/lib/*.d.cts
+/lib/*.d.mts
 /api-extractor.json
 /package.internal.d.ts
 /jest*config.js

@@ -83,11 +83,28 @@ const test = () => {
     args.addSwitch("--runInBand", argv.runInBand, false);
     args.addSwitch("--watch", argv.watch, false);
     args.addSwitch("--watchAll", argv.watchAll, false);
-    args.addSwitch("--selectProjects", argv.selectProjects.join(" "));
+    args.addSwitch("--selectProjects", argv.selectProjects?.join(" "));
     return exec(process.execPath, [require.resolve("jest/bin/jest"), ...args], { verbose: true });
 };
 // gulp.task("test", gulp.series(build, test));
 gulp.task("test", gulp.series(gulp.task("internal/jest-sequence"), test));
+
+const test_esm = () => {
+    const args = new ArgsBuilder();
+    args.addSwitch("--config", "./jest.esm.config.js");
+    args.addSwitch("--testNamePattern", argv.testNamePattern);
+    args.addSwitch("--testPathPattern", argv.testPathPattern);
+    args.addSwitch("--testPathIgnorePatterns", argv.testPathIgnorePatterns);
+    args.addSwitch("--maxWorkers", argv.maxWorkers);
+    args.addSwitch("--onlyChanged", argv.onlyChanged, false);
+    args.addSwitch("--onlyFailures", argv.onlyFailures, false);
+    args.addSwitch("--runInBand", argv.runInBand, false);
+    args.addSwitch("--watch", argv.watch, false);
+    args.addSwitch("--watchAll", argv.watchAll, false);
+    args.addSwitch("--selectProjects", argv.selectProjects?.join(" "));
+    return exec(process.execPath, ["--experimental-vm-modules", require.resolve("jest/bin/jest"), ...args], { verbose: true });
+};
+gulp.task("test:esm", gulp.series(gulp.task("internal/jest-sequence"), test_esm));
 
 const perf = () => {
     const args = new ArgsBuilder();
@@ -101,7 +118,7 @@ const perf = () => {
     args.addSwitch("--runInBand", argv.runInBand, false);
     args.addSwitch("--watch", argv.watch, false);
     args.addSwitch("--watchAll", argv.watchAll, false);
-    args.addSwitch("--selectProjects", argv.selectProjects.join(" "));
+    args.addSwitch("--selectProjects", argv.selectProjects?.join(" "));
     return exec(process.execPath, [require.resolve("jest/bin/jest"), ...args], { verbose: true });
 };
 gulp.task("perf", perf);

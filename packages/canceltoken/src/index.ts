@@ -59,9 +59,10 @@ interface AbortSignal {
     readonly reason?: unknown;
     addEventListener(event: string, listener: () => void): void;
     removeEventListener(event: string, listener: () => void): void;
+    dispatchEvent(event: unknown): void;
 }
 
-declare var AbortSignal: { new(): AbortSignal; prototype: AbortSignal };
+declare var AbortSignal: { new(): AbortSignal; prototype: AbortSignal, timeout?(delay: number): AbortSignal; };
 
 let AbortControllerAbort: ((obj: AbortController, reason?: unknown) => void) | undefined;
 let AbortControllerGetSignal: ((obj: AbortController) => AbortSignal) | undefined;
@@ -69,6 +70,10 @@ let AbortSignalAddEventListener: ((obj: AbortSignal, event: string, listener: ()
 let AbortSignalRemoveEventListener: ((obj: AbortSignal, event: string, listener: () => void) => void) | undefined;
 let AbortSignalGetAborted: ((obj: AbortSignal) => boolean) | undefined;
 let AbortSignalGetReason: ((obj: AbortSignal) => unknown) | undefined;
+
+const kEventTarget = Symbol.for("nodejs.event_target");
+const isNodeAbortSignal = typeof AbortSignal === "function" && (AbortSignal as any)[kEventTarget] === true;
+const nodeEventTargetProperties = new Set(isNodeAbortSignal ? ["dispatchEvent", ...Object.getOwnPropertySymbols(EventTarget.prototype)] : []);
 
 if (typeof AbortController === "function" && typeof AbortSignal === "function") {
     const uncurryThis = Function.prototype.bind.bind(Function.prototype.call) as <T, A extends unknown[], R>(f: (this: T, ...args: A) => R) => (this_: T, ...args: A) => R;
@@ -360,19 +365,24 @@ const weakCancelTokenState = new WeakMap<CancelToken, CancelState>();
  * Propagates notifications that operations should be canceled.
  */
 export class CancelToken implements Cancelable, CancelSignal {
+    static [kEventTarget] = isNodeAbortSignal; // treat this as a NodeJS event target
     static {
         CancelState.createCancelToken = cancelState => {
             // If it is available, make the token an `AbortSignal` instance with a `CancelToken` prototype.
             // This gives the token the same internal state as an `AbortSignal` and allows the token to be
             // used in `fetch` and other DOM apis.
             const abortSignal = cancelState.abortSignal;
-            const token: CancelToken = abortSignal ?
-                Object.setPrototypeOf(abortSignal, CancelToken.prototype) :
-                Object.create(CancelToken.prototype);
+            let token: CancelToken;
+            if (abortSignal) {
+                token = Object.setPrototypeOf(abortSignal, CancelToken.prototype);
+            }
+            else {
+                token = Object.create(CancelToken.prototype);
+            }
             weakCancelTokenState.set(token, cancelState);
-            Object.freeze(token);
+            Object.preventExtensions(token);
             return token;
-        }
+        };
 
         Object.defineProperty(this.prototype, Symbol.toStringTag, { configurable: true, value: "CancelToken" });
     }
@@ -611,6 +621,10 @@ export class CancelToken implements Cancelable, CancelSignal {
         return this;
     }
     // #endregion Cancelable
+}
+
+if (isNodeAbortSignal) {
+    Object.setPrototypeOf(CancelToken.prototype, EventTarget.prototype);
 }
 
 // helpers

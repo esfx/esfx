@@ -1,7 +1,10 @@
+import { jest } from "@jest/globals";
 import { Worker } from "@esfx/internal-ts-worker";
 import { Mutex } from '..';
 
-it("lock/unlock", () => new Promise<void>((resolve, reject) => {
+const itCjsOnly = typeof __dirname === "string" ? it : it.skip;
+
+itCjsOnly("lock/unlock", () => new Promise<void>((resolve, reject) => {
     // NOTE: We need to give adequate time here for ts-node to parse/evaulate the dependency
     // graph.
     jest.setTimeout(30000);

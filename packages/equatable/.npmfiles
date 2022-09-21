@@ -9,10 +9,10 @@ dist/esm/internal/murmur3.mjs
 dist/esm/index.mjs
 dist/types/index.d.ts
 dist/types/index.d.ts.map
-lib/hashCodeNative.js
+lib/hashCodeNative.cjs
+lib/hashCodeNative.mjs
 lib/hashCode.cpp
 lib/hashCode.h
-lib/package.json
 binding.gyp
 package.json
 LICENSE

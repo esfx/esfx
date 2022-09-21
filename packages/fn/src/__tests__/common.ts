@@ -1,3 +1,4 @@
+import { jest } from "@jest/globals";
 import { Comparer, Equaler, rawHash } from "@esfx/equatable";
 import { allocator, always, alwaysFail, alwaysFalse, alwaysTrue, both, caller, clamp, compare, complement, compose, decrementer, either, equate, F, factory, fail, fallback, flip, hash, identity, incrementer, invoker, lazy, nAry, noop, pipe, property, propertyWriter, T, tuple, uncurryThis } from "../common"
 

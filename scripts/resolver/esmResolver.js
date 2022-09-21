@@ -74,13 +74,13 @@ function ESM_RESOLVE(specifier, parentURL, conditions, options) {
     //  2. If specifier is a valid URL, then
     //      1. Set resolved to the result of parsing and reserializing specifier as a URL.
     if (isUrlString(specifier)) {
-        resolved = new URL(resolved);
+        resolved = new URL(specifier);
     }
 
     //  3. Otherwise, if specifier starts with "/", "./" or "../", then
     //      1. Set resolved to the URL resolution of specifier relative to parentURL.
     else if (/^(\/|\.\.?\/)/.test(specifier)) {
-        resolved = new URL(resolved, parentURL);
+        resolved = new URL(specifier, parentURL);
     }
 
     //  4. Otherwise, if specifier starts with "#", then
@@ -149,7 +149,7 @@ exports.ESM_RESOLVE = ESM_RESOLVE;
  * @param {import("url").URL} parentURL
  * @param {Set<string>} conditions
  * @param {import("./types").ResolverOpts} options
- * @returns {import("./types").EsmMatch}
+ * @returns {import("./types").ResolvedEsmMatch}
  */
 function PACKAGE_EXPORTS_RESOLVE(packageJsonURL, packageSubpath, packageJson, parentURL, conditions, options) {
     // PACKAGE_EXPORTS_RESOLVE(packageURL, subpath, exports, conditions)
@@ -173,13 +173,16 @@ function PACKAGE_EXPORTS_RESOLVE(packageJsonURL, packageSubpath, packageJson, pa
     //  4. Throw a Package Path Not Exported error.
 
     let exports = packageJson.exports;
-    if (isPackageJsonRelativeExports(exports) && isPackageJsonConditionalExports(exports)) throw ERR_INVALID_PACKAGE_CONFIG(packageSubpath, parentURL, "exports cannot contain both keys starting with '.' and keys not starting with '.'");
-    if (typeof exports === "string" || ArrayIsArray(exports) || typeof exports === "object" && exports !== null && !isPackageJsonRelativeExports(exports)) {
+    if (isObject(exports) && isPackageJsonRelativeExports(exports) && isPackageJsonConditionalExports(exports)) {
+        throw ERR_INVALID_PACKAGE_CONFIG(packageSubpath, parentURL, "exports cannot contain both keys starting with '.' and keys not starting with '.'");
+    }
+    if (typeof exports === "string" || ArrayIsArray(exports) || isObject(exports) && !isPackageJsonRelativeExports(exports)) {
         exports = /** @type {import("./types").PackageJsonRelativeExports} */({ ".": exports });
     }
-
-    const resolvedMatch = PACKAGE_IMPORTS_EXPORTS_RESOLVE(packageSubpath, exports, packageJsonURL, parentURL, false, conditions, options);
-    if (resolvedMatch.resolved !== undefined) return resolvedMatch;
+    if (isPackageJsonRelativeExports(exports)) {
+        const resolvedMatch = PACKAGE_IMPORTS_EXPORTS_RESOLVE(packageSubpath, exports, packageJsonURL, parentURL, false, conditions, options);
+        if (resolvedMatch.resolved !== undefined) return resolvedMatch;
+    }
     throw ERR_PACKAGE_PATH_NOT_EXPORTED(new URL(".", packageJsonURL), packageSubpath, parentURL);
 }
 exports.PACKAGE_EXPORTS_RESOLVE = PACKAGE_EXPORTS_RESOLVE;
@@ -189,7 +192,7 @@ exports.PACKAGE_EXPORTS_RESOLVE = PACKAGE_EXPORTS_RESOLVE;
  * @param {import("url").URL} parentURL
  * @param {Set<string>} conditions
  * @param {import("./types").ResolverOpts} options
- * @returns {import("./types").EsmMatch}
+ * @returns {import("./types").ResolvedEsmMatch}
  */
 function PACKAGE_IMPORTS_RESOLVE(specifier, parentURL, conditions, options) {
     // PACKAGE_IMPORTS_RESOLVE(specifier, parentURL, conditions)
@@ -296,7 +299,7 @@ exports.PACKAGE_IMPORTS_EXPORTS_RESOLVE = PACKAGE_IMPORTS_EXPORTS_RESOLVE;
 
 /**
  * @param {import("url").URL} packageJsonURL
- * @param {import("./types").PackageJsonRelativeExport} target
+ * @param {import("./types").PackageJsonRelativeExport | null} target
  * @param {string} subpath
  * @param {string} packageSubpath
  * @param {import("url").URL} parentURL
@@ -355,7 +358,7 @@ function PACKAGE_TARGET_RESOLVE(packageJsonURL, target, subpath, packageSubpath,
     }
 
     //  2. Otherwise, if target is a non-null Object, then
-    if (typeof target === "object" && target !== null) {
+    if (isObject(target) && !ArrayIsArray(target)) {
         //  1. If exports contains any index property keys, as defined in ECMA-262 6.1.7 Array Index, throw an Invalid Package Configuration error.
         const keys = ObjectGetOwnPropertyNames(target);
         for (const key of keys) {
@@ -487,13 +490,15 @@ function PACKAGE_RESOLVE(packageSpecifier, parentURL, conditions, options) {
         }
 
         if (packageSubpath === ".") {
+            let P;
             try {
-                const P = cjsResolver.LOAD_AS_DIRECTORY(fileURLToPath(new URL(".", packageJsonURL)), fileURLToPath(parentURL), options);
+                P = cjsResolver.LOAD_AS_DIRECTORY(fileURLToPath(new URL(".", packageJsonURL)), fileURLToPath(parentURL), options);
+            }
+            catch { }
+            if (P !== undefined) {
                 return pathToFileURL(P);
             }
-            catch {
-                throw ERR_MODULE_NOT_FOUND(packageName, parentURL, "module");
-            }
+            throw ERR_MODULE_NOT_FOUND(packageName, parentURL, "module");
         }
 
         return new URL(packageSubpath, packageJsonURL);
@@ -510,7 +515,7 @@ exports.PACKAGE_RESOLVE = PACKAGE_RESOLVE;
  * @param {import("url").URL} parentURL
  * @param {Set<string>} conditions
  * @param {import("./types").ResolverOpts} options
- * @returns {import("url").URL}
+ * @returns {import("url").URL | undefined}
  */
 function PACKAGE_SELF_RESOLVE(packageName, packageSubpath, parentURL, conditions, options) {
     // PACKAGE_SELF_RESOLVE(packageName, packageSubpath, parentURL)
@@ -575,3 +580,12 @@ function READ_PACKAGE_SCOPE(url, options) {
     return findPackageConfig(url, options);
 }
 exports.READ_PACKAGE_SCOPE = READ_PACKAGE_SCOPE;
+
+/**
+ * @template T
+ * @param {T} value
+ * @returns {value is Exclude<T, string | symbol | number | bigint | boolean | null | undefined>}
+ */
+function isObject(value) {
+    return typeof value === "object" && value !== null;
+}

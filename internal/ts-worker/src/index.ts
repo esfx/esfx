@@ -3,6 +3,9 @@ import cjs from "module";
 import { Worker as NodeWorker, MessagePort } from "worker_threads";
 import { RegisterOptions as TSNodeOptions, TSError } from "ts-node";
 import { EventEmitter } from 'events';
+import { resolve } from "#resolve";
+
+declare var require: never;
 
 export interface WorkerOptions {
     parent?: NodeModule;
@@ -68,7 +71,7 @@ export class Worker extends EventEmitter {
     ref() {
         return this[kWorker].ref();
     }
-    
+
     unref() {
         return this[kWorker].unref();
     }
@@ -176,7 +179,7 @@ export interface Worker {
     off(event: "message", listener: (value: any) => void): this;
     off(event: "messageerror", listener: (value: Error) => void): this;
     off(event: "online", listener: () => void): this;
-    off(event: string | symbol, listener: (...args: any[]) => void): this;    
+    off(event: string | symbol, listener: (...args: any[]) => void): this;
 }
 
 function buildScript(filename: string, info: ResolverInfo, options: WorkerOptions = {}) {
@@ -214,9 +217,9 @@ function getPathInfo(options: WorkerOptions, stackCrawlMark: Function): Resolver
 }
 
 function buildFileScript(filename: string, info: ResolverInfo, options: WorkerOptions) {
-    filename = require.resolve(filename, { paths: info.paths });
+    filename = resolve(filename, { paths: info.paths });
     return `
-require(${JSON.stringify(require.resolve("ts-node"))}).register(${options["ts-node"]});
+require(${JSON.stringify(resolve("ts-node"))}).register(${JSON.stringify(options["ts-node"])});
 process.argv[1] = ${JSON.stringify(filename)};
 require("module").runMain();
 `;
@@ -227,7 +230,7 @@ function buildEvalScript(text: string, info: ResolverInfo, options: WorkerOption
     const dirname = info.base;
     const paths = info.paths;
     return `
-require(${JSON.stringify(require.resolve("ts-node"))}).register(${options["ts-node"]});
+require(${JSON.stringify(resolve("ts-node"))}).register(${JSON.stringify(options["ts-node"])});
 module.filename = ${JSON.stringify(filename)};
 module.path = ${JSON.stringify(dirname)};
 module.paths = ${JSON.stringify(paths)};
@@ -248,7 +251,7 @@ function buildTypeScriptEvalScript(text: string, info: ResolverInfo, options: Wo
     const dirname = info.base;
     const paths = info.paths;
     return `
-const { register, TSError } = require(${JSON.stringify(require.resolve("ts-node"))});
+const { register, TSError } = require(${JSON.stringify(resolve("ts-node"))});
 const { compile } = register(${JSON.stringify(options["ts-node"])});
 module.filename = ${JSON.stringify(filename)};
 module.path = ${JSON.stringify(dirname)};

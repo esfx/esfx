@@ -1,12 +1,14 @@
+.npmfiles
 .vscode
 __tests__
 obj
 src
+lib/*.d.ts
 internal
 api-extractor.json
+package.internal.d.ts
 tsconfig*.json
+jest*.config.js
 *.tsbuildinfo
 *.log
-jest*.config.js
-.npmfiles
 *.tgz

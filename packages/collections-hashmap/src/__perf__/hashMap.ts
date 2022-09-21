@@ -1,3 +1,4 @@
+import { jest } from "@jest/globals";
 import { HashMap } from "..";
 
 jest.setTimeout(10_000_000);
@@ -28,9 +29,9 @@ beforeAll(() => {
         }
         randomNumbers[i] = value;
     }
-    afterAll(() => {
-        randomNumbers = undefined!;
-    });
+});
+afterAll(() => {
+    randomNumbers = undefined!;
 });
 
 it(`add ${SAMPLE_SIZE} numbers`, async () => {

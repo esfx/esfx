@@ -1,5 +1,6 @@
 // Reflect.decorate ( decorators, target [, propertyKey [, descriptor] ] )
 
+import { jest } from "@jest/globals";
 import "..";
 
 describe("Reflect.decorate", () => {

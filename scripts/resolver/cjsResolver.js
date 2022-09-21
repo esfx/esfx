@@ -54,17 +54,20 @@ function COMMONJS_RESOLVE(X, Y, options) {
 
     //  4. If X begins with '#'
     //     a. LOAD_PACKAGE_IMPORTS(X, dirname(Y))
-    if (StringPrototypeStartsWith(X, "#")) return LOAD_PACKAGE_IMPORTS(X, dirnameY, Y, options);
+    if (StringPrototypeStartsWith(X, "#")) {
+        P = LOAD_PACKAGE_IMPORTS(X, dirnameY, Y, options);
+    }
+    else {
+        //  5. LOAD_PACKAGE_SELF(X, dirname(Y))
+        P ??= LOAD_PACKAGE_SELF(X, dirnameY, Y, options);
 
-    // 5. LOAD_PACKAGE_SELF(X, dirname(Y))
-    P ??= LOAD_PACKAGE_SELF(X, dirnameY, Y, options);
-
-    // 6. LOAD_NODE_MODULES(X, dirname(Y))
-    P ??= LOAD_NODE_MODULES(X, dirnameY, Y, options);
+        //  6. LOAD_NODE_MODULES(X, dirname(Y))
+        P ??= LOAD_NODE_MODULES(X, dirnameY, Y, options);
+    }
 
     if (P !== undefined) return realpathSyncCached(P);
 
-    // 7. THROW "not found"
+    //  7. THROW "not found"
     throw ERR_MODULE_NOT_FOUND(X, options.filename ?? Y);
 }
 exports.COMMONJS_RESOLVE = COMMONJS_RESOLVE;
@@ -265,7 +268,7 @@ function LOAD_PACKAGE_EXPORTS(X, DIR, Y, options) {
         return;
     }
     const { packageName: NAME, packageSubpath: SUBPATH } = packageName;
-    
+
     // 3. Parse DIR/NAME/package.json, and look for "exports" field.
     const packageConfig = readPackageConfig(pathToFileURL(pathJoin(DIR, NAME, "package.json")), options);
     if (!packageConfig.exists) return;
@@ -316,7 +319,7 @@ function LOAD_PACKAGE_SELF(X, DIR, Y, options) {
 exports.LOAD_PACKAGE_SELF = LOAD_PACKAGE_SELF;
 
 /**
- * @param {import("./types").EsmMatch} MATCH
+ * @param {import("./types").ResolvedEsmMatch} MATCH
  * @param {string} Y
  * @param {import("./types").ResolverOpts} options
  */

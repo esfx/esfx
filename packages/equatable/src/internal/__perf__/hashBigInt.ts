@@ -1,8 +1,9 @@
 /// <reference path="../../../package.internal.d.ts" />
+import { jest } from "@jest/globals";
 import { hashUnknown as hashUnknownNative } from "#hashCodeNative";
-import { generateRandomBigInts, SAMPLE_SIZE } from "./data/randomBigInts";
-import { hashBigIntUsingBigUint64Array, hashBigIntUsingBigUint64ArrayAndAsUintN } from "./scenarios/hashBigInt/hashBigIntUsingBigUint64Array";
-import { hashBigIntUsingNumberConstructor, hashBigIntUsingNumberConstructorAndAsUintN } from "./scenarios/hashBigInt/hashBigIntUsingNumberConstructor";
+import { generateRandomBigInts, SAMPLE_SIZE } from "./data/randomBigInts.js";
+import { hashBigIntUsingBigUint64Array, hashBigIntUsingBigUint64ArrayAndAsUintN } from "./scenarios/hashBigInt/hashBigIntUsingBigUint64Array.js";
+import { hashBigIntUsingNumberConstructor, hashBigIntUsingNumberConstructorAndAsUintN } from "./scenarios/hashBigInt/hashBigIntUsingNumberConstructor.js";
 
 jest.setTimeout(10_000_000);
 

@@ -154,6 +154,13 @@ jobs:
         yarn run test --selectProjects "async-iter-fn async-iter-fromsync async-iter-query iter-fn iter-lookup iter-query"
         yarn run test --selectProjects "threading-autoresetevent threading-conditionvariable threading-manualresetevent threading-mutex threading-sleep"
         yarn run test --selectProjects "decorators disposable equatable equatable-shim fn fn-partial indexed-object lazy ref reflect-metadata-compat struct-type"
+    - name: test (esm output)
+      run: |
+        yarn run test-esm --selectProjects "async-autoresetevent async-barrier async-conditionvariable async-countdown async-deferred async-manualresetevent async-mutex async-queue async-readerwriterlock async-semaphore async-stack canceltoken"
+        yarn run test-esm --selectProjects "collections-hash collection-core collection-core-shim collections-hashmap collections-hashset collections-multimap collections-sortedmap collections-sortedset"
+        yarn run test-esm --selectProjects "async-iter-fn async-iter-fromsync async-iter-query iter-fn iter-lookup iter-query"
+        yarn run test-esm --selectProjects "threading-autoresetevent threading-conditionvariable threading-manualresetevent threading-mutex threading-sleep"
+        yarn run test-esm --selectProjects "decorators disposable equatable equatable-shim fn fn-partial indexed-object lazy ref reflect-metadata-compat struct-type"
     - name: verify
       run: |
         gulp verify
@@ -188,7 +195,7 @@ jobs:
         artifacts: ${{ join(fromJson(env.NATIVE_ARTIFACTS)) }}
         allowUpdates: true
     - name: publish
-      if: ${{ !github.event.inputs.draft }}
+      if: ${{ github.event.inputs.draft != true }}
       run: |
         lerna publish from-git --yes --no-verify-access --dist-tag ${{ github.event.inputs.dist_tag }}
       env:

@@ -4,7 +4,10 @@ module.exports = {
     testEnvironment: 'node',
     setupFilesAfterEnv: [path.join(__dirname, "internal/jest-sequence")],
     transform: {
-        "^.+\\.tsx?": "ts-jest",
+        "^.+\\.tsx?": ["ts-jest", {
+            tsconfig: true,
+            compiler: require.resolve('typescript')
+        }],
     },
     resolver: path.join(__dirname, "scripts/resolver.js"),
     testPathIgnorePatterns: [
@@ -15,12 +18,6 @@ module.exports = {
         '/build/',
     ],
     roots: ['<rootDir>'],
-    globals: {
-        'ts-jest': {
-            tsconfig: true,
-            compiler: require.resolve('typescript')
-        },
-    },
     testMatch: [
         "**/__test?(s)__/**/*.[jt]s?(x)",
         "**/?(*.)+(spec|test?(s)).[jt]s?(x)"

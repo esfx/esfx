@@ -1,3 +1,4 @@
+import { jest } from "@jest/globals";
 import { IntegerIndexedObject } from "..";
 
 describe("indexedObject", () => {
@@ -13,7 +14,7 @@ describe("indexedObject", () => {
         expect(keys).toEqual(["0", "1"]);
     })
     it("getLength", () => {
-        const fn = jest.fn().mockReturnValue(1);
+        const fn = jest.fn<() => number>().mockReturnValue(1);
         const obj = new class extends TestableIntegerIndexedObject {
             getLength() { return fn(); }
         };
@@ -24,7 +25,7 @@ describe("indexedObject", () => {
         expect(fn).toBeCalledWith();
     });
     it("hasIndex", () => {
-        const fn = jest.fn().mockReturnValue(true);
+        const fn = jest.fn<(x: number) => boolean>().mockReturnValue(true);
         const obj = new class extends TestableIntegerIndexedObject {
             hasIndex(index: number) { return fn(index); }
         };
@@ -48,7 +49,7 @@ describe("indexedObject", () => {
     });
     it("setIndex", () => {
         const expected = {};
-        const fn = jest.fn().mockReturnValue(true);
+        const fn = jest.fn<(x: number, v: any) => boolean>().mockReturnValue(true);
         const obj = new class extends TestableIntegerIndexedObject {
             setIndex(index: number, value: any) { return fn(index, value); }
         };
@@ -58,7 +59,7 @@ describe("indexedObject", () => {
         expect(fn).toBeCalledWith(0, expected);
     });
     it("deleteIndex", () => {
-        const fn = jest.fn().mockReturnValue(true);
+        const fn = jest.fn<(i: number) => boolean>().mockReturnValue(true);
         const obj = new class extends TestableIntegerIndexedObject {
             deleteIndex(index: number) { return fn(index); }
         };

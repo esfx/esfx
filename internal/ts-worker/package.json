@@ -13,6 +13,12 @@
             "import": "./dist/esm/index.mjs"
         }
     },
+    "imports": {
+        "#resolve": {
+            "require": "./lib/resolve.cjs",
+            "import": "./lib/resolve.mjs"
+        }
+    },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
     "scripts": {
