@@ -38,7 +38,7 @@ type StructConstructorOverloads<TDef extends readonly StructFieldDefinition[]> =
     | StructConstructorStructFieldArrayOverload<TDef>;
 
 function isStructConstructorArrayBufferLikeOverload<TDef extends readonly StructFieldDefinition[]>(args: StructConstructorOverloads<TDef>): args is StructConstructorArrayBufferLikeOverload {
-    return args.length > 0 && (args[0] instanceof ArrayBuffer || args[0] instanceof SharedArrayBuffer);
+    return args.length > 0 && (args[0] instanceof ArrayBuffer || (typeof SharedArrayBuffer === "function" && args[0] instanceof SharedArrayBuffer));
 }
 
 function isStructConstructorStructFieldsOverload<TDef extends readonly StructFieldDefinition[]>(args: StructConstructorOverloads<TDef>): args is StructConstructorStructFieldsOverload<TDef> {
@@ -80,6 +80,7 @@ export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any
                 isStructConstructorStructFieldsOverload(args) ? args[1] :
                 isStructConstructorStructFieldArrayOverload(args) ? args[1] :
                 args[0];
+            if (shared && typeof SharedArrayBuffer !== "function") throw new TypeError("SharedArrayBuffer is not available");
             this.#buffer = shared ? new SharedArrayBuffer(this.#type.size) : new ArrayBuffer(this.#type.size);
             this.#byteOffset = 0;
             this.#dataView = new DataView(this.#buffer, 0, this.#type.size);

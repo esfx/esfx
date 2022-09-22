@@ -101,7 +101,7 @@ export function sizeOf(nt: NumberType): Alignment {
 
 /* @internal */
 export function putValueInView(view: DataView, nt: NumberType, byteOffset: number, value: number | bigint, isLittleEndian?: boolean) {
-    if (view.buffer instanceof SharedArrayBuffer && isAtomic(nt) && typeof value === "number" && ((view.byteOffset + byteOffset) % sizeOf(nt)) === 0) {
+    if (isSharedArrayBuffer(view.buffer) && isAtomic(nt) && typeof value === "number" && ((view.byteOffset + byteOffset) % sizeOf(nt)) === 0) {
         return putValueInBuffer(view.buffer, nt, view.byteOffset + byteOffset, value, isLittleEndian);
     }
     switch (nt) {
@@ -123,7 +123,7 @@ export function getValueFromView<N extends NumberType>(view: DataView, nt: N, by
 /* @internal */
 export function getValueFromView(view: DataView, nt: NumberType, byteOffset: number, isLittleEndian?: boolean): number | bigint {
     // attempt an atomic read
-    if (view.buffer instanceof SharedArrayBuffer && isAtomic(nt) && ((view.byteOffset + byteOffset) % sizeOf(nt)) === 0) {
+    if (isSharedArrayBuffer(view.buffer) && isAtomic(nt) && ((view.byteOffset + byteOffset) % sizeOf(nt)) === 0) {
         return getValueFromBuffer(view.buffer, nt, view.byteOffset + byteOffset, isLittleEndian);
     }
 
@@ -270,7 +270,7 @@ const bigUint64ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, BigUint64
 /* @internal */
 export function putValueInBuffer(buffer: ArrayBufferLike, nt: NumberType, byteOffset: number, value: number | bigint, isLittleEndian: boolean = false) {
     // attempt an atomic write
-    if (buffer instanceof SharedArrayBuffer && isAtomic(nt) && typeof value === "number") {
+    if (isSharedArrayBuffer(buffer) && isAtomic(nt) && typeof value === "number") {
         const size = sizeOf(nt);
         if ((byteOffset % size) === 0) {
             // aligned within the buffer
@@ -290,7 +290,7 @@ export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike
 /* @internal */
 export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike, nt: N, byteOffset: number, isLittleEndian: boolean = false): number | bigint {
     // attempt an atomic read
-    if (buffer instanceof SharedArrayBuffer && isAtomic(nt)) {
+    if (isSharedArrayBuffer(buffer) && isAtomic(nt)) {
         const size = sizeOf(nt);
         if ((byteOffset % size) === 0) {
             // aligned within the buffer
@@ -404,4 +404,8 @@ export function coerceValue<N extends NumberType>(nt: N, value: number | bigint)
     const sizeCoersionArray = sizeCoersionArrays[nt] || (sizeCoersionArrays[nt] = new (getTypedArrayConstructor(nt))(new ArrayBuffer(sizeOf(nt))));
     sizeCoersionArray![0] = coerced;
     return sizeCoersionArray![0];
+}
+
+function isSharedArrayBuffer(value: unknown): value is SharedArrayBuffer {
+    return typeof SharedArrayBuffer === "function" && value instanceof SharedArrayBuffer;
 }
