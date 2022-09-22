@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections-sortedset",
-    "version": "1.0.0-dev.0",
+    "version": "1.0.0-pre.42",
     "description": "Provides 'SortedSet', a collection class that utilizes '@esfx/collection-core' and '@esfx/equatable'.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,12 +25,12 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.0.0-dev.0",
-        "@esfx/equatable": "^1.0.0-dev.0"
+        "@esfx/collection-core": "^1.0.0-pre.42",
+        "@esfx/equatable": "^1.0.0-pre.42"
     },
     "devDependencies": {
-        "@esfx/internal-binarysearch": "^1.0.0-dev.0",
-        "@esfx/internal-guards": "^1.0.0-dev.0"
+        "@esfx/internal-binarysearch": "^1.0.0-pre.42",
+        "@esfx/internal-guards": "^1.0.0-pre.42"
     },
     "publishConfig": {
         "access": "public"

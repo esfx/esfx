@@ -1,6 +1,6 @@
 {
     "name": "@esfx/cancelable-dom-shim",
-    "version": "1.0.0-dev.0",
+    "version": "1.0.0-pre.42",
     "description": "A low-level Symbol-based API for defining a common cancellation protocol.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,8 +25,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/cancelable": "^1.0.0-dev.0",
-        "@esfx/cancelable-dom": "^1.0.0-dev.0"
+        "@esfx/cancelable": "^1.0.0-pre.42",
+        "@esfx/cancelable-dom": "^1.0.0-pre.42"
     },
     "publishConfig": {
         "access": "public"
