@@ -1,6 +1,6 @@
 {
     "name": "@esfx/decorators",
-    "version": "1.0.0-pre.41",
+    "version": "1.0.0-pre.42",
     "description": "A set of decorators for common tasks.",
     "private": true,
     "type": "commonjs",
@@ -118,8 +118,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/decorators-stage1-core": "^1.0.0-pre.41",
-        "@esfx/internal-guards": "^1.0.0-pre.41",
+        "@esfx/decorators-stage1-core": "^1.0.0-pre.42",
+        "@esfx/internal-guards": "^1.0.0-pre.42",
         "tslib": "^2.4.0"
     },
     "publishConfig": {
