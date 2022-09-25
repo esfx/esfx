@@ -1,19 +1,32 @@
+# legacy cjs exports (accessed via "main")
+dist/legacy/internal/hashCode.js
+dist/legacy/internal/murmur3.js
+dist/legacy/index.js
+
+# cjs exports (accessed via "exports"/"imports")
 dist/cjs/internal/hashCode.js
 dist/cjs/internal/hashCode.js.map
 dist/cjs/internal/murmur3.js
 dist/cjs/internal/murmur3.js.map
 dist/cjs/index.js
 dist/cjs/index.js.map
+
+# esm exports (accessed via "exports"/"imports")
 dist/esm/internal/hashCode.mjs
 dist/esm/internal/murmur3.mjs
 dist/esm/index.mjs
+
+# TypeScript types (accessed via "types"/"exports")
 dist/types/index.d.ts
 dist/types/index.d.ts.map
-lib/hashCodeNative.cjs
+
+# native support
+lib/hashCodeNative.js
 lib/hashCodeNative.mjs
 lib/hashCode.cpp
 lib/hashCode.h
 binding.gyp
-package.json
+
 LICENSE
 README.md
+package.json

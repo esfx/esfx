@@ -6,6 +6,7 @@ const { createInliner } = require("./inliner");
 const { exec } = require("../exec");
 const log = require("fancy-log");
 const { convertCjsToEsm } = require("../cjs-to-esm");
+const { convertCjsToCjsLegacy } = require("../cjs-to-cjs-legacy");
 
 /**
  * @param {ts.SolutionBuilderHost} host
@@ -86,6 +87,12 @@ async function buildNextInvalidatedProject(host, builder) {
             const cjsDir = path.resolve(invalidatedProject.project, "..", tsconfigJson.compilerOptions.outDir);
             const esmDir = path.resolve(invalidatedProject.project, "..", tsconfigJson.esmDir);
             convertCjsToEsm(cjsDir, esmDir);
+        }
+        if (tsconfigJson.compilerOptions?.outDir &&
+            tsconfigJson.cjsLegacyDir) {
+            const cjsDir = path.resolve(invalidatedProject.project, "..", tsconfigJson.compilerOptions.outDir);
+            const cjsLegacyDir = path.resolve(invalidatedProject.project, "..", tsconfigJson.cjsLegacyDir);
+            convertCjsToCjsLegacy(cjsDir, cjsLegacyDir);
         }
     }
     else {

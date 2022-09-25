@@ -18,5 +18,6 @@
         // devDependencies
         { "path": "../../internal/guards" },
     ],
-    "esmDir": "dist/esm"
+    "esmDir": "dist/esm",
+    "cjsLegacyDir": "dist/legacy"
 }

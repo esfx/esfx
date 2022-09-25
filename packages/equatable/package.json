@@ -4,7 +4,7 @@
     "description": "A low-level API for defining equality.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
-    "main": "./dist/cjs/index.js",
+    "main": "./dist/node12/index.js",
     "exports": {
         ".": {
             "types": "./dist/types/index.d.ts",
@@ -15,14 +15,17 @@
     "imports": {
         "#hashCode": {
             "node": {
-                "require": "./lib/hashCodeNative.cjs",
+                "require": "./lib/hashCodeNative.js",
                 "import": "./lib/hashCodeNative.mjs"
             },
             "require": "./dist/cjs/internal/hashCode.js",
             "import": "./dist/esm/internal/hashCode.mjs"
         },
         "#hashCodeNative": {
-            "node": "./lib/hashCodeNative.js"
+            "node": {
+                "require": "./lib/hashCodeNative.js",
+                "import": "./lib/hashCodeNative.mjs"
+            }
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",
