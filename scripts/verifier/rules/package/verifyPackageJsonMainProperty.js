@@ -21,7 +21,9 @@ function verifyPackageJsonMainProperty(context) {
         pickProperty(packageJsonObject, "name");
 
     const tsconfigJson = ts.convertToObject(packageTsconfigJsonFile, []);
-    const expectedMain = tsconfigJson?.compilerOptions?.outDir?.includes("dist/cjs") ? "./dist/cjs/index.js" :
+    const expectedMain =
+        tsconfigJson?.cjsLegacyDir ? packageRelative(packageJsonFile, tsconfigJson.cjsLegacyDir, "index.js") :
+        tsconfigJson?.compilerOptions?.outDir ? packageRelative(packageJsonFile, tsconfigJson.compilerOptions.outDir, "index.js") :
         "./dist/index.js";
 
     const mainProp = pickProperty(packageJsonObject, "main");
@@ -56,3 +58,14 @@ function verifyPackageJsonMainProperty(context) {
     }
 }
 exports.verifyPackageJsonMainProperty = verifyPackageJsonMainProperty;
+
+/**
+ * @param {import("typescript").JsonSourceFile} packageJsonFile 
+ * @param  {...string} parts 
+ */
+function packageRelative(packageJsonFile, ...parts) {
+    const fullPath = path.resolve(path.dirname(packageJsonFile.fileName), ...parts);
+    const relativePath = path.relative(path.dirname(packageJsonFile.fileName), fullPath).replace(/\\/g, "/");
+    if (path.isAbsolute(relativePath)) throw new Error();
+    return relativePath.startsWith("./") ? relativePath : `./${relativePath}`;
+}

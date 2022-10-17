@@ -2,14 +2,15 @@
 const { pathToFileURL, fileURLToPath } = require("url");
 const { COMMONJS_RESOLVE } = require("./resolver/cjsResolver");
 const { ESM_RESOLVE } = require("./resolver/esmResolver");
-const { clearCaches, pathJoin, isUrlString } = require("./resolver/utils");
+const { clearCaches, pathJoin, isUrlString, TRACE } = require("./resolver/utils");
 
 /**
  * @param {string} request
  * @param {import("./resolver/types").ResolverOpts} options
  * @returns {string}
  */
-module.exports = (request, options) => {
+module.exports = function resolver(request, options) {
+    TRACE(options, "resolver", request, options);
     try {
         const isEsm = options.conditions?.includes("import");
         const parent = options.filename ?? pathJoin(options.basedir, "dummy.js");

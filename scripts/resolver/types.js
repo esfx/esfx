@@ -1,16 +1,11 @@
 /**
- * @typedef {import("jest-resolve").FindNodeModuleConfig} ResolverOptsBase
- */
-
-/**
  * @typedef JestResolverOptsMixin
  * @property {string} [filename]
- * @property {(request: string, options: ResolverOpts) => string} defaultResolver
- * @property {(pkg: any, file: string, dir: string) => any} [packageFilter]
+ * @property {boolean} [trace]
  */
 
 /**
- * @typedef {ResolverOptsBase & JestResolverOptsMixin} ResolverOpts
+ * @typedef {import("jest-resolve").ResolverOptions & JestResolverOptsMixin} ResolverOpts
  */
 
 const conditionalBrand = Symbol();
@@ -60,6 +55,13 @@ const relativeExportsBrand = Symbol();
  * @typedef PackageConfig
  * @property {PackageJson} packageJson
  * @property {import("url").URL} packageJsonURL
+ * @property {boolean} exists
+ */
+
+/**
+ * @typedef TSConfig
+ * @property {import("typescript").ParsedCommandLine} project
+ * @property {import("url").URL} tsconfigJsonURL
  * @property {boolean} exists
  */
 

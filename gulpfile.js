@@ -123,6 +123,12 @@ const perf = () => {
 };
 gulp.task("perf", perf);
 
+gulp.task("test-clear-cache", () => {
+    const args = new ArgsBuilder();
+    args.addSwitch("--clearCache");
+    return exec(process.execPath, [require.resolve("jest/bin/jest"), ...args], { verbose: true });
+});
+
 // const watch = () => spawn('node', [require.resolve("jest /bin/jest"), "--watch"], { stdio: "inherit" });
 // gulp.task("watch", watch);
 

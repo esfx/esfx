@@ -1,1 +1,7 @@
 build
+*.wasm
+*.generated.ts
+lib/perf/*.js
+lib/perf/*.mjs
+lib/xxhash.js
+lib/xxhash.mjs

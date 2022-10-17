@@ -249,6 +249,9 @@ function transformCjsToEsm(context, errors) {
                         undefined
                     ));
                 }
+                else if (propertyName === "default") {
+                    replace(statement, factory.createExportDefault(statement.expression.right));
+                }
                 else {
                     seenDeclarations.set(propertyName, "var");
                     replace(statement, factory.createVariableStatement(

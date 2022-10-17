@@ -1,0 +1,44 @@
+[
+  {
+    "date": "Tue, 11 Oct 2022 22:29:15 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 689
+    },
+    "tests": [
+      {
+        "name": "hashSymbolWithXXHash64UsingWasm",
+        "samplesCount": 59,
+        "errorPc": 4.9317484820969755,
+        "opsForSeconds": 304.3193348555384,
+        "durationMicroSeconds": 3286.0219035202085,
+        "runSlowerRatio": 5.045220043411499
+      },
+      {
+        "name": "hashSymbolWithXXHash32UsingJs",
+        "samplesCount": 67,
+        "errorPc": 4.467076569036695,
+        "opsForSeconds": 324.188968535326,
+        "durationMicroSeconds": 3084.6206905742774,
+        "runSlowerRatio": 4.735997078332152
+      },
+      {
+        "name": "hashSymbolUsingNativeHashSymbol",
+        "samplesCount": 66,
+        "errorPc": 4.639213117668387,
+        "opsForSeconds": 1535.358007810818,
+        "durationMicroSeconds": 651.31389220801,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashSymbolUsingHashUnknown",
+        "samplesCount": 65,
+        "errorPc": 3.1578353891606854,
+        "opsForSeconds": 1361.7837565930256,
+        "durationMicroSeconds": 734.3309796129797,
+        "runSlowerRatio": 1.127460949932351
+      }
+    ]
+  }
+]

@@ -1,7 +1,7 @@
 {
     "targets": [{
         "target_name": "<(module_name)",
-        "sources": [ "lib/hashCode.cpp" ],
+        "sources": [ "lib/hashCodeNative.cpp" ],
         "conditions": [
             ['OS=="linux"', {
                 "cflags": [ "-std=c++11", "-Wall" ]

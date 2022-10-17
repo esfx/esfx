@@ -8,8 +8,9 @@ module.exports = {
             tsconfig: true,
             compiler: require.resolve('typescript')
         }],
+        "^.+\\.was?t": [require.resolve("./scripts/jest-wat.js"), { esm: false }]
     },
-    resolver: path.join(__dirname, "scripts/resolver.js"),
+    resolver: path.join(__dirname, "scripts/resolverTs.js"),
     testPathIgnorePatterns: [
         '/dist/',
         '/workers/',

@@ -1,10 +1,10 @@
 // @ts-check
 const { realpathSync: _realpathSync } = require("fs");
-const { resolve: _pathResolve, dirname: _pathDirname, join: _pathJoin } = require("path");
+const { resolve: _pathResolve, dirname: _pathDirname, join: _pathJoin, extname: pathExtname, basename: pathBasename } = require("path");
 const isCore = require("is-core-module");
 const nodeModulesPaths = require("resolve/lib/node-modules-paths");
 const { URL, fileURLToPath, pathToFileURL } = require("url");
-const { pathResolve, realpathSyncCached, pathDirname, isFile, pathJoin, readPackageConfig, findPackageConfig, parsePackageName } = require("./utils");
+const { pathResolve, realpathSyncCached, pathDirname, isFile, pathJoin, readPackageConfig, findPackageConfig, parsePackageName, findTSConfig, ensureTrailingDirectorySeparator, normalizeSlashes, pathContains, TRACE } = require("./utils");
 const { Set, StringPrototypeStartsWith, RegExpPrototypeTest } = require("./primordials");
 const { ERR_MODULE_NOT_FOUND } = require("./errors");
 const esmResolver = require("./esmResolver");
@@ -21,6 +21,7 @@ const esmResolver = require("./esmResolver");
  */
 function COMMONJS_RESOLVE(X, Y, options) {
     // require(X) from module at path Y
+    TRACE(options, "COMMONJS_RESOLVE", X, Y);
 
     //  1. If X is a core module,
     //     a. return the core module
@@ -78,6 +79,8 @@ exports.COMMONJS_RESOLVE = COMMONJS_RESOLVE;
  * @returns {string|undefined}
  */
 function LOAD_AS_FILE(X, options) {
+    TRACE(options, "LOAD_AS_FILE", X);
+
     const extensions = options.extensions ?? [".js"];
     // LOAD_AS_FILE(X)
     // 1. If X is a file, load X as its file extension format. STOP
@@ -109,6 +112,8 @@ exports.LOAD_AS_FILE = LOAD_AS_FILE;
  * @returns {string|undefined}
  */
 function LOAD_INDEX(X, options) {
+    TRACE(options, "LOAD_INDEX", X);
+
     // LOAD_INDEX(X)
     // 1. If X/index.js is a file, load X/index.js as JavaScript text. STOP
     // 2. If X/index.json is a file, parse X/index.json to a JavaScript object. STOP
@@ -128,6 +133,8 @@ exports.LOAD_INDEX = LOAD_INDEX;
  * @returns {string|undefined}
  */
 function LOAD_AS_DIRECTORY(X, Y, options) {
+    TRACE(options, "LOAD_AS_DIRECTORY", X, Y);
+
     // LOAD_AS_DIRECTORY(X)
     // 1. If X/package.json is a file,
     //    a. Parse X/package.json, and look for "main" field.
@@ -163,6 +170,8 @@ exports.LOAD_AS_DIRECTORY = LOAD_AS_DIRECTORY;
  * @returns {string|undefined}
  */
 function LOAD_NODE_MODULES(X, START, Y, options) {
+    TRACE(options, "LOAD_NODE_MODULES", X, START, Y);
+
     // LOAD_NODE_MODULES(X, START)
 
     // 1. let DIRS = NODE_MODULES_PATHS(START)
@@ -193,6 +202,8 @@ exports.LOAD_NODE_MODULES = LOAD_NODE_MODULES;
  * @returns {string[]}
  */
 function NODE_MODULES_PATHS(START, options, request) {
+    TRACE(options, "NODE_MODULES_PATHS", START, request);
+
     // NODE_MODULES_PATHS(START)
     // 1. let PARTS = path split(START)
     // 2. let I = count of PARTS - 1
@@ -227,23 +238,31 @@ exports.NODE_MODULES_PATHS = NODE_MODULES_PATHS;
  * @returns {string|undefined}
  */
 function LOAD_PACKAGE_IMPORTS(X, DIR, Y, options) {
+    TRACE(options, "LOAD_PACKAGE_IMPORTS", X, DIR, Y);
+
     // LOAD_PACKAGE_IMPORTS(X, DIR)
     // 1. Find the closest package scope SCOPE to DIR.
-    const packageConfig = findPackageConfig(pathToFileURL(DIR), options);
+    const packageConfig = findPackageConfig(pathToFileURL(ensureTrailingDirectorySeparator(DIR)), options);
 
     // 2. If no scope was found, return.
-    if (!packageConfig.exists) return;
+    if (!packageConfig.exists) {
+        TRACE(options, "> no package config.");
+        return;
+    }
     const { packageJson, packageJsonURL } = packageConfig;
 
     // 3. If the SCOPE/package.json "imports" is null or undefined, return.
-    if (packageJson.imports === undefined) return;
+    if (packageJson.imports === undefined) {
+        TRACE(options, `> package ${fileURLToPath(packageJsonURL)} does not have imports.`);
+        return;
+    }
 
     // 4. let MATCH = PACKAGE_IMPORTS_RESOLVE(X, pathToFileURL(SCOPE),
     //   ["node", "require"]) defined in the ESM resolver.
     const MATCH = esmResolver.PACKAGE_IMPORTS_RESOLVE(X, new URL(".", packageJsonURL), new Set(["node", "require"]), options);
 
     // 5. RESOLVE_ESM_MATCH(MATCH).
-    return RESOLVE_ESM_MATCH(MATCH, Y, options);
+    return RESOLVE_ESM_MATCH(MATCH, Y, options, /*resolveInput*/ true);
 }
 exports.LOAD_PACKAGE_IMPORTS = LOAD_PACKAGE_IMPORTS;
 
@@ -255,6 +274,8 @@ exports.LOAD_PACKAGE_IMPORTS = LOAD_PACKAGE_IMPORTS;
  * @returns {string|undefined}
  */
 function LOAD_PACKAGE_EXPORTS(X, DIR, Y, options) {
+    TRACE(options, "LOAD_PACKAGE_EXPORTS", X, DIR, Y);
+
     // LOAD_PACKAGE_EXPORTS(X, DIR)
     // 1. Try to interpret X as a combination of NAME and SUBPATH where the name
     //    may have a @scope/ prefix and the subpath begins with a slash (`/`).
@@ -282,7 +303,7 @@ function LOAD_PACKAGE_EXPORTS(X, DIR, Y, options) {
     const MATCH = esmResolver.PACKAGE_EXPORTS_RESOLVE(packageJsonURL, SUBPATH, packageJson, pathToFileURL(Y), new Set(["node", "require"]), options);
 
     // 6. RESOLVE_ESM_MATCH(MATCH)
-    return RESOLVE_ESM_MATCH(MATCH, Y, options);
+    return RESOLVE_ESM_MATCH(MATCH, Y, options, /*resolveInput*/ false);
 }
 exports.LOAD_PACKAGE_EXPORTS = LOAD_PACKAGE_EXPORTS;
 
@@ -294,6 +315,8 @@ exports.LOAD_PACKAGE_EXPORTS = LOAD_PACKAGE_EXPORTS;
  * @returns {string|undefined}
  */
 function LOAD_PACKAGE_SELF(X, DIR, Y, options) {
+    TRACE(options, "LOAD_PACKAGE_SELF", X, DIR, Y);
+
     // LOAD_PACKAGE_SELF(X, DIR)
     // 1. Find the closest package scope SCOPE to DIR.
     const packageInfo = findPackageConfig(pathToFileURL(DIR), options);
@@ -314,7 +337,7 @@ function LOAD_PACKAGE_SELF(X, DIR, Y, options) {
     const MATCH = esmResolver.PACKAGE_EXPORTS_RESOLVE(packageJsonURL, "." + X.slice(packageJson.name.length), packageJson, pathToFileURL(Y), new Set(["node", "require"]), options);
 
     // 6. RESOLVE_ESM_MATCH(MATCH)
-    return RESOLVE_ESM_MATCH(MATCH, Y, options);
+    return RESOLVE_ESM_MATCH(MATCH, Y, options, /*resolveInput*/ true);
 }
 exports.LOAD_PACKAGE_SELF = LOAD_PACKAGE_SELF;
 
@@ -322,8 +345,11 @@ exports.LOAD_PACKAGE_SELF = LOAD_PACKAGE_SELF;
  * @param {import("./types").ResolvedEsmMatch} MATCH
  * @param {string} Y
  * @param {import("./types").ResolverOpts} options
+ * @param {boolean} resolveInput
  */
-function RESOLVE_ESM_MATCH(MATCH, Y, options) {
+function RESOLVE_ESM_MATCH(MATCH, Y, options, resolveInput) {
+    TRACE(options, "RESOLVE_ESM_MATCH", { resolved: MATCH.resolved.href, exact: MATCH.exact }, Y);
+
     // RESOLVE_ESM_MATCH(MATCH)
     // 1. let { RESOLVED, EXACT } = MATCH
     const { resolved, exact } = MATCH;
@@ -331,6 +357,12 @@ function RESOLVE_ESM_MATCH(MATCH, Y, options) {
     // 2. let RESOLVED_PATH = fileURLToPath(RESOLVED)
     const RESOLVED_PATH = fileURLToPath(resolved);
 
+    // modification to algorithm: Try to load source file for output file.
+    if (resolveInput && (options.conditions?.includes("ts") || options.conditions?.includes("ts-jest") || options.conditions?.includes("ts-node"))) {
+        const INPUT = LOAD_AS_INPUT_FILE(RESOLVED_PATH, options);
+        if (INPUT !== undefined) return INPUT;
+    }
+    
     // 3. If EXACT is true,
     //    a. If the file at RESOLVED_PATH exists, load RESOLVED_PATH as its extension
     //       format. STOP
@@ -352,3 +384,92 @@ function RESOLVE_ESM_MATCH(MATCH, Y, options) {
     throw ERR_MODULE_NOT_FOUND(RESOLVED_PATH, options.filename ?? Y);
 }
 exports.RESOLVE_ESM_MATCH = RESOLVE_ESM_MATCH;
+
+const EXTENSIONS = [
+    { output: [".d.mts", ".mjs", ".mts" ], input: [".mts", ".mjs"] },
+    { output: [".d.cts", ".cjs", ".cts"], input: [".cts", ".cjs"] },
+    { output: [".d.ts", ".js", ".jsx", ".ts", ".tsx"], input: [".tsx", ".ts", ".jsx", ".js"] },
+];
+
+/**
+ * @param {string} X
+ * @param {import("./types").ResolverOpts} options
+ * @returns {string|undefined}
+ */
+function LOAD_AS_INPUT_FILE(X, options) {
+    const T = TRACE.bind(null, options);
+    T("LOAD_AS_INPUT_FILE", X);
+
+    const packageConfig = findPackageConfig(pathToFileURL(X), options);
+    if (!packageConfig.exists) {
+        T(`> 'package.json' not found.`);
+        return undefined;
+    }
+
+    const tsconfig = findTSConfig(pathToFileURL(X), options);
+    if (!tsconfig.exists) {
+        T(`> 'tsconfig.json' not found.`);
+        return undefined;
+    }
+
+    const packageDir = fileURLToPath(new URL("./", packageConfig.packageJsonURL));
+    const tsconfigFile = fileURLToPath(tsconfig.tsconfigJsonURL);
+    if (!pathContains(packageDir, tsconfigFile, process.platform === "win32") ||
+        pathContains(pathResolve(packageDir, "node_modules"), tsconfigFile, process.platform === "win32")) {
+        T(`> 'tsconfig.json' not in package.`);
+        return undefined;
+    }
+
+    if (options.rootDir && (
+        !pathContains(options.rootDir, fileURLToPath(tsconfig.tsconfigJsonURL), process.platform === "win32") ||
+        pathContains(pathResolve(options.rootDir, "node_modules"), fileURLToPath(tsconfig.tsconfigJsonURL), process.platform === "win32"))) {
+        T(`> file referenced from external package.`);
+        return undefined;
+    }
+
+    if (!(tsconfig.project.options.declarationDir || tsconfig.project.options.outDir)) {
+        T(`> 'tsconfig.json' has no outDir.`);
+        return undefined;
+    }
+
+    const tsconfigDir = fileURLToPath(new URL("./", tsconfig.tsconfigJsonURL));
+    const rootDir =
+        tsconfig.project.options.rootDir ? ensureTrailingDirectorySeparator(pathResolve(tsconfigDir, tsconfig.project.options.rootDir)) :
+        tsconfig.project.options.composite ? ensureTrailingDirectorySeparator(pathResolve(tsconfigDir)) :
+        undefined;
+
+    if (!rootDir) {
+        T(`> failed to discover rootDir.`);
+        return undefined;
+    }
+
+    const candidatesOutDirs = new Set();
+    if (tsconfig.project.options.declarationDir) candidatesOutDirs.add(ensureTrailingDirectorySeparator(pathResolve(tsconfigDir, tsconfig.project.options.declarationDir)));
+    if (tsconfig.project.options.outDir) candidatesOutDirs.add(ensureTrailingDirectorySeparator(pathResolve(tsconfigDir, tsconfig.project.options.outDir)));
+    if (typeof tsconfig.project.raw?.esmDir === "string") candidatesOutDirs.add(ensureTrailingDirectorySeparator(pathResolve(tsconfigDir, tsconfig.project.raw.esmDir)));
+    if (typeof tsconfig.project.raw?.cjsLegacyDir === "string") candidatesOutDirs.add(ensureTrailingDirectorySeparator(pathResolve(tsconfigDir, tsconfig.project.raw.cjsLegacyDir)));
+
+    const X2 = pathResolve(X);
+    for (const candidateOutDir of candidatesOutDirs) {
+        if (pathContains(candidateOutDir, X2, process.platform === "win32")) {
+            const rest = X2.slice(candidateOutDir.length);
+            const candidate = pathResolve(rootDir, rest);
+            for (const { output, input } of EXTENSIONS) {
+                for (const outputExt of output) {
+                    if (candidate.endsWith(outputExt)) {
+                        for (const inputExt of input) {
+                            const candidateWithExt = pathResolve(pathDirname(candidate), pathBasename(candidate, outputExt) + inputExt);
+                            if (isFile(candidateWithExt)) {
+                                T(`> found '${candidateWithExt}'`);
+                                return candidateWithExt;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    T(`> source file not found.`);
+}
+exports.LOAD_AS_INPUT_FILE = LOAD_AS_INPUT_FILE;

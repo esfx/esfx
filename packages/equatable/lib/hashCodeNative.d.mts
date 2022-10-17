@@ -10,5 +10,3 @@ export function hashString(x: string): number;
 export function hashSymbol(x: symbol): number;
 /* @internal */
 export function hashObject(x: object): number;
-/* @internal */
-export function hashUnknown(x: unknown): number;

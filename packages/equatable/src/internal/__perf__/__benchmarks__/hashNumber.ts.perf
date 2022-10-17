@@ -1456,5 +1456,3099 @@
         "runSlowerRatio": 67.56560712359926
       }
     ]
+  },
+  {
+    "date": "Mon, 26 Sep 2022 00:59:02 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 720
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 72,
+        "errorPc": 3.567904464767528,
+        "opsForSeconds": 288.29095877970946,
+        "durationMicroSeconds": 3468.7178683398315,
+        "runSlowerRatio": 366.34315507929546
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 77,
+        "errorPc": 2.8633174888145723,
+        "opsForSeconds": 299.4009402622066,
+        "durationMicroSeconds": 3340.002870813396,
+        "runSlowerRatio": 352.7491240598668
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 76,
+        "errorPc": 3.197741395940695,
+        "opsForSeconds": 52816.38641756688,
+        "durationMicroSeconds": 18.933517944487722,
+        "runSlowerRatio": 1.9996335717709488
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 84,
+        "errorPc": 2.755745472425146,
+        "opsForSeconds": 105613.41942019388,
+        "durationMicroSeconds": 9.468493733939216,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 71,
+        "errorPc": 4.124093414528017,
+        "opsForSeconds": 31303.769414679165,
+        "durationMicroSeconds": 31.945034693843404,
+        "runSlowerRatio": 3.373824347513528
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 70,
+        "errorPc": 5.70736899464418,
+        "opsForSeconds": 33168.966492087886,
+        "durationMicroSeconds": 30.14866321621868,
+        "runSlowerRatio": 3.1841034132126746
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 68,
+        "errorPc": 9.830539721068126,
+        "opsForSeconds": 33807.14275438776,
+        "durationMicroSeconds": 29.57954794538832,
+        "runSlowerRatio": 3.123997203416031
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 87,
+        "errorPc": 2.2557121143120513,
+        "opsForSeconds": 1418.604205172691,
+        "durationMicroSeconds": 704.9182544036424,
+        "runSlowerRatio": 74.44882725928282
+      }
+    ]
+  },
+  {
+    "date": "Mon, 26 Sep 2022 18:33:56 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 632
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 71,
+        "errorPc": 3.6537339873539576,
+        "opsForSeconds": 261.55981797515585,
+        "durationMicroSeconds": 3823.2172194544983,
+        "runSlowerRatio": 412.75968784449077
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 70,
+        "errorPc": 3.210539839021689,
+        "opsForSeconds": 287.0260925853233,
+        "durationMicroSeconds": 3484.0038095238097,
+        "runSlowerRatio": 376.1377505705125
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 79,
+        "errorPc": 3.1890470716024013,
+        "opsForSeconds": 50709.79898059246,
+        "durationMicroSeconds": 19.72005450825624,
+        "runSlowerRatio": 2.1290036835169843
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 81,
+        "errorPc": 2.4251084174425745,
+        "opsForSeconds": 107961.34882008715,
+        "durationMicroSeconds": 9.262574161299671,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 72,
+        "errorPc": 4.460591420579661,
+        "opsForSeconds": 36382.52223031064,
+        "durationMicroSeconds": 27.485724977222443,
+        "runSlowerRatio": 2.967395941838894
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 73,
+        "errorPc": 5.167820727749909,
+        "opsForSeconds": 37865.0554373558,
+        "durationMicroSeconds": 26.409574433461657,
+        "runSlowerRatio": 2.8512132776010093
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 78,
+        "errorPc": 4.175485668629738,
+        "opsForSeconds": 41063.16397561379,
+        "durationMicroSeconds": 24.35272646291627,
+        "runSlowerRatio": 2.6291531963830703
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 83,
+        "errorPc": 4.292409165145807,
+        "opsForSeconds": 1392.3554969995305,
+        "durationMicroSeconds": 718.2073846477853,
+        "runSlowerRatio": 77.53863797912204
+      }
+    ]
+  },
+  {
+    "date": "Mon, 26 Sep 2022 18:40:06 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 633
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 66,
+        "errorPc": 3.618079826213964,
+        "opsForSeconds": 266.28581909676285,
+        "durationMicroSeconds": 3755.363328741965,
+        "runSlowerRatio": 397.9344224615812
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 72,
+        "errorPc": 4.107557875243811,
+        "opsForSeconds": 277.79239440421503,
+        "durationMicroSeconds": 3599.8105784887057,
+        "runSlowerRatio": 381.4513851584829
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 76,
+        "errorPc": 3.0809002605553597,
+        "opsForSeconds": 49682.354415931615,
+        "durationMicroSeconds": 20.127870584155136,
+        "runSlowerRatio": 2.132835588765896
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 81,
+        "errorPc": 2.4485994701511413,
+        "opsForSeconds": 105964.29363197942,
+        "durationMicroSeconds": 9.43714118902224,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 72,
+        "errorPc": 3.689185024241074,
+        "opsForSeconds": 36908.8957554534,
+        "durationMicroSeconds": 27.093739314925102,
+        "runSlowerRatio": 2.8709689483550282
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 76,
+        "errorPc": 4.222742460489946,
+        "opsForSeconds": 37691.76739971263,
+        "durationMicroSeconds": 26.5309925479277,
+        "runSlowerRatio": 2.8113378846964685
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 74,
+        "errorPc": 4.110905475702439,
+        "opsForSeconds": 38200.059036789375,
+        "durationMicroSeconds": 26.177970014049688,
+        "runSlowerRatio": 2.7739301012579136
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 87,
+        "errorPc": 3.105458382404749,
+        "opsForSeconds": 1461.6594537078206,
+        "durationMicroSeconds": 684.1538892409446,
+        "runSlowerRatio": 72.49588360898818
+      }
+    ]
+  },
+  {
+    "date": "Mon, 26 Sep 2022 18:44:13 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 633
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 75,
+        "errorPc": 2.951224712801431,
+        "opsForSeconds": 249.6595504166124,
+        "durationMicroSeconds": 4005.4546214285733,
+        "runSlowerRatio": 422.8010747752393
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 74,
+        "errorPc": 3.375034501364474,
+        "opsForSeconds": 275.99678351856625,
+        "durationMicroSeconds": 3623.230630630629,
+        "runSlowerRatio": 382.45491450427
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 75,
+        "errorPc": 3.436238981712856,
+        "opsForSeconds": 48585.24263662922,
+        "durationMicroSeconds": 20.582381516112537,
+        "runSlowerRatio": 2.1726005781942126
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 81,
+        "errorPc": 2.687306902299544,
+        "opsForSeconds": 105556.32624404675,
+        "durationMicroSeconds": 9.473615041205536,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 75,
+        "errorPc": 3.0007365390484626,
+        "opsForSeconds": 37444.400190312386,
+        "durationMicroSeconds": 26.706263017099147,
+        "runSlowerRatio": 2.819015011792238
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 82,
+        "errorPc": 3.025729036080573,
+        "opsForSeconds": 38805.63950739793,
+        "durationMicroSeconds": 25.76945033490195,
+        "runSlowerRatio": 2.72012850668067
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 84,
+        "errorPc": 2.8353082993264977,
+        "opsForSeconds": 44961.26522596392,
+        "durationMicroSeconds": 22.241366984987042,
+        "runSlowerRatio": 2.3477169895808627
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 87,
+        "errorPc": 1.850067449127248,
+        "opsForSeconds": 1432.9774391182737,
+        "durationMicroSeconds": 697.8476929932064,
+        "runSlowerRatio": 73.66223875024627
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 02:12:31 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 639
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 76,
+        "errorPc": 4.479632785980212,
+        "opsForSeconds": 305.34509344082306,
+        "durationMicroSeconds": 3274.9830322516823,
+        "runSlowerRatio": 375.7958714182686
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 84,
+        "errorPc": 3.279276145793699,
+        "opsForSeconds": 345.9579213439541,
+        "durationMicroSeconds": 2890.5249404761917,
+        "runSlowerRatio": 331.6802951848122
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 85,
+        "errorPc": 3.367685912874738,
+        "opsForSeconds": 55745.32499974542,
+        "durationMicroSeconds": 17.93872400967376,
+        "runSlowerRatio": 2.058422396378724
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 87,
+        "errorPc": 1.785465660476065,
+        "opsForSeconds": 114747.42547288675,
+        "durationMicroSeconds": 8.714792474679847,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 75,
+        "errorPc": 2.192614283199906,
+        "opsForSeconds": 26458.341043792723,
+        "durationMicroSeconds": 37.79526457629533,
+        "runSlowerRatio": 4.336909305196485
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 78,
+        "errorPc": 2.666056778881413,
+        "opsForSeconds": 39751.5429472894,
+        "durationMicroSeconds": 25.15625623201598,
+        "runSlowerRatio": 2.8866156371600966
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 74,
+        "errorPc": 4.3886694031495495,
+        "opsForSeconds": 38249.43673278824,
+        "durationMicroSeconds": 26.144175847242696,
+        "runSlowerRatio": 2.999976869581527
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 85,
+        "errorPc": 3.538603308616656,
+        "opsForSeconds": 1444.947107135569,
+        "durationMicroSeconds": 692.0668549469452,
+        "runSlowerRatio": 79.41288986027972
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 02:40:23 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 640
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 76,
+        "errorPc": 3.3307814179763486,
+        "opsForSeconds": 299.1354052143486,
+        "durationMicroSeconds": 3342.9677081635973,
+        "runSlowerRatio": 382.43717853407577
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 74,
+        "errorPc": 4.110305902081798,
+        "opsForSeconds": 289.58265462118203,
+        "durationMicroSeconds": 3453.245503630566,
+        "runSlowerRatio": 395.05301351517795
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 78,
+        "errorPc": 3.552506048435939,
+        "opsForSeconds": 52725.020160239874,
+        "durationMicroSeconds": 18.966327503732348,
+        "runSlowerRatio": 2.1697573566049155
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 85,
+        "errorPc": 2.7765240892517062,
+        "opsForSeconds": 114400.50036982294,
+        "durationMicroSeconds": 8.741220508365751,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 76,
+        "errorPc": 3.620400571259545,
+        "opsForSeconds": 38951.157157026864,
+        "durationMicroSeconds": 25.673178231101616,
+        "runSlowerRatio": 2.937024435721671
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 76,
+        "errorPc": 5.299509846116266,
+        "opsForSeconds": 38880.35554455975,
+        "durationMicroSeconds": 25.71992940892545,
+        "runSlowerRatio": 2.9423727938575954
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 75,
+        "errorPc": 4.060313236600539,
+        "opsForSeconds": 38733.26768525923,
+        "durationMicroSeconds": 25.817599695586008,
+        "runSlowerRatio": 2.953546323522828
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 86,
+        "errorPc": 2.678114307560285,
+        "opsForSeconds": 9051.030188228853,
+        "durationMicroSeconds": 110.48466077381238,
+        "runSlowerRatio": 12.639500475714286
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 95,
+        "errorPc": 0.846750555970216,
+        "opsForSeconds": 9389.753605816291,
+        "durationMicroSeconds": 106.49906717260082,
+        "runSlowerRatio": 12.183546573464918
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 90,
+        "errorPc": 1.6743594175364358,
+        "opsForSeconds": 12365.424280048037,
+        "durationMicroSeconds": 80.87065816362876,
+        "runSlowerRatio": 9.251643759156037
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 95,
+        "errorPc": 0.9176409086754017,
+        "opsForSeconds": 1609.2661464045,
+        "durationMicroSeconds": 621.4012531328322,
+        "runSlowerRatio": 71.088614288831
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 03:18:49 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 642
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 71,
+        "errorPc": 5.232183804071334,
+        "opsForSeconds": 292.16024135160944,
+        "durationMicroSeconds": 3422.7792097026595,
+        "runSlowerRatio": 363.3812980532265
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 63,
+        "errorPc": 7.099866824442821,
+        "opsForSeconds": 259.98258444265616,
+        "durationMicroSeconds": 3846.411489999508,
+        "runSlowerRatio": 408.35645960473363
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 66,
+        "errorPc": 4.295568505258114,
+        "opsForSeconds": 41854.04044896092,
+        "durationMicroSeconds": 23.892555874490878,
+        "runSlowerRatio": 2.5365667592201957
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 80,
+        "errorPc": 2.243788843809882,
+        "opsForSeconds": 106165.56774189178,
+        "durationMicroSeconds": 9.419249774382461,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 69,
+        "errorPc": 3.7923651723753347,
+        "opsForSeconds": 32866.850101015676,
+        "durationMicroSeconds": 30.42579367741411,
+        "runSlowerRatio": 3.2301716597603303
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 73,
+        "errorPc": 2.325485755168697,
+        "opsForSeconds": 33885.03635956184,
+        "durationMicroSeconds": 29.511551629715612,
+        "runSlowerRatio": 3.1331106337129095
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 69,
+        "errorPc": 3.9662505998977435,
+        "opsForSeconds": 31878.46237247848,
+        "durationMicroSeconds": 31.369141595214657,
+        "runSlowerRatio": 3.330322727031757
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 92,
+        "errorPc": 1.4333066320099996,
+        "opsForSeconds": 9872.613811694675,
+        "durationMicroSeconds": 101.29029850387168,
+        "runSlowerRatio": 10.753542047409228
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 94,
+        "errorPc": 2.0759093226835867,
+        "opsForSeconds": 9661.911861227069,
+        "durationMicroSeconds": 103.4991846709932,
+        "runSlowerRatio": 10.988049701418896
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 89,
+        "errorPc": 2.513507474158748,
+        "opsForSeconds": 12324.540643031307,
+        "durationMicroSeconds": 81.13892671248824,
+        "runSlowerRatio": 8.614160220399063
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 91,
+        "errorPc": 2.3735294989006936,
+        "opsForSeconds": 1499.7249512231353,
+        "durationMicroSeconds": 666.7889329869633,
+        "runSlowerRatio": 70.7900256345712
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 03:21:08 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 642
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 69,
+        "errorPc": 5.433310050740763,
+        "opsForSeconds": 281.5302555782232,
+        "durationMicroSeconds": 3552.01609839817,
+        "runSlowerRatio": 376.01172136910196
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 61,
+        "errorPc": 4.816186767555298,
+        "opsForSeconds": 234.37683698425724,
+        "durationMicroSeconds": 4266.633225650914,
+        "runSlowerRatio": 451.6601443194717
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 67,
+        "errorPc": 4.087917085988146,
+        "opsForSeconds": 41379.47437584383,
+        "durationMicroSeconds": 24.166570868376517,
+        "runSlowerRatio": 2.5582411960082374
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 79,
+        "errorPc": 2.2299591593443884,
+        "opsForSeconds": 105858.67601745094,
+        "durationMicroSeconds": 9.446556839943367,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 67,
+        "errorPc": 4.53831236013063,
+        "opsForSeconds": 31646.29465005935,
+        "durationMicroSeconds": 31.59927603082355,
+        "runSlowerRatio": 3.3450575237329527
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 69,
+        "errorPc": 2.858894411444653,
+        "opsForSeconds": 34307.13024976475,
+        "durationMicroSeconds": 29.148459597749575,
+        "runSlowerRatio": 3.08561734096593
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 79,
+        "errorPc": 1.7614981139882486,
+        "opsForSeconds": 28173.648024197642,
+        "durationMicroSeconds": 35.494161038042535,
+        "runSlowerRatio": 3.7573648938373743
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 91,
+        "errorPc": 1.9882251728775169,
+        "opsForSeconds": 9134.565891479995,
+        "durationMicroSeconds": 109.47427736360426,
+        "runSlowerRatio": 11.588802059678345
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 92,
+        "errorPc": 1.0939965153577755,
+        "opsForSeconds": 9478.36698109977,
+        "durationMicroSeconds": 105.50340601857246,
+        "runSlowerRatio": 11.168450876457644
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 92,
+        "errorPc": 2.312801194420964,
+        "opsForSeconds": 12511.812424201193,
+        "durationMicroSeconds": 79.92447185874785,
+        "runSlowerRatio": 8.460698772361063
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 94,
+        "errorPc": 1.1927592086650098,
+        "opsForSeconds": 1583.889135463322,
+        "durationMicroSeconds": 631.3573201621074,
+        "runSlowerRatio": 66.83465000628657
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 05:12:55 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 642
+    },
+    "tests": [
+      {
+        "name": "hashNumberByTypeUsingDataView",
+        "samplesCount": 77,
+        "errorPc": 3.7937656856863273,
+        "opsForSeconds": 317.79563010143244,
+        "durationMicroSeconds": 3146.6763708513704,
+        "runSlowerRatio": 357.25032380434584
+      },
+      {
+        "name": "hashNumberByTypeUsingTypedArray",
+        "samplesCount": 78,
+        "errorPc": 3.397544050852741,
+        "opsForSeconds": 323.1579994034006,
+        "durationMicroSeconds": 3094.4615384615386,
+        "runSlowerRatio": 351.322238554953
+      },
+      {
+        "name": "hashNumberByFloat64DataViewOnly",
+        "samplesCount": 83,
+        "errorPc": 3.2864931786315785,
+        "opsForSeconds": 55448.89759802908,
+        "durationMicroSeconds": 18.03462365021924,
+        "runSlowerRatio": 2.0475175643776615
+      },
+      {
+        "name": "hashNumberByFloat64TypedArrayOnly",
+        "samplesCount": 84,
+        "errorPc": 2.277976985066946,
+        "opsForSeconds": 113532.59175734286,
+        "durationMicroSeconds": 8.808043439520297,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberByTypeExperiment1",
+        "samplesCount": 79,
+        "errorPc": 3.0477147942886185,
+        "opsForSeconds": 42094.28150021307,
+        "durationMicroSeconds": 23.756195957280763,
+        "runSlowerRatio": 2.697102497325396
+      },
+      {
+        "name": "hashNumberByTypeExperiment2",
+        "samplesCount": 79,
+        "errorPc": 2.6460135881836635,
+        "opsForSeconds": 41939.188524355974,
+        "durationMicroSeconds": 23.844047421643722,
+        "runSlowerRatio": 2.7070765017642007
+      },
+      {
+        "name": "hashNumberByTypeExperiment3",
+        "samplesCount": 81,
+        "errorPc": 2.827863976179623,
+        "opsForSeconds": 40997.0683211906,
+        "durationMicroSeconds": 24.391988035962054,
+        "runSlowerRatio": 2.769285619836871
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 89,
+        "errorPc": 2.549330200454094,
+        "opsForSeconds": 9314.165733211832,
+        "durationMicroSeconds": 107.36334618078209,
+        "runSlowerRatio": 12.18923895164501
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 96,
+        "errorPc": 0.819087354692807,
+        "opsForSeconds": 9862.161192573489,
+        "durationMicroSeconds": 101.39765315872457,
+        "runSlowerRatio": 11.511938361222123
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 93,
+        "errorPc": 1.8265031724182732,
+        "opsForSeconds": 12916.955372427441,
+        "durationMicroSeconds": 77.41762444535513,
+        "runSlowerRatio": 8.78942355097779
+      },
+      {
+        "name": "hashUnknownNative",
+        "samplesCount": 93,
+        "errorPc": 1.8368559465786396,
+        "opsForSeconds": 1559.133770663837,
+        "durationMicroSeconds": 641.3817844342035,
+        "runSlowerRatio": 72.81773629276451
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 21:05:25 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 77,
+        "errorPc": 6.288387619827784,
+        "opsForSeconds": 52899.02990043076,
+        "durationMicroSeconds": 18.90393834976276,
+        "runSlowerRatio": 1.9470492605213232
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 68,
+        "errorPc": 1.5630477657073434,
+        "opsForSeconds": 21163.98457554574,
+        "durationMicroSeconds": 47.25008168619939,
+        "runSlowerRatio": 4.86661746904402
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 81,
+        "errorPc": 0.8648687310499826,
+        "opsForSeconds": 102997.01704992908,
+        "durationMicroSeconds": 9.709019043874228,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 67,
+        "errorPc": 1.7962287257401788,
+        "opsForSeconds": 31875.683909810137,
+        "durationMicroSeconds": 31.371875904825295,
+        "runSlowerRatio": 3.23120963745755
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 70,
+        "errorPc": 2.2049016646290136,
+        "opsForSeconds": 6766.057624050415,
+        "durationMicroSeconds": 147.79655385219178,
+        "runSlowerRatio": 15.222604177034958
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 69,
+        "errorPc": 2.1063461109552573,
+        "opsForSeconds": 6802.516550129204,
+        "durationMicroSeconds": 147.00442000115478,
+        "runSlowerRatio": 15.141016753273874
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 68,
+        "errorPc": 2.110632127481909,
+        "opsForSeconds": 8086.334136256804,
+        "durationMicroSeconds": 123.66543147361257,
+        "runSlowerRatio": 12.73717055397451
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 90,
+        "errorPc": 4.442875070959617,
+        "opsForSeconds": 1468.9858142189994,
+        "durationMicroSeconds": 680.7417677696634,
+        "runSlowerRatio": 70.11437146157088
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 94,
+        "errorPc": 1.4672974377509904,
+        "opsForSeconds": 1537.427912622076,
+        "durationMicroSeconds": 650.4370005189412,
+        "runSlowerRatio": 66.99307083235412
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 21:06:53 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 83,
+        "errorPc": 4.597282700832922,
+        "opsForSeconds": 55454.653819301006,
+        "durationMicroSeconds": 18.03275164711153,
+        "runSlowerRatio": 2.316225647243465
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 90,
+        "errorPc": 1.5360389534735557,
+        "opsForSeconds": 30784.24323149733,
+        "durationMicroSeconds": 32.48415081962567,
+        "runSlowerRatio": 4.172442715884337
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 95,
+        "errorPc": 0.5556626461828736,
+        "opsForSeconds": 128445.49143527275,
+        "durationMicroSeconds": 7.785403666768076,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 86,
+        "errorPc": 2.72865425126261,
+        "opsForSeconds": 45770.05722952298,
+        "durationMicroSeconds": 21.848344977706773,
+        "runSlowerRatio": 2.80632140770892
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 87,
+        "errorPc": 1.806270583102042,
+        "opsForSeconds": 8792.671499929153,
+        "durationMicroSeconds": 113.73107706890421,
+        "runSlowerRatio": 14.608244085578281
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 85,
+        "errorPc": 2.5686918189719226,
+        "opsForSeconds": 8394.945495352451,
+        "durationMicroSeconds": 119.1192963139085,
+        "runSlowerRatio": 15.300336554463852
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 81,
+        "errorPc": 4.169697720589589,
+        "opsForSeconds": 10396.70925602898,
+        "durationMicroSeconds": 96.18428056166972,
+        "runSlowerRatio": 12.35443718509182
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 89,
+        "errorPc": 2.6508449918521904,
+        "opsForSeconds": 1444.0530848443784,
+        "durationMicroSeconds": 692.4953178627552,
+        "runSlowerRatio": 88.947901419507
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 93,
+        "errorPc": 1.7697848751638834,
+        "opsForSeconds": 1556.9387570606345,
+        "durationMicroSeconds": 642.286021505376,
+        "runSlowerRatio": 82.49874367426418
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 21:09:26 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 77,
+        "errorPc": 3.811774022647823,
+        "opsForSeconds": 51268.72351234989,
+        "durationMicroSeconds": 19.50506920187148,
+        "runSlowerRatio": 2.366713688031644
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 82,
+        "errorPc": 5.487007292520267,
+        "opsForSeconds": 25319.737610338343,
+        "durationMicroSeconds": 39.494880057196504,
+        "runSlowerRatio": 4.7922451477160815
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 93,
+        "errorPc": 1.4637818001528857,
+        "opsForSeconds": 121338.38970458828,
+        "durationMicroSeconds": 8.241414794069795,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 81,
+        "errorPc": 2.5340729595190776,
+        "opsForSeconds": 42969.72224912739,
+        "durationMicroSeconds": 23.272200695230406,
+        "runSlowerRatio": 2.8238113572412575
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 84,
+        "errorPc": 2.7312136748834854,
+        "opsForSeconds": 8390.259618739063,
+        "durationMicroSeconds": 119.18582325707412,
+        "runSlowerRatio": 14.46181586962904
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 81,
+        "errorPc": 6.534687089049511,
+        "opsForSeconds": 8203.559774009911,
+        "durationMicroSeconds": 121.89830117020024,
+        "runSlowerRatio": 14.790943571717026
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 86,
+        "errorPc": 2.9536839046150885,
+        "opsForSeconds": 11176.57659576141,
+        "durationMicroSeconds": 89.47283557106732,
+        "runSlowerRatio": 10.856489790496715
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 87,
+        "errorPc": 3.365508259369588,
+        "opsForSeconds": 1398.2619764727438,
+        "durationMicroSeconds": 715.1735631992228,
+        "runSlowerRatio": 86.77800851788629
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 93,
+        "errorPc": 1.548468850288404,
+        "opsForSeconds": 1484.0037575412478,
+        "durationMicroSeconds": 673.8527412200336,
+        "runSlowerRatio": 81.76420651766152
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 21:12:42 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 83,
+        "errorPc": 3.000930753512794,
+        "opsForSeconds": 58514.61819505426,
+        "durationMicroSeconds": 17.089746645301044,
+        "runSlowerRatio": 2.129972097249871
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 84,
+        "errorPc": 2.284800248321238,
+        "opsForSeconds": 28746.426344098858,
+        "durationMicroSeconds": 34.78693274878262,
+        "runSlowerRatio": 4.335652110102391
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 95,
+        "errorPc": 1.1384061592043246,
+        "opsForSeconds": 124634.50403669516,
+        "durationMicroSeconds": 8.023460338924908,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 79,
+        "errorPc": 3.474808346855033,
+        "opsForSeconds": 44650.25602315668,
+        "durationMicroSeconds": 22.396288153003564,
+        "runSlowerRatio": 2.7913502662125107
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 89,
+        "errorPc": 2.0165555790485903,
+        "opsForSeconds": 8816.115456472138,
+        "durationMicroSeconds": 113.42864155276848,
+        "runSlowerRatio": 14.137122483485372
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 86,
+        "errorPc": 5.751326544890204,
+        "opsForSeconds": 8527.655417135387,
+        "durationMicroSeconds": 117.26552623017692,
+        "runSlowerRatio": 14.615330702300168
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 88,
+        "errorPc": 1.9551332879742807,
+        "opsForSeconds": 11726.752045160174,
+        "durationMicroSeconds": 85.27510398010988,
+        "runSlowerRatio": 10.628220291238604
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 90,
+        "errorPc": 3.3437211254382806,
+        "opsForSeconds": 1482.937686697183,
+        "durationMicroSeconds": 674.3371680216802,
+        "runSlowerRatio": 84.04567848989169
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 91,
+        "errorPc": 1.3235180521947616,
+        "opsForSeconds": 1511.2857912663612,
+        "durationMicroSeconds": 661.6882166026743,
+        "runSlowerRatio": 82.46918270319964
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 21:14:15 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 77,
+        "errorPc": 4.860849766700577,
+        "opsForSeconds": 51975.15073016862,
+        "durationMicroSeconds": 19.23996344313739,
+        "runSlowerRatio": 1.999289558484669
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 64,
+        "errorPc": 2.226663334705351,
+        "opsForSeconds": 21574.371277334383,
+        "durationMicroSeconds": 46.351292797606604,
+        "runSlowerRatio": 4.816519323771086
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 78,
+        "errorPc": 1.1005469008418023,
+        "opsForSeconds": 103913.37615549295,
+        "durationMicroSeconds": 9.623400153062384,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 71,
+        "errorPc": 2.437028281440721,
+        "opsForSeconds": 33206.99500476774,
+        "durationMicroSeconds": 30.11413709239344,
+        "runSlowerRatio": 3.1292616552799624
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 80,
+        "errorPc": 2.6944507571200713,
+        "opsForSeconds": 8210.589088274719,
+        "durationMicroSeconds": 121.7939406355225,
+        "runSlowerRatio": 12.656019566718829
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 81,
+        "errorPc": 5.0183932373689215,
+        "opsForSeconds": 8332.999702573727,
+        "durationMicroSeconds": 120.00480447528882,
+        "runSlowerRatio": 12.470104387907071
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 87,
+        "errorPc": 3.0471040940778886,
+        "opsForSeconds": 11805.084460201684,
+        "durationMicroSeconds": 84.70926263774614,
+        "runSlowerRatio": 8.80242547233056
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 87,
+        "errorPc": 3.7973471399195367,
+        "opsForSeconds": 1425.719140444042,
+        "durationMicroSeconds": 701.400417257882,
+        "runSlowerRatio": 72.88488539413801
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 87,
+        "errorPc": 2.540173191964507,
+        "opsForSeconds": 1496.1120571233223,
+        "durationMicroSeconds": 668.3991317620746,
+        "runSlowerRatio": 69.45561040079735
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 21:16:17 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 75,
+        "errorPc": 5.4112475029523965,
+        "opsForSeconds": 51367.9578781627,
+        "durationMicroSeconds": 19.467388646670635,
+        "runSlowerRatio": 2.3545039075796623
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 79,
+        "errorPc": 2.867539610483791,
+        "opsForSeconds": 28513.69631968561,
+        "durationMicroSeconds": 35.07086520065126,
+        "runSlowerRatio": 4.241682880834411
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 90,
+        "errorPc": 1.4290145756530501,
+        "opsForSeconds": 120946.05754852158,
+        "durationMicroSeconds": 8.268148795166939,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 79,
+        "errorPc": 4.127245398186931,
+        "opsForSeconds": 41480.3231073907,
+        "durationMicroSeconds": 24.107816070068807,
+        "runSlowerRatio": 2.9157453097797155
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 86,
+        "errorPc": 2.0500261113024476,
+        "opsForSeconds": 8584.138523287334,
+        "durationMicroSeconds": 116.49392624398673,
+        "runSlowerRatio": 14.089481107558449
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 86,
+        "errorPc": 1.628687039974406,
+        "opsForSeconds": 8847.333386758135,
+        "durationMicroSeconds": 113.02840712397104,
+        "runSlowerRatio": 13.670340232633528
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 83,
+        "errorPc": 2.5039873219556714,
+        "opsForSeconds": 11156.363773373452,
+        "durationMicroSeconds": 89.63494022906183,
+        "runSlowerRatio": 10.840992639302405
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 89,
+        "errorPc": 2.746233969031105,
+        "opsForSeconds": 1498.4605093008627,
+        "durationMicroSeconds": 667.3515877082209,
+        "runSlowerRatio": 80.71354353205574
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 93,
+        "errorPc": 1.3668372615345117,
+        "opsForSeconds": 1555.0696755636345,
+        "durationMicroSeconds": 643.0580029396756,
+        "runSlowerRatio": 77.77533023057937
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 21:17:41 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 79,
+        "errorPc": 3.1334308581345414,
+        "opsForSeconds": 53035.46066990615,
+        "durationMicroSeconds": 18.855309020959044,
+        "runSlowerRatio": 2.226092268236228
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 84,
+        "errorPc": 3.5681603977178087,
+        "opsForSeconds": 29470.793637471274,
+        "durationMicroSeconds": 33.931899232212345,
+        "runSlowerRatio": 4.0060620827500335
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 91,
+        "errorPc": 1.6610358321483918,
+        "opsForSeconds": 118061.82893962461,
+        "durationMicroSeconds": 8.470138138478168,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 80,
+        "errorPc": 3.2011080313900133,
+        "opsForSeconds": 42145.98895171812,
+        "durationMicroSeconds": 23.727050304729747,
+        "runSlowerRatio": 2.8012589543188717
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 84,
+        "errorPc": 4.582820886277384,
+        "opsForSeconds": 8416.411492093142,
+        "durationMicroSeconds": 118.81548340874933,
+        "runSlowerRatio": 14.02757327758257
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 89,
+        "errorPc": 2.1329823835522093,
+        "opsForSeconds": 8614.246958164978,
+        "durationMicroSeconds": 116.08675776959866,
+        "runSlowerRatio": 13.705414937949996
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 67,
+        "errorPc": 3.0021247728814107,
+        "opsForSeconds": 8713.79264331864,
+        "durationMicroSeconds": 114.76059173461705,
+        "runSlowerRatio": 13.548845350382457
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 87,
+        "errorPc": 4.496281375481869,
+        "opsForSeconds": 1439.7672759732118,
+        "durationMicroSeconds": 694.5566944658117,
+        "runSlowerRatio": 82.00063365089379
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 95,
+        "errorPc": 0.9894335390198837,
+        "opsForSeconds": 1587.1054484196397,
+        "durationMicroSeconds": 630.0778571428572,
+        "runSlowerRatio": 74.38814418864524
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 21:29:53 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 74,
+        "errorPc": 4.744120027189599,
+        "opsForSeconds": 49792.99406463549,
+        "durationMicroSeconds": 20.083146610985395,
+        "runSlowerRatio": 2.1069273730495928
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 75,
+        "errorPc": 2.884243142893816,
+        "opsForSeconds": 22037.82022246756,
+        "durationMicroSeconds": 45.37653860069609,
+        "runSlowerRatio": 4.760462746398141
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 81,
+        "errorPc": 1.9802067401179755,
+        "opsForSeconds": 104910.22218087642,
+        "durationMicroSeconds": 9.531959605193604,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 68,
+        "errorPc": 4.233161048737936,
+        "opsForSeconds": 32131.291557106575,
+        "durationMicroSeconds": 31.12230948521666,
+        "runSlowerRatio": 3.265048402876077
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 78,
+        "errorPc": 2.8778405835296885,
+        "opsForSeconds": 7799.253933060362,
+        "durationMicroSeconds": 128.21739214838058,
+        "runSlowerRatio": 13.451315097739165
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 73,
+        "errorPc": 2.8344082561523476,
+        "opsForSeconds": 7339.114257193393,
+        "durationMicroSeconds": 136.2562245191721,
+        "runSlowerRatio": 14.294670787833724
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 68,
+        "errorPc": 4.110731572856088,
+        "opsForSeconds": 9106.409941260317,
+        "durationMicroSeconds": 109.8127589742134,
+        "runSlowerRatio": 11.520480942279757
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 93,
+        "errorPc": 1.1167308214869256,
+        "opsForSeconds": 1571.1357041873266,
+        "durationMicroSeconds": 636.482257601836,
+        "runSlowerRatio": 66.77349505919442
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 21:31:34 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 80,
+        "errorPc": 3.796269107486377,
+        "opsForSeconds": 54495.59050403753,
+        "durationMicroSeconds": 18.35010852714608,
+        "runSlowerRatio": 1.968685261061702
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 68,
+        "errorPc": 3.007900782334013,
+        "opsForSeconds": 21547.91268428881,
+        "durationMicroSeconds": 46.408207358716844,
+        "runSlowerRatio": 4.978889017699474
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 81,
+        "errorPc": 2.213533198377518,
+        "opsForSeconds": 107284.66581815273,
+        "durationMicroSeconds": 9.32099655038305,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 67,
+        "errorPc": 3.594919307441064,
+        "opsForSeconds": 29717.494723368713,
+        "durationMicroSeconds": 33.65021208243499,
+        "runSlowerRatio": 3.6101517579740032
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 79,
+        "errorPc": 2.4315783141834104,
+        "opsForSeconds": 7414.523389586106,
+        "durationMicroSeconds": 134.87043569172988,
+        "runSlowerRatio": 14.4695296219359
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 75,
+        "errorPc": 2.767325117557772,
+        "opsForSeconds": 7322.841916266274,
+        "durationMicroSeconds": 136.55900420008984,
+        "runSlowerRatio": 14.650687130066355
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 73,
+        "errorPc": 4.931872806508029,
+        "opsForSeconds": 9235.902144539334,
+        "durationMicroSeconds": 108.27312636603057,
+        "runSlowerRatio": 11.616046179266212
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 92,
+        "errorPc": 1.978985020560682,
+        "opsForSeconds": 1511.6107192035008,
+        "durationMicroSeconds": 661.5459835630968,
+        "runSlowerRatio": 70.97373976990801
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 21:36:24 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 80,
+        "errorPc": 3.6727660559008495,
+        "opsForSeconds": 55133.70196259671,
+        "durationMicroSeconds": 18.137726370676337,
+        "runSlowerRatio": 2.0982006765867043
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 82,
+        "errorPc": 2.9018140523480453,
+        "opsForSeconds": 28108.046392995155,
+        "durationMicroSeconds": 35.57700119099033,
+        "runSlowerRatio": 4.115603380727281
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 86,
+        "errorPc": 1.5587512233036844,
+        "opsForSeconds": 115681.57076065012,
+        "durationMicroSeconds": 8.644419274605466,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 78,
+        "errorPc": 2.9093638948588847,
+        "opsForSeconds": 40175.354888072114,
+        "durationMicroSeconds": 24.890881556267114,
+        "runSlowerRatio": 2.879416276046275
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 78,
+        "errorPc": 3.1196476619367974,
+        "opsForSeconds": 8135.451208250162,
+        "durationMicroSeconds": 122.91881229475015,
+        "runSlowerRatio": 14.219441282290209
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 75,
+        "errorPc": 3.3439353793480455,
+        "opsForSeconds": 7503.942059397799,
+        "durationMicroSeconds": 133.26328909317982,
+        "runSlowerRatio": 15.416106607029654
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 70,
+        "errorPc": 4.387562848929528,
+        "opsForSeconds": 9179.620651209678,
+        "durationMicroSeconds": 108.93696351909938,
+        "runSlowerRatio": 12.601999053785056
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 92,
+        "errorPc": 1.8647397839064952,
+        "opsForSeconds": 1534.3423182282538,
+        "durationMicroSeconds": 651.7450428889472,
+        "runSlowerRatio": 75.39489029686068
+      }
+    ]
+  },
+  {
+    "date": "Wed, 28 Sep 2022 21:42:27 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 76,
+        "errorPc": 4.712838490484263,
+        "opsForSeconds": 51413.22022695761,
+        "durationMicroSeconds": 19.45025025831134,
+        "runSlowerRatio": 2.0507579222182377
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 68,
+        "errorPc": 4.02089599384802,
+        "opsForSeconds": 22800.566455582462,
+        "durationMicroSeconds": 43.85855947693621,
+        "runSlowerRatio": 4.624274089531202
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 82,
+        "errorPc": 1.878682177347401,
+        "opsForSeconds": 105436.06868718425,
+        "durationMicroSeconds": 9.484420392862674,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 66,
+        "errorPc": 4.891413509193579,
+        "opsForSeconds": 32825.39260923653,
+        "durationMicroSeconds": 30.464220547315445,
+        "runSlowerRatio": 3.2120276501282814
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 75,
+        "errorPc": 3.3342419246784223,
+        "opsForSeconds": 7361.538527913906,
+        "durationMicroSeconds": 135.84116909911458,
+        "runSlowerRatio": 14.322558835681656
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 75,
+        "errorPc": 3.4570499028671486,
+        "opsForSeconds": 7520.223035853895,
+        "durationMicroSeconds": 132.9747795021951,
+        "runSlowerRatio": 14.020337985256624
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 67,
+        "errorPc": 3.496632287682786,
+        "opsForSeconds": 8596.114826637,
+        "durationMicroSeconds": 116.33162424741867,
+        "runSlowerRatio": 12.265549124642545
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 55,
+        "errorPc": 4.322064147742174,
+        "opsForSeconds": 860.6584711552116,
+        "durationMicroSeconds": 1161.9010716966027,
+        "runSlowerRatio": 122.506281203116
+      }
+    ]
+  },
+  {
+    "date": "Sat, 01 Oct 2022 23:01:31 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 74,
+        "errorPc": 4.868415052740381,
+        "opsForSeconds": 49998.952340498334,
+        "durationMicroSeconds": 20.000419072581575,
+        "runSlowerRatio": 2.3832729395591183
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 79,
+        "errorPc": 4.052468456600797,
+        "opsForSeconds": 24696.380220938212,
+        "durationMicroSeconds": 40.491764017796214,
+        "runSlowerRatio": 4.82504517072457
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 90,
+        "errorPc": 1.8201883392825073,
+        "opsForSeconds": 119161.1501194157,
+        "durationMicroSeconds": 8.39199687983763,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 76,
+        "errorPc": 4.275593359905263,
+        "opsForSeconds": 40619.08085405835,
+        "durationMicroSeconds": 24.61897165012013,
+        "runSlowerRatio": 2.9336249765856044
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 83,
+        "errorPc": 2.56668451749501,
+        "opsForSeconds": 8362.141769635196,
+        "durationMicroSeconds": 119.58658768872148,
+        "runSlowerRatio": 14.250075327844412
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 85,
+        "errorPc": 4.431248405494769,
+        "opsForSeconds": 8555.799637844977,
+        "durationMicroSeconds": 116.8797824082611,
+        "runSlowerRatio": 13.927529297475443
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 77,
+        "errorPc": 4.94821087178481,
+        "opsForSeconds": 10556.187050630158,
+        "durationMicroSeconds": 94.73117473229165,
+        "runSlowerRatio": 11.288275733263205
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 85,
+        "errorPc": 3.4470128030772367,
+        "opsForSeconds": 1460.9398511156805,
+        "durationMicroSeconds": 684.4908770448878,
+        "runSlowerRatio": 81.5647201549164
+      }
+    ]
+  },
+  {
+    "date": "Sat, 01 Oct 2022 23:20:30 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 79,
+        "errorPc": 4.044024501316901,
+        "opsForSeconds": 53926.877285548086,
+        "durationMicroSeconds": 18.54362889779251,
+        "runSlowerRatio": 2.1672574776969293
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 81,
+        "errorPc": 2.8375389352762665,
+        "opsForSeconds": 26319.542739550525,
+        "durationMicroSeconds": 37.99458105696093,
+        "runSlowerRatio": 4.4405569352966925
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 86,
+        "errorPc": 1.7613875769106044,
+        "opsForSeconds": 116873.42804594879,
+        "durationMicroSeconds": 8.556264813305981,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 82,
+        "errorPc": 3.7853205106240426,
+        "opsForSeconds": 44547.28081287847,
+        "durationMicroSeconds": 22.448059269891584,
+        "runSlowerRatio": 2.6235816398508676
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 86,
+        "errorPc": 2.1716369784415392,
+        "opsForSeconds": 8824.979242114196,
+        "durationMicroSeconds": 113.31471412735364,
+        "runSlowerRatio": 13.243479088110522
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 85,
+        "errorPc": 3.0309179687837355,
+        "opsForSeconds": 8758.55586300288,
+        "durationMicroSeconds": 114.17407340222739,
+        "runSlowerRatio": 13.343915352488098
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 85,
+        "errorPc": 3.563504040555132,
+        "opsForSeconds": 11884.79222211322,
+        "durationMicroSeconds": 84.14114284130004,
+        "runSlowerRatio": 9.833863803566578
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 91,
+        "errorPc": 2.142749125434246,
+        "opsForSeconds": 1569.025965963426,
+        "durationMicroSeconds": 637.3380821559393,
+        "runSlowerRatio": 74.48788648579517
+      }
+    ]
+  },
+  {
+    "date": "Sat, 01 Oct 2022 23:33:33 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 75,
+        "errorPc": 5.491140053194622,
+        "opsForSeconds": 49682.37978633443,
+        "durationMicroSeconds": 20.1278603058193,
+        "runSlowerRatio": 2.394815008657072
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 74,
+        "errorPc": 3.67314815944399,
+        "opsForSeconds": 26640.68524096293,
+        "durationMicroSeconds": 37.53657201213399,
+        "runSlowerRatio": 4.466105421161227
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 92,
+        "errorPc": 1.6533791650953558,
+        "opsForSeconds": 118980.10877811443,
+        "durationMicroSeconds": 8.40476622747838,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 80,
+        "errorPc": 4.170348701157829,
+        "opsForSeconds": 42127.608018733634,
+        "durationMicroSeconds": 23.73740278715355,
+        "runSlowerRatio": 2.824278765725446
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 85,
+        "errorPc": 2.0787079475734083,
+        "opsForSeconds": 8686.057715780178,
+        "durationMicroSeconds": 115.12702686551057,
+        "runSlowerRatio": 13.69782617975935
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 87,
+        "errorPc": 2.499642906862402,
+        "opsForSeconds": 8904.752654116555,
+        "durationMicroSeconds": 112.29958190222303,
+        "runSlowerRatio": 13.361416470463265
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 87,
+        "errorPc": 2.858344857691179,
+        "opsForSeconds": 12025.48150269855,
+        "durationMicroSeconds": 83.156753413624,
+        "runSlowerRatio": 9.893999566787821
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 89,
+        "errorPc": 3.4796581044327173,
+        "opsForSeconds": 1474.3111014640965,
+        "durationMicroSeconds": 678.2828936219285,
+        "runSlowerRatio": 80.70217246547126
+      }
+    ]
+  },
+  {
+    "date": "Sat, 01 Oct 2022 23:36:28 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 82,
+        "errorPc": 3.9930743760624083,
+        "opsForSeconds": 53595.38034447707,
+        "durationMicroSeconds": 18.65832453417879,
+        "runSlowerRatio": 2.1744919536128986
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 82,
+        "errorPc": 3.1061824000829086,
+        "opsForSeconds": 28084.469222529264,
+        "durationMicroSeconds": 35.60686841102211,
+        "runSlowerRatio": 4.149721413157351
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 86,
+        "errorPc": 1.8196763433714858,
+        "opsForSeconds": 116542.72330988829,
+        "durationMicroSeconds": 8.580544298256957,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 80,
+        "errorPc": 3.600977030170052,
+        "opsForSeconds": 42239.94432927911,
+        "durationMicroSeconds": 23.674273626038808,
+        "runSlowerRatio": 2.7590643207620262
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 85,
+        "errorPc": 2.2611810147324753,
+        "opsForSeconds": 8799.26330727666,
+        "durationMicroSeconds": 113.64587751034084,
+        "runSlowerRatio": 13.244600057997108
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 84,
+        "errorPc": 2.297460968407071,
+        "opsForSeconds": 8681.262361677938,
+        "durationMicroSeconds": 115.19062071137742,
+        "runSlowerRatio": 13.424628637460344
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 84,
+        "errorPc": 3.127558955660385,
+        "opsForSeconds": 11579.35261770092,
+        "durationMicroSeconds": 86.36061384565987,
+        "runSlowerRatio": 10.064701124286845
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 91,
+        "errorPc": 2.649050484582026,
+        "opsForSeconds": 1519.9856377154786,
+        "durationMicroSeconds": 657.9009532636037,
+        "runSlowerRatio": 76.6735687615119
+      }
+    ]
+  },
+  {
+    "date": "Sat, 01 Oct 2022 23:58:30 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 660
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 81,
+        "errorPc": 3.5128811591383036,
+        "opsForSeconds": 45876.465786883375,
+        "durationMicroSeconds": 21.79766864878924,
+        "runSlowerRatio": 2.52612283742786
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 80,
+        "errorPc": 3.1967535979452086,
+        "opsForSeconds": 26142.24380398671,
+        "durationMicroSeconds": 38.25226355847463,
+        "runSlowerRatio": 4.433039060979561
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 88,
+        "errorPc": 2.1661417102880254,
+        "opsForSeconds": 115889.58792472398,
+        "durationMicroSeconds": 8.62890288858003,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 73,
+        "errorPc": 4.208219642107439,
+        "opsForSeconds": 37769.14750192613,
+        "durationMicroSeconds": 26.47663678268096,
+        "runSlowerRatio": 3.068366526377486
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 81,
+        "errorPc": 2.6253431159345904,
+        "opsForSeconds": 8475.343086437322,
+        "durationMicroSeconds": 117.98932383047138,
+        "runSlowerRatio": 13.673734118230144
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 80,
+        "errorPc": 2.9082116667169706,
+        "opsForSeconds": 8107.616693337005,
+        "durationMicroSeconds": 123.34080875108701,
+        "runSlowerRatio": 14.293915500465662
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 87,
+        "errorPc": 2.727718720027339,
+        "opsForSeconds": 12210.717541151,
+        "durationMicroSeconds": 81.89526918708322,
+        "runSlowerRatio": 9.49080899907542
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 91,
+        "errorPc": 2.9728848190961688,
+        "opsForSeconds": 1471.7386936435244,
+        "durationMicroSeconds": 679.4684439017773,
+        "runSlowerRatio": 78.7433179716304
+      }
+    ]
+  },
+  {
+    "date": "Mon, 03 Oct 2022 19:59:52 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 663
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 67,
+        "errorPc": 5.459783774622982,
+        "opsForSeconds": 43929.25523359283,
+        "durationMicroSeconds": 22.763873293151057,
+        "runSlowerRatio": 2.327461775665891
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 76,
+        "errorPc": 1.862559205313213,
+        "opsForSeconds": 20680.911480115738,
+        "durationMicroSeconds": 48.3537682060812,
+        "runSlowerRatio": 4.94386635173035
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 87,
+        "errorPc": 1.3486809518949803,
+        "opsForSeconds": 102243.66238965809,
+        "durationMicroSeconds": 9.7805573140458,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 78,
+        "errorPc": 1.3438053511187957,
+        "opsForSeconds": 29675.928866311162,
+        "durationMicroSeconds": 33.69734455507556,
+        "runSlowerRatio": 3.445339920117129
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 78,
+        "errorPc": 2.020297065673681,
+        "opsForSeconds": 6876.2926680476,
+        "durationMicroSeconds": 145.42720158592843,
+        "runSlowerRatio": 14.869009701224416
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 84,
+        "errorPc": 3.3981777399809605,
+        "opsForSeconds": 7754.40364821169,
+        "durationMicroSeconds": 128.95898193675004,
+        "runSlowerRatio": 13.185238611255087
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 87,
+        "errorPc": 3.541253292018805,
+        "opsForSeconds": 12134.129812540665,
+        "durationMicroSeconds": 82.41217256193325,
+        "runSlowerRatio": 8.426122348220547
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 94,
+        "errorPc": 1.2989766820105837,
+        "opsForSeconds": 1568.7020725780792,
+        "durationMicroSeconds": 637.4696747589252,
+        "runSlowerRatio": 65.17723420969669
+      }
+    ]
+  },
+  {
+    "date": "Mon, 03 Oct 2022 20:01:49 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 663
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 77,
+        "errorPc": 3.9713873340579764,
+        "opsForSeconds": 52037.457096062746,
+        "durationMicroSeconds": 19.216926725569415,
+        "runSlowerRatio": 2.3089637203810236
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 80,
+        "errorPc": 2.7359822033284793,
+        "opsForSeconds": 26917.10842039677,
+        "durationMicroSeconds": 37.151093066231354,
+        "runSlowerRatio": 4.463800444651247
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 91,
+        "errorPc": 1.3409269941523962,
+        "opsForSeconds": 120152.60053569294,
+        "durationMicroSeconds": 8.32274953302352,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 75,
+        "errorPc": 3.0097184232494727,
+        "opsForSeconds": 37251.54356195986,
+        "durationMicroSeconds": 26.844525203008487,
+        "runSlowerRatio": 3.2254395132874203
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 85,
+        "errorPc": 1.900364927302354,
+        "opsForSeconds": 8561.65727301511,
+        "durationMicroSeconds": 116.79981668407007,
+        "runSlowerRatio": 14.033801716683234
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 78,
+        "errorPc": 2.479275584310257,
+        "opsForSeconds": 7785.167682059164,
+        "durationMicroSeconds": 128.44938488665946,
+        "runSlowerRatio": 15.433527631342267
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 74,
+        "errorPc": 2.317426182074156,
+        "opsForSeconds": 8304.731595472676,
+        "durationMicroSeconds": 120.41328350035417,
+        "runSlowerRatio": 14.4679691516092
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 72,
+        "errorPc": 6.144367227912267,
+        "opsForSeconds": 1125.9279117983622,
+        "durationMicroSeconds": 888.1563282348808,
+        "runSlowerRatio": 106.71429251965341
+      }
+    ]
+  },
+  {
+    "date": "Thu, 06 Oct 2022 19:53:49 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 666
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 89,
+        "errorPc": 2.9658095877347197,
+        "opsForSeconds": 60286.76985875891,
+        "durationMicroSeconds": 16.587387288169868,
+        "runSlowerRatio": 1.873704117280526
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 86,
+        "errorPc": 3.839160172464969,
+        "opsForSeconds": 32391.260522647917,
+        "durationMicroSeconds": 30.872524991758244,
+        "runSlowerRatio": 3.487347113982148
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 84,
+        "errorPc": 4.81127877771671,
+        "opsForSeconds": 112959.56890190009,
+        "durationMicroSeconds": 8.85272500347847,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 87,
+        "errorPc": 2.9456701273498074,
+        "opsForSeconds": 47208.90138337075,
+        "durationMicroSeconds": 21.182445909496387,
+        "runSlowerRatio": 2.392759958224529
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 86,
+        "errorPc": 1.912283411758812,
+        "opsForSeconds": 8679.867482236514,
+        "durationMicroSeconds": 115.20913217241115,
+        "runSlowerRatio": 13.013973903757591
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 86,
+        "errorPc": 3.27958135729043,
+        "opsForSeconds": 8431.882561740276,
+        "durationMicroSeconds": 118.59747721552796,
+        "runSlowerRatio": 13.396719899118956
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 85,
+        "errorPc": 2.7584264937291634,
+        "opsForSeconds": 10966.17366234631,
+        "durationMicroSeconds": 91.18950974063283,
+        "runSlowerRatio": 10.300727708677504
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 87,
+        "errorPc": 4.105051067566086,
+        "opsForSeconds": 1390.7705866168426,
+        "durationMicroSeconds": 719.0258477011494,
+        "runSlowerRatio": 81.2208497856451
+      }
+    ]
+  },
+  {
+    "date": "Thu, 06 Oct 2022 19:55:22 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 669
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 78,
+        "errorPc": 3.712904770137283,
+        "opsForSeconds": 52661.91568725958,
+        "durationMicroSeconds": 18.9890547457226,
+        "runSlowerRatio": 2.273907515292185
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 82,
+        "errorPc": 2.553761731473405,
+        "opsForSeconds": 30385.49089545892,
+        "durationMicroSeconds": 32.91044411428117,
+        "runSlowerRatio": 3.940970585696189
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 87,
+        "errorPc": 1.5212879627617315,
+        "opsForSeconds": 119748.32585094296,
+        "durationMicroSeconds": 8.350847436854798,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 89,
+        "errorPc": 2.4695246011949843,
+        "opsForSeconds": 48739.607536300064,
+        "durationMicroSeconds": 20.517194342511367,
+        "runSlowerRatio": 2.456899673674174
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 87,
+        "errorPc": 1.8967953799450241,
+        "opsForSeconds": 8512.781825505539,
+        "durationMicroSeconds": 117.47041337343497,
+        "runSlowerRatio": 14.066885338487056
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 84,
+        "errorPc": 2.233362314177491,
+        "opsForSeconds": 8452.17602677255,
+        "durationMicroSeconds": 118.31272761386732,
+        "runSlowerRatio": 14.16775105861924
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 84,
+        "errorPc": 3.074274834340551,
+        "opsForSeconds": 10947.333137755517,
+        "durationMicroSeconds": 91.34644825516158,
+        "runSlowerRatio": 10.938584250985388
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 87,
+        "errorPc": 2.248683472799195,
+        "opsForSeconds": 1433.0315832785664,
+        "durationMicroSeconds": 697.8213262488929,
+        "runSlowerRatio": 83.5629355613896
+      }
+    ]
+  },
+  {
+    "date": "Thu, 06 Oct 2022 19:56:28 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 669
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 80,
+        "errorPc": 3.4946688661684426,
+        "opsForSeconds": 54216.84750221839,
+        "durationMicroSeconds": 18.44445123739596,
+        "runSlowerRatio": 1.8463670429710763
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 69,
+        "errorPc": 3.6450822853541336,
+        "opsForSeconds": 21729.12502831819,
+        "durationMicroSeconds": 46.02118118869321,
+        "runSlowerRatio": 4.606913544444394
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 79,
+        "errorPc": 1.960249117720097,
+        "opsForSeconds": 100104.20040188475,
+        "durationMicroSeconds": 9.989590806233263,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 72,
+        "errorPc": 3.119450444891265,
+        "opsForSeconds": 28701.13023575203,
+        "durationMicroSeconds": 34.84183346739195,
+        "runSlowerRatio": 3.4878138797888987
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 79,
+        "errorPc": 2.5995336460522394,
+        "opsForSeconds": 6751.6280108766,
+        "durationMicroSeconds": 148.11242538674236,
+        "runSlowerRatio": 14.82667591292366
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 75,
+        "errorPc": 2.175920427609739,
+        "opsForSeconds": 6782.38733561553,
+        "durationMicroSeconds": 147.44070937217356,
+        "runSlowerRatio": 14.75943431838811
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 62,
+        "errorPc": 2.9475557563454395,
+        "opsForSeconds": 7719.832914829847,
+        "durationMicroSeconds": 129.53648233486942,
+        "runSlowerRatio": 12.967145987004972
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 52,
+        "errorPc": 2.5267067560507477,
+        "opsForSeconds": 786.7299267102983,
+        "durationMicroSeconds": 1271.0842260462723,
+        "runSlowerRatio": 127.24087009181062
+      }
+    ]
+  },
+  {
+    "date": "Thu, 06 Oct 2022 22:27:25 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 670
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 71,
+        "errorPc": 3.498788347830618,
+        "opsForSeconds": 46209.497218133154,
+        "durationMicroSeconds": 21.640573046693703,
+        "runSlowerRatio": 2.414919910788823
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 77,
+        "errorPc": 5.041316851228634,
+        "opsForSeconds": 23807.589810191028,
+        "durationMicroSeconds": 42.00341185196084,
+        "runSlowerRatio": 4.687254601969097
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 85,
+        "errorPc": 2.0164969764151257,
+        "opsForSeconds": 111592.23489961048,
+        "durationMicroSeconds": 8.96119699457234,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 68,
+        "errorPc": 4.1920175233809855,
+        "opsForSeconds": 34571.04718340061,
+        "durationMicroSeconds": 28.92593894234575,
+        "runSlowerRatio": 3.227910173146037
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 81,
+        "errorPc": 2.651127300289201,
+        "opsForSeconds": 7657.968312962267,
+        "durationMicroSeconds": 130.58293781489655,
+        "runSlowerRatio": 14.572041870521163
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 84,
+        "errorPc": 2.369742499260423,
+        "opsForSeconds": 8316.449692193783,
+        "durationMicroSeconds": 120.24361801149928,
+        "runSlowerRatio": 13.41825406631826
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 85,
+        "errorPc": 3.3381948951712466,
+        "opsForSeconds": 10836.413192608306,
+        "durationMicroSeconds": 92.28145717829551,
+        "runSlowerRatio": 10.297894046318698
+      },
+      {
+        "name": "hashNumberUsingNativeHashUnknown",
+        "samplesCount": 90,
+        "errorPc": 2.3026917929546595,
+        "opsForSeconds": 1476.9960091256019,
+        "durationMicroSeconds": 677.049899811179,
+        "runSlowerRatio": 75.55351145848682
+      }
+    ]
+  },
+  {
+    "date": "Sat, 08 Oct 2022 00:12:15 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 685
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 77,
+        "errorPc": 7.156775270447902,
+        "opsForSeconds": 49660.212325556924,
+        "durationMicroSeconds": 20.13684503490059,
+        "runSlowerRatio": 2.3161149499948217
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 77,
+        "errorPc": 5.652914715303723,
+        "opsForSeconds": 24221.32471759132,
+        "durationMicroSeconds": 41.28593343508276,
+        "runSlowerRatio": 4.748656876871989
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 87,
+        "errorPc": 2.2689936318854147,
+        "opsForSeconds": 115018.76018713952,
+        "durationMicroSeconds": 8.694233865614317,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 79,
+        "errorPc": 3.1258222573128123,
+        "opsForSeconds": 29844.47913571228,
+        "durationMicroSeconds": 33.50703476688884,
+        "runSlowerRatio": 3.8539375964349336
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 84,
+        "errorPc": 2.443894724228447,
+        "opsForSeconds": 8745.922999526452,
+        "durationMicroSeconds": 114.33898972745872,
+        "runSlowerRatio": 13.151128839502382
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 82,
+        "errorPc": 2.507235425286465,
+        "opsForSeconds": 8405.414300316335,
+        "durationMicroSeconds": 118.97093519380303,
+        "runSlowerRatio": 13.683889464295746
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 86,
+        "errorPc": 2.561690557775423,
+        "opsForSeconds": 11665.762535034963,
+        "durationMicroSeconds": 85.72092882885028,
+        "runSlowerRatio": 9.859514955984384
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 82,
+        "errorPc": 3.9059778089918424,
+        "opsForSeconds": 1392.3675435372863,
+        "durationMicroSeconds": 718.2011708341871,
+        "runSlowerRatio": 82.60660823430018
+      }
+    ]
+  },
+  {
+    "date": "Sat, 08 Oct 2022 00:16:33 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 688
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 71,
+        "errorPc": 5.035472486068144,
+        "opsForSeconds": 46260.61632996504,
+        "durationMicroSeconds": 21.61665968449832,
+        "runSlowerRatio": 2.2194208402525555
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 76,
+        "errorPc": 3.863029379074516,
+        "opsForSeconds": 24109.589063964406,
+        "durationMicroSeconds": 41.47727268793055,
+        "runSlowerRatio": 4.258545249081466
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 78,
+        "errorPc": 5.660821990889273,
+        "opsForSeconds": 102671.77596565211,
+        "durationMicroSeconds": 9.739775031597201,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 69,
+        "errorPc": 3.144355100482649,
+        "opsForSeconds": 36251.193653388254,
+        "durationMicroSeconds": 27.585298557652706,
+        "runSlowerRatio": 2.8322315934569446
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 81,
+        "errorPc": 3.232547888028572,
+        "opsForSeconds": 7931.906252707226,
+        "durationMicroSeconds": 126.07309871554416,
+        "runSlowerRatio": 12.944148946617892
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 84,
+        "errorPc": 2.473281555374,
+        "opsForSeconds": 8244.120924595103,
+        "durationMicroSeconds": 121.29856041007955,
+        "runSlowerRatio": 12.453938619379805
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 80,
+        "errorPc": 2.657802403957703,
+        "opsForSeconds": 10780.50605922909,
+        "durationMicroSeconds": 92.76002392706874,
+        "runSlowerRatio": 9.52383639520853
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 83,
+        "errorPc": 3.1062899387997005,
+        "opsForSeconds": 1387.8950193181572,
+        "durationMicroSeconds": 720.5155909351691,
+        "runSlowerRatio": 73.97661533225512
+      },
+      {
+        "name": "hashNumberUsingHashUnknown",
+        "samplesCount": 86,
+        "errorPc": 3.0188018022728302,
+        "opsForSeconds": 1275.5955590854178,
+        "durationMicroSeconds": 783.9475395453591,
+        "runSlowerRatio": 80.4892861490253
+      }
+    ]
+  },
+  {
+    "date": "Sat, 08 Oct 2022 00:18:14 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 688
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 55,
+        "errorPc": 3.7806531914405404,
+        "opsForSeconds": 33850.746435520705,
+        "durationMicroSeconds": 29.541446062491165,
+        "runSlowerRatio": 3.3400292596039725
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 75,
+        "errorPc": 2.9485098936335796,
+        "opsForSeconds": 25584.52573574114,
+        "durationMicroSeconds": 39.086126134557084,
+        "runSlowerRatio": 4.419174493280824
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 86,
+        "errorPc": 2.1502913710435227,
+        "opsForSeconds": 113062.48355407403,
+        "durationMicroSeconds": 8.844666847617345,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 72,
+        "errorPc": 3.1312630269726736,
+        "opsForSeconds": 36627.992748553894,
+        "durationMicroSeconds": 27.30152336943118,
+        "runSlowerRatio": 3.086778036957481
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 82,
+        "errorPc": 3.208956821974967,
+        "opsForSeconds": 8154.276995036069,
+        "durationMicroSeconds": 122.63502951993804,
+        "runSlowerRatio": 13.86542100825138
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 83,
+        "errorPc": 2.1922440266948207,
+        "opsForSeconds": 8536.712054118188,
+        "durationMicroSeconds": 117.14111869541047,
+        "runSlowerRatio": 13.244265806005682
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 81,
+        "errorPc": 2.7117304417468695,
+        "opsForSeconds": 10584.80025234806,
+        "durationMicroSeconds": 94.47509411225467,
+        "runSlowerRatio": 10.68158877433639
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 83,
+        "errorPc": 3.4791956345202033,
+        "opsForSeconds": 1407.0789622573664,
+        "durationMicroSeconds": 710.6921692551691,
+        "runSlowerRatio": 80.35262169842176
+      },
+      {
+        "name": "hashNumberUsingHashUnknown",
+        "samplesCount": 89,
+        "errorPc": 2.4255511160774734,
+        "opsForSeconds": 22348.108495548797,
+        "durationMicroSeconds": 44.74651625211037,
+        "runSlowerRatio": 5.0591522578563355
+      }
+    ]
+  },
+  {
+    "date": "Tue, 11 Oct 2022 21:10:24 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 683
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 72,
+        "errorPc": 4.488461563438414,
+        "opsForSeconds": 48835.349295135435,
+        "durationMicroSeconds": 20.476970359247776,
+        "runSlowerRatio": 1.9585763411120023
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 75,
+        "errorPc": 4.4991730285928355,
+        "opsForSeconds": 26468.97806965774,
+        "durationMicroSeconds": 37.78007588235274,
+        "runSlowerRatio": 3.613579620931309
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 73,
+        "errorPc": 7.676352359265744,
+        "opsForSeconds": 95647.75973939295,
+        "durationMicroSeconds": 10.455027935046822,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 61,
+        "errorPc": 3.726554519633522,
+        "opsForSeconds": 29449.530739759542,
+        "durationMicroSeconds": 33.95639845119533,
+        "runSlowerRatio": 3.2478534406750255
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 79,
+        "errorPc": 1.8566009693963172,
+        "opsForSeconds": 7077.220426689727,
+        "durationMicroSeconds": 141.29841091691648,
+        "runSlowerRatio": 13.514876458939245
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 84,
+        "errorPc": 1.8478803731694355,
+        "opsForSeconds": 7335.608432427046,
+        "durationMicroSeconds": 136.32134392281648,
+        "runSlowerRatio": 13.038831150880705
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 78,
+        "errorPc": 3.2379210646639125,
+        "opsForSeconds": 8800.810053555859,
+        "durationMicroSeconds": 113.6259041968486,
+        "runSlowerRatio": 10.868063184791456
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 65,
+        "errorPc": 5.64846591900982,
+        "opsForSeconds": 970.743334965456,
+        "durationMicroSeconds": 1030.1384145332145,
+        "runSlowerRatio": 98.53043157159208
+      },
+      {
+        "name": "hashNumberUsingHashUnknown",
+        "samplesCount": 78,
+        "errorPc": 3.0382303398369386,
+        "opsForSeconds": 15104.806141029616,
+        "durationMicroSeconds": 66.20409362842939,
+        "runSlowerRatio": 6.33227324113629
+      }
+    ]
+  },
+  {
+    "date": "Tue, 11 Oct 2022 21:48:12 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 683
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 74,
+        "errorPc": 4.136676450430397,
+        "opsForSeconds": 50555.759453538376,
+        "durationMicroSeconds": 19.780140004009187,
+        "runSlowerRatio": 2.1483445469107685
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 75,
+        "errorPc": 3.674970199342914,
+        "opsForSeconds": 23571.474517135917,
+        "durationMicroSeconds": 42.42415973056853,
+        "runSlowerRatio": 4.607738478896764
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 84,
+        "errorPc": 2.307694781737696,
+        "opsForSeconds": 108611.1901369417,
+        "durationMicroSeconds": 9.207154426161399,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 73,
+        "errorPc": 4.831650099260596,
+        "opsForSeconds": 38819.952163552465,
+        "durationMicroSeconds": 25.75994931129479,
+        "runSlowerRatio": 2.797818752567019
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 78,
+        "errorPc": 2.8176663465079277,
+        "opsForSeconds": 7959.743786747033,
+        "durationMicroSeconds": 125.63218450134026,
+        "runSlowerRatio": 13.645061078194408
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 81,
+        "errorPc": 2.5018536678238843,
+        "opsForSeconds": 8009.118378692987,
+        "durationMicroSeconds": 124.85768754028463,
+        "runSlowerRatio": 13.56094204149671
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 77,
+        "errorPc": 2.8363467840452943,
+        "opsForSeconds": 9806.379864193672,
+        "durationMicroSeconds": 101.9744303044317,
+        "runSlowerRatio": 11.075564238900942
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 84,
+        "errorPc": 3.5563645989654717,
+        "opsForSeconds": 1413.1308501593942,
+        "durationMicroSeconds": 707.6485520694739,
+        "runSlowerRatio": 76.85855143894912
+      },
+      {
+        "name": "hashNumberUsingHashUnknown",
+        "samplesCount": 91,
+        "errorPc": 1.7066174102295582,
+        "opsForSeconds": 20723.41304217454,
+        "durationMicroSeconds": 48.2545996629457,
+        "runSlowerRatio": 5.240989498974198
+      }
+    ]
+  },
+  {
+    "date": "Tue, 11 Oct 2022 21:50:00 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 683
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 72,
+        "errorPc": 5.320392238766351,
+        "opsForSeconds": 47347.03386461868,
+        "durationMicroSeconds": 21.120647237572285,
+        "runSlowerRatio": 2.2334146604690424
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 76,
+        "errorPc": 4.3305319766028285,
+        "opsForSeconds": 23673.072535507305,
+        "durationMicroSeconds": 42.24208743922435,
+        "runSlowerRatio": 4.466913173368415
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 82,
+        "errorPc": 2.4178978960643147,
+        "opsForSeconds": 105745.5595629636,
+        "durationMicroSeconds": 9.45666186015664,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 68,
+        "errorPc": 5.341180187208796,
+        "opsForSeconds": 33338.83259512847,
+        "durationMicroSeconds": 29.995051480780457,
+        "runSlowerRatio": 3.171843502955029
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 80,
+        "errorPc": 2.2906018016482754,
+        "opsForSeconds": 7462.127522281717,
+        "durationMicroSeconds": 134.01003896194837,
+        "runSlowerRatio": 14.170966557085782
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 75,
+        "errorPc": 4.15447070175948,
+        "opsForSeconds": 7588.334275818032,
+        "durationMicroSeconds": 131.78122676892733,
+        "runSlowerRatio": 13.935279564574016
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 76,
+        "errorPc": 3.147137614311891,
+        "opsForSeconds": 10111.575989298779,
+        "durationMicroSeconds": 98.89655193792875,
+        "runSlowerRatio": 10.457871223523966
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 76,
+        "errorPc": 4.50828032233109,
+        "opsForSeconds": 1292.8449766689807,
+        "durationMicroSeconds": 773.4879417457329,
+        "runSlowerRatio": 81.79291521510751
+      },
+      {
+        "name": "hashNumberUsingHashUnknown",
+        "samplesCount": 90,
+        "errorPc": 1.762054704362261,
+        "opsForSeconds": 20680.477878164394,
+        "durationMicroSeconds": 48.354782026379375,
+        "runSlowerRatio": 5.113303482924621
+      }
+    ]
+  },
+  {
+    "date": "Tue, 11 Oct 2022 22:25:19 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 689
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 74,
+        "errorPc": 4.130720805040715,
+        "opsForSeconds": 46373.85135308606,
+        "durationMicroSeconds": 21.563876426525283,
+        "runSlowerRatio": 2.283905457133167
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 76,
+        "errorPc": 3.5409343326129084,
+        "opsForSeconds": 24816.387911773607,
+        "durationMicroSeconds": 40.29595296282306,
+        "runSlowerRatio": 4.267885098755535
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 81,
+        "errorPc": 2.5936894371610797,
+        "opsForSeconds": 105913.49217359556,
+        "durationMicroSeconds": 9.441667718414651,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 65,
+        "errorPc": 3.6869675727468896,
+        "opsForSeconds": 30349.975638301694,
+        "durationMicroSeconds": 32.948955607661155,
+        "runSlowerRatio": 3.489738951880167
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 77,
+        "errorPc": 3.8720914284753154,
+        "opsForSeconds": 6831.64009246566,
+        "durationMicroSeconds": 146.37773455057442,
+        "runSlowerRatio": 15.503377042710913
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 77,
+        "errorPc": 2.4599618322075147,
+        "opsForSeconds": 7215.878173378176,
+        "durationMicroSeconds": 138.58327094397734,
+        "runSlowerRatio": 14.677838182516217
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 75,
+        "errorPc": 2.8975574575749663,
+        "opsForSeconds": 9194.485111674954,
+        "durationMicroSeconds": 108.76084825350601,
+        "runSlowerRatio": 11.519241250291323
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 71,
+        "errorPc": 5.791909272816775,
+        "opsForSeconds": 1160.2935124439866,
+        "durationMicroSeconds": 861.85089313621,
+        "runSlowerRatio": 91.28163782498831
+      },
+      {
+        "name": "hashNumberUsingHashUnknown",
+        "samplesCount": 90,
+        "errorPc": 2.9737993871665047,
+        "opsForSeconds": 19829.719778287086,
+        "durationMicroSeconds": 50.42935609685056,
+        "runSlowerRatio": 5.341149212283246
+      }
+    ]
+  },
+  {
+    "date": "Tue, 11 Oct 2022 22:29:39 GMT",
+    "git": {
+      "branch": "main -> origin/main",
+      "commit": "ab02292c77838f7e6af5d015ca1e52251dce1117",
+      "changes": 690
+    },
+    "tests": [
+      {
+        "name": "hashNumberUsingDataViewAlways",
+        "samplesCount": 69,
+        "errorPc": 4.645327786892892,
+        "opsForSeconds": 38914.43486185338,
+        "durationMicroSeconds": 25.697405180108866,
+        "runSlowerRatio": 2.646535896273261
+      },
+      {
+        "name": "hashNumberUsingDataViewUnlessInt32OrUint32",
+        "samplesCount": 65,
+        "errorPc": 3.6707624612335317,
+        "opsForSeconds": 20584.3034271176,
+        "durationMicroSeconds": 48.58070633969609,
+        "runSlowerRatio": 5.003251584865698
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayAlways",
+        "samplesCount": 81,
+        "errorPc": 2.062566594186224,
+        "opsForSeconds": 102988.44874508255,
+        "durationMicroSeconds": 9.709826802763136,
+        "runSlowerRatio": 1
+      },
+      {
+        "name": "hashNumberUsingFloat64ArrayUnlessInt32OrUint32",
+        "samplesCount": 69,
+        "errorPc": 4.230228721703471,
+        "opsForSeconds": 31594.729465352873,
+        "durationMicroSeconds": 31.650848635897038,
+        "runSlowerRatio": 3.2596718024764484
+      },
+      {
+        "name": "hashNumberUsingWasm",
+        "samplesCount": 77,
+        "errorPc": 2.050929914770837,
+        "opsForSeconds": 7117.548808259602,
+        "durationMicroSeconds": 140.49780717197808,
+        "runSlowerRatio": 14.469651212727756
+      },
+      {
+        "name": "hashNumberUsingWasmAsFloat",
+        "samplesCount": 81,
+        "errorPc": 3.1472000902974036,
+        "opsForSeconds": 7810.636573848095,
+        "durationMicroSeconds": 128.0305376578706,
+        "runSlowerRatio": 13.185666465382969
+      },
+      {
+        "name": "hashNumberUsingWasmUnlessInt32",
+        "samplesCount": 75,
+        "errorPc": 4.08235499822815,
+        "opsForSeconds": 9543.845889685163,
+        "durationMicroSeconds": 104.7795628260075,
+        "runSlowerRatio": 10.791084635638432
+      },
+      {
+        "name": "hashNumberUsingNativeHashNumber",
+        "samplesCount": 87,
+        "errorPc": 3.125248815282867,
+        "opsForSeconds": 1441.5599297004064,
+        "durationMicroSeconds": 693.6929775842382,
+        "runSlowerRatio": 71.44236366675801
+      },
+      {
+        "name": "hashNumberUsingHashUnknown",
+        "samplesCount": 90,
+        "errorPc": 1.8902137575436357,
+        "opsForSeconds": 21235.373599625156,
+        "durationMicroSeconds": 47.09123648371563,
+        "runSlowerRatio": 4.849853394945709
+      }
+    ]
   }
 ]

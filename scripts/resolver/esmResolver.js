@@ -28,7 +28,7 @@
 const assert = require("assert");
 const { URL, fileURLToPath, pathToFileURL } = require("url");
 const isCore = require("is-core-module");
-const { isPackageJsonRelativeExports, isPackageJsonConditionalExports, parsePackageName, findPackageConfig, isUrlString, isDirectory, pathDirname, readPackageConfig, isFile, realpathSyncCached } = require("./utils");
+const { isPackageJsonRelativeExports, isPackageJsonConditionalExports, parsePackageName, findPackageConfig, isUrlString, isDirectory, pathDirname, readPackageConfig, isFile, realpathSyncCached, TRACE } = require("./utils");
 const {
     ObjectGetOwnPropertyNames,
     ArrayIsArray,
@@ -152,6 +152,8 @@ exports.ESM_RESOLVE = ESM_RESOLVE;
  * @returns {import("./types").ResolvedEsmMatch}
  */
 function PACKAGE_EXPORTS_RESOLVE(packageJsonURL, packageSubpath, packageJson, parentURL, conditions, options) {
+    TRACE(options, "PACKAGE_EXPORTS_RESOLVE", packageJsonURL.href, packageSubpath, parentURL.href, [...conditions].join(","));
+
     // PACKAGE_EXPORTS_RESOLVE(packageURL, subpath, exports, conditions)
 
     //  1. If exports is an Object with both a key starting with "." and a key not starting with ".", throw an Invalid Package Configuration error.
@@ -195,6 +197,8 @@ exports.PACKAGE_EXPORTS_RESOLVE = PACKAGE_EXPORTS_RESOLVE;
  * @returns {import("./types").ResolvedEsmMatch}
  */
 function PACKAGE_IMPORTS_RESOLVE(specifier, parentURL, conditions, options) {
+    TRACE(options, "PACKAGE_IMPORTS_RESOLVE", specifier, parentURL.href, [...conditions].join(","));
+
     // PACKAGE_IMPORTS_RESOLVE(specifier, parentURL, conditions)
     //  1. Assert: specifier begins with "#".
     assert(StringPrototypeStartsWith(specifier, "#"));
@@ -238,6 +242,8 @@ exports.PACKAGE_IMPORTS_RESOLVE = PACKAGE_IMPORTS_RESOLVE;
  * @returns {import("./types").EsmMatch}
  */
 function PACKAGE_IMPORTS_EXPORTS_RESOLVE(matchKey, matchObj, packageJsonURL, parentURL, isImports, conditions, options) {
+    TRACE(options, "PACKAGE_IMPORTS_EXPORTS_RESOLVE", matchKey, packageJsonURL.href, parentURL.href, isImports, [...conditions].join(","));
+
     // PACKAGE_IMPORTS_EXPORTS_RESOLVE(matchKey, matchObj, packageURL, isImports, conditions)
 
     //  1. If matchKey is a key of matchObj, and does not end in "*", then
@@ -310,17 +316,24 @@ exports.PACKAGE_IMPORTS_EXPORTS_RESOLVE = PACKAGE_IMPORTS_EXPORTS_RESOLVE;
  * @returns {import("url").URL | undefined}
  */
 function PACKAGE_TARGET_RESOLVE(packageJsonURL, target, subpath, packageSubpath, parentURL, pattern, internal, conditions, options) {
+    TRACE(options, "PACKAGE_TARGET_RESOLVE", packageJsonURL.href, subpath, packageSubpath, parentURL.href, pattern, internal, [...conditions].join(","));
+
     // PACKAGE_TARGET_RESOLVE(packageURL, target, subpath, pattern, internal, conditions)
 
     //  1. If target is a String, then
     if (typeof target === "string") {
+        TRACE(options, "> target is string");
+
         //  1. If pattern is false, subpath has non-zero length and target does not end with "/", throw an Invalid Module Specifier error.
         if (!pattern && subpath !== "" && !StringPrototypeEndsWith(target, "/")) throw ERR_INVALID_PACKAGE_TARGET(new URL(".", packageJsonURL), packageSubpath, target, internal, parentURL);
 
         //  2. If target does not start with "./", then
         if (!StringPrototypeStartsWith(target, "./")) {
+            TRACE(options, "> target not package relative");
+
             //  1. If internal is true and target does not start with "../" or "/" and is not a valid URL, then
             if (internal && !StringPrototypeStartsWith(target, "../") && !StringPrototypeStartsWith(target, "/") && !isUrlString(target)) {
+                TRACE(options, "> target is internal and not a relative path, absolute path, or url");
                 //  1. If pattern is true, then
                 //      1. Return PACKAGE_RESOLVE(target with every instance of "*" replaced by subpath, packageURL + "/").
                 //  2. Return PACKAGE_RESOLVE(target + subpath, packageURL + "/").
@@ -331,6 +344,8 @@ function PACKAGE_TARGET_RESOLVE(packageJsonURL, target, subpath, packageSubpath,
             //  2. Otherwise, throw an Invalid Package Target error.
             throw ERR_INVALID_PACKAGE_TARGET(new URL(".", packageJsonURL), packageSubpath, target, internal, parentURL);
         }
+
+        TRACE(options, "> target is package relative");
 
         //  3. If target split on "/" or "\" contains any ".", ".." or "node_modules" segments after the first segment, throw an Invalid Package Target error.
         if (RegExpPrototypeTest(/(^|[\\/])(\.\.?|node_modules)($|[\\/])/, StringPrototypeSlice(target, 2))) throw ERR_INVALID_PACKAGE_TARGET(new URL(".", packageJsonURL), packageSubpath, target, internal, parentURL);
@@ -433,6 +448,8 @@ exports.PACKAGE_TARGET_RESOLVE = PACKAGE_TARGET_RESOLVE;
  * @returns {import("url").URL}
  */
 function PACKAGE_RESOLVE(packageSpecifier, parentURL, conditions, options) {
+    TRACE(options, "PACKAGE_RESOLVE", packageSpecifier, parentURL.href, [...conditions].join(","));
+
     // PACKAGE_RESOLVE(packageSpecifier, parentURL)
 
     //  1. Let packageName be undefined.
@@ -518,6 +535,8 @@ exports.PACKAGE_RESOLVE = PACKAGE_RESOLVE;
  * @returns {import("url").URL | undefined}
  */
 function PACKAGE_SELF_RESOLVE(packageName, packageSubpath, parentURL, conditions, options) {
+    TRACE(options, "PACKAGE_SELF_RESOLVE", packageName, packageSubpath, parentURL.href, [...conditions].join(","));
+
     // PACKAGE_SELF_RESOLVE(packageName, packageSubpath, parentURL)
 
     //  1. Let packageURL be the result of READ_PACKAGE_SCOPE(parentURL).
