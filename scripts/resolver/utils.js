@@ -58,6 +58,7 @@ const {
     StringPrototypeEndsWith,
     ObjectGetOwnPropertyNames,
 } = require("./primordials");
+const ts = require("typescript");
 
 /**
  * @template {new (message: string) => Error} F
@@ -105,6 +106,30 @@ function pathJoin(...args) {
     return normalizeSlashes(_pathJoin(...args));
 }
 exports.pathJoin = pathJoin;
+
+/**
+ * @param {string} parent
+ * @param {string} child
+ */
+function pathContains(parent, child, ignoreCase = false) {
+    parent = ensureTrailingDirectorySeparator(pathResolve(parent));
+    child = ensureTrailingDirectorySeparator(pathResolve(child));
+    if (ignoreCase) {
+        parent = parent.toUpperCase();
+        child = child.toUpperCase();
+    }
+    return child === parent || child.startsWith(parent);
+}
+exports.pathContains = pathContains;
+
+/**
+ * @param {string} file
+ */
+function ensureTrailingDirectorySeparator(file) {
+    file = normalizeSlashes(file);
+    return file.endsWith("/") ? file : file + "/";
+}
+exports.ensureTrailingDirectorySeparator = ensureTrailingDirectorySeparator;
 
 /** @type {Map<string, "file" | "directory" | "other">} */
 const cachedPathKinds = new Map();
@@ -296,10 +321,13 @@ exports.readPackageConfig = readPackageConfig;
  * @returns {import("./types").PackageConfig}
  */
 function findPackageConfig(resolvedURL, options) {
+    TRACE(options, "findPackageConfig", resolvedURL.href);
     let packageJsonURL = new URL("./package.json", resolvedURL);
     while (true) {
+        TRACE(options, `> trying '${packageJsonURL}'...`);
         const packageJsonPath = normalizeSlashes(fileURLToPath(packageJsonURL));
         if (StringPrototypeEndsWith(packageJsonPath, "/node_modules/package.json")) break;
+
         const packageConfig = readPackageConfig(packageJsonURL, options);
         if (packageConfig.exists) return packageConfig;
 
@@ -311,6 +339,67 @@ function findPackageConfig(resolvedURL, options) {
 }
 exports.findPackageConfig = findPackageConfig;
 
+
+/**
+ * @param {import("typescript").ParsedCommandLine} project
+ * @param {import("url").URL} tsconfigJsonURL
+ * @param {boolean} exists
+ * @returns {import("./types").TSConfig}
+ */
+function createTSConfig(project, tsconfigJsonURL, exists) {
+    return { project, tsconfigJsonURL, exists };
+}
+exports.createTSConfig = createTSConfig;
+
+/** @type {Map<string, import("./types").TSConfig>} */
+const cachedTSConfigs = new Map();
+
+/**
+ * @param {import("url").URL} tsconfigJsonURL
+ * @param {import("./types").ResolverOpts} options
+ * @returns {import("./types").TSConfig}
+ */
+function readTSConfig(tsconfigJsonURL, options) {
+    const tsconfigJsonPath = realpathSyncCached(fileURLToPath(tsconfigJsonURL));
+    let tsConfig = MapPrototypeGet(cachedTSConfigs, tsconfigJsonPath);
+    if (tsConfig) return tsConfig;
+    if (!isFile(tsconfigJsonPath)) {
+        tsConfig = createTSConfig({ options: {}, fileNames: [], errors: [] }, tsconfigJsonURL, false);
+    }
+    else {
+        const { config: tsconfigJsonRaw } = ts.readConfigFile(tsconfigJsonPath, ts.sys.readFile);
+        if (typeof tsconfigJsonRaw !== "object" || tsconfigJsonRaw === null) {
+            throw errorWithCode(TypeError, "ERR_INVALID_TYPESCRIPT_CONFIG", `Invalid tsconfig '${fileURLToPath(tsconfigJsonURL)}'`);
+        }
+        const dirname = fileURLToPath(new URL("./", tsconfigJsonURL));
+        const parsed = ts.parseJsonConfigFileContent(tsconfigJsonRaw, ts.sys, dirname, {}, tsconfigJsonPath);
+        tsConfig = createTSConfig(parsed, tsconfigJsonURL, true);
+    }
+    MapPrototypeSet(cachedTSConfigs, tsconfigJsonPath, tsConfig);
+    return tsConfig;
+}
+exports.readTSConfig = readTSConfig;
+
+/**
+ * @param {import("url").URL} resolvedURL
+ * @param {import("./types").ResolverOpts} options
+ * @returns {import("./types").TSConfig}
+ */
+function findTSConfig(resolvedURL, options) {
+    let tsconfigJsonURL = new URL("./tsconfig.json", resolvedURL);
+    while (true) {
+        const tsconfigJsonPath = normalizeSlashes(fileURLToPath(tsconfigJsonURL));
+        if (StringPrototypeEndsWith(tsconfigJsonPath, "/node_modules/tsconfig.json")) break;
+        const tsConfig = readTSConfig(tsconfigJsonURL, options);
+        if (tsConfig.exists) return tsConfig;
+
+        const lastTsconfigJsonURL = tsconfigJsonURL;
+        tsconfigJsonURL = new URL("../tsconfig.json", tsconfigJsonURL);
+        if (tsconfigJsonURL.pathname === lastTsconfigJsonURL.pathname) break;
+    }
+    return createTSConfig({ options: {}, fileNames: [], errors: [] }, tsconfigJsonURL, false);
+}
+exports.findTSConfig = findTSConfig;
 
 /**
  * @param {import("./types").PackageJsonExports | undefined} exports
@@ -353,3 +442,14 @@ function isUrlString(text) {
     }
 }
 exports.isUrlString = isUrlString;
+
+/**
+ * @param {import("./types").ResolverOpts} options
+ * @param {...any} args 
+ */
+function TRACE(options, ...args) {
+    if (options.trace) {
+        console.log(...args);
+    }
+}
+exports.TRACE = TRACE;

@@ -23,5 +23,4 @@ export const {
     hashString,
     hashSymbol,
     hashObject,
-    hashUnknown,
 } = createRequire(import.meta.url)(binary.find(fileURLToPath(new URL("../package.json", import.meta.url))));

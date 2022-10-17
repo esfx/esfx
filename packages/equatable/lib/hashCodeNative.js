@@ -14,6 +14,9 @@
    limitations under the License.
 */
 
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+
 const binary = require("@mapbox/node-pre-gyp");
 const path = require("path");
 const hashCodeNative = require(binary.find(path.resolve(path.join(__dirname, "../package.json"))));
@@ -22,4 +25,3 @@ exports.hashNumber = hashCodeNative.hashNumber;
 exports.hashString = hashCodeNative.hashString;
 exports.hashSymbol = hashCodeNative.hashSymbol;
 exports.hashObject = hashCodeNative.hashObject;
-exports.hashUnknown = hashCodeNative.hashUnknown;

@@ -7,10 +7,15 @@
         "module": "commonjs",
         "lib": ["es2020"],
         "stripInternal": true,
+        "importHelpers": false,
         "baseUrl": ".",
         "paths": {
-            "#hashCode": ["package.internal.d.ts"],
-            "#hashCodeNative": ["package.internal.d.ts"],
+            "#hash/native": ["package.internal.d.ts"],
+            "#hash/bigint": ["package.internal.d.ts"],
+            "#hash/number": ["package.internal.d.ts"],
+            "#hash/string": ["package.internal.d.ts"],
+            "#hash/symbol": ["package.internal.d.ts"],
+            "#hash/object": ["package.internal.d.ts"],
         }
     },
     "include": ["src/**/*.ts", "package.internal.d.ts"],

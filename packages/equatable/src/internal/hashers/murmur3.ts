@@ -16,21 +16,12 @@
    NOTE: The `murmur3` algorithm is public domain.
 */
 
-/* @internal */
-export function createSeed() {
-    return (Math.random() * 0xffffffff) >>> 0;
-}
-
-/* @internal */
-export const defaultSeed = createSeed();
-
 const c1 = 0xcc9e2d51;
 const c2 = 0x1b873593;
 const n = 0xe6546b64;
 
-/* @internal */
-export function hash(buffer: ArrayBuffer, count: number, seed: number) {
-    const view = new DataView(buffer, 0, count);
+export function murmur3(buffer: ArrayBuffer, offset: number, count: number, seed: number): number {
+    const view = new DataView(buffer, offset, count);
     let h = seed >>> 0;
     let i = 0;
     let k: number;

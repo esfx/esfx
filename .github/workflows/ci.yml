@@ -27,15 +27,15 @@ jobs:
     runs-on: ${{ matrix.os.target }}
     steps:
     - uses: actions/checkout@v3
-    - name: use node v16
-      uses: actions/setup-node@v3
+    - uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node }}
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
-    - name: yarn install
-      run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
-    - name: build native binaries
+    - name: install
+      run: |
+        yarn install --ignore-scripts --frozen-lockfile --non-interactive
+    - name: build
       run: yarn run build-${{ matrix.os.name }}
 
   test:
@@ -57,7 +57,13 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
     - name: install
-      run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
+      run: |
+        yarn install --ignore-scripts --frozen-lockfile --non-interactive
+
+        # manually run post-install scripts:
+        pushd node_modules/wasm-opt
+        node bin/index.js
+        popd
     - name: link
       run: lerna link
     - name: build
@@ -93,7 +99,13 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
     - name: install
-      run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
+      run: |
+        yarn install --ignore-scripts --frozen-lockfile --non-interactive
+
+        # manually run post-install scripts:
+        pushd node_modules/wasm-opt
+        node bin/index.js
+        popd
     - name: link
       run: lerna link
     - name: build

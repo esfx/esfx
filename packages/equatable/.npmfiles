@@ -1,19 +1,34 @@
 # legacy cjs exports (accessed via "main")
+dist/legacy/internal/hashers/xxhash32.js
+dist/legacy/internal/hashers/xxhash64.generated.js
+dist/legacy/internal/hashers/xxhash64.js
 dist/legacy/internal/hashCode.js
-dist/legacy/internal/murmur3.js
+dist/legacy/internal/hashUnknown.js
+dist/legacy/internal/utf8.js
 dist/legacy/index.js
 
 # cjs exports (accessed via "exports"/"imports")
+dist/cjs/internal/hashers/xxhash32.js
+dist/cjs/internal/hashers/xxhash32.js.map
+dist/cjs/internal/hashers/xxhash64.generated.js
+dist/cjs/internal/hashers/xxhash64.js
+dist/cjs/internal/hashers/xxhash64.js.map
 dist/cjs/internal/hashCode.js
 dist/cjs/internal/hashCode.js.map
-dist/cjs/internal/murmur3.js
-dist/cjs/internal/murmur3.js.map
+dist/cjs/internal/hashUnknown.js
+dist/cjs/internal/hashUnknown.js.map
+dist/cjs/internal/utf8.js
+dist/cjs/internal/utf8.js.map
 dist/cjs/index.js
 dist/cjs/index.js.map
 
 # esm exports (accessed via "exports"/"imports")
+dist/esm/internal/hashers/xxhash32.mjs
+dist/esm/internal/hashers/xxhash64.generated.mjs
+dist/esm/internal/hashers/xxhash64.mjs
 dist/esm/internal/hashCode.mjs
-dist/esm/internal/murmur3.mjs
+dist/esm/internal/hashUnknown.mjs
+dist/esm/internal/utf8.mjs
 dist/esm/index.mjs
 
 # TypeScript types (accessed via "types"/"exports")
@@ -21,12 +36,13 @@ dist/types/index.d.ts
 dist/types/index.d.ts.map
 
 # native support
+lib/hashCodeNative.cpp
+lib/hashCodeNative.h
 lib/hashCodeNative.js
 lib/hashCodeNative.mjs
-lib/hashCode.cpp
-lib/hashCode.h
 binding.gyp
 
 LICENSE
+THIRD_PARTY_NOTICES
 README.md
 package.json

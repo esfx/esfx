@@ -1,0 +1,22 @@
+(module
+  (memory (export "mem") 1)
+  (func $hashBigInt64 (param $i64 i64) (result i32)
+    (i32.xor (i32.wrap_i64 (local.get $i64)) (i32.wrap_i64 (i64.shr_u (local.get $i64) (i64.const 32))))
+  )
+  (func $hashBigInt64Array (param $ptr i32) (param $len i32) (result i32)
+    (local $end i32)
+    (local $h64 i64)
+    (local.set $end (i32.add (local.get $ptr) (local.get $len)))
+    (if
+      (i32.lt_u (local.get $ptr) (local.get $end))
+      (loop $loop
+        (local.set $h64 (i64.xor (i64.rotl (local.get $h64) (i64.const 7)) (i64.load (local.get $ptr))))
+        (local.set $ptr (i32.add (local.get $ptr) (i32.const 4)))
+        (br_if $loop (i32.lt_u (local.get $ptr) (local.get $end)))
+      )
+    )
+    (call $hashBigInt64 (local.get $h64))
+  )
+  (export "hashBigInt64" (func $hashBigInt64))
+  (export "hashBigInt64Array" (func $hashBigInt64Array))
+)

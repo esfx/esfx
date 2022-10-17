@@ -1,16 +1,5 @@
-const baseConfig = require("./jest.config.js");
 module.exports = {
-    ...baseConfig,
-    cacheDirectory: './obj/.jestPerfCache',
-    testMatch: [
-        "**/__perf__/**/*.[jt]s?(x)",
-        "**/?(*.)+(spec|test?(s)).perf.[jt]s?(x)"
+    projects: [
+        '<rootDir>/packages/equatable/jest.perf.config.js',
     ],
-    testPathIgnorePatterns: [
-        '/dist/',
-        '/workers/',
-        '/data/',
-        '/scenarios/',
-    ],
-    setupFilesAfterEnv: ["jest-performance"]
 };

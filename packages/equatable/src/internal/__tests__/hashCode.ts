@@ -1,39 +1,75 @@
 /// <reference path="../../../package.internal.d.ts" />
 
-import { createHashUnknown } from "../hashCode.js";
+import { hashUnknown } from "../hashUnknown.js";
 
-const { hashUnknown, getState, setState } = createHashUnknown();
-
-let state: ReturnType<typeof getState>;
-beforeEach(() => {
-    state = getState();
-    setState({
-        objectSeed: 0x1dc8529e,
-        stringSeed: 0x6744b005,
-        bigIntSeed: 0x6c9503bc,
-        localSymbolSeed: 0x78819b01,
-        globalSymbolSeed: 0x1875c170,
-    });
+it("null", () => {
+    expect(hashUnknown(null)).toBe(hashUnknown(null));
 });
-afterEach(() => {
-    setState(state);
+it("undefined", () => {
+    expect(hashUnknown(undefined)).toBe(hashUnknown(undefined));
+});
+it("true", () => {
+    expect(hashUnknown(true)).toBe(hashUnknown(true));
+    expect(hashUnknown(true)).not.toBe(hashUnknown(false));
+});
+it("false", () => {
+    expect(hashUnknown(false)).toBe(hashUnknown(false));
+    expect(hashUnknown(false)).not.toBe(hashUnknown(true));
 });
 
-it("null", () => expect(hashUnknown(null)).toBe(0));
-it("undefined", () => expect(hashUnknown(undefined)).toBe(0));
-it("true", () => expect(hashUnknown(true)).toBe(1));
-it("false", () => expect(hashUnknown(false)).toBe(0));
-it("0", () => expect(hashUnknown(0)).toBe(0));
-it("1", () => expect(hashUnknown(1)).toBe(1));
-it("1.2", () => expect(hashUnknown(1.2)).toBe(213909504));
-it('""', () => expect(hashUnknown("")).toBe(-293397629));
-it('"abc"', () => expect(hashUnknown("abc")).toBe(38704718));
-it("123n", () => expect(hashUnknown(BigInt(123))).toBe(123));
-it("{}", () => expect(hashUnknown({})).toBe(499667486));
-it("same {}", () => (obj => expect(hashUnknown(obj)).toBe(hashUnknown(obj)))({}));
-it("different {}", () => expect(hashUnknown({})).not.toBe(hashUnknown({})));
-it("symbol", () => expect(hashUnknown(Symbol())).toBe(-1633737057));
-it("same symbol", () => (sym => expect(hashUnknown(sym)).toBe(hashUnknown(sym)))(Symbol()));
-it("different symbols", () => expect(hashUnknown(Symbol())).not.toBe(hashUnknown(Symbol())));
-it("built-in symbol", () => expect(hashUnknown(Symbol.iterator)).toBe(-1725201109));
-it("symbol.for", () => expect(hashUnknown(Symbol.for("foo"))).toBe(-1197376351));
+it("0", () => {
+    expect(hashUnknown(0)).toBe(hashUnknown(0));
+    expect(hashUnknown(0)).not.toBe(hashUnknown(1));
+    expect(hashUnknown(0)).not.toBe(hashUnknown(-1));
+});
+it("1", () => {
+    expect(hashUnknown(1)).toBe(hashUnknown(1));
+    expect(hashUnknown(1)).not.toBe(hashUnknown(0));
+    expect(hashUnknown(1)).not.toBe(hashUnknown(-0));
+});
+it("-1", () => {
+    expect(hashUnknown(-1)).toBe(hashUnknown(-1));
+    expect(hashUnknown(-1)).not.toBe(hashUnknown(0));
+    expect(hashUnknown(-1)).not.toBe(hashUnknown(1));
+});
+it("1.2", () => {
+    expect(hashUnknown(1.2)).toBe(hashUnknown(1.2));
+    expect(hashUnknown(1.2)).not.toBe(hashUnknown(1.3));
+});
+it('""', () => {
+    expect(hashUnknown("")).toBe(hashUnknown(""));
+    expect(hashUnknown("")).not.toBe(hashUnknown("abc"));
+});
+it('"abc"', () => {
+    expect(hashUnknown("abc")).toBe(hashUnknown("abc"));
+});
+it("123n", () => {
+    expect(hashUnknown(BigInt(123))).toBe(hashUnknown(BigInt(123)));
+});
+it("-123n", () => {
+    expect(hashUnknown(BigInt(-123))).toBe(hashUnknown(BigInt(-123)));
+});
+it("{}", () => {
+    const obj1 = {};
+    const obj2 = {};
+    expect(hashUnknown(obj1)).toBe(hashUnknown(obj1));
+    expect(hashUnknown(obj1)).not.toBe(hashUnknown(obj2));
+});
+it("symbol", () => {
+    const sym1 = Symbol();
+    const sym2 = Symbol();
+    expect(hashUnknown(sym1)).toBe(hashUnknown(sym1));
+    expect(hashUnknown(sym1)).not.toBe(hashUnknown(sym2));
+});
+it("built-in symbol", () => {
+    expect(hashUnknown(Symbol.iterator)).toBe(hashUnknown(Symbol.iterator));
+    expect(hashUnknown(Symbol.iterator)).not.toBe(hashUnknown(Symbol.toStringTag));
+});
+it("Symbol.for", () => {
+    const sym1 = Symbol.for("foo");
+    const sym2 = Symbol.for("foo");
+    const sym3 = Symbol.for("bar");
+    expect(hashUnknown(sym1)).toBe(hashUnknown(sym1));
+    expect(hashUnknown(sym1)).toBe(hashUnknown(sym2));
+    expect(hashUnknown(sym1)).not.toBe(hashUnknown(sym3));
+});
