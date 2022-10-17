@@ -11,6 +11,7 @@ dist/legacy/index.js
 dist/cjs/internal/hashers/xxhash32.js
 dist/cjs/internal/hashers/xxhash32.js.map
 dist/cjs/internal/hashers/xxhash64.generated.js
+dist/cjs/internal/hashers/xxhash64.generated.js.map
 dist/cjs/internal/hashers/xxhash64.js
 dist/cjs/internal/hashers/xxhash64.js.map
 dist/cjs/internal/hashCode.js

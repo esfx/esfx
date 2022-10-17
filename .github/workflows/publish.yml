@@ -67,11 +67,13 @@ jobs:
       run: |
         CHANGED_FILES=$(git status --porcelain -- package.json lerna.json yarn.lock internal/*/package*.json packages/*/package*.json | cut -c 4-);
         CHANGED_FILES_JSON=$(CHANGED_FILES=$CHANGED_FILES node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_FILES.split(/\n/g).filter(Boolean)))')
-        echo "::set-output name=changed_files::$CHANGED_FILES_JSON";
+        echo "changed_files=$CHANGED_FILES_JSON" >> $GITHUB_OUTPUT;
+        # echo "::set-output name=changed_files::$CHANGED_FILES_JSON";
 
         CHANGED_PACKAGES=$(git status --porcelain -- internal/*/package.json packages/*/package.json | cut -c 4-);
         CHANGED_PACKAGES_JSON=$(CHANGED_PACKAGES=$CHANGED_PACKAGES node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_PACKAGES.split(/\n/g).filter(Boolean).reduce((obj, path) => ({ ...obj, [path]: true }), {})))');
-        echo "::set-output name=changed_packages::$CHANGED_PACKAGES_JSON";
+        echo "changed_packages=$CHANGED_PACKAGES_JSON" >> $GITHUB_OUTPUT;
+        # echo "::set-output name=changed_packages::$CHANGED_PACKAGES_JSON";
 
   native:
     strategy:
@@ -117,12 +119,12 @@ jobs:
           internal/*/build/stage/**
           packages/*/build/stage/**
 
-  # TODO: Build docs on windows
-  package:
-    runs-on: ubuntu-latest
+  docs:
+    runs-on: windows-2019
+    outputs:
+      changed_docs: ${{ steps.detect_changes.outputs.changed_docs }}
     needs:
     - version
-    - native
     steps:
     - uses: actions/checkout@v3
       with:
@@ -138,7 +140,64 @@ jobs:
         name: version-artifacts
         path: ${{ github.workspace }}
     - name: install
-      run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
+      run: |
+        yarn install --ignore-scripts --frozen-lockfile --non-interactive
+
+        # manually run post-install scripts:
+        pushd node_modules/wasm-opt
+        node bin/index.js
+        popd
+    - name: link
+      run: lerna link
+    - name: build
+      run: |
+        gulp clean
+        yarn run prebuild
+        gulp build
+    - name: docs
+      run: gulp docs
+    - name: detect changes
+      id: detect_changes
+      run: |
+        $env:CHANGED_DOCS=$(git status --porcelain -- docs | cut -c 4-);
+        $env:CHANGED_DOCS_JSON=$(node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_DOCS.split(/\n/g).filter(Boolean)))')
+        echo "changed_docs=$env:CHANGED_DOCS_JSON" >> $env:GITHUB_OUTPUT;
+        # echo "::set-output name=changed_docs::$env:CHANGED_DOCS_JSON";
+    - name: upload docs artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: docs-artifacts
+        path: |
+          docs/**
+
+  package:
+    runs-on: ubuntu-latest
+    needs:
+    - version
+    - native
+    - docs
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'yarn'
+    - name: version
+      uses: actions/download-artifact@v3
+      with:
+        name: version-artifacts
+        path: ${{ github.workspace }}
+    - name: install
+      run: |
+        yarn install --ignore-scripts --frozen-lockfile --non-interactive
+
+        # manually run post-install scripts:
+        pushd node_modules/wasm-opt
+        node bin/index.js
+        popd
     - name: link
       run: lerna link
     - name: build
@@ -165,6 +224,12 @@ jobs:
       run: |
         gulp verify
         node node_modules/workspaces-foreach run prepack
+    - name: docs
+      uses: actions/download-artifact@v3
+      with:
+        name: docs-artifacts
+        path: ${{ github.workspace }}
+
     - name: commit and tag version
       run: |
         git config user.name "GitHub Actions Bot"
