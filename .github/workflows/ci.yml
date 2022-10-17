@@ -1,0 +1,107 @@
+name: ci
+on:
+  push:
+    branches:
+    - main
+    - release-*
+  pull_request:
+    branches:
+    - main
+    - release-*
+
+jobs:
+  native:
+    strategy:
+      matrix:
+        os:
+        - name: windows
+          target: windows-2019
+        - name: linux
+          target: ubuntu-latest
+        - name: macos
+          target: macos-latest
+        node:
+        - 16
+        - 18
+    name: "${{ matrix.os.name }} (node v${{ matrix.node }})"
+    runs-on: ${{ matrix.os.target }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: use node v16
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node }}
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'yarn'
+    - name: yarn install
+      run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
+    - name: build native binaries
+      run: yarn run build-${{ matrix.os.name }}
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node:
+        - "*"
+        - lts/*
+        # - lts/-1
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node }}
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'yarn'
+    - name: install
+      run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
+    - name: link
+      run: lerna link
+    - name: build
+      run: |
+        gulp clean
+        yarn run prebuild
+        gulp build
+    - name: test
+      run: |
+        yarn run test --selectProjects "collections-hash ts-worker"
+        yarn run test --selectProjects "async-autoresetevent async-barrier async-conditionvariable async-countdown async-deferred async-manualresetevent async-mutex async-queue async-readerwriterlock async-semaphore async-stack canceltoken"
+        yarn run test --selectProjects "collection-core collection-core-shim collections-hashmap collections-hashset collections-multimap collections-sortedmap collections-sortedset"
+        yarn run test --selectProjects "async-iter-fn async-iter-fromsync async-iter-query iter-fn iter-lookup iter-query"
+        yarn run test --selectProjects "threading-autoresetevent threading-conditionvariable threading-manualresetevent threading-mutex threading-sleep"
+        yarn run test --selectProjects "decorators disposable equatable equatable-shim fn fn-partial indexed-object lazy ref reflect-metadata-compat struct-type"
+    - name: test (esm output)
+      run: |
+        yarn run test-esm --selectProjects "async-autoresetevent async-barrier async-conditionvariable async-countdown async-deferred async-manualresetevent async-mutex async-queue async-readerwriterlock async-semaphore async-stack canceltoken"
+        yarn run test-esm --selectProjects "collections-hash collection-core collection-core-shim collections-hashmap collections-hashset collections-multimap collections-sortedmap collections-sortedset"
+        yarn run test-esm --selectProjects "async-iter-fn async-iter-fromsync async-iter-query iter-fn iter-lookup iter-query"
+        yarn run test-esm --selectProjects "threading-autoresetevent threading-conditionvariable threading-manualresetevent threading-mutex threading-sleep"
+        yarn run test-esm --selectProjects "decorators disposable equatable equatable-shim fn fn-partial indexed-object lazy ref reflect-metadata-compat struct-type"
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+        registry-url: 'https://registry.npmjs.org'
+        cache: 'yarn'
+    - name: install
+      run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
+    - name: link
+      run: lerna link
+    - name: build
+      run: |
+        gulp clean
+        yarn run prebuild
+        gulp build
+    - name: verify
+      run: |
+        gulp verify
+        node node_modules/workspaces-foreach run prepack
