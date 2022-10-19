@@ -24,12 +24,12 @@ on:
         default: false
       prerelease:
         description: prerelease
-        required: false
+        required: true
         type: boolean
         default: true
       draft:
         description: draft
-        required: false
+        required: true
         type: boolean
         default: true
 
@@ -68,12 +68,10 @@ jobs:
         CHANGED_FILES=$(git status --porcelain -- package.json lerna.json yarn.lock internal/*/package*.json packages/*/package*.json | cut -c 4-);
         CHANGED_FILES_JSON=$(CHANGED_FILES=$CHANGED_FILES node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_FILES.split(/\n/g).filter(Boolean)))')
         echo "changed_files=$CHANGED_FILES_JSON" >> $GITHUB_OUTPUT;
-        # echo "::set-output name=changed_files::$CHANGED_FILES_JSON";
 
         CHANGED_PACKAGES=$(git status --porcelain -- internal/*/package.json packages/*/package.json | cut -c 4-);
         CHANGED_PACKAGES_JSON=$(CHANGED_PACKAGES=$CHANGED_PACKAGES node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_PACKAGES.split(/\n/g).filter(Boolean).reduce((obj, path) => ({ ...obj, [path]: true }), {})))');
         echo "changed_packages=$CHANGED_PACKAGES_JSON" >> $GITHUB_OUTPUT;
-        # echo "::set-output name=changed_packages::$CHANGED_PACKAGES_JSON";
 
   native:
     strategy:
@@ -121,8 +119,6 @@ jobs:
 
   docs:
     runs-on: windows-2019
-    outputs:
-      changed_docs: ${{ steps.detect_changes.outputs.changed_docs }}
     needs:
     - version
     steps:
@@ -156,13 +152,6 @@ jobs:
         gulp build
     - name: docs
       run: gulp docs
-    - name: detect changes
-      id: detect_changes
-      run: |
-        $env:CHANGED_DOCS=$(git status --porcelain -- docs | cut -c 4-);
-        $env:CHANGED_DOCS_JSON=$(node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_DOCS.split(/\n/g).filter(Boolean)))')
-        echo "changed_docs=$env:CHANGED_DOCS_JSON" >> $env:GITHUB_OUTPUT;
-        # echo "::set-output name=changed_docs::$env:CHANGED_DOCS_JSON";
     - name: upload docs artifacts
       uses: actions/upload-artifact@v3
       with:
@@ -228,16 +217,18 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: docs-artifacts
-        path: ${{ github.workspace }}
+        path: docs
 
     - name: commit and tag version
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
         git add -- ${{ join(fromJson(needs.version.outputs.changed_files), ' ') }}
+        git add -- docs
         git commit -m "v${{ github.event.inputs.version }}"
         git tag -f "v${{ github.event.inputs.version }}" -m "v${{ github.event.inputs.version }}"
         git push --follow-tags --no-verify --atomic origin ${{ github.ref_name }}
+
     - name: download native artifacts
       uses: actions/download-artifact@v3
       with:
@@ -260,7 +251,7 @@ jobs:
         artifacts: ${{ join(fromJson(env.NATIVE_ARTIFACTS)) }}
         allowUpdates: true
     - name: publish
-      if: ${{ github.event.inputs.draft != true }}
+      if: ${{ !github.event.inputs.draft }}
       run: |
         lerna publish from-git --yes --no-verify-access --dist-tag ${{ github.event.inputs.dist_tag }}
       env:
