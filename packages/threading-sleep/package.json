@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-sleep",
-    "version": "1.0.0-pre.44",
+    "version": "1.0.0-dev.5",
     "description": "Provides a 'sleep' function which causes the current execution thread to sleep until the timeout expires",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,7 +25,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.44"
+        "@esfx/internal-guards": "^1.0.0-dev.5"
     },
     "publishConfig": {
         "access": "public"
