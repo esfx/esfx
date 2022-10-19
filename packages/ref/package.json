@@ -1,6 +1,6 @@
 {
     "name": "@esfx/ref",
-    "version": "1.0.0-dev.4",
+    "version": "1.0.0-pre.44",
     "description": "A low-level API for defining forward references.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,7 +25,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-dev.4"
+        "@esfx/internal-guards": "^1.0.0-pre.44"
     },
     "publishConfig": {
         "access": "public"
