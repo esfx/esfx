@@ -1717,12 +1717,42 @@ This is similar to <code>Overlaps</code><!-- -->, except object types in <code>A
   
   
         <h4 id="_esfx_type_model_OptionalKeyof_type" data-uid="@esfx/type-model!OptionalKeyof:type">OptionalKeyof</h4>
+        	<div class="alert is-warning">
+  		<h5>Warning</h5>
+  		<p>Deprecated</p>
+  			Use `OptionalKeys<t>` instead.
+  	</t></div>
+        <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type OptionalKeyof&lt;T&gt; = OptionalKeys&lt;T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_OptionalKeys_type" data-uid="@esfx/type-model!OptionalKeys:type">OptionalKeys</h4>
               <div class="markdown level1 summary"><p>Gets a union of the keys of <code>T</code> that are optional.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type OptionalKeyof&lt;T&gt; = Exclude&lt;keyof T, RequiredKeyof&lt;T&gt;&gt;;</code></pre>
+          <pre><code class="lang-typeScript hljs">export declare type OptionalKeys&lt;T&gt; = Exclude&lt;keyof T, RequiredKeys&lt;T&gt;&gt;;</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>
@@ -1957,12 +1987,42 @@ This is similar to <code>Overlaps</code><!-- -->, except object types in <code>A
   
   
         <h4 id="_esfx_type_model_RequiredKeyof_type" data-uid="@esfx/type-model!RequiredKeyof:type">RequiredKeyof</h4>
+        	<div class="alert is-warning">
+  		<h5>Warning</h5>
+  		<p>Deprecated</p>
+  			Use `RequiredKeys<t>` instead.
+  	</t></div>
+        <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type RequiredKeyof&lt;T&gt; = RequiredKeys&lt;T&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>T</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_type_model_RequiredKeys_type" data-uid="@esfx/type-model!RequiredKeys:type">RequiredKeys</h4>
               <div class="markdown level1 summary"><p>Gets a union of the keys of <code>T</code> that are non-optional.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type RequiredKeyof&lt;T&gt; = _RequiredKeyof&lt;T, keyof T&gt;;</code></pre>
+          <pre><code class="lang-typeScript hljs">export declare type RequiredKeys&lt;T&gt; = _RequiredKeyof&lt;T, keyof T&gt;;</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>

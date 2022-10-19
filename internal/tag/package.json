@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-tag",
-    "version": "1.0.0-pre.44",
+    "version": "1.0.0-dev.7",
     "description": "This package provides internal utilities for &#39;@esfx&#39; and is not intended for use in user-code.",
     "private": true,
     "type": "commonjs",

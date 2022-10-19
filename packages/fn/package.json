@@ -1,6 +1,6 @@
 {
     "name": "@esfx/fn",
-    "version": "1.0.0-pre.44",
+    "version": "1.0.0-dev.7",
     "description": "Common utility functions.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,11 +25,11 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.0.0-pre.44",
+        "@esfx/equatable": "^1.0.0-dev.7",
         "tslib": "^2.4.0"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.44"
+        "@esfx/internal-guards": "^1.0.0-dev.7"
     },
     "publishConfig": {
         "access": "public"
