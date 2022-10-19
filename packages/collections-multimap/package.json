@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections-multimap",
-    "version": "1.0.0-pre.44",
+    "version": "1.0.0-dev.6",
     "description": "A HashMap that maps a single key to multiple values",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,13 +25,13 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.0.0-pre.44",
-        "@esfx/collections-hashmap": "^1.0.0-pre.44",
-        "@esfx/collections-hashset": "^1.0.0-pre.44",
-        "@esfx/equatable": "^1.0.0-pre.44"
+        "@esfx/collection-core": "^1.0.0-dev.6",
+        "@esfx/collections-hashmap": "^1.0.0-dev.6",
+        "@esfx/collections-hashset": "^1.0.0-dev.6",
+        "@esfx/equatable": "^1.0.0-dev.6"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.44"
+        "@esfx/internal-guards": "^1.0.0-dev.6"
     },
     "publishConfig": {
         "access": "public"

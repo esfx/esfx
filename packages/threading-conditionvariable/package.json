@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-conditionvariable",
-    "version": "1.0.0-pre.44",
+    "version": "1.0.0-dev.6",
     "description": "Provides 'ConditionVariable', a thread synchronization primitive for use with Workers",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,15 +25,15 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.0.0-pre.44",
-        "@esfx/threading-lockable": "^1.0.0-pre.44"
+        "@esfx/disposable": "^1.0.0-dev.6",
+        "@esfx/threading-lockable": "^1.0.0-dev.6"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.44",
-        "@esfx/internal-threading": "^1.0.0-pre.44",
-        "@esfx/internal-ts-worker": "^1.0.0-pre.44",
-        "@esfx/struct-type": "^1.0.0-pre.44",
-        "@esfx/threading-mutex": "^1.0.0-pre.44"
+        "@esfx/internal-guards": "^1.0.0-dev.6",
+        "@esfx/internal-threading": "^1.0.0-dev.6",
+        "@esfx/internal-ts-worker": "^1.0.0-dev.6",
+        "@esfx/struct-type": "^1.0.0-dev.6",
+        "@esfx/threading-mutex": "^1.0.0-dev.6"
     },
     "publishConfig": {
         "access": "public"

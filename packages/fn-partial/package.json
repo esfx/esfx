@@ -1,6 +1,6 @@
 {
     "name": "@esfx/fn-partial",
-    "version": "1.0.0-pre.44",
+    "version": "1.0.0-dev.6",
     "description": "Partial application utility functions.",
     "private": true,
     "type": "commonjs",
