@@ -83,7 +83,7 @@
   <h1 id="_esfx_cancelable_dom_shim_" data-uid="@esfx/cancelable-dom-shim!" class="text-break">@esfx/cancelable-dom-shim Package
   </h1>
   <div class="markdown level0 summary"></div>
-  <div class="markdown level0 conceptual"><p>The <code>@esfx/cancelable-dom-shim</code> package provides a global shim to make the DOM <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">AbortController</a> and <a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">AbortSignal</a> classes compatible with <a class="xref" href="cancelable.html">@esfx/cancelable</a>.</p>
+  <div class="markdown level0 conceptual"><p>The <code>@esfx/cancelable-dom-shim</code> package provides a global shim to make the DOM @&quot;!AbortController&quot; and @&quot;!AbortSignal&quot; classes compatible with <a class="xref" href="cancelable.html">@esfx/cancelable</a>.</p>
 <h3 id="installation">Installation</h3>
 <pre><code class="lang-sh">npm i @esfx/cancelable-dom-shim
 </code></pre><h3 id="usage">Usage</h3>
@@ -114,12 +114,12 @@ const signal = abortController[Cancelable.cancelSignal]();
 <h3 id="remarks">Remarks</h3>
 <p>This shim adds a default implementation of the <a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> interface to the following global DOM objects:</p>
 <ul>
-<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortController">AbortController</a> implements:<ul>
+<li>@&quot;!AbortController&quot; implements:<ul>
 <li><a class="xref" href="cancelable/cancelablesource-interface.html#_esfx_cancelable_CancelableSource_interface">CancelableSource</a></li>
 <li><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></li>
 </ul>
 </li>
-<li><a class="xref" href="https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal">AbortSignal</a> implements:<ul>
+<li>@&quot;!AbortSignal&quot; implements:<ul>
 <li><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></li>
 </ul>
 </li>

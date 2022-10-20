@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-spinwait",
-    "version": "1.0.0-pre.44",
+    "version": "1.0.0-dev.10",
     "description": "Provides 'SpinWait', a thread synchronization primitive for use with Workers.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,10 +25,10 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/threading-sleep": "^1.0.0-pre.44"
+        "@esfx/threading-sleep": "^1.0.0-dev.10"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.44"
+        "@esfx/internal-guards": "^1.0.0-dev.10"
     },
     "publishConfig": {
         "access": "public"

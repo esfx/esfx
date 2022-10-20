@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-lockable",
-    "version": "1.0.0-pre.44",
+    "version": "1.0.0-dev.10",
     "description": "A low-level Symbol-based API for defining locking semantics for thread synchronization primitives for Workers",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,7 +25,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.44"
+        "@esfx/internal-guards": "^1.0.0-dev.10"
     },
     "publishConfig": {
         "access": "public"
