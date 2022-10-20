@@ -2825,6 +2825,10 @@ references:
   name: throwIfSignaled()
   href: api/canceltoken/canceltoken.html#_esfx_canceltoken_CancelToken_throwIfSignaled_member_1_
   fullName: CancelToken.throwIfSignaled()
+- uid: '@esfx/canceltoken!CancelToken.[kEventTarget]:member'
+  name: '[kEventTarget]'
+  href: api/canceltoken/canceltoken.html#_esfx_canceltoken_CancelToken__kEventTarget__member
+  fullName: CancelToken.[kEventTarget]
 - uid: '@esfx/canceltoken!CancelToken.all:member(1)'
   name: all(cancelables)
   href: api/canceltoken/canceltoken.html#_esfx_canceltoken_CancelToken_all_member_1_
@@ -10625,6 +10629,10 @@ references:
   name: OptionalKeyof
   href: api/type-model.html#_esfx_type_model_OptionalKeyof_type
   fullName: OptionalKeyof
+- uid: '@esfx/type-model!OptionalKeys:type'
+  name: OptionalKeys
+  href: api/type-model.html#_esfx_type_model_OptionalKeys_type
+  fullName: OptionalKeys
 - uid: '@esfx/type-model!Or:type'
   name: Or
   href: api/type-model.html#_esfx_type_model_Or_type
@@ -10657,6 +10665,10 @@ references:
   name: RequiredKeyof
   href: api/type-model.html#_esfx_type_model_RequiredKeyof_type
   fullName: RequiredKeyof
+- uid: '@esfx/type-model!RequiredKeys:type'
+  name: RequiredKeys
+  href: api/type-model.html#_esfx_type_model_RequiredKeys_type
+  fullName: RequiredKeys
 - uid: '@esfx/type-model!Reshape:type'
   name: Reshape
   href: api/type-model.html#_esfx_type_model_Reshape_type
