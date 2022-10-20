@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-canceltoken",
-    "version": "1.0.0-dev.6",
+    "version": "1.0.0-dev.7",
     "description": "CancelToken async coordination primitive.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,14 +25,14 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/cancelable": "^1.0.0-dev.6",
-        "@esfx/canceltoken": "^1.0.0-dev.6",
-        "@esfx/disposable": "^1.0.0-dev.6",
+        "@esfx/cancelable": "^1.0.0-dev.7",
+        "@esfx/canceltoken": "^1.0.0-dev.7",
+        "@esfx/disposable": "^1.0.0-dev.7",
         "tslib": "^2.4.0"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-dev.6",
-        "@esfx/internal-linked-list": "^1.0.0-dev.6"
+        "@esfx/internal-guards": "^1.0.0-dev.7",
+        "@esfx/internal-linked-list": "^1.0.0-dev.7"
     },
     "publishConfig": {
         "access": "public"

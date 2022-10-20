@@ -1,6 +1,6 @@
 {
     "name": "@esfx/metadata-shim",
-    "version": "1.0.0-dev.6",
+    "version": "1.0.0-dev.7",
     "description": "A global shim that adds minimal @esfx/metadata functionality to the Reflect global object.",
     "private": true,
     "type": "commonjs",
@@ -26,7 +26,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/metadata": "^1.0.0-dev.6"
+        "@esfx/metadata": "^1.0.0-dev.7"
     },
     "publishConfig": {
         "access": "public"
