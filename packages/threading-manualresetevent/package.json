@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-manualresetevent",
-    "version": "1.0.0-pre.45",
+    "version": "1.0.0",
     "description": "Provides 'ManualResetEvent', a thread synchronization primitive for use with Workers",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,12 +25,12 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.0.0-pre.45"
+        "@esfx/disposable": "^1.0.0"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.45",
-        "@esfx/internal-threading": "^1.0.0-pre.45",
-        "@esfx/internal-ts-worker": "^1.0.0-pre.45"
+        "@esfx/internal-guards": "^1.0.0",
+        "@esfx/internal-threading": "^1.0.0",
+        "@esfx/internal-ts-worker": "^1.0.0"
     },
     "publishConfig": {
         "access": "public"

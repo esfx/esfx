@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-grouping",
-    "version": "1.0.0-pre.45",
+    "version": "1.0.0",
     "description": "",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,10 +25,10 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/iter-hierarchy": "^1.0.0-pre.45"
+        "@esfx/iter-hierarchy": "^1.0.0"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-pre.45"
+        "@esfx/internal-guards": "^1.0.0"
     },
     "publishConfig": {
         "access": "public"

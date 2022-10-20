@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-binarysearch",
-    "version": "1.0.0-pre.45",
+    "version": "1.0.0",
     "description": "This package provides internal utilities for @esfx and is not intended for use in user-code.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,7 +25,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.0.0-pre.45"
+        "@esfx/equatable": "^1.0.0"
     },
     "publishConfig": {
         "access": "public"
