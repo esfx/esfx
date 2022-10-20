@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-ts-worker",
-    "version": "1.0.0-dev.7",
+    "version": "1.0.0-dev.8",
     "description": "This package provides internal utilities for '@esfx' and is not intended for use in user-code.",
     "private": true,
     "type": "commonjs",

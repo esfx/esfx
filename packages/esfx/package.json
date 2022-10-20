@@ -1,6 +1,6 @@
 {
     "name": "esfx",
-    "version": "1.0.0-dev.7",
+    "version": "1.0.0-dev.8",
     "description": "A suite of packages designed to provide low-level APIs for interoperable libraries.",
     "author": "Ron Buckton (rbuckton@chronicles.org)",
     "license": "Apache-2.0",
