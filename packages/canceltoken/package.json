@@ -1,6 +1,6 @@
 {
     "name": "@esfx/canceltoken",
-    "version": "1.0.0-dev.10",
+    "version": "1.0.0-pre.45",
     "description": "Proviced CancelToken a cancellation primitive.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -38,13 +38,13 @@
         "prebuild": "node scripts/generateDomEventTypes.js"
     },
     "dependencies": {
-        "@esfx/cancelable": "^1.0.0-dev.10",
-        "@esfx/disposable": "^1.0.0-dev.10",
+        "@esfx/cancelable": "^1.0.0-pre.45",
+        "@esfx/disposable": "^1.0.0-pre.45",
         "tslib": "^2.4.0"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.0.0-dev.10",
-        "@esfx/internal-linked-list": "^1.0.0-dev.10"
+        "@esfx/internal-guards": "^1.0.0-pre.45",
+        "@esfx/internal-linked-list": "^1.0.0-pre.45"
     },
     "publishConfig": {
         "access": "public"
