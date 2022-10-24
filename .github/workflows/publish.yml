@@ -6,17 +6,18 @@ on:
         description: Version number to publish
         required: true
         type: string
-        default: 1.0.0-dev.0
+        default: 1.1.0-alpha
       dist_tag:
         description: npm dist-tag
         required: true
         type: choice
-        default: dev
+        default: "<auto>"
         options:
-          - latest
+          - "<auto>"
           - next
-          - nightly
-          - dev
+          - beta
+          - rc
+          - latest
       force_publish:
         description: force publish all packages
         required: false
@@ -39,6 +40,9 @@ jobs:
   version:
     runs-on: ubuntu-latest
     outputs:
+      version: ${{ steps.validate.outputs.version }}
+      dist_tag: ${{ steps.validate.outputs.dist_tag }}
+      prerelease: ${{ steps.validate.outputs.prerelease }}
       changed_files: ${{ steps.detect_changes.outputs.changed_files }}
       changed_packages: ${{ steps.detect_changes.outputs.changed_packages }}
     steps:
@@ -50,10 +54,20 @@ jobs:
         node-version: 16
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
+
+    - name: validate
+      id: validate
+      env:
+        VERSION_SPEC: ${{ inputs.version }}
+        DIST_TAG: ${{ inputs.dist_tag }}
+        PRERELEASE: ${{ inputs.prerelease }}
+      run: |
+        node scripts/validate-version.js
+
     - name: yarn install
       run: yarn install --ignore-scripts --non-interactive
     - name: lerna version
-      run: lerna version ${{ inputs.version }} --no-git-tag-version --no-push --yes $([ ${{inputs.force_publish }} == true ] && echo "--force-publish")
+      run: lerna version ${{ steps.validate.outputs.version }} --no-git-tag-version --no-push --yes $([ ${{inputs.force_publish }} == true ] && echo "--force-publish")
     - name: upload version artifacts
       uses: actions/upload-artifact@v3
       with:
@@ -64,15 +78,22 @@ jobs:
           package.json
           lerna.json
           yarn.lock
+
     - name: detect changes
       id: detect_changes
       run: |
-        CHANGED_FILES=$(git status --porcelain -- package.json lerna.json yarn.lock internal/*/package*.json packages/*/package*.json | cut -c 4-);
-        CHANGED_FILES_JSON=$(CHANGED_FILES=$CHANGED_FILES node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_FILES.split(/\n/g).filter(Boolean)))')
+        CHANGED_FILES_JSON=$(
+          git status --porcelain -- package.json lerna.json yarn.lock internal/*/package*.json packages/*/package*.json |
+          cut -c 4- |
+          node -e 'process.stdout.write(JSON.stringify(fs.readFileSync(0, "utf8").split(/\n/g).filter(Boolean)))'
+        );
         echo "changed_files=$CHANGED_FILES_JSON" >> $GITHUB_OUTPUT;
 
-        CHANGED_PACKAGES=$(git status --porcelain -- internal/*/package.json packages/*/package.json | cut -c 4-);
-        CHANGED_PACKAGES_JSON=$(CHANGED_PACKAGES=$CHANGED_PACKAGES node -e 'process.stdout.write(JSON.stringify(process.env.CHANGED_PACKAGES.split(/\n/g).filter(Boolean).reduce((obj, path) => ({ ...obj, [path]: true }), {})))');
+        CHANGED_PACKAGES_JSON=$(
+          git status --porcelain -- internal/*/package.json packages/*/package.json |
+          cut -c 4- |
+          node -e 'process.stdout.write(JSON.stringify(fs.readFileSync(0, "utf8").split(/\n/g).filter(Boolean).reduce((obj, path) => ({ ...obj, [path]: true }), {})))'
+        );
         echo "changed_packages=$CHANGED_PACKAGES_JSON" >> $GITHUB_OUTPUT;
 
   native:
@@ -171,16 +192,19 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+
     - uses: actions/setup-node@v3
       with:
         node-version: 16
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
+
     - name: version
       uses: actions/download-artifact@v3
       with:
         name: version-artifacts
         path: ${{ github.workspace }}
+
     - name: install
       run: |
         yarn install --ignore-scripts --frozen-lockfile --non-interactive
@@ -189,13 +213,16 @@ jobs:
         pushd node_modules/wasm-opt
         node bin/index.js
         popd
+
     - name: link
       run: lerna link
+
     - name: build
       run: |
         gulp clean
         yarn run prebuild
         gulp build
+
     - name: test
       run: |
         yarn run test --selectProjects "collections-hash ts-worker"
@@ -204,6 +231,7 @@ jobs:
         yarn run test --selectProjects "async-iter-fn async-iter-fromsync async-iter-query iter-fn iter-lookup iter-query"
         yarn run test --selectProjects "threading-autoresetevent threading-conditionvariable threading-manualresetevent threading-mutex threading-sleep"
         yarn run test --selectProjects "decorators disposable equatable equatable-shim fn fn-partial indexed-object lazy ref reflect-metadata-compat struct-type"
+
     - name: test (esm output)
       run: |
         yarn run test-esm --selectProjects "async-autoresetevent async-barrier async-conditionvariable async-countdown async-deferred async-manualresetevent async-mutex async-queue async-readerwriterlock async-semaphore async-stack canceltoken"
@@ -211,10 +239,12 @@ jobs:
         yarn run test-esm --selectProjects "async-iter-fn async-iter-fromsync async-iter-query iter-fn iter-lookup iter-query"
         yarn run test-esm --selectProjects "threading-autoresetevent threading-conditionvariable threading-manualresetevent threading-mutex threading-sleep"
         yarn run test-esm --selectProjects "decorators disposable equatable equatable-shim fn fn-partial indexed-object lazy ref reflect-metadata-compat struct-type"
+
     - name: verify
       run: |
         gulp verify
         node node_modules/workspaces-foreach run prepack
+
     - name: docs
       uses: actions/download-artifact@v3
       with:
@@ -227,8 +257,8 @@ jobs:
         git config user.email "<>"
         git add -- ${{ join(fromJson(needs.version.outputs.changed_files), ' ') }}
         git add -- docs
-        git commit -m "v${{ inputs.version }}"
-        git tag -f "v${{ inputs.version }}" -m "v${{ inputs.version }}"
+        git commit -m "v${{ needs.version.outputs.version }}"
+        git tag -f "v${{ needs.version.outputs.version }}" -m "v${{ needs.version.outputs.version }}"
         git push --follow-tags --no-verify --atomic origin ${{ github.ref_name }}
 
     - name: download native artifacts
@@ -236,25 +266,30 @@ jobs:
       with:
         name: native-artifacts
         path: ${{ github.workspace }}
+
     - name: collect native artifacts
       run: |
-        NATIVE_ARTIFACTS=$(find packages/* internal/* -path '*/*/build/stage/*/*.tar.gz');
-        NATIVE_ARTIFACTS_JSON=$(NATIVE_ARTIFACTS=$NATIVE_ARTIFACTS node -e 'process.stdout.write(JSON.stringify(process.env.NATIVE_ARTIFACTS.split(/\n/g).filter(Boolean)))');
+        NATIVE_ARTIFACTS_JSON=$(
+          find packages/* internal/* -path '*/*/build/stage/*/*.tar.gz' |
+          node -e 'process.stdout.write(JSON.stringify(fs.readFileSync(0, "utf8").split(/\n/g).filter(Boolean)))'
+        );
         echo "NATIVE_ARTIFACTS<<EOF" >> $GITHUB_ENV
         echo $NATIVE_ARTIFACTS_JSON >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV
+
     - name: create release
       uses: ncipollo/release-action@v1
       with:
-        tag: "v${{ inputs.version }}"
+        tag: "v${{ needs.version.outputs.version }}"
         commit: ${{ github.sha }}
         draft: ${{ inputs.draft }}
-        prerelease: ${{ inputs.prerelease }}
+        prerelease: ${{ needs.version.outputs.prerelease != 'false' }}
         artifacts: ${{ join(fromJson(env.NATIVE_ARTIFACTS)) }}
         allowUpdates: true
+
     - name: publish
       if: ${{ !inputs.draft }}
       run: |
-        lerna publish from-git --yes --no-verify-access --dist-tag ${{ inputs.dist_tag }}
+        lerna publish from-git --yes --no-verify-access --dist-tag ${{ needs.version.outputs.dist_tag }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
