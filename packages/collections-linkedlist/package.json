@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections-linkedlist",
-    "version": "1.0.0",
+    "version": "1.0.2",
     "description": "LinkedList collection API.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -26,7 +26,7 @@
     },
     "dependencies": {
         "@esfx/collection-core": "^1.0.0",
-        "@esfx/equatable": "^1.0.0"
+        "@esfx/equatable": "^1.0.2"
     },
     "devDependencies": {
         "@esfx/internal-guards": "^1.0.0"
