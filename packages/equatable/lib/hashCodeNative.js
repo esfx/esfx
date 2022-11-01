@@ -19,9 +19,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 const binary = require("@mapbox/node-pre-gyp");
 const path = require("path");
-const hashCodeNative = require(binary.find(path.resolve(path.join(__dirname, "../package.json"))));
-exports.hashBigInt = hashCodeNative.hashBigInt;
-exports.hashNumber = hashCodeNative.hashNumber;
-exports.hashString = hashCodeNative.hashString;
-exports.hashSymbol = hashCodeNative.hashSymbol;
-exports.hashObject = hashCodeNative.hashObject;
+
+let hashCode;
+try { hashCode = require(binary.find(path.resolve(path.join(__dirname, "../package.json")))); }
+catch { hashCode = require("#hash/script"); }
+
+exports.hashBigInt = hashCode.hashBigInt;
+exports.hashNumber = hashCode.hashNumber;
+exports.hashString = hashCode.hashString;
+exports.hashSymbol = hashCode.hashSymbol;
+exports.hashObject = hashCode.hashObject;

@@ -17,10 +17,15 @@
 import { createRequire } from "node:module";
 import { fileURLToPath, URL } from "node:url";
 import binary from "@mapbox/node-pre-gyp";
+
+let hashCode;
+try { hashCode = createRequire(import.meta.url)(binary.find(fileURLToPath(new URL("../package.json", import.meta.url)))); }
+catch { hashCode = await import("#hash/script"); }
+
 export const {
     hashBigInt,
     hashNumber,
     hashString,
     hashSymbol,
     hashObject,
-} = createRequire(import.meta.url)(binary.find(fileURLToPath(new URL("../package.json", import.meta.url))));
+} = hashCode;

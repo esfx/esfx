@@ -19,6 +19,10 @@
                 "import": "./lib/hashCodeNative.mjs"
             }
         },
+        "#hash/script": {
+            "require": "./dist/cjs/internal/hashCode.js",
+            "import": "./dist/esm/internal/hashCode.mjs"
+        },
         "#hash/number": {
             "require": "./dist/cjs/internal/hashCode.js",
             "import": "./dist/esm/internal/hashCode.mjs"
