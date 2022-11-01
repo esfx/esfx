@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-query",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "An iteration and query API for ECMAScript iterables.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -31,7 +31,7 @@
         "@esfx/equatable": "^1.0.0",
         "@esfx/fn": "^1.0.0",
         "@esfx/interval": "^1.0.0",
-        "@esfx/iter-fn": "^1.0.0",
+        "@esfx/iter-fn": "^1.0.1",
         "@esfx/iter-grouping": "^1.0.0",
         "@esfx/iter-hierarchy": "^1.0.0",
         "@esfx/iter-lookup": "^1.0.0",
