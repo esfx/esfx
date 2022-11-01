@@ -1,3 +1,5 @@
+dist/cjs/internal/utils.js
+dist/cjs/internal/utils.js.map
 dist/cjs/grouping.js
 dist/cjs/grouping.js.map
 dist/cjs/hierarchy.js
@@ -14,6 +16,7 @@ dist/cjs/scalars.js
 dist/cjs/scalars.js.map
 dist/cjs/subqueries.js
 dist/cjs/subqueries.js.map
+dist/esm/internal/utils.mjs
 dist/esm/grouping.mjs
 dist/esm/hierarchy.mjs
 dist/esm/index.mjs
