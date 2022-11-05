@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-countdown",
-    "version": "1.1.0-alpha.202210252139",
+    "version": "1.1.0-alpha.202211052202",
     "description": "Provides 'AsyncCountdownEvent', an async coordination primitive.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,11 +25,11 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-manualresetevent": "^1.1.0-alpha.202210252139",
-        "@esfx/cancelable": "^1.1.0-alpha.202210252139"
+        "@esfx/async-manualresetevent": "^1.1.0-alpha.202211052202",
+        "@esfx/cancelable": "^1.1.0-alpha.202211052202"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.1.0-alpha.202210252139"
+        "@esfx/internal-guards": "^1.1.0-alpha.202211052202"
     },
     "publishConfig": {
         "access": "public"

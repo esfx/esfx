@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collection-core-shim",
-    "version": "1.1.0-alpha.202210252139",
+    "version": "1.1.0-alpha.202211052202",
     "description": "A global shim to add default @esfx/collection-core behaviors to global objects.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,7 +25,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.1.0-alpha.202210252139"
+        "@esfx/collection-core": "^1.1.0-alpha.202211052202"
     },
     "publishConfig": {
         "access": "public"
