@@ -1,4 +1,7 @@
 {
+    'variables' : {
+        'openssl_fips': '',
+    },
     "targets": [{
         "target_name": "<(module_name)",
         "sources": [ "lib/hashCodeNative.cpp" ],

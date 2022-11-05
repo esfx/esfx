@@ -13,9 +13,12 @@
     "prebuild": "node node_modules/workspaces-foreach run prebuild",
     "ci": "gulp ci",
     "pack": "node node_modules/workspaces-foreach pack",
-    "build-windows": "gulp build-windows",
-    "build-linux": "gulp build-linux",
-    "build-macos": "gulp build-macos"
+    "package-electron-windows": "gulp package-electron-win32",
+    "package-electron-linux": "gulp package-electron-linux",
+    "package-electron-macos": "gulp package-electron-darwin",
+    "package-node-windows": "gulp package-node-win32",
+    "package-node-linux": "gulp package-node-linux",
+    "package-node-macos": "gulp package-node-darwin"
   },
   "bugs": {
     "url": "https://github.com/esfx/esfx/issues"
@@ -58,6 +61,7 @@
     "fancy-log": "^1.3.3",
     "find-yarn-workspace-root": "^2.0.0",
     "gulp": "^4.0.2",
+    "gulp-cli": "^2.3.0",
     "is-core-module": "^2.2.0",
     "jest": "^29.0.3",
     "jest-performance": "^2.1.0",
@@ -65,6 +69,7 @@
     "lerna": "^3.22.1",
     "node-fetch": "^2.6.1",
     "npm-packlist": "^5.1.3",
+    "npm-run-path": "5.1.0",
     "prompts": "^2.4.0",
     "ts-jest": "^29.0.1",
     "ts-node": "^9.1.1",

@@ -67,9 +67,12 @@ gulp.task("build", build);
 const ci = gulp.series(clean, build);
 gulp.task("ci", ci);
 
-gulp.task("build-windows", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-node-win32-x64"]));
-gulp.task("build-linux", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-node-linux-x64"]));
-gulp.task("build-macos", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-node-darwin-x64"]));
+gulp.task("package-electron-win32", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-electron-win32"]));
+gulp.task("package-electron-linux", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-electron-linux"]));
+gulp.task("package-electron-darwin", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-electron-darwin"]));
+gulp.task("package-node-win32", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-node-win32"]));
+gulp.task("package-node-linux", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-node-linux"]));
+gulp.task("package-node-darwin", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-node-darwin"]));
 gulp.task("pack", () => exec(process.execPath, ["node_modules/workspaces-foreach", "pack", "--silent", "--json"]));
 
 const test = () => {

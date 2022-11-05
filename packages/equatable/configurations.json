@@ -1,0 +1,4 @@
+[
+    { "runtime": "node", "target": null, "target_arch": ["x64"], "target_platform": ["win32", "linux", "darwin"] },
+    { "runtime": "electron", "target": ["8.2.0", "8.1.0", "8.0.0", "7.1.0", "7.0.0", "6.1.0", "6.0.0"], "target_arch": ["x86", "x64"], "target_platform": ["win32", "linux", "darwin"], "args": ["--dist-url=https://electronjs.org/headers"] }
+]

@@ -14,9 +14,10 @@ module.exports = command.from(require("../../baseOpts.js"))(
         include = [],
         exclude = [],
         script,
-        _: args,
+        _: [...args],
         silent = false
     }) => {
-        const { errorCount } = await run(script, args, { parallel, topological, jobs, include, exclude, silent });
+        if (args.length && args[0] === "run") args.shift();
+        const { errorCount } = await run(script, args.map(String), { parallel, topological, jobs, include, exclude, silent });
         process.exit(errorCount);
     });
