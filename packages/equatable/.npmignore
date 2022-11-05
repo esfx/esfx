@@ -17,10 +17,12 @@
 /package.internal.d.ts
 /jest*config.js
 /tsconfig*.json
-binding.gyp_
 .vscode
 .npmfiles
 *.tgz
 *.tsbuildinfo
 __tests__
 __perf__
+binding.gyp_
+configurations.json
+gulpfile.js
