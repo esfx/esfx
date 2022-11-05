@@ -69,7 +69,13 @@
         "build-node-darwin-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=darwin",
         "package-node-win32-x64": "node-pre-gyp configure rebuild package --runtime=node --target_arch=x64 --target_platform=win32",
         "package-node-linux-x64": "node-pre-gyp configure rebuild package --runtime=node --target_arch=x64 --target_platform=linux",
-        "package-node-darwin-x64": "node-pre-gyp configure rebuild package --runtime=node --target_arch=x64 --target_platform=darwin"
+        "package-node-darwin-x64": "node-pre-gyp configure rebuild package --runtime=node --target_arch=x64 --target_platform=darwin",
+        "package-node-win32": "gulp package-node-win32",
+        "package-node-linux": "gulp package-node-linux",
+        "package-node-darwin": "gulp package-node-darwin",
+        "package-electron-win32": "gulp package-electron-win32",
+        "package-electron-linux": "gulp package-electron-linux",
+        "package-electron-darwin": "gulp package-electron-darwin"
     },
     "repository": {
         "type": "git",
@@ -79,7 +85,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@mapbox/node-pre-gyp": "^1.0.9"
+        "@mapbox/node-pre-gyp": "^1.0.10"
     },
     "devDependencies": {
         "@esfx/internal-guards": "^1.1.0-alpha.202210252139",

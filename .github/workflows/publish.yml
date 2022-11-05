@@ -107,9 +107,11 @@ jobs:
         - name: macos
           target: macos-latest
         node:
-        - 16
-        - 18
-    name: "${{ matrix.os.name }} (node v${{ matrix.node }})"
+        - version: 16
+          electron: false
+        - version: 18
+          electron: true
+    name: "${{ matrix.os.name }} (node v${{ matrix.node.version }})"
     runs-on: ${{ matrix.os.target }}
     needs:
     - version
@@ -117,10 +119,10 @@ jobs:
     # TODO: Test binaries
     steps:
     - uses: actions/checkout@v3
-    - name: use node v16
+    - name: use node ${{ matrix.node.version }}
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node }}
+        node-version: ${{ matrix.node.version }}
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
     - name: sync version
@@ -130,8 +132,11 @@ jobs:
         path: ${{ github.workspace }}
     - name: yarn install
       run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
-    - name: build native binaries
-      run: yarn run build-${{ matrix.os.name }}
+    - name: build node binaries
+      run: yarn run package-node-${{ matrix.os.name }}
+    - name: build electron binaries
+      if: ${{ matrix.node.electron == true }}
+      run: yarn run package-electron-${{ matrix.os.name }}
     - name: upload build artifacts
       uses: actions/upload-artifact@v3
       with:
