@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter",
-    "version": "1.1.0-alpha.202210252139",
+    "version": "1.1.1-alpha.202211051745",
     "description": "An iteration and query API for ECMAScript async iterables.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,22 +25,22 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-iter-fn": "^1.1.0-alpha.202210252139",
-        "@esfx/async-iter-hierarchy": "^1.1.0-alpha.202210252139",
-        "@esfx/async-iter-ordered": "^1.1.0-alpha.202210252139",
-        "@esfx/async-iter-query": "^1.1.0-alpha.202210252139",
-        "@esfx/collection-core": "^1.1.0-alpha.202210252139",
-        "@esfx/collections-hashmap": "^1.1.0-alpha.202210252139",
-        "@esfx/collections-hashset": "^1.1.0-alpha.202210252139",
-        "@esfx/equatable": "^1.1.0-alpha.202210252139",
-        "@esfx/fn": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-fn": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-grouping": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-hierarchy": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-lookup": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-ordered": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-page": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-query": "^1.1.0-alpha.202210252139"
+        "@esfx/async-iter-fn": "^1.1.1-alpha.202211051745",
+        "@esfx/async-iter-hierarchy": "^1.1.1-alpha.202211051745",
+        "@esfx/async-iter-ordered": "^1.1.1-alpha.202211051745",
+        "@esfx/async-iter-query": "^1.1.1-alpha.202211051745",
+        "@esfx/collection-core": "^1.1.1-alpha.202211051745",
+        "@esfx/collections-hashmap": "^1.1.1-alpha.202211051745",
+        "@esfx/collections-hashset": "^1.1.1-alpha.202211051745",
+        "@esfx/equatable": "^1.1.1-alpha.202211051745",
+        "@esfx/fn": "^1.1.1-alpha.202211051745",
+        "@esfx/iter-fn": "^1.1.1-alpha.202211051745",
+        "@esfx/iter-grouping": "^1.1.1-alpha.202211051745",
+        "@esfx/iter-hierarchy": "^1.1.1-alpha.202211051745",
+        "@esfx/iter-lookup": "^1.1.1-alpha.202211051745",
+        "@esfx/iter-ordered": "^1.1.1-alpha.202211051745",
+        "@esfx/iter-page": "^1.1.1-alpha.202211051745",
+        "@esfx/iter-query": "^1.1.1-alpha.202211051745"
     },
     "publishConfig": {
         "access": "public"

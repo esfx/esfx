@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-manualresetevent",
-    "version": "1.1.0-alpha.202210252139",
+    "version": "1.1.1-alpha.202211051745",
     "description": "Provides 'AsyncManualResetEvent', an async coordination primitive.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,11 +25,11 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-waitqueue": "^1.1.0-alpha.202210252139",
-        "@esfx/cancelable": "^1.1.0-alpha.202210252139"
+        "@esfx/async-waitqueue": "^1.1.1-alpha.202211051745",
+        "@esfx/cancelable": "^1.1.1-alpha.202211051745"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.1.0-alpha.202210252139"
+        "@esfx/internal-guards": "^1.1.1-alpha.202211051745"
     },
     "publishConfig": {
         "access": "public"

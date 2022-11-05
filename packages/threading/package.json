@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading",
-    "version": "1.1.0-alpha.202210252139",
+    "version": "1.1.1-alpha.202211051745",
     "description": "Thread synchronization primitives for use with Workers.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,15 +25,15 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/threading-autoresetevent": "^1.1.0-alpha.202210252139",
-        "@esfx/threading-conditionvariable": "^1.1.0-alpha.202210252139",
-        "@esfx/threading-countdown": "^1.1.0-alpha.202210252139",
-        "@esfx/threading-lockable": "^1.1.0-alpha.202210252139",
-        "@esfx/threading-manualresetevent": "^1.1.0-alpha.202210252139",
-        "@esfx/threading-mutex": "^1.1.0-alpha.202210252139",
-        "@esfx/threading-semaphore": "^1.1.0-alpha.202210252139",
-        "@esfx/threading-sleep": "^1.1.0-alpha.202210252139",
-        "@esfx/threading-spinwait": "^1.1.0-alpha.202210252139",
+        "@esfx/threading-autoresetevent": "^1.1.1-alpha.202211051745",
+        "@esfx/threading-conditionvariable": "^1.1.1-alpha.202211051745",
+        "@esfx/threading-countdown": "^1.1.1-alpha.202211051745",
+        "@esfx/threading-lockable": "^1.1.1-alpha.202211051745",
+        "@esfx/threading-manualresetevent": "^1.1.1-alpha.202211051745",
+        "@esfx/threading-mutex": "^1.1.1-alpha.202211051745",
+        "@esfx/threading-semaphore": "^1.1.1-alpha.202211051745",
+        "@esfx/threading-sleep": "^1.1.1-alpha.202211051745",
+        "@esfx/threading-spinwait": "^1.1.1-alpha.202211051745",
         "tslib": "^2.4.0"
     },
     "publishConfig": {
