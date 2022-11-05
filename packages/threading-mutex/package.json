@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-mutex",
-    "version": "1.1.0-alpha.202210252139",
+    "version": "1.1.0-alpha.202211051948",
     "description": "Provides 'Mutex', a thread synchronization primitive for use with Workers",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,13 +25,13 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.1.0-alpha.202210252139",
-        "@esfx/threading-lockable": "^1.1.0-alpha.202210252139"
+        "@esfx/disposable": "^1.1.0-alpha.202211051948",
+        "@esfx/threading-lockable": "^1.1.0-alpha.202211051948"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.1.0-alpha.202210252139",
-        "@esfx/internal-threading": "^1.1.0-alpha.202210252139",
-        "@esfx/internal-ts-worker": "^1.1.0-alpha.202210252139"
+        "@esfx/internal-guards": "^1.1.0-alpha.202211051948",
+        "@esfx/internal-threading": "^1.1.0-alpha.202211051948",
+        "@esfx/internal-ts-worker": "^1.1.0-alpha.202211051948"
     },
     "publishConfig": {
         "access": "public"

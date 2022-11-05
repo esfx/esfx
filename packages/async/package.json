@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async",
-    "version": "1.1.0-alpha.202210252139",
+    "version": "1.1.0-alpha.202211051948",
     "description": "Provides a number of async coordination primitive.",
     "types": "./dist/types/index.d.ts",
     "main": "./dist/cjs/index.js",
@@ -25,21 +25,21 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-autoresetevent": "^1.1.0-alpha.202210252139",
-        "@esfx/async-barrier": "^1.1.0-alpha.202210252139",
-        "@esfx/async-conditionvariable": "^1.1.0-alpha.202210252139",
-        "@esfx/async-countdown": "^1.1.0-alpha.202210252139",
-        "@esfx/async-deferred": "^1.1.0-alpha.202210252139",
-        "@esfx/async-delay": "^1.1.0-alpha.202210252139",
-        "@esfx/async-lazy": "^1.1.0-alpha.202210252139",
-        "@esfx/async-lockable": "^1.1.0-alpha.202210252139",
-        "@esfx/async-manualresetevent": "^1.1.0-alpha.202210252139",
-        "@esfx/async-mutex": "^1.1.0-alpha.202210252139",
-        "@esfx/async-queue": "^1.1.0-alpha.202210252139",
-        "@esfx/async-readerwriterlock": "^1.1.0-alpha.202210252139",
-        "@esfx/async-semaphore": "^1.1.0-alpha.202210252139",
-        "@esfx/async-stack": "^1.1.0-alpha.202210252139",
-        "@esfx/canceltoken": "^1.1.0-alpha.202210252139"
+        "@esfx/async-autoresetevent": "^1.1.0-alpha.202211051948",
+        "@esfx/async-barrier": "^1.1.0-alpha.202211051948",
+        "@esfx/async-conditionvariable": "^1.1.0-alpha.202211051948",
+        "@esfx/async-countdown": "^1.1.0-alpha.202211051948",
+        "@esfx/async-deferred": "^1.1.0-alpha.202211051948",
+        "@esfx/async-delay": "^1.1.0-alpha.202211051948",
+        "@esfx/async-lazy": "^1.1.0-alpha.202211051948",
+        "@esfx/async-lockable": "^1.1.0-alpha.202211051948",
+        "@esfx/async-manualresetevent": "^1.1.0-alpha.202211051948",
+        "@esfx/async-mutex": "^1.1.0-alpha.202211051948",
+        "@esfx/async-queue": "^1.1.0-alpha.202211051948",
+        "@esfx/async-readerwriterlock": "^1.1.0-alpha.202211051948",
+        "@esfx/async-semaphore": "^1.1.0-alpha.202211051948",
+        "@esfx/async-stack": "^1.1.0-alpha.202211051948",
+        "@esfx/canceltoken": "^1.1.0-alpha.202211051948"
     },
     "publishConfig": {
         "access": "public"

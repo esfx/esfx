@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-query",
-    "version": "1.1.0-alpha.202210252139",
+    "version": "1.1.0-alpha.202211051948",
     "description": "An iteration and query API for ECMAScript iterables.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,23 +25,23 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.1.0-alpha.202210252139",
-        "@esfx/collections-hashmap": "^1.1.0-alpha.202210252139",
-        "@esfx/collections-hashset": "^1.1.0-alpha.202210252139",
-        "@esfx/equatable": "^1.1.0-alpha.202210252139",
-        "@esfx/fn": "^1.1.0-alpha.202210252139",
-        "@esfx/interval": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-fn": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-grouping": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-hierarchy": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-lookup": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-ordered": "^1.1.0-alpha.202210252139",
-        "@esfx/iter-page": "^1.1.0-alpha.202210252139",
+        "@esfx/collection-core": "^1.1.0-alpha.202211051948",
+        "@esfx/collections-hashmap": "^1.1.0-alpha.202211051948",
+        "@esfx/collections-hashset": "^1.1.0-alpha.202211051948",
+        "@esfx/equatable": "^1.1.0-alpha.202211051948",
+        "@esfx/fn": "^1.1.0-alpha.202211051948",
+        "@esfx/interval": "^1.1.0-alpha.202211051948",
+        "@esfx/iter-fn": "^1.1.0-alpha.202211051948",
+        "@esfx/iter-grouping": "^1.1.0-alpha.202211051948",
+        "@esfx/iter-hierarchy": "^1.1.0-alpha.202211051948",
+        "@esfx/iter-lookup": "^1.1.0-alpha.202211051948",
+        "@esfx/iter-ordered": "^1.1.0-alpha.202211051948",
+        "@esfx/iter-page": "^1.1.0-alpha.202211051948",
         "tslib": "^2.4.0"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.1.0-alpha.202210252139",
-        "@esfx/internal-jest-sequence": "^1.1.0-alpha.202210252139"
+        "@esfx/internal-guards": "^1.1.0-alpha.202211051948",
+        "@esfx/internal-jest-sequence": "^1.1.0-alpha.202211051948"
     },
     "publishConfig": {
         "access": "public"
