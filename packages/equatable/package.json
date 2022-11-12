@@ -64,18 +64,13 @@
         "build-native": "node-pre-gyp configure build --runtime=node --target_arch=x64",
         "build-wasm": "node ./scripts/build-wasm.js -i src/internal/hashers/xxhash64.wast --mjs src/internal/hashers/xxhash64.generated.ts",
         "prebuild": "yarn run build-native && yarn run build-wasm",
-        "build-node-win32-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=win32",
-        "build-node-linux-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=linux",
-        "build-node-darwin-x64": "node-pre-gyp configure rebuild --runtime=node --target_arch=x64 --target_platform=darwin",
-        "package-node-win32-x64": "node-pre-gyp configure rebuild package --runtime=node --target_arch=x64 --target_platform=win32",
-        "package-node-linux-x64": "node-pre-gyp configure rebuild package --runtime=node --target_arch=x64 --target_platform=linux",
-        "package-node-darwin-x64": "node-pre-gyp configure rebuild package --runtime=node --target_arch=x64 --target_platform=darwin",
-        "package-node-win32": "gulp package-node-win32",
+
+        "package-node-windows": "gulp package-node-win32",
         "package-node-linux": "gulp package-node-linux",
-        "package-node-darwin": "gulp package-node-darwin",
-        "package-electron-win32": "gulp package-electron-win32",
+        "package-node-macos": "gulp package-node-darwin",
+        "package-electron-windows": "gulp package-electron-win32",
         "package-electron-linux": "gulp package-electron-linux",
-        "package-electron-darwin": "gulp package-electron-darwin"
+        "package-electron-macos": "gulp package-electron-darwin"
     },
     "repository": {
         "type": "git",

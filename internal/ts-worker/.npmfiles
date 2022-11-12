@@ -5,6 +5,8 @@ dist/types/index.d.ts
 dist/types/index.d.ts.map
 lib/resolve.cjs
 lib/resolve.mjs
+lib/resolve.d.cts
+lib/resolve.d.mts
 LICENSE
 README.md
 package.json

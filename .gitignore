@@ -11,3 +11,11 @@ dist
 /obj
 /packages/*/obj
 /internal/*/obj
+
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

@@ -45,10 +45,12 @@ jobs:
       prerelease: ${{ steps.validate.outputs.prerelease }}
       changed_files: ${{ steps.detect_changes.outputs.changed_files }}
       changed_packages: ${{ steps.detect_changes.outputs.changed_packages }}
+
     steps:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+
     - uses: actions/setup-node@v3
       with:
         node-version: 16
@@ -65,9 +67,11 @@ jobs:
         node scripts/validate-version.js
 
     - name: yarn install
-      run: yarn install --ignore-scripts --non-interactive
+      run: yarn install --immutable --mode=skip-build
+
     - name: lerna version
       run: lerna version ${{ steps.validate.outputs.version }} --no-git-tag-version --no-push --yes $([ ${{inputs.force_publish }} == true ] && echo "--force-publish")
+
     - name: upload version artifacts
       uses: actions/upload-artifact@v3
       with:
@@ -82,19 +86,19 @@ jobs:
     - name: detect changes
       id: detect_changes
       run: |
-        CHANGED_FILES_JSON=$(
+        # collect the package files that have changed since the last version bump, producing a JSON array of file names.
+        echo "changed_files=$(
           git status --porcelain -- package.json lerna.json yarn.lock internal/*/package*.json packages/*/package*.json |
           cut -c 4- |
           node -e 'process.stdout.write(JSON.stringify(fs.readFileSync(0, "utf8").split(/\n/g).filter(Boolean)))'
-        );
-        echo "changed_files=$CHANGED_FILES_JSON" >> $GITHUB_OUTPUT;
+        )" >> $GITHUB_OUTPUT;
 
-        CHANGED_PACKAGES_JSON=$(
+        # collect the package.json files that have changed since the last version bump, producing a JSON object like '{ [path]: true }'
+        echo "changed_packages=$(
           git status --porcelain -- internal/*/package.json packages/*/package.json |
           cut -c 4- |
           node -e 'process.stdout.write(JSON.stringify(fs.readFileSync(0, "utf8").split(/\n/g).filter(Boolean).reduce((obj, path) => ({ ...obj, [path]: true }), {})))'
-        );
-        echo "changed_packages=$CHANGED_PACKAGES_JSON" >> $GITHUB_OUTPUT;
+        )" >> $GITHUB_OUTPUT;
 
   native:
     strategy:
@@ -116,29 +120,37 @@ jobs:
         - label: electron
           runtime: electron
           node_version: 18
+
     name: "${{ matrix.os.name }} (${{ matrix.runtime.label }})"
     runs-on: ${{ matrix.os.target }}
     needs:
     - version
+
     # TODO: Do not build if binary packages not included in changed packages
     # TODO: Test binaries
+
     steps:
     - uses: actions/checkout@v3
+
     - name: use node ${{ matrix.runtime.node_version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.runtime.node_version }}
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
+
+    - name: install
+      run: yarn install --immutable --mode=skip-build
+
     - name: sync version
       uses: actions/download-artifact@v3
       with:
         name: version-artifacts
         path: ${{ github.workspace }}
-    - name: install
-      run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
+
     - name: build ${{ matrix.runtime.runtime }} binaries
-      run: yarn run package-${{ matrix.runtime.runtime }}-${{ matrix.os.name }}
+      run: yarn run build-${{ matrix.runtime.runtime }}-${{ matrix.os.name }}
+
     - name: upload build artifacts
       uses: actions/upload-artifact@v3
       with:
@@ -151,37 +163,40 @@ jobs:
     runs-on: windows-2019
     needs:
     - version
+
     steps:
     - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
+
     - uses: actions/setup-node@v3
       with:
         node-version: 16
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
-    - name: version
-      uses: actions/download-artifact@v3
-      with:
-        name: version-artifacts
-        path: ${{ github.workspace }}
+
     - name: install
       run: |
-        yarn install --ignore-scripts --frozen-lockfile --non-interactive
+        yarn install --immutable --mode=skip-build
 
         # manually run post-install scripts:
         pushd node_modules/wasm-opt
         node bin/index.js
         popd
-    - name: link
-      run: lerna link
+
+    - name: version
+      uses: actions/download-artifact@v3
+      with:
+        name: version-artifacts
+        path: ${{ github.workspace }}
+
     - name: build
       run: |
-        gulp clean
+        yarn run clean
         yarn run prebuild
-        gulp build
+        yarn run build
+
     - name: docs
-      run: gulp docs
+      run: yarn run docs
+
     - name: upload docs artifacts
       uses: actions/upload-artifact@v3
       with:
@@ -195,10 +210,9 @@ jobs:
     - version
     - native
     - docs
+
     steps:
     - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
 
     - uses: actions/setup-node@v3
       with:
@@ -206,29 +220,26 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
 
-    - name: version
-      uses: actions/download-artifact@v3
-      with:
-        name: version-artifacts
-        path: ${{ github.workspace }}
-
     - name: install
       run: |
-        yarn install --ignore-scripts --frozen-lockfile --non-interactive
+        yarn install --immutable --mode=skip-build
 
         # manually run post-install scripts:
         pushd node_modules/wasm-opt
         node bin/index.js
         popd
 
-    - name: link
-      run: lerna link
+    - name: version
+      uses: actions/download-artifact@v3
+      with:
+        name: version-artifacts
+        path: ${{ github.workspace }}
 
     - name: build
       run: |
-        gulp clean
+        yarn run clean
         yarn run prebuild
-        gulp build
+        yarn run build
 
     - name: test
       run: |
@@ -249,8 +260,8 @@ jobs:
 
     - name: verify
       run: |
-        gulp verify
-        node node_modules/workspaces-foreach run prepack
+        yarn run verify
+        yarn run prepack
 
     - name: docs
       uses: actions/download-artifact@v3
@@ -276,13 +287,12 @@ jobs:
 
     - name: collect native artifacts
       run: |
-        NATIVE_ARTIFACTS_JSON=$(
+        echo "NATIVE_ARTIFACTS<<EOF" >> $GITHUB_ENV;
+        echo "$(
           find packages/* internal/* -path '*/*/build/stage/*/*.tar.gz' |
           node -e 'process.stdout.write(JSON.stringify(fs.readFileSync(0, "utf8").split(/\n/g).filter(Boolean)))'
-        );
-        echo "NATIVE_ARTIFACTS<<EOF" >> $GITHUB_ENV
-        echo $NATIVE_ARTIFACTS_JSON >> $GITHUB_ENV
-        echo "EOF" >> $GITHUB_ENV
+        )" >> $GITHUB_ENV;
+        echo "EOF" >> $GITHUB_ENV;
 
     - name: create release
       uses: ncipollo/release-action@v1

@@ -1,8 +1,6 @@
 // @ts-check
-import gulp from "gulp";
-import { exec, ArgsBuilder } from "../../scripts/exec.js";
-import { npmRunPathEnv } from "npm-run-path";
-import { createRequire } from "module";
+const gulp = require("gulp");
+const { exec, ArgsBuilder } = require("../../scripts/exec.js");
 
 /**
  * @typedef Matrix
@@ -41,7 +39,7 @@ import { createRequire } from "module";
  */
 
 /** @type {Matrix[]} */
-const matrix = createRequire(import.meta.url)("./configurations.json");
+const matrix = require("./configurations.json");
 const configurations = computeConfigurations(matrix);
 createTasks(configurations);
 
@@ -138,6 +136,7 @@ function computeTaskEntries(configurations) {
             if (config.target_arch) args.addValue(`--target_arch=${config.target_arch}`);
             if (config.target_platform) args.addValue(`--target_platform=${config.target_platform}`);
             const configArgs = config.args ?? [];
+            const { npmRunPathEnv } = await import("npm-run-path");
             await exec("node-pre-gyp", [...args, ...configArgs], { verbose: true, env: npmRunPathEnv() });
         };
         gulp.task(buildTask.displayName = buildTaskName, buildTask);
@@ -154,6 +153,7 @@ function computeTaskEntries(configurations) {
             if (config.target_arch) args.addValue(`--target_arch=${config.target_arch}`);
             if (config.target_platform) args.addValue(`--target_platform=${config.target_platform}`);
             const configArgs = config.args ?? [];
+            const { npmRunPathEnv } = await import("npm-run-path");
             await exec("node-pre-gyp", [...args, ...configArgs], { verbose: true, env: npmRunPathEnv() });
         };
         gulp.task(packageTask.displayName = packageTaskName, packageTask);
@@ -168,6 +168,7 @@ function computeTaskEntries(configurations) {
             if (config.target_arch) args.addValue(`--target_arch=${config.target_arch}`);
             if (config.target_platform) args.addValue(`--target_platform=${config.target_platform}`);
             const configArgs = config.args ?? [];
+            const { npmRunPathEnv } = await import("npm-run-path");
             await exec("node-pre-gyp", [...args, ...configArgs], { verbose: true, env: npmRunPathEnv() });
         };
         gulp.task(cleanTask.displayName = cleanTaskName, cleanTask);

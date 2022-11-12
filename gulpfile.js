@@ -2,13 +2,12 @@ const fs = require("fs");
 const gulp = require("gulp");
 const del = require("del");
 const path = require("path");
-const ts = require("typescript");
-const { buildProject, cleanProject } = require("./scripts/build");
+const { buildProject } = require("./scripts/build");
 const { exec, ArgsBuilder } = require("./scripts/exec");
 const { Semaphore } = require("./scripts/semaphore");
 const { apiExtractor, apiDocumenter, docfx, installDocFx } = require("./scripts/docs");
 const { fname } = require("./scripts/fname");
-const { BuildOrder } = require("./scripts/build/buildOrder");
+
 const yargs = require("yargs")
     .option("testNamePattern", { type: "string", alias: ["tests", "test", "T", "t"] })
     .option("testPathPattern", { type: "string", alias: ["files", "file", "F"] })
@@ -39,10 +38,6 @@ const publicPackages = fs.readdirSync("packages")
     .filter(pkg => fs.existsSync(`${pkg}/tsconfig.json`))
     .sort();
 
-// const buildOrder = new BuildOrder();
-// for (const pkg of internalPackages) buildOrder.add(pkg);
-// for (const pkg of publicPackages) buildOrder.add(pkg);
-
 const { build: build_internal, clean: clean_internal } = makeProjects(internalPackages);
 gulp.task("internal", build_internal);
 
@@ -61,19 +56,21 @@ const clean_dist = () => del([
 const clean = gulp.series(gulp.parallel(clean_internal, clean_packages), clean_dist);
 gulp.task("clean", clean);
 
+const prebuild = () => exec("yarn", ["workspaces", "foreach", "run", "prebuild"], { verbose: true });
+gulp.task("prebuild", prebuild);
+
 const build = gulp.parallel(build_internal, build_packages);
 gulp.task("build", build);
 
 const ci = gulp.series(clean, build);
 gulp.task("ci", ci);
 
-gulp.task("package-electron-win32", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-electron-win32"]));
-gulp.task("package-electron-linux", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-electron-linux"]));
-gulp.task("package-electron-darwin", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-electron-darwin"]));
-gulp.task("package-node-win32", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-node-win32"]));
-gulp.task("package-node-linux", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-node-linux"]));
-gulp.task("package-node-darwin", () => exec(process.execPath, ["node_modules/workspaces-foreach", "run", "package-node-darwin"]));
-gulp.task("pack", () => exec(process.execPath, ["node_modules/workspaces-foreach", "pack", "--silent", "--json"]));
+for (const runtime of ["node", "electron"]) for (const platform of ["windows", "linux", "macos"]) {
+    const taskName = `build-${runtime}-${platform}`;
+    const taskFunction = () => exec("yarn", ["workspaces", "foreach", "run", `package-${runtime}-${platform}`], { verbose: true });
+    taskFunction.displayName = taskName;
+    gulp.task(taskName, taskFunction);
+}
 
 const test = () => {
     const args = new ArgsBuilder();
@@ -89,7 +86,6 @@ const test = () => {
     args.addSwitch("--selectProjects", argv.selectProjects?.join(" "));
     return exec(process.execPath, [require.resolve("jest/bin/jest"), ...args], { verbose: true });
 };
-// gulp.task("test", gulp.series(build, test));
 gulp.task("test", gulp.series(gulp.task("internal/jest-sequence"), test));
 
 const test_esm = () => {
@@ -132,9 +128,6 @@ gulp.task("test-clear-cache", () => {
     return exec(process.execPath, [require.resolve("jest/bin/jest"), ...args], { verbose: true });
 });
 
-// const watch = () => spawn('node', [require.resolve("jest /bin/jest"), "--watch"], { stdio: "inherit" });
-// gulp.task("watch", watch);
-
 const verify = () => {
     const args = new ArgsBuilder();
     args.addSwitch("--fix", argv.fix, false);
@@ -142,6 +135,9 @@ const verify = () => {
     return exec(process.execPath, [require.resolve("./scripts/verify.js"), ...args], { verbose: true });
 };
 gulp.task("verify", verify);
+
+const prepack = () => exec("yarn", ["workspaces", "foreach", "run", "prepack"], { verbose: true });
+gulp.task("prepack", prepack);
 
 gulp.task("default", gulp.series(build, verify, test));
 
@@ -251,6 +247,7 @@ const docsSem = new Semaphore();
 
 const docsApiExtractor = gulp.parallel(docPackages.map(docPackage => fname(`docs:api-extractor:${docPackage}`, () => apiExtractor({ projectFolder: docPackage, force: argv.force, verbose: argv.verbose, docPackagePattern }))));
 docsApiExtractor.name = "docs:api-extractor";
+
 const docsApiDocumenter = fname(`docs:api-documenter`, () => apiDocumenter({ projectFolders: docPackages, docPackagePattern }));
 const docsDocfx = fname("docs:docfx", () => docfx({ serve: argv.serve, build: true }));
 const docsDocfxServe = fname("docs:docfx:serve", () => docfx({ serve: true, build: false }));

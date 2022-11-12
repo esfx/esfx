@@ -30,22 +30,27 @@ jobs:
         - label: electron
           runtime: electron
           node_version: 18
+
     name: "${{ matrix.os.name }} (${{ matrix.runtime.label }})"
     runs-on: ${{ matrix.os.target }}
     needs:
     - version
+
     steps:
     - uses: actions/checkout@v3
+
     - name: use node ${{ matrix.runtime.node_version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.runtime.node_version }}
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
-    - name: install
-      run: yarn install --ignore-scripts --frozen-lockfile --non-interactive
+
+    - name: yarn install
+      run: yarn install --immutable --mode=skip-build
+
     - name: build ${{ matrix.runtime.runtime }} binaries
-      run: yarn run package-${{ matrix.runtime.runtime }}-${{ matrix.os.name }}
+      run: yarn run build-${{ matrix.runtime.runtime }}-${{ matrix.os.name }}
 
   test:
     runs-on: ubuntu-latest
@@ -60,26 +65,28 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+
     - uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node }}
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
+
     - name: install
       run: |
-        yarn install --ignore-scripts --frozen-lockfile --non-interactive
+        yarn install --immutable --mode=skip-build
 
         # manually run post-install scripts:
         pushd node_modules/wasm-opt
         node bin/index.js
         popd
-    - name: link
-      run: lerna link
+
     - name: build
       run: |
         gulp clean
         yarn run prebuild
         gulp build
+
     - name: test
       run: |
         yarn run test --selectProjects "collections-hash ts-worker"
@@ -88,6 +95,7 @@ jobs:
         yarn run test --selectProjects "async-iter-fn async-iter-fromsync async-iter-query iter-fn iter-lookup iter-query"
         yarn run test --selectProjects "threading-autoresetevent threading-conditionvariable threading-manualresetevent threading-mutex threading-sleep"
         yarn run test --selectProjects "decorators disposable equatable equatable-shim fn fn-partial indexed-object lazy ref reflect-metadata-compat struct-type"
+
     - name: test (esm output)
       run: |
         yarn run test-esm --selectProjects "async-autoresetevent async-barrier async-conditionvariable async-countdown async-deferred async-manualresetevent async-mutex async-queue async-readerwriterlock async-semaphore async-stack canceltoken"
@@ -102,26 +110,28 @@ jobs:
     - uses: actions/checkout@v3
       with:
         fetch-depth: 0
+
     - uses: actions/setup-node@v3
       with:
         node-version: 16
         registry-url: 'https://registry.npmjs.org'
         cache: 'yarn'
+
     - name: install
       run: |
-        yarn install --ignore-scripts --frozen-lockfile --non-interactive
+        yarn install --immutable --mode=skip-build
 
         # manually run post-install scripts:
         pushd node_modules/wasm-opt
         node bin/index.js
         popd
-    - name: link
-      run: lerna link
+
     - name: build
       run: |
         gulp clean
         yarn run prebuild
         gulp build
+
     - name: verify
       run: |
         gulp verify

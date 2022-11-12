@@ -7,18 +7,21 @@
     "url": "https://github.com/esfx/esfx.git"
   },
   "scripts": {
+    "ci": "gulp ci",
+    "clean": "gulp clean",
+    "prebuild": "gulp prebuild",
+    "build": "gulp build",
     "test": "gulp test",
     "test-esm": "gulp test:esm",
-    "clean": "gulp clean",
-    "prebuild": "node node_modules/workspaces-foreach run prebuild",
-    "ci": "gulp ci",
-    "pack": "node node_modules/workspaces-foreach pack",
-    "package-electron-windows": "gulp package-electron-win32",
-    "package-electron-linux": "gulp package-electron-linux",
-    "package-electron-macos": "gulp package-electron-darwin",
-    "package-node-windows": "gulp package-node-win32",
-    "package-node-linux": "gulp package-node-linux",
-    "package-node-macos": "gulp package-node-darwin"
+    "docs": "gulp docs",
+    "verify": "gulp verify",
+    "prepack": "gulp prepack",
+    "build-node-windows": "gulp build-node-windows",
+    "build-node-linux": "gulp build-node-linux",
+    "build-node-macos": "gulp build-node-macos",
+    "build-electron-windows": "gulp build-electron-windows",
+    "build-electron-linux": "gulp build-electron-linux",
+    "build-electron-macos": "gulp build-electron-macos"
   },
   "bugs": {
     "url": "https://github.com/esfx/esfx/issues"
@@ -59,14 +62,13 @@
     "diff": "^5.0.0",
     "extract-zip": "^2.0.1",
     "fancy-log": "^1.3.3",
-    "find-yarn-workspace-root": "^2.0.0",
-    "gulp": "^4.0.2",
+    "gulp": "latest",
     "gulp-cli": "^2.3.0",
     "is-core-module": "^2.2.0",
     "jest": "^29.0.3",
     "jest-performance": "^2.1.0",
     "js-yaml": "^3.13.1",
-    "lerna": "^3.22.1",
+    "lerna": "latest",
     "node-fetch": "^2.6.1",
     "npm-packlist": "^5.1.3",
     "npm-run-path": "5.1.0",
@@ -75,9 +77,8 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.6.1-rc",
     "wasm-opt": "^1.3.0",
-    "workspaces-foreach": "link:./scripts/workspaces-foreach",
     "yargs": "^16.2.0",
     "yargs-unparser": "^2.0.0"
   },
-  "dependencies": {}
+  "packageManager": "yarn@3.2.4"
 }
