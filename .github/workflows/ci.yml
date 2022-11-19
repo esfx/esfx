@@ -47,7 +47,11 @@ jobs:
         cache: 'yarn'
 
     - name: yarn install
-      run: yarn install --immutable --mode=skip-build
+      run: yarn install --immutable
+
+    - name: generate native packages
+      run: |
+        yarn run generate-native-packages
 
     - name: build ${{ matrix.runtime.runtime }} binaries
       run: yarn run build-${{ matrix.runtime.runtime }}-${{ matrix.os.name }}
@@ -74,18 +78,13 @@ jobs:
 
     - name: install
       run: |
-        yarn install --immutable --mode=skip-build
-
-        # manually run post-install scripts:
-        pushd node_modules/wasm-opt
-        node bin/index.js
-        popd
+        yarn install --immutable
 
     - name: build
       run: |
-        gulp clean
+        yarn run clean
         yarn run prebuild
-        gulp build
+        yarn run build
 
     - name: test
       run: |
@@ -119,20 +118,15 @@ jobs:
 
     - name: install
       run: |
-        yarn install --immutable --mode=skip-build
-
-        # manually run post-install scripts:
-        pushd node_modules/wasm-opt
-        node bin/index.js
-        popd
+        yarn install --immutable
 
     - name: build
       run: |
-        gulp clean
+        yarn run clean
         yarn run prebuild
-        gulp build
+        yarn run build
 
     - name: verify
       run: |
-        gulp verify
-        node node_modules/workspaces-foreach run prepack
+        yarn run verify
+        yarn run prepack

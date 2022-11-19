@@ -25,22 +25,22 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-iter-fn": "^1.1.0-alpha.202211052202",
-        "@esfx/async-iter-hierarchy": "^1.1.0-alpha.202211052202",
-        "@esfx/async-iter-ordered": "^1.1.0-alpha.202211052202",
-        "@esfx/async-iter-query": "^1.1.0-alpha.202211052202",
-        "@esfx/collection-core": "^1.1.0-alpha.202211052202",
-        "@esfx/collections-hashmap": "^1.1.0-alpha.202211052202",
-        "@esfx/collections-hashset": "^1.1.0-alpha.202211052202",
-        "@esfx/equatable": "^1.1.0-alpha.202211052202",
-        "@esfx/fn": "^1.1.0-alpha.202211052202",
-        "@esfx/iter-fn": "^1.1.0-alpha.202211052202",
-        "@esfx/iter-grouping": "^1.1.0-alpha.202211052202",
-        "@esfx/iter-hierarchy": "^1.1.0-alpha.202211052202",
-        "@esfx/iter-lookup": "^1.1.0-alpha.202211052202",
-        "@esfx/iter-ordered": "^1.1.0-alpha.202211052202",
-        "@esfx/iter-page": "^1.1.0-alpha.202211052202",
-        "@esfx/iter-query": "^1.1.0-alpha.202211052202"
+        "@esfx/async-iter-fn": "workspace:*",
+        "@esfx/async-iter-hierarchy": "workspace:*",
+        "@esfx/async-iter-ordered": "workspace:*",
+        "@esfx/async-iter-query": "workspace:*",
+        "@esfx/collection-core": "workspace:*",
+        "@esfx/collections-hashmap": "workspace:*",
+        "@esfx/collections-hashset": "workspace:*",
+        "@esfx/equatable": "workspace:*",
+        "@esfx/fn": "workspace:*",
+        "@esfx/iter-fn": "workspace:*",
+        "@esfx/iter-grouping": "workspace:*",
+        "@esfx/iter-hierarchy": "workspace:*",
+        "@esfx/iter-lookup": "workspace:*",
+        "@esfx/iter-ordered": "workspace:*",
+        "@esfx/iter-page": "workspace:*",
+        "@esfx/iter-query": "workspace:*"
     },
     "publishConfig": {
         "access": "public"

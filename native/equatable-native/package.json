@@ -1,0 +1,35 @@
+{
+    "name": "@esfx/equatable-native",
+    "version": "1.1.0-alpha.0",
+    "description": "Node native bindings for @esfx/equatable",
+    "private": true,
+    "main": "//",
+    "type": "commonjs",
+    "author": "Ron Buckton (rbuckton@chronicles.org)",
+    "license": "Apache-2.0",
+    "scripts": {
+        "install": "",
+        "generate-native-packages": "gulp generate-native-packages",
+        "build-node-windows": "gulp build-node-win32",
+        "build-node-linux": "gulp build-node-linux",
+        "build-node-macos": "gulp build-node-darwin",
+        "build-electron-windows": "gulp build-electron-win32",
+        "build-electron-linux": "gulp build-electron-linux",
+        "build-electron-macos": "gulp build-electron-darwin"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/esfx/esfx.git"
+    },
+    "bugs": {
+        "url": "https://github.com/esfx/esfx/issues"
+    },
+    "devDependencies": {
+        "@mapbox/node-pre-gyp": "^1.0.9"
+    },
+    "binary": {
+        "module_name": "hashCodeNative",
+        "module_path": "../equatable-native-{platform}-{arch}/dist/{node_abi}-{platform}-{arch}/",
+        "host": "//"
+    }
+}

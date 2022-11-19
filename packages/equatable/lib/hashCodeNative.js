@@ -17,11 +17,21 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 
-const binary = require("@mapbox/node-pre-gyp");
-const path = require("path");
-const hashCodeNative = require(binary.find(path.resolve(path.join(__dirname, "../package.json"))));
-exports.hashBigInt = hashCodeNative.hashBigInt;
-exports.hashNumber = hashCodeNative.hashNumber;
-exports.hashString = hashCodeNative.hashString;
-exports.hashSymbol = hashCodeNative.hashSymbol;
-exports.hashObject = hashCodeNative.hashObject;
+let hashCode;
+try {
+    hashCode = require(`@esfx/equatable-native-${process.platform}-${process.arch}`);
+    hashCode.hashBigInt.native = true;
+    hashCode.hashNumber.native = true;
+    hashCode.hashString.native = true;
+    hashCode.hashSymbol.native = true;
+    hashCode.hashObject.native = true;
+}
+catch {
+    hashCode = require("../dist/cjs/internal/hashCode.js");
+}
+
+exports.hashBigInt = hashCode.hashBigInt;
+exports.hashNumber = hashCode.hashNumber;
+exports.hashString = hashCode.hashString;
+exports.hashSymbol = hashCode.hashSymbol;
+exports.hashObject = hashCode.hashObject;

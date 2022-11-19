@@ -23,6 +23,11 @@ on:
         required: false
         type: boolean
         default: false
+      create_release:
+        description: create release
+        required: true
+        type: boolean
+        default: true
       prerelease:
         description: prerelease
         required: true
@@ -67,7 +72,12 @@ jobs:
         node scripts/validate-version.js
 
     - name: yarn install
-      run: yarn install --immutable --mode=skip-build
+      run: |
+        yarn install --immutable
+
+    - name: generate native packages
+      run: |
+        yarn run generate-native-packages
 
     - name: lerna version
       run: lerna version ${{ steps.validate.outputs.version }} --no-git-tag-version --no-push --yes $([ ${{inputs.force_publish }} == true ] && echo "--force-publish")
@@ -79,6 +89,7 @@ jobs:
         path: |
           internal/*/package*.json
           packages/*/package*.json
+          native/*/package*.json
           package.json
           lerna.json
           yarn.lock
@@ -140,9 +151,10 @@ jobs:
         cache: 'yarn'
 
     - name: install
-      run: yarn install --immutable --mode=skip-build
+      run: |
+        yarn install --immutable
 
-    - name: sync version
+    - name: version
       uses: actions/download-artifact@v3
       with:
         name: version-artifacts
@@ -156,8 +168,7 @@ jobs:
       with:
         name: native-artifacts
         path: |
-          internal/*/build/stage/**
-          packages/*/build/stage/**
+          native/*/dist/**
 
   docs:
     runs-on: windows-2019
@@ -175,12 +186,7 @@ jobs:
 
     - name: install
       run: |
-        yarn install --immutable --mode=skip-build
-
-        # manually run post-install scripts:
-        pushd node_modules/wasm-opt
-        node bin/index.js
-        popd
+        yarn install --immutable
 
     - name: version
       uses: actions/download-artifact@v3
@@ -222,12 +228,11 @@ jobs:
 
     - name: install
       run: |
-        yarn install --immutable --mode=skip-build
+        yarn install --immutable
 
-        # manually run post-install scripts:
-        pushd node_modules/wasm-opt
-        node bin/index.js
-        popd
+    - name: generate native packages
+      run: |
+        yarn run generate-native-packages
 
     - name: version
       uses: actions/download-artifact@v3
@@ -240,6 +245,12 @@ jobs:
         yarn run clean
         yarn run prebuild
         yarn run build
+
+    - name: download native artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: native-artifacts
+        path: ${{ github.workspace }}/native
 
     - name: test
       run: |
@@ -263,13 +274,14 @@ jobs:
         yarn run verify
         yarn run prepack
 
-    - name: docs
+    - name: download docs artifacts
       uses: actions/download-artifact@v3
       with:
         name: docs-artifacts
         path: docs
 
     - name: commit and tag version
+      if: ${{ inputs.create_release }}
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
@@ -279,33 +291,18 @@ jobs:
         git tag -f "v${{ needs.version.outputs.version }}" -m "v${{ needs.version.outputs.version }}"
         git push --follow-tags --no-verify --atomic origin ${{ github.ref_name }}
 
-    - name: download native artifacts
-      uses: actions/download-artifact@v3
-      with:
-        name: native-artifacts
-        path: ${{ github.workspace }}
-
-    - name: collect native artifacts
-      run: |
-        echo "NATIVE_ARTIFACTS<<EOF" >> $GITHUB_ENV;
-        echo "$(
-          find packages/* internal/* -path '*/*/build/stage/*/*.tar.gz' |
-          node -e 'process.stdout.write(JSON.stringify(fs.readFileSync(0, "utf8").split(/\n/g).filter(Boolean)))'
-        )" >> $GITHUB_ENV;
-        echo "EOF" >> $GITHUB_ENV;
-
     - name: create release
+      if: ${{ inputs.create_release }}
       uses: ncipollo/release-action@v1
       with:
         tag: "v${{ needs.version.outputs.version }}"
         commit: ${{ github.sha }}
         draft: ${{ inputs.draft }}
         prerelease: ${{ needs.version.outputs.prerelease != 'false' }}
-        artifacts: ${{ join(fromJson(env.NATIVE_ARTIFACTS)) }}
         allowUpdates: true
 
     - name: publish
-      if: ${{ !inputs.draft }}
+      if: ${{ inputs.create_release && !inputs.draft }}
       run: |
         lerna publish from-git --yes --no-verify-access --dist-tag ${{ needs.version.outputs.dist_tag }}
       env:

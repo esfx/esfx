@@ -25,7 +25,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/equatable": "^1.1.0-alpha.202211052202"
+        "@esfx/equatable": "workspace:*"
     },
     "publishConfig": {
         "access": "public"

@@ -118,8 +118,8 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/decorators-stage1-core": "^1.1.0-alpha.202211052202",
-        "@esfx/internal-guards": "^1.1.0-alpha.202211052202",
+        "@esfx/decorators-stage1-core": "workspace:*",
+        "@esfx/internal-guards": "workspace:*",
         "tslib": "^2.4.0"
     },
     "publishConfig": {

@@ -88,7 +88,7 @@ void HashObject(const v8::FunctionCallbackInfo<v8::Value>& args) {
     args.GetReturnValue().Set(v8::Int32::New(isolate, ConvertHash(hash)));
 }
 
-void Init(v8::Local<v8::Object> exports) {
+void Init(v8::Local<v8::Object> exports, v8::Local<v8::Value> module, void* priv) {
     NODE_SET_METHOD(exports, "hashBigInt", HashBigInt);
     NODE_SET_METHOD(exports, "hashNumber", HashNumber);
     NODE_SET_METHOD(exports, "hashString", HashName);

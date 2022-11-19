@@ -25,15 +25,15 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/threading-autoresetevent": "^1.1.0-alpha.202211052202",
-        "@esfx/threading-conditionvariable": "^1.1.0-alpha.202211052202",
-        "@esfx/threading-countdown": "^1.1.0-alpha.202211052202",
-        "@esfx/threading-lockable": "^1.1.0-alpha.202211052202",
-        "@esfx/threading-manualresetevent": "^1.1.0-alpha.202211052202",
-        "@esfx/threading-mutex": "^1.1.0-alpha.202211052202",
-        "@esfx/threading-semaphore": "^1.1.0-alpha.202211052202",
-        "@esfx/threading-sleep": "^1.1.0-alpha.202211052202",
-        "@esfx/threading-spinwait": "^1.1.0-alpha.202211052202",
+        "@esfx/threading-autoresetevent": "workspace:*",
+        "@esfx/threading-conditionvariable": "workspace:*",
+        "@esfx/threading-countdown": "workspace:*",
+        "@esfx/threading-lockable": "workspace:*",
+        "@esfx/threading-manualresetevent": "workspace:*",
+        "@esfx/threading-mutex": "workspace:*",
+        "@esfx/threading-semaphore": "workspace:*",
+        "@esfx/threading-sleep": "workspace:*",
+        "@esfx/threading-spinwait": "workspace:*",
         "tslib": "^2.4.0"
     },
     "publishConfig": {

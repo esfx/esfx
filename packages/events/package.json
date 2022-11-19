@@ -28,10 +28,10 @@
         "access": "public"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.1.0-alpha.202211052202"
+        "@esfx/disposable": "workspace:*"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.1.0-alpha.202211052202"
+        "@esfx/internal-guards": "workspace:*"
     },
     "gitHead": "404382c3b617933f0d087fd7d64481860c46f60b"
 }

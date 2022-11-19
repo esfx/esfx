@@ -37,11 +37,8 @@ dist/types/index.d.ts
 dist/types/index.d.ts.map
 
 # native support
-lib/hashCodeNative.cpp
-lib/hashCodeNative.h
 lib/hashCodeNative.js
 lib/hashCodeNative.mjs
-binding.gyp
 
 LICENSE
 THIRD_PARTY_NOTICES
