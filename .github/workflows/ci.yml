@@ -33,8 +33,6 @@ jobs:
 
     name: "${{ matrix.os.name }} (${{ matrix.runtime.label }})"
     runs-on: ${{ matrix.os.target }}
-    needs:
-    - version
 
     steps:
     - uses: actions/checkout@v3
