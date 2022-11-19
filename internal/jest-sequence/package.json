@@ -1,6 +1,6 @@
 {
     "name": "@esfx/internal-jest-sequence",
-    "version": "1.1.0-alpha.202211052202",
+    "version": "1.1.0-alpha.202211192104",
     "description": "This package provides internal utilities for '@esfx' and is not intended for use in user-code.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

@@ -1,6 +1,6 @@
 {
     "name": "@esfx/equatable",
-    "version": "1.1.0-alpha.202211052202",
+    "version": "1.1.0-alpha.202211192104",
     "description": "A low-level API for defining equality.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -64,7 +64,6 @@
         "build-native": "node-pre-gyp configure build --runtime=node --target_arch=x64",
         "build-wasm": "node ./scripts/build-wasm.js -i src/internal/hashers/xxhash64.wast --mjs src/internal/hashers/xxhash64.generated.ts",
         "prebuild": "yarn run build-native && yarn run build-wasm",
-
         "package-node-windows": "gulp package-node-win32",
         "package-node-linux": "gulp package-node-linux",
         "package-node-macos": "gulp package-node-darwin",
@@ -83,7 +82,7 @@
         "@mapbox/node-pre-gyp": "^1.0.10"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.1.0-alpha.202211052202",
+        "@esfx/internal-guards": "^1.1.0-alpha.202211192104",
         "node-pre-gyp-github": "^1.4.4"
     },
     "binary": {

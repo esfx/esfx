@@ -1,6 +1,6 @@
 {
     "name": "@esfx/cancelable-dom",
-    "version": "1.1.0-alpha.202211052202",
+    "version": "1.1.0-alpha.202211192104",
     "description": "A DOM interop library for @esfx/cancelable.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
@@ -25,10 +25,10 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/cancelable": "^1.1.0-alpha.202211052202"
+        "@esfx/cancelable": "^1.1.0-alpha.202211192104"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.1.0-alpha.202211052202"
+        "@esfx/internal-guards": "^1.1.0-alpha.202211192104"
     },
     "publishConfig": {
         "access": "public"
