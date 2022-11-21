@@ -25,13 +25,13 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-lockable": "^1.1.0-alpha.202211052202",
-        "@esfx/async-waitqueue": "^1.1.0-alpha.202211052202",
-        "@esfx/cancelable": "^1.1.0-alpha.202211052202",
-        "@esfx/disposable": "^1.1.0-alpha.202211052202"
+        "@esfx/async-lockable": "workspace:*",
+        "@esfx/async-waitqueue": "workspace:*",
+        "@esfx/cancelable": "workspace:*",
+        "@esfx/disposable": "workspace:*"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.1.0-alpha.202211052202"
+        "@esfx/internal-guards": "workspace:*"
     },
     "publishConfig": {
         "access": "public"

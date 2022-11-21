@@ -545,25 +545,25 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@esfx/async-autoresetevent@^1.1.0-alpha.202211052202, @esfx/async-autoresetevent@workspace:packages/async-autoresetevent":
+"@esfx/async-autoresetevent@workspace:*, @esfx/async-autoresetevent@workspace:packages/async-autoresetevent":
   version: 0.0.0-use.local
   resolution: "@esfx/async-autoresetevent@workspace:packages/async-autoresetevent"
   dependencies:
-    "@esfx/async-waitqueue": ^1.1.0-alpha.202211052202
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/canceltoken": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/async-waitqueue": "workspace:*"
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/canceltoken": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-barrier@^1.1.0-alpha.202211052202, @esfx/async-barrier@workspace:packages/async-barrier":
+"@esfx/async-barrier@workspace:*, @esfx/async-barrier@workspace:packages/async-barrier":
   version: 0.0.0-use.local
   resolution: "@esfx/async-barrier@workspace:packages/async-barrier"
   dependencies:
-    "@esfx/async-waitqueue": ^1.1.0-alpha.202211052202
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/canceltoken": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/async-waitqueue": "workspace:*"
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/canceltoken": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -571,147 +571,147 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/async-canceltoken@workspace:packages/async-canceltoken"
   dependencies:
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/canceltoken": ^1.1.0-alpha.202211052202
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-linked-list": ^1.1.0-alpha.202211052202
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/canceltoken": "workspace:*"
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-linked-list": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
 
-"@esfx/async-conditionvariable@^1.1.0-alpha.202211052202, @esfx/async-conditionvariable@workspace:packages/async-conditionvariable":
+"@esfx/async-conditionvariable@workspace:*, @esfx/async-conditionvariable@workspace:packages/async-conditionvariable":
   version: 0.0.0-use.local
   resolution: "@esfx/async-conditionvariable@workspace:packages/async-conditionvariable"
   dependencies:
-    "@esfx/async-lockable": ^1.1.0-alpha.202211052202
-    "@esfx/async-mutex": ^1.1.0-alpha.202211052202
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-linked-list": ^1.1.0-alpha.202211052202
+    "@esfx/async-lockable": "workspace:*"
+    "@esfx/async-mutex": "workspace:*"
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-linked-list": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-countdown@^1.1.0-alpha.202211052202, @esfx/async-countdown@workspace:packages/async-countdown":
+"@esfx/async-countdown@workspace:*, @esfx/async-countdown@workspace:packages/async-countdown":
   version: 0.0.0-use.local
   resolution: "@esfx/async-countdown@workspace:packages/async-countdown"
   dependencies:
-    "@esfx/async-manualresetevent": ^1.1.0-alpha.202211052202
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/async-manualresetevent": "workspace:*"
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-deferred@^1.1.0-alpha.202211052202, @esfx/async-deferred@workspace:packages/async-deferred":
+"@esfx/async-deferred@workspace:*, @esfx/async-deferred@workspace:packages/async-deferred":
   version: 0.0.0-use.local
   resolution: "@esfx/async-deferred@workspace:packages/async-deferred"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-delay@^1.1.0-alpha.202211052202, @esfx/async-delay@workspace:packages/async-delay":
+"@esfx/async-delay@workspace:*, @esfx/async-delay@workspace:packages/async-delay":
   version: 0.0.0-use.local
   resolution: "@esfx/async-delay@workspace:packages/async-delay"
   dependencies:
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
+    "@esfx/cancelable": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-iter-fn@^1.1.0-alpha.202211052202, @esfx/async-iter-fn@workspace:packages/async-iter-fn":
+"@esfx/async-iter-fn@workspace:*, @esfx/async-iter-fn@workspace:packages/async-iter-fn":
   version: 0.0.0-use.local
   resolution: "@esfx/async-iter-fn@workspace:packages/async-iter-fn"
   dependencies:
-    "@esfx/async-iter-fromsync": ^1.1.0-alpha.202211052202
-    "@esfx/async-iter-hierarchy": ^1.1.0-alpha.202211052202
-    "@esfx/async-iter-ordered": ^1.1.0-alpha.202211052202
-    "@esfx/async-iter-ordered-fromsync": ^1.1.0-alpha.202211052202
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashmap": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashset": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/fn": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-jest-sequence": ^1.1.0-alpha.202211052202
-    "@esfx/interval": ^1.1.0-alpha.202211052202
-    "@esfx/iter-fn": ^1.1.0-alpha.202211052202
-    "@esfx/iter-grouping": ^1.1.0-alpha.202211052202
-    "@esfx/iter-hierarchy": ^1.1.0-alpha.202211052202
-    "@esfx/iter-lookup": ^1.1.0-alpha.202211052202
-    "@esfx/iter-ordered": ^1.1.0-alpha.202211052202
-    "@esfx/iter-page": ^1.1.0-alpha.202211052202
+    "@esfx/async-iter-fromsync": "workspace:*"
+    "@esfx/async-iter-hierarchy": "workspace:*"
+    "@esfx/async-iter-ordered": "workspace:*"
+    "@esfx/async-iter-ordered-fromsync": "workspace:*"
+    "@esfx/collection-core": "workspace:*"
+    "@esfx/collections-hashmap": "workspace:*"
+    "@esfx/collections-hashset": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/fn": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-jest-sequence": "workspace:*"
+    "@esfx/interval": "workspace:*"
+    "@esfx/iter-fn": "workspace:*"
+    "@esfx/iter-grouping": "workspace:*"
+    "@esfx/iter-hierarchy": "workspace:*"
+    "@esfx/iter-lookup": "workspace:*"
+    "@esfx/iter-ordered": "workspace:*"
+    "@esfx/iter-page": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
 
-"@esfx/async-iter-fromsync@^1.1.0-alpha.202211052202, @esfx/async-iter-fromsync@workspace:packages/async-iter-fromsync":
+"@esfx/async-iter-fromsync@workspace:*, @esfx/async-iter-fromsync@workspace:packages/async-iter-fromsync":
   version: 0.0.0-use.local
   resolution: "@esfx/async-iter-fromsync@workspace:packages/async-iter-fromsync"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-iter-hierarchy@^1.1.0-alpha.202211052202, @esfx/async-iter-hierarchy@workspace:packages/async-iter-hierarchy":
+"@esfx/async-iter-hierarchy@workspace:*, @esfx/async-iter-hierarchy@workspace:packages/async-iter-hierarchy":
   version: 0.0.0-use.local
   resolution: "@esfx/async-iter-hierarchy@workspace:packages/async-iter-hierarchy"
   dependencies:
-    "@esfx/async-iter-fromsync": ^1.1.0-alpha.202211052202
-    "@esfx/async-iter-ordered": ^1.1.0-alpha.202211052202
-    "@esfx/async-iter-ordered-fromsync": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-assert": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/iter-hierarchy": ^1.1.0-alpha.202211052202
-    "@esfx/iter-ordered": ^1.1.0-alpha.202211052202
+    "@esfx/async-iter-fromsync": "workspace:*"
+    "@esfx/async-iter-ordered": "workspace:*"
+    "@esfx/async-iter-ordered-fromsync": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-assert": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/iter-hierarchy": "workspace:*"
+    "@esfx/iter-ordered": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
 
-"@esfx/async-iter-ordered-fromsync@^1.1.0-alpha.202211052202, @esfx/async-iter-ordered-fromsync@workspace:packages/async-iter-ordered-fromsync":
+"@esfx/async-iter-ordered-fromsync@workspace:*, @esfx/async-iter-ordered-fromsync@workspace:packages/async-iter-ordered-fromsync":
   version: 0.0.0-use.local
   resolution: "@esfx/async-iter-ordered-fromsync@workspace:packages/async-iter-ordered-fromsync"
   dependencies:
-    "@esfx/async-iter-ordered": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/iter-ordered": ^1.1.0-alpha.202211052202
+    "@esfx/async-iter-ordered": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/iter-ordered": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-iter-ordered@^1.1.0-alpha.202211052202, @esfx/async-iter-ordered@workspace:packages/async-iter-ordered":
+"@esfx/async-iter-ordered@workspace:*, @esfx/async-iter-ordered@workspace:packages/async-iter-ordered":
   version: 0.0.0-use.local
   resolution: "@esfx/async-iter-ordered@workspace:packages/async-iter-ordered"
   dependencies:
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-iter-query@^1.1.0-alpha.202211052202, @esfx/async-iter-query@workspace:packages/async-iter-query":
+"@esfx/async-iter-query@workspace:*, @esfx/async-iter-query@workspace:packages/async-iter-query":
   version: 0.0.0-use.local
   resolution: "@esfx/async-iter-query@workspace:packages/async-iter-query"
   dependencies:
-    "@esfx/async-iter-fn": ^1.1.0-alpha.202211052202
-    "@esfx/async-iter-fromsync": ^1.1.0-alpha.202211052202
-    "@esfx/async-iter-hierarchy": ^1.1.0-alpha.202211052202
-    "@esfx/async-iter-ordered": ^1.1.0-alpha.202211052202
-    "@esfx/async-iter-ordered-fromsync": ^1.1.0-alpha.202211052202
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashmap": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashset": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/fn": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-jest-sequence": ^1.1.0-alpha.202211052202
-    "@esfx/interval": ^1.1.0-alpha.202211052202
-    "@esfx/iter-fn": ^1.1.0-alpha.202211052202
-    "@esfx/iter-grouping": ^1.1.0-alpha.202211052202
-    "@esfx/iter-hierarchy": ^1.1.0-alpha.202211052202
-    "@esfx/iter-lookup": ^1.1.0-alpha.202211052202
-    "@esfx/iter-ordered": ^1.1.0-alpha.202211052202
-    "@esfx/iter-page": ^1.1.0-alpha.202211052202
-    "@esfx/iter-query": ^1.1.0-alpha.202211052202
+    "@esfx/async-iter-fn": "workspace:*"
+    "@esfx/async-iter-fromsync": "workspace:*"
+    "@esfx/async-iter-hierarchy": "workspace:*"
+    "@esfx/async-iter-ordered": "workspace:*"
+    "@esfx/async-iter-ordered-fromsync": "workspace:*"
+    "@esfx/collection-core": "workspace:*"
+    "@esfx/collections-hashmap": "workspace:*"
+    "@esfx/collections-hashset": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/fn": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-jest-sequence": "workspace:*"
+    "@esfx/interval": "workspace:*"
+    "@esfx/iter-fn": "workspace:*"
+    "@esfx/iter-grouping": "workspace:*"
+    "@esfx/iter-hierarchy": "workspace:*"
+    "@esfx/iter-lookup": "workspace:*"
+    "@esfx/iter-ordered": "workspace:*"
+    "@esfx/iter-page": "workspace:*"
+    "@esfx/iter-query": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
@@ -720,114 +720,114 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/async-iter@workspace:packages/async-iter"
   dependencies:
-    "@esfx/async-iter-fn": ^1.1.0-alpha.202211052202
-    "@esfx/async-iter-hierarchy": ^1.1.0-alpha.202211052202
-    "@esfx/async-iter-ordered": ^1.1.0-alpha.202211052202
-    "@esfx/async-iter-query": ^1.1.0-alpha.202211052202
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashmap": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashset": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/fn": ^1.1.0-alpha.202211052202
-    "@esfx/iter-fn": ^1.1.0-alpha.202211052202
-    "@esfx/iter-grouping": ^1.1.0-alpha.202211052202
-    "@esfx/iter-hierarchy": ^1.1.0-alpha.202211052202
-    "@esfx/iter-lookup": ^1.1.0-alpha.202211052202
-    "@esfx/iter-ordered": ^1.1.0-alpha.202211052202
-    "@esfx/iter-page": ^1.1.0-alpha.202211052202
-    "@esfx/iter-query": ^1.1.0-alpha.202211052202
+    "@esfx/async-iter-fn": "workspace:*"
+    "@esfx/async-iter-hierarchy": "workspace:*"
+    "@esfx/async-iter-ordered": "workspace:*"
+    "@esfx/async-iter-query": "workspace:*"
+    "@esfx/collection-core": "workspace:*"
+    "@esfx/collections-hashmap": "workspace:*"
+    "@esfx/collections-hashset": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/fn": "workspace:*"
+    "@esfx/iter-fn": "workspace:*"
+    "@esfx/iter-grouping": "workspace:*"
+    "@esfx/iter-hierarchy": "workspace:*"
+    "@esfx/iter-lookup": "workspace:*"
+    "@esfx/iter-ordered": "workspace:*"
+    "@esfx/iter-page": "workspace:*"
+    "@esfx/iter-query": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-lazy@^1.1.0-alpha.202211052202, @esfx/async-lazy@workspace:packages/async-lazy":
+"@esfx/async-lazy@workspace:*, @esfx/async-lazy@workspace:packages/async-lazy":
   version: 0.0.0-use.local
   resolution: "@esfx/async-lazy@workspace:packages/async-lazy"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-lockable@^1.1.0-alpha.202211052202, @esfx/async-lockable@workspace:packages/async-lockable":
+"@esfx/async-lockable@workspace:*, @esfx/async-lockable@workspace:packages/async-lockable":
   version: 0.0.0-use.local
   resolution: "@esfx/async-lockable@workspace:packages/async-lockable"
   dependencies:
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-manualresetevent@^1.1.0-alpha.202211052202, @esfx/async-manualresetevent@workspace:packages/async-manualresetevent":
+"@esfx/async-manualresetevent@workspace:*, @esfx/async-manualresetevent@workspace:packages/async-manualresetevent":
   version: 0.0.0-use.local
   resolution: "@esfx/async-manualresetevent@workspace:packages/async-manualresetevent"
   dependencies:
-    "@esfx/async-waitqueue": ^1.1.0-alpha.202211052202
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/async-waitqueue": "workspace:*"
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-mutex@^1.1.0-alpha.202211052202, @esfx/async-mutex@workspace:packages/async-mutex":
+"@esfx/async-mutex@workspace:*, @esfx/async-mutex@workspace:packages/async-mutex":
   version: 0.0.0-use.local
   resolution: "@esfx/async-mutex@workspace:packages/async-mutex"
   dependencies:
-    "@esfx/async-lockable": ^1.1.0-alpha.202211052202
-    "@esfx/async-waitqueue": ^1.1.0-alpha.202211052202
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/async-lockable": "workspace:*"
+    "@esfx/async-waitqueue": "workspace:*"
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-queue@^1.1.0-alpha.202211052202, @esfx/async-queue@workspace:packages/async-queue":
+"@esfx/async-queue@workspace:*, @esfx/async-queue@workspace:packages/async-queue":
   version: 0.0.0-use.local
   resolution: "@esfx/async-queue@workspace:packages/async-queue"
   dependencies:
-    "@esfx/async-waitqueue": ^1.1.0-alpha.202211052202
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/async-waitqueue": "workspace:*"
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-readerwriterlock@^1.1.0-alpha.202211052202, @esfx/async-readerwriterlock@workspace:packages/async-readerwriterlock":
+"@esfx/async-readerwriterlock@workspace:*, @esfx/async-readerwriterlock@workspace:packages/async-readerwriterlock":
   version: 0.0.0-use.local
   resolution: "@esfx/async-readerwriterlock@workspace:packages/async-readerwriterlock"
   dependencies:
-    "@esfx/async-lockable": ^1.1.0-alpha.202211052202
-    "@esfx/async-waitqueue": ^1.1.0-alpha.202211052202
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/async-lockable": "workspace:*"
+    "@esfx/async-waitqueue": "workspace:*"
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-semaphore@^1.1.0-alpha.202211052202, @esfx/async-semaphore@workspace:packages/async-semaphore":
+"@esfx/async-semaphore@workspace:*, @esfx/async-semaphore@workspace:packages/async-semaphore":
   version: 0.0.0-use.local
   resolution: "@esfx/async-semaphore@workspace:packages/async-semaphore"
   dependencies:
-    "@esfx/async-waitqueue": ^1.1.0-alpha.202211052202
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/async-waitqueue": "workspace:*"
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-stack@^1.1.0-alpha.202211052202, @esfx/async-stack@workspace:packages/async-stack":
+"@esfx/async-stack@workspace:*, @esfx/async-stack@workspace:packages/async-stack":
   version: 0.0.0-use.local
   resolution: "@esfx/async-stack@workspace:packages/async-stack"
   dependencies:
-    "@esfx/async-waitqueue": ^1.1.0-alpha.202211052202
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/async-waitqueue": "workspace:*"
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/async-waitqueue@^1.1.0-alpha.202211052202, @esfx/async-waitqueue@workspace:packages/async-waitqueue":
+"@esfx/async-waitqueue@workspace:*, @esfx/async-waitqueue@workspace:packages/async-waitqueue":
   version: 0.0.0-use.local
   resolution: "@esfx/async-waitqueue@workspace:packages/async-waitqueue"
   dependencies:
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-linked-list": ^1.1.0-alpha.202211052202
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-linked-list": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -835,21 +835,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/async@workspace:packages/async"
   dependencies:
-    "@esfx/async-autoresetevent": ^1.1.0-alpha.202211052202
-    "@esfx/async-barrier": ^1.1.0-alpha.202211052202
-    "@esfx/async-conditionvariable": ^1.1.0-alpha.202211052202
-    "@esfx/async-countdown": ^1.1.0-alpha.202211052202
-    "@esfx/async-deferred": ^1.1.0-alpha.202211052202
-    "@esfx/async-delay": ^1.1.0-alpha.202211052202
-    "@esfx/async-lazy": ^1.1.0-alpha.202211052202
-    "@esfx/async-lockable": ^1.1.0-alpha.202211052202
-    "@esfx/async-manualresetevent": ^1.1.0-alpha.202211052202
-    "@esfx/async-mutex": ^1.1.0-alpha.202211052202
-    "@esfx/async-queue": ^1.1.0-alpha.202211052202
-    "@esfx/async-readerwriterlock": ^1.1.0-alpha.202211052202
-    "@esfx/async-semaphore": ^1.1.0-alpha.202211052202
-    "@esfx/async-stack": ^1.1.0-alpha.202211052202
-    "@esfx/canceltoken": ^1.1.0-alpha.202211052202
+    "@esfx/async-autoresetevent": "workspace:*"
+    "@esfx/async-barrier": "workspace:*"
+    "@esfx/async-conditionvariable": "workspace:*"
+    "@esfx/async-countdown": "workspace:*"
+    "@esfx/async-deferred": "workspace:*"
+    "@esfx/async-delay": "workspace:*"
+    "@esfx/async-lazy": "workspace:*"
+    "@esfx/async-lockable": "workspace:*"
+    "@esfx/async-manualresetevent": "workspace:*"
+    "@esfx/async-mutex": "workspace:*"
+    "@esfx/async-queue": "workspace:*"
+    "@esfx/async-readerwriterlock": "workspace:*"
+    "@esfx/async-semaphore": "workspace:*"
+    "@esfx/async-stack": "workspace:*"
+    "@esfx/canceltoken": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -857,37 +857,37 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/cancelable-dom-shim@workspace:packages/cancelable-dom-shim"
   dependencies:
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/cancelable-dom": ^1.1.0-alpha.202211052202
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/cancelable-dom": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/cancelable-dom@^1.1.0-alpha.202211052202, @esfx/cancelable-dom@workspace:packages/cancelable-dom":
+"@esfx/cancelable-dom@workspace:*, @esfx/cancelable-dom@workspace:packages/cancelable-dom":
   version: 0.0.0-use.local
   resolution: "@esfx/cancelable-dom@workspace:packages/cancelable-dom"
   dependencies:
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/cancelable@^1.1.0-alpha.202211052202, @esfx/cancelable@workspace:packages/cancelable":
+"@esfx/cancelable@workspace:*, @esfx/cancelable@workspace:packages/cancelable":
   version: 0.0.0-use.local
   resolution: "@esfx/cancelable@workspace:packages/cancelable"
   dependencies:
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/canceltoken@^1.1.0-alpha.202211052202, @esfx/canceltoken@workspace:packages/canceltoken":
+"@esfx/canceltoken@workspace:*, @esfx/canceltoken@workspace:packages/canceltoken":
   version: 0.0.0-use.local
   resolution: "@esfx/canceltoken@workspace:packages/canceltoken"
   dependencies:
-    "@esfx/cancelable": ^1.1.0-alpha.202211052202
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-linked-list": ^1.1.0-alpha.202211052202
+    "@esfx/cancelable": "workspace:*"
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-linked-list": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
@@ -896,7 +896,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/collection-core-dom-shim@workspace:packages/collection-core-dom-shim"
   dependencies:
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
+    "@esfx/collection-core": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -904,81 +904,81 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/collection-core-shim@workspace:packages/collection-core-shim"
   dependencies:
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
+    "@esfx/collection-core": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/collection-core@^1.1.0-alpha.202211052202, @esfx/collection-core@workspace:packages/collection-core":
+"@esfx/collection-core@workspace:*, @esfx/collection-core@workspace:packages/collection-core":
   version: 0.0.0-use.local
   resolution: "@esfx/collection-core@workspace:packages/collection-core"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/collections-hashmap@^1.1.0-alpha.202211052202, @esfx/collections-hashmap@workspace:packages/collections-hashmap":
+"@esfx/collections-hashmap@workspace:*, @esfx/collections-hashmap@workspace:packages/collections-hashmap":
   version: 0.0.0-use.local
   resolution: "@esfx/collections-hashmap@workspace:packages/collections-hashmap"
   dependencies:
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-collections-hash": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/collection-core": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-collections-hash": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/collections-hashset@^1.1.0-alpha.202211052202, @esfx/collections-hashset@workspace:packages/collections-hashset":
+"@esfx/collections-hashset@workspace:*, @esfx/collections-hashset@workspace:packages/collections-hashset":
   version: 0.0.0-use.local
   resolution: "@esfx/collections-hashset@workspace:packages/collections-hashset"
   dependencies:
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-collections-hash": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/collection-core": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-collections-hash": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/collections-linkedlist@^1.1.0-alpha.202211052202, @esfx/collections-linkedlist@workspace:packages/collections-linkedlist":
+"@esfx/collections-linkedlist@workspace:*, @esfx/collections-linkedlist@workspace:packages/collections-linkedlist":
   version: 0.0.0-use.local
   resolution: "@esfx/collections-linkedlist@workspace:packages/collections-linkedlist"
   dependencies:
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/collection-core": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/collections-multimap@^1.1.0-alpha.202211052202, @esfx/collections-multimap@workspace:packages/collections-multimap":
+"@esfx/collections-multimap@workspace:*, @esfx/collections-multimap@workspace:packages/collections-multimap":
   version: 0.0.0-use.local
   resolution: "@esfx/collections-multimap@workspace:packages/collections-multimap"
   dependencies:
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashmap": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashset": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/collection-core": "workspace:*"
+    "@esfx/collections-hashmap": "workspace:*"
+    "@esfx/collections-hashset": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/collections-sortedmap@^1.1.0-alpha.202211052202, @esfx/collections-sortedmap@workspace:packages/collections-sortedmap":
+"@esfx/collections-sortedmap@workspace:*, @esfx/collections-sortedmap@workspace:packages/collections-sortedmap":
   version: 0.0.0-use.local
   resolution: "@esfx/collections-sortedmap@workspace:packages/collections-sortedmap"
   dependencies:
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-binarysearch": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/collection-core": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-binarysearch": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/collections-sortedset@^1.1.0-alpha.202211052202, @esfx/collections-sortedset@workspace:packages/collections-sortedset":
+"@esfx/collections-sortedset@workspace:*, @esfx/collections-sortedset@workspace:packages/collections-sortedset":
   version: 0.0.0-use.local
   resolution: "@esfx/collections-sortedset@workspace:packages/collections-sortedset"
   dependencies:
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-binarysearch": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/collection-core": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-binarysearch": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -986,21 +986,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/collections@workspace:packages/collections"
   dependencies:
-    "@esfx/collections-hashmap": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashset": ^1.1.0-alpha.202211052202
-    "@esfx/collections-linkedlist": ^1.1.0-alpha.202211052202
-    "@esfx/collections-multimap": ^1.1.0-alpha.202211052202
-    "@esfx/collections-sortedmap": ^1.1.0-alpha.202211052202
-    "@esfx/collections-sortedset": ^1.1.0-alpha.202211052202
+    "@esfx/collections-hashmap": "workspace:*"
+    "@esfx/collections-hashset": "workspace:*"
+    "@esfx/collections-linkedlist": "workspace:*"
+    "@esfx/collections-multimap": "workspace:*"
+    "@esfx/collections-sortedmap": "workspace:*"
+    "@esfx/collections-sortedset": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/decorators-stage1-core@^1.1.0-alpha.202211052202, @esfx/decorators-stage1-core@workspace:packages/decorators-stage1-core":
+"@esfx/decorators-stage1-core@workspace:*, @esfx/decorators-stage1-core@workspace:packages/decorators-stage1-core":
   version: 0.0.0-use.local
   resolution: "@esfx/decorators-stage1-core@workspace:packages/decorators-stage1-core"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/type-model": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/type-model": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -1008,17 +1008,43 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/decorators@workspace:packages/decorators"
   dependencies:
-    "@esfx/decorators-stage1-core": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/decorators-stage1-core": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
 
-"@esfx/disposable@^1.1.0-alpha.202211052202, @esfx/disposable@workspace:packages/disposable":
+"@esfx/disposable@workspace:*, @esfx/disposable@workspace:packages/disposable":
   version: 0.0.0-use.local
   resolution: "@esfx/disposable@workspace:packages/disposable"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
+  languageName: unknown
+  linkType: soft
+
+"@esfx/equatable-native-darwin-x64@workspace:*, @esfx/equatable-native-darwin-x64@workspace:native/equatable-native-darwin-x64":
+  version: 0.0.0-use.local
+  resolution: "@esfx/equatable-native-darwin-x64@workspace:native/equatable-native-darwin-x64"
+  languageName: unknown
+  linkType: soft
+
+"@esfx/equatable-native-linux-x64@workspace:*, @esfx/equatable-native-linux-x64@workspace:native/equatable-native-linux-x64":
+  version: 0.0.0-use.local
+  resolution: "@esfx/equatable-native-linux-x64@workspace:native/equatable-native-linux-x64"
+  languageName: unknown
+  linkType: soft
+
+"@esfx/equatable-native-win32-x64@workspace:*, @esfx/equatable-native-win32-x64@workspace:native/equatable-native-win32-x64":
+  version: 0.0.0-use.local
+  resolution: "@esfx/equatable-native-win32-x64@workspace:native/equatable-native-win32-x64"
+  languageName: unknown
+  linkType: soft
+
+"@esfx/equatable-native@workspace:native/equatable-native":
+  version: 0.0.0-use.local
+  resolution: "@esfx/equatable-native@workspace:native/equatable-native"
+  dependencies:
+    "@mapbox/node-pre-gyp": ^1.0.9
   languageName: unknown
   linkType: soft
 
@@ -1026,17 +1052,25 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/equatable-shim@workspace:packages/equatable-shim"
   dependencies:
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
+    "@esfx/equatable": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/equatable@^1.1.0-alpha.202211052202, @esfx/equatable@workspace:packages/equatable":
+"@esfx/equatable@workspace:*, @esfx/equatable@workspace:packages/equatable":
   version: 0.0.0-use.local
   resolution: "@esfx/equatable@workspace:packages/equatable"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@mapbox/node-pre-gyp": ^1.0.10
-    node-pre-gyp-github: ^1.4.4
+    "@esfx/equatable-native-darwin-x64": "workspace:*"
+    "@esfx/equatable-native-linux-x64": "workspace:*"
+    "@esfx/equatable-native-win32-x64": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+  dependenciesMeta:
+    "@esfx/equatable-native-darwin-x64":
+      optional: true
+    "@esfx/equatable-native-linux-x64":
+      optional: true
+    "@esfx/equatable-native-win32-x64":
+      optional: true
   languageName: unknown
   linkType: soft
 
@@ -1044,8 +1078,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/events@workspace:packages/events"
   dependencies:
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -1055,12 +1089,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@esfx/fn@^1.1.0-alpha.202211052202, @esfx/fn@workspace:packages/fn":
+"@esfx/fn@workspace:*, @esfx/fn@workspace:packages/fn":
   version: 0.0.0-use.local
   resolution: "@esfx/fn@workspace:packages/fn"
   dependencies:
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
@@ -1071,27 +1105,27 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@esfx/internal-assert@^1.1.0-alpha.202211052202, @esfx/internal-assert@workspace:internal/assert":
+"@esfx/internal-assert@workspace:*, @esfx/internal-assert@workspace:internal/assert":
   version: 0.0.0-use.local
   resolution: "@esfx/internal-assert@workspace:internal/assert"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/internal-binarysearch@^1.1.0-alpha.202211052202, @esfx/internal-binarysearch@workspace:internal/binarysearch":
+"@esfx/internal-binarysearch@workspace:*, @esfx/internal-binarysearch@workspace:internal/binarysearch":
   version: 0.0.0-use.local
   resolution: "@esfx/internal-binarysearch@workspace:internal/binarysearch"
   dependencies:
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
+    "@esfx/equatable": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/internal-collections-hash@^1.1.0-alpha.202211052202, @esfx/internal-collections-hash@workspace:internal/collections-hash":
+"@esfx/internal-collections-hash@workspace:*, @esfx/internal-collections-hash@workspace:internal/collections-hash":
   version: 0.0.0-use.local
   resolution: "@esfx/internal-collections-hash@workspace:internal/collections-hash"
   dependencies:
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
+    "@esfx/equatable": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -1101,15 +1135,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@esfx/internal-guards@^1.1.0-alpha.202211052202, @esfx/internal-guards@workspace:internal/guards":
+"@esfx/internal-guards@workspace:*, @esfx/internal-guards@workspace:internal/guards":
   version: 0.0.0-use.local
   resolution: "@esfx/internal-guards@workspace:internal/guards"
   dependencies:
-    "@esfx/type-model": ^1.1.0-alpha.202211052202
+    "@esfx/type-model": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/internal-jest-sequence@^1.1.0-alpha.202211052202, @esfx/internal-jest-sequence@workspace:internal/jest-sequence":
+"@esfx/internal-jest-sequence@workspace:*, @esfx/internal-jest-sequence@workspace:internal/jest-sequence":
   version: 0.0.0-use.local
   resolution: "@esfx/internal-jest-sequence@workspace:internal/jest-sequence"
   dependencies:
@@ -1119,7 +1153,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@esfx/internal-linked-list@^1.1.0-alpha.202211052202, @esfx/internal-linked-list@workspace:internal/linked-list":
+"@esfx/internal-linked-list@workspace:*, @esfx/internal-linked-list@workspace:internal/linked-list":
   version: 0.0.0-use.local
   resolution: "@esfx/internal-linked-list@workspace:internal/linked-list"
   languageName: unknown
@@ -1131,13 +1165,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@esfx/internal-threading@^1.1.0-alpha.202211052202, @esfx/internal-threading@workspace:internal/threading":
+"@esfx/internal-threading@workspace:*, @esfx/internal-threading@workspace:internal/threading":
   version: 0.0.0-use.local
   resolution: "@esfx/internal-threading@workspace:internal/threading"
   languageName: unknown
   linkType: soft
 
-"@esfx/internal-ts-worker@^1.1.0-alpha.202211052202, @esfx/internal-ts-worker@workspace:internal/ts-worker":
+"@esfx/internal-ts-worker@workspace:*, @esfx/internal-ts-worker@workspace:internal/ts-worker":
   version: 0.0.0-use.local
   resolution: "@esfx/internal-ts-worker@workspace:internal/ts-worker"
   dependencies:
@@ -1148,106 +1182,106 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@esfx/interval@^1.1.0-alpha.202211052202, @esfx/interval@workspace:packages/interval":
+"@esfx/interval@workspace:*, @esfx/interval@workspace:packages/interval":
   version: 0.0.0-use.local
   resolution: "@esfx/interval@workspace:packages/interval"
   dependencies:
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/iter-fn@^1.1.0-alpha.202211052202, @esfx/iter-fn@workspace:packages/iter-fn":
+"@esfx/iter-fn@workspace:*, @esfx/iter-fn@workspace:packages/iter-fn":
   version: 0.0.0-use.local
   resolution: "@esfx/iter-fn@workspace:packages/iter-fn"
   dependencies:
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashmap": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashset": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/fn": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-jest-sequence": ^1.1.0-alpha.202211052202
-    "@esfx/interval": ^1.1.0-alpha.202211052202
-    "@esfx/iter-grouping": ^1.1.0-alpha.202211052202
-    "@esfx/iter-hierarchy": ^1.1.0-alpha.202211052202
-    "@esfx/iter-lookup": ^1.1.0-alpha.202211052202
-    "@esfx/iter-ordered": ^1.1.0-alpha.202211052202
-    "@esfx/iter-page": ^1.1.0-alpha.202211052202
+    "@esfx/collection-core": "workspace:*"
+    "@esfx/collections-hashmap": "workspace:*"
+    "@esfx/collections-hashset": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/fn": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-jest-sequence": "workspace:*"
+    "@esfx/interval": "workspace:*"
+    "@esfx/iter-grouping": "workspace:*"
+    "@esfx/iter-hierarchy": "workspace:*"
+    "@esfx/iter-lookup": "workspace:*"
+    "@esfx/iter-ordered": "workspace:*"
+    "@esfx/iter-page": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
 
-"@esfx/iter-grouping@^1.1.0-alpha.202211052202, @esfx/iter-grouping@workspace:packages/iter-grouping":
+"@esfx/iter-grouping@workspace:*, @esfx/iter-grouping@workspace:packages/iter-grouping":
   version: 0.0.0-use.local
   resolution: "@esfx/iter-grouping@workspace:packages/iter-grouping"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/iter-hierarchy": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/iter-hierarchy": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/iter-hierarchy@^1.1.0-alpha.202211052202, @esfx/iter-hierarchy@workspace:packages/iter-hierarchy":
+"@esfx/iter-hierarchy@workspace:*, @esfx/iter-hierarchy@workspace:packages/iter-hierarchy":
   version: 0.0.0-use.local
   resolution: "@esfx/iter-hierarchy@workspace:packages/iter-hierarchy"
   dependencies:
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-assert": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/interval": ^1.1.0-alpha.202211052202
-    "@esfx/iter-ordered": ^1.1.0-alpha.202211052202
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-assert": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/interval": "workspace:*"
+    "@esfx/iter-ordered": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
 
-"@esfx/iter-lookup@^1.1.0-alpha.202211052202, @esfx/iter-lookup@workspace:packages/iter-lookup":
+"@esfx/iter-lookup@workspace:*, @esfx/iter-lookup@workspace:packages/iter-lookup":
   version: 0.0.0-use.local
   resolution: "@esfx/iter-lookup@workspace:packages/iter-lookup"
   dependencies:
-    "@esfx/collections-hashmap": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-jest-sequence": ^1.1.0-alpha.202211052202
-    "@esfx/iter-grouping": ^1.1.0-alpha.202211052202
+    "@esfx/collections-hashmap": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-jest-sequence": "workspace:*"
+    "@esfx/iter-grouping": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/iter-ordered@^1.1.0-alpha.202211052202, @esfx/iter-ordered@workspace:packages/iter-ordered":
+"@esfx/iter-ordered@workspace:*, @esfx/iter-ordered@workspace:packages/iter-ordered":
   version: 0.0.0-use.local
   resolution: "@esfx/iter-ordered@workspace:packages/iter-ordered"
   dependencies:
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/equatable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/iter-page@^1.1.0-alpha.202211052202, @esfx/iter-page@workspace:packages/iter-page":
+"@esfx/iter-page@workspace:*, @esfx/iter-page@workspace:packages/iter-page":
   version: 0.0.0-use.local
   resolution: "@esfx/iter-page@workspace:packages/iter-page"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/iter-hierarchy": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/iter-hierarchy": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/iter-query@^1.1.0-alpha.202211052202, @esfx/iter-query@workspace:packages/iter-query":
+"@esfx/iter-query@workspace:*, @esfx/iter-query@workspace:packages/iter-query":
   version: 0.0.0-use.local
   resolution: "@esfx/iter-query@workspace:packages/iter-query"
   dependencies:
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashmap": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashset": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/fn": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-jest-sequence": ^1.1.0-alpha.202211052202
-    "@esfx/interval": ^1.1.0-alpha.202211052202
-    "@esfx/iter-fn": ^1.1.0-alpha.202211052202
-    "@esfx/iter-grouping": ^1.1.0-alpha.202211052202
-    "@esfx/iter-hierarchy": ^1.1.0-alpha.202211052202
-    "@esfx/iter-lookup": ^1.1.0-alpha.202211052202
-    "@esfx/iter-ordered": ^1.1.0-alpha.202211052202
-    "@esfx/iter-page": ^1.1.0-alpha.202211052202
+    "@esfx/collection-core": "workspace:*"
+    "@esfx/collections-hashmap": "workspace:*"
+    "@esfx/collections-hashset": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/fn": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-jest-sequence": "workspace:*"
+    "@esfx/interval": "workspace:*"
+    "@esfx/iter-fn": "workspace:*"
+    "@esfx/iter-grouping": "workspace:*"
+    "@esfx/iter-hierarchy": "workspace:*"
+    "@esfx/iter-lookup": "workspace:*"
+    "@esfx/iter-ordered": "workspace:*"
+    "@esfx/iter-page": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
@@ -1256,22 +1290,22 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/iter@workspace:packages/iter"
   dependencies:
-    "@esfx/collection-core": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashmap": ^1.1.0-alpha.202211052202
-    "@esfx/collections-hashset": ^1.1.0-alpha.202211052202
-    "@esfx/equatable": ^1.1.0-alpha.202211052202
-    "@esfx/fn": ^1.1.0-alpha.202211052202
-    "@esfx/internal-assert": ^1.1.0-alpha.202211052202
-    "@esfx/internal-binarysearch": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-jest-sequence": ^1.1.0-alpha.202211052202
-    "@esfx/iter-fn": ^1.1.0-alpha.202211052202
-    "@esfx/iter-grouping": ^1.1.0-alpha.202211052202
-    "@esfx/iter-hierarchy": ^1.1.0-alpha.202211052202
-    "@esfx/iter-lookup": ^1.1.0-alpha.202211052202
-    "@esfx/iter-ordered": ^1.1.0-alpha.202211052202
-    "@esfx/iter-page": ^1.1.0-alpha.202211052202
-    "@esfx/iter-query": ^1.1.0-alpha.202211052202
+    "@esfx/collection-core": "workspace:*"
+    "@esfx/collections-hashmap": "workspace:*"
+    "@esfx/collections-hashset": "workspace:*"
+    "@esfx/equatable": "workspace:*"
+    "@esfx/fn": "workspace:*"
+    "@esfx/internal-assert": "workspace:*"
+    "@esfx/internal-binarysearch": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-jest-sequence": "workspace:*"
+    "@esfx/iter-fn": "workspace:*"
+    "@esfx/iter-grouping": "workspace:*"
+    "@esfx/iter-hierarchy": "workspace:*"
+    "@esfx/iter-lookup": "workspace:*"
+    "@esfx/iter-ordered": "workspace:*"
+    "@esfx/iter-page": "workspace:*"
+    "@esfx/iter-query": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
@@ -1280,24 +1314,24 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/lazy@workspace:packages/lazy"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/metadata-shim@^1.1.0-alpha.202211052202, @esfx/metadata-shim@workspace:packages/metadata-shim":
+"@esfx/metadata-shim@workspace:*, @esfx/metadata-shim@workspace:packages/metadata-shim":
   version: 0.0.0-use.local
   resolution: "@esfx/metadata-shim@workspace:packages/metadata-shim"
   dependencies:
-    "@esfx/metadata": ^1.1.0-alpha.202211052202
+    "@esfx/metadata": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/metadata@^1.1.0-alpha.202211052202, @esfx/metadata@workspace:packages/metadata":
+"@esfx/metadata@workspace:*, @esfx/metadata@workspace:packages/metadata":
   version: 0.0.0-use.local
   resolution: "@esfx/metadata@workspace:packages/metadata"
   dependencies:
-    "@esfx/decorators-stage1-core": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/decorators-stage1-core": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -1305,7 +1339,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/ref@workspace:packages/ref"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -1313,116 +1347,116 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/reflect-metadata-compat@workspace:packages/reflect-metadata-compat"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/metadata": ^1.1.0-alpha.202211052202
-    "@esfx/metadata-shim": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/metadata": "workspace:*"
+    "@esfx/metadata-shim": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
 
-"@esfx/struct-type@^1.1.0-alpha.202211052202, @esfx/struct-type@workspace:packages/struct-type":
+"@esfx/struct-type@workspace:*, @esfx/struct-type@workspace:packages/struct-type":
   version: 0.0.0-use.local
   resolution: "@esfx/struct-type@workspace:packages/struct-type"
   dependencies:
-    "@esfx/type-model": ^1.1.0-alpha.202211052202
+    "@esfx/type-model": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
 
-"@esfx/threading-autoresetevent@^1.1.0-alpha.202211052202, @esfx/threading-autoresetevent@workspace:packages/threading-autoresetevent":
+"@esfx/threading-autoresetevent@workspace:*, @esfx/threading-autoresetevent@workspace:packages/threading-autoresetevent":
   version: 0.0.0-use.local
   resolution: "@esfx/threading-autoresetevent@workspace:packages/threading-autoresetevent"
   dependencies:
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-threading": ^1.1.0-alpha.202211052202
-    "@esfx/internal-ts-worker": ^1.1.0-alpha.202211052202
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-threading": "workspace:*"
+    "@esfx/internal-ts-worker": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/threading-conditionvariable@^1.1.0-alpha.202211052202, @esfx/threading-conditionvariable@workspace:packages/threading-conditionvariable":
+"@esfx/threading-conditionvariable@workspace:*, @esfx/threading-conditionvariable@workspace:packages/threading-conditionvariable":
   version: 0.0.0-use.local
   resolution: "@esfx/threading-conditionvariable@workspace:packages/threading-conditionvariable"
   dependencies:
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-threading": ^1.1.0-alpha.202211052202
-    "@esfx/internal-ts-worker": ^1.1.0-alpha.202211052202
-    "@esfx/struct-type": ^1.1.0-alpha.202211052202
-    "@esfx/threading-lockable": ^1.1.0-alpha.202211052202
-    "@esfx/threading-mutex": ^1.1.0-alpha.202211052202
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-threading": "workspace:*"
+    "@esfx/internal-ts-worker": "workspace:*"
+    "@esfx/struct-type": "workspace:*"
+    "@esfx/threading-lockable": "workspace:*"
+    "@esfx/threading-mutex": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/threading-countdown@^1.1.0-alpha.202211052202, @esfx/threading-countdown@workspace:packages/threading-countdown":
+"@esfx/threading-countdown@workspace:*, @esfx/threading-countdown@workspace:packages/threading-countdown":
   version: 0.0.0-use.local
   resolution: "@esfx/threading-countdown@workspace:packages/threading-countdown"
   dependencies:
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-threading": ^1.1.0-alpha.202211052202
-    "@esfx/internal-ts-worker": ^1.1.0-alpha.202211052202
-    "@esfx/threading-manualresetevent": ^1.1.0-alpha.202211052202
-    "@esfx/threading-spinwait": ^1.1.0-alpha.202211052202
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-threading": "workspace:*"
+    "@esfx/internal-ts-worker": "workspace:*"
+    "@esfx/threading-manualresetevent": "workspace:*"
+    "@esfx/threading-spinwait": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/threading-lockable@^1.1.0-alpha.202211052202, @esfx/threading-lockable@workspace:packages/threading-lockable":
+"@esfx/threading-lockable@workspace:*, @esfx/threading-lockable@workspace:packages/threading-lockable":
   version: 0.0.0-use.local
   resolution: "@esfx/threading-lockable@workspace:packages/threading-lockable"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/threading-manualresetevent@^1.1.0-alpha.202211052202, @esfx/threading-manualresetevent@workspace:packages/threading-manualresetevent":
+"@esfx/threading-manualresetevent@workspace:*, @esfx/threading-manualresetevent@workspace:packages/threading-manualresetevent":
   version: 0.0.0-use.local
   resolution: "@esfx/threading-manualresetevent@workspace:packages/threading-manualresetevent"
   dependencies:
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-threading": ^1.1.0-alpha.202211052202
-    "@esfx/internal-ts-worker": ^1.1.0-alpha.202211052202
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-threading": "workspace:*"
+    "@esfx/internal-ts-worker": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/threading-mutex@^1.1.0-alpha.202211052202, @esfx/threading-mutex@workspace:packages/threading-mutex":
+"@esfx/threading-mutex@workspace:*, @esfx/threading-mutex@workspace:packages/threading-mutex":
   version: 0.0.0-use.local
   resolution: "@esfx/threading-mutex@workspace:packages/threading-mutex"
   dependencies:
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-threading": ^1.1.0-alpha.202211052202
-    "@esfx/internal-ts-worker": ^1.1.0-alpha.202211052202
-    "@esfx/threading-lockable": ^1.1.0-alpha.202211052202
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-threading": "workspace:*"
+    "@esfx/internal-ts-worker": "workspace:*"
+    "@esfx/threading-lockable": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/threading-semaphore@^1.1.0-alpha.202211052202, @esfx/threading-semaphore@workspace:packages/threading-semaphore":
+"@esfx/threading-semaphore@workspace:*, @esfx/threading-semaphore@workspace:packages/threading-semaphore":
   version: 0.0.0-use.local
   resolution: "@esfx/threading-semaphore@workspace:packages/threading-semaphore"
   dependencies:
-    "@esfx/disposable": ^1.1.0-alpha.202211052202
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/internal-threading": ^1.1.0-alpha.202211052202
-    "@esfx/internal-ts-worker": ^1.1.0-alpha.202211052202
+    "@esfx/disposable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/internal-threading": "workspace:*"
+    "@esfx/internal-ts-worker": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/threading-sleep@^1.1.0-alpha.202211052202, @esfx/threading-sleep@workspace:packages/threading-sleep":
+"@esfx/threading-sleep@workspace:*, @esfx/threading-sleep@workspace:packages/threading-sleep":
   version: 0.0.0-use.local
   resolution: "@esfx/threading-sleep@workspace:packages/threading-sleep"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
-"@esfx/threading-spinwait@^1.1.0-alpha.202211052202, @esfx/threading-spinwait@workspace:packages/threading-spinwait":
+"@esfx/threading-spinwait@workspace:*, @esfx/threading-spinwait@workspace:packages/threading-spinwait":
   version: 0.0.0-use.local
   resolution: "@esfx/threading-spinwait@workspace:packages/threading-spinwait"
   dependencies:
-    "@esfx/internal-guards": ^1.1.0-alpha.202211052202
-    "@esfx/threading-sleep": ^1.1.0-alpha.202211052202
+    "@esfx/internal-guards": "workspace:*"
+    "@esfx/threading-sleep": "workspace:*"
   languageName: unknown
   linkType: soft
 
@@ -1430,20 +1464,20 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/threading@workspace:packages/threading"
   dependencies:
-    "@esfx/threading-autoresetevent": ^1.1.0-alpha.202211052202
-    "@esfx/threading-conditionvariable": ^1.1.0-alpha.202211052202
-    "@esfx/threading-countdown": ^1.1.0-alpha.202211052202
-    "@esfx/threading-lockable": ^1.1.0-alpha.202211052202
-    "@esfx/threading-manualresetevent": ^1.1.0-alpha.202211052202
-    "@esfx/threading-mutex": ^1.1.0-alpha.202211052202
-    "@esfx/threading-semaphore": ^1.1.0-alpha.202211052202
-    "@esfx/threading-sleep": ^1.1.0-alpha.202211052202
-    "@esfx/threading-spinwait": ^1.1.0-alpha.202211052202
+    "@esfx/threading-autoresetevent": "workspace:*"
+    "@esfx/threading-conditionvariable": "workspace:*"
+    "@esfx/threading-countdown": "workspace:*"
+    "@esfx/threading-lockable": "workspace:*"
+    "@esfx/threading-manualresetevent": "workspace:*"
+    "@esfx/threading-mutex": "workspace:*"
+    "@esfx/threading-semaphore": "workspace:*"
+    "@esfx/threading-sleep": "workspace:*"
+    "@esfx/threading-spinwait": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown
   linkType: soft
 
-"@esfx/type-model@^1.1.0-alpha.202211052202, @esfx/type-model@workspace:packages/type-model":
+"@esfx/type-model@workspace:*, @esfx/type-model@workspace:packages/type-model":
   version: 0.0.0-use.local
   resolution: "@esfx/type-model@workspace:packages/type-model"
   languageName: unknown
@@ -2637,7 +2671,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mapbox/node-pre-gyp@npm:^1.0.10":
+"@mapbox/node-pre-gyp@npm:^1.0.9":
   version: 1.0.10
   resolution: "@mapbox/node-pre-gyp@npm:1.0.10"
   dependencies:
@@ -2949,36 +2983,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/auth-token@npm:^2.4.4":
-  version: 2.5.0
-  resolution: "@octokit/auth-token@npm:2.5.0"
-  dependencies:
-    "@octokit/types": ^6.0.3
-  checksum: 45949296c09abcd6beb4c3f69d45b0c1f265f9581d2a9683cf4d1800c4cf8259c2f58d58e44c16c20bffb85a0282a176c0d51f4af300e428b863f27b910e6297
-  languageName: node
-  linkType: hard
-
 "@octokit/auth-token@npm:^3.0.0":
   version: 3.0.2
   resolution: "@octokit/auth-token@npm:3.0.2"
   dependencies:
     "@octokit/types": ^8.0.0
   checksum: c7204770a6cb1661379c31b5a26779b509324446e61a4902893a69fd471738c817afc470f8ac8d86ad827738cc953046d27fbb87fc81782ff10e366b70241f4e
-  languageName: node
-  linkType: hard
-
-"@octokit/core@npm:^3.5.1":
-  version: 3.6.0
-  resolution: "@octokit/core@npm:3.6.0"
-  dependencies:
-    "@octokit/auth-token": ^2.4.4
-    "@octokit/graphql": ^4.5.8
-    "@octokit/request": ^5.6.3
-    "@octokit/request-error": ^2.0.5
-    "@octokit/types": ^6.0.3
-    before-after-hook: ^2.2.0
-    universal-user-agent: ^6.0.0
-  checksum: f81160129037bd8555d47db60cd5381637b7e3602ad70735a7bdf8f3d250c7b7114a666bb12ef7a8746a326a5d72ed30a1b8f8a5a170007f7285c8e217bef1f0
   languageName: node
   linkType: hard
 
@@ -2997,17 +3007,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/endpoint@npm:^6.0.1":
-  version: 6.0.12
-  resolution: "@octokit/endpoint@npm:6.0.12"
-  dependencies:
-    "@octokit/types": ^6.0.3
-    is-plain-object: ^5.0.0
-    universal-user-agent: ^6.0.0
-  checksum: b48b29940af11c4b9bca41cf56809754bb8385d4e3a6122671799d27f0238ba575b3fde86d2d30a84f4dbbc14430940de821e56ecc6a9a92d47fc2b29a31479d
-  languageName: node
-  linkType: hard
-
 "@octokit/endpoint@npm:^7.0.0":
   version: 7.0.3
   resolution: "@octokit/endpoint@npm:7.0.3"
@@ -3016,17 +3015,6 @@ __metadata:
     is-plain-object: ^5.0.0
     universal-user-agent: ^6.0.0
   checksum: c36b1577062e51d1683779a59c75d046d59f9a5c3a0f046d465e6c4c39f64bfc3a3052b42fa91a4552c7903ec382c604b4a2e1aadebdf7458191849ede5d4978
-  languageName: node
-  linkType: hard
-
-"@octokit/graphql@npm:^4.5.8":
-  version: 4.8.0
-  resolution: "@octokit/graphql@npm:4.8.0"
-  dependencies:
-    "@octokit/request": ^5.6.0
-    "@octokit/types": ^6.0.3
-    universal-user-agent: ^6.0.0
-  checksum: f68afe53f63900d4a16a0a733f2f500df2695b731f8ed32edb728d50edead7f5011437f71d069c2d2f6d656227703d0c832a3c8af58ecf82bd5dcc051f2d2d74
   languageName: node
   linkType: hard
 
@@ -3041,13 +3029,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/openapi-types@npm:^12.11.0":
-  version: 12.11.0
-  resolution: "@octokit/openapi-types@npm:12.11.0"
-  checksum: 8a7d4bd6288cc4085cabe0ca9af2b87c875c303af932cb138aa1b2290eb69d32407759ac23707bb02776466e671244a902e9857896903443a69aff4b6b2b0e3b
-  languageName: node
-  linkType: hard
-
 "@octokit/openapi-types@npm:^14.0.0":
   version: 14.0.0
   resolution: "@octokit/openapi-types@npm:14.0.0"
@@ -3059,17 +3040,6 @@ __metadata:
   version: 6.0.1
   resolution: "@octokit/plugin-enterprise-rest@npm:6.0.1"
   checksum: 1c9720002f31daf62f4f48e73557dcdd7fcde6e0f6d43256e3f2ec827b5548417297186c361fb1af497fdcc93075a7b681e6ff06e2f20e4a8a3e74cc09d1f7e3
-  languageName: node
-  linkType: hard
-
-"@octokit/plugin-paginate-rest@npm:^2.16.8":
-  version: 2.21.3
-  resolution: "@octokit/plugin-paginate-rest@npm:2.21.3"
-  dependencies:
-    "@octokit/types": ^6.40.0
-  peerDependencies:
-    "@octokit/core": ">=2"
-  checksum: acf31de2ba4021bceec7ff49c5b0e25309fc3c009d407f153f928ddf436ab66cd4217344138378d5523f5fb233896e1db58c9c7b3ffd9612a66d760bc5d319ed
   languageName: node
   linkType: hard
 
@@ -3093,18 +3063,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/plugin-rest-endpoint-methods@npm:^5.12.0":
-  version: 5.16.2
-  resolution: "@octokit/plugin-rest-endpoint-methods@npm:5.16.2"
-  dependencies:
-    "@octokit/types": ^6.39.0
-    deprecation: ^2.3.1
-  peerDependencies:
-    "@octokit/core": ">=3"
-  checksum: 30fcc50c335d1093f03573d9fa3a4b7d027fc98b215c43e07e82ee8dabfa0af0cf1b963feb542312ae32d897a2f68dc671577206f30850215517bebedc5a2c73
-  languageName: node
-  linkType: hard
-
 "@octokit/plugin-rest-endpoint-methods@npm:^6.7.0":
   version: 6.7.0
   resolution: "@octokit/plugin-rest-endpoint-methods@npm:6.7.0"
@@ -3117,17 +3075,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/request-error@npm:^2.0.5, @octokit/request-error@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "@octokit/request-error@npm:2.1.0"
-  dependencies:
-    "@octokit/types": ^6.0.3
-    deprecation: ^2.0.0
-    once: ^1.4.0
-  checksum: baec2b5700498be01b4d958f9472cb776b3f3b0ea52924323a07e7a88572e24cac2cdf7eb04a0614031ba346043558b47bea2d346e98f0e8385b4261f138ef18
-  languageName: node
-  linkType: hard
-
 "@octokit/request-error@npm:^3.0.0":
   version: 3.0.2
   resolution: "@octokit/request-error@npm:3.0.2"
@@ -3136,20 +3083,6 @@ __metadata:
     deprecation: ^2.0.0
     once: ^1.4.0
   checksum: 41549554ce780de13d3421f8036635014c8dcbdf867c288526ef7b17e9d92470f33341ddadacf2868dc0181440842803484104efbe11ebfaecdaeec58871a13e
-  languageName: node
-  linkType: hard
-
-"@octokit/request@npm:^5.6.0, @octokit/request@npm:^5.6.3":
-  version: 5.6.3
-  resolution: "@octokit/request@npm:5.6.3"
-  dependencies:
-    "@octokit/endpoint": ^6.0.1
-    "@octokit/request-error": ^2.1.0
-    "@octokit/types": ^6.16.1
-    is-plain-object: ^5.0.0
-    node-fetch: ^2.6.7
-    universal-user-agent: ^6.0.0
-  checksum: c0b4542eb4baaf880d673c758d3e0b5c4a625a4ae30abf40df5548b35f1ff540edaac74625192b1aff42a79ac661e774da4ab7d5505f1cb4ef81239b1e8510c5
   languageName: node
   linkType: hard
 
@@ -3167,18 +3100,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@octokit/rest@npm:18.12.0":
-  version: 18.12.0
-  resolution: "@octokit/rest@npm:18.12.0"
-  dependencies:
-    "@octokit/core": ^3.5.1
-    "@octokit/plugin-paginate-rest": ^2.16.8
-    "@octokit/plugin-request-log": ^1.0.4
-    "@octokit/plugin-rest-endpoint-methods": ^5.12.0
-  checksum: c18bd6676a60b66819b016b0f969fcd04d8dfa04d01b7af9af9a7410ff028c621c995185e29454c23c47906da506c1e01620711259989a964ebbfd9106f5b715
-  languageName: node
-  linkType: hard
-
 "@octokit/rest@npm:^19.0.3":
   version: 19.0.5
   resolution: "@octokit/rest@npm:19.0.5"
@@ -3188,15 +3109,6 @@ __metadata:
     "@octokit/plugin-request-log": ^1.0.4
     "@octokit/plugin-rest-endpoint-methods": ^6.7.0
   checksum: ed4c36859aafb64e23f7f708086fe7e2ecda17ffd8c1594817d539f766f5855af79f17f5d225d96d34cd9b97cbfea988dac3df39a7cc928b2d2b7b75ed981056
-  languageName: node
-  linkType: hard
-
-"@octokit/types@npm:^6.0.3, @octokit/types@npm:^6.16.1, @octokit/types@npm:^6.39.0, @octokit/types@npm:^6.40.0":
-  version: 6.41.0
-  resolution: "@octokit/types@npm:6.41.0"
-  dependencies:
-    "@octokit/openapi-types": ^12.11.0
-  checksum: fd6f75e0b19b90d1a3d244d2b0c323ed8f2f05e474a281f60a321986683548ef2e0ec2b3a946aa9405d6092e055344455f69f58957c60f58368c8bdda5b7d2ab
   languageName: node
   linkType: hard
 
@@ -3469,6 +3381,13 @@ __metadata:
   version: 12.20.24
   resolution: "@types/node@npm:12.20.24"
   checksum: e7a13460e2f5b0b5a32c0f3af7daf1a05201552a66d542d3cc3b1ea8b52d4730250f9eb1961d755e31cfe5d03c78340911a6242657a0a9a17d6f7e341fc9f366
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^17.0.19":
+  version: 17.0.45
+  resolution: "@types/node@npm:17.0.45"
+  checksum: aa04366b9103b7d6cfd6b2ef64182e0eaa7d4462c3f817618486ea0422984c51fc69fd0d436eae6c9e696ddfdbec9ccaa27a917f7c2e8c75c5d57827fe3d95e8
   languageName: node
   linkType: hard
 
@@ -4447,6 +4366,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"camel-case@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "camel-case@npm:3.0.0"
+  dependencies:
+    no-case: ^2.2.0
+    upper-case: ^1.1.1
+  checksum: 4190ed6ab8acf4f3f6e1a78ad4d0f3f15ce717b6bfa1b5686d58e4bcd29960f6e312dd746b5fa259c6d452f1413caef25aee2e10c9b9a580ac83e516533a961a
+  languageName: node
+  linkType: hard
+
 "camelcase-keys@npm:^6.2.2":
   version: 6.2.2
   resolution: "camelcase-keys@npm:6.2.2"
@@ -4514,13 +4443,39 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.2, chalk@npm:^4.1.0, chalk@npm:^4.1.1":
+"chalk@npm:^4.0.2, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
   checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
+  languageName: node
+  linkType: hard
+
+"change-case@npm:^3.1.0":
+  version: 3.1.0
+  resolution: "change-case@npm:3.1.0"
+  dependencies:
+    camel-case: ^3.0.0
+    constant-case: ^2.0.0
+    dot-case: ^2.1.0
+    header-case: ^1.0.0
+    is-lower-case: ^1.1.0
+    is-upper-case: ^1.1.0
+    lower-case: ^1.1.1
+    lower-case-first: ^1.0.0
+    no-case: ^2.3.2
+    param-case: ^2.1.0
+    pascal-case: ^2.0.0
+    path-case: ^2.1.0
+    sentence-case: ^2.1.0
+    snake-case: ^2.1.0
+    swap-case: ^1.1.0
+    title-case: ^2.1.0
+    upper-case: ^1.1.1
+    upper-case-first: ^1.1.0
+  checksum: d6f9f90a5f1d2a98294e06ea62f913fa0d7cfc289f188bf05662344da6128f5710b5c99ece83682c6a848db8d996b7348e09b2235dc3363afb6ae7142e7978e1
   languageName: node
   linkType: hard
 
@@ -4881,13 +4836,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:7.2.0":
-  version: 7.2.0
-  resolution: "commander@npm:7.2.0"
-  checksum: 53501cbeee61d5157546c0bef0fedb6cdfc763a882136284bed9a07225f09a14b82d2a84e7637edfd1a679fb35ed9502fd58ef1d091e6287f60d790147f68ddc
-  languageName: node
-  linkType: hard
-
 "commander@npm:^2.7.1":
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
@@ -4971,6 +4919,16 @@ __metadata:
   version: 1.1.0
   resolution: "console-control-strings@npm:1.1.0"
   checksum: 8755d76787f94e6cf79ce4666f0c5519906d7f5b02d4b884cf41e11dcd759ed69c57da0670afd9236d229a46e0f9cf519db0cd829c6dca820bb5a5c3def584ed
+  languageName: node
+  linkType: hard
+
+"constant-case@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "constant-case@npm:2.0.0"
+  dependencies:
+    snake-case: ^2.1.0
+    upper-case: ^1.1.1
+  checksum: 893c793a425ebcd0744061c7f12650c655aae259b89d5654fb8eda42d22c3690716a4988ed03f2abe370b1ee7bfec44f8e4395e76e2f1458a8921982b15410ba
   languageName: node
   linkType: hard
 
@@ -5327,6 +5285,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"degit@npm:^2.8.4":
+  version: 2.8.4
+  resolution: "degit@npm:2.8.4"
+  bin:
+    degit: degit
+  checksum: bb58c48ff1ae3828825d7e614db703afd69905abc2d666009bb4affecb8d87be993511556395889dffc99a5eba7a058117402050c509a6e2c3dd56a579120236
+  languageName: node
+  linkType: hard
+
 "del@npm:^3.0.0":
   version: 3.0.0
   resolution: "del@npm:3.0.0"
@@ -5451,6 +5418,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"dot-case@npm:^2.1.0":
+  version: 2.1.1
+  resolution: "dot-case@npm:2.1.1"
+  dependencies:
+    no-case: ^2.2.0
+  checksum: 5c9d937245ff810a7ae788602e40c62e38cb515146ddf9b11c7f60cb02aae84859588761f1e8769d9e713609fae3c78dc99c8da9e0ee8e4d8b5c09a2fdf70328
+  languageName: node
+  linkType: hard
+
 "dot-prop@npm:^5.1.0":
   version: 5.3.0
   resolution: "dot-prop@npm:5.3.0"
@@ -5505,7 +5481,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ejs@npm:^3.1.7":
+"ejs@npm:^3.1.6, ejs@npm:^3.1.7":
   version: 3.1.8
   resolution: "ejs@npm:3.1.8"
   dependencies:
@@ -5555,7 +5531,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"enquirer@npm:~2.3.6":
+"enquirer@npm:^2.3.6, enquirer@npm:~2.3.6":
   version: 2.3.6
   resolution: "enquirer@npm:2.3.6"
   dependencies:
@@ -5685,6 +5661,7 @@ __metadata:
     fancy-log: ^1.3.3
     gulp: latest
     gulp-cli: ^2.3.0
+    hygen: ^6.2.11
     is-core-module: ^2.2.0
     jest: ^29.0.3
     jest-performance: ^2.1.0
@@ -5694,12 +5671,18 @@ __metadata:
     npm-packlist: ^5.1.3
     npm-run-path: 5.1.0
     prompts: ^2.4.0
+    semver: ^7.3.8
     ts-jest: ^29.0.1
     ts-node: ^9.1.1
     typescript: ^4.6.1-rc
     wasm-opt: ^1.3.0
     yargs: ^16.2.0
     yargs-unparser: ^2.0.0
+  dependenciesMeta:
+    "@esfx/equatable-native":
+      built: false
+    wasm-opt:
+      built: true
   languageName: unknown
   linkType: soft
 
@@ -6172,6 +6155,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"front-matter@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "front-matter@npm:4.0.2"
+  dependencies:
+    js-yaml: ^3.13.1
+  checksum: a5b4c36d75a820301ebf31db0f677332d189c4561903ab6853eaa0504b43634f98557dbf87752e09043dbd2c9dcc14b4bcf9151cb319c8ad7e26edb203c0cd23
+  languageName: node
+  linkType: hard
+
 "fs-constants@npm:^1.0.0":
   version: 1.0.0
   resolution: "fs-constants@npm:1.0.0"
@@ -6179,7 +6171,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs-extra@npm:^10.1.0":
+"fs-extra@npm:^10.0.0, fs-extra@npm:^10.1.0":
   version: 10.1.0
   resolution: "fs-extra@npm:10.1.0"
   dependencies:
@@ -6820,6 +6812,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"header-case@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "header-case@npm:1.0.1"
+  dependencies:
+    no-case: ^2.2.0
+    upper-case: ^1.1.3
+  checksum: fe1cc9a555ec9aabc2de80f4dd961a81c534fc23951694fef34297e59b0dd60f26647148731bf0dd3fdb3a1c688089d3cd147d7038db850e25be7c0a5fabb022
+  languageName: node
+  linkType: hard
+
 "homedir-polyfill@npm:^1.0.1":
   version: 1.0.3
   resolution: "homedir-polyfill@npm:1.0.3"
@@ -6914,6 +6916,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hygen@npm:^6.2.11":
+  version: 6.2.11
+  resolution: "hygen@npm:6.2.11"
+  dependencies:
+    "@types/node": ^17.0.19
+    chalk: ^4.1.2
+    change-case: ^3.1.0
+    debug: ^4.3.3
+    degit: ^2.8.4
+    ejs: ^3.1.6
+    enquirer: ^2.3.6
+    execa: ^5.0.0
+    front-matter: ^4.0.2
+    fs-extra: ^10.0.0
+    ignore-walk: ^4.0.1
+    inflection: ^1.12.0
+    ora: ^5.0.0
+    yargs-parser: ^21.0.0
+  bin:
+    hygen: dist/bin.js
+  checksum: 2ea44b41c3ccf2b85e2935f43adb620c465173628e410ccaa30a29503cafb57eccb3537ab1e6839dea6bc5a8454ad34a2a69aa7ec0cfc8531e30142a81ad04e6
+  languageName: node
+  linkType: hard
+
 "iconv-lite@npm:^0.4.24":
   version: 0.4.24
   resolution: "iconv-lite@npm:0.4.24"
@@ -6936,6 +6962,15 @@ __metadata:
   version: 1.2.1
   resolution: "ieee754@npm:1.2.1"
   checksum: 5144c0c9815e54ada181d80a0b810221a253562422e7c6c3a60b1901154184f49326ec239d618c416c1c5945a2e197107aee8d986a3dd836b53dffefd99b5e7e
+  languageName: node
+  linkType: hard
+
+"ignore-walk@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "ignore-walk@npm:4.0.1"
+  dependencies:
+    minimatch: ^3.0.4
+  checksum: 903cd5cb68d57b2e70fddb83d885aea55f137a44636254a29b08037797376d8d3e09d1c58935778f3a271bf6a2b41ecc54fc22260ac07190e09e1ec7253b49f3
   languageName: node
   linkType: hard
 
@@ -7002,6 +7037,13 @@ __metadata:
   version: 1.0.4
   resolution: "infer-owner@npm:1.0.4"
   checksum: 181e732764e4a0611576466b4b87dac338972b839920b2a8cde43642e4ed6bd54dc1fb0b40874728f2a2df9a1b097b8ff83b56d5f8f8e3927f837fdcb47d8a89
+  languageName: node
+  linkType: hard
+
+"inflection@npm:^1.12.0":
+  version: 1.13.4
+  resolution: "inflection@npm:1.13.4"
+  checksum: 6744feede9998ad8abd2b1db4af79f494a166e656a0aa949d90c8f4a945c1d07038a3756bf7af78c8f6fce368ba213a7ebf35da3edeffd39f1da0ff465eed6eb
   languageName: node
   linkType: hard
 
@@ -7329,6 +7371,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-lower-case@npm:^1.1.0":
+  version: 1.1.3
+  resolution: "is-lower-case@npm:1.1.3"
+  dependencies:
+    lower-case: ^1.1.0
+  checksum: 55a2a9fe384f669ab349985bb3d1b2ab99dff4ca6d898255786ed97722680ee407a2b2c9977e05157043fd48727d71a1ca15493b58710ab076b13820ee84eed0
+  languageName: node
+  linkType: hard
+
 "is-negated-glob@npm:^1.0.0":
   version: 1.0.0
   resolution: "is-negated-glob@npm:1.0.0"
@@ -7475,6 +7526,15 @@ __metadata:
   version: 0.1.0
   resolution: "is-unicode-supported@npm:0.1.0"
   checksum: a2aab86ee7712f5c2f999180daaba5f361bdad1efadc9610ff5b8ab5495b86e4f627839d085c6530363c6d6d4ecbde340fb8e54bdb83da4ba8e0865ed5513c52
+  languageName: node
+  linkType: hard
+
+"is-upper-case@npm:^1.1.0":
+  version: 1.1.2
+  resolution: "is-upper-case@npm:1.1.2"
+  dependencies:
+    upper-case: ^1.1.0
+  checksum: c85805dfb9c5465f1db2492ce0feddd9273398a6dc0250b4d866f9bd23dbd92d0e2b57f4560ab195b2695b8403ff989265cf637f34b7443b706e0cd4d482b5ee
   languageName: node
   linkType: hard
 
@@ -8563,6 +8623,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lower-case-first@npm:^1.0.0":
+  version: 1.0.2
+  resolution: "lower-case-first@npm:1.0.2"
+  dependencies:
+    lower-case: ^1.1.2
+  checksum: 97eb5ce68998153552f3627d405f6821299a45dac90423f712ccd696f77fa96e9d707a5509970c8b61b99c08947eb1e70e35cddb67bc40ea64069c574edd4f78
+  languageName: node
+  linkType: hard
+
+"lower-case@npm:^1.1.0, lower-case@npm:^1.1.1, lower-case@npm:^1.1.2":
+  version: 1.1.4
+  resolution: "lower-case@npm:1.1.4"
+  checksum: 1ca9393b5eaef94a64e3f89e38b63d15bc7182a91171e6ad1550f51d710ec941540a065b274188f2e6b4576110cc2d11b50bc4bb7c603a040ddeb1db4ca95197
+  languageName: node
+  linkType: hard
+
 "lru-cache@npm:^6.0.0":
   version: 6.0.0
   resolution: "lru-cache@npm:6.0.0"
@@ -9058,6 +9134,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"no-case@npm:^2.2.0, no-case@npm:^2.3.2":
+  version: 2.3.2
+  resolution: "no-case@npm:2.3.2"
+  dependencies:
+    lower-case: ^1.1.1
+  checksum: 856487731936fef44377ca74fdc5076464aba2e0734b56a4aa2b2a23d5b154806b591b9b2465faa59bb982e2b5c9391e3685400957fb4eeb38f480525adcf3dd
+  languageName: node
+  linkType: hard
+
 "node-addon-api@npm:^3.2.1":
   version: 3.2.1
   resolution: "node-addon-api@npm:3.2.1"
@@ -9123,18 +9208,6 @@ __metadata:
   version: 0.4.0
   resolution: "node-int64@npm:0.4.0"
   checksum: d0b30b1ee6d961851c60d5eaa745d30b5c95d94bc0e74b81e5292f7c42a49e3af87f1eb9e89f59456f80645d679202537de751b7d72e9e40ceea40c5e449057e
-  languageName: node
-  linkType: hard
-
-"node-pre-gyp-github@npm:^1.4.4":
-  version: 1.4.4
-  resolution: "node-pre-gyp-github@npm:1.4.4"
-  dependencies:
-    "@octokit/rest": 18.12.0
-    commander: 7.2.0
-  bin:
-    node-pre-gyp-github: bin/node-pre-gyp-github.js
-  checksum: e6a262c9aefcb7b892a1f03424f364fc1476648eeab171561d2bf5457c07206b5c3010c48159703bcc13a17530abb02875fe6ee93b33a4f2bd5d0c3b88da073b
   languageName: node
   linkType: hard
 
@@ -9551,7 +9624,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ora@npm:^5.4.1":
+"ora@npm:^5.0.0, ora@npm:^5.4.1":
   version: 5.4.1
   resolution: "ora@npm:5.4.1"
   dependencies:
@@ -9755,6 +9828,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"param-case@npm:^2.1.0":
+  version: 2.1.1
+  resolution: "param-case@npm:2.1.1"
+  dependencies:
+    no-case: ^2.2.0
+  checksum: 3a63dcb8d8dc7995a612de061afdc7bb6fe7bd0e6db994db8d4cae999ed879859fd24389090e1a0d93f4c9207ebf8c048c870f468a3f4767161753e03cb9ab58
+  languageName: node
+  linkType: hard
+
 "parent-module@npm:^1.0.0":
   version: 1.0.1
   resolution: "parent-module@npm:1.0.1"
@@ -9849,10 +9931,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pascal-case@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "pascal-case@npm:2.0.1"
+  dependencies:
+    camel-case: ^3.0.0
+    upper-case-first: ^1.1.0
+  checksum: 4c539bf556572812f64a02fc6b544f3d2b51db12aed484e5162ed7f8ac2b366775d15e536091c890d71d82bdf9153128321f21574721b3a984bd85df9e519a35
+  languageName: node
+  linkType: hard
+
 "pascalcase@npm:^0.1.1":
   version: 0.1.1
   resolution: "pascalcase@npm:0.1.1"
   checksum: f83681c3c8ff75fa473a2bb2b113289952f802ff895d435edd717e7cb898b0408cbdb247117a938edcbc5d141020909846cc2b92c47213d764e2a94d2ad2b925
+  languageName: node
+  linkType: hard
+
+"path-case@npm:^2.1.0":
+  version: 2.1.1
+  resolution: "path-case@npm:2.1.1"
+  dependencies:
+    no-case: ^2.2.0
+  checksum: eb1da508c28378715cbe4ce054ee5f83a570c5010f041f4cfb439c811f7a78e36c46f26a8d59b2594c3882b53db06ef26195519c27f86523dc5d19c2e29f306d
   languageName: node
   linkType: hard
 
@@ -10835,7 +10936,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.0.0, semver@npm:^7.1.1, semver@npm:^7.3.4, semver@npm:^7.3.7":
+"semver@npm:^7.0.0, semver@npm:^7.1.1, semver@npm:^7.3.4, semver@npm:^7.3.7, semver@npm:^7.3.8":
   version: 7.3.8
   resolution: "semver@npm:7.3.8"
   dependencies:
@@ -10865,6 +10966,16 @@ __metadata:
   bin:
     semver: bin/semver.js
   checksum: 5eafe6102bea2a7439897c1856362e31cc348ccf96efd455c8b5bc2c61e6f7e7b8250dc26b8828c1d76a56f818a7ee907a36ae9fb37a599d3d24609207001d60
+  languageName: node
+  linkType: hard
+
+"sentence-case@npm:^2.1.0":
+  version: 2.1.1
+  resolution: "sentence-case@npm:2.1.1"
+  dependencies:
+    no-case: ^2.2.0
+    upper-case-first: ^1.1.2
+  checksum: ce5ca48804051e056a6956ad75a1a7d833e5d8f5021a015d380a22d3cf04496d5238de2e5c876d9701a9218633052c3a65911ca1b6460d36a41ecad46e81d139
   languageName: node
   linkType: hard
 
@@ -10912,17 +11023,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"signal-exit@npm:^3.0.0, signal-exit@npm:^3.0.2":
-  version: 3.0.3
-  resolution: "signal-exit@npm:3.0.3"
-  checksum: f0169d3f1263d06df32ca072b0bf33b34c6f8f0341a7a1621558a2444dfbe8f5fec76b35537fcc6f0bc4944bdb5336fe0bdcf41a5422c4e45a1dba3f45475e6c
-  languageName: node
-  linkType: hard
-
-"signal-exit@npm:^3.0.3, signal-exit@npm:^3.0.7":
+"signal-exit@npm:^3.0.0, signal-exit@npm:^3.0.3, signal-exit@npm:^3.0.7":
   version: 3.0.7
   resolution: "signal-exit@npm:3.0.7"
   checksum: a2f098f247adc367dffc27845853e9959b9e88b01cb301658cfe4194352d8d2bb32e18467c786a7fe15f1d44b233ea35633d076d5e737870b7139949d1ab6318
+  languageName: node
+  linkType: hard
+
+"signal-exit@npm:^3.0.2":
+  version: 3.0.3
+  resolution: "signal-exit@npm:3.0.3"
+  checksum: f0169d3f1263d06df32ca072b0bf33b34c6f8f0341a7a1621558a2444dfbe8f5fec76b35537fcc6f0bc4944bdb5336fe0bdcf41a5422c4e45a1dba3f45475e6c
   languageName: node
   linkType: hard
 
@@ -10962,6 +11073,15 @@ __metadata:
   version: 4.2.0
   resolution: "smart-buffer@npm:4.2.0"
   checksum: b5167a7142c1da704c0e3af85c402002b597081dd9575031a90b4f229ca5678e9a36e8a374f1814c8156a725d17008ae3bde63b92f9cfd132526379e580bec8b
+  languageName: node
+  linkType: hard
+
+"snake-case@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "snake-case@npm:2.1.0"
+  dependencies:
+    no-case: ^2.2.0
+  checksum: 7e42b4841103be4dd050b2f57f5cb423d5164524c1cb3d81efda9809265a82a2d02ddf44361beae37d75a239308e6414be85fe441dc48cd70c708cb975387d10
   languageName: node
   linkType: hard
 
@@ -11452,6 +11572,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"swap-case@npm:^1.1.0":
+  version: 1.1.2
+  resolution: "swap-case@npm:1.1.2"
+  dependencies:
+    lower-case: ^1.1.1
+    upper-case: ^1.1.1
+  checksum: 37b0c4988e12520fba54018f7fe259d62902e97349366209d2af9b1d5e741692c8f17da9d5e780c7bd1a56864bbb51d53eaf1a101a11afdfcae157912a3691d8
+  languageName: node
+  linkType: hard
+
 "tar-stream@npm:~2.2.0":
   version: 2.2.0
   resolution: "tar-stream@npm:2.2.0"
@@ -11575,6 +11705,16 @@ __metadata:
   version: 0.3.0
   resolution: "timsort@npm:0.3.0"
   checksum: 1a66cb897dacabd7dd7c91b7e2301498ca9e224de2edb9e42d19f5b17c4b6dc62a8d4cbc64f28be82aaf1541cb5a78ab49aa818f42a2989ebe049a64af731e2a
+  languageName: node
+  linkType: hard
+
+"title-case@npm:^2.1.0":
+  version: 2.1.1
+  resolution: "title-case@npm:2.1.1"
+  dependencies:
+    no-case: ^2.2.0
+    upper-case: ^1.0.3
+  checksum: e88ddfc4608a7fb18ed440139d9c42a5f8a50f916e07062be2aef5e2038720746ed51c4fdf9e7190d24a8cc10e6dec9773027fc44450b3a4a5e5c49b4a931fb1
   languageName: node
   linkType: hard
 
@@ -12058,6 +12198,22 @@ __metadata:
   bin:
     browserslist-lint: cli.js
   checksum: f625899b236f6a4d7f62b56be1b8da230c5563d1fef84d3ef148f2e1a3f11a5a4b3be4fd7e3703e51274c116194017775b10afb4de09eb2c0d09d36b90f1f578
+  languageName: node
+  linkType: hard
+
+"upper-case-first@npm:^1.1.0, upper-case-first@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "upper-case-first@npm:1.1.2"
+  dependencies:
+    upper-case: ^1.1.1
+  checksum: 7467267967de978316c26c64ca9a4b2fbe5ccb530dc2579b1078bfeb89723ba24bc20881de1d23db301f6e7e5e24b4084e6f5f7ddbb2275a55177d06d9a250b7
+  languageName: node
+  linkType: hard
+
+"upper-case@npm:^1.0.3, upper-case@npm:^1.1.0, upper-case@npm:^1.1.1, upper-case@npm:^1.1.3":
+  version: 1.1.3
+  resolution: "upper-case@npm:1.1.3"
+  checksum: 991c845de75fa56e5ad983f15e58494dd77b77cadd79d273cc11e8da400067e9881ae1a52b312aed79b3d754496e2e0712e08d22eae799e35c7f9ba6f3d8a85d
   languageName: node
   linkType: hard
 

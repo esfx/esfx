@@ -25,13 +25,13 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.1.0-alpha.202211052202",
-        "@esfx/collections-hashmap": "^1.1.0-alpha.202211052202",
-        "@esfx/collections-hashset": "^1.1.0-alpha.202211052202",
-        "@esfx/equatable": "^1.1.0-alpha.202211052202"
+        "@esfx/collection-core": "workspace:*",
+        "@esfx/collections-hashmap": "workspace:*",
+        "@esfx/collections-hashset": "workspace:*",
+        "@esfx/equatable": "workspace:*"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.1.0-alpha.202211052202"
+        "@esfx/internal-guards": "workspace:*"
     },
     "publishConfig": {
         "access": "public"

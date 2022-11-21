@@ -4,7 +4,6 @@
 /dist/esm/internal/hashers/murmur3.*
 /dist/types/internal/**/*.d.ts
 /dist/types/internal/**/*.d.ts.map
-/dist/node
 /docsrc
 /obj
 /scripts

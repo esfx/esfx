@@ -25,21 +25,21 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/async-autoresetevent": "^1.1.0-alpha.202211052202",
-        "@esfx/async-barrier": "^1.1.0-alpha.202211052202",
-        "@esfx/async-conditionvariable": "^1.1.0-alpha.202211052202",
-        "@esfx/async-countdown": "^1.1.0-alpha.202211052202",
-        "@esfx/async-deferred": "^1.1.0-alpha.202211052202",
-        "@esfx/async-delay": "^1.1.0-alpha.202211052202",
-        "@esfx/async-lazy": "^1.1.0-alpha.202211052202",
-        "@esfx/async-lockable": "^1.1.0-alpha.202211052202",
-        "@esfx/async-manualresetevent": "^1.1.0-alpha.202211052202",
-        "@esfx/async-mutex": "^1.1.0-alpha.202211052202",
-        "@esfx/async-queue": "^1.1.0-alpha.202211052202",
-        "@esfx/async-readerwriterlock": "^1.1.0-alpha.202211052202",
-        "@esfx/async-semaphore": "^1.1.0-alpha.202211052202",
-        "@esfx/async-stack": "^1.1.0-alpha.202211052202",
-        "@esfx/canceltoken": "^1.1.0-alpha.202211052202"
+        "@esfx/async-autoresetevent": "workspace:*",
+        "@esfx/async-barrier": "workspace:*",
+        "@esfx/async-conditionvariable": "workspace:*",
+        "@esfx/async-countdown": "workspace:*",
+        "@esfx/async-deferred": "workspace:*",
+        "@esfx/async-delay": "workspace:*",
+        "@esfx/async-lazy": "workspace:*",
+        "@esfx/async-lockable": "workspace:*",
+        "@esfx/async-manualresetevent": "workspace:*",
+        "@esfx/async-mutex": "workspace:*",
+        "@esfx/async-queue": "workspace:*",
+        "@esfx/async-readerwriterlock": "workspace:*",
+        "@esfx/async-semaphore": "workspace:*",
+        "@esfx/async-stack": "workspace:*",
+        "@esfx/canceltoken": "workspace:*"
     },
     "publishConfig": {
         "access": "public"

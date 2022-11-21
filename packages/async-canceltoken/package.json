@@ -25,14 +25,14 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/cancelable": "^1.1.0-alpha.202211052202",
-        "@esfx/canceltoken": "^1.1.0-alpha.202211052202",
-        "@esfx/disposable": "^1.1.0-alpha.202211052202",
+        "@esfx/cancelable": "workspace:*",
+        "@esfx/canceltoken": "workspace:*",
+        "@esfx/disposable": "workspace:*",
         "tslib": "^2.4.0"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.1.0-alpha.202211052202",
-        "@esfx/internal-linked-list": "^1.1.0-alpha.202211052202"
+        "@esfx/internal-guards": "workspace:*",
+        "@esfx/internal-linked-list": "workspace:*"
     },
     "publishConfig": {
         "access": "public"

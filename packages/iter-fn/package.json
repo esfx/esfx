@@ -85,22 +85,22 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/collection-core": "^1.1.0-alpha.202211052202",
-        "@esfx/collections-hashmap": "^1.1.0-alpha.202211052202",
-        "@esfx/collections-hashset": "^1.1.0-alpha.202211052202",
-        "@esfx/equatable": "^1.1.0-alpha.202211052202",
-        "@esfx/fn": "^1.1.0-alpha.202211052202",
-        "@esfx/interval": "^1.1.0-alpha.202211052202",
-        "@esfx/iter-grouping": "^1.1.0-alpha.202211052202",
-        "@esfx/iter-hierarchy": "^1.1.0-alpha.202211052202",
-        "@esfx/iter-lookup": "^1.1.0-alpha.202211052202",
-        "@esfx/iter-ordered": "^1.1.0-alpha.202211052202",
-        "@esfx/iter-page": "^1.1.0-alpha.202211052202",
+        "@esfx/collection-core": "workspace:*",
+        "@esfx/collections-hashmap": "workspace:*",
+        "@esfx/collections-hashset": "workspace:*",
+        "@esfx/equatable": "workspace:*",
+        "@esfx/fn": "workspace:*",
+        "@esfx/interval": "workspace:*",
+        "@esfx/iter-grouping": "workspace:*",
+        "@esfx/iter-hierarchy": "workspace:*",
+        "@esfx/iter-lookup": "workspace:*",
+        "@esfx/iter-ordered": "workspace:*",
+        "@esfx/iter-page": "workspace:*",
         "tslib": "^2.4.0"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.1.0-alpha.202211052202",
-        "@esfx/internal-jest-sequence": "^1.1.0-alpha.202211052202"
+        "@esfx/internal-guards": "workspace:*",
+        "@esfx/internal-jest-sequence": "workspace:*"
     },
     "publishConfig": {
         "access": "public"

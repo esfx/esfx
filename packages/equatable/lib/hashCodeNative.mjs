@@ -14,13 +14,23 @@
    limitations under the License.
 */
 
-import { createRequire } from "node:module";
-import { fileURLToPath, URL } from "node:url";
-import binary from "@mapbox/node-pre-gyp";
+let hashCode;
+try {
+    hashCode = await import(`@esfx/equatable-${process.platform}-${process.arch}`);
+    hashCode.hashBigInt.native = true;
+    hashCode.hashNumber.native = true;
+    hashCode.hashString.native = true;
+    hashCode.hashSymbol.native = true;
+    hashCode.hashObject.native = true;
+}
+catch {
+    hashCode = await import("../dist/esm/internal/hashCode.mjs");
+}
+
 export const {
     hashBigInt,
     hashNumber,
     hashString,
     hashSymbol,
     hashObject,
-} = createRequire(import.meta.url)(binary.find(fileURLToPath(new URL("../package.json", import.meta.url))));
+} = hashCode;

@@ -25,15 +25,15 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
-        "@esfx/disposable": "^1.1.0-alpha.202211052202",
-        "@esfx/threading-lockable": "^1.1.0-alpha.202211052202"
+        "@esfx/disposable": "workspace:*",
+        "@esfx/threading-lockable": "workspace:*"
     },
     "devDependencies": {
-        "@esfx/internal-guards": "^1.1.0-alpha.202211052202",
-        "@esfx/internal-threading": "^1.1.0-alpha.202211052202",
-        "@esfx/internal-ts-worker": "^1.1.0-alpha.202211052202",
-        "@esfx/struct-type": "^1.1.0-alpha.202211052202",
-        "@esfx/threading-mutex": "^1.1.0-alpha.202211052202"
+        "@esfx/internal-guards": "workspace:*",
+        "@esfx/internal-threading": "workspace:*",
+        "@esfx/internal-ts-worker": "workspace:*",
+        "@esfx/struct-type": "workspace:*",
+        "@esfx/threading-mutex": "workspace:*"
     },
     "publishConfig": {
         "access": "public"

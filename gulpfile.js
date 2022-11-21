@@ -42,6 +42,8 @@ const { build: build_internal, clean: clean_internal } = makeProjects(internalPa
 gulp.task("internal", build_internal);
 
 const { build: build_packages, clean: clean_packages } = makeProjects(publicPackages);
+
+gulp.task("packages/equatable-native", () => exec("yarn", ["workspace", "equatable-native", "run", "build"], { verbose: true }));
 gulp.task("packages", build_packages);
 
 const clean_dist = () => del([
@@ -56,7 +58,7 @@ const clean_dist = () => del([
 const clean = gulp.series(gulp.parallel(clean_internal, clean_packages), clean_dist);
 gulp.task("clean", clean);
 
-const prebuild = () => exec("yarn", ["workspaces", "foreach", "run", "prebuild"], { verbose: true });
+const prebuild = () => exec("yarn", ["workspaces", "foreach", "--exclude", "esfx-monorepo", "run", "prebuild"], { verbose: true });
 gulp.task("prebuild", prebuild);
 
 const build = gulp.parallel(build_internal, build_packages);
@@ -67,7 +69,7 @@ gulp.task("ci", ci);
 
 for (const runtime of ["node", "electron"]) for (const platform of ["windows", "linux", "macos"]) {
     const taskName = `build-${runtime}-${platform}`;
-    const taskFunction = () => exec("yarn", ["workspaces", "foreach", "run", `package-${runtime}-${platform}`], { verbose: true });
+    const taskFunction = () => exec("yarn", ["workspaces", "foreach", "--exclude", "esfx-monorepo", "run", `build-${runtime}-${platform}`], { verbose: true });
     taskFunction.displayName = taskName;
     gulp.task(taskName, taskFunction);
 }
@@ -136,8 +138,11 @@ const verify = () => {
 };
 gulp.task("verify", verify);
 
-const prepack = () => exec("yarn", ["workspaces", "foreach", "run", "prepack"], { verbose: true });
+const prepack = () => exec("yarn", ["workspaces", "foreach", "--exclude", "esfx-monorepo", "run", "prepack"], { verbose: true });
 gulp.task("prepack", prepack);
+
+const generateNativePackages = () => exec("yarn", ["workspaces", "foreach", "--exclude", "esfx-monorepo", "run", "generate-native-packages"], { verbose: true });
+gulp.task("generate-native-packages", generateNativePackages);
 
 gulp.task("default", gulp.series(build, verify, test));
 
