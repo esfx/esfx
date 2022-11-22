@@ -75,12 +75,12 @@ jobs:
       run: |
         yarn install --immutable
 
+    - name: lerna version
+      run: lerna version ${{ steps.validate.outputs.version }} --no-git-tag-version --no-push --yes $([ ${{ inputs.force_publish }} == true ] && echo "--force-publish" )
+
     - name: generate native packages
       run: |
         yarn run generate-native-packages
-
-    - name: lerna version
-      run: lerna version ${{ steps.validate.outputs.version }} --no-git-tag-version --no-push --yes $([ ${{ inputs.force_publish }} == true ] && echo "--force-publish" )
 
     - name: upload version artifacts
       uses: actions/upload-artifact@v3
@@ -230,15 +230,15 @@ jobs:
       run: |
         yarn install --immutable
 
-    - name: generate native packages
-      run: |
-        yarn run generate-native-packages
-
     - name: version
       uses: actions/download-artifact@v3
       with:
         name: version-artifacts
         path: ${{ github.workspace }}
+
+    - name: generate native packages
+      run: |
+        yarn run generate-native-packages
 
     - name: build
       run: |
@@ -280,14 +280,18 @@ jobs:
         name: docs-artifacts
         path: docs
 
-    - name: commit and tag version
-      if: ${{ inputs.create_release }}
+    - name: commit changes
+      if: ${{ inputs.create_release || ! inputs.draft }}
       run: |
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
         git add -- ${{ join(fromJson(needs.version.outputs.changed_files), ' ') }}
         git add -- docs
         git commit -m "v${{ needs.version.outputs.version }}"
+
+    - name: tag and push commit
+      if: ${{ inputs.create_release }}
+      run: |
         git tag -f "v${{ needs.version.outputs.version }}" -m "v${{ needs.version.outputs.version }}"
         git push --follow-tags --no-verify --atomic origin ${{ github.ref_name }}
         echo "release_sha=$( git show -s --format=%H )" >> $GITHUB_ENV

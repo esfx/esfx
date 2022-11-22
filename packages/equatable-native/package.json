@@ -29,7 +29,7 @@
     },
     "binary": {
         "module_name": "hashCodeNative",
-        "module_path": "../equatable-native-{platform}-{arch}/dist/{node_abi}-{platform}-{arch}/",
+        "module_path": "../../native/equatable-native-{platform}-{arch}/dist/{node_abi}-{platform}-{arch}/",
         "host": "//"
     }
 }

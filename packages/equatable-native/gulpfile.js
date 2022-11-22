@@ -4,7 +4,6 @@ const path = require("path");
 const semver = require("semver");
 const hygen = require("hygen");
 const { exec, ArgsBuilder } = require("../../scripts/exec.js");
-const { fileURLToPath, URL } = require("url");
 
 /**
  * @typedef Matrix
@@ -46,7 +45,8 @@ const { fileURLToPath, URL } = require("url");
 
 // constants
 const PACKAGE_DIR = __dirname;
-const NATIVE_DIR = path.resolve(PACKAGE_DIR, "..");
+const MONOREPO_DIR = path.resolve(PACKAGE_DIR, "../../");
+const NATIVE_DIR = path.resolve(MONOREPO_DIR, "native");
 
 /** @type {Matrix[]} */
 const matrix = require("./configurations.json");

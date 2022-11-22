@@ -18,8 +18,12 @@ to: "<%=packageDir%>/package.json"
         <%-JSON.stringify(runtime)%>: <%-JSON.stringify(versions)%><%- i === engines.length - 1 ? "" : ","%>
 <% }) -%>
     },
-    "os": [<%-JSON.stringify(platform)%>],
-    "cpu": [<%-JSON.stringify(arch)%>],
+    "os": [
+        <%-JSON.stringify(platform)%>
+    ],
+    "cpu": [
+        <%-JSON.stringify(arch)%>
+    ],
     "publishConfig": {
         "access": "public"
     }

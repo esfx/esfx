@@ -14,8 +14,12 @@
         "node": "^16 || ^18",
         "electron": "^21 || ^20 || ^19 || ^18 || ^17 || ^16 || ^15"
     },
-    "os": ["win32"],
-    "cpu": ["x64"],
+    "os": [
+        "win32"
+    ],
+    "cpu": [
+        "x64"
+    ],
     "publishConfig": {
         "access": "public"
     }

@@ -1040,9 +1040,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@esfx/equatable-native@workspace:native/equatable-native":
+"@esfx/equatable-native@workspace:packages/equatable-native":
   version: 0.0.0-use.local
-  resolution: "@esfx/equatable-native@workspace:native/equatable-native"
+  resolution: "@esfx/equatable-native@workspace:packages/equatable-native"
   dependencies:
     "@mapbox/node-pre-gyp": ^1.0.9
   languageName: unknown
