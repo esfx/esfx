@@ -58,17 +58,3 @@ else {
 export function hashUnknown(x: unknown) {
     return hashUnknownCore(x);
 }
-
-let native = false;
-let nonNative = false;
-for (const fn of [hashNumber, hashBigInt, hashString, hashSymbol, hashObject]) {
-    if ((fn as any).native) {
-        native = true;
-    }
-    else {
-        nonNative = true;
-    }
-
-}
-
-hashUnknown.native = native && nonNative ? "partial" : native;

@@ -509,5 +509,3 @@ export import tupleStructuralComparer = Comparer.tupleStructuralComparer;
 export function rawHash(value: unknown): number {
     return hashUnknown(value);
 }
-
-export const native = hashUnknown.native;

@@ -20,11 +20,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 let hashCode;
 try {
     hashCode = require(`@esfx/equatable-native-${process.platform}-${process.arch}`);
-    hashCode.hashBigInt.native = true;
-    hashCode.hashNumber.native = true;
-    hashCode.hashString.native = true;
-    hashCode.hashSymbol.native = true;
-    hashCode.hashObject.native = true;
 }
 catch {
     hashCode = require("../dist/cjs/internal/hashCode.js");

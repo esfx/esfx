@@ -17,11 +17,6 @@
 let hashCode;
 try {
     hashCode = await import(`@esfx/equatable-${process.platform}-${process.arch}`);
-    hashCode.hashBigInt.native = true;
-    hashCode.hashNumber.native = true;
-    hashCode.hashString.native = true;
-    hashCode.hashSymbol.native = true;
-    hashCode.hashObject.native = true;
 }
 catch {
     hashCode = await import("../dist/esm/internal/hashCode.mjs");
