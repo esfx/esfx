@@ -99,14 +99,14 @@ jobs:
       run: |
         # collect the package files that have changed since the last version bump, producing a JSON array of file names.
         echo "changed_files=$(
-          git status --porcelain -- package.json lerna.json yarn.lock internal/*/package*.json packages/*/package*.json |
+          git status --porcelain -- package.json lerna.json yarn.lock internal/*/package*.json packages/*/package*.json native/*/package*.json |
           cut -c 4- |
           node -e 'process.stdout.write(JSON.stringify(fs.readFileSync(0, "utf8").split(/\n/g).filter(Boolean)))'
         )" >> $GITHUB_OUTPUT;
 
         # collect the package.json files that have changed since the last version bump, producing a JSON object like '{ [path]: true }'
         echo "changed_packages=$(
-          git status --porcelain -- internal/*/package.json packages/*/package.json |
+          git status --porcelain -- internal/*/package.json packages/*/package.json native/*/package.json |
           cut -c 4- |
           node -e 'process.stdout.write(JSON.stringify(fs.readFileSync(0, "utf8").split(/\n/g).filter(Boolean).reduce((obj, path) => ({ ...obj, [path]: true }), {})))'
         )" >> $GITHUB_OUTPUT;
