@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: Version number to publish
+        description: version
         required: true
         type: string
         default: 1.1.0-alpha
@@ -80,7 +80,7 @@ jobs:
         yarn run generate-native-packages
 
     - name: lerna version
-      run: lerna version ${{ steps.validate.outputs.version }} --no-git-tag-version --no-push --yes $([ ${{inputs.force_publish }} == true ] && echo "--force-publish")
+      run: lerna version ${{ steps.validate.outputs.version }} --no-git-tag-version --no-push --yes $([ ${{ inputs.force_publish }} == true ] && echo "--force-publish" )
 
     - name: upload version artifacts
       uses: actions/upload-artifact@v3
@@ -290,20 +290,21 @@ jobs:
         git commit -m "v${{ needs.version.outputs.version }}"
         git tag -f "v${{ needs.version.outputs.version }}" -m "v${{ needs.version.outputs.version }}"
         git push --follow-tags --no-verify --atomic origin ${{ github.ref_name }}
+        echo "release_sha=$( git show -s --format=%H )" >> $GITHUB_ENV
 
     - name: create release
       if: ${{ inputs.create_release }}
       uses: ncipollo/release-action@v1
       with:
         tag: "v${{ needs.version.outputs.version }}"
-        commit: ${{ github.sha }}
+        commit: ${{ env.release_sha || github.sha }}
         draft: ${{ inputs.draft }}
         prerelease: ${{ needs.version.outputs.prerelease != 'false' }}
         allowUpdates: true
 
     - name: publish
-      if: ${{ inputs.create_release && !inputs.draft }}
+      if: ${{ ! inputs.draft }}
       run: |
-        lerna publish from-git --yes --no-verify-access --dist-tag ${{ needs.version.outputs.dist_tag }}
+        lerna publish from-git --yes --no-verify-access --no-git-reset --dist-tag ${{ needs.version.outputs.dist_tag }}
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
