@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-ordered",
-    "version": "1.1.0-alpha.202211052202",
+    "version": "1.1.0-alpha.202211221422",
     "description": "A Symbol-based API for defining an Iterable with an inherent order.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

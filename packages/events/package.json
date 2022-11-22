@@ -1,6 +1,6 @@
 {
     "name": "@esfx/events",
-    "version": "1.1.0-alpha.202211052202",
+    "version": "1.1.0-alpha.202211221422",
     "description": "A low-level API for defining events.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

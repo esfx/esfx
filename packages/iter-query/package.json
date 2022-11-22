@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-query",
-    "version": "1.1.0-alpha.202211052202",
+    "version": "1.1.0-alpha.202211221422",
     "description": "An iteration and query API for ECMAScript iterables.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

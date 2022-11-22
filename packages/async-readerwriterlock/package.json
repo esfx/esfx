@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-readerwriterlock",
-    "version": "1.1.0-alpha.202211052202",
+    "version": "1.1.0-alpha.202211221422",
     "description": "Provides 'AsyncAutoResetEvent', an async coordination primitive.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

@@ -4881,6 +4881,10 @@ references:
   name: HashGenerator
   href: api/equatable.html#_esfx_equatable_HashGenerator_type
   fullName: HashGenerator
+- uid: '@esfx/equatable!native:var'
+  name: native
+  href: api/equatable.html#_esfx_equatable_native_var
+  fullName: native
 - uid: '@esfx/equatable!rawHash:function(1)'
   name: rawHash(value)
   href: api/equatable.html#_esfx_equatable_rawHash_function_1_
