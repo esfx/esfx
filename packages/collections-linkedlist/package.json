@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections-linkedlist",
-    "version": "1.1.0-alpha.202211052202",
+    "version": "1.1.0-alpha.202211221509",
     "description": "LinkedList collection API.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

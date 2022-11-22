@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-fn",
-    "version": "1.1.0-alpha.202211052202",
+    "version": "1.1.0-alpha.202211221509",
     "description": "An fp-style async iteration API for ECMAScript iterables.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
