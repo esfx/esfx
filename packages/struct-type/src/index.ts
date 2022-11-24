@@ -14,10 +14,10 @@
    limitations under the License.
 */
 
+import { Equatable, StructuralEquatable } from "@esfx/equatable";
 import { conststring, constsymbol, numstr } from "@esfx/type-model";
-import * as structType from "./structType.js";
 import * as primitives from "./primitives.js";
-import { Comparable, Equatable, StructuralComparable, StructuralEquatable } from "@esfx/equatable";
+import * as structType from "./structType.js";
 
 /**
  * Represents a primitive struct type.
@@ -137,6 +137,7 @@ export {
     float64 as double,
 };
 
+
 export type StructFieldType =
     | typeof int8
     | typeof int16
@@ -148,7 +149,8 @@ export type StructFieldType =
     | typeof biguint64
     | typeof float32
     | typeof float64
-    | ((new () => Struct) & { readonly SIZE: number });
+    | ((new () => Struct) & { readonly SIZE: number })
+    ;
 
 export interface StructFieldDefinition {
     readonly name: conststring | constsymbol;
@@ -158,7 +160,7 @@ export interface StructFieldDefinition {
 /**
  * Represents an instance of a struct type.
  */
-export type Struct<TDef extends readonly StructFieldDefinition[] = any> = 
+export type Struct<TDef extends readonly StructFieldDefinition[] = any> =
     & Equatable
     & StructuralEquatable
     & {
@@ -200,7 +202,7 @@ export type Struct<TDef extends readonly StructFieldDefinition[] = any> =
         /**
          * Writes the value of this struct to an array buffer.
          */
-        writeTo(buffer: ArrayBufferLike, byteOffset?: number): void;
+        writeTo(buffer: ArrayBufferLike, byteOffset?: number, isLittleEndian?: boolean): void;
     }
     & {
         /**
@@ -250,10 +252,10 @@ export type StructInitElements<TDef extends readonly StructFieldDefinition[]> = 
  */
 export interface StructType<TDef extends readonly StructFieldDefinition[] = any> {
     new (): Struct<TDef>;
-    new (shared: boolean): Struct<TDef>;
-    new (buffer: ArrayBufferLike, byteOffset?: number): Struct<TDef>;
-    new (object: Partial<StructInitProperties<TDef>>, shared?: boolean): Struct<TDef>;
-    new (elements: Partial<StructInitElements<TDef>>, shared?: boolean): Struct<TDef>;
+    new (shared: boolean, isLittleEndian?: boolean): Struct<TDef>;
+    new (buffer: ArrayBufferLike, byteOffset?: number, isLittleEndian?: boolean): Struct<TDef>;
+    new (object: Partial<StructInitProperties<TDef>>, shared?: boolean, isLittleEndian?: boolean): Struct<TDef>;
+    new (elements: Partial<StructInitElements<TDef>>, shared?: boolean, isLittleEndian?: boolean): Struct<TDef>;
     readonly SIZE: number;
 }
 

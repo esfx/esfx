@@ -1358,6 +1358,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/struct-type@workspace:packages/struct-type"
   dependencies:
+    "@esfx/equatable": "workspace:*"
     "@esfx/type-model": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown

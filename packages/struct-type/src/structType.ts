@@ -15,7 +15,7 @@
 */
 
 import type { StructFieldDefinition, StructType as StructType_ } from "./index.js";
-import { Struct, getDataView } from "./struct.js";
+import { getIsLittleEndian, Struct } from "./struct.js";
 import { StructTypeInfo } from './typeInfo.js';
 
 type CreateStructTypeFieldsNameOverload<TDef extends readonly StructFieldDefinition[]> = [TDef, string?];
@@ -57,20 +57,20 @@ export function StructType<TBase extends readonly StructFieldDefinition[], TDef 
             enumerable: false,
             configurable: true,
             get(this: Struct<readonly [...TBase, ...TDef]>) {
-                return field.readFrom(this, getDataView(this));
+                return field.readFromBuffer(this, this.buffer, this.byteOffset, getIsLittleEndian(this));
             },
             set(this: Struct<readonly [...TBase, ...TDef]>, value) {
-                field.writeTo(this, getDataView(this), value);
+                field.writeToBuffer(this, this.buffer, this.byteOffset, value, getIsLittleEndian(this));
             }
         });
         Object.defineProperty(structClass.prototype, field.index, {
             enumerable: false,
             configurable: true,
             get(this: Struct<readonly [...TBase, ...TDef]>) {
-                return field.readFrom(this, getDataView(this));
+                return field.readFromBuffer(this, this.buffer, this.byteOffset, getIsLittleEndian(this));
             },
             set(this: Struct<readonly [...TBase, ...TDef]>, value) {
-                field.writeTo(this, getDataView(this), value);
+                field.writeToBuffer(this, this.buffer, this.byteOffset, value, getIsLittleEndian(this));
             }
         });
     }

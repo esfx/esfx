@@ -14,10 +14,10 @@
    limitations under the License.
 */
 
-import { combineHashes, Equaler, Equatable, rawHash } from '@esfx/equatable';
+import { combineHashes, Equaler, Equatable } from '@esfx/equatable';
 import { MatchingKeys } from '@esfx/type-model';
-import { StructPrimitiveType, StructFieldDefinition, StructType, Struct as StructBase } from './index.js';
-import { NumberType, sizeOf, getValueFromView, putValueInView, Alignment } from './numbers.js';
+import { Struct as StructBase, StructFieldDefinition, StructPrimitiveType, StructType } from './index.js';
+import { Alignment, getValueFromBuffer, getValueFromView, NumberType, putValueInBuffer, putValueInView, sizeOf } from './numbers.js';
 import { Struct as Struct_ } from "./struct.js";
 
 type StructTypeLike =
@@ -26,9 +26,15 @@ type StructTypeLike =
 
 const typeInfos = new WeakMap<object, TypeInfo>();
 
-/* @internal */
+/**
+ * Describes information about a type.
+ * @internal
+ */
 export abstract class TypeInfo {
+    /** The size of the type */
     readonly size: number;
+
+    /** The byte alignment of the type */
     readonly alignment: Alignment;
 
     constructor (size: number, alignment: Alignment) {
@@ -36,14 +42,24 @@ export abstract class TypeInfo {
         this.alignment = alignment;
     }
 
+    /**
+     * Get the type info for a struct type.
+     */
     static get(type: StructTypeLike): StructTypeInfo;
+    /**
+     * Get the type info for a primitive type.
+     */
     static get(type: StructPrimitiveType): PrimitiveTypeInfo;
+    /**
+     * Get the type info for a type.
+     */
     static get(type: StructPrimitiveType | StructTypeLike): StructTypeInfo | PrimitiveTypeInfo;
     static get(type: StructPrimitiveType | StructTypeLike) {
         const typeInfo = this.tryGet(type);
         if (typeInfo) {
             return typeInfo;
         }
+
         throw new TypeError("Invalid struct or primitive type.");
     }
 
@@ -59,8 +75,10 @@ export abstract class TypeInfo {
     }
 
     abstract coerce(value: any): number | bigint | StructBase;
-    abstract readFrom(view: DataView, offset: number, isLittleEndian?: boolean): number | bigint | StructBase;
-    abstract writeTo(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean): void;
+    abstract readFromBuffer(buffer: ArrayBufferLike, offset: number, isLittleEndian?: boolean): number | bigint | StructBase;
+    abstract readFromView(view: DataView, offset: number, isLittleEndian?: boolean): number | bigint | StructBase;
+    abstract writeToBuffer(buffer: ArrayBufferLike, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean): void;
+    abstract writeToView(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean): void;
 }
 
 /* @internal */
@@ -94,11 +112,19 @@ export class PrimitiveTypeInfo extends TypeInfo {
         return this._primitiveType(value);
     }
 
-    readFrom(view: DataView, offset: number, isLittleEndian?: boolean) {
+    readFromBuffer(buffer: ArrayBufferLike, offset: number, isLittleEndian?: boolean) {
+        return getValueFromBuffer(buffer, this._numberType, offset, isLittleEndian);
+    }
+
+    readFromView(view: DataView, offset: number, isLittleEndian?: boolean) {
         return getValueFromView(view, this._numberType, offset, isLittleEndian);
     }
 
-    writeTo(view: DataView, offset: number, value: number | bigint, isLittleEndian?: boolean) {
+    writeToBuffer(buffer: ArrayBufferLike, offset: number, value: number | bigint, isLittleEndian?: boolean) {
+        putValueInBuffer(buffer, this._numberType, offset, value, isLittleEndian);
+    }
+
+    writeToView(view: DataView, offset: number, value: number | bigint, isLittleEndian?: boolean) {
         putValueInView(view, this._numberType, offset, value, isLittleEndian);
     }
 
@@ -149,19 +175,34 @@ export class StructFieldInfo {
         return this.typeInfo.coerce(value);
     }
 
-    readFrom(owner: Struct_, view: DataView, isLittleEndian?: boolean) {
+    readFromBuffer(owner: Struct_, buffer: ArrayBufferLike, byteOffset: number, isLittleEndian?: boolean) {
         if (this.typeInfo instanceof StructTypeInfo) {
             let cache = weakFieldCache.get(this);
             if (!cache) weakFieldCache.set(this, cache = new WeakMap());
             let value = cache.get(owner);
-            if (!value) cache.set(owner, value = this.typeInfo.readFrom(view, this.byteOffset, isLittleEndian));
+            if (!value) cache.set(owner, value = this.typeInfo.readFromBuffer(buffer, byteOffset + this.byteOffset, isLittleEndian));
             return value;
         }
-        return this.typeInfo.readFrom(view, this.byteOffset, isLittleEndian);
+        return this.typeInfo.readFromBuffer(buffer, byteOffset + this.byteOffset, isLittleEndian);
     }
 
-    writeTo(_owner: Struct_, view: DataView, value: number | bigint | StructBase, isLittleEndian?: boolean) {
-        this.typeInfo.writeTo(view, this.byteOffset, value, isLittleEndian);
+    readFromView(owner: Struct_, view: DataView, isLittleEndian?: boolean) {
+        if (this.typeInfo instanceof StructTypeInfo) {
+            let cache = weakFieldCache.get(this);
+            if (!cache) weakFieldCache.set(this, cache = new WeakMap());
+            let value = cache.get(owner);
+            if (!value) cache.set(owner, value = this.typeInfo.readFromView(view, this.byteOffset, isLittleEndian));
+            return value;
+        }
+        return this.typeInfo.readFromView(view, this.byteOffset, isLittleEndian);
+    }
+
+    writeToBuffer(_owner: Struct_, buffer: ArrayBufferLike, byteOffset: number, value: number | bigint | StructBase, isLittleEndian?: boolean) {
+        this.typeInfo.writeToBuffer(buffer, byteOffset + this.byteOffset, value, isLittleEndian);
+    }
+
+    writeToView(_owner: Struct_, view: DataView, value: number | bigint | StructBase, isLittleEndian?: boolean) {
+        this.typeInfo.writeToView(view, this.byteOffset, value, isLittleEndian);
     }
 
     [Equatable.equals](other: unknown): boolean {
@@ -260,15 +301,26 @@ export class StructTypeInfo extends TypeInfo {
         return value instanceof this.#structType ? value : new this.#structType(value);
     }
 
-    readFrom(view: DataView, offset: number, isLittleEndian?: boolean) {
-        return new this.#structType(view.buffer, view.byteOffset + offset);
+    readFromBuffer(buffer: ArrayBufferLike, offset: number, isLittleEndian?: boolean) {
+        return new this.#structType(buffer, offset, isLittleEndian);
     }
 
-    writeTo(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean) {
+    readFromView(view: DataView, offset: number, isLittleEndian?: boolean) {
+        return new this.#structType(view.buffer, view.byteOffset + offset, isLittleEndian);
+    }
+
+    writeToBuffer(buffer: ArrayBufferLike, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean) {
         if (!(value instanceof this.#structType)) {
             throw new TypeError();
         }
-        value.writeTo(view.buffer, view.byteOffset + offset);
+        value.writeTo(buffer, offset, isLittleEndian);
+    }
+
+    writeToView(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean) {
+        if (!(value instanceof this.#structType)) {
+            throw new TypeError();
+        }
+        value.writeTo(view.buffer, view.byteOffset + offset, isLittleEndian);
     }
 
     finishType<T extends StructType>(structType: T): T;

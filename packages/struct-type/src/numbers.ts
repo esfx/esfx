@@ -14,6 +14,8 @@
    limitations under the License.
 */
 
+import { WeakGenerativeCache } from "./weakGenerativeCache";
+
 /* @internal */
 export type Alignment = 1 | 2 | 4 | 8;
 
@@ -40,14 +42,6 @@ export const enum NumberType {
     BigInt64 = "BigInt64",
     BigUint64 = "BigUint64",
 }
-
-type AtomicNumberTypes =
-    | NumberType.Int8
-    | NumberType.Int16
-    | NumberType.Int32
-    | NumberType.Uint8
-    | NumberType.Uint16
-    | NumberType.Uint32;
 
 /* @internal */
 export interface NumberTypeToType {
@@ -77,8 +71,6 @@ export interface NumberTypeToTypedArray {
     [NumberType.BigUint64]: BigUint64Array;
 }
 
-type NumberTypeToCoersion<N extends NumberType> = (value: any) => NumberTypeToType[N];
-
 /* @internal */
 export function sizeOf(nt: NumberType): Alignment {
     switch (nt) {
@@ -99,250 +91,174 @@ export function sizeOf(nt: NumberType): Alignment {
     }
 }
 
+const tempBuffer = new ArrayBuffer(8);
+const tempInt8Array = new Int8Array(tempBuffer);
+const tempInt16Array = new Int16Array(tempBuffer);
+const tempInt32Array = new Int32Array(tempBuffer);
+const tempUint8Array = new Uint8Array(tempBuffer);
+const tempUint16Array = new Uint16Array(tempBuffer);
+const tempUint32Array = new Uint32Array(tempBuffer);
+const tempBigInt64Array = new BigInt64Array(tempBuffer);
+const tempBigUint64Array = new BigUint64Array(tempBuffer);
+const tempFloat32Array = new Float32Array(tempBuffer);
+const tempFloat64Array = new Float64Array(tempBuffer);
+
+function swapBytes16(): void {
+    let x = 0;
+    x = tempUint8Array[0], tempUint8Array[0] = tempUint8Array[1], tempUint8Array[1] = x;
+}
+
+function swapBytes32(): void {
+    let x = 0;
+    x = tempUint8Array[0], tempUint8Array[0] = tempUint8Array[3], tempUint8Array[3] = x;
+    x = tempUint8Array[1], tempUint8Array[1] = tempUint8Array[2], tempUint8Array[2] = x;
+}
+
+function swapBytes64(): void {
+    let x = 0;
+    x = tempUint8Array[0], tempUint8Array[0] = tempUint8Array[7], tempUint8Array[7] = x;
+    x = tempUint8Array[1], tempUint8Array[1] = tempUint8Array[6], tempUint8Array[6] = x;
+    x = tempUint8Array[2], tempUint8Array[2] = tempUint8Array[5], tempUint8Array[5] = x;
+    x = tempUint8Array[3], tempUint8Array[3] = tempUint8Array[4], tempUint8Array[4] = x;
+}
+
+function swapInt16(value: number) {
+    return tempInt16Array[0] = value, swapBytes16(), tempInt16Array[0];
+}
+
+function swapUint16(value: number) {
+    return tempUint16Array[0] = value, swapBytes16(), tempUint16Array[0];
+}
+
+function swapInt32(value: number) {
+    return tempInt32Array[0] = value, swapBytes32(), tempInt32Array[0];
+}
+
+function swapUint32(value: number) {
+    return tempUint32Array[0] = value, swapBytes32(), tempUint32Array[0];
+}
+
+function swapBigInt64(value: bigint) {
+    return tempBigInt64Array[0] = value, swapBytes64(), tempBigInt64Array[0];
+}
+
+function swapBigUint64(value: bigint) {
+    return tempBigUint64Array[0] = value, swapBytes64(), tempBigUint64Array[0];
+}
+
+function coerceInt8(value: number | bigint) {
+    return tempInt8Array[0] = Number(value), tempInt8Array[0];
+}
+
+function coerceUint8(value: number | bigint) {
+    return tempUint8Array[0] = Number(value), tempUint8Array[0];
+}
+
+function coerceInt16(value: number | bigint) {
+    return tempInt16Array[0] = Number(value), tempInt16Array[0];
+}
+
+function coerceUint16(value: number | bigint) {
+    return tempUint16Array[0] = Number(value), tempUint16Array[0];
+}
+
+function coerceInt32(value: number | bigint) {
+    return tempInt32Array[0] = Number(value), tempInt32Array[0];
+}
+
+function coerceUint32(value: number | bigint) {
+    return tempUint32Array[0] = Number(value), tempUint32Array[0];
+}
+
+function coerceBigInt64(value: number | bigint) {
+    return tempBigInt64Array[0] = BigInt(value), tempBigInt64Array[0];
+}
+
+function coerceBigUint64(value: number | bigint) {
+    return tempBigUint64Array[0] = BigInt(value), tempBigUint64Array[0];
+}
+
+function coerceFloat32(value: number | bigint) {
+    return tempFloat32Array[0] = Number(value), tempFloat32Array[0];
+}
+
+function coerceFloat64(value: number | bigint) {
+    return tempFloat64Array[0] = Number(value), tempFloat64Array[0];
+}
+
 /* @internal */
-export function putValueInView(view: DataView, nt: NumberType, byteOffset: number, value: number | bigint, isLittleEndian?: boolean) {
-    if (isSharedArrayBuffer(view.buffer) && isAtomic(nt) && typeof value === "number" && ((view.byteOffset + byteOffset) % sizeOf(nt)) === 0) {
-        return putValueInBuffer(view.buffer, nt, view.byteOffset + byteOffset, value, isLittleEndian);
-    }
+export function coerceValue<N extends NumberType>(nt: N, value: number | bigint): NumberTypeToType[N];
+/* @internal */
+export function coerceValue(nt: NumberType, value: number | bigint): number | bigint {
     switch (nt) {
-        case NumberType.Int8: return view.setInt8(byteOffset, coerceValue(nt, value));
-        case NumberType.Int16: return view.setInt16(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.Int32: return view.setInt32(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.Uint8: return view.setUint8(byteOffset, coerceValue(nt, value));
-        case NumberType.Uint16: return view.setUint16(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.Uint32: return view.setUint32(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.Float32: return view.setFloat32(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.Float64: return view.setFloat64(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.BigInt64: return view.setBigInt64(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.BigUint64: return view.setBigUint64(byteOffset, coerceValue(nt, value), isLittleEndian);
-    }
-}
-
-/* @internal */
-export function getValueFromView<N extends NumberType>(view: DataView, nt: N, byteOffset: number, isLittleEndian?: boolean): NumberTypeToType[N];
-/* @internal */
-export function getValueFromView(view: DataView, nt: NumberType, byteOffset: number, isLittleEndian?: boolean): number | bigint {
-    // attempt an atomic read
-    if (isSharedArrayBuffer(view.buffer) && isAtomic(nt) && ((view.byteOffset + byteOffset) % sizeOf(nt)) === 0) {
-        return getValueFromBuffer(view.buffer, nt, view.byteOffset + byteOffset, isLittleEndian);
-    }
-
-    switch (nt) {
-        case NumberType.Int8: return view.getInt8(byteOffset);
-        case NumberType.Int16: return view.getInt16(byteOffset, isLittleEndian);
-        case NumberType.Int32: return view.getInt32(byteOffset, isLittleEndian);
-        case NumberType.Uint8: return view.getUint8(byteOffset);
-        case NumberType.Uint16: return view.getUint16(byteOffset, isLittleEndian);
-        case NumberType.Uint32: return view.getUint32(byteOffset, isLittleEndian);
-        case NumberType.Float32: return view.getFloat32(byteOffset, isLittleEndian);
-        case NumberType.Float64: return view.getFloat64(byteOffset, isLittleEndian);
-        case NumberType.BigInt64: return view.getBigInt64(byteOffset, isLittleEndian);
-        case NumberType.BigUint64: return view.getBigUint64(byteOffset, isLittleEndian);
-    }
-}
-
-interface GenerationRecord<V> {
-    generation: number;
-    phase: number;
-    counter: number;
-    value: V;
-}
-
-class WeakGenerativeCache<K extends object, V> {
-    private _generations = [
-        // gen 0
-        [new WeakMap<K, GenerationRecord<V>>(), new WeakMap<K, GenerationRecord<V>>()],
-        // gen 1
-        [new WeakMap<K, GenerationRecord<V>>()],
-        // gen 2
-        [new WeakMap<K, GenerationRecord<V>>()],
-    ];
-
-    private _gen0Phase = 0;
-    private _accessCounter = 0;
-
-    has(key: K) {
-        const record = this._find(key);
-        if (record) {
-            this._access(key, record);
-            return true;
-        }
-        return false;
-    }
-
-    get(key: K) {
-        const record = this._find(key);
-        if (record) {
-            this._access(key, record);
-            this._prune();
-            return record.value;
-        }
-    }
-
-    set(key: K, value: V) {
-        let record = this._find(key);
-        if (!record) {
-            this._prune();
-            record = { generation: 0, phase: this._gen0Phase, counter: 0, value };
-            this._generations[record.generation][record.phase].set(key, record);
-        }
-        else {
-            this._access(key, record);
-            this._prune();
-            record.value = value;
-        }
-    }
-
-    delete(key: K) {
-        const record = this._find(key);
-        if (record) {
-            this._generations[record.generation][record.phase].delete(key);
-            this._prune();
-            return true;
-        }
-        return false;
-    }
-
-    clear() {
-        for (const generation of this._generations) {
-            for (let i = 0; i < generation.length; i++) {
-                generation[i] = new WeakMap();
-            }
-        }
-        this._accessCounter = 0;
-        this._gen0Phase = 0;
-    }
-
-    private _find(key: K) {
-        for (const generation of this._generations) {
-            for (const phase of generation) {
-                const record = phase.get(key);
-                if (record) return record;
-            }
-        }
-    }
-
-    private _access(key: K, record: GenerationRecord<V>) {
-        if (record.generation < 2) {
-            record.counter++;
-            if (this._shouldPromote(record)) {
-                const currentGen = this._generations[record.generation][record.phase];
-                currentGen.delete(key);
-                record.generation++;
-                record.phase = 0;
-                record.counter = 1;
-                const nextGen = this._generations[record.generation][record.phase];
-                nextGen.set(key, record);
-            }
-        }
-    }
-
-    private _shouldPromote(record: GenerationRecord<V>) {
-        switch (record.generation) {
-            case 0: return record.counter >= 1;
-            case 1: return record.counter >= 2;
-        }
-        return false;
-    }
-
-    private _prune() {
-        this._accessCounter++;
-        if (this._accessCounter >= 10) {
-            this._gen0Phase = this._gen0Phase ? 0 : 1;
-            this._generations[0][this._gen0Phase] = new WeakMap()
-            this._accessCounter = 0;
-        }
+        case NumberType.Int8: return coerceInt8(value);
+        case NumberType.Uint8: return coerceUint8(value);
+        case NumberType.Int16: return coerceInt16(value);
+        case NumberType.Uint16: return coerceUint16(value);
+        case NumberType.Int32: return coerceInt32(value);
+        case NumberType.Uint32: return coerceUint32(value);
+        case NumberType.BigInt64: return coerceBigInt64(value);
+        case NumberType.BigUint64: return coerceBigUint64(value);
+        case NumberType.Float32: return coerceFloat32(value);
+        case NumberType.Float64: return coerceFloat64(value);
     }
 }
 
 const dataViewCache = new WeakGenerativeCache<ArrayBufferLike, DataView>();
-const int8ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, Int8Array>();
-const int16ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, Int16Array>();
-const int32ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, Int32Array>();
-const uint8ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, Uint8Array>();
-const uint16ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, Uint16Array>();
-const uint32ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, Uint32Array>();
-const float32ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, Float32Array>();
-const float64ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, Float64Array>();
-const bigInt64ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, BigInt64Array>();
-const bigUint64ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, BigUint64Array>();
+const int8ArrayCache = new WeakGenerativeCache<ArrayBufferLike, Int8Array>();
+const int16ArrayCache = new WeakGenerativeCache<ArrayBufferLike, Int16Array>();
+const int32ArrayCache = new WeakGenerativeCache<ArrayBufferLike, Int32Array>();
+const uint8ArrayCache = new WeakGenerativeCache<ArrayBufferLike, Uint8Array>();
+const uint16ArrayCache = new WeakGenerativeCache<ArrayBufferLike, Uint16Array>();
+const uint32ArrayCache = new WeakGenerativeCache<ArrayBufferLike, Uint32Array>();
+const bigInt64ArrayCache = new WeakGenerativeCache<ArrayBufferLike, BigInt64Array>();
+const bigUint64ArrayCache = new WeakGenerativeCache<ArrayBufferLike, BigUint64Array>();
 
-/* @internal */
-export function putValueInBuffer(buffer: ArrayBufferLike, nt: NumberType, byteOffset: number, value: number | bigint, isLittleEndian: boolean = false) {
-    // attempt an atomic write
-    if (isSharedArrayBuffer(buffer) && isAtomic(nt) && typeof value === "number") {
-        const size = sizeOf(nt);
-        if ((byteOffset % size) === 0) {
-            // aligned within the buffer
-            const array = getTypedArray(buffer, nt);
-            const arrayIndex = byteOffset / size;
-            const coercedValue = coerceValue(nt, value);
-            const correctedValue = size === 1 || isLittleEndian === littleEndian ? coercedValue : swapByteOrder(nt, coercedValue);
-            Atomics.store(array, arrayIndex, correctedValue);
-            return;
-        }
-    }
-    putValueInView(getDataView(buffer), nt, byteOffset, value, isLittleEndian);
+function getInt8TypedArray(buffer: ArrayBufferLike) {
+    let array = int8ArrayCache.get(buffer);
+    if (!array) int8ArrayCache.set(buffer, array = new Int8Array(buffer));
+    return array;
 }
 
-/* @internal */
-export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike, nt: N, byteOffset: number, isLittleEndian?: boolean): NumberTypeToType[N];
-/* @internal */
-export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike, nt: N, byteOffset: number, isLittleEndian: boolean = false): number | bigint {
-    // attempt an atomic read
-    if (isSharedArrayBuffer(buffer) && isAtomic(nt)) {
-        const size = sizeOf(nt);
-        if ((byteOffset % size) === 0) {
-            // aligned within the buffer
-            const array = getTypedArray(buffer, nt);
-            const arrayIndex = byteOffset / size;
-            const value = Atomics.load(array, arrayIndex);
-            return size === 1 || isLittleEndian === littleEndian ? value : swapByteOrder(nt, value);
-        }
-    }
-    return getValueFromView(getDataView(buffer), nt, byteOffset, isLittleEndian);
+function getUint8TypedArray(buffer: ArrayBufferLike) {
+    let array = uint8ArrayCache.get(buffer);
+    if (!array) uint8ArrayCache.set(buffer, array = new Uint8Array(buffer));
+    return array;
 }
 
-function getTypedArrayConstructor<N extends NumberType>(nt: N): new (buffer: ArrayBufferLike) => NumberTypeToTypedArray[N];
-function getTypedArrayConstructor(nt: NumberType) {
-    switch (nt) {
-        case NumberType.Int8: return Int8Array;
-        case NumberType.Int16: return Int16Array;
-        case NumberType.Int32: return Int32Array;
-        case NumberType.Uint8: return Uint8Array;
-        case NumberType.Uint16: return Uint16Array;
-        case NumberType.Uint32: return Uint32Array;
-        case NumberType.Float32: return Float32Array;
-        case NumberType.Float64: return Float64Array;
-        case NumberType.BigInt64: return BigInt64Array;
-        case NumberType.BigUint64: return BigUint64Array;
-    }
+function getInt16TypedArray(buffer: ArrayBufferLike) {
+    let array = int16ArrayCache.get(buffer);
+    if (!array) int16ArrayCache.set(buffer, array = new Int16Array(buffer));
+    return array;
 }
 
-function getTypedArrayCache<N extends NumberType>(nt: N): WeakGenerativeCache<SharedArrayBuffer, NumberTypeToTypedArray[N]>;
-function getTypedArrayCache(nt: NumberType) {
-    switch (nt) {
-        case NumberType.Int8: return int8ArrayCache;
-        case NumberType.Int16: return int16ArrayCache;
-        case NumberType.Int32: return int32ArrayCache;
-        case NumberType.Uint8: return uint8ArrayCache;
-        case NumberType.Uint16: return uint16ArrayCache;
-        case NumberType.Uint32: return uint32ArrayCache;
-        case NumberType.Float32: return float32ArrayCache;
-        case NumberType.Float64: return float64ArrayCache;
-        case NumberType.BigInt64: return bigInt64ArrayCache;
-        case NumberType.BigUint64: return bigUint64ArrayCache;
-    }
+function getUint16TypedArray(buffer: ArrayBufferLike) {
+    let array = uint16ArrayCache.get(buffer);
+    if (!array) uint16ArrayCache.set(buffer, array = new Uint16Array(buffer));
+    return array;
 }
 
-function getTypedArray<N extends NumberType>(buffer: SharedArrayBuffer, nt: N): NumberTypeToTypedArray[N] {
-    const cache = getTypedArrayCache(nt);
-    let array = cache.get(buffer);
-    if (!array) {
-        const ctor = getTypedArrayConstructor(nt);
-        array = new ctor(buffer);
-        cache.set(buffer, array);
-    }
+function getInt32TypedArray(buffer: ArrayBufferLike) {
+    let array = int32ArrayCache.get(buffer);
+    if (!array) int32ArrayCache.set(buffer, array = new Int32Array(buffer));
+    return array;
+}
+
+function getUint32TypedArray(buffer: ArrayBufferLike) {
+    let array = uint32ArrayCache.get(buffer);
+    if (!array) uint32ArrayCache.set(buffer, array = new Uint32Array(buffer));
+    return array;
+}
+
+function getBigInt64TypedArray(buffer: ArrayBufferLike) {
+    let array = bigInt64ArrayCache.get(buffer);
+    if (!array) bigInt64ArrayCache.set(buffer, array = new BigInt64Array(buffer));
+    return array;
+}
+
+function getBigUint64TypedArray(buffer: ArrayBufferLike) {
+    let array = bigUint64ArrayCache.get(buffer);
+    if (!array) bigUint64ArrayCache.set(buffer, array = new BigUint64Array(buffer));
     return array;
 }
 
@@ -355,57 +271,163 @@ function getDataView(buffer: ArrayBufferLike) {
     return view;
 }
 
-function isAtomic(nt: NumberType): nt is AtomicNumberTypes {
+function maybeSwapInt16(value: number, swapByteOrder: boolean) {
+    return swapByteOrder ? swapInt16(value) : value;
+}
+
+function maybeSwapUint16(value: number, swapByteOrder: boolean) {
+    return swapByteOrder ? swapUint16(value) : value;
+}
+
+function maybeSwapInt32(value: number, swapByteOrder: boolean) {
+    return swapByteOrder ? swapInt32(value) : value;
+}
+
+function maybeSwapUint32(value: number, swapByteOrder: boolean) {
+    return swapByteOrder ? swapUint32(value) : value;
+}
+
+function maybeSwapBigInt64(value: bigint, swapByteOrder: boolean) {
+    return swapByteOrder ? swapBigInt64(value) : value;
+}
+
+function maybeSwapBigUint64(value: bigint, swapByteOrder: boolean) {
+    return swapByteOrder ? swapBigUint64(value) : value;
+}
+
+function convertFloat32ToUint32(value: number, swapByteOrder: boolean) {
+    tempFloat32Array[0] = value;
+    if (swapByteOrder) swapBytes32();
+    return tempUint32Array[0];
+}
+
+function convertFloat64ToBigUint64(value: number, swapByteOrder: boolean) {
+    tempFloat64Array[0] = value;
+    if (swapByteOrder) swapBytes64();
+    return tempBigUint64Array[0];
+}
+
+function convertUint32ToFloat32(value: number, swapByteOrder: boolean) {
+    tempUint32Array[0] = value;
+    if (swapByteOrder) swapBytes32();
+    return tempFloat32Array[0];
+}
+
+function convertBigUint64ToFloat64(value: bigint, swapByteOrder: boolean) {
+    tempBigUint64Array[0] = value;
+    if (swapByteOrder) swapBytes64();
+    return tempFloat64Array[0];
+}
+
+function putValueInBufferWorker(buffer: ArrayBufferLike, nt: NumberType, index: number, value: number | bigint, isLittleEndian: boolean) {
     switch (nt) {
-        case NumberType.Int8:
-        case NumberType.Int16:
-        case NumberType.Int32:
-        case NumberType.Uint8:
-        case NumberType.Uint16:
-        case NumberType.Uint32:
-            return true;
+        case NumberType.Int8: Atomics.store(getInt8TypedArray(buffer), index, coerceInt8(value)); break;
+        case NumberType.Uint8: Atomics.store(getUint8TypedArray(buffer), index, coerceUint8(value)); break;
+        case NumberType.Int16: Atomics.store(getInt16TypedArray(buffer), index, maybeSwapInt16(coerceInt16(value), isLittleEndian !== littleEndian)); break;
+        case NumberType.Uint16: Atomics.store(getUint16TypedArray(buffer), index, maybeSwapUint16(coerceUint16(value), isLittleEndian !== littleEndian)); break;
+        case NumberType.Int32: Atomics.store(getInt32TypedArray(buffer), index, maybeSwapInt32(coerceInt32(value), isLittleEndian !== littleEndian)); break;
+        case NumberType.Uint32: Atomics.store(getUint32TypedArray(buffer), index, maybeSwapUint32(coerceUint32(value), isLittleEndian !== littleEndian)); break;
+        case NumberType.BigInt64: Atomics.store(getBigInt64TypedArray(buffer), index, maybeSwapBigInt64(coerceBigInt64(value), isLittleEndian !== littleEndian)); break;
+        case NumberType.BigUint64: Atomics.store(getBigUint64TypedArray(buffer), index, maybeSwapBigUint64(coerceBigUint64(value), isLittleEndian !== littleEndian)); break;
+        case NumberType.Float32: Atomics.store(getUint32TypedArray(buffer), index, convertFloat32ToUint32(coerceFloat32(value), isLittleEndian !== littleEndian)); break;
+        case NumberType.Float64: Atomics.store(getBigUint64TypedArray(buffer), index, convertFloat64ToBigUint64(coerceFloat64(value), isLittleEndian !== littleEndian)); break;
     }
-    return false;
 }
 
-const tempDataView = new DataView(new ArrayBuffer(8));
-
-function swapByteOrder<N extends NumberType>(nt: N, value: NumberTypeToType[N]): NumberTypeToType[N] {
-    putValueInView(tempDataView, nt, 0, value, false);
-    return getValueFromView(tempDataView, nt, 0, true);
-}
-
-function getTypeCoersion<N extends NumberType>(nt: N): NumberTypeToCoersion<N>;
-function getTypeCoersion(nt: NumberType) {
+function putValueInViewWorker(view: DataView, nt: NumberType, byteOffset: number, value: number | bigint, isLittleEndian: boolean) {
     switch (nt) {
-        case NumberType.Int8:
-        case NumberType.Int16:
-        case NumberType.Int32:
-        case NumberType.Uint8:
-        case NumberType.Uint16:
-        case NumberType.Uint32:
-        case NumberType.Float32:
-        case NumberType.Float64:
-            return Number;
-        case NumberType.BigInt64:
-        case NumberType.BigUint64:
-            return BigInt;
+        case NumberType.Int8: return view.setInt8(byteOffset, coerceValue(nt, value));
+        case NumberType.Uint8: return view.setUint8(byteOffset, coerceValue(nt, value));
+        case NumberType.Int16: return view.setInt16(byteOffset, coerceValue(nt, value), isLittleEndian);
+        case NumberType.Uint16: return view.setUint16(byteOffset, coerceValue(nt, value), isLittleEndian);
+        case NumberType.Int32: return view.setInt32(byteOffset, coerceValue(nt, value), isLittleEndian);
+        case NumberType.Uint32: return view.setUint32(byteOffset, coerceValue(nt, value), isLittleEndian);
+        case NumberType.BigInt64: return view.setBigInt64(byteOffset, coerceValue(nt, value), isLittleEndian);
+        case NumberType.BigUint64: return view.setBigUint64(byteOffset, coerceValue(nt, value), isLittleEndian);
+        case NumberType.Float32: return view.setFloat32(byteOffset, coerceValue(nt, value), isLittleEndian);
+        case NumberType.Float64: return view.setFloat64(byteOffset, coerceValue(nt, value), isLittleEndian);
     }
 }
-
-const sizeCoersionArrays: { [N in NumberType]?: NumberTypeToTypedArray[N]; } = {};
 
 /* @internal */
-export function coerceValue<N extends NumberType>(nt: N, value: number | bigint): NumberTypeToType[N];
-/* @internal */
-export function coerceValue<N extends NumberType>(nt: N, value: number | bigint): number | bigint {
-    const typeCoersion = getTypeCoersion(nt);
-    const coerced = typeCoersion(value);
-    const sizeCoersionArray = sizeCoersionArrays[nt] || (sizeCoersionArrays[nt] = new (getTypedArrayConstructor(nt))(new ArrayBuffer(sizeOf(nt))));
-    sizeCoersionArray![0] = coerced;
-    return sizeCoersionArray![0];
+export function putValueInBuffer(buffer: ArrayBufferLike, nt: NumberType, byteOffset: number, value: number | bigint, isLittleEndian: boolean = false) {
+    // attempt an atomic write
+    const size = sizeOf(nt);
+    if ((byteOffset % size) === 0) {
+        putValueInBufferWorker(buffer, nt, byteOffset / size, value, isLittleEndian);
+    }
+    else {
+        putValueInView(getDataView(buffer), nt, byteOffset, value, isLittleEndian);
+    }
 }
 
-function isSharedArrayBuffer(value: unknown): value is SharedArrayBuffer {
-    return typeof SharedArrayBuffer === "function" && value instanceof SharedArrayBuffer;
+/* @internal */
+export function putValueInView(view: DataView, nt: NumberType, byteOffset: number, value: number | bigint, isLittleEndian: boolean = false) {
+    const size = sizeOf(nt);
+    const realByteOffset = view.byteOffset + byteOffset;
+    if ((realByteOffset % size) === 0) {
+        putValueInBufferWorker(view.buffer, nt, realByteOffset / size, value, isLittleEndian);
+    }
+    else {
+        putValueInViewWorker(view, nt, byteOffset, value, isLittleEndian);
+    }
+}
+
+function getValueFromBufferWorker(buffer: ArrayBufferLike, nt: NumberType, index: number, isLittleEndian: boolean) {
+    switch (nt) {
+        case NumberType.Int8: return Atomics.load(getInt8TypedArray(buffer), index);
+        case NumberType.Uint8: return Atomics.load(getUint8TypedArray(buffer), index);
+        case NumberType.Int16: return maybeSwapInt16(Atomics.load(getInt16TypedArray(buffer), index), isLittleEndian !== littleEndian);
+        case NumberType.Uint16: return maybeSwapUint16(Atomics.load(getUint16TypedArray(buffer), index), isLittleEndian !== littleEndian);
+        case NumberType.Int32: return maybeSwapInt32(Atomics.load(getInt32TypedArray(buffer), index), isLittleEndian !== littleEndian);
+        case NumberType.Uint32: return maybeSwapUint32(Atomics.load(getUint32TypedArray(buffer), index), isLittleEndian !== littleEndian);
+        case NumberType.BigInt64: return maybeSwapBigInt64(Atomics.load(getBigInt64TypedArray(buffer), index), isLittleEndian !== littleEndian);
+        case NumberType.BigUint64: return maybeSwapBigUint64(Atomics.load(getBigUint64TypedArray(buffer), index), isLittleEndian !== littleEndian);
+        case NumberType.Float32: return convertUint32ToFloat32(Atomics.load(getUint32TypedArray(buffer), index), isLittleEndian !== littleEndian);
+        case NumberType.Float64: return convertBigUint64ToFloat64(Atomics.load(getBigUint64TypedArray(buffer), index), isLittleEndian !== littleEndian);
+    }
+}
+
+function getValueFromViewWorker(view: DataView, nt: NumberType, byteOffset: number, isLittleEndian: boolean): number | bigint {
+    switch (nt) {
+        case NumberType.Int8: return view.getInt8(byteOffset);
+        case NumberType.Uint8: return view.getUint8(byteOffset);
+        case NumberType.Int16: return view.getInt16(byteOffset, isLittleEndian);
+        case NumberType.Uint16: return view.getUint16(byteOffset, isLittleEndian);
+        case NumberType.Int32: return view.getInt32(byteOffset, isLittleEndian);
+        case NumberType.Uint32: return view.getUint32(byteOffset, isLittleEndian);
+        case NumberType.BigInt64: return view.getBigInt64(byteOffset, isLittleEndian);
+        case NumberType.BigUint64: return view.getBigUint64(byteOffset, isLittleEndian);
+        case NumberType.Float32: return view.getFloat32(byteOffset, isLittleEndian);
+        case NumberType.Float64: return view.getFloat64(byteOffset, isLittleEndian);
+    }
+}
+
+/* @internal */
+export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike, nt: N, byteOffset: number, isLittleEndian?: boolean): NumberTypeToType[N];
+/* @internal */
+export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike, nt: N, byteOffset: number, isLittleEndian: boolean = false): number | bigint {
+    // attempt an atomic read
+    const size = sizeOf(nt);
+    if ((byteOffset % size) === 0) {
+        return getValueFromBufferWorker(buffer, nt, byteOffset / size, isLittleEndian);
+    }
+    else {
+        return getValueFromViewWorker(getDataView(buffer), nt, byteOffset, isLittleEndian);
+    }
+}
+
+/* @internal */
+export function getValueFromView<N extends NumberType>(view: DataView, nt: N, byteOffset: number, isLittleEndian?: boolean): NumberTypeToType[N];
+/* @internal */
+export function getValueFromView(view: DataView, nt: NumberType, byteOffset: number, isLittleEndian: boolean = false): number | bigint {
+    // attempt an atomic read
+    const size = sizeOf(nt);
+    const realByteOffset = view.byteOffset + byteOffset;
+    if ((realByteOffset % size) === 0) {
+        return getValueFromBufferWorker(view.buffer, nt, realByteOffset / size, isLittleEndian);
+    }
+    else {
+        return getValueFromViewWorker(view, nt, byteOffset, isLittleEndian);
+    }
 }

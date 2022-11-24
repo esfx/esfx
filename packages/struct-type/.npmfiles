@@ -10,12 +10,15 @@ dist/cjs/structType.js
 dist/cjs/structType.js.map
 dist/cjs/typeInfo.js
 dist/cjs/typeInfo.js.map
+dist/cjs/weakGenerativeCache.js
+dist/cjs/weakGenerativeCache.js.map
 dist/esm/index.mjs
 dist/esm/numbers.mjs
 dist/esm/primitives.mjs
 dist/esm/struct.mjs
 dist/esm/structType.mjs
 dist/esm/typeInfo.mjs
+dist/esm/weakGenerativeCache.mjs
 dist/types/index.d.ts
 dist/types/index.d.ts.map
 dist/types/numbers.d.ts
@@ -28,6 +31,8 @@ dist/types/structType.d.ts
 dist/types/structType.d.ts.map
 dist/types/typeInfo.d.ts
 dist/types/typeInfo.d.ts.map
+dist/types/weakGenerativeCache.d.ts
+dist/types/weakGenerativeCache.d.ts.map
 LICENSE
 README.md
 package.json
