@@ -28,23 +28,27 @@ class AsyncGroupJoinIterable<O, I, K, R> implements AsyncIterable<R> {
     private _inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>;
     private _outerKeySelector: (element: O) => K;
     private _innerKeySelector: (element: I) => K;
+    private _keyEqualer: Equaler<K>;
     private _resultSelector: (outer: O, inner: Iterable<I>) => PromiseLike<R> | R;
-    private _keyEqualer?: Equaler<K>
 
-    constructor(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: Iterable<I>) => PromiseLike<R> | R, keyEqualer?: Equaler<K>) {
+    constructor(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, keyEqualer: Equaler<K>, resultSelector: (outer: O, inner: Iterable<I>) => PromiseLike<R> | R) {
         this._outer = outer;
         this._inner = inner;
         this._outerKeySelector = outerKeySelector;
         this._innerKeySelector = innerKeySelector;
-        this._resultSelector = resultSelector;
         this._keyEqualer = keyEqualer;
+        this._resultSelector = resultSelector;
     }
 
     async *[Symbol.asyncIterator](): AsyncIterator<R> {
+        const outer = this._outer;
+        const inner = this._inner;
         const outerKeySelector = this._outerKeySelector;
+        const innerKeySelector = this._innerKeySelector;
+        const keyEqualer = this._keyEqualer;
         const resultSelector = this._resultSelector;
-        const map = await createGroupingsAsync(this._inner, this._innerKeySelector, identity, this._keyEqualer);
-        for await (const outerElement of this._outer) {
+        const map = await createGroupingsAsync(inner, innerKeySelector, keyEqualer, identity);
+        for await (const outerElement of outer) {
             const outerKey = outerKeySelector(outerElement);
             const innerElements = map.get(outerKey) || empty<I>();
             yield resultSelector(outerElement, innerElements);
@@ -63,14 +67,14 @@ class AsyncGroupJoinIterable<O, I, K, R> implements AsyncIterable<R> {
  * @param keyEqualer An [[Equaler]] object used to compare key equality.
  * @category Join
  */
-export function groupJoinAsync<O, I, K, R>(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: Iterable<I>) => PromiseLike<R> | R, keyEqualer?: Equaler<K>): AsyncIterable<R> {
+export function groupJoinAsync<O, I, K, R>(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: Iterable<I>) => PromiseLike<R> | R, keyEqualer: Equaler<K> = Equaler.defaultEqualer): AsyncIterable<R> {
     if (!isAsyncIterableObject(outer) && !isIterableObject(outer)) throw new TypeError("AsyncIterable expected: outer");
     if (!isAsyncIterableObject(inner) && !isIterableObject(inner)) throw new TypeError("AsyncIterable expected: inner");
     if (!isFunction(outerKeySelector)) throw new TypeError("Function expected: outerKeySelector");
     if (!isFunction(innerKeySelector)) throw new TypeError("Function expected: innerKeySelector");
     if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
-    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
-    return new AsyncGroupJoinIterable(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer);
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
+    return new AsyncGroupJoinIterable(outer, inner, outerKeySelector, innerKeySelector, keyEqualer, resultSelector);
 }
 
 class AsyncJoinIterable<O, I, K, R> implements AsyncIterable<R> {
@@ -78,23 +82,27 @@ class AsyncJoinIterable<O, I, K, R> implements AsyncIterable<R> {
     private _inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>;
     private _outerKeySelector: (element: O) => K;
     private _innerKeySelector: (element: I) => K;
+    private _keyEqualer: Equaler<K>;
     private _resultSelector: (outer: O, inner: I) => PromiseLike<R> | R;
-    private _keyEqualer?: Equaler<K>
 
-    constructor(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: I) => PromiseLike<R> | R, keyEqualer?: Equaler<K>) {
+    constructor(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, keyEqualer: Equaler<K>, resultSelector: (outer: O, inner: I) => PromiseLike<R> | R) {
         this._outer = outer;
         this._inner = inner;
         this._outerKeySelector = outerKeySelector;
         this._innerKeySelector = innerKeySelector;
-        this._resultSelector = resultSelector;
         this._keyEqualer = keyEqualer;
+        this._resultSelector = resultSelector;
     }
 
     async *[Symbol.asyncIterator](): AsyncIterator<R> {
+        const outer = this._outer;
+        const inner = this._inner;
         const outerKeySelector = this._outerKeySelector;
+        const innerKeySelector = this._innerKeySelector;
+        const keyEqualer = this._keyEqualer;
         const resultSelector = this._resultSelector;
-        const map = await createGroupingsAsync(this._inner, this._innerKeySelector, identity, this._keyEqualer);
-        for await (const outerElement of this._outer) {
+        const map = await createGroupingsAsync(inner, innerKeySelector, keyEqualer, identity);
+        for await (const outerElement of outer) {
             const outerKey = outerKeySelector(outerElement);
             const innerElements = map.get(outerKey);
             if (innerElements != undefined) {
@@ -117,14 +125,14 @@ class AsyncJoinIterable<O, I, K, R> implements AsyncIterable<R> {
  * @param keyEqualer An [[Equaler]] object used to compare key equality.
  * @category Join
  */
-export function joinAsync<O, I, K, R>(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: I) => PromiseLike<R> | R, keyEqualer?: Equaler<K>): AsyncIterable<R> {
+export function joinAsync<O, I, K, R>(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: I) => PromiseLike<R> | R, keyEqualer: Equaler<K> = Equaler.defaultEqualer): AsyncIterable<R> {
     if (!isAsyncIterableObject(outer) && !isIterableObject(outer)) throw new TypeError("AsyncIterable expected: outer");
     if (!isAsyncIterableObject(inner) && !isIterableObject(inner)) throw new TypeError("AsyncIterable expected: inner");
     if (!isFunction(outerKeySelector)) throw new TypeError("Function expected: outerKeySelector");
     if (!isFunction(innerKeySelector)) throw new TypeError("Function expected: innerKeySelector");
     if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
-    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
-    return new AsyncJoinIterable(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer);
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
+    return new AsyncJoinIterable(outer, inner, outerKeySelector, innerKeySelector, keyEqualer, resultSelector);
 }
 
 function selectGroupingKey<K, V>(grouping: Grouping<K, V>) {
@@ -136,23 +144,28 @@ class AsyncFullJoinIterable<O, I, K, R> implements AsyncIterable<R> {
     private _inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>;
     private _outerKeySelector: (element: O) => K;
     private _innerKeySelector: (element: I) => K;
+    private _keyEqualer: Equaler<K>;
     private _resultSelector: (outer: O | undefined, inner: I | undefined) => PromiseLike<R> | R;
-    private _keyEqualer?: Equaler<K>
 
-    constructor(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O | undefined, inner: I | undefined) => PromiseLike<R> | R, keyEqualer?: Equaler<K>) {
+    constructor(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, keyEqualer: Equaler<K>, resultSelector: (outer: O | undefined, inner: I | undefined) => PromiseLike<R> | R) {
         this._outer = outer;
         this._inner = inner;
         this._outerKeySelector = outerKeySelector;
         this._innerKeySelector = innerKeySelector;
-        this._resultSelector = resultSelector;
         this._keyEqualer = keyEqualer;
+        this._resultSelector = resultSelector;
     }
 
     async *[Symbol.asyncIterator](): AsyncIterator<R> {
+        const outer = this._outer;
+        const inner = this._inner;
+        const outerKeySelector = this._outerKeySelector;
+        const innerKeySelector = this._innerKeySelector;
+        const keyEqualer = this._keyEqualer;
         const resultSelector = this._resultSelector;
-        const outerLookup = new Lookup<K, O>(await createGroupingsAsync(this._outer, this._outerKeySelector, identity, this._keyEqualer));
-        const innerLookup = new Lookup<K, I>(await createGroupingsAsync(this._inner, this._innerKeySelector, identity, this._keyEqualer));
-        const keys = union(map(outerLookup, selectGroupingKey), map(innerLookup, selectGroupingKey), this._keyEqualer);
+        const outerLookup = new Lookup<K, O>(await createGroupingsAsync(outer, outerKeySelector, keyEqualer, identity));
+        const innerLookup = new Lookup<K, I>(await createGroupingsAsync(inner, innerKeySelector, keyEqualer, identity));
+        const keys = union(map(outerLookup, selectGroupingKey), map(innerLookup, selectGroupingKey), keyEqualer);
         for (const key of keys) {
             const outer = defaultIfEmpty<O | undefined>(outerLookup.get(key), undefined);
             const inner = defaultIfEmpty<I | undefined>(innerLookup.get(key), undefined);
@@ -177,14 +190,14 @@ class AsyncFullJoinIterable<O, I, K, R> implements AsyncIterable<R> {
  * @param keyEqualer An [[Equaler]] object used to compare key equality.
  * @category Join
  */
-export function fullJoinAsync<O, I, K, R>(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O | undefined, inner: I | undefined) => PromiseLike<R> | R, keyEqualer?: Equaler<K>): AsyncIterable<R> {
+export function fullJoinAsync<O, I, K, R>(outer: AsyncIterable<O> | Iterable<PromiseLike<O> | O>, inner: AsyncIterable<I> | Iterable<PromiseLike<I> | I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O | undefined, inner: I | undefined) => PromiseLike<R> | R, keyEqualer: Equaler<K> = Equaler.defaultEqualer): AsyncIterable<R> {
     if (!isAsyncIterableObject(outer) && !isIterableObject(outer)) throw new TypeError("AsyncIterable expected: outer");
     if (!isAsyncIterableObject(inner) && !isIterableObject(inner)) throw new TypeError("AsyncIterable expected: inner");
     if (!isFunction(outerKeySelector)) throw new TypeError("Function expected: outerKeySelector");
     if (!isFunction(innerKeySelector)) throw new TypeError("Function expected: innerKeySelector");
     if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
-    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
-    return new AsyncFullJoinIterable(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer);
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
+    return new AsyncFullJoinIterable(outer, inner, outerKeySelector, innerKeySelector, keyEqualer, resultSelector);
 }
 
 class AsyncZipIterable<T, U, R> implements AsyncIterable<R> {

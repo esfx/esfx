@@ -20,7 +20,7 @@ import { AsyncHierarchyIterable } from '@esfx/async-iter-hierarchy';
 import { Hierarchical, HierarchyProvider, HierarchyIterable } from '@esfx/iter-hierarchy';
 
 /** @internal */
-export async function createGroupingsAsync<T, K, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, keyEqualer?: Equaler<K>): Promise<HashMap<K, V[]>> {
+export async function createGroupingsAsync<T, K, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer: Equaler<K>, elementSelector: (element: T) => PromiseLike<V> | V): Promise<HashMap<K, V[]>> {
     const map = new HashMap<K, V[]>(keyEqualer);
     for await (const item of source) {
         const key = keySelector(item);

@@ -217,23 +217,25 @@ export function spanMapAsync<T, K, V, R>(source: AsyncIterable<T> | Iterable<Pro
 class AsyncGroupByIterable<T, K, V, R> implements AsyncIterable<R> {
     private _source: AsyncIterable<T>;
     private _keySelector: (element: T) => K;
+    private _keyEqualer: Equaler<K>
     private _elementSelector: (element: T) => T | V | PromiseLike<T | V>;
     private _resultSelector: (key: K, elements: Iterable<T | V>) => PromiseLike<R> | R;
-    private _keyEqualer?: Equaler<K>
 
-    constructor(source: AsyncIterable<T>, keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, resultSelector: (key: K, elements: Iterable<T | V>) => PromiseLike<R> | R, keyEqualer?: Equaler<K>) {
+    constructor(source: AsyncIterable<T>, keySelector: (element: T) => K, keyEqualer: Equaler<K>, elementSelector: (element: T) => PromiseLike<V> | V, resultSelector: (key: K, elements: Iterable<T | V>) => PromiseLike<R> | R) {
         this._source = source;
         this._keySelector = keySelector;
+        this._keyEqualer = keyEqualer;
         this._elementSelector = elementSelector;
         this._resultSelector = resultSelector;
-        this._keyEqualer = keyEqualer;
     }
 
     async *[Symbol.asyncIterator](): AsyncIterator<R> {
         const source = this._source;
+        const keySelector = this._keySelector;
+        const keyEqualer = this._keyEqualer;
         const elementSelector = this._elementSelector;
         const resultSelector = this._resultSelector;
-        const map = await createGroupingsAsync(source, this._keySelector, this._elementSelector, this._keyEqualer);
+        const map = await createGroupingsAsync(source, keySelector, keyEqualer, elementSelector);
         for (const [key, values] of map) {
             yield resultSelector(key, elementSelector === identity ? flowHierarchy(values, source as AsyncIterable<T | V>) : values);
         }
@@ -290,7 +292,7 @@ export function groupByAsync<T, K, V>(source: AsyncIterable<T> | Iterable<Promis
  * @category Subquery
  */
 export function groupByAsync<T, K, V, R>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, resultSelector: (key: K, elements: Iterable<V>) => PromiseLike<R> | R, keyEqualer?: Equaler<K>): AsyncIterable<R>;
-export function groupByAsync<T, K, V, R>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, elementSelector: ((element: T) => PromiseLike<T | V> | T | V) | Equaler<K> = identity, resultSelector: ((key: K, elements: Iterable<T | V>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R) | ((key: K, elements: HierarchyIterable<unknown, T>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R) | Equaler<K> = Grouping.from, keyEqualer?: Equaler<K>): AsyncIterable<Grouping<K, T | V> | R> {
+export function groupByAsync<T, K, V, R>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, elementSelector: ((element: T) => PromiseLike<T | V> | T | V) | Equaler<K> = identity, resultSelector: ((key: K, elements: Iterable<T | V>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R) | ((key: K, elements: HierarchyIterable<unknown, T>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R) | Equaler<K> = Grouping.from, keyEqualer: Equaler<K> = Equaler.defaultEqualer): AsyncIterable<Grouping<K, T | V> | R> {
     if (typeof elementSelector !== "function") {
         resultSelector = elementSelector;
         elementSelector = identity;
@@ -303,6 +305,6 @@ export function groupByAsync<T, K, V, R>(source: AsyncIterable<T> | Iterable<Pro
     if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
     if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
     if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
-    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
-    return new AsyncGroupByIterable(flowHierarchy(toAsyncIterable(source), source), keySelector, elementSelector, resultSelector as (key: K, elements: Iterable<T | V>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R);
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
+    return new AsyncGroupByIterable(flowHierarchy(toAsyncIterable(source), source), keySelector, keyEqualer, elementSelector, resultSelector as (key: K, elements: Iterable<T | V>) => PromiseLike<Grouping<K, T | V> | R> | Grouping<K, T | V> | R);
 }

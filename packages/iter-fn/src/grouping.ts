@@ -21,7 +21,7 @@ import { identity } from '@esfx/fn';
 import { Grouping, HierarchyGrouping } from "@esfx/iter-grouping";
 import { HierarchyIterable } from '@esfx/iter-hierarchy';
 import { Page, HierarchyPage } from "@esfx/iter-page";
-import { flowHierarchy } from './internal/utils.js';
+import { createGroupings, flowHierarchy } from './internal/utils.js';
 
 class PageByIterable<T, R> implements Iterable<R> {
     private _source: Iterable<T>;
@@ -213,31 +213,17 @@ export function spanMap<T, K, V, R>(source: Iterable<T>, keySelector: (element: 
     return new SpanMapIterable(source, keySelector, keyEqualer, elementSelector, spanSelector as (key: K, span: Iterable<T | V>) => Grouping<K, T | V> | R);
 }
 
-function createGroupings<T, K, V>(source: Iterable<T>, keySelector: (element: T) => K, elementSelector: (element: T) => V, keyEqualer?: Equaler<K>): HashMap<K, V[]> {
-    const map = new HashMap<K, V[]>(keyEqualer);
-    for (const item of source) {
-        const key = keySelector(item);
-        const element = elementSelector(item);
-        const grouping = map.get(key);
-        if (grouping === undefined) {
-            map.set(key, [element]);
-        }
-        else {
-            grouping.push(element);
-        }
-    }
-    return map;
-}
-
 class GroupByIterable<T, K, V, R> implements Iterable<R> {
     private _source: Iterable<T>;
     private _keySelector: (element: T) => K;
+    private _keyEqualer: Equaler<K>;
     private _elementSelector: (element: T) => T | V;
     private _resultSelector: (key: K, elements: Iterable<T | V>) => R;
 
-    constructor(source: Iterable<T>, keySelector: (element: T) => K, elementSelector: (element: T) => V, resultSelector: (key: K, elements: Iterable<T | V>) => R) {
+    constructor(source: Iterable<T>, keySelector: (element: T) => K, keyEqualer: Equaler<K>, elementSelector: (element: T) => V, resultSelector: (key: K, elements: Iterable<T | V>) => R) {
         this._source = source;
         this._keySelector = keySelector;
+        this._keyEqualer = keyEqualer;
         this._elementSelector = elementSelector;
         this._resultSelector = resultSelector;
     }
@@ -246,7 +232,8 @@ class GroupByIterable<T, K, V, R> implements Iterable<R> {
         const source = this._source;
         const elementSelector = this._elementSelector;
         const resultSelector = this._resultSelector;
-        const map = createGroupings(source, this._keySelector, elementSelector);
+        const keyEqualer = this._keyEqualer;
+        const map = createGroupings(source, this._keySelector, keyEqualer, elementSelector);
         for (const [key, values] of map) {
             yield resultSelector(key, elementSelector === identity ? flowHierarchy(values, source as Iterable<T | V>) : values);
         }
@@ -303,7 +290,7 @@ export function groupBy<T, K, V>(source: Iterable<T>, keySelector: (element: T) 
  * @category Subquery
  */
 export function groupBy<T, K, V, R>(source: Iterable<T>, keySelector: (element: T) => K, elementSelector: (element: T) => V, resultSelector: (key: K, elements: Iterable<V>) => R, keyEqualer?: Equaler<K>): Iterable<R>;
-export function groupBy<T, K, V, R>(source: Iterable<T>, keySelector: (element: T) => K, elementSelector: ((element: T) => T | V) | Equaler<K> = identity, resultSelector: ((key: K, elements: Iterable<T | V>) => Grouping<K, T | V> | R) | ((key: K, elements: HierarchyIterable<unknown, T>) => Grouping<K, T | V> | R) | Equaler<K> = Grouping.from, keyEqualer?: Equaler<K>) {
+export function groupBy<T, K, V, R>(source: Iterable<T>, keySelector: (element: T) => K, elementSelector: ((element: T) => T | V) | Equaler<K> = identity, resultSelector: ((key: K, elements: Iterable<T | V>) => Grouping<K, T | V> | R) | ((key: K, elements: HierarchyIterable<unknown, T>) => Grouping<K, T | V> | R) | Equaler<K> = Grouping.from, keyEqualer: Equaler<K> = Equaler.defaultEqualer) {
     if (typeof elementSelector !== "function") {
         resultSelector = elementSelector;
         elementSelector = identity;
@@ -316,6 +303,6 @@ export function groupBy<T, K, V, R>(source: Iterable<T>, keySelector: (element: 
     if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
     if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
     if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
-    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
-    return new GroupByIterable(source, keySelector, elementSelector, resultSelector as (key: K, elements: Iterable<T | V>) => Grouping<K, T | V> | R);
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
+    return new GroupByIterable(source, keySelector, keyEqualer, elementSelector, resultSelector as (key: K, elements: Iterable<T | V>) => Grouping<K, T | V> | R);
 }

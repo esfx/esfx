@@ -19,7 +19,7 @@ import { Equaler } from '@esfx/equatable';
 import { Hierarchical, HierarchyProvider, HierarchyIterable } from '@esfx/iter-hierarchy';
 
 /** @internal */
-export function createGroupings<T, K, V>(source: Iterable<T>, keySelector: (element: T) => K, elementSelector: (element: T) => V, keyEqualer?: Equaler<K>): HashMap<K, V[]> {
+export function createGroupings<T, K, V>(source: Iterable<T>, keySelector: (element: T) => K, keyEqualer: Equaler<K>, elementSelector: (element: T) => V): HashMap<K, V[]> {
     const map = new HashMap<K, V[]>(keyEqualer);
     for (const item of source) {
         const key = keySelector(item);

@@ -927,8 +927,8 @@ export function toLookup<T, K, V>(source: Iterable<T>, keySelector: (element: T)
     if (!isIterableObject(source)) throw new TypeError("Iterable expected: source");
     if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
     if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
-    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
-    return new Lookup(createGroupings(source, keySelector, elementSelector, keyEqualer), keyEqualer);
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
+    return new Lookup(createGroupings(source, keySelector, keyEqualer, elementSelector), keyEqualer);
 }
 
 /**

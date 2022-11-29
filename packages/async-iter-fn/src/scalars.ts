@@ -987,7 +987,7 @@ export function toLookupAsync<T, K>(source: AsyncIterable<T> | Iterable<PromiseL
  * @category Scalar
  */
 export function toLookupAsync<T, K, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<V> | V, keyEqualer?: Equaler<K>): Promise<Lookup<K, V>>;
-export function toLookupAsync<T, K, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, elementSelector: ((element: T) => PromiseLike<T | V> | T | V) | Equaler<K> = identity, keyEqualer?: Equaler<K>) {
+export function toLookupAsync<T, K, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, elementSelector: ((element: T) => PromiseLike<T | V> | T | V) | Equaler<K> = identity, keyEqualer: Equaler<K> = Equaler.defaultEqualer) {
     if (typeof elementSelector === "object") {
         keyEqualer = elementSelector;
         elementSelector = identity;
@@ -995,12 +995,12 @@ export function toLookupAsync<T, K, V>(source: AsyncIterable<T> | Iterable<Promi
     if (!isAsyncIterableObject(source) && !isIterableObject(source)) throw new TypeError("AsyncIterable expected: source");
     if (!isFunction(keySelector)) throw new TypeError("Function expected: keySelector");
     if (!isFunction(elementSelector)) throw new TypeError("Function expected: elementSelector");
-    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
-    return toLookupAsyncCore(source, keySelector, elementSelector);
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: keyEqualer");
+    return toLookupAsyncCore(source, keySelector, keyEqualer, elementSelector);
 }
 
-async function toLookupAsyncCore<T, K, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, elementSelector: (element: T) => PromiseLike<T | V> | T | V, keyEqualer?: Equaler<K>) {
-    return new Lookup(await createGroupingsAsync(source, keySelector, elementSelector, keyEqualer), keyEqualer);
+async function toLookupAsyncCore<T, K, V>(source: AsyncIterable<T> | Iterable<PromiseLike<T> | T>, keySelector: (element: T) => K, keyEqualer: Equaler<K>, elementSelector: (element: T) => PromiseLike<T | V> | T | V) {
+    return new Lookup(await createGroupingsAsync(source, keySelector, keyEqualer, elementSelector), keyEqualer);
 }
 
 /**

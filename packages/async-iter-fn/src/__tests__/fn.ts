@@ -5,7 +5,7 @@ import * as fn from "../";
 import * as users from "./data/users";
 import * as nodes from "./data/nodes";
 import * as books from "./data/books";
-import { Comparable } from '@esfx/equatable';
+import { Comparable, Equaler } from '@esfx/equatable';
 import { HashSet } from '@esfx/collections-hashset';
 import { HashMap } from '@esfx/collections-hashmap';
 import { Index } from '@esfx/interval';
@@ -396,6 +396,15 @@ describe("Grouping", () => {
                 .toEqual([
                     { category: "a", values: [1, 2, 3] },
                     { category: sym, values: [4] }
+                ]);
+        });
+        it("with key equaler", async () => {
+            const data = [1, 2, -1];
+            await expect(fn.toArrayAsync(fn.groupByAsync(data, fn.identity, fn.identity, (_key, values) => [...values], Equaler.create<number>((a, b) => Math.abs(a) === Math.abs(b), Math.abs))))
+                .resolves
+                .toEqual([
+                    [1, -1],
+                    [2]
                 ]);
         });
         it.each`

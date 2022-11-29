@@ -28,23 +28,27 @@ class GroupJoinIterable<O, I, K, R> implements Iterable<R> {
     private _inner: Iterable<I>;
     private _outerKeySelector: (element: O) => K;
     private _innerKeySelector: (element: I) => K;
+    private _keyEqualer: Equaler<K>;
     private _resultSelector: (outer: O, inner: Iterable<I>) => R;
-    private _keyEqualer?: Equaler<K>
 
-    constructor(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: Iterable<I>) => R, keyEqualer?: Equaler<K>) {
+    constructor(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, keyEqualer: Equaler<K>, resultSelector: (outer: O, inner: Iterable<I>) => R) {
         this._outer = outer;
         this._inner = inner;
         this._outerKeySelector = outerKeySelector;
         this._innerKeySelector = innerKeySelector;
-        this._resultSelector = resultSelector;
         this._keyEqualer = keyEqualer;
+        this._resultSelector = resultSelector;
     }
 
     *[Symbol.iterator](): Iterator<R> {
+        const outer = this._outer;
+        const inner = this._inner;
         const outerKeySelector = this._outerKeySelector;
+        const innerKeySelector = this._innerKeySelector;
+        const keyEqualer = this._keyEqualer;
         const resultSelector = this._resultSelector;
-        const map = createGroupings(this._inner, this._innerKeySelector, identity, this._keyEqualer);
-        for (const outerElement of this._outer) {
+        const map = createGroupings(inner, innerKeySelector, keyEqualer, identity);
+        for (const outerElement of outer) {
             const outerKey = outerKeySelector(outerElement);
             const innerElements = map.get(outerKey) || empty<I>();
             yield resultSelector(outerElement, innerElements);
@@ -63,14 +67,14 @@ class GroupJoinIterable<O, I, K, R> implements Iterable<R> {
  * @param keyEqualer An `Equaler` object used to compare key equality.
  * @category Join
  */
-export function groupJoin<O, I, K, R>(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: Iterable<I>) => R, keyEqualer?: Equaler<K>): Iterable<R> {
+export function groupJoin<O, I, K, R>(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: Iterable<I>) => R, keyEqualer: Equaler<K> = Equaler.defaultEqualer): Iterable<R> {
     if (!isIterableObject(outer)) throw new TypeError("Iterable expected: outer");
     if (!isIterableObject(inner)) throw new TypeError("Iterable expected: inner");
     if (!isFunction(outerKeySelector)) throw new TypeError("Function expected: outerKeySelector");
     if (!isFunction(innerKeySelector)) throw new TypeError("Function expected: innerKeySelector");
     if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
     if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: equaler");
-    return new GroupJoinIterable(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer);
+    return new GroupJoinIterable(outer, inner, outerKeySelector, innerKeySelector, keyEqualer, resultSelector);
 }
 
 class JoinIterable<O, I, K, R> implements Iterable<R> {
@@ -78,23 +82,27 @@ class JoinIterable<O, I, K, R> implements Iterable<R> {
     private _inner: Iterable<I>;
     private _outerKeySelector: (element: O) => K;
     private _innerKeySelector: (element: I) => K;
+    private _keyEqualer: Equaler<K>;
     private _resultSelector: (outer: O, inner: I) => R;
-    private _keyEqualer?: Equaler<K>
 
-    constructor(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: I) => R, keyEqualer?: Equaler<K>) {
+    constructor(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, keyEqualer: Equaler<K>, resultSelector: (outer: O, inner: I) => R) {
         this._outer = outer;
         this._inner = inner;
         this._outerKeySelector = outerKeySelector;
         this._innerKeySelector = innerKeySelector;
-        this._resultSelector = resultSelector;
         this._keyEqualer = keyEqualer;
+        this._resultSelector = resultSelector;
     }
 
     *[Symbol.iterator](): Iterator<R> {
+        const outer = this._outer;
+        const inner = this._inner;
         const outerKeySelector = this._outerKeySelector;
+        const innerKeySelector = this._innerKeySelector;
+        const keyEqualer = this._keyEqualer;
         const resultSelector = this._resultSelector;
-        const map = createGroupings(this._inner, this._innerKeySelector, identity, this._keyEqualer);
-        for (const outerElement of this._outer) {
+        const map = createGroupings(inner, innerKeySelector, keyEqualer, identity);
+        for (const outerElement of outer) {
             const outerKey = outerKeySelector(outerElement);
             const innerElements = map.get(outerKey);
             if (innerElements != undefined) {
@@ -117,14 +125,14 @@ class JoinIterable<O, I, K, R> implements Iterable<R> {
  * @param keyEqualer An `Equaler` object used to compare key equality.
  * @category Join
  */
-export function join<O, I, K, R>(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: I) => R, keyEqualer?: Equaler<K>): Iterable<R> {
+export function join<O, I, K, R>(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O, inner: I) => R, keyEqualer: Equaler<K> = Equaler.defaultEqualer): Iterable<R> {
     if (!isIterableObject(outer)) throw new TypeError("Iterable expected: outer");
     if (!isIterableObject(inner)) throw new TypeError("Iterable expected: inner");
     if (!isFunction(outerKeySelector)) throw new TypeError("Function expected: outerKeySelector");
     if (!isFunction(innerKeySelector)) throw new TypeError("Function expected: innerKeySelector");
     if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
-    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: equaler");
-    return new JoinIterable(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer);
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: equaler");
+    return new JoinIterable(outer, inner, outerKeySelector, innerKeySelector, keyEqualer, resultSelector);
 }
 
 function selectGroupingKey<K, V>(grouping: Grouping<K, V>) {
@@ -136,23 +144,28 @@ class FullJoinIterable<O, I, K, R> implements Iterable<R> {
     private _inner: Iterable<I>;
     private _outerKeySelector: (element: O) => K;
     private _innerKeySelector: (element: I) => K;
+    private _keyEqualer: Equaler<K>;
     private _resultSelector: (outer: O | undefined, inner: I | undefined) => R;
-    private _keyEqualer?: Equaler<K>
 
-    constructor(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O | undefined, inner: I | undefined) => R, keyEqualer?: Equaler<K>) {
+    constructor(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, keyEqualer: Equaler<K>, resultSelector: (outer: O | undefined, inner: I | undefined) => R) {
         this._outer = outer;
         this._inner = inner;
         this._outerKeySelector = outerKeySelector;
         this._innerKeySelector = innerKeySelector;
-        this._resultSelector = resultSelector;
         this._keyEqualer = keyEqualer;
+        this._resultSelector = resultSelector;
     }
 
     *[Symbol.iterator](): Iterator<R> {
+        const outer = this._outer;
+        const inner = this._inner;
+        const outerKeySelector = this._outerKeySelector;
+        const innerKeySelector = this._innerKeySelector;
+        const keyEqualer = this._keyEqualer;
         const resultSelector = this._resultSelector;
-        const outerLookup = new Lookup<K, O>(createGroupings(this._outer, this._outerKeySelector, identity, this._keyEqualer));
-        const innerLookup = new Lookup<K, I>(createGroupings(this._inner, this._innerKeySelector, identity, this._keyEqualer));
-        const keys = union(map(outerLookup, selectGroupingKey), map(innerLookup, selectGroupingKey), this._keyEqualer);
+        const outerLookup = new Lookup<K, O>(createGroupings(outer, outerKeySelector, keyEqualer, identity));
+        const innerLookup = new Lookup<K, I>(createGroupings(inner, innerKeySelector, keyEqualer, identity));
+        const keys = union(map(outerLookup, selectGroupingKey), map(innerLookup, selectGroupingKey), keyEqualer);
         for (const key of keys) {
             const outer = defaultIfEmpty<O | undefined>(outerLookup.get(key), undefined);
             const inner = defaultIfEmpty<I | undefined>(innerLookup.get(key), undefined);
@@ -177,14 +190,14 @@ class FullJoinIterable<O, I, K, R> implements Iterable<R> {
  * @param keyEqualer An `Equaler` object used to compare key equality.
  * @category Join
  */
-export function fullJoin<O, I, K, R>(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O | undefined, inner: I | undefined) => R, keyEqualer?: Equaler<K>): Iterable<R> {
+export function fullJoin<O, I, K, R>(outer: Iterable<O>, inner: Iterable<I>, outerKeySelector: (element: O) => K, innerKeySelector: (element: I) => K, resultSelector: (outer: O | undefined, inner: I | undefined) => R, keyEqualer: Equaler<K> = Equaler.defaultEqualer): Iterable<R> {
     if (!isIterableObject(outer)) throw new TypeError("Iterable expected: outer");
     if (!isIterableObject(inner)) throw new TypeError("Iterable expected: inner");
     if (!isFunction(outerKeySelector)) throw new TypeError("Function expected: outerKeySelector");
     if (!isFunction(innerKeySelector)) throw new TypeError("Function expected: innerKeySelector");
     if (!isFunction(resultSelector)) throw new TypeError("Function expected: resultSelector");
-    if (!isUndefined(keyEqualer) && !Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: equaler");
-    return new FullJoinIterable(outer, inner, outerKeySelector, innerKeySelector, resultSelector, keyEqualer);
+    if (!Equaler.hasInstance(keyEqualer)) throw new TypeError("Equaler expected: equaler");
+    return new FullJoinIterable(outer, inner, outerKeySelector, innerKeySelector, keyEqualer, resultSelector);
 }
 
 class ZipIterable<T, U, R> implements Iterable<R> {
