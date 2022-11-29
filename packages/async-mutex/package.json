@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-mutex",
-    "version": "1.1.0-alpha.202211052202",
+    "version": "1.1.0-alpha.202211291446",
     "description": "Provides 'AsyncMutex', an async coordination primitive.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

@@ -1,6 +1,6 @@
 {
     "name": "@esfx/equatable-native-linux-x64",
-    "version": "1.1.0-alpha.0",
+    "version": "1.1.0-alpha.202211291446",
     "description": "Native bindings for @esfx/equatable",
     "type": "commonjs",
     "exports": {
