@@ -42,6 +42,9 @@ export class Disposable {
     }
 }
 
+// declare const dispose: unique symbol;
+// type DisposeSymbol = SymbolConstructor extends { readonly dispose: infer S extends symbol } ? S : typeof dispose;
+
 /**
  * Indicates an object that has resources that can be explicitly disposed.
  */
@@ -51,8 +54,8 @@ export namespace Disposable {
      *
      * NOTE: Uses `Symbol.dispose` if present.
      */
-    export const dispose: unique symbol = typeof (Symbol as any)["dispose"] === "symbol" ?
-        (Symbol as any)["dispose"] :
+    export const dispose: unique symbol =
+        typeof (Symbol as any)["dispose"] === "symbol" ? (Symbol as any)["dispose"] :
         Symbol.for("@esfx/disposable:Disposable.dispose");
 
     /**

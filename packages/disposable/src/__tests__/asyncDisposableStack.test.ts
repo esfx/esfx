@@ -59,14 +59,14 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
             await stack.disposeAsync();
             expect(steps).toEqual(["step 2", "step 1"]);
         });
-        it("treats non-disposable function as disposable", async () => {
+        it("(deprecated) treats non-disposable function as disposable", async () => {
             const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
             const stack = new AsyncDisposableStack();
             stack.use(fn);
             await stack.disposeAsync();
             expect(fn).toHaveBeenCalled();
         });
-        it("pass custom dispose for resource", async () => {
+        it("(deprecated) pass custom dispose for resource", async () => {
             const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
             const resource = {};
             const stack = new AsyncDisposableStack();
@@ -75,7 +75,7 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
             expect(result).toBe(resource);
             expect(fn).toHaveBeenCalled();
         });
-        it("custom dispose invoked even if resource is null/undefined", async () => {
+        it("(deprecated) custom dispose invoked even if resource is null/undefined", async () => {
             const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
             const stack = new AsyncDisposableStack();
             stack.use(null, fn);
@@ -87,6 +87,83 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
             const stack = new AsyncDisposableStack();
             await stack.disposeAsync();
             expect(() => stack.use({ async [AsyncDisposable.asyncDispose]() {} })).toThrow(ReferenceError);
+        });
+    });
+
+    describe("AsyncDisposableStack.prototype.adopt()", () => {
+        it("is an own method", () => expect(AsyncDisposableStack.prototype).toHaveOwnMethod("adopt"));
+        it("is writable", () => expect(AsyncDisposableStack.prototype).toHaveWritableProperty("adopt"));
+        it("is non-enumerable", () => expect(AsyncDisposableStack.prototype).toHaveNonEnumerableProperty("adopt"));
+        it("is configurable", () => expect(AsyncDisposableStack.prototype).toHaveConfigurableProperty("adopt"));
+        it("length is 2", () => expect(AsyncDisposableStack.prototype.adopt.length).toBe(2));
+        it("name is 'adopt'", () => expect(AsyncDisposableStack.prototype.adopt.name).toBe("adopt"));
+        it("returns resource", () => {
+            const stack = new AsyncDisposableStack();
+            const resource = {};
+            const result = stack.adopt(resource, () => {});
+            expect(result).toBe(resource);
+        });
+        it("disposes", async () => {
+            const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
+            const stack = new AsyncDisposableStack();
+            stack.adopt({}, fn);
+            await stack.disposeAsync();
+            expect(fn).toHaveBeenCalled();
+        });
+        it("disposes in reverse order", async () => {
+            const steps: string[] = [];
+            const stack = new AsyncDisposableStack();
+            stack.adopt("step 1", res => { steps.push(res); });
+            stack.adopt("step 2", res => { steps.push(res); });
+            await stack.disposeAsync();
+            expect(steps).toEqual(["step 2", "step 1"]);
+        });
+        it("custom dispose invoked even if resource is null/undefined", async () => {
+            const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
+            const stack = new AsyncDisposableStack();
+            stack.adopt(null, fn);
+            await stack.disposeAsync();
+            expect(fn).toHaveBeenCalled();
+        });
+        it("throws if wrong target", () => expect(() => AsyncDisposableStack.prototype.adopt.call({}, undefined!, undefined!)).toThrow());
+        it("throws if called after disposed", async () => {
+            const stack = new AsyncDisposableStack();
+            await stack.disposeAsync();
+            expect(() => stack.adopt({}, () => {})).toThrow(ReferenceError);
+        });
+    });
+
+    describe("AsyncDisposableStack.prototype.defer()", () => {
+        it("is an own method", () => expect(AsyncDisposableStack.prototype).toHaveOwnMethod("defer"));
+        it("is writable", () => expect(AsyncDisposableStack.prototype).toHaveWritableProperty("defer"));
+        it("is non-enumerable", () => expect(AsyncDisposableStack.prototype).toHaveNonEnumerableProperty("defer"));
+        it("is configurable", () => expect(AsyncDisposableStack.prototype).toHaveConfigurableProperty("defer"));
+        it("length is 1", () => expect(AsyncDisposableStack.prototype.defer.length).toBe(1));
+        it("name is 'defer'", () => expect(AsyncDisposableStack.prototype.defer.name).toBe("defer"));
+        it("disposes", async () => {
+            const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
+            const stack = new AsyncDisposableStack();
+            stack.defer(fn);
+            await stack.disposeAsync();
+            expect(fn).toHaveBeenCalled();
+        });
+        it("disposes serially in reverse order", async () => {
+            const steps: string[] = [];
+            const stack = new AsyncDisposableStack();
+            let resolve!: () => void;
+            const waiter = new Promise<void>(r => resolve = r);
+            stack.defer(() => { steps.push("step 1"); });
+            stack.defer(async () => { await waiter; steps.push("step 2"); });
+            const promise = stack.disposeAsync();
+            resolve();
+            await promise;
+            expect(steps).toEqual(["step 2", "step 1"]);
+        });
+        it("throws if wrong target", () => expect(() => AsyncDisposableStack.prototype.defer.call({}, undefined!)).toThrow());
+        it("throws if called after disposed", async () => {
+            const stack = new AsyncDisposableStack();
+            await stack.disposeAsync();
+            expect(() => stack.defer(() => {})).toThrow(ReferenceError);
         });
     });
 
@@ -105,10 +182,16 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
         });
         it("resources from initial stack not disposed after move", async () => {
             const stack = new AsyncDisposableStack();
-            const fn = stack.use(jest.fn<() => void>());
+            const fn = jest.fn<() => void>()
+            stack.defer(fn);
             stack.move();
             await stack[AsyncDisposable.asyncDispose]();
             expect(fn).not.toHaveBeenCalled();
+        });
+        it("initial stack disposed after move", () => {
+            const stack = new AsyncDisposableStack();
+            stack.move();
+            expect(stack.disposed).toBe(true);
         });
         it("resources from initial stack disposed after new stack from move is disposed", async () => {
             const stack = new AsyncDisposableStack();
@@ -125,25 +208,26 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
         });
     });
 
-    describe("AsyncDisposableStack.prototype[AsyncDisposable.asyncDispose]()", () => {
-        it("is an own method", () => expect(AsyncDisposableStack.prototype).toHaveOwnMethod(AsyncDisposable.asyncDispose));
-        it("is writable", () => expect(AsyncDisposableStack.prototype).toHaveWritableProperty(AsyncDisposable.asyncDispose));
-        it("is non-enumerable", () => expect(AsyncDisposableStack.prototype).toHaveNonEnumerableProperty(AsyncDisposable.asyncDispose));
-        it("is configurable", () => expect(AsyncDisposableStack.prototype).toHaveConfigurableProperty(AsyncDisposable.asyncDispose));
-        it("length is 0", () => expect(AsyncDisposableStack.prototype[AsyncDisposable.asyncDispose].length).toBe(0));
+    describe("AsyncDisposableStack.prototype.disposeAsync", () => {
+        it("is an own method", () => expect(AsyncDisposableStack.prototype).toHaveOwnMethod("disposeAsync"));
+        it("is writable", () => expect(AsyncDisposableStack.prototype).toHaveWritableProperty("disposeAsync"));
+        it("is non-enumerable", () => expect(AsyncDisposableStack.prototype).toHaveNonEnumerableProperty("disposeAsync"));
+        it("is configurable", () => expect(AsyncDisposableStack.prototype).toHaveConfigurableProperty("disposeAsync"));
+        it("length is 0", () => expect(AsyncDisposableStack.prototype.disposeAsync.length).toBe(0));
+        it("name is 'disposeAsync'", () => expect(AsyncDisposableStack.prototype.disposeAsync.name).toBe("disposeAsync"));
         it("disposes", async () => {
             const fn = jest.fn<() => Promise<void>>();
             const stack = new AsyncDisposableStack();
             stack.use({ [AsyncDisposable.asyncDispose]: fn });
-            await stack[AsyncDisposable.asyncDispose]();
+            await stack.disposeAsync();
             expect(fn).toHaveBeenCalled();
         });
         it("disposes once", async () => {
             const fn = jest.fn<() => Promise<void>>();
             const stack = new AsyncDisposableStack();
-            stack.use(fn);
-            await stack[AsyncDisposable.asyncDispose]();
-            await stack[AsyncDisposable.asyncDispose]();
+            stack.defer(fn);
+            await stack.disposeAsync();
+            await stack.disposeAsync();
             expect(fn).toHaveBeenCalledTimes(1);
         });
         it("disposes in reverse order", async () => {
@@ -151,30 +235,17 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
             const stack = new AsyncDisposableStack();
             stack.use({ async [AsyncDisposable.asyncDispose]() { steps.push("step 1"); } });
             stack.use({ async [AsyncDisposable.asyncDispose]() { steps.push("step 2"); } });
-            await stack[AsyncDisposable.asyncDispose]();
+            await stack.disposeAsync();
             expect(steps).toEqual(["step 2", "step 1"]);
         });
-        it("throws if wrong target", () => expect(AsyncDisposableStack.prototype[AsyncDisposable.asyncDispose].call({})).rejects.toThrow());
+        it("throws if wrong target", () => expect(AsyncDisposableStack.prototype.disposeAsync.call({})).rejects.toThrow());
     });
 
-    describe("AsyncDisposableStack.prototype.disposeAsync", () => {
-        it("is an own getter", () => expect(AsyncDisposableStack.prototype).toHaveOwnGetter("disposeAsync"));
-        it("is non-enumerable", () => expect(AsyncDisposableStack.prototype).toHaveNonEnumerableProperty("disposeAsync"));
-        it("is configurable", () => expect(AsyncDisposableStack.prototype).toHaveConfigurableProperty("disposeAsync"));
-        it("returns a bound method", async () => {
-            const stack = new AsyncDisposableStack();
-            const fn = stack.use(jest.fn<() => void>());
-            const disposeAsync = stack.disposeAsync;
-            await disposeAsync();
-            expect(fn).toHaveBeenCalled();
-        });
-        it("returns the same bound method", () => {
-            const stack = new AsyncDisposableStack();
-            const disposeAsync = stack.disposeAsync;
-            expect(disposeAsync).toBe(stack.disposeAsync);
-        });
-        it("throws when accessed from the prototype", () => {
-            expect(() => AsyncDisposableStack.prototype.disposeAsync).toThrowError();
-        });
+    describe("AsyncDisposableStack.prototype[AsyncDisposable.asyncDispose]()", () => {
+        it("is an own method", () => expect(AsyncDisposableStack.prototype).toHaveOwnMethod(AsyncDisposable.asyncDispose));
+        it("is writable", () => expect(AsyncDisposableStack.prototype).toHaveWritableProperty(AsyncDisposable.asyncDispose));
+        it("is non-enumerable", () => expect(AsyncDisposableStack.prototype).toHaveNonEnumerableProperty(AsyncDisposable.asyncDispose));
+        it("is configurable", () => expect(AsyncDisposableStack.prototype).toHaveConfigurableProperty(AsyncDisposable.asyncDispose));
+        it("is alias for 'disposeAsync'", () => expect(AsyncDisposableStack.prototype[AsyncDisposable.asyncDispose]).toBe(AsyncDisposableStack.prototype.disposeAsync));
     });
 });

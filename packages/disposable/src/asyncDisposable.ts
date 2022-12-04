@@ -45,6 +45,9 @@ export class AsyncDisposable {
     }
 }
 
+// declare const asyncDispose: unique symbol;
+// type AsyncDisposeSymbol = SymbolConstructor extends { readonly asyncDispose: infer S extends symbol } ? S : typeof asyncDispose;
+
 export namespace AsyncDisposable {
     /**
      * A well-known symbol used to define an async explicit resource disposal method on an object.
@@ -52,9 +55,8 @@ export namespace AsyncDisposable {
      * NOTE: Uses `Symbol.asyncDispose` if present.
      */
     export const asyncDispose: unique symbol =
-        typeof (Symbol as any)["asyncDispose"] === "symbol" ?
-            (Symbol as any)["asyncDispose"] :
-            Symbol.for("@esfx/disposable:AsyncDisposable.asyncDispose");
+        typeof (Symbol as any)["asyncDispose"] === "symbol" ? (Symbol as any)["asyncDispose"] :
+        Symbol.for("@esfx/disposable:AsyncDisposable.asyncDispose");
 
     /**
      * Emulate `using await const` using `for..await..of`.
