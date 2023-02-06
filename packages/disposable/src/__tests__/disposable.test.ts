@@ -17,6 +17,12 @@
 import { jest } from "@jest/globals";
 import { Disposable, DisposableScope } from "../disposable";
 import "../internal/testUtils";
+import { ThrowCompletion } from "../internal/utils";
+
+interface SuppressedError extends Error {
+    error: any;
+    suppressed: any;
+}
 
 describe("The Disposable constructor [non-spec]", () => {
     describe("Disposable(onDispose)", () => {
@@ -76,7 +82,7 @@ describe("Properties of the Disposable constructor [non-spec]", () => {
         it("error from invalid disposable not wrapped if no errors during dispose", () => {
             const disposable1 = Disposable.create(() => { });
 
-            let throwCompletion!: { cause: unknown };
+            let throwCompletion!: ThrowCompletion;
             try {
                 for (const { using, fail } of Disposable.scope()) try {
                     using(disposable1);
@@ -84,17 +90,17 @@ describe("Properties of the Disposable constructor [non-spec]", () => {
                 } catch (e) { fail(e); }
             }
             catch (e) {
-                throwCompletion = { cause: e };
+                throwCompletion = { value: e };
             }
 
             expect(throwCompletion).toBeDefined();
-            expect(throwCompletion.cause).toBeInstanceOf(TypeError);
+            expect(throwCompletion.value).toBeInstanceOf(TypeError);
         });
         it("error from invalid disposable wrapped if errors during dispose", () => {
             const e1 = new Error();
             const disposable1 = Disposable.create(() => { throw e1; });
 
-            let throwCompletion!: { cause: unknown };
+            let throwCompletion!: ThrowCompletion;
             try {
                 for (const { using, fail } of Disposable.scope()) try {
                     using(disposable1);
@@ -102,20 +108,20 @@ describe("Properties of the Disposable constructor [non-spec]", () => {
                 } catch (e) { fail(e); }
             }
             catch (e) {
-                throwCompletion = { cause: e };
+                throwCompletion = { value: e };
             }
 
             expect(throwCompletion).toBeDefined();
-            expect(throwCompletion.cause).toBeInstanceOf(AggregateError);
-            expect((throwCompletion.cause as AggregateError & { cause: unknown }).cause).toBeInstanceOf(TypeError);
-            expect((throwCompletion.cause as AggregateError & { cause: unknown }).errors.length).toBe(1);
-            expect((throwCompletion.cause as AggregateError & { cause: unknown }).errors[0]).toBe(e1);
+            expect(throwCompletion.value).toBeInstanceOf(Error);
+            expect((throwCompletion.value as SuppressedError).name).toBe("SuppressedError");
+            expect((throwCompletion.value as SuppressedError).suppressed).toBeInstanceOf(TypeError);
+            expect((throwCompletion.value as SuppressedError).error).toBe(e1);
         });
         it("error from body not wrapped if no errors during dispose", () => {
             const e = new Error();
             const disposable1 = Disposable.create(() => { });
 
-            let throwCompletion!: { cause: unknown };
+            let throwCompletion!: ThrowCompletion;
             try {
                 for (const { using, fail } of Disposable.scope()) try {
                     using(disposable1);
@@ -123,39 +129,36 @@ describe("Properties of the Disposable constructor [non-spec]", () => {
                 } catch (e) { fail(e); }
             }
             catch (e) {
-                throwCompletion = { cause: e };
+                throwCompletion = { value: e };
             }
 
             expect(throwCompletion).toBeDefined();
-            expect(throwCompletion.cause).toBe(e);
+            expect(throwCompletion.value).toBe(e);
         });
-        it("single error from dispose wrapped in AggregateError", () => {
+        it("single error from dispose not wrapped", () => {
             const e = new Error();
             const disposable1 = Disposable.create(() => { throw e; });
 
-            let throwCompletion!: { cause: unknown };
+            let throwCompletion!: ThrowCompletion;
             try {
                 for (const { using, fail } of Disposable.scope()) try {
                     using(disposable1);
                 } catch (e) { fail(e); }
             }
             catch (e) {
-                throwCompletion = { cause: e };
+                throwCompletion = { value: e };
             }
 
             expect(throwCompletion).toBeDefined();
-            expect(throwCompletion.cause).toBeInstanceOf(AggregateError);
-            expect((throwCompletion.cause as AggregateError & { cause: unknown }).cause).toBeUndefined();
-            expect((throwCompletion.cause as AggregateError & { cause: unknown }).errors.length).toBe(1);
-            expect((throwCompletion.cause as AggregateError & { cause: unknown }).errors[0]).toBe(e);
+            expect(throwCompletion.value).toBe(e);
         });
-        it("multiple errors from dispose wrapped in AggregateError", () => {
+        it("multiple errors from dispose wrapped in SuppressedError", () => {
             const e1 = new Error();
             const disposable1 = Disposable.create(() => { throw e1; });
             const e2 = new Error();
             const disposable2 = Disposable.create(() => { throw e2; });
 
-            let throwCompletion!: { cause: unknown };
+            let throwCompletion!: ThrowCompletion;
             try {
                 for (const { using, fail } of Disposable.scope()) try {
                     using(disposable1);
@@ -163,15 +166,14 @@ describe("Properties of the Disposable constructor [non-spec]", () => {
                 } catch (e) { fail(e); }
             }
             catch (e) {
-                throwCompletion = { cause: e };
+                throwCompletion = { value: e };
             }
 
             expect(throwCompletion).toBeDefined();
-            expect(throwCompletion.cause).toBeInstanceOf(AggregateError);
-            expect((throwCompletion.cause as AggregateError & { cause: unknown }).cause).toBeUndefined();
-            expect((throwCompletion.cause as AggregateError & { cause: unknown }).errors.length).toBe(2);
-            expect((throwCompletion.cause as AggregateError & { cause: unknown }).errors[0]).toBe(e2);
-            expect((throwCompletion.cause as AggregateError & { cause: unknown }).errors[1]).toBe(e1);
+            expect(throwCompletion.value).toBeInstanceOf(Error);
+            expect((throwCompletion.value as SuppressedError).name).toBe("SuppressedError");
+            expect((throwCompletion.value as SuppressedError).suppressed).toBe(e2);
+            expect((throwCompletion.value as SuppressedError).error).toBe(e1);
         });
         it("throws if scope.using is called late", () => {
             let scope!: DisposableScope;

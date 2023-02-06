@@ -17,89 +17,89 @@
 import /*#__INLINE__*/ { isFunction, isObject } from "@esfx/internal-guards";
 import { AsyncDisposable } from "./asyncDisposable.js";
 import { Disposable } from "./disposable.js";
-import { AddDisposableResource, DisposableResourceRecord, DisposeMethod, DisposeResources, GetDisposeMethod, GetMethod, SpeciesConstructor } from "./internal/utils.js";
+import { AddDisposableResource, DisposeCapability, DisposeMethod, DisposeResources, GetDisposeMethod, NewDisposeCapability } from "./internal/utils.js";
 
 const weakAsyncDisposableState = new WeakMap<AsyncDisposable, "pending" | "disposed">();
-const weakAsyncDisposableResourceStack = new WeakMap<AsyncDisposable, DisposableResourceRecord<"async">[]>();
-const weakBoundDisposeAsync = new WeakMap<AsyncDisposableStack, (() => Promise<void>) | undefined>();
+const weakDisposeCapability = new WeakMap<AsyncDisposable, DisposeCapability<"async-dispose">>();
 
+/** @deprecated Use {@link AsyncDisposable|`AsyncDisposable | Disposable`} instead. */
 export type AsyncDisposableLike = AsyncDisposable | Disposable | (() => void | PromiseLike<void>);
 
 /**
- * Emulates Python's `AsyncExitStack`
+ * A container for asynchronously disposable resources. When the stack is disposed, its containing resources are disposed in the reverse
+ * of the order in which they were added.
  */
 export class AsyncDisposableStack implements AsyncDisposable {
-    declare [Symbol.toStringTag]: string;
-
-    static {
-        Object.defineProperty(this, Symbol.toStringTag, { configurable: true, value: "AsyncDisposableStack" });
-    }
-
     constructor() {
-        // 9.4.4.1 AsyncDisposableStack ()
+        // 11.4.1.1 AsyncDisposableStack ()
 
         // 1. If NewTarget is *undefined*, throw a *TypeError* exception.
-        // 2. Let _asyncDisposableStack_ be ? OrdinaryCreateFromConstructor(NewTarget, *"%AsyncDisposableStack.prototype%"*, « [[AsyncDisposableState]], [[DisposableResourceStack]], [[BoundDisposeAsync]] »).
+        // 2. Let _asyncDisposableStack_ be ? OrdinaryCreateFromConstructor(NewTarget, *"%AsyncDisposableStack.prototype%"*, « [[AsyncDisposableState]], [[DisposeCapability]] »).
 
         // 3. Set _asyncDisposableStack_.[[AsyncDisposableState]] to ~pending~.
         weakAsyncDisposableState.set(this, "pending");
 
-        // 4. Set _asyncDisposableStack_.[[DisposableResourceStack]] to a new empty List.
-        weakAsyncDisposableResourceStack.set(this, []);
+        // 4. Set _asyncDisposableStack_.[[DisposeCapability]] to NewDisposeCapability().
+        weakDisposeCapability.set(this, NewDisposeCapability());
 
-        // 5. Set _asyncDisposableStack_.[[BoundDisposeAsync]] to *undefined*.
-        weakBoundDisposeAsync.set(this, undefined);
-
-        // 6. Return _asyncDisposableStack_.
-    }
-
-    static get [Symbol.species]() {
-        // 9.4.2.1 get AsyncDisposableStack [ @@species ]
-
-        // 1. Return the *this* value.
-        return this;
+        // 5. Return _asyncDisposableStack_.
     }
 
     /**
-     * Dispose this object's resources.
-     *
-     * NOTE: `disposeAsync` returns a bound method, so it can be extracted from `AsyncDisposableStack` and called independently:
-     *
-     * ```ts
-     * const stack = new AsyncDisposableStack();
-     * for (const f of files) stack.use(openFile(f));
-     * const closeFiles = stack.disposeAsync;
-     * ...
-     * closeFiles();
-     * ```
+     * Gets a value indicating whether the stack has already been disposed.
      */
-    get disposeAsync() {
-        // 9.4.3.1 get AsyncDisposableStack.prototype.disposeAsync
+    get disposed() {
+        // 11.4.3.1 get AsyncDisposableStack.prototype.disposed
 
         // 1. Let _asyncDisposableStack_ be the *this* value.
 
         // 2. Perform ? RequireInternalSlot(_asyncDisposableStack_, [[AsyncDisposableState]]).
         if (!weakAsyncDisposableState.has(this)) throw new TypeError("Wrong target");
 
-        // 3. If _asyncDisposableStack_.[[BoundDisposeAsync]] is *undefined*, then
-        if (weakBoundDisposeAsync.get(this) === undefined) {
-            // a. Let _disposeAsync_ be GetMethod(_asyncDisposableStack_, @@asyncDispose).
-            const disposeAsync = GetMethod(this, AsyncDisposable.asyncDispose);
+        // 3. If _asyncDisposableStack_.[[AsyncDisposableState]] is ~disposed~, return *true*.
+        if (weakAsyncDisposableState.get(this) === "disposed") return true;
 
-            // b. If _disposeAsync_ is *undefined*, throw a *TypeError* exception.
-            if (disposeAsync === undefined) throw new TypeError(`Method not found: ${AsyncDisposable.asyncDispose.toString()}`);
+        // 4. Otherwise, return *false*.
+        return false;
+    }
 
-            // c. Let _F_ be a new built-in function object as defined in 9.4.3.1.1.
-            // d. Set _F_.[[AsyncDisposableStack]] to _asyncDisposableStack_.
-            // e. Set _F_.[[DisposeAsyncMethod]] to _disposeAsync_.
-            const F = disposeAsync.bind(this);
+    /**
+     * Dispose this object's resources. This method is an alias for `[Disposable.dispose]()`.
+     *
+     * ```ts
+     * const stack = new AsyncDisposableStack();
+     * for (const f of files) stack.use(openFile(f));
+     * ...
+     * await stack.disposeAsync();
+     * ```
+     */
+    async disposeAsync() {
+        // 11.4.3.2 AsyncDisposableStack.prototype.disposeAsync()
 
-            // f. Set _asyncDisposableStack_.[[BoundDisposeAsync]] to _F_.
-            weakBoundDisposeAsync.set(this, F);
-        }
+        // 1. Let _asyncDisposableStack_ be the *this* value.
+        // 2. Let _promiseCapability_ be ! NewPromiseCapability(%Promise%).
 
-        // 4. Return _asyncDisposableStack_.[[BoundDisposeAsync]].
-        return weakBoundDisposeAsync.get(this)!;
+        // 3. If _asyncDisposableStack_ does not have an [[AsyncDisposableState]] internal slot, then
+        //   a. Perform ! Call(_promiseCapability_.[[Reject]], *undefined*, « a newly created *TypeError* object »).
+        //   b. Return _promiseCapability_.[[Promise]].
+        const disposableState = weakAsyncDisposableState.get(this);
+        if (!disposableState) throw new TypeError("Wrong target");
+
+        // 4. If _asyncDisposableStack_.[[AsyncDisposableState]] is ~disposed~, then
+        //   a. Perform ! Call(_promiseCapability_.[[Resolve]], *undefined*, « *undefined* »).
+        //   b. Return _promiseCapability_.[[Promise]].
+        if (disposableState === "disposed") return;
+
+        // 5. Set _asyncDisposableStack_.[[AsyncDisposableState]] to ~disposed~.
+        weakAsyncDisposableState.set(this, "disposed");
+
+        // 6. Let _result_ be DisposeResources(_asyncDisposableStack_, NormalCompletion(*undefined*)).
+        // 7. IfAbruptRejectPromise(_result_, _promiseCapability_).
+        // 8. Perform ! Call(_promiseCapability_.[[Resolve]], *undefined*, « _result_ »).
+        // 9. Return _promiseCapability_.[[Promise]].
+        const disposeCapability = weakDisposeCapability.get(this)!;
+        weakDisposeCapability.delete(this);
+        await DisposeResources("async-dispose", disposeCapability, /*completion*/ undefined);
     }
 
     /**
@@ -107,16 +107,13 @@ export class AsyncDisposableStack implements AsyncDisposable {
      * @param value The resource to add.
      * @returns The resource provided.
      */
-    use<T extends AsyncDisposableLike | null | undefined>(value: T): T;
-    /**
-     * Pushes a new disposable resource onto the disposable stack stack. Resources are disposed in the reverse order they were entered.
-     * @param value The resource to add.
-     * @param onDispose The operation to perform when the resource is disposed.
-     * @returns The resource provided.
-     */
+    use<T extends AsyncDisposable | Disposable | null | undefined>(value: T): T;
+    /** @deprecated Use {@link defer|defer()} instead. */
+    use<T extends () => void | PromiseLike<void>>(value: T): T;
+    /** @deprecated Use {@link adopt|adopt()} instead. */
     use<T>(value: T, onDisposeAsync: (value: T) => void | PromiseLike<void>): T;
     use<T>(value: T, onDisposeAsync: ((value: T) => void | PromiseLike<void>) | undefined = undefined): T {
-        // 9.4.3.2 AsyncDisposableStack.prototype.use( _value_ [, _onDisposeAsync_ ] )
+        // 11.4.3.3 AsyncDisposableStack.prototype.use( _value_ )
 
         // 1. Let _asyncDisposableStack_ be the *this* value.
 
@@ -127,59 +124,87 @@ export class AsyncDisposableStack implements AsyncDisposable {
         // 3. If _asyncDisposableStack_.[[AsyncDisposableState]] is ~disposed~, throw a *ReferenceError* exception.
         if (disposableState === "disposed") throw new ReferenceError("Object is disposed");
 
-        // 4. If _onDisposeAsync_ is not *undefined*, then
+        // NOTE: 1.0.0 compatibility:
         if (onDisposeAsync !== undefined) {
-            // a. If IsCallable(_onDisposeAsync_) is *false*, throw a *TypeError* exception.
-            if (!isFunction(onDisposeAsync)) throw new TypeError("Function expected: onDisposeAsync");
-
-            // b. Let _F_ be a new built-in function object as defined in 9.4.3.2.1.
-            // c. Set _F_.[[Argument]] to _value_.
-            // d. Set _F_.[[OnDisposeAsyncCallback]] to _onDisposeAsync_.
-            const F = () => onDisposeAsync(value);
-
-            // e. Perform ? AddDisposableResource(_asyncDisposableStack_, *undefined*, ~async~, _F_).
-            AddDisposableResource(weakAsyncDisposableResourceStack.get(this)!, undefined, "async", F);
+            return this.adopt(value, onDisposeAsync);
         }
 
-        // 5. Else, if value is neither null nor undefined, then
-        else if (value !== null && value !== undefined) {
-            // a. If Type(_value_) is not Object, throw a *TypeError* exception.
-            if (!isObject(value)) throw new TypeError("Object expected: value");
-
-            // b. Let _method_ be GetDisposeMethod(_value_, ~async~).
-            const method = GetDisposeMethod(value as T & object, "async");
-
-            // c. If _method_ is *undefined*, then
-            if (method === undefined) {
-                // i. If IsCallable(_value_) is *true*, then
-                if (typeof value === "function") {
-                    // 1. Perform ? AddDisposableResource(_disposableStack_, *undefined*, ~async~, _value_).
-                    AddDisposableResource(weakAsyncDisposableResourceStack.get(this)!, undefined, "async", value as T & DisposeMethod<"async">);
-                }
-
-                // ii. Else,
-                else {
-                    // 1. Throw a *TypeError* exception.
-                    throw new TypeError("Function expected: value");
-                }
-            }
-
-            // d. Else,
-            else {
-                // i. Perform ? AddDisposableResource(_disposableStack_, _value_, ~async~, _method_).
-                AddDisposableResource(weakAsyncDisposableResourceStack.get(this)!, value, "async", method);
-            }
+        // NOTE: 1.0.0 compatibility:
+        if (value !== null && value !== undefined && typeof value === "function" && !(AsyncDisposable.asyncDispose in value) && !(Disposable.dispose in value)) {
+            this.defer(value as unknown as DisposeMethod<"async-dispose">);
+            return value;
         }
 
-        // 6. Return _value_.
+        // 4. Perform ? AddDisposableResource(_asyncDisposableStack_.[[DisposeCapability]], _value_, ~async-dispose~).
+        AddDisposableResource(weakDisposeCapability.get(this)!, value, "async-dispose");
+
+        // 5. Return _value_.
         return value;
+    }
+
+    /**
+     * Pushes a non-disposable resource onto the stack with the provided async disposal callback.
+     * @param value The resource to add.
+     * @param onDisposeAsync The callback to execute when the resource is disposed.
+     * @returns The resource provided.
+     */
+    adopt<T>(value: T, onDisposeAsync: (value: T) => void | PromiseLike<void>): T {
+        // 11.4.3.4 AsyncDisposableStack.prototype.adopt( _value_, _onDisposeAsync_ )
+
+        // 1. Let _asyncDisposableStack_ be the *this* value.
+
+        // 2. Perform ? RequireInternalSlot(_asyncDisposableStack_, [[AsyncDisposableState]]).
+        const disposableState = weakAsyncDisposableState.get(this);
+        if (!disposableState) throw new ReferenceError("Wrong target");
+
+        // 3. If _asyncDisposableStack_.[[AsyncDisposableState]] is ~disposed~, throw a *ReferenceError* exception.
+        if (disposableState === "disposed") throw new ReferenceError("Object is disposed");
+
+        // 4. If IsCallable(_onDisposeAsync_) is *false*, throw a *TypeError* exception.
+        if (!isFunction(onDisposeAsync)) throw new TypeError("Function expected: onDisposeAsync");
+
+        // 5. Let _closure_ be a Abstract Closure with no parameters that captures _value_ and _onDisposeAsync_ and performs the following steps when called:
+        //    1. Return ? Call(_onDisposeAsync_, *undefined*, « _value_ »).
+        // 6. Let _F_ be CreateBuiltinFunction(_closure_, 0, *""*, , « »).
+        const F = () => onDisposeAsync(value);
+
+        // 7. Perform ? AddDisposableResource(_asyncDisposableStack_.[[DisposeCapability]], *undefined*, ~async-dispose~, _F_).
+        AddDisposableResource(weakDisposeCapability.get(this)!, undefined, "async-dispose", F);
+
+        // 8. Return _value_.
+        return value;
+    }
+
+    /**
+     * Pushes a resourceless async disposal callback onto the stack.
+     * @param onDisposeAsync The callback to execute when the stack is disposed.
+     */
+    defer(onDisposeAsync: () => void | PromiseLike<void>) {
+        // 11.4.3.5 AsyncDisposableStack.prototype.defer( _onDisposeAsync_ )
+
+        // 1. Let _asyncDisposableStack_ be the *this* value.
+
+        // 2. Perform ? RequireInternalSlot(_asyncDisposableStack_, [[AsyncDisposableState]]).
+        const disposableState = weakAsyncDisposableState.get(this);
+        if (!disposableState) throw new ReferenceError("Wrong target");
+
+        // 3. If _asyncDisposableStack_.[[AsyncDisposableState]] is ~disposed~, throw a *ReferenceError* exception.
+        if (disposableState === "disposed") throw new ReferenceError("Object is disposed");
+
+        // 4. If IsCallable(_onDisposeAsync_) is *false*, throw a *TypeError* exception.
+        if (!isFunction(onDisposeAsync)) throw new TypeError("Function expected: onDisposeAsync");
+
+        // 5. Perform ? AddDisposableResource(_asyncDisposableStack_.[[DisposeCapability]], *undefined*, ~async-dispose~, _onDisposeAsync_).
+        AddDisposableResource(weakDisposeCapability.get(this)!, undefined, "async-dispose", onDisposeAsync);
+
+        // 6. Return *undefined*.
     }
 
     /**
      * Moves all resources out of this `AsyncDisposableStack` and into a new `AsyncDisposableStack` and returns it.
      */
     move(): AsyncDisposableStack {
-        // 9.4.3.3 AsyncDisposableStack.prototype.move()
+        // 11.4.3.6 AsyncDisposableStack.prototype.move()
 
         // 1. Let _asyncDisposableStack_ be the *this* value.
 
@@ -190,24 +215,18 @@ export class AsyncDisposableStack implements AsyncDisposable {
         // 3. If _asyncDisposableStack_.[[AsyncDisposableState]] is ~disposed~, throw a *ReferenceError* exception.
         if (disposableState === "disposed") throw new ReferenceError("Object is disposed");
 
-        // 4. Let _C_ be ? SpeciesConstructor(_asyncDisposableStack_, %AsyncDisposableStack%).
-        // 5. Assert: IsConstructor(_C_) is *true*.
-        const C = SpeciesConstructor(this, AsyncDisposableStack);
+        // 4. Let _newAsyncDisposableStack_ be ? OrdinaryCreateFromConstructor(%AsyncDisposableStack%, "%AsyncDisposableStack.prototype%", « [[AsyncDisposableState]], [[DisposeCapability]] »).
+        // 5. Set _newAsyncDisposableStack_.[[AsyncDisposableState]] to ~pending~.
+        const newAsyncDisposableStack = new AsyncDisposableStack();
 
-        // 6. Let _newAsyncDisposableStack_ be ? Construct(_C_, « »).
-        const newAsyncDisposableStack = new C();
+        // 6. Set _newAsyncDisposableStack_.[[DisposeCapability]] to _asyncDisposableStack_.[[DisposeCapability]].
+        weakDisposeCapability.set(newAsyncDisposableStack, weakDisposeCapability.get(this)!);
 
-        // 7. Perform ? RequireInternalSlot(_newAsyncDisposableStack_, [[AsyncDisposableState]]).
-        if (!weakAsyncDisposableState.has(newAsyncDisposableStack)) throw new TypeError("Wrong target");
+        // 7. Set _asyncDisposableStack_.[[DisposeCapability]] to NewDisposeCapability().
+        weakDisposeCapability.set(this, NewDisposeCapability());
 
-        // 8. If _newAsyncDisposableStack_.[[AsyncDisposableState]] is not ~pending~, throw a *TypeError* exception.
-        if (weakAsyncDisposableState.get(newAsyncDisposableStack) !== "pending") throw new TypeError("Expected new AsyncDisposableStack to be pending");
-
-        // 9. Append each element of _asyncDisposableStack_.[[DisposableResourceStack]] to _newAsyncDisposableStack_.[[DisposableResourceStack]].
-        // 10. Set _asyncDisposableStack_.[[DisposableResourceStack]] to a new empty List.
-        const asyncDisposableResourceStack = weakAsyncDisposableResourceStack.get(this)!;
-        const newDisposableResourceStack = weakAsyncDisposableResourceStack.get(newAsyncDisposableStack)!;
-        newDisposableResourceStack.push(...asyncDisposableResourceStack.splice(0, asyncDisposableResourceStack.length));
+        // 8. Set _asyncDisposableStack_.[[AsyncDisposableState]] to ~disposed~.
+        weakAsyncDisposableState.set(this, "disposed");
 
         // 11. Return _newAsyncDisposableStack_.
         return newAsyncDisposableStack;
@@ -216,31 +235,21 @@ export class AsyncDisposableStack implements AsyncDisposable {
     /**
      * Dispose this object's resources.
      */
-    async [AsyncDisposable.asyncDispose]() {
-        // 9.4.3.4 AsyncDisposableStack.prototype [ @@asyncDispose ] ()
+    [AsyncDisposable.asyncDispose]() { return this.disposeAsync(); }
+    static {
+        // 11.4.3.7 AsyncDisposableStack.prototype [ @@asyncDispose ] ()
 
-        // 1. Let _asyncDisposableStack_ be the *this* value.
+        // The initial value of the @@asyncDispose property is %AsyncDisposableStack.prototype.disposeAsync%, defined in 11.4.3.2.
+        this.prototype[AsyncDisposable.asyncDispose] = this.prototype.disposeAsync;
+    }
 
-        // 2. Let _promiseCapability_ be ! NewPromiseCapability(%Promise%).
-        // 3. If _asyncDisposableStack_ does not have a [[DisposableState]] internal slot, then
-            // a. Perform ! Call(_promiseCapability_.[[Reject]], *undefined*, « a newly created *TypeError* object »).
-            // b. Return _promiseCapability_.[[Promise]].
-        const disposableState = weakAsyncDisposableState.get(this)!;
-        if (!disposableState) throw new TypeError("Wrong target");
+    declare [Symbol.toStringTag]: string;
+    static {
+        // 11.4.3.8 AsyncDisposableStack.prototype [ @@toStringTag ]
 
-        // 4. If _asyncDisposableStack_.[[DisposableState]] is ~disposed~, then
-            // a. Perform ! Call(_promiseCapability_.[[Resolve]], *undefined*, « *undefined* »).
-            // b. Return _promiseCapability_.[[Promise]].
-        if (disposableState === "disposed") return;
+        // The initial value of the @@toStringTag property is the String value "AsyncDisposableStack".
 
-        // 5. Set _asyncDisposableStack_.[[DisposableState]] to ~disposed~.
-        weakAsyncDisposableState.set(this, "disposed");
-
-        // 6. Let _result_ be DisposeResources(_asyncDisposableStack_, NormalCompletion(*undefined*)).
-        // 7. IfAbruptRejectPromise(_result_, _promiseCapability_).
-        // 8. Perform ! Call(_promiseCapability_.[[Resolve]], *undefined*, « _result_ »).
-        // 9. Return _promiseCapability_.[[Promise]].
-        const asyncDisposableResourceStack = weakAsyncDisposableResourceStack.get(this)!;
-        await DisposeResources("async", asyncDisposableResourceStack.splice(0, asyncDisposableResourceStack.length), /*completion*/ undefined);
+        // This property has the attributes { [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]: true }.
+        Object.defineProperty(this, Symbol.toStringTag, { configurable: true, value: "AsyncDisposableStack" });
     }
 }

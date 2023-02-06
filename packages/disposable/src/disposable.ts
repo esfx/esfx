@@ -15,7 +15,17 @@
 */
 
 import /*#__INLINE__*/ { isFunction, isIterableObject, isObject } from "@esfx/internal-guards";
-import { CreateScope, DisposeResources } from "./internal/utils.js";
+import { CreateScope, DisposeResources, Is } from "./internal/utils.js";
+
+const disposeSymbol: unique symbol =
+    typeof (Symbol as any)["dispose"] === "symbol" ?
+        (Symbol as any)["dispose"] :
+        Symbol.for("@esfx/disposable:Disposable.dispose");
+
+type DisposeSymbol =
+    globalThis.SymbolConstructor extends { "dispose": Is<infer S, symbol> } ?
+        S :
+        typeof disposeSymbol;
 
 /**
  * Indicates an object that has resources that can be explicitly disposed.
@@ -51,9 +61,7 @@ export namespace Disposable {
      *
      * NOTE: Uses `Symbol.dispose` if present.
      */
-    export const dispose: unique symbol = typeof (Symbol as any)["dispose"] === "symbol" ?
-        (Symbol as any)["dispose"] :
-        Symbol.for("@esfx/disposable:Disposable.dispose");
+    export const dispose: DisposeSymbol = disposeSymbol as DisposeSymbol;
 
     /**
      * Emulate `using const` using `for..of`.
@@ -83,7 +91,7 @@ export namespace Disposable {
      * ```
      */
     export function * scope(): Generator<DisposableScope, void, undefined> {
-        const context = CreateScope("sync");
+        const context = CreateScope("sync-dispose");
         try {
             context.state = "initialized";
             yield context.scope;
@@ -91,7 +99,7 @@ export namespace Disposable {
         }
         finally {
             context.state = "done";
-            DisposeResources("sync", context.disposables, context.throwCompletion);
+            DisposeResources("sync-dispose", context.disposables, context.throwCompletion);
         }
     }
 
