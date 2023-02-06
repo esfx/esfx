@@ -16,7 +16,17 @@
 
 import /*#__INLINE__*/ { isAsyncIterableObject, isFunction, isIterableObject, isObject } from "@esfx/internal-guards";
 import { Disposable } from "./disposable.js";
-import { CreateScope, DisposeResources } from "./internal/utils.js";
+import { CreateScope, DisposeResources, Is } from "./internal/utils.js";
+
+const asyncDisposeSymbol: unique symbol =
+    typeof (Symbol as any)["asyncDispose"] === "symbol" ?
+        (Symbol as any)["asyncDispose"] :
+        Symbol.for("@esfx/disposable:AsyncDisposable.asyncDispose");
+
+type AsyncDisposeSymbol =
+    globalThis.SymbolConstructor extends { "asyncDispose": Is<infer S, symbol> } ?
+        S :
+        typeof asyncDisposeSymbol;
 
 /**
  * Indicates an object that has resources that can be explicitly disposed asynchronously.
@@ -45,18 +55,13 @@ export class AsyncDisposable {
     }
 }
 
-// declare const asyncDispose: unique symbol;
-// type AsyncDisposeSymbol = SymbolConstructor extends { readonly asyncDispose: infer S extends symbol } ? S : typeof asyncDispose;
-
 export namespace AsyncDisposable {
     /**
      * A well-known symbol used to define an async explicit resource disposal method on an object.
      *
      * NOTE: Uses `Symbol.asyncDispose` if present.
      */
-    export const asyncDispose: unique symbol =
-        typeof (Symbol as any)["asyncDispose"] === "symbol" ? (Symbol as any)["asyncDispose"] :
-        Symbol.for("@esfx/disposable:AsyncDisposable.asyncDispose");
+    export const asyncDispose: AsyncDisposeSymbol = asyncDisposeSymbol as AsyncDisposeSymbol;
 
     /**
      * Emulate `using await const` using `for..await..of`.
@@ -86,7 +91,7 @@ export namespace AsyncDisposable {
      * ```
      */
     export async function * scope(): AsyncGenerator<AsyncDisposableScope, void, undefined> {
-        const context = CreateScope("async");
+        const context = CreateScope("async-dispose");
         try {
             context.state = "initialized";
             yield context.scope;
@@ -94,7 +99,7 @@ export namespace AsyncDisposable {
         }
         finally {
             context.state = "done";
-            await DisposeResources("async", context.disposables, context.throwCompletion);
+            await DisposeResources("async-dispose", context.disposables, context.throwCompletion);
         }
     }
 

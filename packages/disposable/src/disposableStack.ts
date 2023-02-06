@@ -16,10 +16,10 @@
 
 import /*#__INLINE__*/ { isFunction, isObject } from "@esfx/internal-guards";
 import { Disposable } from "./disposable.js";
-import { AddDisposableResource, DisposableResourceRecord, DisposeMethod, DisposeResources, GetDisposeMethod, SpeciesConstructor } from "./internal/utils.js";
+import { AddDisposableResource, DisposeCapability, DisposeMethod, DisposeResources, GetDisposeMethod, NewDisposeCapability } from "./internal/utils.js";
 
 const weakDisposableState = new WeakMap<Disposable, "pending" | "disposed">();
-const weakDisposableResourceStack = new WeakMap<Disposable, DisposableResourceRecord<"sync">[]>();
+const weakDisposeCapability = new WeakMap<Disposable, DisposeCapability<"sync-dispose">>();
 
 /** @deprecated Use {@link Disposable} instead. */
 export type DisposableLike = Disposable | (() => void);
@@ -37,13 +37,13 @@ export class DisposableStack {
         // 11.3.1.1 DisposableStack()
 
         // 1. If NewTarget is `undefined` throw a *TypeError* exception.
-        // 2. Let _disposableStack_ be ? OrdinaryCreateFromConstructor(NewTarget, *"%DisposableStack.prototype%"*, « [[DisposableState]], [[DisposableResourceStack]], [[BoundDispose]] »).
+        // 2. Let _disposableStack_ be ? OrdinaryCreateFromConstructor(NewTarget, *"%DisposableStack.prototype%"*, « [[DisposableState]], [[DisposeCapability]] »).
 
         // 3. Set _disposableStack_.[[DisposableState]] to ~pending~.
         weakDisposableState.set(this, "pending");
 
-        // 4. Set _disposableStack_.[[DisposableResourceStack]] to a new empty List.
-        weakDisposableResourceStack.set(this, []);
+        // 4. Set _disposableStack_.[[DisposeCapability]] to NewDisposeCapability().
+        weakDisposeCapability.set(this, NewDisposeCapability());
 
         // 5. Return _disposableStack_.
     }
@@ -91,9 +91,10 @@ export class DisposableStack {
         // 4. Set _disposableStack_.[[DisposableState]] to ~disposed~.
         weakDisposableState.set(this, "disposed");
 
-        // 5. Return DisposeResources(_disposableStack_, NormalCompletion(*undefined*)).
-        const disposableResourceStack = weakDisposableResourceStack.get(this)!;
-        DisposeResources("sync", disposableResourceStack.splice(0, disposableResourceStack.length), /*completion*/ undefined);
+        // 5. Return ? DisposeResources(_disposableStack_, NormalCompletion(*undefined*)).
+        const disposeCapability = weakDisposeCapability.get(this)!;
+        weakDisposeCapability.delete(this);
+        DisposeResources("sync-dispose", disposeCapability, /*completion*/ undefined);
     }
 
     /**
@@ -119,34 +120,18 @@ export class DisposableStack {
         if (disposableState === "disposed") throw new ReferenceError("Object is disposed");
 
         // NOTE: 1.0.0 compatibility:
-        if (onDispose !== undefined) return this.adopt(value, onDispose);
-
-        // 4. if _value_ is neither *null* nor *undefined*, then
-        if (value !== null && value !== undefined) {
-            // a. If Type(_value_) is not Object, throw a *TypeError* exception.
-            if (!isObject(value)) throw new TypeError("Object expected: value");
-
-            // b. Let _method_ be GetDisposeMethod(_value_, ~sync~).
-            const method = GetDisposeMethod(value, "sync");
-
-            // c. If _method_ is *undefined*, then
-            if (method === undefined) {
-                // NOTE: 1.0.0 compatibility
-                if (isFunction(value)) {
-                    this.defer(value as DisposeMethod<"sync">);
-                    return value;
-                }
-
-                // i. Throw a TypeError exception.
-                throw new TypeError("Object is not disposable");
-            }
-
-            // d. Else,
-            else {
-                // i. Perform ? AddDisposableResource(_disposableStack_, _value_, ~sync~, _method_).
-                AddDisposableResource(weakDisposableResourceStack.get(this)!, value, "sync", method);
-            }
+        if (onDispose !== undefined) {
+            return this.adopt(value, onDispose);
         }
+
+        // NOTE: 1.0.0 compatibility:
+        if (value !== null && value !== undefined && typeof value === "function" && !(Disposable.dispose in value)) {
+            this.defer(value as unknown as DisposeMethod<"sync-dispose">);
+            return value;
+        }
+
+        // 4. Perform ? AddDisposableResource(_disposableStack_.[[DisposeCapability]], _value_, ~sync-dispose~).
+        AddDisposableResource(weakDisposeCapability.get(this)!, value, "sync-dispose");
 
         // 5. Return _value_.
         return value;
@@ -173,22 +158,15 @@ export class DisposableStack {
         // 4. If IsCallable(_onDispose_) is *false*, throw a *TypeError* exception.
         if (!isFunction(onDispose)) throw new TypeError("Function expected: onDispose");
 
-        // 5. Let _F_ be a new built-in function object as defined in 11.3.3.2.1.
-        // 6. Set _F_.[[Argument]] to _value_.
-        // 7. Set _F_.[[OnDisposeCallback]] to _onDispose_.
-        const F = () => {
-            // 11.3.3.4.1 DisposableStack Adopt Callback Functions
+        // 5. Let _closure_ be a Abstract Closure with no parameters that captures _value_ and _onDispose_ and performs the following steps when called:
+        //    1. Return ? Call(_onDispose_, *undefined*, « _value_ »).
+        // 6. Let _F_ be CreateBuiltinFunction(_closure_, 0, *""*, , « »).
+        const F = () => { onDispose(value); };
 
-            // 1. Let _F_ be the active function object.
-            // 2. Assert: IsCallable(_F_.[[OnDisposeCallback]]) is *true*.
-            // 3. Return Call(_F_.[[OnDisposeCallback]], *undefined*, « _F_.[[Argument]] »).
-            onDispose(value);
-        };
+        // 7. Perform ? AddDisposableResource(_disposableStack_.[[DisposeCapability]], *undefined*, ~sync-dispose~, _F_).
+        AddDisposableResource(weakDisposeCapability.get(this)!, undefined, "sync-dispose", F);
 
-        // 8. Perform ? AddDisposableResource(_disposableStack_, *undefined*, ~sync~, _F_).
-        AddDisposableResource(weakDisposableResourceStack.get(this)!, undefined, "sync", F);
-
-        // 9. Return _value_.
+        // 8. Return _value_.
         return value;
     }
 
@@ -211,8 +189,8 @@ export class DisposableStack {
         // 4. If IsCallable(_onDispose_) is *false*, throw a *TypeError* exception.
         if (!isFunction(onDispose)) throw new TypeError("Function expected: onDispose");
 
-        // 5. Perform ? AddDisposableResource(_disposableStack_, *undefined*, ~sync-dispose~, _onDispose_).
-        AddDisposableResource(weakDisposableResourceStack.get(this)!, undefined, "sync", onDispose);
+        // 5. Perform ? AddDisposableResource(_disposableStack_.[[DisposeCapability]], *undefined*, ~sync-dispose~, _onDispose_).
+        AddDisposableResource(weakDisposeCapability.get(this)!, undefined, "sync-dispose", onDispose);
 
         // 6. Return *undefined*.
     }
@@ -232,15 +210,15 @@ export class DisposableStack {
         // 3. If _disposableStack_.[[DisposableState]] is ~disposed~, throw a *ReferenceError* exception.
         if (disposableState === "disposed") throw new ReferenceError("Object is disposed");
 
-        // 4. Let _newDisposableStack_ be ? OrdinaryCreateFromConstructor(%DisposableStack%, "%DisposableStack.prototype%", « [[DisposableState]], [[DisposableResourceStack]] »).
+        // 4. Let _newDisposableStack_ be ? OrdinaryCreateFromConstructor(%DisposableStack%, "%DisposableStack.prototype%", « [[DisposableState]], [[DisposeCapability]] »).
         // 5. Set _newDisposableStack_.[[DisposableState]] to ~pending~.
         const newDisposableStack = new DisposableStack();
 
-        // 6. Set _newDisposableStack_.[[DisposableResourceStack]] to _disposableStack_.[[DisposableResourceStack]].
-        weakDisposableResourceStack.set(newDisposableStack, weakDisposableResourceStack.get(this)!);
+        // 6. Set _newDisposableStack_.[[DisposeCapability]] to _disposableStack_.[[DisposeCapability]].
+        weakDisposeCapability.set(newDisposableStack, weakDisposeCapability.get(this)!);
 
-        // 7. Set _disposableStack_.[[DisposableResourceStack]] to a new empty List.
-        weakDisposableResourceStack.set(this, []);
+        // 7. Set _disposableStack_.[[DisposeCapability]] to NewDisposeCapability().
+        weakDisposeCapability.set(this, NewDisposeCapability());
 
         // 8. Set _disposableStack_.[[DisposableState]] to ~disposed~.
         weakDisposableState.set(this, "disposed");

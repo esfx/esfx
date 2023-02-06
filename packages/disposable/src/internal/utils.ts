@@ -42,6 +42,8 @@ import { Disposable } from "../disposable.js";
 
 export { };
 
+export type Is<T extends U, U> = T;
+
 /* @internal */
 export function GetMethod<V, P extends keyof V>(V: V, P: P): V[P] extends ((...args: any[]) => any) ? V[P] : undefined;
 export function GetMethod<V, P extends keyof V>(V: V, P: P) {
@@ -59,43 +61,38 @@ export const Call: <T, A extends any[], R>(F: (this: T, ...args: A) => R, V: T, 
     Function.prototype.call.bind(Function.prototype.call);
 
 /* @internal */
-export function SpeciesConstructor<C extends new (...args: any) => any>(O: any, defaultConstructor: C): C {
-    // ECMA262 7.3.23 SpeciesConstructor ( _O_, _defaultConstructor_ )
+export interface DisposeCapability<Hint extends "sync-dispose" | "async-dispose"> {
+    disposableResourceStack: DisposableResourceRecord<Hint>[];
+}
 
-    const C = O.constructor;
-    if (C === undefined) return defaultConstructor;
-    if (!isObject(C)) throw new TypeError("Object expected");
-    const S = O[Symbol.species];
-    if (isMissing(S)) return defaultConstructor;
-    if (isFunction(S)) return S;
-    throw new TypeError("constructor not found");
+/* @internal */
+export function NewDisposeCapability<Hint extends "sync-dispose" | "async-dispose">(): DisposeCapability<Hint> {
+    return { disposableResourceStack: [] };
 }
 
 /* @internal */
 export interface ThrowCompletion {
-    cause: unknown;
+    value: unknown;
 }
 
 /* @internal */
-export function AddDisposableResource<Hint extends "sync" | "async">(disposableResourceStack: DisposableResourceRecord<Hint>[], V: unknown, hint: Hint, method?: () => void) {
+export function AddDisposableResource<Hint extends "sync-dispose" | "async-dispose">(disposeCapability: DisposeCapability<Hint>, V: unknown, hint: Hint, method?: DisposeMethod<Hint>) {
     // 3.1.2 AddDisposableResource ( _disposable_, _V_, _hint_ [ , _method_ ] )
     let resource: DisposableResourceRecord<Hint>;
 
     // 1. If _method_ is not present then,
-    if (!method) {
-        // a. If _V_ is *null* or *undefined*, return NormalCompletion(~empty~).
-        if (V === null || V === undefined) return;
+    if (arguments.length === 3) {
+        // a. If _V_ is either *null* or *undefined* and _hint_ is ~sync-dispose~, then
+        //    i. Return ~unused~.
+        if ((V === null || V === undefined) && hint === "sync-dispose") return;
 
-        // b. If Type(_V_) is not Object, throw a *TypeError* exception.
-        if (!isObject(V)) throw new TypeError("Object expected");
-
-        // c. Let _resource_ be ? CreateDisposableResource(_V_, _hint_)/
+        // b. Let _resource_ be ? CreateDisposableResource(_V_, _hint_).
         resource = CreateDisposableResource(V, hint);
     }
 
     // 2. Else,
     else {
-        // a. If _V_ is *null* or *undefined*, then
+        // a. If _V_ is either *null* or *undefined*, then
         if (V === null || V === undefined) {
             // i. Let _resource_ be CreateDisposableResource(*undefined*, _hint_, _method_).
             resource = CreateDisposableResource(undefined, hint, method);
@@ -103,7 +100,7 @@ export function AddDisposableResource<Hint extends "sync" | "async">(disposableR
 
         // b. Else,
         else {
-            // i. If Type(_V_) is not Object, throw a *TypeError* exception.
+            // i. If _V_ is not an Object, throw a *TypeError* exception.
             if (!isObject(V)) throw new TypeError("Object expected");
 
             // ii. Let _resource_ be CreateDisposableResource(_V_, _hint_, _method_).
@@ -111,51 +108,64 @@ export function AddDisposableResource<Hint extends "sync" | "async">(disposableR
         }
     }
 
-    // 3. Append _resource_ to _disposable_.[[DisposableResourceStack]].
-    disposableResourceStack[disposableResourceStack.length] = resource;
+    // 3. Append _resource_ to _disposeCapability_.[[DisposableResourceStack]].
+    disposeCapability.disposableResourceStack[disposeCapability.disposableResourceStack.length] = resource;
 
-    // 4. Return NormalCompletion(~empty~).
+    // 4. Return ~unused~.
 }
 
 /* @internal */
-export function CreateDisposableResource<Hint extends "sync" | "async">(V: object | undefined, hint: Hint, method?: DisposeMethod<Hint>): DisposableResourceRecord<Hint> {
+export function CreateDisposableResource<Hint extends "sync-dispose" | "async-dispose">(V: any, hint: Hint, method?: DisposeMethod<Hint>): DisposableResourceRecord<Hint> {
     // 3.1.3 CreateDisposableResource ( _V_, _hint_ [, _method_ ] )
 
     // 1. If _method_ is not present, then
-    if (!method) {
-        // a. If _V_ is *undefined*, throw a *TypeError* exception.
-        if (V === undefined) throw new TypeError("Object expected");
+    if (arguments.length === 2) {
+        // a. If _V_ is either *null* or *undefined*, then
+        if (V === null || V === undefined) {
+            // i. Set _V_ to *undefined*.
+            V = undefined;
 
-        // b. Set _method_ to ? GetDisposeMethod(_V_, _hint_).
-        method = GetDisposeMethod(V, hint);
+            // ii. Set _method_ to *undefined*.
+            method = undefined;
+        }
 
-        // c. If _method_ is *undefined*, throw a *TypeError* exception.
-        if (method === undefined) throw new TypeError(hint === "async" ? "Object not async disposable" : "Object not disposable");
+        // b. Else,
+        else {
+            // i. If _V_ is not an Object, throw a *TypeError* exception.
+            if (!isObject(V)) throw new TypeError("Object expected");
+
+            // ii. Set _method_ to ? GetDisposeMethod(_V_, _hint_).
+            method = GetDisposeMethod(V, hint);
+
+            // iii. If _method_ is *undefined*, throw a *TypeError* exception.
+            if (method === undefined) throw new TypeError(hint === "async-dispose" ? "Object not async disposable" : "Object not disposable");
+        }
     }
 
     // 2. Else,
     else {
         // a. If IsCallable(_method_) is *false*, throw a *TypeError* exception.
-        if (!isFunction(method)) throw new TypeError(hint === "async" ? "Object not async disposable" : "Object not disposable");
+        if (!isFunction(method)) throw new TypeError(hint === "async-dispose" ? "Object not async disposable" : "Object not disposable");
     }
 
     // 3. Return the DisposableResource Record { [[ResourceValue]]: _V_, [[Hint]]: _hint_, [[DisposeMethod]]: _method_ }.
-    return { resource: V, hint, dispose: method } as DisposableResourceRecord<Hint>;
+    return { ResourceValue: V, Hint: hint, DisposeMethod: method } as DisposableResourceRecord<Hint>;
 }
 
 /* @internal */
-export function GetDisposeMethod<Hint extends "sync" | "async">(V: object, hint: Hint): DisposeMethod<Hint> | undefined {
+export function GetDisposeMethod<Hint extends "sync-dispose" | "async-dispose">(V: object, hint: Hint): DisposeMethod<Hint> | undefined {
     // 3.1.4 GetDisposeMethod ( _V_, _hint_ )
 
     let method: DisposeMethod<Hint> | undefined;
 
-    // 1. If _hint_ is ~async~, then
-    if (hint === "async") {
+    // 1. If _hint_ is ~async-dispose~, then
+    if (hint === "async-dispose") {
         // a. Let _method_ be ? GetMethod(_V_, @@asyncDispose).
-        // b. If _method_ is *undefined*, then
-            // i. Set _method_ to ? GetMethod(_V_, @@dispose).
         method = GetMethod(V as AsyncDisposable, AsyncDisposable.asyncDispose);
+
+        // b. If _method_ is *undefined*, then
         if (method === undefined) {
+            // i. Set _method_ to ? GetMethod(_V_, @@dispose).
             method = GetMethod(V as Disposable, Disposable.dispose);
         }
     }
@@ -171,162 +181,168 @@ export function GetDisposeMethod<Hint extends "sync" | "async">(V: object, hint:
 }
 
 /* @internal */
-export function Dispose<Hint extends "sync" | "async">(V: object | undefined, hint: Hint, method: DisposeMethod<Hint>) {
+export function Dispose<Hint extends "sync-dispose" | "async-dispose">(V: object | undefined, hint: Hint, method: DisposeMethod<Hint> | undefined) {
     // 3.1.5 Dispose ( _V_, _hint_, _method_ )
 
-    return hint === "async" ?
+    return hint === "async-dispose" ?
         DisposeAsync(V, method) :
         DisposeSync(V, method);
 }
 
-function DisposeSync(V: object | undefined, method: DisposeMethod<"sync">) {
+function DisposeSync(V: object | undefined, method: DisposeMethod<"sync-dispose"> | undefined) {
     // 3.1.5 Dispose ( _V_, _hint_, _method_ )
-    // NOTE: when _hint_ is ~sync~
+    // NOTE: when _hint_ is ~sync-dispose~
 
-    // 1. [Let _result_ be] ? Call(_method_, _V_).
-    Call(method, V);
+    // 1. If _method_ is *undefined*, let _result_ be *undefined*.
+    // 2. Else, let _result_ be ? Call(_method_, _V_).
+    // 3. If _hint_ is ~async-dispose~, then
+    //    a. Perform ? Await(_result_).
 
-    // 2. [If _hint_ is ~async~ and _result_ is not *undefined*, then]
-
-    // 3. Return *undefined*.
-}
-
-async function DisposeAsync(V: object | undefined, method: DisposeMethod<"async">) {
-    // 3.1.5 Dispose ( _V_, _hint_, _method_ )
-    // NOTE: when _hint_ is ~async~
-
-    // 1. Let _result_ be ? Call(_method_, _V_).
-    const result = Call(method, V);
-
-    // 2. If [_hint_ is ~async~ and] _result_ is not *undefined*, then
-    if (result !== undefined) {
-        await result;
+    if (method !== undefined) {
+        Call(method, V);
     }
 
-    // 3. Return *undefined*.
+    // 4. Return *undefined*.
+}
+
+async function DisposeAsync(V: object | undefined, method: DisposeMethod<"async-dispose"> | undefined) {
+    // 3.1.5 Dispose ( _V_, _hint_, _method_ )
+    // NOTE: when _hint_ is ~async-dispose~
+
+    // 1. If _method_ is *undefined*, let _result_ be *undefined*.
+    // 2. Else, let _result_ be ? Call(_method_, _V_).
+    // 3. If _hint_ is ~async-dispose~, then
+    //    a. Perform ? Await(_result_).
+    if (method !== undefined) {
+        await Call(method, V);
+    }
+
+    // 4. Return *undefined*.
 }
 
 /* @internal */
-export function DisposeResources<Hint extends "sync" | "async">(hint: Hint, disposableResourceStack: DisposableResourceRecord<Hint>[] | undefined, throwCompletion: ThrowCompletion | undefined, errors?: unknown[]): Hint extends "async" ? Promise<void> | void : void;
-export function DisposeResources<Hint extends "sync" | "async">(hint: Hint, disposableResourceStack: DisposableResourceRecord<Hint>[] | undefined, throwCompletion: ThrowCompletion | undefined, errors?: unknown[]) {
-    // 3.1.6 DisposeResources ( _disposable_, _completion_, [ , _errors_ ] )
-    return hint === "async" ?
-        DisposeResourcesAsync(disposableResourceStack as DisposableResourceRecord<"async">[] | undefined, throwCompletion, errors) :
-        DisposeResourcesSync(disposableResourceStack as DisposableResourceRecord<"sync">[] | undefined, throwCompletion, errors);
+export function DisposeResources<Hint extends "sync-dispose" | "async-dispose">(hint: Hint, disposeCapability: DisposeCapability<Hint>, throwCompletion: ThrowCompletion | undefined): Hint extends "async-dispose" ? Promise<void> | void : void;
+export function DisposeResources<Hint extends "sync-dispose" | "async-dispose">(hint: Hint, disposeCapability: DisposeCapability<Hint>, throwCompletion: ThrowCompletion | undefined) {
+    // 3.1.6 DisposeResources ( _disposeCapability_, _completion_ )
+    return hint === "async-dispose" ?
+        DisposeResourcesAsync(disposeCapability as DisposeCapability<"async-dispose">, throwCompletion) :
+        DisposeResourcesSync(disposeCapability as DisposeCapability<"sync-dispose">, throwCompletion);
 }
 
-function DisposeResourcesSync(disposableResourceStack: DisposableResourceRecord<"sync">[] | undefined, throwCompletion: ThrowCompletion | undefined, errors?: unknown[]) {
-    // 3.1.6 DisposeResources ( _disposable_, _completion_, [ , _errors_ ] )
-    // NOTE: when _hint_ is ~sync~
+function DisposeResourcesSync(disposeCapability: DisposeCapability<"sync-dispose">, throwCompletion: ThrowCompletion | undefined) {
+    // 3.1.6 DisposeResources ( _disposeCapability_, _completion_ )
+    // NOTE: when _hint_ is ~sync-dispose~
 
-    // 1. If _errors_ is not present, let _errors_ be a new empty List.
-    errors ??= [];
+    // 1. For each _resource_ of _disposeCapability_.[[DisposableResourceStack]], in reverse list order, do
+    for (let i = disposeCapability.disposableResourceStack.length - 1; i >= 0; i--) {
+        const resource = disposeCapability.disposableResourceStack[i];
 
-    // 2. If _disposable_ is not *undefined*, then
-    if (disposableResourceStack !== undefined) {
-        // a. For each _resource_ of _disposable_.[[DisposableResourceStack]], in reverse list order, do
-        for (let i = disposableResourceStack.length - 1; i >= 0; i--) {
-            const resource = disposableResourceStack[i];
-            
-            // i. Let _result_ be Dispose(_resource_.[[ResourceValue]], _resource_.[[Hint]], _resource_.[[DisposeMethod]]).
-            try {
-                Dispose(resource.resource, resource.hint, resource.dispose);
+        // a. Let _result_ be Dispose(_resource_.[[ResourceValue]], _resource_.[[Hint]], _resource_.[[DisposeMethod]]).
+        try {
+            Dispose(resource.ResourceValue, resource.Hint, resource.DisposeMethod);
+        }
+        // b. If _result_.[[Type]] is ~throw~, then
+        catch (e) {
+            // i. If _completion_.[[Type]] is ~throw~, then
+            if (throwCompletion) {
+                // 1. Set _result_ to _result_.[[Value]].
+                const result = e;
+                
+                // 2. Let _suppressed_ be _completion_.[[Value]].
+                const suppressed = throwCompletion.value;
+
+                // 3. Let _error_ be a newly created *SuppressedError* object.
+                // 4. Perform CreateNonEnumerableDataPropertyOrThrow(_error_, "error", _result_).
+                // 5. Perform CreateNonEnumerableDataPropertyOrThrow(_error_, "suppressed", _suppressed_).
+                const error = CreateSuppressedError("sync-dispose", result, suppressed);
+
+                // 6. Set _completion_ to ThrowCompletion(_error_).
+                throwCompletion = { value: error };
             }
-            catch (e) {
-                // 1. If _result_.[[Type]] is ~throw~, then
-                //   a. Append _result_.[[Value]] to _errors_.
-                errors[errors.length] = e;
+            else {
+                // 1. Set _completion_ to _result_.
+                throwCompletion = { value: e };
             }
         }
     }
 
-    // 3. Let _errorsLength_ be the number of elements in _errors_.
-    // 4. If _errorsLength_ &gt; 0, then
-    if (errors.length > 0) {
-        // a. Let _error_ be a newly created `AggregateError` object.
-        // b. Perform ! DefinePropertyOrThrow(_error_, *"errors"*, PropertyDescriptor { [[Configurable]]: *true*, [[Enumerable]]: *false*, [[Writable]]: *true*, [[Value]]: ! CreateArrayFromList(_errors_) }).
-        // c. If _completion_.[[Type]] is ~throw~, then
-        //   i. Perform ! CreateNonEnumerableDataPropertyOrThrow(_error_, "cause", _completion_.[[Value]]).
-        // d. Return ThrowCompletion(_error_).
-        ThrowAggregateError(errors, throwCompletion, DisposeResources);
-    }
-
     // 5. Return _completion_.
-    if (throwCompletion) throw throwCompletion.cause;
+    if (throwCompletion) throw throwCompletion.value;
 }
 
-async function DisposeResourcesAsync(disposableResourceStack: DisposableResourceRecord<"async">[] | undefined, throwCompletion: ThrowCompletion | undefined, errors?: unknown[]) {
-    // 3.1.6 DisposeResources ( _disposable_, _completion_, [ , _errors_ ] )
-    // NOTE: when _hint_ is ~async~
+async function DisposeResourcesAsync(disposeCapability: DisposeCapability<"async-dispose">, throwCompletion: ThrowCompletion | undefined, errors?: unknown[]) {
+    // 3.1.6 DisposeResources ( _disposeCapability_, _completion_, [ , _errors_ ] )
+    // NOTE: when _hint_ is ~async-dispose~
 
-    // 1. If _errors_ is not present, let _errors_ be a new empty List.
-    errors ??= [];
+    // 1. For each _resource_ of _disposeCapability_.[[DisposableResourceStack]], in reverse list order, do
+    for (let i = disposeCapability.disposableResourceStack.length - 1; i >= 0; i--) {
+        const resource = disposeCapability.disposableResourceStack[i];
 
-    // 2. If _disposable_ is not *undefined*, then
-    if (disposableResourceStack !== undefined) {
-        // a. For each _resource_ of _disposable_.[[DisposableResourceStack]], in reverse list order, do
-        for (let i = disposableResourceStack.length - 1; i >= 0; i--) {
-            const resource = disposableResourceStack[i];
+        // a. Let _result_ be Dispose(_resource_.[[ResourceValue]], _resource_.[[Hint]], _resource_.[[DisposeMethod]]).
+        try {
+            await Dispose(resource.ResourceValue, resource.Hint, resource.DisposeMethod);
+        }
+        // b. If _result_.[[Type]] is ~throw~, then
+        catch (e) {
+            // i. If _completion_.[[Type]] is ~throw~, then
+            if (throwCompletion) {
+                // 1. Set _result_ to _result_.[[Value]].
+                const result = e;
 
-            // i. Let _result_ be Dispose(_resource_.[[ResourceValue]], _resource_.[[Hint]], _resource_.[[DisposeMethod]]).
-            try {
-                await Dispose(resource.resource, resource.hint, resource.dispose);
+                // 2. Let _suppressed_ be _completion_.[[Value]].
+                const suppressed = throwCompletion.value;
+
+                // 3. Let _error_ be a newly created *SuppressedError* object.
+                // 4. Perform CreateNonEnumerableDataPropertyOrThrow(_error_, "error", _result_).
+                // 5. Perform CreateNonEnumerableDataPropertyOrThrow(_error_, "suppressed", _suppressed_).
+                const error = CreateSuppressedError("async-dispose", result, suppressed);
+
+                // 6. Set _completion_ to ThrowCompletion(_error_).
+                throwCompletion = { value: error };
             }
-            catch (e) {
-                // 1. If _result_.[[Type]] is ~throw~, then
-                //   a. Append _result_.[[Value]] to _errors_.
-                errors[errors.length] = e;
+            else {
+                // 1. Set _completion_ to _result_.
+                throwCompletion = { value: e };
             }
         }
     }
 
-    // 3. Let _errorsLength_ be the number of elements in _errors_.
-    // 4. If _errorsLength_ &gt; 0, then
-    if (errors.length > 0) {
-        // a. Let _error_ be a newly created `AggregateError` object.
-        // b. Perform ! DefinePropertyOrThrow(_error_, *"errors"*, PropertyDescriptor { [[Configurable]]: *true*, [[Enumerable]]: *false*, [[Writable]]: *true*, [[Value]]: ! CreateArrayFromList(_errors_) }).
-        // c. If _completion_.[[Type]] is ~throw~, then
-        //   i. Perform ! CreateNonEnumerableDataPropertyOrThrow(_error_, "cause", _completion_.[[Value]]).
-        // d. Return ThrowCompletion(_error_).
-        ThrowAggregateError(errors, throwCompletion, DisposeResources);
-    }
-
     // 5. Return _completion_.
-    if (throwCompletion) throw throwCompletion.cause;
+    if (throwCompletion) throw throwCompletion.value;
 }
 
 /* @internal */
-export type DisposeMethod<Hint extends "sync" | "async"> =
-    Hint extends "async" ?
+export type DisposeMethod<Hint extends "sync-dispose" | "async-dispose"> =
+    Hint extends "async-dispose" ?
         ((this: object | undefined) => void | PromiseLike<void>) :
         ((this: object | undefined) => void);
 
 /* @internal */
-export interface DisposableResourceRecord<Hint extends "sync" | "async"> {
-    hint: Hint;
-    resource: object | undefined;
-    dispose: DisposeMethod<Hint>;
+export interface DisposableResourceRecord<Hint extends "sync-dispose" | "async-dispose"> {
+    ResourceValue: object | undefined;
+    Hint: Hint;
+    DisposeMethod: DisposeMethod<Hint> | undefined;
 }
 
-interface ScopeContext<Hint extends "sync" | "async"> {
+interface ScopeContext<Hint extends "sync-dispose" | "async-dispose"> {
     scope: Scope<Hint>;
     state: "initialized" | "exiting" | "done";
-    disposables: DisposableResourceRecord<Hint>[];
+    disposables: DisposeCapability<Hint>;
     throwCompletion: ThrowCompletion | undefined;
 }
 
-type ScopeResource<Hint extends "sync" | "async"> =
-    Hint extends "async" ?
+type ScopeResource<Hint extends "sync-dispose" | "async-dispose"> =
+    Hint extends "async-dispose" ?
         AsyncDisposable :
         Disposable;
 
-interface Scope<Hint extends "sync" | "async"> {
+interface Scope<Hint extends "sync-dispose" | "async-dispose"> {
     using<T extends ScopeResource<Hint> | Disposable | DisposeMethod<Hint> | null | undefined>(value: T): T;
     fail(error: unknown): void;
 }
 
 /* @internal */
-export function CreateScope<Hint extends "sync" | "async">(hint: Hint): ScopeContext<Hint> {
+export function CreateScope<Hint extends "sync-dispose" | "async-dispose">(hint: Hint): ScopeContext<Hint> {
     // Credit to Mathieu Hofman for initial `for (const { using } of Disposable)` mechanism: https://github.com/mhofman/disposator/
     // See THIRD PARTY LICENSE NOTICE at the top of this file.
     // Modified to return a `fail` callback to emulate error suppression semantics of https://github.com/tc39/proposal-explicit-resource-management/
@@ -338,33 +354,40 @@ export function CreateScope<Hint extends "sync" | "async">(hint: Hint): ScopeCon
         },
         fail(error) {
             if (context.state !== "initialized") throw new Error("Illegal state.");
-            context.throwCompletion = { cause: error };
+            context.throwCompletion = { value: error };
         }
     };
     const context: ScopeContext<Hint> = {
         scope: Object.freeze(scope),
         state: "initialized",
-        disposables: [],
+        disposables: NewDisposeCapability(),
         throwCompletion: undefined,
     };
     return context;
 }
 
-function ThrowAggregateError(errors: unknown[], throwCompletion: ThrowCompletion | undefined, stackCrawlMark: Function = ThrowAggregateError): never {
-    let error: AggregateError;
-    if (typeof AggregateError === "function") {
-        error = new AggregateError(errors);
+declare class SuppressedError extends Error {
+    error: any;
+    suppressed: any;
+    constructor(error: any, suppressed: any, msg?: string);
+}
+
+function CreateSuppressedError<Hint extends "sync-dispose" | "async-dispose">(hint: Hint, error: any, suppressed: any, stackCrawlMark: Function = CreateSuppressedError): Error {
+    let e: SuppressedError;
+    const msg = hint === "sync-dispose" ?
+        "An error during dispose resulted in an error suppression" :
+        "An error during async dispose resulted in an error suppression";
+    if (typeof SuppressedError === "function") {
+        e = new SuppressedError(error, suppressed, msg);
     }
     else {
-        error = new Error("One or more errors occurred") as AggregateError;
-        error.name = "AggregateError";
-        error.errors = errors;
-    }
-    if (throwCompletion) {
-        Object.defineProperty(error, "cause", { configurable: true, writable: true, value: throwCompletion.cause });
+        e = new Error(msg) as SuppressedError;
+        e.name = "SuppressedError";
+        e.error = error;
+        e.suppressed = suppressed;
     }
     if (Error.captureStackTrace) {
-        Error.captureStackTrace(error, stackCrawlMark);
+        Error.captureStackTrace(e, stackCrawlMark);
     }
-    throw error;
+    return e;
 }
