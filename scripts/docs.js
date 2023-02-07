@@ -12,6 +12,7 @@ require("./docs/patches/tsdoc")({
     paramTagHyphen: false, // Fixed in @microsoft/tsdoc@0.12.18
     emitSoftBreak: true,
     parseBetaDeclarationReference: true,
+    parseSpacingAfterCodeDestination: true,
 });
 
 require("./docs/patches/api-extractor")({
