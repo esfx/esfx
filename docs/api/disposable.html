@@ -152,13 +152,15 @@ class MyFileResouce {
 <p>NOTE: It is not necessary to subclass <code>AsyncDisposable</code><!-- -->. Merely having an <code>[AsyncDisposable.asyncDispose]()</code> method is sufficient.</p>
 </section>
         <h4><a class="xref" href="disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_class">AsyncDisposableStack</a></h4>
-        <section><p>Emulates Python&#39;s <code>AsyncExitStack</code></p>
+        <section><p>A container for asynchronously disposable resources. When the stack is disposed, its containing resources are disposed in the reverse
+of the order in which they were added.</p>
 </section>
         <h4><a class="xref" href="disposable/disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a></h4>
         <section><p>Indicates an object that has resources that can be explicitly disposed.</p>
 </section>
         <h4><a class="xref" href="disposable/disposablestack.html#_esfx_disposable_DisposableStack_class">DisposableStack</a></h4>
-        <section><p>Emulates Python&#39;s <code>ExitStack</code></p>
+        <section><p>A container for disposable resources. When the stack is disposed, its containing resources are disposed in the reverse
+of the order in which they were added.</p>
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
@@ -179,7 +181,12 @@ class MyFileResouce {
   
   
         <h4 id="_esfx_disposable_AsyncDisposableLike_type" data-uid="@esfx/disposable!AsyncDisposableLike:type">AsyncDisposableLike</h4>
-              <div class="markdown level1 summary"></div>
+        	<div class="alert is-warning">
+  		<h5>Warning</h5>
+  		<p>Deprecated</p>
+  			Use  instead.
+  	</div>
+        <div class="markdown level1 summary"></div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
@@ -194,7 +201,12 @@ class MyFileResouce {
   
   
         <h4 id="_esfx_disposable_DisposableLike_type" data-uid="@esfx/disposable!DisposableLike:type">DisposableLike</h4>
-              <div class="markdown level1 summary"></div>
+        	<div class="alert is-warning">
+  		<h5>Warning</h5>
+  		<p>Deprecated</p>
+  			Use <xref:@esfx isposable!disposable:class=""> instead.
+  	</xref:@esfx></div>
+        <div class="markdown level1 summary"></div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">

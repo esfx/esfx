@@ -84,7 +84,8 @@
   <h1 id="_esfx_disposable_DisposableStack_class" data-uid="@esfx/disposable!DisposableStack:class">DisposableStack Class
   </h1>
   <h6><strong>Package</strong>: <a class="xref" href="../disposable.html">@esfx/disposable</a></h6>
-  <div class="markdown level0 summary"><p>Emulates Python&#39;s <code>ExitStack</code></p>
+  <div class="markdown level0 summary"><p>A container for disposable resources. When the stack is disposed, its containing resources are disposed in the reverse
+of the order in which they were added.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -115,28 +116,6 @@
   </h3>
   
   
-  <h4 id="_esfx_disposable_DisposableStack__Symbol_species__member" data-uid="@esfx/disposable!DisposableStack.[Symbol.species]:member">[Symbol.species]</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">static get [Symbol.species](): typeof DisposableStack;</code></pre>
-  </div>
-  
-  
-  
-  
-  
-  <h5 class="propertyValue">Property Value</h5>
-  <div class="property">
-    <div>typeof <a class="xref" href="disposablestack.html#_esfx_disposable_DisposableStack_class">DisposableStack</a></div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
   <h4 id="_esfx_disposable_DisposableStack__Symbol_toStringTag__member" data-uid="@esfx/disposable!DisposableStack#[Symbol.toStringTag]:member">[Symbol.toStringTag]</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
@@ -159,19 +138,13 @@
   
   
   
-  <h4 id="_esfx_disposable_DisposableStack_dispose_member" data-uid="@esfx/disposable!DisposableStack#dispose:member">dispose</h4>
-  <div class="markdown level1 summary"><p>Dispose this object&#39;s resources.</p>
-<p>NOTE: <code>dispose</code> returns a bound method, so it can be extracted from <code>DisposableStack</code> and called independently:</p>
-<pre><code class="lang-ts">const stack = new DisposableStack();
-for (const f of files) stack.use(openFile(f));
-const closeFiles = stack.dispose;
-...
-closeFiles();
-</code></pre></div>
+  <h4 id="_esfx_disposable_DisposableStack_disposed_member" data-uid="@esfx/disposable!DisposableStack#disposed:member">disposed</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the stack has already been disposed.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">get dispose(): () =&gt; void;</code></pre>
+    <pre><code class="lang-typeScript hljs">get disposed(): boolean;</code></pre>
   </div>
   
   
@@ -180,7 +153,7 @@ closeFiles();
   
   <h5 class="propertyValue">Property Value</h5>
   <div class="property">
-    <div><span class="xref">() =&gt; void</span></div>
+    <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
     <p>
   </div>
   
@@ -197,6 +170,125 @@ closeFiles();
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">[Disposable.dispose](): void;</code></pre>
+  </div>
+  
+  
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><span class="xref">void</span></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_DisposableStack_adopt_member_1_" data-uid="@esfx/disposable!DisposableStack#adopt:member(1)">adopt(value, onDispose)</h4>
+  <div class="markdown level1 summary"><p>Pushes a non-disposable resource onto the stack with the provided disposal callback.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">adopt&lt;T&gt;(value: T, onDispose: (value: T) =&gt; void): T;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>value</dt>
+        <dd><span class="xref">T</span></dd>
+      </dl>
+      <p>
+        <p>The resource to add.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>onDispose</dt>
+        <dd><span class="xref">(value: T) =&gt; void</span></dd>
+      </dl>
+      <p>
+        <p>The callback to execute when the resource is disposed.</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><span class="xref">T</span></div>
+    <p><p>The resource provided.</p>
+</p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_DisposableStack_defer_member_1_" data-uid="@esfx/disposable!DisposableStack#defer:member(1)">defer(onDispose)</h4>
+  <div class="markdown level1 summary"><p>Pushes a resourceless disposal callback onto the stack.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">defer(onDispose: () =&gt; void): void;</code></pre>
+  </div>
+  
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>onDispose</dt>
+        <dd><span class="xref">() =&gt; void</span></dd>
+      </dl>
+      <p>
+        <p>The callback to execute when the stack is disposed.</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><span class="xref">void</span></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_DisposableStack_dispose_member_1_" data-uid="@esfx/disposable!DisposableStack#dispose:member(1)">dispose()</h4>
+  <div class="markdown level1 summary"><p>Dispose this object&#39;s resources. This method is an alias for <code>[Disposable.dispose]()</code><!-- -->.</p>
+<pre><code class="lang-ts">const stack = new DisposableStack();
+for (const f of files) stack.use(openFile(f));
+...
+stack.dispose();
+</code></pre></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">dispose(): void;</code></pre>
   </div>
   
   
@@ -237,12 +329,12 @@ closeFiles();
   
   
   <h4 id="_esfx_disposable_DisposableStack_use_member_1_" data-uid="@esfx/disposable!DisposableStack#use:member(1)">use(value)</h4>
-  <div class="markdown level1 summary"><p>Pushes a new disposable resource onto the disposable stack stack. Resources are disposed in the reverse order they were entered.</p>
+  <div class="markdown level1 summary"><p>Pushes a disposable resource onto the disposable stack stack. Resources are disposed in the reverse order they were entered.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">use&lt;T extends DisposableLike | null | undefined&gt;(value: T): T;</code></pre>
+    <pre><code class="lang-typeScript hljs">use&lt;T extends Disposable | null | undefined&gt;(value: T): T;</code></pre>
   </div>
   
   <h5 class="typeParameters">Type Parameters</h5>
@@ -282,9 +374,51 @@ closeFiles();
   
   
   
-  <h4 id="_esfx_disposable_DisposableStack_use_member_2_" data-uid="@esfx/disposable!DisposableStack#use:member(2)">use(value, onDispose)</h4>
-  <div class="markdown level1 summary"><p>Pushes a new disposable resource onto the disposable stack stack. Resources are disposed in the reverse order they were entered.</p>
-</div>
+  <h4 id="_esfx_disposable_DisposableStack_use_member_2_" data-uid="@esfx/disposable!DisposableStack#use:member(2)">use(value)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">use&lt;T extends () =&gt; void&gt;(value: T): T;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>T</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>value</dt>
+        <dd><span class="xref">T</span></dd>
+      </dl>
+      <p>
+        
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><span class="xref">T</span></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_disposable_DisposableStack_use_member_3_" data-uid="@esfx/disposable!DisposableStack#use:member(3)">use(value, onDispose)</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -309,8 +443,7 @@ closeFiles();
         <dd><span class="xref">T</span></dd>
       </dl>
       <p>
-        <p>The resource to add.</p>
-
+        
         
       </p>
     </div>
@@ -320,8 +453,7 @@ closeFiles();
         <dd><span class="xref">(value: T) =&gt; void</span></dd>
       </dl>
       <p>
-        <p>The operation to perform when the resource is disposed.</p>
-
+        
         
       </p>
     </div>
@@ -329,8 +461,7 @@ closeFiles();
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><span class="xref">T</span></div>
-    <p><p>The resource provided.</p>
-</p>
+    <p>
   </div>
   
   

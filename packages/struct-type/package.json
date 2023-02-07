@@ -1,6 +1,6 @@
 {
     "name": "@esfx/struct-type",
-    "version": "1.1.0-alpha.202211291446",
+    "version": "1.1.0-alpha.202302071935",
     "description": "Define structured types using ArrayBuffer and SharedArrayBuffer",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

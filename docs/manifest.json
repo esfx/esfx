@@ -1653,7 +1653,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable.html",
-          "hash": "0ta7Ha+rtAPOO0gZs5Yp3E7au7U6vPPyLEOb+5BZgWY="
+          "hash": "z4b2Ku5lEUW4vbl0GhYTsox+SUu1Ykyeh6HAlgPb9ic="
         }
       },
       "is_incremental": false,
@@ -1689,7 +1689,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/asyncdisposable-namespace.html",
-          "hash": "Rp6EYADfcDnqyXm+62vw/UIo82EIOSBdb3ZueT9Atf0="
+          "hash": "uQ8dHcxifqfxG6wg0M3AeXKyVK58mWX9JvlUJCQnzZM="
         }
       },
       "is_incremental": false,
@@ -1713,7 +1713,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/asyncdisposablestack.html",
-          "hash": "8AEanFp3YMFZ9GM78RDr1NOmIGvJGSzF6ygSoSTZqYc="
+          "hash": "amjS7RmTnIAj7UKuOMrriY9xuNa7t7lyfBq2HfxcipM="
         }
       },
       "is_incremental": false,
@@ -1749,7 +1749,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/disposable-namespace.html",
-          "hash": "WsTXlL9K7z8QVf3/KD+q7RgMOZoqH6dR9FSe60cklGc="
+          "hash": "BBG53P5N5wIk9SWR3/yjjeMyIk7PECMsaBQCz6IncFw="
         }
       },
       "is_incremental": false,
@@ -1773,7 +1773,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/disposablestack.html",
-          "hash": "8AMQxyw3RI3vgsVzzygr7uogX3uodZq1o0wwRooHOZ4="
+          "hash": "1mqSkoEr6290tyPjWH4C4vlpSvQRTaGeARSheSz9d1w="
         }
       },
       "is_incremental": false,
