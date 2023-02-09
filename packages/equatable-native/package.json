@@ -11,6 +11,7 @@
         "install": "",
         "generate-native-packages": "gulp generate-native-packages",
         "build-node-windows": "gulp build-node-win32",
+        "build-node-windows-arm64": "gulp build-node-win32-arm64-current",
         "build-node-linux": "gulp build-node-linux",
         "build-node-macos": "gulp build-node-darwin",
         "build-electron-windows": "gulp build-electron-win32",

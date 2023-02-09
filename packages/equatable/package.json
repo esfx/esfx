@@ -77,7 +77,6 @@
         "@esfx/equatable-native-linux-arm64": "workspace:*",
         "@esfx/equatable-native-linux-armhf": "workspace:*",
         "@esfx/equatable-native-linux-x64": "workspace:*",
-        "@esfx/equatable-native-win32-arm64": "workspace:*",
         "@esfx/equatable-native-win32-ia32": "workspace:*",
         "@esfx/equatable-native-win32-x64": "workspace:*"
     },

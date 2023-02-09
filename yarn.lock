@@ -1058,12 +1058,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@esfx/equatable-native-win32-arm64@workspace:*, @esfx/equatable-native-win32-arm64@workspace:native/equatable-native-win32-arm64":
-  version: 0.0.0-use.local
-  resolution: "@esfx/equatable-native-win32-arm64@workspace:native/equatable-native-win32-arm64"
-  languageName: unknown
-  linkType: soft
-
 "@esfx/equatable-native-win32-ia32@workspace:*, @esfx/equatable-native-win32-ia32@workspace:native/equatable-native-win32-ia32":
   version: 0.0.0-use.local
   resolution: "@esfx/equatable-native-win32-ia32@workspace:native/equatable-native-win32-ia32"
@@ -1102,7 +1096,6 @@ __metadata:
     "@esfx/equatable-native-linux-arm64": "workspace:*"
     "@esfx/equatable-native-linux-armhf": "workspace:*"
     "@esfx/equatable-native-linux-x64": "workspace:*"
-    "@esfx/equatable-native-win32-arm64": "workspace:*"
     "@esfx/equatable-native-win32-ia32": "workspace:*"
     "@esfx/equatable-native-win32-x64": "workspace:*"
     "@esfx/internal-guards": "workspace:*"
@@ -1118,8 +1111,6 @@ __metadata:
     "@esfx/equatable-native-linux-armhf":
       optional: true
     "@esfx/equatable-native-linux-x64":
-      optional: true
-    "@esfx/equatable-native-win32-arm64":
       optional: true
     "@esfx/equatable-native-win32-ia32":
       optional: true

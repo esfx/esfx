@@ -205,6 +205,7 @@ function computeTaskEntries(configurations) {
             const args = new ArgsBuilder();
             args.addValue("configure");
             args.addValue("rebuild");
+            args.addValue("--verbose");
             args.addValue(`--runtime=${config.runtime}`);
             if (config.target) args.addValue(`--target=${config.target}`);
             if (config.target_arch) args.addValue(`--target_arch=${config.target_arch}`);
