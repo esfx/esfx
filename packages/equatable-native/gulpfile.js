@@ -13,6 +13,7 @@ const { exec, ArgsBuilder } = require("../../scripts/exec.js");
  * @property {string|string[]|null} [target_platform]
  * @property {string[]} [supported_versions]
  * @property {string[]} [args]
+ * @property {NodeJS.ProcessEnv} [env]
  */
 
 /**
@@ -23,6 +24,7 @@ const { exec, ArgsBuilder } = require("../../scripts/exec.js");
  * @property {string|null} [target_platform]
  * @property {string[]} [supported_versions]
  * @property {string[]} [args]
+ * @property {NodeJS.ProcessEnv} [env]
  */
 
 /**
@@ -122,7 +124,7 @@ gulp.task("generate-native-packages", async () => {
 function computeConfigurations(matrix) {
     /** @type {Configuration[]} */
     const configurations = [];
-    for (const { runtime, target, target_platform, target_arch, args, ...rest } of matrix) {
+    for (const { runtime, target, target_platform, target_arch, ...rest } of matrix) {
         const runtimes = Array.isArray(runtime) ? runtime : [runtime];
         const targets = Array.isArray(target) ? target : [target];
         const target_archs = Array.isArray(target_arch) ? target_arch : [target_arch];
@@ -133,7 +135,7 @@ function computeConfigurations(matrix) {
         for (const target_platform of target_platforms) {
             const targetStr = typeof target === "number" ? `${target}.0.0` : target;
             const supported_versions = typeof target === "number" ? [`^${target}`] : target ? [`^${target}`] : undefined;
-            configurations.push({ runtime, target: targetStr, target_arch, target_platform, args, supported_versions, ...rest });
+            configurations.push({ runtime, target: targetStr, target_arch, target_platform, supported_versions, ...rest });
         }
     }
     return configurations;
@@ -203,13 +205,14 @@ function computeTaskEntries(configurations) {
             const args = new ArgsBuilder();
             args.addValue("configure");
             args.addValue("rebuild");
+            args.addValue("--verbose");
             args.addValue(`--runtime=${config.runtime}`);
             if (config.target) args.addValue(`--target=${config.target}`);
             if (config.target_arch) args.addValue(`--target_arch=${config.target_arch}`);
             if (config.target_platform) args.addValue(`--target_platform=${config.target_platform}`);
             const configArgs = config.args ?? [];
             const { npmRunPathEnv } = await import("npm-run-path");
-            await exec("node-pre-gyp", [...args, ...configArgs], { verbose: true, env: npmRunPathEnv() });
+            await exec("node-pre-gyp", [...args, ...configArgs], { verbose: true, env: { ...npmRunPathEnv(), ...config.env } });
         };
         gulp.task(buildTask.displayName = buildTaskName, buildTask);
         tasks.push({ action: "build", runtime, target: config.target ?? null, platform: platform, arch: arch, task: buildTask });
@@ -226,7 +229,7 @@ function computeTaskEntries(configurations) {
             if (config.target_platform) args.addValue(`--target_platform=${config.target_platform}`);
             const configArgs = config.args ?? [];
             const { npmRunPathEnv } = await import("npm-run-path");
-            await exec("node-pre-gyp", [...args, ...configArgs], { verbose: true, env: npmRunPathEnv() });
+            await exec("node-pre-gyp", [...args, ...configArgs], { verbose: true, env: { ...npmRunPathEnv(), ...config.env } });
         };
         gulp.task(packageTask.displayName = packageTaskName, packageTask);
         tasks.push({ action: "package", runtime, target: config.target ?? null, platform: platform, arch: arch, task: packageTask });
@@ -241,7 +244,7 @@ function computeTaskEntries(configurations) {
             if (config.target_platform) args.addValue(`--target_platform=${config.target_platform}`);
             const configArgs = config.args ?? [];
             const { npmRunPathEnv } = await import("npm-run-path");
-            await exec("node-gyp", [...args, ...configArgs], { verbose: true, env: npmRunPathEnv() });
+            await exec("node-gyp", [...args, ...configArgs], { verbose: true, env: { ...npmRunPathEnv(), ...config.env } });
         };
         gulp.task(cleanTask.displayName = cleanTaskName, cleanTask);
         tasks.push({ action: "clean", runtime, target: config.target ?? null, platform: platform, arch: arch, task: cleanTask });

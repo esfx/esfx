@@ -71,8 +71,13 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "optionalDependencies": {
+        "@esfx/equatable-native-alpine-x64": "workspace:*",
+        "@esfx/equatable-native-darwin-arm64": "workspace:*",
         "@esfx/equatable-native-darwin-x64": "workspace:*",
+        "@esfx/equatable-native-linux-arm64": "workspace:*",
+        "@esfx/equatable-native-linux-armhf": "workspace:*",
         "@esfx/equatable-native-linux-x64": "workspace:*",
+        "@esfx/equatable-native-win32-ia32": "workspace:*",
         "@esfx/equatable-native-win32-x64": "workspace:*"
     },
     "devDependencies": {

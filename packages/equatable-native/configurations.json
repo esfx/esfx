@@ -1,16 +1,75 @@
 [
     {
         "runtime": "node",
+        "target_platform": ["win32"],
+        "target_arch": ["ia32", "x64"],
         "target": null,
-        "target_arch": ["x64"],
-        "target_platform": ["win32", "linux", "darwin"],
         "supported_versions": ["^16", "^18"]
+    },
+    {
+        "runtime": "node",
+        "target_platform": ["linux"],
+        "target_arch": ["x64", "arm64"],
+        "target": null,
+        "supported_versions": ["^16", "^18"]
+    },
+    {
+        "runtime": "node",
+        "target_platform": ["linux"],
+        "target_arch": ["armhf"],
+        "target": null,
+        "supported_versions": ["^16", "^18"],
+        "env": { "npm_config_arch": "arm" }
+    },
+    {
+        "runtime": "node",
+        "target_platform": ["alpine"],
+        "target_arch": ["x64"],
+        "target": null,
+        "supported_versions": ["^16", "^18"]
+    },
+    {
+        "runtime": "node",
+        "target_platform": ["darwin"],
+        "target_arch": ["x64", "arm64"],
+        "target": null,
+        "supported_versions": ["^16", "^18"]
+    },
+
+    {
+        "runtime": "electron",
+        "target": [21, 20, 19, 18, 17, 16, 15],
+        "target_platform": ["win32"],
+        "target_arch": ["ia32", "x64"],
+        "args": ["--dist-url=https://electronjs.org/headers"]
     },
     {
         "runtime": "electron",
         "target": [21, 20, 19, 18, 17, 16, 15],
+        "target_platform": ["linux"],
+        "target_arch": ["x64", "arm64"],
+        "args": ["--dist-url=https://electronjs.org/headers"]
+    },
+    {
+        "runtime": "electron",
+        "target_platform": ["linux"],
+        "target_arch": ["armhf"],
+        "target": [21, 20, 19, 18, 17, 16, 15],
+        "args": ["--dist-url=https://electronjs.org/headers"],
+        "env": { "npm_config_arch": "arm" }
+    },
+    {
+        "runtime": "electron",
+        "target_platform": ["alpine"],
         "target_arch": ["x64"],
-        "target_platform": ["win32", "linux", "darwin"],
+        "target": [21, 20, 19, 18, 17, 16, 15],
+        "args": ["--dist-url=https://electronjs.org/headers"]
+    },
+    {
+        "runtime": "electron",
+        "target_platform": ["darwin"],
+        "target_arch": ["x64", "arm64"],
+        "target": [21, 20, 19, 18, 17, 16, 15],
         "args": ["--dist-url=https://electronjs.org/headers"]
     }
 ]
