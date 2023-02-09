@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-manualresetevent",
-    "version": "1.1.0-alpha.202302071935",
+    "version": "1.1.0-alpha.202302091715",
     "description": "Provides 'ManualResetEvent', a thread synchronization primitive for use with Workers",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

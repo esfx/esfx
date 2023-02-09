@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-lookup",
-    "version": "1.1.0-alpha.202302071935",
+    "version": "1.1.0-alpha.202302091715",
     "description": "A collection class used to map and look up iterables related to a key.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

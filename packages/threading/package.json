@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading",
-    "version": "1.1.0-alpha.202302071935",
+    "version": "1.1.0-alpha.202302091715",
     "description": "Thread synchronization primitives for use with Workers.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
