@@ -2,15 +2,60 @@
     {
         "runtime": "node",
         "target": null,
-        "target_arch": ["x64"],
+        "target_arch": ["x64", "arm64"],
         "target_platform": ["win32", "linux", "darwin"],
         "supported_versions": ["^16", "^18"]
+    },
+    {
+        "runtime": "node",
+        "target": null,
+        "target_arch": ["x64"],
+        "target_platform": ["alpine"],
+        "supported_versions": ["^16", "^18"]
+    },
+    {
+        "runtime": "node",
+        "target": null,
+        "target_arch": ["ia32"],
+        "target_platform": ["win32"],
+        "supported_versions": ["^16", "^18"]
+    },
+    {
+        "runtime": "node",
+        "target": null,
+        "target_arch": ["armhf"],
+        "target_platform": ["linux"],
+        "supported_versions": ["^16", "^18"],
+        "env": { "npm_config_arch": "arm" }
+    },
+
+    {
+        "runtime": "electron",
+        "target": [21, 20, 19, 18, 17, 16, 15],
+        "target_arch": ["x64", "arm64"],
+        "target_platform": ["win32", "linux", "darwin"],
+        "args": ["--dist-url=https://electronjs.org/headers"]
     },
     {
         "runtime": "electron",
         "target": [21, 20, 19, 18, 17, 16, 15],
         "target_arch": ["x64"],
-        "target_platform": ["win32", "linux", "darwin"],
+        "target_platform": ["alpine"],
         "args": ["--dist-url=https://electronjs.org/headers"]
+    },
+    {
+        "runtime": "electron",
+        "target": [21, 20, 19, 18, 17, 16, 15],
+        "target_arch": ["ia32"],
+        "target_platform": ["win32"],
+        "args": ["--dist-url=https://electronjs.org/headers"]
+    },
+    {
+        "runtime": "electron",
+        "target": [21, 20, 19, 18, 17, 16, 15],
+        "target_arch": ["armhf"],
+        "target_platform": ["linux"],
+        "args": ["--dist-url=https://electronjs.org/headers"],
+        "env": { "npm_config_arch": "arm" }
     }
 ]
