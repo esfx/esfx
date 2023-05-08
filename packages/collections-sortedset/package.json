@@ -1,6 +1,6 @@
 {
     "name": "@esfx/collections-sortedset",
-    "version": "1.1.0-alpha.202302091715",
+    "version": "1.1.0-alpha.202305082104",
     "description": "Provides 'SortedSet', a collection class that utilizes '@esfx/collection-core' and '@esfx/equatable'.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",

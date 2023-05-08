@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-manualresetevent",
-    "version": "1.1.0-alpha.202302091715",
+    "version": "1.1.0-alpha.202305082104",
     "description": "Provides 'AsyncManualResetEvent', an async coordination primitive.",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
