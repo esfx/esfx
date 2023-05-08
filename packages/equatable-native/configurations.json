@@ -4,21 +4,21 @@
         "target_platform": ["win32"],
         "target_arch": ["ia32", "x64"],
         "target": null,
-        "supported_versions": ["^16", "^18"]
+        "supported_versions": ["^16", "^18", "^20"]
     },
     {
         "runtime": "node",
         "target_platform": ["linux"],
         "target_arch": ["x64", "arm64"],
         "target": null,
-        "supported_versions": ["^16", "^18"]
+        "supported_versions": ["^16", "^18", "^20"]
     },
     {
         "runtime": "node",
         "target_platform": ["linux"],
         "target_arch": ["armhf"],
         "target": null,
-        "supported_versions": ["^16", "^18"],
+        "supported_versions": ["^16", "^18", "^20"],
         "env": { "npm_config_arch": "arm" }
     },
     {
@@ -26,14 +26,14 @@
         "target_platform": ["alpine"],
         "target_arch": ["x64"],
         "target": null,
-        "supported_versions": ["^16", "^18"]
+        "supported_versions": ["^16", "^18", "^20"]
     },
     {
         "runtime": "node",
         "target_platform": ["darwin"],
         "target_arch": ["x64", "arm64"],
         "target": null,
-        "supported_versions": ["^16", "^18"]
+        "supported_versions": ["^16", "^18", "^20"]
     },
 
     {
