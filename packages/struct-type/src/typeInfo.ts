@@ -14,9 +14,10 @@
    limitations under the License.
 */
 
+import { combineHashes, Equaler, Equatable } from '@esfx/equatable';
 import { MatchingKeys } from '@esfx/type-model';
-import { StructPrimitiveType, StructFieldDefinition, StructType, Struct as StructBase } from './index.js';
-import { NumberType, sizeOf, getValueFromView, putValueInView, Alignment } from './numbers.js';
+import { Struct as StructBase, StructFieldDefinition, StructPrimitiveType, StructType } from './index.js';
+import { Alignment, getValueFromBuffer, getValueFromView, NumberType, putValueInBuffer, putValueInView, sizeOf } from './numbers.js';
 import { Struct as Struct_ } from "./struct.js";
 
 type StructTypeLike =
@@ -25,9 +26,15 @@ type StructTypeLike =
 
 const typeInfos = new WeakMap<object, TypeInfo>();
 
-/* @internal */
+/**
+ * Describes information about a type.
+ * @internal
+ */
 export abstract class TypeInfo {
+    /** The size of the type */
     readonly size: number;
+
+    /** The byte alignment of the type */
     readonly alignment: Alignment;
 
     constructor (size: number, alignment: Alignment) {
@@ -35,14 +42,24 @@ export abstract class TypeInfo {
         this.alignment = alignment;
     }
 
+    /**
+     * Get the type info for a struct type.
+     */
     static get(type: StructTypeLike): StructTypeInfo;
+    /**
+     * Get the type info for a primitive type.
+     */
     static get(type: StructPrimitiveType): PrimitiveTypeInfo;
+    /**
+     * Get the type info for a type.
+     */
     static get(type: StructPrimitiveType | StructTypeLike): StructTypeInfo | PrimitiveTypeInfo;
     static get(type: StructPrimitiveType | StructTypeLike) {
         const typeInfo = this.tryGet(type);
         if (typeInfo) {
             return typeInfo;
         }
+
         throw new TypeError("Invalid struct or primitive type.");
     }
 
@@ -58,8 +75,10 @@ export abstract class TypeInfo {
     }
 
     abstract coerce(value: any): number | bigint | StructBase;
-    abstract readFrom(view: DataView, offset: number, isLittleEndian?: boolean): number | bigint | StructBase;
-    abstract writeTo(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean): void;
+    abstract readFromBuffer(buffer: ArrayBufferLike, offset: number, isLittleEndian?: boolean): number | bigint | StructBase;
+    abstract readFromView(view: DataView, offset: number, isLittleEndian?: boolean): number | bigint | StructBase;
+    abstract writeToBuffer(buffer: ArrayBufferLike, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean): void;
+    abstract writeToView(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean): void;
 }
 
 /* @internal */
@@ -93,11 +112,19 @@ export class PrimitiveTypeInfo extends TypeInfo {
         return this._primitiveType(value);
     }
 
-    readFrom(view: DataView, offset: number, isLittleEndian?: boolean) {
+    readFromBuffer(buffer: ArrayBufferLike, offset: number, isLittleEndian?: boolean) {
+        return getValueFromBuffer(buffer, this._numberType, offset, isLittleEndian);
+    }
+
+    readFromView(view: DataView, offset: number, isLittleEndian?: boolean) {
         return getValueFromView(view, this._numberType, offset, isLittleEndian);
     }
 
-    writeTo(view: DataView, offset: number, value: number | bigint, isLittleEndian?: boolean) {
+    writeToBuffer(buffer: ArrayBufferLike, offset: number, value: number | bigint, isLittleEndian?: boolean) {
+        putValueInBuffer(buffer, this._numberType, offset, value, isLittleEndian);
+    }
+
+    writeToView(view: DataView, offset: number, value: number | bigint, isLittleEndian?: boolean) {
         putValueInView(view, this._numberType, offset, value, isLittleEndian);
     }
 
@@ -148,19 +175,53 @@ export class StructFieldInfo {
         return this.typeInfo.coerce(value);
     }
 
-    readFrom(owner: Struct_, view: DataView, isLittleEndian?: boolean) {
+    readFromBuffer(owner: Struct_, buffer: ArrayBufferLike, byteOffset: number, isLittleEndian?: boolean) {
         if (this.typeInfo instanceof StructTypeInfo) {
             let cache = weakFieldCache.get(this);
             if (!cache) weakFieldCache.set(this, cache = new WeakMap());
             let value = cache.get(owner);
-            if (!value) cache.set(owner, value = this.typeInfo.readFrom(view, this.byteOffset, isLittleEndian));
+            if (!value) cache.set(owner, value = this.typeInfo.readFromBuffer(buffer, byteOffset + this.byteOffset, isLittleEndian));
             return value;
         }
-        return this.typeInfo.readFrom(view, this.byteOffset, isLittleEndian);
+        return this.typeInfo.readFromBuffer(buffer, byteOffset + this.byteOffset, isLittleEndian);
     }
 
-    writeTo(_owner: Struct_, view: DataView, value: number | bigint | StructBase, isLittleEndian?: boolean) {
-        this.typeInfo.writeTo(view, this.byteOffset, value, isLittleEndian);
+    readFromView(owner: Struct_, view: DataView, isLittleEndian?: boolean) {
+        if (this.typeInfo instanceof StructTypeInfo) {
+            let cache = weakFieldCache.get(this);
+            if (!cache) weakFieldCache.set(this, cache = new WeakMap());
+            let value = cache.get(owner);
+            if (!value) cache.set(owner, value = this.typeInfo.readFromView(view, this.byteOffset, isLittleEndian));
+            return value;
+        }
+        return this.typeInfo.readFromView(view, this.byteOffset, isLittleEndian);
+    }
+
+    writeToBuffer(_owner: Struct_, buffer: ArrayBufferLike, byteOffset: number, value: number | bigint | StructBase, isLittleEndian?: boolean) {
+        this.typeInfo.writeToBuffer(buffer, byteOffset + this.byteOffset, value, isLittleEndian);
+    }
+
+    writeToView(_owner: Struct_, view: DataView, value: number | bigint | StructBase, isLittleEndian?: boolean) {
+        this.typeInfo.writeToView(view, this.byteOffset, value, isLittleEndian);
+    }
+
+    [Equatable.equals](other: unknown): boolean {
+        return other instanceof StructFieldInfo
+            && Equaler.defaultEqualer.equals(this.name, other.name)
+            && Equaler.defaultEqualer.equals(this.index, other.index)
+            && Equaler.defaultEqualer.equals(this.byteOffset, other.byteOffset)
+            && Equaler.defaultEqualer.equals(this.size, other.size)
+            && Equaler.defaultEqualer.equals(this.type, other.type);
+    }
+
+    [Equatable.hash](): number {
+        let hc = 0;
+        hc = combineHashes(hc, Equaler.defaultEqualer.hash(this.name));
+        hc = combineHashes(hc, Equaler.defaultEqualer.hash(this.index));
+        hc = combineHashes(hc, Equaler.defaultEqualer.hash(this.byteOffset));
+        hc = combineHashes(hc, Equaler.defaultEqualer.hash(this.size));
+        hc = combineHashes(hc, Equaler.defaultEqualer.hash(this.type));
+        return hc;
     }
 }
 
@@ -172,7 +233,7 @@ export class StructTypeInfo extends TypeInfo {
     readonly fieldsByOffset: ReadonlyMap<number, StructFieldInfo>;
     readonly baseType: StructTypeInfo | undefined;
 
-    private _structType!: StructType;
+    #structType!: StructType;
 
     constructor(fields: readonly StructFieldDefinition[], baseType?: StructTypeInfo) {
         const fieldNames = new Set<string | symbol>();
@@ -222,7 +283,7 @@ export class StructTypeInfo extends TypeInfo {
     }
 
     get structType() {
-        return this._structType;
+        return this.#structType;
     }
 
     static get(type: StructTypeLike): StructTypeInfo;
@@ -237,24 +298,35 @@ export class StructTypeInfo extends TypeInfo {
     }
 
     coerce(value: any) {
-        return value instanceof this._structType ? value : new this._structType(value);
+        return value instanceof this.#structType ? value : new this.#structType(value);
     }
 
-    readFrom(view: DataView, offset: number, isLittleEndian?: boolean) {
-        return new this._structType(view.buffer, view.byteOffset + offset);
+    readFromBuffer(buffer: ArrayBufferLike, offset: number, isLittleEndian?: boolean) {
+        return new this.#structType(buffer, offset, isLittleEndian);
     }
 
-    writeTo(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean) {
-        if (!(value instanceof this._structType)) {
+    readFromView(view: DataView, offset: number, isLittleEndian?: boolean) {
+        return new this.#structType(view.buffer, view.byteOffset + offset, isLittleEndian);
+    }
+
+    writeToBuffer(buffer: ArrayBufferLike, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean) {
+        if (!(value instanceof this.#structType)) {
             throw new TypeError();
         }
-        value.writeTo(view.buffer, view.byteOffset + offset);
+        value.writeTo(buffer, offset, isLittleEndian);
+    }
+
+    writeToView(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean) {
+        if (!(value instanceof this.#structType)) {
+            throw new TypeError();
+        }
+        value.writeTo(view.buffer, view.byteOffset + offset, isLittleEndian);
     }
 
     finishType<T extends StructType>(structType: T): T;
     finishType(structType: typeof Struct_): void;
     finishType<T extends StructType>(structType: T) {
-        this._structType = structType;
+        this.#structType = structType;
         Object.freeze(this.ownFields);
         Object.freeze(this.fields);
         Object.freeze(this.fieldsByName);
@@ -262,6 +334,28 @@ export class StructTypeInfo extends TypeInfo {
         Object.freeze(this);
         typeInfos.set(structType, this);
         return structType;
+    }
+
+    [Equatable.equals](other: unknown): boolean {
+        if (this === other) return true;
+        if (!(other instanceof StructTypeInfo)) return false;
+        if (!Equaler.defaultEqualer.equals(this.baseType, other.baseType)) return false;
+        if (this.ownFields.length !== other.ownFields.length) return false;
+        for (let i = 0; i < this.ownFields.length; i++) {
+            const thisField = this.ownFields[i];
+            const otherField = other.ownFields[i];
+            if (!Equaler.defaultEqualer.equals(thisField, otherField)) return false;
+        }
+        return true;
+    }
+
+    [Equatable.hash](): number {
+        let hc = 0;
+        hc = combineHashes(0, Equaler.defaultEqualer.hash(this.baseType));
+        for (let i = 0; i < this.ownFields.length; i++) {
+            hc = combineHashes(0, Equaler.defaultEqualer.hash(this.ownFields[i]));
+        }
+        return hc;
     }
 }
 
