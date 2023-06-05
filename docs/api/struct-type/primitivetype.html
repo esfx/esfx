@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>StructFieldDefinition Interface
+    <title>PrimitiveType&lt;K, T&gt; Interface
    | @esfx API Reference </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="StructFieldDefinition Interface
+    <meta name="title" content="PrimitiveType&lt;K, T&gt; Interface
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.57.2.0">
     
@@ -78,28 +78,29 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="@esfx/struct-type!StructFieldDefinition:interface">
+            <article class="content wrap" id="_content" data-uid="@esfx/struct-type!PrimitiveType:interface">
   
   
-  <h1 id="_esfx_struct_type_StructFieldDefinition_interface" data-uid="@esfx/struct-type!StructFieldDefinition:interface">StructFieldDefinition Interface
+  <h1 id="_esfx_struct_type_PrimitiveType_interface" data-uid="@esfx/struct-type!PrimitiveType:interface">PrimitiveType&lt;K, T&gt; Interface
   </h1>
   <h6><strong>Package</strong>: <a class="xref" href="../struct-type.html">@esfx/struct-type</a></h6>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Represents a primitive type.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export interface StructFieldDefinition </code></pre>
+    <pre><code class="lang-typeScript hljs">export interface PrimitiveType&lt;K extends string = string, T extends number | bigint = number | bigint&gt; </code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
   
   
-  <h4 id="_esfx_struct_type_StructFieldDefinition_name_member" data-uid="@esfx/struct-type!StructFieldDefinition#name:member">name</h4>
+  <h4 id="_esfx_struct_type_PrimitiveType__kInitType__member" data-uid="@esfx/struct-type!PrimitiveType#[kInitType]:member">[kInitType]</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">readonly name: conststring | constsymbol;</code></pre>
+    <pre><code class="lang-typeScript hljs">[kInitType]: number | bigint;</code></pre>
   </div>
   
   
@@ -108,7 +109,7 @@
   
   <h5 class="propertyValue">Property Value</h5>
   <div class="property">
-    <div><a class="xref" href="../type-model.html#_esfx_type_model_conststring_type">conststring</a> | <a class="xref" href="../type-model.html#_esfx_type_model_constsymbol_type">constsymbol</a></div>
+    <div><span class="xref">number | bigint</span></div>
     <p>
   </div>
   
@@ -116,12 +117,12 @@
   
   
   
-  <h4 id="_esfx_struct_type_StructFieldDefinition_type_member" data-uid="@esfx/struct-type!StructFieldDefinition#type:member">type</h4>
+  <h4 id="_esfx_struct_type_PrimitiveType__kRuntimeType__member" data-uid="@esfx/struct-type!PrimitiveType#[kRuntimeType]:member">[kRuntimeType]</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">readonly type: Type;</code></pre>
+    <pre><code class="lang-typeScript hljs">[kRuntimeType]: T;</code></pre>
   </div>
   
   
@@ -130,7 +131,53 @@
   
   <h5 class="propertyValue">Property Value</h5>
   <div class="property">
-    <div><a class="xref" href="../struct-type.html#_esfx_struct_type_Type_type">Type</a></div>
+    <div><span class="xref">T</span></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  <h4 id="_esfx_struct_type_PrimitiveType_name_member" data-uid="@esfx/struct-type!PrimitiveType#name:member">name</h4>
+  <div class="markdown level1 summary"><p>The name of the primitive type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">readonly name: K;</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <div class="property">
+    <div><span class="xref">K</span></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  <h4 id="_esfx_struct_type_PrimitiveType_SIZE_member" data-uid="@esfx/struct-type!PrimitiveType#SIZE:member">SIZE</h4>
+  <div class="markdown level1 summary"><p>The size, in bytes, of the primitive type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">readonly SIZE: number;</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <div class="property">
+    <div><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></div>
     <p>
   </div>
   

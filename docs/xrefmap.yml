@@ -9849,6 +9849,42 @@ references:
   name: '@esfx/struct-type'
   href: api/struct-type.html
   fullName: '@esfx/struct-type'
+- uid: '@esfx/struct-type!ArrayType#BYTES_PER_ELEMENT:member'
+  name: BYTES_PER_ELEMENT
+  href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_BYTES_PER_ELEMENT_member
+  fullName: ArrayType.BYTES_PER_ELEMENT
+- uid: '@esfx/struct-type!ArrayType#fixedLength:member'
+  name: fixedLength
+  href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_fixedLength_member
+  fullName: ArrayType.fixedLength
+- uid: '@esfx/struct-type!ArrayType#prototype:member'
+  name: prototype
+  href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_prototype_member
+  fullName: ArrayType.prototype
+- uid: '@esfx/struct-type!ArrayType#SIZE:member'
+  name: SIZE
+  href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_SIZE_member
+  fullName: ArrayType.SIZE
+- uid: '@esfx/struct-type!ArrayType#toFixed:member(1)'
+  name: toFixed(fixedLength)
+  href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_toFixed_member_1_
+  fullName: ArrayType.toFixed(fixedLength)
+- uid: '@esfx/struct-type!ArrayType:interface'
+  name: ArrayType<TType>
+  href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_interface
+  fullName: ArrayType<TType>
+- uid: '@esfx/struct-type!ArrayType:var'
+  name: ArrayType
+  href: api/struct-type.html#_esfx_struct_type_ArrayType_var
+  fullName: ArrayType
+- uid: '@esfx/struct-type!ArrayTypeConstructor#prototype:member'
+  name: prototype
+  href: api/struct-type/arraytypeconstructor.html#_esfx_struct_type_ArrayTypeConstructor_prototype_member
+  fullName: ArrayTypeConstructor.prototype
+- uid: '@esfx/struct-type!ArrayTypeConstructor:interface'
+  name: ArrayTypeConstructor
+  href: api/struct-type/arraytypeconstructor.html#_esfx_struct_type_ArrayTypeConstructor_interface
+  fullName: ArrayTypeConstructor
 - uid: '@esfx/struct-type!bigint64:var'
   name: bigint64
   href: api/struct-type.html#_esfx_struct_type_bigint64_var
@@ -9857,6 +9893,38 @@ references:
   name: biguint64
   href: api/struct-type.html#_esfx_struct_type_biguint64_var
   fullName: biguint64
+- uid: '@esfx/struct-type!FixedLengthArrayType#[kInitType]:member'
+  name: '[kInitType]'
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType__kInitType__member
+  fullName: FixedLengthArrayType.[kInitType]
+- uid: '@esfx/struct-type!FixedLengthArrayType#[kRuntimeType]:member'
+  name: '[kRuntimeType]'
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType__kRuntimeType__member
+  fullName: FixedLengthArrayType.[kRuntimeType]
+- uid: '@esfx/struct-type!FixedLengthArrayType#BYTES_PER_ELEMENT:member'
+  name: BYTES_PER_ELEMENT
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_BYTES_PER_ELEMENT_member
+  fullName: FixedLengthArrayType.BYTES_PER_ELEMENT
+- uid: '@esfx/struct-type!FixedLengthArrayType#fixedLength:member'
+  name: fixedLength
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_fixedLength_member
+  fullName: FixedLengthArrayType.fixedLength
+- uid: '@esfx/struct-type!FixedLengthArrayType#prototype:member'
+  name: prototype
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_prototype_member
+  fullName: FixedLengthArrayType.prototype
+- uid: '@esfx/struct-type!FixedLengthArrayType#SIZE:member'
+  name: SIZE
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_SIZE_member
+  fullName: FixedLengthArrayType.SIZE
+- uid: '@esfx/struct-type!FixedLengthArrayType#toFixed:member(1)'
+  name: toFixed(fixedLength)
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_toFixed_member_1_
+  fullName: FixedLengthArrayType.toFixed(fixedLength)
+- uid: '@esfx/struct-type!FixedLengthArrayType:interface'
+  name: FixedLengthArrayType<TType, TFixedLength>
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_interface
+  fullName: FixedLengthArrayType<TType, TFixedLength>
 - uid: '@esfx/struct-type!float32:var'
   name: float32
   href: api/struct-type.html#_esfx_struct_type_float32_var
@@ -9865,6 +9933,10 @@ references:
   name: float64
   href: api/struct-type.html#_esfx_struct_type_float64_var
   fullName: float64
+- uid: '@esfx/struct-type!InitType:type'
+  name: InitType
+  href: api/struct-type.html#_esfx_struct_type_InitType_type
+  fullName: InitType
 - uid: '@esfx/struct-type!int16:var'
   name: int16
   href: api/struct-type.html#_esfx_struct_type_int16_var
@@ -9877,10 +9949,42 @@ references:
   name: int8
   href: api/struct-type.html#_esfx_struct_type_int8_var
   fullName: int8
+- uid: '@esfx/struct-type!PrimitiveType#[kInitType]:member'
+  name: '[kInitType]'
+  href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType__kInitType__member
+  fullName: PrimitiveType.[kInitType]
+- uid: '@esfx/struct-type!PrimitiveType#[kRuntimeType]:member'
+  name: '[kRuntimeType]'
+  href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType__kRuntimeType__member
+  fullName: PrimitiveType.[kRuntimeType]
+- uid: '@esfx/struct-type!PrimitiveType#name:member'
+  name: name
+  href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType_name_member
+  fullName: PrimitiveType.name
+- uid: '@esfx/struct-type!PrimitiveType#SIZE:member'
+  name: SIZE
+  href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType_SIZE_member
+  fullName: PrimitiveType.SIZE
+- uid: '@esfx/struct-type!PrimitiveType:interface'
+  name: PrimitiveType<K, T>
+  href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType_interface
+  fullName: PrimitiveType<K, T>
+- uid: '@esfx/struct-type!PrimitiveTypes:type'
+  name: PrimitiveTypes
+  href: api/struct-type.html#_esfx_struct_type_PrimitiveTypes_type
+  fullName: PrimitiveTypes
+- uid: '@esfx/struct-type!RuntimeType:type'
+  name: RuntimeType
+  href: api/struct-type.html#_esfx_struct_type_RuntimeType_type
+  fullName: RuntimeType
 - uid: '@esfx/struct-type!Struct:type'
   name: Struct
   href: api/struct-type.html#_esfx_struct_type_Struct_type
   fullName: Struct
+- uid: '@esfx/struct-type!StructElements:type'
+  name: StructElements
+  href: api/struct-type.html#_esfx_struct_type_StructElements_type
+  fullName: StructElements
 - uid: '@esfx/struct-type!StructFieldDefinition#name:member'
   name: name
   href: api/struct-type/structfielddefinition.html#_esfx_struct_type_StructFieldDefinition_name_member
@@ -9897,10 +10001,10 @@ references:
   name: StructFieldRuntimeType
   href: api/struct-type.html#_esfx_struct_type_StructFieldRuntimeType_type
   fullName: StructFieldRuntimeType
-- uid: '@esfx/struct-type!StructFieldType:type'
-  name: StructFieldType
-  href: api/struct-type.html#_esfx_struct_type_StructFieldType_type
-  fullName: StructFieldType
+- uid: '@esfx/struct-type!StructIndices:type'
+  name: StructIndices
+  href: api/struct-type.html#_esfx_struct_type_StructIndices_type
+  fullName: StructIndices
 - uid: '@esfx/struct-type!StructInitElements:type'
   name: StructInitElements
   href: api/struct-type.html#_esfx_struct_type_StructInitElements_type
@@ -9913,18 +10017,26 @@ references:
   name: StructInitProperties
   href: api/struct-type.html#_esfx_struct_type_StructInitProperties_type
   fullName: StructInitProperties
-- uid: '@esfx/struct-type!StructPrimitiveType#name:member'
-  name: name
-  href: api/struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_name_member
-  fullName: StructPrimitiveType.name
-- uid: '@esfx/struct-type!StructPrimitiveType#SIZE:member'
-  name: SIZE
-  href: api/struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_SIZE_member
-  fullName: StructPrimitiveType.SIZE
-- uid: '@esfx/struct-type!StructPrimitiveType:interface'
-  name: StructPrimitiveType<K, T>
-  href: api/struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface
-  fullName: StructPrimitiveType<K, T>
+- uid: '@esfx/struct-type!StructKeys:type'
+  name: StructKeys
+  href: api/struct-type.html#_esfx_struct_type_StructKeys_type
+  fullName: StructKeys
+- uid: '@esfx/struct-type!StructProperties:type'
+  name: StructProperties
+  href: api/struct-type.html#_esfx_struct_type_StructProperties_type
+  fullName: StructProperties
+- uid: '@esfx/struct-type!StructType#[kInitType]:member'
+  name: '[kInitType]'
+  href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType__kInitType__member
+  fullName: StructType.[kInitType]
+- uid: '@esfx/struct-type!StructType#[kRuntimeType]:member'
+  name: '[kRuntimeType]'
+  href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType__kRuntimeType__member
+  fullName: StructType.[kRuntimeType]
+- uid: '@esfx/struct-type!StructType#prototype:member'
+  name: prototype
+  href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType_prototype_member
+  fullName: StructType.prototype
 - uid: '@esfx/struct-type!StructType#SIZE:member'
   name: SIZE
   href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType_SIZE_member
@@ -9945,6 +10057,134 @@ references:
   name: StructTypeConstructor
   href: api/struct-type/structtypeconstructor.html#_esfx_struct_type_StructTypeConstructor_interface
   fullName: StructTypeConstructor
+- uid: '@esfx/struct-type!Type:type'
+  name: Type
+  href: api/struct-type.html#_esfx_struct_type_Type_type
+  fullName: Type
+- uid: '@esfx/struct-type!TypedArray#[Symbol.iterator]:member(1)'
+  name: '[Symbol.iterator]()'
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray__Symbol_iterator__member_1_
+  fullName: TypedArray.[Symbol.iterator]()
+- uid: '@esfx/struct-type!TypedArray#at:member(1)'
+  name: at(index)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_at_member_1_
+  fullName: TypedArray.at(index)
+- uid: '@esfx/struct-type!TypedArray#buffer:member'
+  name: buffer
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_buffer_member
+  fullName: TypedArray.buffer
+- uid: '@esfx/struct-type!TypedArray#byteLength:member'
+  name: byteLength
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_byteLength_member
+  fullName: TypedArray.byteLength
+- uid: '@esfx/struct-type!TypedArray#byteOffset:member'
+  name: byteOffset
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_byteOffset_member
+  fullName: TypedArray.byteOffset
+- uid: '@esfx/struct-type!TypedArray#copyWithin:member(1)'
+  name: copyWithin(target, start, end)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_copyWithin_member_1_
+  fullName: TypedArray.copyWithin(target, start, end)
+- uid: '@esfx/struct-type!TypedArray#entries:member(1)'
+  name: entries()
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_entries_member_1_
+  fullName: TypedArray.entries()
+- uid: '@esfx/struct-type!TypedArray#every:member(1)'
+  name: every(predicate)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_every_member_1_
+  fullName: TypedArray.every(predicate)
+- uid: '@esfx/struct-type!TypedArray#fill:member(1)'
+  name: fill(value, start, end)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_fill_member_1_
+  fullName: TypedArray.fill(value, start, end)
+- uid: '@esfx/struct-type!TypedArray#filter:member(1)'
+  name: filter(predicate)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_filter_member_1_
+  fullName: TypedArray.filter(predicate)
+- uid: '@esfx/struct-type!TypedArray#find:member(1)'
+  name: find(predicate, fromIndex)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_find_member_1_
+  fullName: TypedArray.find(predicate, fromIndex)
+- uid: '@esfx/struct-type!TypedArray#findIndex:member(1)'
+  name: findIndex(predicate, fromIndex)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_findIndex_member_1_
+  fullName: TypedArray.findIndex(predicate, fromIndex)
+- uid: '@esfx/struct-type!TypedArray#findLast:member(1)'
+  name: findLast(predicate, fromIndex)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_findLast_member_1_
+  fullName: TypedArray.findLast(predicate, fromIndex)
+- uid: '@esfx/struct-type!TypedArray#findLastIndex:member(1)'
+  name: findLastIndex(predicate, fromIndex)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_findLastIndex_member_1_
+  fullName: TypedArray.findLastIndex(predicate, fromIndex)
+- uid: '@esfx/struct-type!TypedArray#forEach:member(1)'
+  name: forEach(callbackfn)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_forEach_member_1_
+  fullName: TypedArray.forEach(callbackfn)
+- uid: '@esfx/struct-type!TypedArray#keys:member(1)'
+  name: keys()
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_keys_member_1_
+  fullName: TypedArray.keys()
+- uid: '@esfx/struct-type!TypedArray#length:member'
+  name: length
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_length_member
+  fullName: TypedArray.length
+- uid: '@esfx/struct-type!TypedArray#map:member(1)'
+  name: map(callbackfn)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_map_member_1_
+  fullName: TypedArray.map(callbackfn)
+- uid: '@esfx/struct-type!TypedArray#mapToArray:member(1)'
+  name: mapToArray(callbackfn)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_mapToArray_member_1_
+  fullName: TypedArray.mapToArray(callbackfn)
+- uid: '@esfx/struct-type!TypedArray#reduce:member(1)'
+  name: reduce(callbackfn)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_reduce_member_1_
+  fullName: TypedArray.reduce(callbackfn)
+- uid: '@esfx/struct-type!TypedArray#reduce:member(2)'
+  name: reduce(callbackfn, initialValue)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_reduce_member_2_
+  fullName: TypedArray.reduce(callbackfn, initialValue)
+- uid: '@esfx/struct-type!TypedArray#reduceRight:member(1)'
+  name: reduceRight(callbackfn)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_reduceRight_member_1_
+  fullName: TypedArray.reduceRight(callbackfn)
+- uid: '@esfx/struct-type!TypedArray#reduceRight:member(2)'
+  name: reduceRight(callbackfn, initialValue)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_reduceRight_member_2_
+  fullName: TypedArray.reduceRight(callbackfn, initialValue)
+- uid: '@esfx/struct-type!TypedArray#set:member(1)'
+  name: set(array, offset)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_set_member_1_
+  fullName: TypedArray.set(array, offset)
+- uid: '@esfx/struct-type!TypedArray#slice:member(1)'
+  name: slice(start, end)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_slice_member_1_
+  fullName: TypedArray.slice(start, end)
+- uid: '@esfx/struct-type!TypedArray#some:member(1)'
+  name: some(predicate)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_some_member_1_
+  fullName: TypedArray.some(predicate)
+- uid: '@esfx/struct-type!TypedArray#subarray:member(1)'
+  name: subarray(start, end)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_subarray_member_1_
+  fullName: TypedArray.subarray(start, end)
+- uid: '@esfx/struct-type!TypedArray#toArray:member(1)'
+  name: toArray()
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_toArray_member_1_
+  fullName: TypedArray.toArray()
+- uid: '@esfx/struct-type!TypedArray#values:member(1)'
+  name: values()
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_values_member_1_
+  fullName: TypedArray.values()
+- uid: '@esfx/struct-type!TypedArray#writeTo:member(1)'
+  name: writeTo(buffer, byteOffset)
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_writeTo_member_1_
+  fullName: TypedArray.writeTo(buffer, byteOffset)
+- uid: '@esfx/struct-type!TypedArray:interface'
+  name: TypedArray<TType, TFixedLength>
+  href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_interface
+  fullName: TypedArray<TType, TFixedLength>
 - uid: '@esfx/struct-type!uint16:var'
   name: uint16
   href: api/struct-type.html#_esfx_struct_type_uint16_var

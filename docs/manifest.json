@@ -2337,7 +2337,7 @@
       "output": {
         ".html": {
           "relative_path": "api/indexed-object/integerindexedobject.html",
-          "hash": "iHEMvR4mkELC4JjISaj4WqeiWAAizYOqyKCHxAz5m7o="
+          "hash": "ODAqeFA08bon7Y/p2lZN+ASOJnIp+QTOsgYvUxO5LXg="
         }
       },
       "is_incremental": false,
@@ -2829,7 +2829,55 @@
       "output": {
         ".html": {
           "relative_path": "api/struct-type.html",
-          "hash": "VlsqqoIe/Zt+Dq275YoGeimQBfob19QkFHto1XghOHE="
+          "hash": "UgFSJG4wKwXQh5O3Qbnl5XDR9YNX7+iqmGvn1sqivjI="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/struct-type/arraytype-interface.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/struct-type/arraytype-interface.html",
+          "hash": "Cn9Fc4JcEHUDjRsVTRVehBuCYeg0QH0dnPoYU1A/beQ="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/struct-type/arraytypeconstructor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/struct-type/arraytypeconstructor.html",
+          "hash": "f9pUVVLnJ2b5vzhy0R/meijJFseUd/od88dI1FBO9CA="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/struct-type/fixedlengtharraytype.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/struct-type/fixedlengtharraytype.html",
+          "hash": "W7tOo4G62v4JXunHejmmQ67LLelrSITy2Qa4jGgcUyc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/struct-type/primitivetype.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/struct-type/primitivetype.html",
+          "hash": "wehVdJKyUw0/fKF1uz5OkkjdLOhK/eJljMn++QRHAKg="
         }
       },
       "is_incremental": false,
@@ -2841,19 +2889,7 @@
       "output": {
         ".html": {
           "relative_path": "api/struct-type/structfielddefinition.html",
-          "hash": "RlMtLqsEOlbaICdkvw+MNiwoREaLiCJvWDkv+hxmtpU="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "UniversalReference",
-      "source_relative_path": "obj/yml/struct-type/structprimitivetype.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/struct-type/structprimitivetype.html",
-          "hash": "taC1hh54P/7/RqZ5oIAfCqZiX4L35uOl3BT5Hu3VY1s="
+          "hash": "lju9BZ8i19p/iTEOIsJ7XQb8fNbogPK3W+tjBEfTxWA="
         }
       },
       "is_incremental": false,
@@ -2865,7 +2901,7 @@
       "output": {
         ".html": {
           "relative_path": "api/struct-type/structtype-interface.html",
-          "hash": "RvXPxPR0DlH5ZaQH4tmxbQRH0C6yy1Lq1nF8uOHX7Go="
+          "hash": "9xTM6NfYEbfisfxCE1hTt/RF0hX4JPLC7MrSt+EKyLQ="
         }
       },
       "is_incremental": false,
@@ -2878,6 +2914,18 @@
         ".html": {
           "relative_path": "api/struct-type/structtypeconstructor.html",
           "hash": "zjaJ3V+63yAnAcJvBVW/+uCup89sf1xZWXb12GtiCFc="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "UniversalReference",
+      "source_relative_path": "obj/yml/struct-type/typedarray.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/struct-type/typedarray.html",
+          "hash": "r/rHU6Q3uzGOc1i9a8OBLJ4PJskLvcVffl6GwmqUb4Y="
         }
       },
       "is_incremental": false,
@@ -3117,7 +3165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "eMTgNuJ/hKiK5ekhDQsOkxTIg3vg5vcIoN0oSwgt60o="
+          "hash": "ebMKtUBmKPjTrPZfElHvKvZZGiDW7fopT8ninYxv/PQ="
         }
       },
       "is_incremental": false,

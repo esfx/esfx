@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>IntegerIndexedObject Class
+    <title>ArrayType&lt;TType&gt; Interface
    | @esfx API Reference </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="IntegerIndexedObject Class
+    <meta name="title" content="ArrayType&lt;TType&gt; Interface
    | @esfx API Reference ">
     <meta name="generator" content="docfx 2.57.2.0">
     
@@ -78,128 +78,36 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="@esfx/indexed-object!IntegerIndexedObject:class">
+            <article class="content wrap" id="_content" data-uid="@esfx/struct-type!ArrayType:interface">
   
   
-  <h1 id="_esfx_indexed_object_IntegerIndexedObject_class" data-uid="@esfx/indexed-object!IntegerIndexedObject:class">IntegerIndexedObject Class
+  <h1 id="_esfx_struct_type_ArrayType_interface" data-uid="@esfx/struct-type!ArrayType:interface">ArrayType&lt;TType&gt; Interface
   </h1>
-  <h6><strong>Package</strong>: <a class="xref" href="../indexed-object.html">@esfx/indexed-object</a></h6>
-  <div class="markdown level0 summary"><p>Represents an object that can be indexed by an integer value similar to a native
-Array or TypedArray.</p>
+  <h6><strong>Package</strong>: <a class="xref" href="../struct-type.html">@esfx/struct-type</a></h6>
+  <div class="markdown level0 summary"><p>Represents the constructor for a TypedArray</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export declare abstract class IntegerIndexedObject&lt;T&gt; </code></pre>
+    <pre><code class="lang-typeScript hljs">export interface ArrayType&lt;TType extends Type&gt; </code></pre>
   </div>
-  <h3 id="constructors">Constructors
+  <h3 id="properties">Properties
   </h3>
   
   
-  <h4 id="_esfx_indexed_object_IntegerIndexedObject_constructor_1_" data-uid="@esfx/indexed-object!IntegerIndexedObject:constructor(1)">constructor()</h4>
-  <div class="markdown level1 summary"><p>Constructs a new instance of the <code>IntegerIndexedObject</code> class</p>
-</div>
+  <h4 id="_esfx_struct_type_ArrayType_BYTES_PER_ELEMENT_member" data-uid="@esfx/struct-type!ArrayType#BYTES_PER_ELEMENT:member">BYTES_PER_ELEMENT</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">constructor();</code></pre>
+    <pre><code class="lang-typeScript hljs">readonly BYTES_PER_ELEMENT: number;</code></pre>
   </div>
   
   
   
   
   
-  
-  
-  
-  <h3 id="methods">Methods
-  </h3>
-  
-  
-  <h4 id="_esfx_indexed_object_IntegerIndexedObject_deleteIndex_member_1_" data-uid="@esfx/indexed-object!IntegerIndexedObject#deleteIndex:member(1)">deleteIndex(index)</h4>
-  <div class="markdown level1 summary"><p>Deletes the value at the specified index.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">protected deleteIndex(index: number): boolean;</code></pre>
-  </div>
-  
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>index</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
-      </dl>
-      <p>
-        <p>An integer index greater than or equal to zero (<code>0</code><!-- -->).</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p><p><code>true</code> if the value was successfully deleted; otherwise, <code>false</code><!-- -->.</p>
-</p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_indexed_object_IntegerIndexedObject_getIndex_member_1_" data-uid="@esfx/indexed-object!IntegerIndexedObject#getIndex:member(1)">getIndex(index)</h4>
-  <div class="markdown level1 summary"><p>Gets the value at the specified index.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">protected abstract getIndex(index: number): T;</code></pre>
-  </div>
-  
-  
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>index</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
-      </dl>
-      <p>
-        <p>An integer index greater than or equal to zero (<code>0</code><!-- -->).</p>
-
-        
-      </p>
-    </div>
-  
-  <h5 class="returns">Returns</h5>
-  <div class="property">
-    <div><span class="xref">T</span></div>
-    <p>
-  </div>
-  
-  
-  
-  
-  
-  
-  
-  <h4 id="_esfx_indexed_object_IntegerIndexedObject_getLength_member_1_" data-uid="@esfx/indexed-object!IntegerIndexedObject#getLength:member(1)">getLength()</h4>
-  <div class="markdown level1 summary"><p>Gets the &quot;length&quot; of the indexed object, which should be one more than the
-largest index stored in the object.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">protected abstract getLength(): number;</code></pre>
-  </div>
-  
-  
-  
-  <h5 class="returns">Returns</h5>
+  <h5 class="propertyValue">Property Value</h5>
   <div class="property">
     <div><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></div>
     <p>
@@ -209,34 +117,21 @@ largest index stored in the object.</p>
   
   
   
-  
-  
-  <h4 id="_esfx_indexed_object_IntegerIndexedObject_hasIndex_member_1_" data-uid="@esfx/indexed-object!IntegerIndexedObject#hasIndex:member(1)">hasIndex(index)</h4>
-  <div class="markdown level1 summary"><p>Determines whether the object contains a value at the specified index.</p>
-</div>
+  <h4 id="_esfx_struct_type_ArrayType_fixedLength_member" data-uid="@esfx/struct-type!ArrayType#fixedLength:member">fixedLength</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">protected hasIndex(index: number): boolean;</code></pre>
+    <pre><code class="lang-typeScript hljs">readonly fixedLength: number | undefined;</code></pre>
   </div>
   
   
-  <h5 class="parameters">Parameters</h5>
-    <div class="property">
-      <dl class="parameter">
-        <dt>index</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
-      </dl>
-      <p>
-        <p>An integer index greater than or equal to zero (<code>0</code><!-- -->).</p>
-
-        
-      </p>
-    </div>
   
-  <h5 class="returns">Returns</h5>
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
   <div class="property">
-    <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
+    <div><span class="xref">number | undefined</span></div>
     <p>
   </div>
   
@@ -244,47 +139,87 @@ largest index stored in the object.</p>
   
   
   
-  
-  
-  <h4 id="_esfx_indexed_object_IntegerIndexedObject_setIndex_member_1_" data-uid="@esfx/indexed-object!IntegerIndexedObject#setIndex:member(1)">setIndex(index, value)</h4>
-  <div class="markdown level1 summary"><p>Sets the value at the specified index.</p>
-</div>
+  <h4 id="_esfx_struct_type_ArrayType_prototype_member" data-uid="@esfx/struct-type!ArrayType#prototype:member">prototype</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">protected setIndex(index: number, value: T): boolean;</code></pre>
+    <pre><code class="lang-typeScript hljs">prototype: TypedArray&lt;TType&gt;;</code></pre>
   </div>
   
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <div class="property">
+    <div><a class="xref" href="typedarray.html#_esfx_struct_type_TypedArray_interface">TypedArray</a>&lt;TType&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  <h4 id="_esfx_struct_type_ArrayType_SIZE_member" data-uid="@esfx/struct-type!ArrayType#SIZE:member">SIZE</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">readonly SIZE: number | undefined;</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <div class="property">
+    <div><span class="xref">number | undefined</span></div>
+    <p>
+  </div>
+  
+  
+  
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <h4 id="_esfx_struct_type_ArrayType_toFixed_member_1_" data-uid="@esfx/struct-type!ArrayType#toFixed:member(1)">toFixed(fixedLength)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">toFixed&lt;TFixedLength extends number&gt;(fixedLength: TFixedLength): FixedLengthArrayType&lt;TType, TFixedLength&gt;;</code></pre>
+  </div>
+  
+  <h5 class="typeParameters">Type Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>TFixedLength</dt>
+        <dd></dd>
+      </dl>
+      <p>
+        
+      </p>
+    </div>
   
   <h5 class="parameters">Parameters</h5>
     <div class="property">
       <dl class="parameter">
-        <dt>index</dt>
-        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
+        <dt>fixedLength</dt>
+        <dd><span class="xref">TFixedLength</span></dd>
       </dl>
       <p>
-        <p>An integer index greater than or equal to zero (<code>0</code><!-- -->).</p>
-
         
-      </p>
-    </div>
-    <div class="property">
-      <dl class="parameter">
-        <dt>value</dt>
-        <dd><span class="xref">T</span></dd>
-      </dl>
-      <p>
-        <p>The value to set for the specified index.</p>
-
         
       </p>
     </div>
   
   <h5 class="returns">Returns</h5>
   <div class="property">
-    <div><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></div>
-    <p><p><code>true</code> if the value could be set; otherwise, <code>false</code><!-- -->.</p>
-</p>
+    <div><a class="xref" href="fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_interface">FixedLengthArrayType</a>&lt;TType, TFixedLength&gt;</div>
+    <p>
   </div>
   
   

@@ -1,6 +1,6 @@
 {
     "name": "@esfx/interval",
-    "version": "1.1.0-alpha.202305082104",
+    "version": "1.1.0-alpha.202306051228",
     "description": "An implementation of Index and Interval types for ECMAScript",
     "type": "commonjs",
     "types": "./dist/types/index.d.ts",
