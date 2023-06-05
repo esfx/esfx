@@ -15,38 +15,65 @@
 */
 
 import { MatchingKeys } from '@esfx/type-model';
-import { StructPrimitiveType, StructFieldDefinition, StructType, Struct as StructBase } from './index.js';
-import { NumberType, sizeOf, getValueFromView, putValueInView, Alignment } from './numbers.js';
-import { Struct as Struct_ } from "./struct.js";
+import { TypedArrayImpl } from './array.js';
+import { ArrayType, FixedLengthArrayType, PrimitiveType, Struct, StructFieldDefinition, StructType, Type, TypedArray } from './index.js';
+import { Alignment, coerceValue, getValueFromView, NumberType, putValueInView, sizeOf } from './numbers.js';
+import { getDataView, StructImpl } from "./struct.js";
 
 type StructTypeLike =
     | StructType
-    | typeof Struct_;
+    | typeof StructImpl;
+
+type ArrayTypeLike =
+    | ArrayType<any>
+    | typeof TypedArrayImpl;
+
+type FixedLengthArrayTypeLike =
+    | FixedLengthArrayType<any, any>
+    | typeof TypedArrayImpl;
+
+type TypeLike =
+    | PrimitiveType
+    | StructTypeLike
+    | ArrayTypeLike
+    | FixedLengthArrayTypeLike;
+
+type TypeInfoGetResultOf<T extends TypeLike, TConstraint extends TypeInfo = TypeInfo> = Extract<
+    T extends PrimitiveType ? PrimitiveTypeInfo :
+    T extends StructTypeLike ? StructTypeInfo :
+    T extends ArrayTypeLike ? BaseArrayTypeInfo | FixedLengthArrayTypeInfo :
+    T extends FixedLengthArrayTypeLike ? FixedLengthArrayTypeInfo :
+    never,
+    TConstraint>;
 
 const typeInfos = new WeakMap<object, TypeInfo>();
 
-/* @internal */
+/**
+ * A base class for an object used to describe a `Type`.
+ * @internal
+ */
 export abstract class TypeInfo {
-    readonly size: number;
+    readonly name: string;
+    readonly size: number | undefined;
     readonly alignment: Alignment;
 
-    constructor (size: number, alignment: Alignment) {
+    constructor(name: string, size: number | undefined, alignment: Alignment) {
+        this.name = name;
         this.size = size;
         this.alignment = alignment;
     }
 
-    static get(type: StructTypeLike): StructTypeInfo;
-    static get(type: StructPrimitiveType): PrimitiveTypeInfo;
-    static get(type: StructPrimitiveType | StructTypeLike): StructTypeInfo | PrimitiveTypeInfo;
-    static get(type: StructPrimitiveType | StructTypeLike) {
+    static get<T extends TypeLike>(type: T): TypeInfoGetResultOf<T>;
+    static get(type: TypeLike): TypeInfo;
+    static get(type: TypeLike): TypeInfo {
         const typeInfo = this.tryGet(type);
-        if (typeInfo) {
-            return typeInfo;
+        if (!typeInfo) {
+            throw new TypeError("Invalid struct, array, or primitive type.");
         }
-        throw new TypeError("Invalid struct or primitive type.");
+        return typeInfo;
     }
 
-    protected static tryGet(type: StructPrimitiveType | StructTypeLike) {
+    protected static tryGet(type: TypeLike) {
         let current: object | undefined = type;
         while (typeof current === "function") {
             const typeInfo = typeInfos.get(current);
@@ -57,9 +84,10 @@ export abstract class TypeInfo {
         }
     }
 
-    abstract coerce(value: any): number | bigint | StructBase;
-    abstract readFrom(view: DataView, offset: number, isLittleEndian?: boolean): number | bigint | StructBase;
-    abstract writeTo(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean): void;
+    abstract isCompatibleWith(other: TypeInfo): boolean;
+    abstract coerce(value: any): number | bigint | Struct | TypedArray<any, number>;
+    abstract readFrom(view: DataView, offset: number, isLittleEndian?: boolean): number | bigint | Struct | TypedArray<any, number>;
+    abstract writeTo(view: DataView, offset: number, value: number | bigint | Struct | TypedArray<any, number>, isLittleEndian?: boolean): void;
 }
 
 /* @internal */
@@ -75,54 +103,65 @@ export type DataViewReaders = MatchingKeys<DataView, (offset: number) => number 
 /* @internal */
 export type DataViewWriters = MatchingKeys<DataView, ((offset: number, value: number) => void) | ((offset: number, value: bigint) => void)>;
 
-/* @internal */
+/**
+ * Type information about a primitive type.
+ *
+ * @internal
+ */
 export class PrimitiveTypeInfo extends TypeInfo {
-    private _primitiveType!: StructPrimitiveType;
-    private _numberType: NumberType;
+    declare readonly size: number;
+    readonly runtimeType: PrimitiveType;
+    readonly #numberType: NumberType;
 
-    constructor(numberType: NumberType) {
-        super(sizeOf(numberType), sizeOf(numberType));
-        this._numberType = numberType;
+    constructor(name: string, numberType: NumberType) {
+        const size = sizeOf(numberType);
+        super(numberType, size, size);
+        this.#numberType = numberType;
+        this.runtimeType = Object.defineProperties(function (value: number | bigint) { return coerceValue(numberType, value); } as PrimitiveType, {
+            name: { value: name },
+            SIZE: { value: size },
+        });
+        typeInfos.set(this.runtimeType, this);
+        Object.freeze(this);
     }
 
-    get primitiveType() {
-        return this._primitiveType;
+    isCompatibleWith(other: TypeInfo): boolean {
+        if (this === other) return true;
+        if (other instanceof PrimitiveTypeInfo) {
+            const thisIsBigInt = this.#numberType === NumberType.BigInt64 || this.#numberType === NumberType.BigUint64;
+            const otherIsBigInt = other.#numberType === NumberType.BigInt64 || other.#numberType === NumberType.BigUint64;
+            return thisIsBigInt === otherIsBigInt;
+        }
+        return false;
     }
 
     coerce(value: any) {
-        return this._primitiveType(value);
+        return this.runtimeType(value);
     }
 
     readFrom(view: DataView, offset: number, isLittleEndian?: boolean) {
-        return getValueFromView(view, this._numberType, offset, isLittleEndian);
+        return getValueFromView(view, this.#numberType, offset, isLittleEndian);
     }
 
     writeTo(view: DataView, offset: number, value: number | bigint, isLittleEndian?: boolean) {
-        putValueInView(view, this._numberType, offset, value, isLittleEndian);
+        putValueInView(view, this.#numberType, offset, value, isLittleEndian);
     }
 
-    static get(type: StructTypeLike): never;
-    static get(type: StructPrimitiveType): PrimitiveTypeInfo;
-    static get(type: StructPrimitiveType | StructTypeLike): PrimitiveTypeInfo;
-    static get(type: StructPrimitiveType | StructTypeLike): PrimitiveTypeInfo {
+    static get(type: TypeLike): PrimitiveTypeInfo {
         const typeInfo = typeInfos.get(type);
-        if (!typeInfo || !(typeInfo instanceof PrimitiveTypeInfo)) {
+        if (!(typeInfo instanceof PrimitiveTypeInfo)) {
             throw new TypeError("Invalid primitive type.");
         }
         return typeInfo;
     }
-
-    finishType<T extends StructPrimitiveType>(primitiveType: T) {
-        this._primitiveType = primitiveType;
-        Object.freeze(this);
-        typeInfos.set(primitiveType, this);
-        return primitiveType;
-    }
 }
 
-const weakFieldCache = new WeakMap<StructFieldInfo, WeakMap<StructBase, StructBase>>();
+const weakFieldCache = new WeakMap<StructFieldInfo, WeakMap<Struct, Struct>>();
 
-/* @internal */
+/**
+ * Type information about a field in a structured type.
+ * @internal
+ */
 export class StructFieldInfo {
     readonly containingType: StructTypeInfo;
     readonly field: StructFieldDefinition;
@@ -141,14 +180,14 @@ export class StructFieldInfo {
     }
 
     get name(): string | symbol { return this.field.name; }
-    get type() { return this.field.type; }
+    get runtimeType() { return this.field.type; }
     get size() { return this.field.type.SIZE; }
 
     coerce(value: any) {
         return this.typeInfo.coerce(value);
     }
 
-    readFrom(owner: Struct_, view: DataView, isLittleEndian?: boolean) {
+    readFrom(owner: StructImpl, view: DataView, isLittleEndian?: boolean) {
         if (this.typeInfo instanceof StructTypeInfo) {
             let cache = weakFieldCache.get(this);
             if (!cache) weakFieldCache.set(this, cache = new WeakMap());
@@ -159,22 +198,32 @@ export class StructFieldInfo {
         return this.typeInfo.readFrom(view, this.byteOffset, isLittleEndian);
     }
 
-    writeTo(_owner: Struct_, view: DataView, value: number | bigint | StructBase, isLittleEndian?: boolean) {
+    writeTo(_owner: StructImpl, view: DataView, value: number | bigint | Struct | TypedArray<any, number>, isLittleEndian?: boolean) {
         this.typeInfo.writeTo(view, this.byteOffset, value, isLittleEndian);
     }
 }
 
+function generateName(fields: readonly StructFieldDefinition[], baseType: StructTypeInfo | undefined) {
+    const structName = baseType ? `struct extends ${baseType.name}` : `struct`;
+    const fieldNames = fields.map(field => {
+        const fieldName = typeof field.name === "string" ? field.name : `[${field.name.toString()}]`;
+        return `${fieldName}: ${TypeInfo.get(field.type).name}`;
+    }).join(", ");
+    return `${structName} {${fieldNames}}`;
+}
+
 /* @internal */
 export class StructTypeInfo extends TypeInfo {
+    declare readonly size: number;
+
     readonly fields: readonly StructFieldInfo[];
     readonly ownFields: readonly StructFieldInfo[];
     readonly fieldsByName: ReadonlyMap<string | symbol, StructFieldInfo>;
     readonly fieldsByOffset: ReadonlyMap<number, StructFieldInfo>;
     readonly baseType: StructTypeInfo | undefined;
+    readonly runtimeType: StructType;
 
-    private _structType!: StructType;
-
-    constructor(fields: readonly StructFieldDefinition[], baseType?: StructTypeInfo) {
+    constructor(name: string | undefined, fields: readonly StructFieldDefinition[], baseType?: StructTypeInfo) {
         const fieldNames = new Set<string | symbol>();
         const fieldsArray: StructFieldInfo[] = [];
         const fieldsByName = new Map<string | symbol, StructFieldInfo>();
@@ -187,6 +236,7 @@ export class StructTypeInfo extends TypeInfo {
                 fieldsByOffset.set(field.byteOffset, field);
             }
         }
+
         const fieldOffsets: number[] = [];
         let offset = baseType ? baseType.size : 0;
         let maxAlignment: Alignment = 1;
@@ -194,7 +244,12 @@ export class StructTypeInfo extends TypeInfo {
             if (fieldNames.has(field.name)) {
                 throw new TypeError(`Duplicate field: ${field.name.toString()}`);
             }
+
             const fieldTypeInfo = TypeInfo.get(field.type);
+            if (fieldTypeInfo.size === undefined) {
+                throw new TypeError(`A struct may only contain fixed-size elements: ${field.name.toString()}`);
+            }
+
             const alignment = fieldTypeInfo.alignment;
             offset = align(offset, alignment);
             fieldOffsets.push(offset);
@@ -203,7 +258,7 @@ export class StructTypeInfo extends TypeInfo {
             offset += fieldTypeInfo.size;
         }
 
-        super(align(offset, maxAlignment), maxAlignment);
+        super(name ?? generateName(fields, baseType), align(offset, maxAlignment), maxAlignment);
 
         const baseLength = baseType ? baseType.fields.length : 0;
         const ownFieldsArray: StructFieldInfo[] = [];
@@ -214,54 +269,219 @@ export class StructTypeInfo extends TypeInfo {
             fieldsByName.set(fieldInfo.name, fieldInfo);
             fieldsByOffset.set(fieldInfo.byteOffset, fieldInfo);
         }
+
         this.ownFields = ownFieldsArray;
         this.fields = fieldsArray;
         this.fieldsByName = fieldsByName;
         this.fieldsByOffset = fieldsByOffset;
         this.baseType = baseType;
-    }
 
-    get structType() {
-        return this._structType;
-    }
-
-    static get(type: StructTypeLike): StructTypeInfo;
-    static get(type: StructPrimitiveType): never;
-    static get(type: StructPrimitiveType | StructTypeLike): StructTypeInfo;
-    static get(type: StructPrimitiveType | StructTypeLike): StructTypeInfo {
-        const typeInfo = this.tryGet(type);
-        if (!typeInfo || !(typeInfo instanceof StructTypeInfo)) {
-            throw new TypeError("Invalid struct or primitive type.");
+        const baseClass = (baseType ? baseType.runtimeType : StructImpl) as abstract new () => Struct;
+        const structClass = (void 0, class extends baseClass { } as StructType);
+        Object.defineProperty(structClass, "name", { value: name });
+        for (const field of ownFieldsArray) {
+            Object.defineProperty(structClass.prototype, field.name, {
+                enumerable: false,
+                configurable: true,
+                get() { return field.readFrom(this, getDataView(this)); },
+                set(value) { field.writeTo(this, getDataView(this), value); }
+            });
+            Object.defineProperty(structClass.prototype, field.index, {
+                enumerable: false,
+                configurable: true,
+                get() { return field.readFrom(this, getDataView(this)); },
+                set(value) { field.writeTo(this, getDataView(this), value); }
+            });
         }
-        return typeInfo;
-    }
-
-    coerce(value: any) {
-        return value instanceof this._structType ? value : new this._structType(value);
-    }
-
-    readFrom(view: DataView, offset: number, isLittleEndian?: boolean) {
-        return new this._structType(view.buffer, view.byteOffset + offset);
-    }
-
-    writeTo(view: DataView, offset: number, value: number | bigint | StructBase, isLittleEndian?: boolean) {
-        if (!(value instanceof this._structType)) {
-            throw new TypeError();
-        }
-        value.writeTo(view.buffer, view.byteOffset + offset);
-    }
-
-    finishType<T extends StructType>(structType: T): T;
-    finishType(structType: typeof Struct_): void;
-    finishType<T extends StructType>(structType: T) {
-        this._structType = structType;
+        this.runtimeType = structClass;
         Object.freeze(this.ownFields);
         Object.freeze(this.fields);
         Object.freeze(this.fieldsByName);
         Object.freeze(this.fieldsByOffset);
         Object.freeze(this);
-        typeInfos.set(structType, this);
-        return structType;
+        typeInfos.set(this.runtimeType, this);
+    }
+
+    static get(type: TypeLike): StructTypeInfo {
+        const typeInfo = this.tryGet(type);
+        if (!typeInfo || !(typeInfo instanceof StructTypeInfo)) {
+            throw new TypeError("Invalid struct, array, or primitive type.");
+        }
+        return typeInfo;
+    }
+
+    isCompatibleWith(other: TypeInfo): boolean {
+        if (this === other) return true;
+        if (!(other instanceof StructTypeInfo)) return false;
+        if (this.fields.length !== other.fields.length) return false;
+        for (let i = 0; i < this.fields.length; i++) {
+            const thisField = this.fields[i];
+            const otherField = other.fields[i];
+            if (thisField.typeInfo instanceof PrimitiveTypeInfo) {
+                if (thisField.typeInfo !== otherField.typeInfo) {
+                    return false;
+                }
+            }
+            else {
+                if (!this.fields[i].typeInfo.isCompatibleWith(other.fields[i].typeInfo)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    coerce(value: any) {
+        return value instanceof this.runtimeType ? value : new this.runtimeType(value);
+    }
+
+    readFrom(view: DataView, offset: number, _isLittleEndian?: boolean) {
+        return new this.runtimeType(view.buffer, view.byteOffset + offset);
+    }
+
+    writeTo(view: DataView, offset: number, value: number | bigint | Struct, _isLittleEndian?: boolean) {
+        if (value instanceof this.runtimeType) {
+            value.writeTo(view.buffer, view.byteOffset + offset);
+        }
+        else {
+            throw new TypeError(`Expected an instance of type '${this.name}'`);
+        }
+    }
+}
+
+/* @internal */
+export abstract class ArrayTypeInfo extends TypeInfo {
+    abstract declare readonly runtimeType: ArrayType<any>;
+    readonly elementType: Type;
+    readonly elementTypeInfo: TypeInfo;
+    readonly bytesPerElement: number;
+    readonly fixedLength: number | undefined;
+
+    protected constructor(elementType: Type, fixedLength: number | undefined) {
+        const elementTypeInfo = TypeInfo.get(elementType);
+        const bytesPerElement = align(elementType.SIZE, elementTypeInfo.alignment);
+        super(`typedarray ${elementType.name}[${fixedLength ?? ""}]`, fixedLength === undefined ? -1 : fixedLength * bytesPerElement, elementTypeInfo.alignment);
+        this.elementType = elementType;
+        this.elementTypeInfo = elementTypeInfo;
+        this.bytesPerElement = bytesPerElement;
+        this.fixedLength = fixedLength;
+    }
+
+    static get(type: TypeLike): BaseArrayTypeInfo | FixedLengthArrayTypeInfo {
+        const typeInfo = super.tryGet(type);
+        if (!(typeInfo instanceof BaseArrayTypeInfo || typeInfo instanceof FixedLengthArrayTypeInfo)) {
+            throw new TypeError("Invalid struct, array, or primitive type.");
+        }
+        return typeInfo;
+    }
+
+    abstract getResizedType(length: number): ArrayType<any> | FixedLengthArrayType<any, number>;
+    abstract toFixed(lenth: number): FixedLengthArrayTypeInfo;
+
+    isCompatibleWith(other: TypeInfo): boolean {
+        return this === other || other instanceof ArrayTypeInfo &&
+            this.fixedLength === other.fixedLength &&
+            this.elementTypeInfo.isCompatibleWith(other.elementTypeInfo);
+    }
+
+    coerce(value: any) {
+        return value instanceof this.runtimeType ? value : new this.runtimeType(value);
+    }
+
+    readElementFrom(view: DataView, index: number, isLittleEndian?: boolean) {
+        return this.elementTypeInfo.readFrom(view, index * this.bytesPerElement, isLittleEndian);
+    }
+
+    writeElementTo(view: DataView, index: number, value: number | bigint | Struct | TypedArray<any, number>, isLittleEndian?: boolean): void {
+        this.elementTypeInfo.writeTo(view, index * this.bytesPerElement, value, isLittleEndian);
+    }
+
+    readFrom(view: DataView, offset: number, _isLittleEndian?: boolean) {
+        return new this.runtimeType(view.buffer, view.byteOffset + offset);
+    }
+
+    writeTo(view: DataView, offset: number, value: number | bigint | Struct | TypedArray<any, number>, _isLittleEndian?: boolean): void {
+        if (!(value instanceof this.runtimeType)) throw new TypeError();
+        value.writeTo(view.buffer, view.byteOffset + offset);
+    }
+}
+
+/* @internal */
+export class BaseArrayTypeInfo extends ArrayTypeInfo {
+    readonly runtimeType: ArrayType<any>;
+    #fixedLengthTypes: Map<number, WeakRef<FixedLengthArrayTypeInfo>> | undefined;
+    #fixedLengthTypesFinalizationRegistry: FinalizationRegistry<number> | undefined;
+
+    constructor(elementType: Type) {
+        super(elementType, /*fixedLength*/ undefined);
+        this.runtimeType = class extends TypedArrayImpl<any> {} as ArrayType<any>;
+        Object.defineProperty(this.runtimeType, "name", { value: this.name });
+        Object.freeze(this);
+        typeInfos.set(this.runtimeType, this);
+    }
+
+    static get(type: TypeLike): BaseArrayTypeInfo {
+        const typeInfo = super.tryGet(type);
+        if (!(typeInfo instanceof BaseArrayTypeInfo)) {
+            throw new TypeError("Invalid struct, array, or primitive type.");
+        }
+        return typeInfo;
+    }
+
+    getResizedType(length: number) {
+        return this.runtimeType;
+    }
+
+    toFixed(fixedLength: number) {
+        this.#fixedLengthTypes ??= new Map();
+
+        let fixedLengthType = this.#fixedLengthTypes.get(fixedLength)?.deref();
+        if (fixedLengthType) {
+            return fixedLengthType;
+        }
+
+        this.#fixedLengthTypesFinalizationRegistry ??= new FinalizationRegistry(fixedLength => {
+            this.#fixedLengthTypes?.delete(fixedLength);
+        });
+
+        fixedLengthType = new FixedLengthArrayTypeInfo(this, fixedLength);
+        this.#fixedLengthTypes.set(fixedLength, new WeakRef(fixedLengthType));
+        this.#fixedLengthTypesFinalizationRegistry.register(fixedLengthType, fixedLength);
+        return fixedLengthType;
+    }
+}
+
+/* @internal */
+export class FixedLengthArrayTypeInfo extends ArrayTypeInfo {
+    readonly runtimeType: FixedLengthArrayType<any, number>;
+    readonly baseType: BaseArrayTypeInfo;
+
+    declare readonly fixedLength: number;
+    declare readonly size: number;
+
+    constructor(baseType: BaseArrayTypeInfo, fixedLength: number) {
+        super(baseType.elementType, fixedLength);
+        this.baseType = baseType;
+        this.runtimeType = class extends baseType.runtimeType {} as unknown as FixedLengthArrayType<any, number>;
+        Object.defineProperty(this.runtimeType, "name", { value: this.name });
+        Object.freeze(this);
+        typeInfos.set(this.runtimeType, this);
+    }
+
+    static get(type: TypeLike): FixedLengthArrayTypeInfo {
+        const typeInfo = super.tryGet(type);
+        if (!typeInfo || !(typeInfo instanceof FixedLengthArrayTypeInfo)) {
+            throw new TypeError("Invalid struct, array, or primitive type.");
+        }
+        return typeInfo;
+    }
+
+    getResizedType(length: number) {
+        return this.baseType.toFixed(length).runtimeType;
+    }
+
+    toFixed(fixedLength: number) {
+        return fixedLength === this.fixedLength ? this : this.baseType.toFixed(fixedLength);
     }
 }
 

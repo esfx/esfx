@@ -25,6 +25,7 @@
         "url": "https://github.com/esfx/esfx/issues"
     },
     "dependencies": {
+        "@esfx/indexed-object": "workspace:*",
         "@esfx/type-model": "workspace:*",
         "tslib": "^2.4.0"
     },

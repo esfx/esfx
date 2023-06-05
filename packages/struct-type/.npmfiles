@@ -1,3 +1,7 @@
+dist/cjs/array.js
+dist/cjs/array.js.map
+dist/cjs/arrayType.js
+dist/cjs/arrayType.js.map
 dist/cjs/index.js
 dist/cjs/index.js.map
 dist/cjs/numbers.js
@@ -10,12 +14,18 @@ dist/cjs/structType.js
 dist/cjs/structType.js.map
 dist/cjs/typeInfo.js
 dist/cjs/typeInfo.js.map
+dist/esm/array.mjs
+dist/esm/arrayType.mjs
 dist/esm/index.mjs
 dist/esm/numbers.mjs
 dist/esm/primitives.mjs
 dist/esm/struct.mjs
 dist/esm/structType.mjs
 dist/esm/typeInfo.mjs
+dist/types/array.d.ts
+dist/types/array.d.ts.map
+dist/types/arrayType.d.ts
+dist/types/arrayType.d.ts.map
 dist/types/index.d.ts
 dist/types/index.d.ts.map
 dist/types/numbers.d.ts

@@ -39,6 +39,7 @@ describe("indexedObject", () => {
         const expected = {};
         const fn = jest.fn().mockReturnValue(expected);
         const obj = new class extends TestableIntegerIndexedObject {
+            getLength() { return 1; }
             getIndex(index: number) { return fn(index); }
         };
 
@@ -51,6 +52,7 @@ describe("indexedObject", () => {
         const expected = {};
         const fn = jest.fn<(x: number, v: any) => boolean>().mockReturnValue(true);
         const obj = new class extends TestableIntegerIndexedObject {
+            getLength() { return 1; }
             setIndex(index: number, value: any) { return fn(index, value); }
         };
 
@@ -61,6 +63,7 @@ describe("indexedObject", () => {
     it("deleteIndex", () => {
         const fn = jest.fn<(i: number) => boolean>().mockReturnValue(true);
         const obj = new class extends TestableIntegerIndexedObject {
+            getLength() { return 1; }
             deleteIndex(index: number) { return fn(index); }
         };
 
@@ -70,10 +73,35 @@ describe("indexedObject", () => {
     });
     it("defineProperty", () => {
         const sentinel = {};
-        const fn = jest.fn().mockReturnValue(true);
-        const obj = new class extends TestableIntegerIndexedObject { };
-        const x = Reflect.defineProperty(obj, 0, { enumerable: true, configurable: false, writable: true, value: sentinel });
+        const fn = jest.fn<() => boolean>().mockReturnValue(true);
+        const obj = new class extends TestableIntegerIndexedObject {
+            getLength() { return 1; }
+            setIndex(index: number, value: any): boolean { return fn(); }
+        };
+        const a = Reflect.defineProperty(obj, 0, { enumerable: true, configurable: false, writable: true, value: sentinel });
         expect(fn).toBeCalledTimes(0);
-        expect(x).toBe(false);
+        expect(a).toBe(false);
+
+        const b = Reflect.defineProperty(obj, 0, { enumerable: true, configurable: true, writable: true, value: sentinel });
+        expect(fn).toBeCalledTimes(1);
+        expect(b).toBe(true);
+    });
+    it("getOwnPropertyDescriptor", () => {
+        const value = "foo";
+        const fn = jest.fn().mockReturnValue(value);
+        const obj = new class extends TestableIntegerIndexedObject {
+            getLength() { return 1; }
+            getIndex(index: number) { return fn(index); }
+        };
+
+        const desc1 = Reflect.getOwnPropertyDescriptor(obj, 0);
+        const desc2 = Reflect.getOwnPropertyDescriptor(obj, "0");
+        const desc3 = Reflect.getOwnPropertyDescriptor(obj, -1);
+        const desc4 = Reflect.getOwnPropertyDescriptor(obj, 1);
+        expect(fn).toBeCalledTimes(2);
+        expect(desc1).toEqual({ enumerable: true, configurable: true, writable: true, value });
+        expect(desc2).toEqual({ enumerable: true, configurable: true, writable: true, value });
+        expect(desc3).toBeUndefined();
+        expect(desc4).toBeUndefined();
     });
 });

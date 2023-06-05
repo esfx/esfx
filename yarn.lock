@@ -1144,9 +1144,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@esfx/indexed-object@workspace:packages/indexed-object":
+"@esfx/indexed-object@workspace:*, @esfx/indexed-object@workspace:packages/indexed-object":
   version: 0.0.0-use.local
   resolution: "@esfx/indexed-object@workspace:packages/indexed-object"
+  dependencies:
+    tslib: ^2.4.0
   languageName: unknown
   linkType: soft
 
@@ -1403,6 +1405,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@esfx/struct-type@workspace:packages/struct-type"
   dependencies:
+    "@esfx/indexed-object": "workspace:*"
     "@esfx/type-model": "workspace:*"
     tslib: ^2.4.0
   languageName: unknown

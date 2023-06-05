@@ -16,29 +16,33 @@ describe("samples", () => {
             && value >= 0;
     }
 
+    let getItems: <T>(col: Collection<T>) => T[];
+
     // example of a collection class
     class Collection<T> extends IntegerIndexedObject<T> {
-        private _items: T[];
+        static { getItems = col => col.#items; }
+
+        #items: T[];
 
         constructor(items: T[] = []) {
             super();
-            this._items = items;
+            this.#items = items;
         }
 
         get size() {
-            return this._items.length;
+            return this.#items.length;
         }
 
         has(value: T) {
-            return this._items.includes(value);
+            return this.#items.includes(value);
         }
 
         indexOf(value: T) {
-            return this._items.indexOf(value);
+            return this.#items.indexOf(value);
         }
 
         add(value: T) {
-            this.insertIndex(this._items.length, value);
+            this.insertIndex(this.#items.length, value);
             return this;
         }
 
@@ -48,7 +52,7 @@ describe("samples", () => {
         }
 
         delete(value: T) {
-            const index = this._items.indexOf(value);
+            const index = this.#items.indexOf(value);
             return index >= 0 && this.deleteIndex(index);
         }
 
@@ -58,43 +62,43 @@ describe("samples", () => {
 
         clear() {
             if (Object.isFrozen(this)) throw new TypeError();
-            this._items.length = 0;
+            this.#items.length = 0;
         }
 
         protected getLength() {
-            return this._items.length;
+            return this.#items.length;
         }
 
         protected getIndex(index: number) {
             if (!isIndex(index)) throw new TypeError();
-            if (index >= this._items.length) throw new RangeError();
-            return this._items[index];
+            if (index >= this.#items.length) throw new RangeError();
+            return this.#items[index];
         }
 
         protected insertIndex(index: number, value: T) {
             if (!Object.isExtensible(this)) throw new TypeError();
             if (!isIndex(index)) throw new TypeError();
-            if (index > this._items.length) throw new RangeError();
-            if (index === this._items.length) this._items.push(value);
-            else this._items.splice(index, 0, value);
+            if (index > this.#items.length) throw new RangeError();
+            if (index === this.#items.length) this.#items.push(value);
+            else this.#items.splice(index, 0, value);
             return true;
         }
 
         protected setIndex(index: number, value: T) {
             if (!Object.isExtensible(this)) throw new TypeError();
             if (!isIndex(index)) throw new TypeError();
-            if (index >= this._items.length) throw new RangeError();
-            this._items[index] = value;
+            if (index >= this.#items.length) throw new RangeError();
+            this.#items[index] = value;
             return true;
         }
 
         protected deleteIndex(index: number) {
             if (!Object.isExtensible(this)) throw new TypeError();
             if (!isIndex(index)) throw new TypeError();
-            if (index >= this._items.length) return false;
-            if (index === 0) this._items.shift();
-            else if (index === this._items.length - 1) this._items.pop();
-            else this._items.splice(index, 1);
+            if (index >= this.#items.length) return false;
+            if (index === 0) this.#items.shift();
+            else if (index === this.#items.length - 1) this.#items.pop();
+            else this.#items.splice(index, 1);
             return true;
         }
     }
@@ -182,33 +186,37 @@ describe("samples", () => {
         });
     })
 
+    let getMap: <K, V>(col: KeyedCollection<K, V>) => Map<K, V>;
+
     // Example of a keyed collection
     abstract class KeyedCollection<K, V> extends Collection<V> {
-        private _map = new Map<K, V>();
+        static { getMap = col => col.#map; }
+
+        #map = new Map<K, V>();
 
         hasKey(key: K) {
-            return this._map.has(key);
+            return this.#map.has(key);
         }
 
         get(key: K) {
-            return this._map.get(key);
+            return this.#map.get(key);
         }
 
         deleteKey(key: K) {
-            return this._map.has(key) && this.delete(this._map.get(key)!);
+            return this.#map.has(key) && this.delete(this.#map.get(key)!);
         }
 
         clear() {
             super.clear();
-            this._map.clear();
+            this.#map.clear();
         }
 
         protected insertIndex(index: number, value: V) {
             if (!Object.isExtensible(this)) throw new TypeError();
             const key = this.getKey(value);
-            if (this._map.has(key)) throw new RangeError();
+            if (this.#map.has(key)) throw new RangeError();
             if (super.insertIndex(index, value)) {
-                this._map.set(key, value);
+                this.#map.set(key, value);
                 return true;
             }
             return false;
@@ -224,15 +232,15 @@ describe("samples", () => {
             const existingKey = this.getKey(this.getIndex(index));
             if (Object.is(key, existingKey)) {
                 if (super.setIndex(index, value)) {
-                    this._map.set(key, value);
+                    this.#map.set(key, value);
                     return true;
                 }
             }
             else {
-                if (this._map.has(key)) throw new RangeError();
+                if (this.#map.has(key)) throw new RangeError();
                 if (super.setIndex(index, value)) {
-                    this._map.delete(existingKey);
-                    this._map.set(key, value);
+                    this.#map.delete(existingKey);
+                    this.#map.set(key, value);
                     return true;
                 }
             }
@@ -245,7 +253,7 @@ describe("samples", () => {
             const existingValue = this.getIndex(index);
             const existingKey = this.getKey(existingValue);
             if (super.deleteIndex(index)) {
-                this._map.delete(existingKey);
+                this.#map.delete(existingKey);
                 return true;
             }
             return false;
@@ -259,13 +267,13 @@ describe("samples", () => {
             getKey(person: Person) { return person.id; }
         }
         it("constructor", () => {
-            const col = new PersonCollection(), map = col["_map"], items = col["_items"];
+            const col = new PersonCollection(), map = getMap(col), items = getItems(col);
             expect(col.size).toBe(0);
             expect(map.size).toBe(0);
             expect(items.length).toBe(0);
         })
         it("add", () => {
-            const col = new PersonCollection(), map = col["_map"], items = col["_items"];
+            const col = new PersonCollection(), map = getMap(col), items = getItems(col);
             col.add(alice);
             expect(col.size).toBe(1);
             expect(map.size).toBe(1);
@@ -274,7 +282,7 @@ describe("samples", () => {
             expect(items[0]).toBe(alice);
         });
         it("insert", () => {
-            const col = new PersonCollection(), map = col["_map"], items = col["_items"];
+            const col = new PersonCollection(), map = getMap(col), items = getItems(col);
             col.add(alice);
             col.add(bob);
             col.insert(1, claire);
@@ -289,7 +297,7 @@ describe("samples", () => {
             expect(items[2]).toBe(bob);
         });
         it("set", () => {
-            const col = new PersonCollection(), map = col["_map"], items = col["_items"];
+            const col = new PersonCollection(), map = getMap(col), items = getItems(col);
             col.add(alice);
             col[0] = bob;
             expect(col.size).toBe(1);
@@ -306,7 +314,7 @@ describe("samples", () => {
             expect(col.hasKey(bob.id)).toBe(false);
         });
         it("delete", () => {
-            const col = new PersonCollection(), map = col["_map"], items = col["_items"];
+            const col = new PersonCollection(), map = getMap(col), items = getItems(col);
             col.add(alice);
             expect(col.delete(alice)).toBe(true);
             expect(col.delete(bob)).toBe(false);
@@ -315,7 +323,7 @@ describe("samples", () => {
             expect(items.length).toBe(0);
         });
         it("deleteKey", () => {
-            const col = new PersonCollection(), map = col["_map"], items = col["_items"];
+            const col = new PersonCollection(), map = getMap(col), items = getItems(col);
             col.add(alice);
             expect(col.deleteKey(alice.id)).toBe(true);
             expect(col.deleteKey(bob.id)).toBe(false);

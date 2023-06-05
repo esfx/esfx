@@ -15,7 +15,7 @@
 */
 
 import type { StructFieldDefinition, StructType as StructType_ } from "./index.js";
-import { Struct, getDataView } from "./struct.js";
+import { StructImpl } from "./struct.js";
 import { StructTypeInfo } from './typeInfo.js';
 
 type CreateStructTypeFieldsNameOverload<TDef extends readonly StructFieldDefinition[]> = [TDef, string?];
@@ -42,39 +42,14 @@ export function StructType<TBase extends readonly StructFieldDefinition[], TDef 
     }
     else if (isStructTypeFieldsNameOverload(args)) {
         [fields, name] = args;
-        baseType = Struct as any;
     }
     else {
         throw new TypeError();
     }
 
-    const baseTypeInfo = StructTypeInfo.get(baseType);
-    const structTypeInfo = new StructTypeInfo(fields, baseTypeInfo);
-    const structClass = { [name || ""]: class extends baseType { } as StructType_<readonly [...TBase, ...TDef]> }[name || ""];
-    Object.defineProperty(structClass, "name", { value: name });
-    for (const field of structTypeInfo.ownFields) {
-        Object.defineProperty(structClass.prototype, field.name, {
-            enumerable: false,
-            configurable: true,
-            get(this: Struct<readonly [...TBase, ...TDef]>) {
-                return field.readFrom(this, getDataView(this));
-            },
-            set(this: Struct<readonly [...TBase, ...TDef]>, value) {
-                field.writeTo(this, getDataView(this), value);
-            }
-        });
-        Object.defineProperty(structClass.prototype, field.index, {
-            enumerable: false,
-            configurable: true,
-            get(this: Struct<readonly [...TBase, ...TDef]>) {
-                return field.readFrom(this, getDataView(this));
-            },
-            set(this: Struct<readonly [...TBase, ...TDef]>, value) {
-                field.writeTo(this, getDataView(this), value);
-            }
-        });
-    }
-
-    return structTypeInfo.finishType(structClass);
+    const baseTypeInfo = baseType && baseType !== StructImpl ? StructTypeInfo.get(baseType) : undefined;
+    const structTypeInfo = new StructTypeInfo(name, fields, baseTypeInfo);
+    return structTypeInfo.runtimeType as StructType_<readonly [...TBase, ...TDef]>;
 }
-(StructType as any).prototype = Struct;
+
+(StructType as any).prototype = StructImpl;

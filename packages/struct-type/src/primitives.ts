@@ -14,17 +14,13 @@
    limitations under the License.
 */
 
-import { NumberType, NumberTypeToType, coerceValue } from './numbers.js';
-import type { StructPrimitiveType } from './index.js';
+import type { PrimitiveType } from './index.js';
+import { NumberType, NumberTypeToType } from './numbers.js';
 import { PrimitiveTypeInfo } from './typeInfo.js';
 
-function createPrimitiveType<K extends string, N extends NumberType>(name: K, nt: N): StructPrimitiveType<K, NumberTypeToType[N]> {
-    const typeInfo = new PrimitiveTypeInfo(nt);
-    const type = Object.defineProperties(function (value: number | bigint) { return coerceValue(nt, value); } as StructPrimitiveType<K, NumberTypeToType[N]>, {
-        name: { value: name },
-        SIZE: { value: typeInfo.size },
-    });
-    return typeInfo.finishType(type);
+function createPrimitiveType<K extends string, N extends NumberType>(name: K, nt: N): PrimitiveType<K, NumberTypeToType[N]> {
+    const typeInfo = new PrimitiveTypeInfo(name, nt);
+    return typeInfo.runtimeType as PrimitiveType<K, NumberTypeToType[N]>;
 }
 
 /* @internal */

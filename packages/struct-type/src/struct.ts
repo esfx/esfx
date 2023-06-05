@@ -14,8 +14,7 @@
    limitations under the License.
 */
 
-import { numstr } from '@esfx/type-model';
-import type { StructFieldDefinition, StructInitProperties, StructInitElements, StructFieldRuntimeType } from './index.js';
+import type { StructElements, StructFieldDefinition, StructIndices, StructInitElements, StructInitProperties, StructKeys, StructProperties } from './index.js';
 import { StructTypeInfo } from './typeInfo.js';
 
 let _getDataView: (struct: Struct) => DataView;
@@ -42,6 +41,7 @@ function isStructConstructorArrayBufferLikeOverload<TDef extends readonly Struct
 }
 
 function isStructConstructorStructFieldsOverload<TDef extends readonly StructFieldDefinition[]>(args: StructConstructorOverloads<TDef>): args is StructConstructorStructFieldsOverload<TDef> {
+    // @ts-ignore (type instantiation is excessively deep)
     return args.length > 0 && typeof args[0] === "object" && args[0] !== null && !Array.isArray(args[0]);
 }
 
@@ -50,7 +50,7 @@ function isStructConstructorStructFieldArrayOverload<TDef extends readonly Struc
 }
 
 /* @internal */
-export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
+abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
     static {
         _getDataView = struct => struct.#dataView;
     }
@@ -119,17 +119,17 @@ export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any
     get byteOffset() { return this.#byteOffset; }
     get byteLength() { return this.#type.size; }
 
-    get<K extends TDef[number]["name"]>(key: K): StructFieldRuntimeType<Extract<TDef[number], { readonly name: K }>>;
-    get<K extends TDef[number]["name"]>(key: K) {
-        const field = this.#type.fieldsByName.get(key);
+    get<K extends StructKeys<TDef>>(key: K): StructProperties<TDef>[K];
+    get<K extends StructKeys<TDef>>(key: K) {
+        const field = this.#type.fieldsByName.get(key as string | symbol);
         if (field) {
             return field.readFrom(this, this.#dataView);
         }
         throw new RangeError();
     }
 
-    set<K extends TDef[number]["name"]>(key: K, value: StructFieldRuntimeType<Extract<TDef[number], { readonly name: K }>>) {
-        const field = this.#type.fieldsByName.get(key);
+    set<K extends StructKeys<TDef>>(key: K, value: StructProperties<TDef>[K]) {
+        const field = this.#type.fieldsByName.get(key as string | symbol);
         if (field) {
             field.writeTo(this, this.#dataView, field.coerce(value));
             return;
@@ -137,16 +137,16 @@ export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any
         throw new RangeError();
     }
 
-    getIndex<I extends numstr<keyof TDef>>(index: I): StructFieldRuntimeType<Extract<TDef[Extract<I, keyof TDef>], StructFieldDefinition>>;
-    getIndex<I extends numstr<keyof TDef>>(index: I) {
-        if (index < this.#type.fields.length) {
+    getIndex<I extends StructIndices<TDef>>(index: I): StructElements<TDef>[I];
+    getIndex<I extends StructIndices<TDef>>(index: I) {
+        if (+index < this.#type.fields.length) {
             const field = this.#type.fields[index as number];
             return field.readFrom(this, this.#dataView);
         }
         throw new RangeError();
     }
 
-    setIndex<I extends keyof TDef & number>(index: I, value: StructFieldRuntimeType<Extract<TDef[I], StructFieldDefinition>>) {
+    setIndex<I extends StructIndices<TDef>>(index: I, value: StructElements<TDef>[I]) {
         if (index < this.#type.fields.length) {
             const field = this.#type.fields[index as number];
             field.writeTo(this, this.#dataView, field.coerce(value));
@@ -162,7 +162,7 @@ export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any
             if (byteOffset === this.#byteOffset) {
                 return;
             }
-            new Uint8Array(buffer).copyWithin(byteOffset, this.#byteOffset, this.#type.size);
+            new Uint8Array(buffer).copyWithin(byteOffset, this.#byteOffset, this.#byteOffset + this.#type.size);
             return;
         }
 
@@ -173,4 +173,5 @@ export abstract class Struct<TDef extends readonly StructFieldDefinition[] = any
     }
 }
 
-new StructTypeInfo([]).finishType(Struct);
+export { Struct as StructImpl };
+

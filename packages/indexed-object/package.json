@@ -24,6 +24,9 @@
     "bugs": {
         "url": "https://github.com/esfx/esfx/issues"
     },
+    "dependencies": {
+        "tslib": "^2.4.0"
+    },
     "publishConfig": {
         "access": "public"
     },

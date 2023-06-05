@@ -1,4 +1,4 @@
-import { StructType, int32 } from "..";
+import { StructType, ArrayType, int32 } from "..";
 
 describe("simple struct", () => {
     const Point = StructType([
@@ -104,6 +104,14 @@ describe("complex struct", () => {
         expect(l.to.x).toBe(3);
         expect(l.to.y).toBe(4);
     });
+    it("can contain array type", () => {
+        const PointArrayx2 = ArrayType(Point, 2);
+        const Record = StructType([
+            { name: "values", type: PointArrayx2 }
+        ]);
+        const rec = new Record();
+        rec.values
+    });
 });
 describe("subclass", () => {
     class Point extends StructType([
@@ -195,4 +203,12 @@ describe("baseType", () => {
         expect(p.y).toBe(2);
         expect(p.z).toBe(3);
     });
+});
+describe("types", () => {
+    const A = StructType([{ name: "a", type: int32 }]);
+    const B = StructType([{ name: "b", type: int32 }]);
+    const AB = StructType([{ name: "a", type: A }, { name: "b", type: B }]);
+    const ab = new AB();
+    ab.getIndex(0).a;
+    ab.getIndex(1).b;
 });
