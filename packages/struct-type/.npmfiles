@@ -14,6 +14,8 @@ dist/cjs/structType.js
 dist/cjs/structType.js.map
 dist/cjs/typeInfo.js
 dist/cjs/typeInfo.js.map
+dist/cjs/win32.js
+dist/cjs/win32.js.map
 dist/esm/array.mjs
 dist/esm/arrayType.mjs
 dist/esm/index.mjs
@@ -22,6 +24,7 @@ dist/esm/primitives.mjs
 dist/esm/struct.mjs
 dist/esm/structType.mjs
 dist/esm/typeInfo.mjs
+dist/esm/win32.mjs
 dist/types/array.d.ts
 dist/types/array.d.ts.map
 dist/types/arrayType.d.ts
@@ -38,6 +41,8 @@ dist/types/structType.d.ts
 dist/types/structType.d.ts.map
 dist/types/typeInfo.d.ts
 dist/types/typeInfo.d.ts.map
+dist/types/win32.d.ts
+dist/types/win32.d.ts.map
 LICENSE
 README.md
 package.json

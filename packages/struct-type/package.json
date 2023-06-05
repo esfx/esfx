@@ -10,6 +10,11 @@
             "types": "./dist/types/index.d.ts",
             "require": "./dist/cjs/index.js",
             "import": "./dist/esm/index.mjs"
+        },
+        "./win32": {
+            "types": "./dist/types/win32.d.ts",
+            "require": "./dist/cjs/win32.js",
+            "import": "./dist/esm/win32.mjs"
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",

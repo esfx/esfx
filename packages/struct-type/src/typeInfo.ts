@@ -21,7 +21,7 @@ import { Alignment, coerceValue, getValueFromView, NumberType, putValueInView, s
 import { getDataView, StructImpl } from "./struct.js";
 
 type StructTypeLike =
-    | StructType
+    | StructType<any>
     | typeof StructImpl;
 
 type ArrayTypeLike =
@@ -212,6 +212,8 @@ function generateName(fields: readonly StructFieldDefinition[], baseType: Struct
     return `${structName} {${fieldNames}}`;
 }
 
+const hasOwn = Object.hasOwn ?? ((obj: object, k: PropertyKey) => Object.prototype.hasOwnProperty.call(obj, k));
+
 /* @internal */
 export class StructTypeInfo extends TypeInfo {
     declare readonly size: number;
@@ -221,9 +223,9 @@ export class StructTypeInfo extends TypeInfo {
     readonly fieldsByName: ReadonlyMap<string | symbol, StructFieldInfo>;
     readonly fieldsByOffset: ReadonlyMap<number, StructFieldInfo>;
     readonly baseType: StructTypeInfo | undefined;
-    readonly runtimeType: StructType;
+    readonly runtimeType: StructType<any>;
 
-    constructor(name: string | undefined, fields: readonly StructFieldDefinition[], baseType?: StructTypeInfo) {
+    constructor(name: string | undefined, fieldsObject: { readonly [key: string | symbol]: Type }, fieldOrder: readonly (string | number | symbol)[], baseType?: StructTypeInfo) {
         const fieldNames = new Set<string | symbol>();
         const fieldsArray: StructFieldInfo[] = [];
         const fieldsByName = new Map<string | symbol, StructFieldInfo>();
@@ -237,14 +239,35 @@ export class StructTypeInfo extends TypeInfo {
             }
         }
 
+        const fields: StructFieldDefinition[] = [];
         const fieldOffsets: number[] = [];
         let offset = baseType ? baseType.size : 0;
         let maxAlignment: Alignment = 1;
-        for (const field of fields) {
-            if (fieldNames.has(field.name)) {
-                throw new TypeError(`Duplicate field: ${field.name.toString()}`);
-            }
 
+        for (const fieldName of fieldOrder) {
+            const name = typeof fieldName === "number" ? `${fieldName}` : fieldName;
+            if (!hasOwn(fieldsObject, name)) {
+                throw new TypeError(`Field specified in order not found in definition: ${name.toString()}`);
+            }
+            
+            if (fieldNames.has(name)) {
+                throw new TypeError(`Duplicate field: ${name.toString()}`);
+            }
+            fieldNames.add(name);
+
+            const type = fieldsObject[name];
+            fields.push({ name: name, type });
+        }
+
+        for (const name of Reflect.ownKeys(fieldsObject)) {
+            if (fieldNames.has(name)) continue;
+            fieldNames.add(name);
+
+            const type = fieldsObject[name];
+            fields.push({ name, type });
+        }
+
+        for (const field of fields) {
             const fieldTypeInfo = TypeInfo.get(field.type);
             if (fieldTypeInfo.size === undefined) {
                 throw new TypeError(`A struct may only contain fixed-size elements: ${field.name.toString()}`);
@@ -277,7 +300,7 @@ export class StructTypeInfo extends TypeInfo {
         this.baseType = baseType;
 
         const baseClass = (baseType ? baseType.runtimeType : StructImpl) as abstract new () => Struct;
-        const structClass = (void 0, class extends baseClass { } as StructType);
+        const structClass = (void 0, class extends baseClass { } as StructType<any>);
         Object.defineProperty(structClass, "name", { value: name });
         for (const field of ownFieldsArray) {
             Object.defineProperty(structClass.prototype, field.name, {
@@ -359,7 +382,11 @@ export abstract class ArrayTypeInfo extends TypeInfo {
 
     protected constructor(elementType: Type, fixedLength: number | undefined) {
         const elementTypeInfo = TypeInfo.get(elementType);
-        const bytesPerElement = align(elementType.SIZE, elementTypeInfo.alignment);
+        if (elementTypeInfo.size === undefined) {
+            throw new TypeError(`A typed array may only contain fixed-size elements`);
+        }
+
+        const bytesPerElement = align(elementTypeInfo.size, elementTypeInfo.alignment);
         super(`typedarray ${elementType.name}[${fixedLength ?? ""}]`, fixedLength === undefined ? -1 : fixedLength * bytesPerElement, elementTypeInfo.alignment);
         this.elementType = elementType;
         this.elementTypeInfo = elementTypeInfo;
@@ -414,7 +441,7 @@ export class BaseArrayTypeInfo extends ArrayTypeInfo {
 
     constructor(elementType: Type) {
         super(elementType, /*fixedLength*/ undefined);
-        this.runtimeType = class extends TypedArrayImpl<any> {} as ArrayType<any>;
+        this.runtimeType = (void 0, class extends TypedArrayImpl<any> {} as ArrayType<any>);
         Object.defineProperty(this.runtimeType, "name", { value: this.name });
         Object.freeze(this);
         typeInfos.set(this.runtimeType, this);
@@ -462,7 +489,7 @@ export class FixedLengthArrayTypeInfo extends ArrayTypeInfo {
     constructor(baseType: BaseArrayTypeInfo, fixedLength: number) {
         super(baseType.elementType, fixedLength);
         this.baseType = baseType;
-        this.runtimeType = class extends baseType.runtimeType {} as unknown as FixedLengthArrayType<any, number>;
+        this.runtimeType = (void 0, class extends baseType.runtimeType {} as unknown as FixedLengthArrayType<any, number>);
         Object.defineProperty(this.runtimeType, "name", { value: this.name });
         Object.freeze(this);
         typeInfos.set(this.runtimeType, this);

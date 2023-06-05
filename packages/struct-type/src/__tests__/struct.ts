@@ -205,10 +205,5 @@ describe("baseType", () => {
     });
 });
 describe("types", () => {
-    const A = StructType([{ name: "a", type: int32 }]);
-    const B = StructType([{ name: "b", type: int32 }]);
-    const AB = StructType([{ name: "a", type: A }, { name: "b", type: B }]);
-    const ab = new AB();
-    ab.getIndex(0).a;
-    ab.getIndex(1).b;
+    
 });

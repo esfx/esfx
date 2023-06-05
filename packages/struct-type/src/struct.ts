@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import type { StructElements, StructFieldDefinition, StructIndices, StructInitElements, StructInitProperties, StructKeys, StructProperties } from './index.js';
+import type { StructDefinition, StructElementLayout, StructElementLayoutIndices, StructArrayInit, StructObjectInit, StructFieldLayout, StructPropertyLayoutKeys } from './index.js';
 import { StructTypeInfo } from './typeInfo.js';
 
 let _getDataView: (struct: Struct) => DataView;
@@ -27,30 +27,29 @@ export function getDataView(struct: Struct): DataView {
 type StructConstructorEmptyOverload = [];
 type StructConstructorSharedOverload = [boolean];
 type StructConstructorArrayBufferLikeOverload = [ArrayBufferLike, number?];
-type StructConstructorStructFieldsOverload<TDef extends readonly StructFieldDefinition[]> = [Partial<StructInitProperties<TDef>>, boolean?];
-type StructConstructorStructFieldArrayOverload<TDef extends readonly StructFieldDefinition[]> = [Partial<StructInitElements<TDef>>, boolean?];
-type StructConstructorOverloads<TDef extends readonly StructFieldDefinition[]> =
+type StructConstructorStructFieldsOverload<TDef extends StructDefinition> = [Partial<StructObjectInit<TDef>>, boolean?];
+type StructConstructorStructFieldArrayOverload<TDef extends StructDefinition> = [Partial<StructArrayInit<TDef>>, boolean?];
+type StructConstructorOverloads<TDef extends StructDefinition> =
     | StructConstructorEmptyOverload
     | StructConstructorSharedOverload
     | StructConstructorArrayBufferLikeOverload
     | StructConstructorStructFieldsOverload<TDef>
     | StructConstructorStructFieldArrayOverload<TDef>;
 
-function isStructConstructorArrayBufferLikeOverload<TDef extends readonly StructFieldDefinition[]>(args: StructConstructorOverloads<TDef>): args is StructConstructorArrayBufferLikeOverload {
+function isStructConstructorArrayBufferLikeOverload<TDef extends StructDefinition>(args: StructConstructorOverloads<TDef>): args is StructConstructorArrayBufferLikeOverload {
     return args.length > 0 && (args[0] instanceof ArrayBuffer || (typeof SharedArrayBuffer === "function" && args[0] instanceof SharedArrayBuffer));
 }
 
-function isStructConstructorStructFieldsOverload<TDef extends readonly StructFieldDefinition[]>(args: StructConstructorOverloads<TDef>): args is StructConstructorStructFieldsOverload<TDef> {
-    // @ts-ignore (type instantiation is excessively deep)
+function isStructConstructorStructFieldsOverload<TDef extends StructDefinition>(args: StructConstructorOverloads<TDef>): args is StructConstructorStructFieldsOverload<TDef> {
     return args.length > 0 && typeof args[0] === "object" && args[0] !== null && !Array.isArray(args[0]);
 }
 
-function isStructConstructorStructFieldArrayOverload<TDef extends readonly StructFieldDefinition[]>(args: StructConstructorOverloads<TDef>): args is StructConstructorStructFieldArrayOverload<TDef> {
+function isStructConstructorStructFieldArrayOverload<TDef extends StructDefinition>(args: StructConstructorOverloads<TDef>): args is StructConstructorStructFieldArrayOverload<TDef> {
     return args.length > 0 && Array.isArray(args[0]);
 }
 
 /* @internal */
-abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
+abstract class Struct<TDef extends StructDefinition = any> {
     static {
         _getDataView = struct => struct.#dataView;
     }
@@ -63,8 +62,8 @@ abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
     constructor();
     constructor(shared: boolean);
     constructor(buffer: ArrayBufferLike, byteOffset?: number);
-    constructor(object: Partial<StructInitProperties<TDef>>, shared?: boolean);
-    constructor(elements: Partial<StructInitElements<TDef>>, shared?: boolean);
+    constructor(object: Partial<StructObjectInit<TDef>>, shared?: boolean);
+    constructor(elements: Partial<StructArrayInit<TDef>>, shared?: boolean);
     constructor(...args: StructConstructorOverloads<TDef>) {
         this.#type = StructTypeInfo.get(new.target);
         if (isStructConstructorArrayBufferLikeOverload(args)) {
@@ -88,7 +87,7 @@ abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
                 const [obj] = args;
                 if (obj) {
                     for (const key of Object.keys(obj)) {
-                        const value = obj[key as keyof Partial<StructInitProperties<TDef>>];
+                        const value = obj[key as keyof Partial<StructObjectInit<TDef>>];
                         if (value !== undefined) {
                             const field = this.#type.fieldsByName.get(key);
                             if (field) {
@@ -101,7 +100,7 @@ abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
             else if (isStructConstructorStructFieldArrayOverload(args)) {
                 const [ar] = args;
                 if (ar) {
-                    for (const [index, value] of ar.entries()) {
+                    for (const [index, value] of ar.entries!()) {
                         if (value !== undefined && index < this.#type.fields.length) {
                             const field = this.#type.fields[index];
                             field.writeTo(this, this.#dataView, field.coerce(value));
@@ -119,8 +118,8 @@ abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
     get byteOffset() { return this.#byteOffset; }
     get byteLength() { return this.#type.size; }
 
-    get<K extends StructKeys<TDef>>(key: K): StructProperties<TDef>[K];
-    get<K extends StructKeys<TDef>>(key: K) {
+    get<K extends StructPropertyLayoutKeys<TDef>>(key: K): StructFieldLayout<TDef>[K];
+    get<K extends StructPropertyLayoutKeys<TDef>>(key: K) {
         const field = this.#type.fieldsByName.get(key as string | symbol);
         if (field) {
             return field.readFrom(this, this.#dataView);
@@ -128,7 +127,7 @@ abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
         throw new RangeError();
     }
 
-    set<K extends StructKeys<TDef>>(key: K, value: StructProperties<TDef>[K]) {
+    set<K extends StructPropertyLayoutKeys<TDef>>(key: K, value: StructFieldLayout<TDef>[K]) {
         const field = this.#type.fieldsByName.get(key as string | symbol);
         if (field) {
             field.writeTo(this, this.#dataView, field.coerce(value));
@@ -137,8 +136,8 @@ abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
         throw new RangeError();
     }
 
-    getIndex<I extends StructIndices<TDef>>(index: I): StructElements<TDef>[I];
-    getIndex<I extends StructIndices<TDef>>(index: I) {
+    getIndex<I extends StructElementLayoutIndices<TDef>>(index: I): StructElementLayout<TDef>[I];
+    getIndex<I extends StructElementLayoutIndices<TDef>>(index: I) {
         if (+index < this.#type.fields.length) {
             const field = this.#type.fields[index as number];
             return field.readFrom(this, this.#dataView);
@@ -146,7 +145,7 @@ abstract class Struct<TDef extends readonly StructFieldDefinition[] = any> {
         throw new RangeError();
     }
 
-    setIndex<I extends StructIndices<TDef>>(index: I, value: StructElements<TDef>[I]) {
+    setIndex<I extends StructElementLayoutIndices<TDef>>(index: I, value: StructElementLayout<TDef>[I]) {
         if (index < this.#type.fields.length) {
             const field = this.#type.fields[index as number];
             field.writeTo(this, this.#dataView, field.coerce(value));
