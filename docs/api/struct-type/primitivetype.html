@@ -89,7 +89,7 @@
   <div class="markdown level0 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">export interface PrimitiveType&lt;K extends string = string, T extends number | bigint = number | bigint&gt; </code></pre>
+    <pre><code class="lang-typeScript hljs">export interface PrimitiveType&lt;K extends string = string, T extends number | bigint | boolean = number | bigint | boolean&gt; </code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
@@ -102,7 +102,7 @@
   <div class="codewrapper">
     <pre><code class="lang-typeScript hljs">[RelatedTypes]?: {
         RuntimeType: T;
-        InitType: number | bigint;
+        InitType: number | bigint | boolean;
     };</code></pre>
   </div>
   
@@ -114,7 +114,7 @@
   <div class="property">
     <div><span class="xref">{
         RuntimeType: T;
-        InitType: number | bigint;
+        InitType: number | bigint | boolean;
     }</span></div>
     <p>
   </div>
