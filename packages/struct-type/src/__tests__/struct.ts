@@ -1,4 +1,5 @@
 import { StructType, ArrayType, int32 } from "..";
+import { isLittleEndian } from "../endianness";
 import { bigint64 } from "../primitive";
 
 describe("simple struct", () => {
@@ -43,8 +44,8 @@ describe("simple struct", () => {
     it("can init from buffer", () => {
         const buffer = new ArrayBuffer(8);
         const view = new DataView(buffer);
-        view.setInt32(0, 1);
-        view.setInt32(4, 2);
+        view.setInt32(0, 1, isLittleEndian);
+        view.setInt32(4, 2, isLittleEndian);
         const p = new Point(buffer);
         expect(p.x).toBe(1);
         expect(p.y).toBe(2);
@@ -95,10 +96,10 @@ describe("complex struct", () => {
     it("can init from buffer", () => {
         const buffer = new ArrayBuffer(16);
         const view = new DataView(buffer);
-        view.setInt32(0, 1);
-        view.setInt32(4, 2);
-        view.setInt32(8, 3);
-        view.setInt32(12, 4);
+        view.setInt32(0, 1, isLittleEndian);
+        view.setInt32(4, 2, isLittleEndian);
+        view.setInt32(8, 3, isLittleEndian);
+        view.setInt32(12, 4, isLittleEndian);
         const l = new Line(buffer);
         expect(l.from.x).toBe(1);
         expect(l.from.y).toBe(2);
@@ -148,8 +149,8 @@ describe("subclass", () => {
     it("can init from buffer", () => {
         const buffer = new ArrayBuffer(8);
         const view = new DataView(buffer);
-        view.setInt32(0, 1);
-        view.setInt32(4, 2);
+        view.setInt32(0, 1, isLittleEndian);
+        view.setInt32(4, 2, isLittleEndian);
         const p = new Point(buffer);
         expect(p.x).toBe(1);
         expect(p.y).toBe(2);
@@ -196,9 +197,9 @@ describe("baseType", () => {
     it("can init from buffer", () => {
         const buffer = new ArrayBuffer(12);
         const view = new DataView(buffer);
-        view.setInt32(0, 1);
-        view.setInt32(4, 2);
-        view.setInt32(8, 3);
+        view.setInt32(0, 1, isLittleEndian);
+        view.setInt32(4, 2, isLittleEndian);
+        view.setInt32(8, 3, isLittleEndian);
         const p = new Point3D(buffer);
         expect(p.x).toBe(1);
         expect(p.y).toBe(2);

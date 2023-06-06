@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import { Endianness } from "../../endianness.js";
 import type { Struct, StructFieldDefinition, StructType } from "../../struct.js";
 import type { RuntimeType, Type } from "../../type.js";
 import { align, Alignment } from "../numbers.js";
@@ -52,19 +53,19 @@ export class StructFieldInfo {
         return this.typeInfo.coerce(value);
     }
 
-    readFrom(owner: StructImpl, view: DataView, isLittleEndian?: boolean) {
+    readFrom(owner: StructImpl, view: DataView, byteOrder?: Endianness) {
         if (this.typeInfo instanceof StructTypeInfo) {
             let cache = weakFieldCache.get(this);
             if (!cache) weakFieldCache.set(this, cache = new WeakMap());
             let value = cache.get(owner);
-            if (!value) cache.set(owner, value = this.typeInfo.readFrom(view, this.byteOffset, isLittleEndian));
+            if (!value) cache.set(owner, value = this.typeInfo.readFrom(view, this.byteOffset, byteOrder) as Struct);
             return value;
         }
-        return this.typeInfo.readFrom(view, this.byteOffset, isLittleEndian);
+        return this.typeInfo.readFrom(view, this.byteOffset, byteOrder);
     }
 
-    writeTo(_owner: StructImpl, view: DataView, value: RuntimeType<Type>, isLittleEndian?: boolean) {
-        this.typeInfo.writeTo(view, this.byteOffset, value, isLittleEndian);
+    writeTo(_owner: StructImpl, view: DataView, value: RuntimeType<Type>, byteOrder?: Endianness) {
+        this.typeInfo.writeTo(view, this.byteOffset, value, byteOrder);
     }
 }
 
@@ -223,11 +224,11 @@ export class StructTypeInfo extends TypeInfo {
         return value instanceof this.runtimeType ? value : new this.runtimeType(value);
     }
 
-    readFrom(view: DataView, offset: number, _isLittleEndian?: boolean) {
+    readFrom(view: DataView, offset: number, byteOrder?: Endianness) {
         return new this.runtimeType(view.buffer, view.byteOffset + offset);
     }
 
-    writeTo(view: DataView, offset: number, value: RuntimeType<Type>, _isLittleEndian?: boolean) {
+    writeTo(view: DataView, offset: number, value: RuntimeType<Type>, byteOrder?: Endianness) {
         if (value instanceof this.runtimeType) {
             value.writeTo(view.buffer, view.byteOffset + offset);
         }

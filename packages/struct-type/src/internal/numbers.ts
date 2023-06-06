@@ -14,6 +14,8 @@
    limitations under the License.
 */
 
+import { Endianness, endianness } from "../endianness.js";
+
 /* @internal */
 export type Alignment = 1 | 2 | 4 | 8;
 
@@ -21,9 +23,6 @@ export type Alignment = 1 | 2 | 4 | 8;
 export function align(offset: number, alignment: Alignment) {
     return (offset + (alignment - 1)) & -alignment;
 }
-
-/* @internal */
-export const littleEndian = new Int32Array(new Uint8Array([0x12, 0x34, 0x56, 0x78]).buffer)[0] !== 0x12345678;
 
 /* @internal */
 export interface ArrayBufferViewConstructor {
@@ -115,48 +114,48 @@ export function sizeOf(nt: NumberType): Alignment {
 }
 
 /* @internal */
-export function putValueInView(view: DataView, nt: NumberType, byteOffset: number, value: number | bigint | boolean, isLittleEndian?: boolean) {
+export function putValueInView(view: DataView, nt: NumberType, byteOffset: number, value: number | bigint | boolean, byteOrder: Endianness = endianness) {
     if (isSharedArrayBuffer(view.buffer) && isAtomic(nt) && typeof value === "number" && ((view.byteOffset + byteOffset) % sizeOf(nt)) === 0) {
-        return putValueInBuffer(view.buffer, nt, view.byteOffset + byteOffset, value, isLittleEndian);
+        return putValueInBuffer(view.buffer, nt, view.byteOffset + byteOffset, value, byteOrder);
     }
     switch (nt) {
         case NumberType.Bool8: return view.setUint8(byteOffset, Number(coerceValue(nt, value)));
-        case NumberType.Bool32: return view.setInt32(byteOffset, Number(coerceValue(nt, value)), isLittleEndian);
+        case NumberType.Bool32: return view.setInt32(byteOffset, Number(coerceValue(nt, value)), byteOrder === "LE");
         case NumberType.Int8: return view.setInt8(byteOffset, coerceValue(nt, value));
-        case NumberType.Int16: return view.setInt16(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.Int32: return view.setInt32(byteOffset, coerceValue(nt, value), isLittleEndian);
+        case NumberType.Int16: return view.setInt16(byteOffset, coerceValue(nt, value), byteOrder === "LE");
+        case NumberType.Int32: return view.setInt32(byteOffset, coerceValue(nt, value), byteOrder === "LE");
         case NumberType.Uint8: return view.setUint8(byteOffset, coerceValue(nt, value));
-        case NumberType.Uint16: return view.setUint16(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.Uint32: return view.setUint32(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.Float32: return view.setFloat32(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.Float64: return view.setFloat64(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.BigInt64: return view.setBigInt64(byteOffset, coerceValue(nt, value), isLittleEndian);
-        case NumberType.BigUint64: return view.setBigUint64(byteOffset, coerceValue(nt, value), isLittleEndian);
+        case NumberType.Uint16: return view.setUint16(byteOffset, coerceValue(nt, value), byteOrder === "LE");
+        case NumberType.Uint32: return view.setUint32(byteOffset, coerceValue(nt, value), byteOrder === "LE");
+        case NumberType.Float32: return view.setFloat32(byteOffset, coerceValue(nt, value), byteOrder === "LE");
+        case NumberType.Float64: return view.setFloat64(byteOffset, coerceValue(nt, value), byteOrder === "LE");
+        case NumberType.BigInt64: return view.setBigInt64(byteOffset, coerceValue(nt, value), byteOrder === "LE");
+        case NumberType.BigUint64: return view.setBigUint64(byteOffset, coerceValue(nt, value), byteOrder === "LE");
     }
 }
 
 /* @internal */
-export function getValueFromView<N extends NumberType>(view: DataView, nt: N, byteOffset: number, isLittleEndian?: boolean): NumberTypeToType[N];
+export function getValueFromView<N extends NumberType>(view: DataView, nt: N, byteOffset: number, byteOrder?: Endianness): NumberTypeToType[N];
 /* @internal */
-export function getValueFromView(view: DataView, nt: NumberType, byteOffset: number, isLittleEndian?: boolean): number | bigint | boolean {
+export function getValueFromView(view: DataView, nt: NumberType, byteOffset: number, byteOrder: Endianness = endianness): number | bigint | boolean {
     // attempt an atomic read
     if (isSharedArrayBuffer(view.buffer) && isAtomic(nt) && ((view.byteOffset + byteOffset) % sizeOf(nt)) === 0) {
-        return getValueFromBuffer(view.buffer, nt, view.byteOffset + byteOffset, isLittleEndian);
+        return getValueFromBuffer(view.buffer, nt, view.byteOffset + byteOffset, byteOrder);
     }
 
     switch (nt) {
         case NumberType.Bool8: return Boolean(view.getUint8(byteOffset));
-        case NumberType.Bool32: return Boolean(view.getInt32(byteOffset, isLittleEndian));
+        case NumberType.Bool32: return Boolean(view.getInt32(byteOffset, byteOrder === "LE"));
         case NumberType.Int8: return view.getInt8(byteOffset);
-        case NumberType.Int16: return view.getInt16(byteOffset, isLittleEndian);
-        case NumberType.Int32: return view.getInt32(byteOffset, isLittleEndian);
+        case NumberType.Int16: return view.getInt16(byteOffset, byteOrder === "LE");
+        case NumberType.Int32: return view.getInt32(byteOffset, byteOrder === "LE");
         case NumberType.Uint8: return view.getUint8(byteOffset);
-        case NumberType.Uint16: return view.getUint16(byteOffset, isLittleEndian);
-        case NumberType.Uint32: return view.getUint32(byteOffset, isLittleEndian);
-        case NumberType.Float32: return view.getFloat32(byteOffset, isLittleEndian);
-        case NumberType.Float64: return view.getFloat64(byteOffset, isLittleEndian);
-        case NumberType.BigInt64: return view.getBigInt64(byteOffset, isLittleEndian);
-        case NumberType.BigUint64: return view.getBigUint64(byteOffset, isLittleEndian);
+        case NumberType.Uint16: return view.getUint16(byteOffset, byteOrder === "LE");
+        case NumberType.Uint32: return view.getUint32(byteOffset, byteOrder === "LE");
+        case NumberType.Float32: return view.getFloat32(byteOffset, byteOrder === "LE");
+        case NumberType.Float64: return view.getFloat64(byteOffset, byteOrder === "LE");
+        case NumberType.BigInt64: return view.getBigInt64(byteOffset, byteOrder === "LE");
+        case NumberType.BigUint64: return view.getBigUint64(byteOffset, byteOrder === "LE");
     }
 }
 
@@ -287,7 +286,7 @@ const bigInt64ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, BigInt64Ar
 const bigUint64ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, BigUint64Array>();
 
 /* @internal */
-export function putValueInBuffer(buffer: ArrayBufferLike, nt: NumberType, byteOffset: number, value: number | bigint | boolean, isLittleEndian: boolean = false) {
+export function putValueInBuffer(buffer: ArrayBufferLike, nt: NumberType, byteOffset: number, value: number | bigint | boolean, byteOrder: Endianness = endianness) {
     // attempt an atomic write
     if (isSharedArrayBuffer(buffer) && isAtomic(nt) && typeof value === "number") {
         const size = sizeOf(nt);
@@ -296,18 +295,18 @@ export function putValueInBuffer(buffer: ArrayBufferLike, nt: NumberType, byteOf
             const array = getTypedArray(buffer, nt);
             const arrayIndex = byteOffset / size;
             const coercedValue = coerceValue(nt, value);
-            const correctedValue = size === 1 || isLittleEndian === littleEndian ? coercedValue : swapByteOrder(nt, coercedValue);
+            const correctedValue = size === 1 || byteOrder === endianness ? coercedValue : swapByteOrder(nt, coercedValue);
             Atomics.store(array, arrayIndex, typeof correctedValue === "boolean" ? Number(correctedValue) : correctedValue);
             return;
         }
     }
-    putValueInView(getDataView(buffer), nt, byteOffset, value, isLittleEndian);
+    putValueInView(getDataView(buffer), nt, byteOffset, value, byteOrder);
 }
 
 /* @internal */
-export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike, nt: N, byteOffset: number, isLittleEndian?: boolean): NumberTypeToType[N];
+export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike, nt: N, byteOffset: number, byteOrder?: Endianness): NumberTypeToType[N];
 /* @internal */
-export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike, nt: N, byteOffset: number, isLittleEndian: boolean = false): number | bigint | boolean {
+export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike, nt: N, byteOffset: number, byteOrder: Endianness = endianness): number | bigint | boolean {
     // attempt an atomic read
     if (isSharedArrayBuffer(buffer) && isAtomic(nt)) {
         const size = sizeOf(nt);
@@ -317,10 +316,10 @@ export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike
             const arrayIndex = byteOffset / size;
             const value = Atomics.load(array, arrayIndex);
             if (nt === NumberType.Bool8 || nt === NumberType.Bool32) return Boolean(value);
-            return size === 1 || isLittleEndian === littleEndian ? value : swapByteOrder(nt, value);
+            return size === 1 || byteOrder === endianness ? value : swapByteOrder(nt, value);
         }
     }
-    return getValueFromView(getDataView(buffer), nt, byteOffset, isLittleEndian);
+    return getValueFromView(getDataView(buffer), nt, byteOffset, byteOrder);
 }
 
 function getTypedArrayConstructor<N extends NumberType>(nt: N): new (buffer: ArrayBufferLike) => NumberTypeToTypedArray[N];
@@ -397,8 +396,8 @@ function isAtomic(nt: NumberType): nt is AtomicNumberTypes {
 const tempDataView = new DataView(new ArrayBuffer(8));
 
 function swapByteOrder<N extends NumberType>(nt: N, value: NumberTypeToType[N]): NumberTypeToType[N] {
-    putValueInView(tempDataView, nt, 0, value, false);
-    return getValueFromView(tempDataView, nt, 0, true);
+    putValueInView(tempDataView, nt, 0, value, "BE");
+    return getValueFromView(tempDataView, nt, 0, "LE");
 }
 
 function getTypeCoersion<N extends NumberType>(nt: N): NumberTypeToCoersion<N>;

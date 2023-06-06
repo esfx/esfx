@@ -1,5 +1,5 @@
 /*!
-   Copyright 2019 Ron Buckton
+   Copyright 2023 Ron Buckton
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -14,9 +14,17 @@
    limitations under the License.
 */
 
-export * from "./endianness.js";
-export * from "./array.js";
-export * from "./primitive.js";
-export * from "./struct.js";
-export type { InitType, RuntimeType, Type } from "./type.js";
-export * from "./wasm.js";
+/**
+ * Indicates whether the current system is little endian.
+ */
+export const isLittleEndian = new Int32Array(new Uint8Array([0x12, 0x34, 0x56, 0x78]).buffer)[0] !== 0x12345678;
+
+/**
+ * Indicats the endianess of the system.
+ */
+export const endianness: Endianness = isLittleEndian ? "LE" : "BE";
+
+/**
+ * Indicates the byte order is either big-endian (`"BE"`) or little-endian (`"LE"`).
+ */
+export type Endianness = "BE" | "LE";

@@ -1,4 +1,5 @@
 import { ArrayType, bigint64, int16, int32, StructType } from "..";
+import { isLittleEndian } from "../endianness";
 
 describe("primitive typed array", () => {
     const Int32Array = ArrayType(int32);
@@ -22,8 +23,8 @@ describe("primitive typed array", () => {
     it("can init from buffer", () => {
         const buffer = new ArrayBuffer(8);
         const view = new DataView(buffer);
-        view.setInt32(0, 1);
-        view.setInt32(4, 2);
+        view.setInt32(0, 1, isLittleEndian);
+        view.setInt32(4, 2, isLittleEndian);
         const ar = new Int32Array(buffer);
         expect(ar[0]).toBe(1);
         expect(ar[1]).toBe(2);
@@ -54,8 +55,8 @@ describe("primitive fixed-length typed array", () => {
     it("can init from buffer", () => {
         const buffer = new ArrayBuffer(8);
         const view = new DataView(buffer);
-        view.setInt32(0, 1);
-        view.setInt32(4, 2);
+        view.setInt32(0, 1, isLittleEndian);
+        view.setInt32(4, 2, isLittleEndian);
         const ar = new Int32Arrayx2(buffer);
         expect(ar[0]).toBe(1);
         expect(ar[1]).toBe(2);
@@ -87,8 +88,8 @@ describe("primitive fixed-length typed array from non-fixed typed array", () => 
     it("can init from buffer", () => {
         const buffer = new ArrayBuffer(8);
         const view = new DataView(buffer);
-        view.setInt32(0, 1);
-        view.setInt32(4, 2);
+        view.setInt32(0, 1, isLittleEndian);
+        view.setInt32(4, 2, isLittleEndian);
         const ar = new Int32Arrayx2(buffer);
         expect(ar[0]).toBe(1);
         expect(ar[1]).toBe(2);
@@ -140,10 +141,10 @@ describe("complex typed array", () => {
     it("can init from buffer", () => {
         const buffer = new ArrayBuffer(16);
         const view = new DataView(buffer);
-        view.setInt32(0, 1);
-        view.setInt32(4, 2);
-        view.setInt32(8, 3);
-        view.setInt32(12, 4);
+        view.setInt32(0, 1, isLittleEndian);
+        view.setInt32(4, 2, isLittleEndian);
+        view.setInt32(8, 3, isLittleEndian);
+        view.setInt32(12, 4, isLittleEndian);
         const l = new PointArray(buffer);
         expect(l[0].x).toBe(1);
         expect(l[0].y).toBe(2);
@@ -196,10 +197,10 @@ describe("complex fixed-length typed array", () => {
     it("can init from buffer", () => {
         const buffer = new ArrayBuffer(16);
         const view = new DataView(buffer);
-        view.setInt32(0, 1);
-        view.setInt32(4, 2);
-        view.setInt32(8, 3);
-        view.setInt32(12, 4);
+        view.setInt32(0, 1, isLittleEndian);
+        view.setInt32(4, 2, isLittleEndian);
+        view.setInt32(8, 3, isLittleEndian);
+        view.setInt32(12, 4, isLittleEndian);
         const l = new PointArrayx2(buffer);
         expect(l[0].x).toBe(1);
         expect(l[0].y).toBe(2);
@@ -243,10 +244,10 @@ describe("complex fixed-length typed array from non-fixed typed array", () => {
     it("can init from buffer", () => {
         const buffer = new ArrayBuffer(16);
         const view = new DataView(buffer);
-        view.setInt32(0, 1);
-        view.setInt32(4, 2);
-        view.setInt32(8, 3);
-        view.setInt32(12, 4);
+        view.setInt32(0, 1, isLittleEndian);
+        view.setInt32(4, 2, isLittleEndian);
+        view.setInt32(8, 3, isLittleEndian);
+        view.setInt32(12, 4, isLittleEndian);
         const l = new PointArrayx2(buffer);
         expect(l[0].x).toBe(1);
         expect(l[0].y).toBe(2);

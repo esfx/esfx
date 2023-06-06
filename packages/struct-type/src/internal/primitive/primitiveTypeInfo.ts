@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import { Endianness } from "../../endianness.js";
 import type { PrimitiveType } from "../../primitive.js";
 import { coerceValue, getValueFromView, NumberType, putValueInView, sizeOf } from "../numbers.js";
 import { TypeInfo, TypeLike } from "../typeInfo.js";
@@ -54,12 +55,12 @@ export class PrimitiveTypeInfo extends TypeInfo {
         return this.runtimeType(value);
     }
 
-    readFrom(view: DataView, offset: number, isLittleEndian?: boolean) {
-        return getValueFromView(view, this.#numberType, offset, isLittleEndian);
+    readFrom(view: DataView, offset: number, byteOrder?: Endianness) {
+        return getValueFromView(view, this.#numberType, offset, byteOrder);
     }
 
-    writeTo(view: DataView, offset: number, value: number | bigint | boolean, isLittleEndian?: boolean) {
-        putValueInView(view, this.#numberType, offset, value, isLittleEndian);
+    writeTo(view: DataView, offset: number, value: number | bigint | boolean, byteOrder?: Endianness) {
+        putValueInView(view, this.#numberType, offset, value, byteOrder);
     }
 
     static get(type: TypeLike): PrimitiveTypeInfo {

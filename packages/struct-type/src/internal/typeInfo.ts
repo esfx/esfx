@@ -15,8 +15,10 @@
 */
 
 import { ArrayType, FixedLengthArrayType, TypedArray } from "../array.js";
+import { Endianness } from "../endianness.js";
 import { PrimitiveType } from "../primitive.js";
 import { Struct, StructType } from "../struct.js";
+import type { RuntimeType, Type } from "../type.js";
 import { TypedArrayImpl } from "./array/arrayImpl.js";
 import type { BaseArrayTypeInfo, FixedLengthArrayTypeInfo } from "./array/arrayTypeInfo.js";
 import { Alignment } from "./numbers.js";
@@ -94,7 +96,7 @@ export abstract class TypeInfo {
     }
 
     abstract isCompatibleWith(other: TypeInfo): boolean;
-    abstract coerce(value: any): number | bigint | boolean | Struct | TypedArray<any, number>;
-    abstract readFrom(view: DataView, offset: number, isLittleEndian?: boolean): number | bigint | boolean | Struct | TypedArray<any, number>;
-    abstract writeTo(view: DataView, offset: number, value: number | bigint | boolean | Struct | TypedArray<any, number>, isLittleEndian?: boolean): void;
+    abstract coerce(value: any): RuntimeType<Type>;
+    abstract readFrom(view: DataView, offset: number, byteOrder?: Endianness): RuntimeType<Type>;
+    abstract writeTo(view: DataView, offset: number, value: RuntimeType<Type>, byteOrder?: Endianness): void;
 }
