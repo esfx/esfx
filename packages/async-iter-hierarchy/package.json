@@ -3,32 +3,47 @@
     "version": "1.1.0-alpha.202305082104",
     "description": "A Symbol-based API for defining an ECMAScript AsyncIterable with an inherent hierarchy.",
     "type": "commonjs",
-    "types": "./dist/types/index.d.ts",
+    "types": "./dist/cjs/index.d.ts",
     "main": "./dist/cjs/index.js",
     "exports": {
         ".": {
-            "types": "./dist/types/index.d.ts",
-            "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.mjs"
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            },
+            "import": {
+                "types": "./dist/esm/index.d.mts",
+                "default": "./dist/esm/index.mjs"
+            }
         },
         "./hierarchy": {
-            "types": "./dist/types/hierarchy.d.ts",
-            "require": "./dist/cjs/hierarchy.js",
-            "import": "./dist/esm/hierarchy.mjs"
+            "require": {
+                "types": "./dist/cjs/hierarchy.d.ts",
+                "default": "./dist/cjs/hierarchy.js"
+            },
+            "import": {
+                "types": "./dist/esm/hierarchy.d.mts",
+                "default": "./dist/esm/hierarchy.mjs"
+            }
         },
         "./ordered": {
-            "types": "./dist/types/ordered.d.ts",
-            "require": "./dist/cjs/ordered.js",
-            "import": "./dist/esm/ordered.mjs"
+            "require": {
+                "types": "./dist/cjs/ordered.d.ts",
+                "default": "./dist/cjs/ordered.js"
+            },
+            "import": {
+                "types": "./dist/esm/ordered.d.mts",
+                "default": "./dist/esm/ordered.mjs"
+            }
         }
     },
     "typesVersions": {
         "*": {
             "hierarchy": [
-                "./dist/types/hierarchy.d.ts"
+                "./dist/cjs/hierarchy.d.ts"
             ],
             "ordered": [
-                "./dist/types/ordered.d.ts"
+                "./dist/cjs/ordered.d.ts"
             ]
         }
     },

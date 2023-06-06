@@ -1,5 +1,6 @@
-/dist/types/**/internal/*.d.ts
-/dist/types/**/internal/*.d.ts.map
+/dist/cjs/**/internal/*.d.ts
+/dist/cjs/**/internal/*.d.ts.map
+/dist/esm/**/internal/*.d.mts
 /docsrc
 /obj
 /src

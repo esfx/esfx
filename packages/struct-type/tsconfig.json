@@ -2,8 +2,7 @@
     "extends": "../tsconfig-base",
     "compilerOptions": {
         "rootDir": "src",
-        "outDir": "dist/cjs",
-        "declarationDir": "dist/types"
+        "outDir": "dist/cjs"
     },
     "include": ["src/**/*.ts"],
     "references": [

@@ -6,7 +6,6 @@ to: "<%=packagePath%>/tsconfig.json"
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist/cjs",
-        "declarationDir": "dist/types",
     },
     "include": ["src/**/*.ts"],
     "references": [

@@ -3,7 +3,6 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist/cjs",
-        "declarationDir": "dist/types",
         "module": "commonjs",
         "lib": ["es2020"],
         "stripInternal": true,

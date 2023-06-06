@@ -2,9 +2,8 @@
 const fs = require("fs");
 const path = require("path");
 const ts = require("typescript");
-const { COMMONJS_RESOLVE } = require("../resolver/cjsResolver");
-const { normalizeSlashes } = require("../resolver/utils");
-const types = require("./types");
+const { COMMONJS_RESOLVE } = require("../../resolver/cjsResolver");
+const { normalizeSlashes } = require("../../resolver/utils");
 
 /**
  * @param {string} inputDir
@@ -100,7 +99,7 @@ function transformCjsToCjsLegacy(context, errors) {
         if (moduleSpecifier.startsWith("#")) {
             try {
                 const dirname = path.dirname(currentSourceFile.fileName);
-                /** @type {import("../resolver/types").ResolverOpts} */
+                /** @type {import("../../resolver/types").ResolverOpts} */
                 const opts = {
                     basedir: dirname,
                     filename: currentSourceFile.fileName,
@@ -123,7 +122,7 @@ function transformCjsToCjsLegacy(context, errors) {
      * @template {string} T
      * @param {ts.Node} node
      * @param {T} [name]
-     * @returns {node is types.Id<T>}
+     * @returns {node is Id<T>}
      */
     function isId(node, name) {
         return ts.isIdentifier(node)
@@ -132,7 +131,7 @@ function transformCjsToCjsLegacy(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @returns {node is types.RequireCall}
+     * @returns {node is RequireCall}
      */
     function isRequireCall(node) {
         return ts.isCallExpression(node)
@@ -153,3 +152,22 @@ function transformCjsToCjsLegacy(context, errors) {
         }
     }
 }
+
+/**
+ * @typedef {ts.Expression} Expr
+ */
+
+/**
+ * @template {string} [T=string]
+ * @typedef {string extends T ? ts.Identifier : ts.Identifier & { readonly escapedText: ts.__String & (T extends `__${infer R}` ? `___${R}` : T) }} Id
+ */
+
+/**
+ * @template {Expr} E
+ * @template {readonly Expr[]} A
+ * @typedef {ts.CallExpression & { readonly expression: E, readonly arguments: Readonly<A> }} Call
+ */
+
+/**
+ * @typedef {Call<Id<"require">, [ts.StringLiteral]>} RequireCall
+ */

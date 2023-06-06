@@ -3,5 +3,5 @@ to: "<%=packagePath%>/api-extractor.json"
 ---
 {
     "extends": "../../api-extractor-base.json",
-    "mainEntryPointFilePath": "dist/types/index.d.ts"
+    "mainEntryPointFilePath": "dist/cjs/index.d.ts"
 }

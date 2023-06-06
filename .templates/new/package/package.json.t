@@ -7,13 +7,18 @@ sh: cd <%= cwd %> && lerna bootstrap
     "version": "<%=version%>",
     "description": "<%-description%>",
     "type": "commonjs",
-    "types": "./dist/types/index.d.ts",
+    "types": "./dist/cjs/index.d.ts",
     "main": "./dist/cjs/index.js",
     "exports": {
         ".": {
-            "types": "./dist/types/index.d.ts",
-            "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.mjs"
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            },
+            "import": {
+                "types": "./dist/esm/index.d.mts",
+                "default": "./dist/esm/index.mjs"
+            }
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",

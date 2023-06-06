@@ -3,18 +3,28 @@
     "version": "1.1.0-alpha.202305082104",
     "description": "Define structured types using ArrayBuffer and SharedArrayBuffer",
     "type": "commonjs",
-    "types": "./dist/types/index.d.ts",
+    "types": "./dist/cjs/index.d.ts",
     "main": "./dist/cjs/index.js",
     "exports": {
         ".": {
-            "types": "./dist/types/index.d.ts",
-            "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.mjs"
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            },
+            "import": {
+                "types": "./dist/esm/index.d.mts",
+                "default": "./dist/esm/index.mjs"
+            }
         },
         "./win32": {
-            "types": "./dist/types/win32.d.ts",
-            "require": "./dist/cjs/win32.js",
-            "import": "./dist/esm/win32.mjs"
+            "require": {
+                "types": "./dist/cjs/win32.d.ts",
+                "default": "./dist/cjs/win32.js"
+            },
+            "import": {
+                "types": "./dist/esm/win32.d.mts",
+                "default": "./dist/esm/win32.mjs"
+            }
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",

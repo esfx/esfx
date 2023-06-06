@@ -4,104 +4,164 @@
     "description": "A set of decorators for common tasks.",
     "private": true,
     "type": "commonjs",
-    "types": "./dist/types/index.d.ts",
+    "types": "./dist/cjs/index.d.ts",
     "main": "./dist/cjs/index.js",
     "exports": {
         ".": {
-            "types": "./dist/types/index.d.ts",
-            "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.mjs"
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            },
+            "import": {
+                "types": "./dist/esm/index.d.mts",
+                "default": "./dist/esm/index.mjs"
+            }
         },
         "./autobind": {
-            "types": "./dist/types/autobind.d.ts",
-            "require": "./dist/cjs/autobind.js",
-            "import": "./dist/esm/autobind.mjs"
+            "require": {
+                "types": "./dist/cjs/autobind.d.ts",
+                "default": "./dist/cjs/autobind.js"
+            },
+            "import": {
+                "types": "./dist/esm/autobind.d.mts",
+                "default": "./dist/esm/autobind.mjs"
+            }
         },
         "./autoproperty": {
-            "types": "./dist/types/autoproperty.d.ts",
-            "require": "./dist/cjs/autoproperty.js",
-            "import": "./dist/esm/autoproperty.mjs"
+            "require": {
+                "types": "./dist/cjs/autoproperty.d.ts",
+                "default": "./dist/cjs/autoproperty.js"
+            },
+            "import": {
+                "types": "./dist/esm/autoproperty.d.mts",
+                "default": "./dist/esm/autoproperty.mjs"
+            }
         },
         "./configurable": {
-            "types": "./dist/types/configurable.d.ts",
-            "require": "./dist/cjs/configurable.js",
-            "import": "./dist/esm/configurable.mjs"
+            "require": {
+                "types": "./dist/cjs/configurable.d.ts",
+                "default": "./dist/cjs/configurable.js"
+            },
+            "import": {
+                "types": "./dist/esm/configurable.d.mts",
+                "default": "./dist/esm/configurable.mjs"
+            }
         },
         "./enumerable": {
-            "types": "./dist/types/enumerable.d.ts",
-            "require": "./dist/cjs/enumerable.js",
-            "import": "./dist/esm/enumerable.mjs"
+            "require": {
+                "types": "./dist/cjs/enumerable.d.ts",
+                "default": "./dist/cjs/enumerable.js"
+            },
+            "import": {
+                "types": "./dist/esm/enumerable.d.mts",
+                "default": "./dist/esm/enumerable.mjs"
+            }
         },
         "./lazyinit": {
-            "types": "./dist/types/lazyinit.d.ts",
-            "require": "./dist/cjs/lazyinit.js",
-            "import": "./dist/esm/lazyinit.mjs"
+            "require": {
+                "types": "./dist/cjs/lazyinit.d.ts",
+                "default": "./dist/cjs/lazyinit.js"
+            },
+            "import": {
+                "types": "./dist/esm/lazyinit.d.mts",
+                "default": "./dist/esm/lazyinit.mjs"
+            }
         },
         "./mixin": {
-            "types": "./dist/types/mixin.d.ts",
-            "require": "./dist/cjs/mixin.js",
-            "import": "./dist/esm/mixin.mjs"
+            "require": {
+                "types": "./dist/cjs/mixin.d.ts",
+                "default": "./dist/cjs/mixin.js"
+            },
+            "import": {
+                "types": "./dist/esm/mixin.d.mts",
+                "default": "./dist/esm/mixin.mjs"
+            }
         },
         "./nonconfigurable": {
-            "types": "./dist/types/nonconfigurable.d.ts",
-            "require": "./dist/cjs/nonconfigurable.js",
-            "import": "./dist/esm/nonconfigurable.mjs"
+            "require": {
+                "types": "./dist/cjs/nonconfigurable.d.ts",
+                "default": "./dist/cjs/nonconfigurable.js"
+            },
+            "import": {
+                "types": "./dist/esm/nonconfigurable.d.mts",
+                "default": "./dist/esm/nonconfigurable.mjs"
+            }
         },
         "./nonenumerable": {
-            "types": "./dist/types/nonenumerable.d.ts",
-            "require": "./dist/cjs/nonenumerable.js",
-            "import": "./dist/esm/nonenumerable.mjs"
+            "require": {
+                "types": "./dist/cjs/nonenumerable.d.ts",
+                "default": "./dist/cjs/nonenumerable.js"
+            },
+            "import": {
+                "types": "./dist/esm/nonenumerable.d.mts",
+                "default": "./dist/esm/nonenumerable.mjs"
+            }
         },
         "./obsolete": {
-            "types": "./dist/types/obsolete.d.ts",
-            "require": "./dist/cjs/obsolete.js",
-            "import": "./dist/esm/obsolete.mjs"
+            "require": {
+                "types": "./dist/cjs/obsolete.d.ts",
+                "default": "./dist/cjs/obsolete.js"
+            },
+            "import": {
+                "types": "./dist/esm/obsolete.d.mts",
+                "default": "./dist/esm/obsolete.mjs"
+            }
         },
         "./readonly": {
-            "types": "./dist/types/readonly.d.ts",
-            "require": "./dist/cjs/readonly.js",
-            "import": "./dist/esm/readonly.mjs"
+            "require": {
+                "types": "./dist/cjs/readonly.d.ts",
+                "default": "./dist/cjs/readonly.js"
+            },
+            "import": {
+                "types": "./dist/esm/readonly.d.mts",
+                "default": "./dist/esm/readonly.mjs"
+            }
         },
         "./writable": {
-            "types": "./dist/types/writable.d.ts",
-            "require": "./dist/cjs/writable.js",
-            "import": "./dist/esm/writable.mjs"
+            "require": {
+                "types": "./dist/cjs/writable.d.ts",
+                "default": "./dist/cjs/writable.js"
+            },
+            "import": {
+                "types": "./dist/esm/writable.d.mts",
+                "default": "./dist/esm/writable.mjs"
+            }
         }
     },
     "typesVersions": {
         "*": {
             "autobind": [
-                "./dist/types/autobind.d.ts"
+                "./dist/cjs/autobind.d.ts"
             ],
             "autoproperty": [
-                "./dist/types/autoproperty.d.ts"
+                "./dist/cjs/autoproperty.d.ts"
             ],
             "configurable": [
-                "./dist/types/configurable.d.ts"
+                "./dist/cjs/configurable.d.ts"
             ],
             "enumerable": [
-                "./dist/types/enumerable.d.ts"
+                "./dist/cjs/enumerable.d.ts"
             ],
             "lazyinit": [
-                "./dist/types/lazyinit.d.ts"
+                "./dist/cjs/lazyinit.d.ts"
             ],
             "mixin": [
-                "./dist/types/mixin.d.ts"
+                "./dist/cjs/mixin.d.ts"
             ],
             "nonconfigurable": [
-                "./dist/types/nonconfigurable.d.ts"
+                "./dist/cjs/nonconfigurable.d.ts"
             ],
             "nonenumerable": [
-                "./dist/types/nonenumerable.d.ts"
+                "./dist/cjs/nonenumerable.d.ts"
             ],
             "obsolete": [
-                "./dist/types/obsolete.d.ts"
+                "./dist/cjs/obsolete.d.ts"
             ],
             "readonly": [
-                "./dist/types/readonly.d.ts"
+                "./dist/cjs/readonly.d.ts"
             ],
             "writable": [
-                "./dist/types/writable.d.ts"
+                "./dist/cjs/writable.d.ts"
             ]
         }
     },

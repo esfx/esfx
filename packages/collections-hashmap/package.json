@@ -3,13 +3,18 @@
     "version": "1.1.0-alpha.202305082104",
     "description": "Provides 'HashMap', a collection class that utilizes '@esfx/collection-core' and '@esfx/equatable'.",
     "type": "commonjs",
-    "types": "./dist/types/index.d.ts",
+    "types": "./dist/cjs/index.d.ts",
     "main": "./dist/cjs/index.js",
     "exports": {
         ".": {
-            "types": "./dist/types/index.js",
-            "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.mjs"
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            },
+            "import": {
+                "types": "./dist/esm/index.d.mts",
+                "default": "./dist/esm/index.mjs"
+            }
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",

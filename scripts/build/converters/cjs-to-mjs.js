@@ -2,19 +2,18 @@
 const fs = require("fs");
 const path = require("path");
 const ts = require("typescript");
-const { formatLocation } = require("../verifier/utils");
-const types = require("./types");
+const { formatLocation } = require("../../verifier/utils");
 
 /**
  * @param {string} inputDir
  * @param {string} outputDir
  */
-function convertCjsToEsm(inputDir, outputDir) {
+function convertCjsToMjs(inputDir, outputDir) {
     for (const entry of fs.readdirSync(inputDir, { withFileTypes: true })) {
         const inputFile = path.join(inputDir, entry.name);
         if (entry.isDirectory()) {
             const outputFile = path.join(outputDir, entry.name);
-            convertCjsToEsm(inputFile, outputFile);
+            convertCjsToMjs(inputFile, outputFile);
         }
         else if (entry.name.endsWith(".js")) {
             const outputFile = path.join(outputDir, entry.name.slice(0, -3) + ".mjs");
@@ -22,7 +21,7 @@ function convertCjsToEsm(inputDir, outputDir) {
             const inputSourceFile = ts.createSourceFile(inputFile, data, ts.ScriptTarget.ESNext, true, ts.ScriptKind.JS);
             /** @type {string[]} */
             const errors = [];
-            const result = ts.transform(inputSourceFile, [context => transformCjsToEsm(context, errors)], {
+            const result = ts.transform(inputSourceFile, [context => transformCjsToMjs(context, errors)], {
                 allowJs: true,
                 target: ts.ScriptTarget.ESNext,
                 module: ts.ModuleKind.CommonJS,
@@ -38,14 +37,14 @@ function convertCjsToEsm(inputDir, outputDir) {
         }
     }
 }
-exports.convertCjsToEsm = convertCjsToEsm;
+exports.convertCjsToMjs = convertCjsToMjs;
 
 /**
  * @param {ts.TransformationContext} context
  * @param {string[]} errors
  * @returns {ts.Transformer<ts.SourceFile>}
  */
-function transformCjsToEsm(context, errors) {
+function transformCjsToMjs(context, errors) {
     const { factory } = context;
 
     /** @type {Map<string, boolean>} */
@@ -676,7 +675,7 @@ function transformCjsToEsm(context, errors) {
     }
 
     /**
-     * @param {types.ExportAssignmentExpression} node
+     * @param {ExportAssignmentExpression} node
      */
     function visitExportAssignment(node) {
         if (exportsDeclarationDepth) {
@@ -693,7 +692,7 @@ function transformCjsToEsm(context, errors) {
     }
 
     /**
-     * @param {types.ExportBindingExpression} node
+     * @param {ExportBindingExpression} node
      */
     function visitExportBinding(node) {
         if (exportsDeclarationDepth) {
@@ -1072,7 +1071,7 @@ function transformCjsToEsm(context, errors) {
      * @template {string} T
      * @param {ts.Node} node
      * @param {T} [name]
-     * @returns {node is types.Id<T>}
+     * @returns {node is Id<T>}
      */
     function isId(node, name) {
         return ts.isIdentifier(node)
@@ -1081,7 +1080,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @returns {node is types.Assign}
+     * @returns {node is Assign}
      */
     function isAssign(node) {
         return ts.isBinaryExpression(node)
@@ -1090,7 +1089,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @returns {node is types.LogicalOr}
+     * @returns {node is LogicalOr}
      */
     function isLogicalOr(node) {
         return ts.isBinaryExpression(node)
@@ -1099,7 +1098,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @returns {node is types.ExportsId}
+     * @returns {node is ExportsId}
      */
     function isExportsId(node) {
         return isId(node, "exports");
@@ -1107,7 +1106,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @returns {node is types.ExportBindingExpression}
+     * @returns {node is ExportBindingExpression}
      */
     function isExportBinding(node) {
         return ts.isPropertyAccessExpression(node)
@@ -1117,7 +1116,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @returns {node is types.ExportAssignmentExpression}
+     * @returns {node is ExportAssignmentExpression}
      */
     function isExportAssignment(node) {
         return isAssign(node)
@@ -1126,7 +1125,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Expression} node
-     * @returns {node is types.Reexport}
+     * @returns {node is Reexport}
      */
     function isReexport(node) {
         let prop;
@@ -1163,7 +1162,7 @@ function transformCjsToEsm(context, errors) {
     }
 
     /**
-     * @param {types.ExportBindingExpression | types.ExportAssignmentExpression | types.ExportNamespaceIIFE | types.ExportNamespaceBindingExpression} node
+     * @param {ExportBindingExpression | ExportAssignmentExpression | ExportNamespaceIIFE | ExportNamespaceBindingExpression} node
      * @return {string}
      */
     function getExportBindingName(node) {
@@ -1174,7 +1173,7 @@ function transformCjsToEsm(context, errors) {
     }
 
     /**
-     * @param {types.ExportStar} node
+     * @param {ExportStar} node
      */
     function getExportModuleSpecifier(node) {
         return node.arguments[0].arguments[0].text;
@@ -1182,7 +1181,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @returns {node is types.SimpleVar<ts.Identifier, ts.Expression>}
+     * @returns {node is SimpleVar<ts.Identifier, ts.Expression>}
      */
     function isPotentialHelper(node) {
         return ts.isVariableStatement(node)
@@ -1195,7 +1194,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @returns {node is types.SimpleUninitalizedVar}
+     * @returns {node is SimpleUninitalizedVar}
      */
     function isSimpleUninitalizedVar(node) {
         return ts.isVariableStatement(node)
@@ -1207,7 +1206,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @returns {node is types.VarStmt<types.VarDecl<ts.Identifier, undefined>[]>}
+     * @returns {node is VarStmt<VarDecl<ts.Identifier, undefined>[]>}
      */
     function isTempVars(node) {
         return ts.isVariableStatement(node)
@@ -1216,7 +1215,7 @@ function transformCjsToEsm(context, errors) {
     }
 
     /**
-     * @param {ts.FunctionDeclaration | ts.ClassDeclaration | types.SimpleUninitalizedVar} node
+     * @param {ts.FunctionDeclaration | ts.ClassDeclaration | SimpleUninitalizedVar} node
      */
     function getDeclarationName(node) {
         return ts.isFunctionDeclaration(node) ? node.name && ts.idText(node.name) :
@@ -1226,7 +1225,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @return {node is types.ExportNamespaceBindingExpression}
+     * @return {node is ExportNamespaceBindingExpression}
      */
     function isExportNamespaceBindingExpression(node) {
         // N = exports.N || (exports.N = {})
@@ -1244,7 +1243,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @return {node is types.ExportNamespaceIIFE}
+     * @return {node is ExportNamespaceIIFE}
      */
     function isExportNamespaceIIFE(node) {
         return ts.isCallExpression(node)
@@ -1256,7 +1255,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Expression} node
-     * @returns {node is types.ExportStar}
+     * @returns {node is ExportStar}
      */
     function isExportStar(node) {
         return isHelperCall(node, "__exportStar")
@@ -1267,7 +1266,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node 
-     * @returns {node is types.RequireCall}
+     * @returns {node is RequireCall}
      */
     function isRequireCall(node) {
         return ts.isCallExpression(node)
@@ -1280,7 +1279,7 @@ function transformCjsToEsm(context, errors) {
      * @template {string} H
      * @param {ts.Node} node
      * @param {H} helperName
-     * @returns {node is types.HelperCall<H>}
+     * @returns {node is HelperCall<H>}
      */
     function isHelperCall(node, helperName) {
         return ts.isCallExpression(node) && (
@@ -1296,7 +1295,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @returns {node is types.ImportAssignment}
+     * @returns {node is ImportAssignment}
      */
     function isImportAssignment(node) {
         return ts.isVariableStatement(node)
@@ -1310,7 +1309,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @returns {node is types.ImportInteropAssignment}
+     * @returns {node is ImportInteropAssignment}
      */
     function isImportInteropAssignment(node) {
         return ts.isVariableStatement(node)
@@ -1326,7 +1325,7 @@ function transformCjsToEsm(context, errors) {
 
     /**
      * @param {ts.Node} node
-     * @returns {node is types.ImportStar}
+     * @returns {node is ImportStar}
      */
     function isImportStar(node) {
         return ts.isVariableStatement(node)
@@ -1341,14 +1340,14 @@ function transformCjsToEsm(context, errors) {
     }
 
     /**
-     * @param {types.ImportAssignment | types.ImportStar | types.ImportInteropAssignment} node
+     * @param {ImportAssignment | ImportStar | ImportInteropAssignment} node
      */
     function getImportBindingName(node) {
         return node.declarationList.declarations[0].name;
     }
 
     /**
-     * @param {types.ImportAssignment | types.ImportInteropAssignment | types.ImportStar} node
+     * @param {ImportAssignment | ImportInteropAssignment | ImportStar} node
      */
     function getImportModuleSpecifier(node) {
         return isImportAssignment(node) ?
@@ -1415,3 +1414,135 @@ function transformCjsToEsm(context, errors) {
         }
     }
 }
+
+/**
+ * @template {ts.SyntaxKind} [T=ts.SyntaxKind]
+ * @typedef {ts.Token<T>} Tok
+ */
+
+/**
+ * @typedef {ts.Expression} Expr
+ */
+
+/**
+ * @typedef {ts.Statement} Stmt
+ */
+
+/**
+ * @template {string} [T=string]
+ * @typedef {string extends T ? ts.Identifier : ts.Identifier & { readonly escapedText: ts.__String & (T extends `__${infer R}` ? `___${R}` : T) }} Id
+ */
+
+/**
+ * @template {Expr | string} L
+ * @template {Id | string} R
+ * @typedef {ts.PropertyAccessExpression & { readonly expression: L extends string ? Id<L> : L, readonly name: R extends string ? Id<R> : R }} Prop
+ */
+
+/**
+ * @template {ts.BinaryOperator | ts.BinaryOperatorToken} [T=ts.BinaryOperatorToken]
+ * @template {Expr} [L=Expr]
+ * @template {Expr} [R=Expr]
+ * @typedef {ts.BinaryExpression & { readonly left: L, readonly operatorToken: T extends ts.BinaryOperator ? Tok<T> : T, readonly right: R }} BinOp
+ */
+
+/**
+ * @template {Expr} [L=Expr]
+ * @template {Expr} [R=Expr]
+ * @typedef {BinOp<ts.SyntaxKind.BarBarToken, L, R>} LogicalOr
+ */
+
+/**
+ * @template {Expr} [L=Expr]
+ * @template {Expr} [R=Expr]
+ * @typedef {BinOp<ts.EqualsToken, L, R>} Assign
+ */
+
+/**
+ * @template {Expr} T
+ * @typedef {ts.ParenthesizedExpression & { readonly expression: T }} Paren
+ */
+
+/**
+ * @template {Expr} E
+ * @template {readonly Expr[]} A
+ * @typedef {ts.CallExpression & { readonly expression: E, readonly arguments: Readonly<A> }} Call
+ */
+
+/**
+ * @typedef {Call<Id<"require">, [ts.StringLiteral]>} RequireCall
+ */
+
+/**
+ * @template {string} [H=string]
+ * @template {Expr[]} [A=Expr[]]
+ * @typedef {Call<Prop<Id, H> | Id<H>, A>} HelperCall
+ */
+
+/**
+ * @template {ts.ObjectLiteralElement[]} [P=ts.ObjectLiteralElement[]]
+ * @typedef {ts.ObjectLiteralExpression & { readonly properties: Readonly<P> }} Obj
+ */
+
+/**
+ * @template {ts.PropertyName | string} P
+ * @template {Expr} I
+ * @typedef {ts.PropertyAssignment & { readonly name: P extends string ? Id<P> : P, readonly initializer: I }} PropAssign
+ */
+
+/**
+ * @template {Expr | undefined} [E=undefined]
+ * @typedef {ts.ReturnStatement & { readonly expression: E }} Ret
+ */
+
+/**
+ * @template {Stmt[]} S
+ * @typedef {ts.Block & { readonly statements: Readonly<S> }} Block
+ */
+
+/**
+ * @template {ts.ParameterDeclaration[]} P
+ * @template {Stmt[]} S
+ * @typedef {ts.FunctionExpression & { readonly parameters: Readonly<P>, readonly body: Block<S> }} FuncExpr
+ */
+
+/**
+ * @typedef {Obj<[]>} EmptyObj
+ */
+
+/**
+ * @template {ts.BindingName} N
+ * @template {Expr | undefined} E
+ * @typedef {ts.VariableDeclaration & { readonly name: N, readonly initializer: E }} VarDecl
+ */
+
+/**
+ * @template {readonly VarDecl<ts.BindingName, Expr | undefined>[]} N
+ * @template {"var" | "let" | "const"} [M="var" | "let" | "const"]
+ * @typedef {ts.VariableDeclarationList & { readonly declarations: Readonly<N>, readonly __typeBrand: M }} VarDecls
+ */
+
+/**
+ * @template {readonly VarDecl<ts.BindingName, Expr | undefined>[]} N
+ * @template {"var" | "let" | "const"} [M="var" | "let" | "const"]
+ * @typedef {ts.VariableStatement & { readonly declarationList: VarDecls<N, M> }} VarStmt
+ */
+
+/**
+ * @template {ts.Identifier} N
+ * @template {Expr | undefined} E
+ * @template {"var" | "let" | "const"} [M="var" | "let" | "const"]
+ * @typedef {VarStmt<[VarDecl<N, E>], M>} SimpleVar
+ */
+
+/** @typedef {SimpleVar<ts.Identifier, undefined>} SimpleUninitalizedVar */
+/** @typedef {Id<"exports">} ExportsId */
+/** @typedef {Prop<ExportsId, string>} ExportBindingExpression */
+/** @typedef {Assign<ExportBindingExpression, Expr>} ExportAssignmentExpression */
+/** @typedef {Assign<Id, LogicalOr<ExportBindingExpression, Paren<Assign<ExportBindingExpression, EmptyObj>>>>} ExportNamespaceBindingExpression */
+/** @typedef {Call<Paren<ts.FunctionExpression>, [ExportNamespaceBindingExpression]>} ExportNamespaceIIFE */
+/** @typedef {HelperCall<"__exportStar", [RequireCall, ExportsId]>} ExportStar */
+/** @typedef {SimpleVar<Id, RequireCall, "const">} ImportAssignment */
+/** @typedef {SimpleVar<Id, HelperCall<"__importDefault", [RequireCall]>, "const">} ImportInteropAssignment */
+/** @typedef {SimpleVar<Id, HelperCall<"__importStar", [RequireCall]>, "const">} ImportStar */
+/** @typedef {Call<Prop<"Object", "defineProperty">, [ExportsId, ts.StringLiteral, Obj<[PropAssign<"enumerable", ts.TrueLiteral>, PropAssign<"get", FuncExpr<[], [Ret<Prop<Id, Id>>]>>]>]>} Reexport */

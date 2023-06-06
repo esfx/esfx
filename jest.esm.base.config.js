@@ -7,8 +7,9 @@ module.exports = {
         "^.+\\.was?t": [require.resolve("./scripts/jest-wat.js"), { esm: true }]
     },
     testPathIgnorePatterns: [
+        '\\.d\\.[cm]?ts$',
         '/dist/cjs/',
-        '/dist/types/',
+        '/dist/legacy/',
         '/src/',
         '/workers/',
         '/data/',

@@ -3,7 +3,6 @@
     "compilerOptions": {
         "rootDir": "src",
         "outDir": "dist/cjs",
-        "declarationDir": "dist/types",
         "strictBindCallApply": true
     },
     "include": ["src/**/*.ts"],

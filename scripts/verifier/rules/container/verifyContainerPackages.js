@@ -151,7 +151,7 @@ function generateExportsMap(packagePath) {
     const exportMapEntries = {};
 
     /**
-     * @param {"import" | "require" | "types"} type
+     * @param {"import" | "require"} type
      * @param {string} exportDir
      * @param {string} relativeDir
      * @param {string} dir
@@ -171,18 +171,21 @@ function generateExportsMap(packagePath) {
             }
             else if (entry.isFile()) {
                 if (!/\.ts$/.test(entry.name)) continue;
-                const file = path.basename(entry.name, ".ts") + ".js";
-                const exportName = entry.name === "index.ts" ? exportDir : `${exportDir}/${file}`;
-                const relativeName = `${relativeDir}/${file}`;
+                const basename = path.basename(entry.name, ".ts");
+                const jsFile = basename + (type === "import" ? ".mjs" : ".js");
+                const jsRelativeName = `${relativeDir}/${jsFile}`;
+                const dtsFile = basename + (type === "import" ? ".d.mts" : ".d.ts");
+                const dtsRelativeName = `${relativeDir}/${dtsFile}`;
+                const exportName = entry.name === "index.ts" ? exportDir : `${exportDir}/${jsFile}`;
                 let value = exportMapEntries[exportName];
                 if (value === undefined) {
-                    value = { [type]: relativeName };
+                    value = { [type]: { types: dtsRelativeName, default: jsRelativeName } };
                 }
                 else if (!isPackageJsonConditionalExports(value)) {
                     throw new Error(`Not supported: ${JSON.stringify(value)}`);
                 }
                 else {
-                    value[type] = relativeName;
+                    value[type] = jsRelativeName;
                 }
                 exportMapEntries[exportName] = value;
             }
@@ -190,7 +193,6 @@ function generateExportsMap(packagePath) {
     }
 
     const srcPath = path.join(packagePath, "src");
-    collectEntries("types", ".", "./dist/types", srcPath, 0);
     collectEntries("require", ".", "./dist/cjs", srcPath, 0);
     collectEntries("import", ".", "./dist/esm", srcPath, 0);
 

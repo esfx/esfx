@@ -21,9 +21,12 @@ function verifyPackageJsonTypesProperty(context) {
 
     const exportsMapCardinality = getExportsMapCardinality(actualExportsMap || generatedExportsMap);
     const outDir = pickPropertyMatching(pickProperty(packageTsconfigObject, "compilerOptions"), "outDir", ts.isStringLiteral);
+    const declarationDir = pickPropertyMatching(pickProperty(packageTsconfigObject, "compilerOptions"), "declarationDir", ts.isStringLiteral);
 
     const expectedTypes =
-        outDir?.text.endsWith("dist/cjs") || outDir?.text.endsWith("dist/esm") ? "./dist/types/index.d.ts" :
+        declarationDir ? "./dist/types/index.d.ts" :
+        outDir?.text.endsWith("dist/cjs") ? "./dist/cjs/index.d.ts" :
+        outDir?.text.endsWith("dist/esm") ? "./dist/esm/index.d.ts" :
         exportsMapCardinality === "many" ? "index" :
         "./dist/index.d.ts";
     

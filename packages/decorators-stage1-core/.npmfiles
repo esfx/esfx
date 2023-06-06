@@ -4,10 +4,12 @@ dist/cjs/typeModel.js
 dist/cjs/typeModel.js.map
 dist/esm/index.mjs
 dist/esm/typeModel.mjs
-dist/types/index.d.ts
-dist/types/index.d.ts.map
-dist/types/typeModel.d.ts
-dist/types/typeModel.d.ts.map
+dist/cjs/index.d.ts
+dist/cjs/index.d.ts.map
+dist/esm/index.d.mts
+dist/cjs/typeModel.d.ts
+dist/cjs/typeModel.d.ts.map
+dist/esm/typeModel.d.mts
 LICENSE
 README.md
 package.json

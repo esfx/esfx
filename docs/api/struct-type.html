@@ -277,19 +277,47 @@ else if (parentPort) {
   <div class="markdown level0 remarks"></div>
     <h3 id="interfaces">Interfaces
   </h3>
+        <h4><a class="xref" href="struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_interface">ArrayType&lt;TType&gt;</a></h4>
+        <section><p>Represents the constructor for a TypedArray</p>
+</section>
+        <h4><a class="xref" href="struct-type/arraytypeconstructor.html#_esfx_struct_type_ArrayTypeConstructor_interface">ArrayTypeConstructor</a></h4>
+        <section></section>
+        <h4><a class="xref" href="struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_interface">FixedLengthArrayType&lt;TType, TFixedLength&gt;</a></h4>
+        <section><p>Represents the constructor for a fixed-length TypedArray</p>
+</section>
+        <h4><a class="xref" href="struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType_interface">PrimitiveType&lt;K, T&gt;</a></h4>
+        <section><p>Represents a primitive type.</p>
+</section>
+        <h4><a class="xref" href="struct-type/structdefinition.html#_esfx_struct_type_StructDefinition_interface">StructDefinition&lt;TFields, TOrder&gt;</a></h4>
+        <section></section>
         <h4><a class="xref" href="struct-type/structfielddefinition.html#_esfx_struct_type_StructFieldDefinition_interface">StructFieldDefinition</a></h4>
         <section></section>
-        <h4><a class="xref" href="struct-type/structprimitivetype.html#_esfx_struct_type_StructPrimitiveType_interface">StructPrimitiveType&lt;K, T&gt;</a></h4>
-        <section><p>Represents a primitive struct type.</p>
-</section>
         <h4><a class="xref" href="struct-type/structtype-interface.html#_esfx_struct_type_StructType_interface">StructType&lt;TDef&gt;</a></h4>
         <section><p>Represents the constructor for a struct.</p>
 </section>
         <h4><a class="xref" href="struct-type/structtypeconstructor.html#_esfx_struct_type_StructTypeConstructor_interface">StructTypeConstructor</a></h4>
         <section><p>Represents the constructor for a struct type.</p>
 </section>
+        <h4><a class="xref" href="struct-type/typedarray.html#_esfx_struct_type_TypedArray_interface">TypedArray&lt;TType, TFixedLength&gt;</a></h4>
+        <section></section>
     <h3 id="variables">Variables
   </h3>
+  
+  
+        <h4 id="_esfx_struct_type_ArrayType_var" data-uid="@esfx/struct-type!ArrayType:var">ArrayType</h4>
+              <div class="markdown level1 summary"><p>Creates a new <code>TypedArray</code> type for a provided type.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">ArrayType: ArrayTypeConstructor</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
   
   
         <h4 id="_esfx_struct_type_bigint64_var" data-uid="@esfx/struct-type!bigint64:var">bigint64</h4>
@@ -299,7 +327,7 @@ else if (parentPort) {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">bigint64: StructPrimitiveType&lt;&quot;bigint64&quot;, bigint&gt;</code></pre>
+          <pre><code class="lang-typeScript hljs">bigint64: PrimitiveType&lt;&quot;bigint64&quot;, bigint&gt;</code></pre>
         </div>
   
   
@@ -316,7 +344,7 @@ else if (parentPort) {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">biguint64: StructPrimitiveType&lt;&quot;biguint64&quot;, bigint&gt;</code></pre>
+          <pre><code class="lang-typeScript hljs">biguint64: PrimitiveType&lt;&quot;biguint64&quot;, bigint&gt;</code></pre>
         </div>
   
   
@@ -333,7 +361,7 @@ else if (parentPort) {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">float32: StructPrimitiveType&lt;&quot;float32&quot;, number&gt;</code></pre>
+          <pre><code class="lang-typeScript hljs">float32: PrimitiveType&lt;&quot;float32&quot;, number&gt;</code></pre>
         </div>
   
   
@@ -350,7 +378,7 @@ else if (parentPort) {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">float64: StructPrimitiveType&lt;&quot;float64&quot;, number&gt;</code></pre>
+          <pre><code class="lang-typeScript hljs">float64: PrimitiveType&lt;&quot;float64&quot;, number&gt;</code></pre>
         </div>
   
   
@@ -367,7 +395,7 @@ else if (parentPort) {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">int16: StructPrimitiveType&lt;&quot;int16&quot;, number&gt;</code></pre>
+          <pre><code class="lang-typeScript hljs">int16: PrimitiveType&lt;&quot;int16&quot;, number&gt;</code></pre>
         </div>
   
   
@@ -384,7 +412,7 @@ else if (parentPort) {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">int32: StructPrimitiveType&lt;&quot;int32&quot;, number&gt;</code></pre>
+          <pre><code class="lang-typeScript hljs">int32: PrimitiveType&lt;&quot;int32&quot;, number&gt;</code></pre>
         </div>
   
   
@@ -401,7 +429,7 @@ else if (parentPort) {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">int8: StructPrimitiveType&lt;&quot;int8&quot;, number&gt;</code></pre>
+          <pre><code class="lang-typeScript hljs">int8: PrimitiveType&lt;&quot;int8&quot;, number&gt;</code></pre>
         </div>
   
   
@@ -434,7 +462,7 @@ else if (parentPort) {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">uint16: StructPrimitiveType&lt;&quot;uint16&quot;, number&gt;</code></pre>
+          <pre><code class="lang-typeScript hljs">uint16: PrimitiveType&lt;&quot;uint16&quot;, number&gt;</code></pre>
         </div>
   
   
@@ -451,7 +479,7 @@ else if (parentPort) {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">uint32: StructPrimitiveType&lt;&quot;uint32&quot;, number&gt;</code></pre>
+          <pre><code class="lang-typeScript hljs">uint32: PrimitiveType&lt;&quot;uint32&quot;, number&gt;</code></pre>
         </div>
   
   
@@ -468,7 +496,7 @@ else if (parentPort) {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">uint8: StructPrimitiveType&lt;&quot;uint8&quot;, number&gt;</code></pre>
+          <pre><code class="lang-typeScript hljs">uint8: PrimitiveType&lt;&quot;uint8&quot;, number&gt;</code></pre>
         </div>
   
   
@@ -480,32 +508,89 @@ else if (parentPort) {
   </h3>
   
   
+        <h4 id="_esfx_struct_type_InitType_type" data-uid="@esfx/struct-type!InitType:type">InitType</h4>
+              <div class="markdown level1 summary"><p>Gets a runtime type from a type definition that can be used to initialize a value of that type.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type InitType&lt;TType extends Type&gt; = NonNullable&lt;TType[typeof RelatedTypes]&gt;[&quot;InitType&quot;];</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TType</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_struct_type_PrimitiveTypes_type" data-uid="@esfx/struct-type!PrimitiveTypes:type">PrimitiveTypes</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type PrimitiveTypes = typeof int8 | typeof int16 | typeof int32 | typeof uint8 | typeof uint16 | typeof uint32 | typeof bigint64 | typeof biguint64 | typeof float32 | typeof float64;</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_struct_type_RuntimeType_type" data-uid="@esfx/struct-type!RuntimeType:type">RuntimeType</h4>
+              <div class="markdown level1 summary"><p>Gets the runtime type from a type definition.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type RuntimeType&lt;TType extends Type&gt; = NonNullable&lt;TType[typeof RelatedTypes]&gt;[&quot;RuntimeType&quot;];</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TType</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_struct_type_Struct_type" data-uid="@esfx/struct-type!Struct:type">Struct</h4>
               <div class="markdown level1 summary"><p>Represents an instance of a struct type.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type Struct&lt;TDef extends readonly StructFieldDefinition[] = any&gt; = {
+          <pre><code class="lang-typeScript hljs">export declare type Struct&lt;TDef extends StructDefinition = StructDefinition&gt; = {
     readonly buffer: ArrayBufferLike;
     readonly byteOffset: number;
     readonly byteLength: number;
-    get&lt;K extends TDef[number][&quot;name&quot;]&gt;(key: K): StructFieldRuntimeType&lt;Extract&lt;TDef[number], {
-        readonly name: K;
-    }&gt;&gt;;
-    set&lt;K extends TDef[number][&quot;name&quot;]&gt;(key: K, value: StructFieldRuntimeType&lt;Extract&lt;TDef[number], {
-        readonly name: K;
-    }&gt;&gt;): void;
-    getIndex&lt;I extends numstr&lt;keyof TDef&gt;&gt;(index: I): StructFieldRuntimeType&lt;Extract&lt;TDef[Extract&lt;I, keyof TDef&gt;], StructFieldDefinition&gt;&gt;;
-    setIndex&lt;I extends numstr&lt;keyof TDef&gt;&gt;(index: I, value: StructFieldRuntimeType&lt;Extract&lt;TDef[Extract&lt;I, keyof TDef&gt;], StructFieldDefinition&gt;&gt;): boolean;
+    get&lt;K extends StructPropertyLayoutKeys&lt;TDef&gt;&gt;(key: K): StructFieldLayout&lt;TDef&gt;[K];
+    set&lt;K extends StructPropertyLayoutKeys&lt;TDef&gt;&gt;(key: K, value: StructFieldLayout&lt;TDef&gt;[K]): void;
+    getIndex&lt;I extends StructElementLayoutIndices&lt;TDef&gt;&gt;(index: I): StructElementLayout&lt;TDef&gt;[I];
+    setIndex&lt;I extends StructElementLayoutIndices&lt;TDef&gt;&gt;(index: I, value: StructElementLayout&lt;TDef&gt;[I]): boolean;
     writeTo(buffer: ArrayBufferLike, byteOffset?: number): void;
-} &amp; {
-    [K in TDef[number][&quot;name&quot;]]: StructFieldRuntimeType&lt;Extract&lt;TDef[number], {
-        readonly name: K;
-    }&gt;&gt;;
-} &amp; {
-    [I in Extract&lt;keyof TDef, `${number}`&gt;]: StructFieldRuntimeType&lt;Extract&lt;TDef[I], StructFieldDefinition&gt;&gt;;
-};</code></pre>
+} &amp; StructFieldLayout&lt;TDef&gt; &amp; StructElementLayout&lt;TDef&gt;;</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>
@@ -525,57 +610,14 @@ else if (parentPort) {
   
   
   
-        <h4 id="_esfx_struct_type_StructFieldRuntimeType_type" data-uid="@esfx/struct-type!StructFieldRuntimeType:type">StructFieldRuntimeType</h4>
-              <div class="markdown level1 summary"><p>Gets the runtime type from a <code>StructFieldType</code><!-- -->.</p>
-</div>
-        <div class="markdown level1 conceptual"></div>
-        <h5 class="decalaration">Declaration</h5>
-        <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type StructFieldRuntimeType&lt;TField extends StructFieldDefinition&gt; = TField[&quot;type&quot;] extends StructPrimitiveType ? ReturnType&lt;TField[&quot;type&quot;]&gt; : TField[&quot;type&quot;] extends new () =&gt; Struct ? InstanceType&lt;TField[&quot;type&quot;]&gt; : never;</code></pre>
-        </div>
-  
-        <h5 class="typeParameters">Type Parameters</h5>
-          <div class="property">
-            <dl class="parameter">
-              <dt>TField</dt>
-              <dd></dd>
-            </dl>
-            <p>
-              
-            </p>
-          </div>
-  
-  
-  
-  
-  
-  
-  
-        <h4 id="_esfx_struct_type_StructFieldType_type" data-uid="@esfx/struct-type!StructFieldType:type">StructFieldType</h4>
-              <div class="markdown level1 summary"></div>
-        <div class="markdown level1 conceptual"></div>
-        <h5 class="decalaration">Declaration</h5>
-        <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type StructFieldType = typeof int8 | typeof int16 | typeof int32 | typeof uint8 | typeof uint16 | typeof uint32 | typeof bigint64 | typeof biguint64 | typeof float32 | typeof float64 | ((new () =&gt; Struct) &amp; {
-    readonly SIZE: number;
-});</code></pre>
-        </div>
-  
-  
-  
-  
-  
-  
-  
-  
-        <h4 id="_esfx_struct_type_StructInitElements_type" data-uid="@esfx/struct-type!StructInitElements:type">StructInitElements</h4>
+        <h4 id="_esfx_struct_type_StructArrayInit_type" data-uid="@esfx/struct-type!StructArrayInit:type">StructArrayInit</h4>
               <div class="markdown level1 summary"><p>Describes the ordered elements that can be used to initialize a struct.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type StructInitElements&lt;TDef extends readonly StructFieldDefinition[]&gt; = {
-    [I in keyof TDef]: StructInitFieldType&lt;Extract&lt;TDef[I], StructFieldDefinition&gt;&gt;;
+          <pre><code class="lang-typeScript hljs">export declare type StructArrayInit&lt;TDef extends StructDefinition&gt; = TDef[&quot;order&quot;] extends &quot;unspecified&quot; ? never : {
+    [I in keyof TDef[&quot;order&quot;]]: InitType&lt;TDef[&quot;fields&quot;][TDef[&quot;order&quot;][I]]&gt;;
 };</code></pre>
         </div>
   
@@ -596,19 +638,22 @@ else if (parentPort) {
   
   
   
-        <h4 id="_esfx_struct_type_StructInitFieldType_type" data-uid="@esfx/struct-type!StructInitFieldType:type">StructInitFieldType</h4>
-              <div class="markdown level1 summary"><p>Describes a type that can be used to initialize a property or element of a struct.</p>
-</div>
+        <h4 id="_esfx_struct_type_StructDefinitionOf_type" data-uid="@esfx/struct-type!StructDefinitionOf:type">StructDefinitionOf</h4>
+              <div class="markdown level1 summary"></div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type StructInitFieldType&lt;TField extends StructFieldDefinition&gt; = TField[&quot;type&quot;] extends StructPrimitiveType ? ReturnType&lt;TField[&quot;type&quot;]&gt; : TField[&quot;type&quot;] extends new () =&gt; Struct&lt;infer TDef&gt; ? InstanceType&lt;TField[&quot;type&quot;]&gt; | StructInitProperties&lt;TDef&gt; | StructInitElements&lt;TDef&gt; : never;</code></pre>
+          <pre><code class="lang-typeScript hljs">export declare type StructDefinitionOf&lt;TDef extends readonly StructFieldDefinition[]&gt; = StructDefinition&lt;{
+    [I in Extract&lt;numstr&lt;keyof TDef&gt;, number&gt; as TDef[I][&quot;name&quot;]]: TDef[I][&quot;type&quot;];
+}, {
+    [I in keyof TDef]: TDef[I] extends StructFieldDefinition ? TDef[I][&quot;name&quot;] : TDef[I];
+}&gt;;</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>
           <div class="property">
             <dl class="parameter">
-              <dt>TField</dt>
+              <dt>TDef</dt>
               <dd></dd>
             </dl>
             <p>
@@ -622,16 +667,144 @@ else if (parentPort) {
   
   
   
-        <h4 id="_esfx_struct_type_StructInitProperties_type" data-uid="@esfx/struct-type!StructInitProperties:type">StructInitProperties</h4>
+        <h4 id="_esfx_struct_type_StructElementLayout_type" data-uid="@esfx/struct-type!StructElementLayout:type">StructElementLayout</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type StructElementLayout&lt;TDef extends StructDefinition&gt; = {
+    /**
+     * Gets or sets a named field of the struct.
+     */
+    -readonly [I in StructElementLayoutIndices&lt;TDef&gt;]: RuntimeType&lt;TDef[&quot;fields&quot;][TDef[&quot;order&quot;][I]]&gt;;
+};</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TDef</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_struct_type_StructElementLayoutIndices_type" data-uid="@esfx/struct-type!StructElementLayoutIndices:type">StructElementLayoutIndices</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type StructElementLayoutIndices&lt;TDef extends StructDefinition&gt; = TDef[&quot;order&quot;] extends &quot;unspecified&quot; ? never : numstr&lt;keyof TDef[&quot;order&quot;]&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TDef</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_struct_type_StructFieldLayout_type" data-uid="@esfx/struct-type!StructFieldLayout:type">StructFieldLayout</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type StructFieldLayout&lt;TDef extends StructDefinition&gt; = {
+    /**
+     * Gets or sets a named field of the struct.
+     */
+    -readonly [K in StructPropertyLayoutKeys&lt;TDef&gt;]: RuntimeType&lt;TDef[&quot;fields&quot;][K]&gt;;
+};</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TDef</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_struct_type_StructInheritedDefinition_type" data-uid="@esfx/struct-type!StructInheritedDefinition:type">StructInheritedDefinition</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type StructInheritedDefinition&lt;TBaseDef extends StructDefinition, TFields extends {
+    [key: string | symbol]: Type;
+}, TOrder extends readonly (keyof TFields)[] | &quot;unspecified&quot;&gt; = StructDefinition&lt;TBaseDef[&quot;fields&quot;] &amp; TFields, TBaseDef[&quot;order&quot;] extends &quot;unspecified&quot; ? TBaseDef[&quot;order&quot;] : TOrder extends &quot;unspecified&quot; ? TBaseDef[&quot;order&quot;] &amp; &quot;unspecified&quot; : TOrder extends readonly (keyof TFields)[] ? [...TBaseDef[&quot;order&quot;], ...TOrder] : &quot;unspecified&quot;&gt;;</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TBaseDef</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TFields</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TOrder</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_struct_type_StructObjectInit_type" data-uid="@esfx/struct-type!StructObjectInit:type">StructObjectInit</h4>
               <div class="markdown level1 summary"><p>Describes the properties that can be used to initialize a struct.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type StructInitProperties&lt;TDef extends readonly StructFieldDefinition[]&gt; = {
-    [P in TDef[number][&quot;name&quot;]]: StructInitFieldType&lt;Extract&lt;TDef[number], {
-        readonly name: P;
-    }&gt;&gt;;
+          <pre><code class="lang-typeScript hljs">export declare type StructObjectInit&lt;TDef extends StructDefinition&gt; = {
+    [P in keyof TDef[&quot;fields&quot;]]: InitType&lt;TDef[&quot;fields&quot;][P]&gt;;
 };</code></pre>
         </div>
   
@@ -645,6 +818,46 @@ else if (parentPort) {
               
             </p>
           </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_struct_type_StructPropertyLayoutKeys_type" data-uid="@esfx/struct-type!StructPropertyLayoutKeys:type">StructPropertyLayoutKeys</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type StructPropertyLayoutKeys&lt;TDef extends StructDefinition&gt; = keyof TDef[&quot;fields&quot;];</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TDef</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_struct_type_Type_type" data-uid="@esfx/struct-type!Type:type">Type</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Type = PrimitiveTypes | StructType&lt;any&gt; | ArrayType&lt;any&gt; | FixedLengthArrayType&lt;any&gt;;</code></pre>
+        </div>
+  
   
   
   

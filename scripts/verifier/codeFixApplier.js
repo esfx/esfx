@@ -100,7 +100,7 @@ async function applyFixInteractively(knownFiles, diagnostic, fixesOut, fixByDefa
 
     let stop = false;
 
-    /** @type {import("./codeFix").CodeFix?} */
+    /** @type {import("./codeFix").CodeFix | undefined} */
     let fix;
     if (previews.length === 1) {
         console.log(previews[0].patch);
@@ -191,6 +191,7 @@ async function applyFixes(knownFiles, groupedDiagnostics, applier, reporter, fix
 
     for (const [, diagnostics] of groupedDiagnostics) {
         for (const diagnostic of diagnostics) {
+            if (!diagnostic.fixes) continue;
             for (const fix of diagnostic.fixes) {
                 recordKnownFiles(fix);
             }

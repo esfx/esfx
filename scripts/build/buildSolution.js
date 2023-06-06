@@ -5,8 +5,9 @@ const fs = require("fs");
 const { createInliner } = require("./inliner");
 const { exec } = require("../exec");
 const log = require("fancy-log");
-const { convertCjsToEsm } = require("../cjs-to-esm");
-const { convertCjsToCjsLegacy } = require("../cjs-to-cjs-legacy");
+const { convertCjsToMjs } = require("./converters/cjs-to-mjs");
+const { convertCjsToCjsLegacy } = require("./converters/cjs-to-cjs-legacy");
+const { convertDtsToDmts } = require("./converters/dts-to-dmts.js");
 
 /**
  * @param {ts.SolutionBuilderHost} host
@@ -80,19 +81,27 @@ async function buildNextInvalidatedProject(host, builder) {
             /*customTransformers*/ { before: [createInliner(program)] }
         );
 
-        const tsconfigJsonFile = ts.readJsonConfigFile(invalidatedProject.project, file => fs.readFileSync(file, "utf8"));
-        const tsconfigJson = ts.convertToObject(tsconfigJsonFile, []);
-        if (tsconfigJson.compilerOptions?.outDir &&
-            tsconfigJson.esmDir) {
-            const cjsDir = path.resolve(invalidatedProject.project, "..", tsconfigJson.compilerOptions.outDir);
-            const esmDir = path.resolve(invalidatedProject.project, "..", tsconfigJson.esmDir);
-            convertCjsToEsm(cjsDir, esmDir);
-        }
-        if (tsconfigJson.compilerOptions?.outDir &&
-            tsconfigJson.cjsLegacyDir) {
-            const cjsDir = path.resolve(invalidatedProject.project, "..", tsconfigJson.compilerOptions.outDir);
-            const cjsLegacyDir = path.resolve(invalidatedProject.project, "..", tsconfigJson.cjsLegacyDir);
-            convertCjsToCjsLegacy(cjsDir, cjsLegacyDir);
+        if (exitStatus === ts.ExitStatus.Success ||
+            exitStatus === ts.ExitStatus.DiagnosticsPresent_OutputsGenerated) {
+            const tsconfigJsonFile = ts.readJsonConfigFile(invalidatedProject.project, file => fs.readFileSync(file, "utf8"));
+            const parsed = ts.parseJsonSourceFileConfigFileContent(tsconfigJsonFile, ts.sys, path.dirname(tsconfigJsonFile.fileName), undefined, invalidatedProject.project);
+            if (parsed.options.outDir &&
+                parsed.raw.esmDir) {
+                const cjsDir = path.resolve(invalidatedProject.project, "..", parsed.options.outDir);
+                const esmDir = path.resolve(invalidatedProject.project, "..", parsed.raw.esmDir);
+                convertCjsToMjs(cjsDir, esmDir);
+                if (parsed.options.declaration && !parsed.options.declarationDir) {
+                    const cjsDir = path.resolve(invalidatedProject.project, "..", parsed.options.outDir);
+                    const esmDir = path.resolve(invalidatedProject.project, "..", parsed.raw.esmDir);
+                    convertDtsToDmts(cjsDir, esmDir);
+                }
+            }
+            if (parsed.options.outDir &&
+                parsed.raw.cjsLegacyDir) {
+                const cjsDir = path.resolve(invalidatedProject.project, "..", parsed.options.outDir);
+                const cjsLegacyDir = path.resolve(invalidatedProject.project, "..", parsed.raw.cjsLegacyDir);
+                convertCjsToCjsLegacy(cjsDir, cjsLegacyDir);
+            }
         }
     }
     else {

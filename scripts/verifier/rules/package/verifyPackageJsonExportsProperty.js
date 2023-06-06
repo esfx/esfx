@@ -3,10 +3,7 @@
 // TODO: Verify the imports map is correct.
 
 const ts = require("typescript");
-const fs = require("fs");
-const path = require("path");
-const assert = require("assert");
-const { pickProperty, simplifyExportsMap, createExportsMap, getExportsMapCardinality } = require("../../utils");
+const { pickProperty, simplifyExportsMap, createExportsMap } = require("../../utils");
 
 /**
  * Verifies the `"exports"` property of `<package>/package.json` exists.

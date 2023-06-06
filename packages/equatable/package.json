@@ -3,15 +3,20 @@
     "version": "1.1.0-alpha.202305082104",
     "description": "A low-level API for defining equality.",
     "type": "commonjs",
-    "types": "./dist/types/index.d.ts",
+    "types": "./dist/cjs/index.d.ts",
+    "main": "./dist/legacy/index.js",
     "exports": {
         ".": {
-            "types": "./dist/types/index.d.ts",
-            "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.mjs"
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            },
+            "import": {
+                "types": "./dist/esm/index.d.mts",
+                "default": "./dist/esm/index.mjs"
+            }
         }
     },
-    "main": "./dist/legacy/index.js",
     "imports": {
         "#hash/native": {
             "node": {

@@ -653,4 +653,3 @@ function ToIndex(value: unknown) {
 
 /* @internal */
 export { TypedArray as TypedArrayImpl };
-

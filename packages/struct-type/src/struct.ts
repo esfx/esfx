@@ -172,5 +172,5 @@ abstract class Struct<TDef extends StructDefinition = any> {
     }
 }
 
+/* @internal */
 export { Struct as StructImpl };
-

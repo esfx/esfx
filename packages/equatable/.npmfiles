@@ -33,8 +33,9 @@ dist/esm/internal/utf8.mjs
 dist/esm/index.mjs
 
 # TypeScript types (accessed via "types"/"exports")
-dist/types/index.d.ts
-dist/types/index.d.ts.map
+dist/cjs/index.d.ts
+dist/cjs/index.d.ts.map
+dist/esm/index.d.mts
 
 # native support
 lib/hashCodeNative.js

@@ -3,48 +3,73 @@
     "version": "1.1.0-alpha.202305082104",
     "description": "A low-level API for defining explicit resource management.",
     "type": "commonjs",
-    "types": "./dist/types/index.d.ts",
+    "types": "./dist/cjs/index.d.ts",
     "main": "./dist/cjs/index.js",
     "exports": {
         ".": {
-            "types": "./dist/types/index.d.ts",
-            "require": "./dist/cjs/index.js",
-            "import": "./dist/esm/index.mjs"
+            "require": {
+                "types": "./dist/cjs/index.d.ts",
+                "default": "./dist/cjs/index.js"
+            },
+            "import": {
+                "types": "./dist/esm/index.d.mts",
+                "default": "./dist/esm/index.mjs"
+            }
         },
         "./disposable": {
-            "types": "./dist/types/disposable.d.ts",
-            "require": "./dist/cjs/disposable.js",
-            "import": "./dist/esm/disposable.mjs"
+            "require": {
+                "types": "./dist/cjs/disposable.d.ts",
+                "default": "./dist/cjs/disposable.js"
+            },
+            "import": {
+                "types": "./dist/esm/disposable.d.mts",
+                "default": "./dist/esm/disposable.mjs"
+            }
         },
         "./disposableStack": {
-            "types": "./dist/types/disposableStack.d.ts",
-            "require": "./dist/cjs/disposableStack.js",
-            "import": "./dist/esm/disposableStack.mjs"
+            "require": {
+                "types": "./dist/cjs/disposableStack.d.ts",
+                "default": "./dist/cjs/disposableStack.js"
+            },
+            "import": {
+                "types": "./dist/esm/disposableStack.d.mts",
+                "default": "./dist/esm/disposableStack.mjs"
+            }
         },
         "./asyncDisposable": {
-            "types": "./dist/types/asyncDisposable.d.ts",
-            "require": "./dist/cjs/asyncDisposable.js",
-            "import": "./dist/esm/asyncDisposable.mjs"
+            "require": {
+                "types": "./dist/cjs/asyncDisposable.d.ts",
+                "default": "./dist/cjs/asyncDisposable.js"
+            },
+            "import": {
+                "types": "./dist/esm/asyncDisposable.d.mts",
+                "default": "./dist/esm/asyncDisposable.mjs"
+            }
         },
         "./asyncDisposableStack": {
-            "types": "./dist/types/asyncDisposableStack.d.ts",
-            "require": "./dist/cjs/asyncDisposableStack.js",
-            "import": "./dist/esm/asyncDisposableStack.mjs"
+            "require": {
+                "types": "./dist/cjs/asyncDisposableStack.d.ts",
+                "default": "./dist/cjs/asyncDisposableStack.js"
+            },
+            "import": {
+                "types": "./dist/esm/asyncDisposableStack.d.mts",
+                "default": "./dist/esm/asyncDisposableStack.mjs"
+            }
         }
     },
     "typesVersions": {
         "*": {
             "asyncDisposable": [
-                "./dist/types/asyncDisposable.d.ts"
+                "./dist/cjs/asyncDisposable.d.ts"
             ],
             "asyncDisposableStack": [
-                "./dist/types/asyncDisposableStack.d.ts"
+                "./dist/cjs/asyncDisposableStack.d.ts"
             ],
             "disposable": [
-                "./dist/types/disposable.d.ts"
+                "./dist/cjs/disposable.d.ts"
             ],
             "disposableStack": [
-                "./dist/types/disposableStack.d.ts"
+                "./dist/cjs/disposableStack.d.ts"
             ]
         }
     },
