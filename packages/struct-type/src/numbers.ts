@@ -29,6 +29,8 @@ export interface ArrayBufferViewConstructor {
 
 /* @internal */
 export const enum NumberType {
+    Bool8 = "Bool8",
+    Bool32 = "Bool32",
     Int8 = "Int8",
     Int16 = "Int16",
     Int32 = "Int32",
@@ -42,6 +44,8 @@ export const enum NumberType {
 }
 
 type AtomicNumberTypes =
+    | NumberType.Bool8
+    | NumberType.Bool32
     | NumberType.Int8
     | NumberType.Int16
     | NumberType.Int32
@@ -51,6 +55,8 @@ type AtomicNumberTypes =
 
 /* @internal */
 export interface NumberTypeToType {
+    [NumberType.Bool8]: boolean;
+    [NumberType.Bool32]: boolean;
     [NumberType.Int8]: number;
     [NumberType.Int16]: number;
     [NumberType.Int32]: number;
@@ -65,6 +71,8 @@ export interface NumberTypeToType {
 
 /* @internal */
 export interface NumberTypeToTypedArray {
+    [NumberType.Bool8]: Uint8Array;
+    [NumberType.Bool32]: Int32Array;
     [NumberType.Int8]: Int8Array;
     [NumberType.Int16]: Int16Array;
     [NumberType.Int32]: Int32Array;
@@ -82,12 +90,14 @@ type NumberTypeToCoersion<N extends NumberType> = (value: any) => NumberTypeToTy
 /* @internal */
 export function sizeOf(nt: NumberType): Alignment {
     switch (nt) {
+        case NumberType.Bool8:
         case NumberType.Int8:
         case NumberType.Uint8:
             return 1;
         case NumberType.Int16:
         case NumberType.Uint16:
             return 2;
+        case NumberType.Bool32:
         case NumberType.Int32:
         case NumberType.Uint32:
         case NumberType.Float32:
@@ -100,11 +110,13 @@ export function sizeOf(nt: NumberType): Alignment {
 }
 
 /* @internal */
-export function putValueInView(view: DataView, nt: NumberType, byteOffset: number, value: number | bigint, isLittleEndian?: boolean) {
+export function putValueInView(view: DataView, nt: NumberType, byteOffset: number, value: number | bigint | boolean, isLittleEndian?: boolean) {
     if (isSharedArrayBuffer(view.buffer) && isAtomic(nt) && typeof value === "number" && ((view.byteOffset + byteOffset) % sizeOf(nt)) === 0) {
         return putValueInBuffer(view.buffer, nt, view.byteOffset + byteOffset, value, isLittleEndian);
     }
     switch (nt) {
+        case NumberType.Bool8: return view.setUint8(byteOffset, Number(coerceValue(nt, value)));
+        case NumberType.Bool32: return view.setInt32(byteOffset, Number(coerceValue(nt, value)), isLittleEndian);
         case NumberType.Int8: return view.setInt8(byteOffset, coerceValue(nt, value));
         case NumberType.Int16: return view.setInt16(byteOffset, coerceValue(nt, value), isLittleEndian);
         case NumberType.Int32: return view.setInt32(byteOffset, coerceValue(nt, value), isLittleEndian);
@@ -121,13 +133,15 @@ export function putValueInView(view: DataView, nt: NumberType, byteOffset: numbe
 /* @internal */
 export function getValueFromView<N extends NumberType>(view: DataView, nt: N, byteOffset: number, isLittleEndian?: boolean): NumberTypeToType[N];
 /* @internal */
-export function getValueFromView(view: DataView, nt: NumberType, byteOffset: number, isLittleEndian?: boolean): number | bigint {
+export function getValueFromView(view: DataView, nt: NumberType, byteOffset: number, isLittleEndian?: boolean): number | bigint | boolean {
     // attempt an atomic read
     if (isSharedArrayBuffer(view.buffer) && isAtomic(nt) && ((view.byteOffset + byteOffset) % sizeOf(nt)) === 0) {
         return getValueFromBuffer(view.buffer, nt, view.byteOffset + byteOffset, isLittleEndian);
     }
 
     switch (nt) {
+        case NumberType.Bool8: return Boolean(view.getUint8(byteOffset));
+        case NumberType.Bool32: return Boolean(view.getInt32(byteOffset, isLittleEndian));
         case NumberType.Int8: return view.getInt8(byteOffset);
         case NumberType.Int16: return view.getInt16(byteOffset, isLittleEndian);
         case NumberType.Int32: return view.getInt32(byteOffset, isLittleEndian);
@@ -268,7 +282,7 @@ const bigInt64ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, BigInt64Ar
 const bigUint64ArrayCache = new WeakGenerativeCache<SharedArrayBuffer, BigUint64Array>();
 
 /* @internal */
-export function putValueInBuffer(buffer: ArrayBufferLike, nt: NumberType, byteOffset: number, value: number | bigint, isLittleEndian: boolean = false) {
+export function putValueInBuffer(buffer: ArrayBufferLike, nt: NumberType, byteOffset: number, value: number | bigint | boolean, isLittleEndian: boolean = false) {
     // attempt an atomic write
     if (isSharedArrayBuffer(buffer) && isAtomic(nt) && typeof value === "number") {
         const size = sizeOf(nt);
@@ -278,7 +292,7 @@ export function putValueInBuffer(buffer: ArrayBufferLike, nt: NumberType, byteOf
             const arrayIndex = byteOffset / size;
             const coercedValue = coerceValue(nt, value);
             const correctedValue = size === 1 || isLittleEndian === littleEndian ? coercedValue : swapByteOrder(nt, coercedValue);
-            Atomics.store(array, arrayIndex, correctedValue);
+            Atomics.store(array, arrayIndex, typeof correctedValue === "boolean" ? Number(correctedValue) : correctedValue);
             return;
         }
     }
@@ -288,7 +302,7 @@ export function putValueInBuffer(buffer: ArrayBufferLike, nt: NumberType, byteOf
 /* @internal */
 export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike, nt: N, byteOffset: number, isLittleEndian?: boolean): NumberTypeToType[N];
 /* @internal */
-export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike, nt: N, byteOffset: number, isLittleEndian: boolean = false): number | bigint {
+export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike, nt: N, byteOffset: number, isLittleEndian: boolean = false): number | bigint | boolean {
     // attempt an atomic read
     if (isSharedArrayBuffer(buffer) && isAtomic(nt)) {
         const size = sizeOf(nt);
@@ -297,6 +311,7 @@ export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike
             const array = getTypedArray(buffer, nt);
             const arrayIndex = byteOffset / size;
             const value = Atomics.load(array, arrayIndex);
+            if (nt === NumberType.Bool8 || nt === NumberType.Bool32) return Boolean(value);
             return size === 1 || isLittleEndian === littleEndian ? value : swapByteOrder(nt, value);
         }
     }
@@ -306,6 +321,8 @@ export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike
 function getTypedArrayConstructor<N extends NumberType>(nt: N): new (buffer: ArrayBufferLike) => NumberTypeToTypedArray[N];
 function getTypedArrayConstructor(nt: NumberType) {
     switch (nt) {
+        case NumberType.Bool8: return Uint8Array;
+        case NumberType.Bool32: return Int32Array;
         case NumberType.Int8: return Int8Array;
         case NumberType.Int16: return Int16Array;
         case NumberType.Int32: return Int32Array;
@@ -322,6 +339,8 @@ function getTypedArrayConstructor(nt: NumberType) {
 function getTypedArrayCache<N extends NumberType>(nt: N): WeakGenerativeCache<SharedArrayBuffer, NumberTypeToTypedArray[N]>;
 function getTypedArrayCache(nt: NumberType) {
     switch (nt) {
+        case NumberType.Bool8: return uint8ArrayCache;
+        case NumberType.Bool32: return int32ArrayCache;
         case NumberType.Int8: return int8ArrayCache;
         case NumberType.Int16: return int16ArrayCache;
         case NumberType.Int32: return int32ArrayCache;
@@ -357,6 +376,8 @@ function getDataView(buffer: ArrayBufferLike) {
 
 function isAtomic(nt: NumberType): nt is AtomicNumberTypes {
     switch (nt) {
+        case NumberType.Bool8:
+        case NumberType.Bool32:
         case NumberType.Int8:
         case NumberType.Int16:
         case NumberType.Int32:
@@ -378,6 +399,9 @@ function swapByteOrder<N extends NumberType>(nt: N, value: NumberTypeToType[N]):
 function getTypeCoersion<N extends NumberType>(nt: N): NumberTypeToCoersion<N>;
 function getTypeCoersion(nt: NumberType) {
     switch (nt) {
+        case NumberType.Bool8:
+        case NumberType.Bool32:
+            return Boolean;
         case NumberType.Int8:
         case NumberType.Int16:
         case NumberType.Int32:
@@ -396,11 +420,12 @@ function getTypeCoersion(nt: NumberType) {
 const sizeCoersionArrays: { [N in NumberType]?: NumberTypeToTypedArray[N]; } = {};
 
 /* @internal */
-export function coerceValue<N extends NumberType>(nt: N, value: number | bigint): NumberTypeToType[N];
+export function coerceValue<N extends NumberType>(nt: N, value: number | bigint | boolean): NumberTypeToType[N];
 /* @internal */
-export function coerceValue<N extends NumberType>(nt: N, value: number | bigint): number | bigint {
+export function coerceValue<N extends NumberType>(nt: N, value: number | bigint | boolean): number | bigint | boolean {
     const typeCoersion = getTypeCoersion(nt);
     const coerced = typeCoersion(value);
+    if (typeof coerced === "boolean") return coerced;
     const sizeCoersionArray = sizeCoersionArrays[nt] || (sizeCoersionArrays[nt] = new (getTypedArrayConstructor(nt))(new ArrayBuffer(sizeOf(nt))));
     sizeCoersionArray![0] = coerced;
     return sizeCoersionArray![0];

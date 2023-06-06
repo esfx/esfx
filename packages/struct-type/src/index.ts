@@ -37,11 +37,11 @@ export type InitType<TType extends Type> = NonNullable<TType[typeof RelatedTypes
 /**
  * Represents a primitive type.
  */
-export interface PrimitiveType<K extends string = string, T extends number | bigint = number | bigint> {
+export interface PrimitiveType<K extends string = string, T extends number | bigint | boolean = number | bigint | boolean> {
     /**
      * Coerce the provided value into a value of this type.
      */
-    (value: number | bigint): T;
+    (value: number | bigint | boolean): T;
 
     /**
      * The name of the primitive type.
@@ -56,10 +56,20 @@ export interface PrimitiveType<K extends string = string, T extends number | big
     // #region Related Types
     [RelatedTypes]?: {
         RuntimeType: T;
-        InitType: number | bigint;
+        InitType: number | bigint | boolean;
     };
     // #endregion
 }
+
+/**
+ * A primitive type representing a 1-byte unsigned boolean value.
+ */
+export const bool8 = primitives.bool8;
+
+/**
+ * A primitive type representing a 4-byte signed boolean value.
+ */
+export const bool32 = primitives.bool32;
 
 /**
  * A primitive type representing a 1-byte signed integer.
@@ -163,6 +173,8 @@ export {
 
 
 export type PrimitiveTypes =
+    | typeof bool8
+    | typeof bool32
     | typeof int8
     | typeof int16
     | typeof int32
@@ -215,7 +227,7 @@ export type StructFieldLayout<TDef extends StructDefinition> = {
     /**
      * Gets or sets a named field of the struct.
      */
-    -readonly [K in StructPropertyLayoutKeys<TDef>]: RuntimeType<TDef["fields"][K]>;
+    -readonly [K in StructFieldLayoutKeys<TDef>]: RuntimeType<TDef["fields"][K]>;
 };
 
 export type StructElementLayout<TDef extends StructDefinition> = {
@@ -225,7 +237,7 @@ export type StructElementLayout<TDef extends StructDefinition> = {
     -readonly [I in StructElementLayoutIndices<TDef>]: RuntimeType<TDef["fields"][TDef["order"][I]]>;
 };
 
-export type StructPropertyLayoutKeys<TDef extends StructDefinition> = keyof TDef["fields"];
+export type StructFieldLayoutKeys<TDef extends StructDefinition> = keyof TDef["fields"];
 export type StructElementLayoutIndices<TDef extends StructDefinition> = TDef["order"] extends "unspecified" ? never : numstr<keyof TDef["order"]>;
 
 /**
@@ -250,12 +262,12 @@ export type Struct<TDef extends StructDefinition = StructDefinition> = {
     /**
      * Gets the value of a named field of this struct.
      */
-    get<K extends StructPropertyLayoutKeys<TDef>>(key: K): StructFieldLayout<TDef>[K];
+    get<K extends StructFieldLayoutKeys<TDef>>(key: K): StructFieldLayout<TDef>[K];
 
     /**
      * Sets the value of a named field of this struct.
      */
-    set<K extends StructPropertyLayoutKeys<TDef>>(key: K, value: StructFieldLayout<TDef>[K]): void;
+    set<K extends StructFieldLayoutKeys<TDef>>(key: K, value: StructFieldLayout<TDef>[K]): void;
 
     /**
      * Gets the value of an ordinal field of this struct.

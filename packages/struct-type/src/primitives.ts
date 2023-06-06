@@ -24,6 +24,12 @@ function createPrimitiveType<K extends string, N extends NumberType>(name: K, nt
 }
 
 /* @internal */
+export const bool8 = createPrimitiveType("bool8", NumberType.Bool8);
+
+/* @internal */
+export const bool32 = createPrimitiveType("bool32", NumberType.Bool32);
+
+/* @internal */
 export const int8 = createPrimitiveType("int8", NumberType.Int8);
 
 /* @internal */

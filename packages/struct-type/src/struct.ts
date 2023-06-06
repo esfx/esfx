@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import type { StructDefinition, StructElementLayout, StructElementLayoutIndices, StructArrayInit, StructObjectInit, StructFieldLayout, StructPropertyLayoutKeys } from './index.js';
+import type { StructDefinition, StructElementLayout, StructElementLayoutIndices, StructArrayInit, StructObjectInit, StructFieldLayout, StructFieldLayoutKeys } from './index.js';
 import { StructTypeInfo } from './typeInfo.js';
 
 let _getDataView: (struct: Struct) => DataView;
@@ -118,8 +118,8 @@ abstract class Struct<TDef extends StructDefinition = any> {
     get byteOffset() { return this.#byteOffset; }
     get byteLength() { return this.#type.size; }
 
-    get<K extends StructPropertyLayoutKeys<TDef>>(key: K): StructFieldLayout<TDef>[K];
-    get<K extends StructPropertyLayoutKeys<TDef>>(key: K) {
+    get<K extends StructFieldLayoutKeys<TDef>>(key: K): StructFieldLayout<TDef>[K];
+    get<K extends StructFieldLayoutKeys<TDef>>(key: K) {
         const field = this.#type.fieldsByName.get(key as string | symbol);
         if (field) {
             return field.readFrom(this, this.#dataView);
@@ -127,7 +127,7 @@ abstract class Struct<TDef extends StructDefinition = any> {
         throw new RangeError();
     }
 
-    set<K extends StructPropertyLayoutKeys<TDef>>(key: K, value: StructFieldLayout<TDef>[K]) {
+    set<K extends StructFieldLayoutKeys<TDef>>(key: K, value: StructFieldLayout<TDef>[K]) {
         const field = this.#type.fieldsByName.get(key as string | symbol);
         if (field) {
             field.writeTo(this, this.#dataView, field.coerce(value));

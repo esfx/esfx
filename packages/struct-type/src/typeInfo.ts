@@ -85,9 +85,9 @@ export abstract class TypeInfo {
     }
 
     abstract isCompatibleWith(other: TypeInfo): boolean;
-    abstract coerce(value: any): number | bigint | Struct | TypedArray<any, number>;
-    abstract readFrom(view: DataView, offset: number, isLittleEndian?: boolean): number | bigint | Struct | TypedArray<any, number>;
-    abstract writeTo(view: DataView, offset: number, value: number | bigint | Struct | TypedArray<any, number>, isLittleEndian?: boolean): void;
+    abstract coerce(value: any): number | bigint | boolean | Struct | TypedArray<any, number>;
+    abstract readFrom(view: DataView, offset: number, isLittleEndian?: boolean): number | bigint | boolean | Struct | TypedArray<any, number>;
+    abstract writeTo(view: DataView, offset: number, value: number | bigint | boolean | Struct | TypedArray<any, number>, isLittleEndian?: boolean): void;
 }
 
 /* @internal */
@@ -117,7 +117,7 @@ export class PrimitiveTypeInfo extends TypeInfo {
         const size = sizeOf(numberType);
         super(numberType, size, size);
         this.#numberType = numberType;
-        this.runtimeType = Object.defineProperties(function (value: number | bigint) { return coerceValue(numberType, value); } as PrimitiveType, {
+        this.runtimeType = Object.defineProperties(function (value: number | bigint | boolean) { return coerceValue(numberType, value); } as PrimitiveType, {
             name: { value: name },
             SIZE: { value: size },
         });
@@ -143,7 +143,7 @@ export class PrimitiveTypeInfo extends TypeInfo {
         return getValueFromView(view, this.#numberType, offset, isLittleEndian);
     }
 
-    writeTo(view: DataView, offset: number, value: number | bigint, isLittleEndian?: boolean) {
+    writeTo(view: DataView, offset: number, value: number | bigint | boolean, isLittleEndian?: boolean) {
         putValueInView(view, this.#numberType, offset, value, isLittleEndian);
     }
 
@@ -198,7 +198,7 @@ export class StructFieldInfo {
         return this.typeInfo.readFrom(view, this.byteOffset, isLittleEndian);
     }
 
-    writeTo(_owner: StructImpl, view: DataView, value: number | bigint | Struct | TypedArray<any, number>, isLittleEndian?: boolean) {
+    writeTo(_owner: StructImpl, view: DataView, value: number | bigint | boolean | Struct | TypedArray<any, number>, isLittleEndian?: boolean) {
         this.typeInfo.writeTo(view, this.byteOffset, value, isLittleEndian);
     }
 }
@@ -362,7 +362,7 @@ export class StructTypeInfo extends TypeInfo {
         return new this.runtimeType(view.buffer, view.byteOffset + offset);
     }
 
-    writeTo(view: DataView, offset: number, value: number | bigint | Struct, _isLittleEndian?: boolean) {
+    writeTo(view: DataView, offset: number, value: number | bigint | boolean | Struct | TypedArray<any, number>, _isLittleEndian?: boolean) {
         if (value instanceof this.runtimeType) {
             value.writeTo(view.buffer, view.byteOffset + offset);
         }
@@ -419,7 +419,7 @@ export abstract class ArrayTypeInfo extends TypeInfo {
         return this.elementTypeInfo.readFrom(view, index * this.bytesPerElement, isLittleEndian);
     }
 
-    writeElementTo(view: DataView, index: number, value: number | bigint | Struct | TypedArray<any, number>, isLittleEndian?: boolean): void {
+    writeElementTo(view: DataView, index: number, value: number | bigint | boolean | Struct | TypedArray<any, number>, isLittleEndian?: boolean): void {
         this.elementTypeInfo.writeTo(view, index * this.bytesPerElement, value, isLittleEndian);
     }
 
@@ -427,7 +427,7 @@ export abstract class ArrayTypeInfo extends TypeInfo {
         return new this.runtimeType(view.buffer, view.byteOffset + offset);
     }
 
-    writeTo(view: DataView, offset: number, value: number | bigint | Struct | TypedArray<any, number>, _isLittleEndian?: boolean): void {
+    writeTo(view: DataView, offset: number, value: number | bigint | boolean | Struct | TypedArray<any, number>, _isLittleEndian?: boolean): void {
         if (!(value instanceof this.runtimeType)) throw new TypeError();
         value.writeTo(view.buffer, view.byteOffset + offset);
     }

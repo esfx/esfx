@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import { int8, int16, int32, uint8, uint16, uint32, bigint64, biguint64, float32, float64, ArrayType, StructType } from "./index.js";
+import { bool8, bool32, int8, int16, int32, uint8, uint16, uint32, bigint64, biguint64, float32, float64, ArrayType, StructType } from "./index.js";
 
 export {
     int8 as __int8,
@@ -37,8 +37,8 @@ export {
     uint16 as char16_t,
     uint32 as char32_t,
     uint16 as wchar_t,
-    int32 as BOOL,
-    uint8 as BOOLEAN,
+    bool32 as BOOL,
+    bool8 as BOOLEAN,
     uint8 as BYTE,
     float32 as FLOAT,
     int8 as CHAR,
