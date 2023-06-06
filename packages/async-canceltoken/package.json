@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-canceltoken",
-    "version": "1.1.0-alpha.202305082104",
+    "version": "1.1.0-alpha.202306051228",
     "description": "CancelToken async coordination primitive.",
     "type": "commonjs",
     "types": "./dist/cjs/index.d.ts",

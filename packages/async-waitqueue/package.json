@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-waitqueue",
-    "version": "1.1.0-alpha.202305082104",
+    "version": "1.1.0-alpha.202306051228",
     "description": "Provides 'WaitQueue', an async coordination primitive used to queue and resolve promises.",
     "type": "commonjs",
     "types": "./dist/cjs/index.d.ts",

@@ -1,6 +1,6 @@
 {
     "name": "@esfx/threading-semaphore",
-    "version": "1.1.0-alpha.202305082104",
+    "version": "1.1.0-alpha.202306051228",
     "description": "Provides 'Semaphore', a thread synchronization primitive for use with Workers",
     "type": "commonjs",
     "types": "./dist/cjs/index.d.ts",
