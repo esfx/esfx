@@ -9,7 +9,6 @@ const { verifyPackageJsonMainProperty } = require("./verifyPackageJsonMainProper
 const { verifyPackageJsonExportsProperty } = require("./verifyPackageJsonExportsProperty");
 const { verifyPackageJsonTypesProperty } = require("./verifyPackageJsonTypesProperty");
 const { verifyPackageJsonTypesVersionsProperty } = require("./verifyPackageJsonTypesVersionsProperty");
-const { verifyPackageDualModuleHazard } = require("./verifyPackageDualModuleHazard");
 
 /**
  * Verifies a package.
@@ -26,7 +25,6 @@ function verifyPackage(context) {
         verifyPackageJsonMainProperty(context) ||
         verifyPackageJsonExportsProperty(context) ||
         verifyPackageJsonTypesProperty(context) ||
-        verifyPackageJsonTypesVersionsProperty(context) ||
-        verifyPackageDualModuleHazard(context);
+        verifyPackageJsonTypesVersionsProperty(context);
 }
 exports.verifyPackage = verifyPackage;
