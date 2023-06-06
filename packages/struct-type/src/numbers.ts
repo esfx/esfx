@@ -18,7 +18,7 @@
 export type Alignment = 1 | 2 | 4 | 8;
 
 /* @internal */
-export const littleEndian = new DataView(new Int32Array([1]).buffer).getInt32(0, /*littleEndian*/ true) === 1;
+export const isLittleEndian = new Int32Array(new Uint8Array([0x12, 0x34, 0x56, 0x78]).buffer)[0] !== 0x12345678;
 
 /* @internal */
 export interface ArrayBufferViewConstructor {
@@ -291,7 +291,7 @@ export function putValueInBuffer(buffer: ArrayBufferLike, nt: NumberType, byteOf
             const array = getTypedArray(buffer, nt);
             const arrayIndex = byteOffset / size;
             const coercedValue = coerceValue(nt, value);
-            const correctedValue = size === 1 || isLittleEndian === littleEndian ? coercedValue : swapByteOrder(nt, coercedValue);
+            const correctedValue = size === 1 || isLittleEndian === isLittleEndian ? coercedValue : swapByteOrder(nt, coercedValue);
             Atomics.store(array, arrayIndex, typeof correctedValue === "boolean" ? Number(correctedValue) : correctedValue);
             return;
         }
@@ -312,7 +312,7 @@ export function getValueFromBuffer<N extends NumberType>(buffer: ArrayBufferLike
             const arrayIndex = byteOffset / size;
             const value = Atomics.load(array, arrayIndex);
             if (nt === NumberType.Bool8 || nt === NumberType.Bool32) return Boolean(value);
-            return size === 1 || isLittleEndian === littleEndian ? value : swapByteOrder(nt, value);
+            return size === 1 || isLittleEndian === isLittleEndian ? value : swapByteOrder(nt, value);
         }
     }
     return getValueFromView(getDataView(buffer), nt, byteOffset, isLittleEndian);

@@ -19,6 +19,11 @@ import * as arrayType from "./arrayType.js";
 import * as primitives from "./primitives.js";
 import * as structType from "./structType.js";
 
+/**
+ * Indicates whether the current host is little endian.
+ */
+export const isLittleEndian = new Int32Array(new Uint8Array([0x12, 0x34, 0x56, 0x78]).buffer)[0] !== 0x12345678;
+
 // NOTE: We use a non-existent, unreachable, unique symbol to store related type information on
 //       some definitions to avoid hitting the recursive instantiation limit, which we would hit
 //       much faster were we to use multiple conditional types and `infer` to do the same thing.
@@ -170,7 +175,6 @@ export {
     float32 as float,
     float64 as double,
 };
-
 
 export type PrimitiveTypes =
     | typeof bool8
