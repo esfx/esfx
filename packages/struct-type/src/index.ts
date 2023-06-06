@@ -13,6 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+
+import { littleEndian } from "./internal/numbers.js";
+
 export * from "./array.js";
 export * from "./primitive.js";
 export * from "./struct.js";
@@ -22,4 +25,4 @@ export * from "./wasm.js";
 /**
  * Indicates whether the current host is little endian.
  */
-export const isLittleEndian = new Int32Array(new Uint8Array([0x12, 0x34, 0x56, 0x78]).buffer)[0] !== 0x12345678;
+export const isLittleEndian = littleEndian;
