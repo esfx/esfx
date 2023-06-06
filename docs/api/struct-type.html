@@ -354,6 +354,38 @@ else if (parentPort) {
   
   
   
+        <h4 id="_esfx_struct_type_bool32_var" data-uid="@esfx/struct-type!bool32:var">bool32</h4>
+              <div class="markdown level1 summary"><p>A primitive type representing a 4-byte signed boolean value.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">bool32: PrimitiveType&lt;&quot;bool32&quot;, boolean&gt;</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_struct_type_bool8_var" data-uid="@esfx/struct-type!bool8:var">bool8</h4>
+              <div class="markdown level1 summary"><p>A primitive type representing a 1-byte unsigned boolean value.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">bool8: PrimitiveType&lt;&quot;bool8&quot;, boolean&gt;</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_struct_type_float32_var" data-uid="@esfx/struct-type!float32:var">float32</h4>
               <div class="markdown level1 summary"><p>A primitive type representing a 4-byte floating point number.</p>
 <p>Aliases: <code>f32</code><!-- -->, <code>float</code></p>
@@ -539,7 +571,7 @@ else if (parentPort) {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type PrimitiveTypes = typeof int8 | typeof int16 | typeof int32 | typeof uint8 | typeof uint16 | typeof uint32 | typeof bigint64 | typeof biguint64 | typeof float32 | typeof float64;</code></pre>
+          <pre><code class="lang-typeScript hljs">export declare type PrimitiveTypes = typeof bool8 | typeof bool32 | typeof int8 | typeof int16 | typeof int32 | typeof uint8 | typeof uint16 | typeof uint32 | typeof bigint64 | typeof biguint64 | typeof float32 | typeof float64;</code></pre>
         </div>
   
   
@@ -585,8 +617,8 @@ else if (parentPort) {
     readonly buffer: ArrayBufferLike;
     readonly byteOffset: number;
     readonly byteLength: number;
-    get&lt;K extends StructPropertyLayoutKeys&lt;TDef&gt;&gt;(key: K): StructFieldLayout&lt;TDef&gt;[K];
-    set&lt;K extends StructPropertyLayoutKeys&lt;TDef&gt;&gt;(key: K, value: StructFieldLayout&lt;TDef&gt;[K]): void;
+    get&lt;K extends StructFieldLayoutKeys&lt;TDef&gt;&gt;(key: K): StructFieldLayout&lt;TDef&gt;[K];
+    set&lt;K extends StructFieldLayoutKeys&lt;TDef&gt;&gt;(key: K, value: StructFieldLayout&lt;TDef&gt;[K]): void;
     getIndex&lt;I extends StructElementLayoutIndices&lt;TDef&gt;&gt;(index: I): StructElementLayout&lt;TDef&gt;[I];
     setIndex&lt;I extends StructElementLayoutIndices&lt;TDef&gt;&gt;(index: I, value: StructElementLayout&lt;TDef&gt;[I]): boolean;
     writeTo(buffer: ArrayBufferLike, byteOffset?: number): void;
@@ -731,8 +763,33 @@ else if (parentPort) {
     /**
      * Gets or sets a named field of the struct.
      */
-    -readonly [K in StructPropertyLayoutKeys&lt;TDef&gt;]: RuntimeType&lt;TDef[&quot;fields&quot;][K]&gt;;
+    -readonly [K in StructFieldLayoutKeys&lt;TDef&gt;]: RuntimeType&lt;TDef[&quot;fields&quot;][K]&gt;;
 };</code></pre>
+        </div>
+  
+        <h5 class="typeParameters">Type Parameters</h5>
+          <div class="property">
+            <dl class="parameter">
+              <dt>TDef</dt>
+              <dd></dd>
+            </dl>
+            <p>
+              
+            </p>
+          </div>
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_struct_type_StructFieldLayoutKeys_type" data-uid="@esfx/struct-type!StructFieldLayoutKeys:type">StructFieldLayoutKeys</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type StructFieldLayoutKeys&lt;TDef extends StructDefinition&gt; = keyof TDef[&quot;fields&quot;];</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>
@@ -806,31 +863,6 @@ else if (parentPort) {
           <pre><code class="lang-typeScript hljs">export declare type StructObjectInit&lt;TDef extends StructDefinition&gt; = {
     [P in keyof TDef[&quot;fields&quot;]]: InitType&lt;TDef[&quot;fields&quot;][P]&gt;;
 };</code></pre>
-        </div>
-  
-        <h5 class="typeParameters">Type Parameters</h5>
-          <div class="property">
-            <dl class="parameter">
-              <dt>TDef</dt>
-              <dd></dd>
-            </dl>
-            <p>
-              
-            </p>
-          </div>
-  
-  
-  
-  
-  
-  
-  
-        <h4 id="_esfx_struct_type_StructPropertyLayoutKeys_type" data-uid="@esfx/struct-type!StructPropertyLayoutKeys:type">StructPropertyLayoutKeys</h4>
-              <div class="markdown level1 summary"></div>
-        <div class="markdown level1 conceptual"></div>
-        <h5 class="decalaration">Declaration</h5>
-        <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type StructPropertyLayoutKeys&lt;TDef extends StructDefinition&gt; = keyof TDef[&quot;fields&quot;];</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>

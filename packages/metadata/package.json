@@ -1,6 +1,6 @@
 {
     "name": "@esfx/metadata",
-    "version": "1.1.0-alpha.202306051228",
+    "version": "1.1.0-alpha.202306061316",
     "description": "This package provides an API for defining metadata about an object.",
     "private": true,
     "type": "commonjs",

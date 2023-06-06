@@ -9897,6 +9897,14 @@ references:
   name: biguint64
   href: api/struct-type.html#_esfx_struct_type_biguint64_var
   fullName: biguint64
+- uid: '@esfx/struct-type!bool32:var'
+  name: bool32
+  href: api/struct-type.html#_esfx_struct_type_bool32_var
+  fullName: bool32
+- uid: '@esfx/struct-type!bool8:var'
+  name: bool8
+  href: api/struct-type.html#_esfx_struct_type_bool8_var
+  fullName: bool8
 - uid: '@esfx/struct-type!FixedLengthArrayType#[RelatedTypes]:member'
   name: '[RelatedTypes]'
   href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType__RelatedTypes__member
@@ -10021,6 +10029,10 @@ references:
   name: StructFieldLayout
   href: api/struct-type.html#_esfx_struct_type_StructFieldLayout_type
   fullName: StructFieldLayout
+- uid: '@esfx/struct-type!StructFieldLayoutKeys:type'
+  name: StructFieldLayoutKeys
+  href: api/struct-type.html#_esfx_struct_type_StructFieldLayoutKeys_type
+  fullName: StructFieldLayoutKeys
 - uid: '@esfx/struct-type!StructInheritedDefinition:type'
   name: StructInheritedDefinition
   href: api/struct-type.html#_esfx_struct_type_StructInheritedDefinition_type
@@ -10029,10 +10041,6 @@ references:
   name: StructObjectInit
   href: api/struct-type.html#_esfx_struct_type_StructObjectInit_type
   fullName: StructObjectInit
-- uid: '@esfx/struct-type!StructPropertyLayoutKeys:type'
-  name: StructPropertyLayoutKeys
-  href: api/struct-type.html#_esfx_struct_type_StructPropertyLayoutKeys_type
-  fullName: StructPropertyLayoutKeys
 - uid: '@esfx/struct-type!StructType#[RelatedTypes]:member'
   name: '[RelatedTypes]'
   href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType__RelatedTypes__member

@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-ordered-fromsync",
-    "version": "1.1.0-alpha.202306051228",
+    "version": "1.1.0-alpha.202306061316",
     "description": "An API to convert an OrderedIterable into an AsyncOrderedIterable",
     "types": "./dist/cjs/index.d.ts",
     "main": "./dist/cjs/index.js",
