@@ -25,6 +25,16 @@
                 "types": "./dist/esm/win32.d.mts",
                 "default": "./dist/esm/win32.mjs"
             }
+        },
+        "./wasm": {
+            "require": {
+                "types": "./dist/cjs/wasm.d.ts",
+                "default": "./dist/cjs/wasm.js"
+            },
+            "import": {
+                "types": "./dist/esm/wasm.d.mts",
+                "default": "./dist/esm/wasm.mjs"
+            }
         }
     },
     "author": "Ron Buckton (rbuckton@chronicles.org)",

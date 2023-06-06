@@ -13,13 +13,13 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-export * from "./array.js";
-export * from "./primitive.js";
-export * from "./struct.js";
-export type { InitType, RuntimeType, Type } from "./type.js";
-export * from "./wasm.js";
 
-/**
- * Indicates whether the current host is little endian.
- */
-export const isLittleEndian = new Int32Array(new Uint8Array([0x12, 0x34, 0x56, 0x78]).buffer)[0] !== 0x12345678;
+import type { PrimitiveType } from "../../primitive.js";
+import type { NumberType, NumberTypeToType } from "../numbers.js";
+import { PrimitiveTypeInfo } from "./primitiveTypeInfo";
+
+/* @internal */
+export function createPrimitiveType<K extends string, N extends NumberType>(name: K, nt: N): PrimitiveType<K, NumberTypeToType[N]> {
+    const typeInfo = new PrimitiveTypeInfo(name, nt);
+    return typeInfo.runtimeType as PrimitiveType<K, NumberTypeToType[N]>;
+}

@@ -14,9 +14,10 @@
    limitations under the License.
 */
 
-import type { StructDefinition, StructFieldDefinition, StructInheritedDefinition, StructType as StructType_, Type } from "./index.js";
-import { StructImpl } from "./struct.js";
-import { StructTypeInfo } from './typeInfo.js';
+import type { StructDefinition, StructFieldDefinition, StructInheritedDefinition, StructType as StructType_ } from "../../struct.js";
+import type { Type } from "../../type.js";
+import { StructImpl } from "./structImpl.js";
+import { StructTypeInfo } from "./structTypeInfo.js";
 
 type TFieldsConstraint = { readonly [key: string | symbol]: Type };
 type TOrderConstraint<TFields extends TFieldsConstraint> = readonly (keyof TFields)[];
@@ -125,8 +126,7 @@ function isOverload5<TBaseDef extends StructDefinition, TFields extends TFieldsC
     );
 }
 
-/* @internal */
-export function StructType<
+function StructType<
     TBaseDef extends StructDefinition,
     TFields extends TFieldsConstraint,
     TOrder extends TOrderConstraint<TFields>,
@@ -169,3 +169,5 @@ export function StructType<
 }
 
 (StructType as any).prototype = StructImpl;
+
+export { StructType as StructTypeImpl };

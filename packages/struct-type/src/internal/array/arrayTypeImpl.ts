@@ -14,12 +14,15 @@
    limitations under the License.
 */
 
-import { TypedArrayImpl } from "./array.js";
-import type { ArrayType as IArrayType, FixedLengthArrayType as IFixedLengthArrayType, Type } from "./index.js";
-import { BaseArrayTypeInfo, FixedLengthArrayTypeInfo } from "./typeInfo.js";
+import type { ArrayType as IArrayType, FixedLengthArrayType as IFixedLengthArrayType } from "../../array.js";
+import type { Type } from "../../type.js";
+import { BaseArrayTypeInfo, FixedLengthArrayTypeInfo } from "./arrayTypeInfo.js";
+import { TypedArrayImpl } from "./arrayImpl.js";
 
 /* @internal */
-export function ArrayType<TType extends Type, TFixedLength extends number>(type: TType, fixedLength?: TFixedLength): IArrayType<TType> | IFixedLengthArrayType<TType, TFixedLength> {
+export { ArrayType as ArrayTypeImpl };
+
+function ArrayType<TType extends Type, TFixedLength extends number>(type: TType, fixedLength?: TFixedLength): IArrayType<TType> | IFixedLengthArrayType<TType, TFixedLength> {
     return fixedLength === undefined ?
         new BaseArrayTypeInfo(type).runtimeType as IArrayType<TType> :
         new FixedLengthArrayTypeInfo(new BaseArrayTypeInfo(type), fixedLength).runtimeType as IFixedLengthArrayType<TType, TFixedLength>;

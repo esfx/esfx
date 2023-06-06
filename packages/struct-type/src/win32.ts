@@ -14,7 +14,9 @@
    limitations under the License.
 */
 
-import { bool8, bool32, int8, int16, int32, uint8, uint16, uint32, bigint64, biguint64, float32, float64, ArrayType, StructType } from "./index.js";
+import { bool8, bool32, int8, int16, int32, uint8, uint16, uint32, bigint64, biguint64, float32, float64} from "./primitive.js";
+import { ArrayType } from "./array.js";
+import { StructType } from "./struct.js";
 
 export {
     int8 as __int8,

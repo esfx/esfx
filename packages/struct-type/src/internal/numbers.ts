@@ -18,6 +18,11 @@
 export type Alignment = 1 | 2 | 4 | 8;
 
 /* @internal */
+export function align(offset: number, alignment: Alignment) {
+    return (offset + (alignment - 1)) & -alignment;
+}
+
+/* @internal */
 export const isLittleEndian = new Int32Array(new Uint8Array([0x12, 0x34, 0x56, 0x78]).buffer)[0] !== 0x12345678;
 
 /* @internal */

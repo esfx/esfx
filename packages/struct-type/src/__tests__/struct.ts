@@ -1,4 +1,5 @@
 import { StructType, ArrayType, int32 } from "..";
+import { bigint64 } from "../primitive";
 
 describe("simple struct", () => {
     const Point = StructType([

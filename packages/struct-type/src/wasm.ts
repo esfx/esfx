@@ -13,13 +13,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-export * from "./array.js";
-export * from "./primitive.js";
-export * from "./struct.js";
-export type { InitType, RuntimeType, Type } from "./type.js";
-export * from "./wasm.js";
 
-/**
- * Indicates whether the current host is little endian.
- */
-export const isLittleEndian = new Int32Array(new Uint8Array([0x12, 0x34, 0x56, 0x78]).buffer)[0] !== 0x12345678;
+export {
+    int8 as i8,
+    int16 as i16,
+    int32 as i32,
+    uint8 as u8,
+    uint16 as u16,
+    uint32 as u32,
+    bigint64 as i64,
+    biguint64 as u64,
+    float32 as f32,
+    float64 as f64,
+} from "./primitive.js";

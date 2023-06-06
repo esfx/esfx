@@ -14,163 +14,237 @@
    limitations under the License.
 */
 
-import type { StructDefinition, StructElementLayout, StructElementLayoutIndices, StructArrayInit, StructObjectInit, StructFieldLayout, StructFieldLayoutKeys } from './index.js';
-import { StructTypeInfo } from './typeInfo.js';
+import type { conststring, constsymbol, numstr } from "@esfx/type-model";
+import { StructTypeImpl } from "./internal/struct/structTypeImpl.js";
+import type { InitType, RuntimeType, Type } from "./type.js";
 
-let _getDataView: (struct: Struct) => DataView;
+/**
+ * Represents an instance of a struct type.
+ */
+export type Struct<TDef extends StructDefinition = StructDefinition> = {
+    /**
+     * Gets the underlying `ArrayBuffer` or `SharedArrayBuffer` of a struct.
+     */
+    readonly buffer: ArrayBufferLike;
 
-/* @internal */
-export function getDataView(struct: Struct): DataView {
-    return _getDataView(struct);
-}
+    /**
+     * Gets the byte offset into this struct's `buffer` at which the struct starts.
+     */
+    readonly byteOffset: number;
 
-type StructConstructorEmptyOverload = [];
-type StructConstructorSharedOverload = [boolean];
-type StructConstructorArrayBufferLikeOverload = [ArrayBufferLike, number?];
-type StructConstructorStructFieldsOverload<TDef extends StructDefinition> = [Partial<StructObjectInit<TDef>>, boolean?];
-type StructConstructorStructFieldArrayOverload<TDef extends StructDefinition> = [Partial<StructArrayInit<TDef>>, boolean?];
-type StructConstructorOverloads<TDef extends StructDefinition> =
-    | StructConstructorEmptyOverload
-    | StructConstructorSharedOverload
-    | StructConstructorArrayBufferLikeOverload
-    | StructConstructorStructFieldsOverload<TDef>
-    | StructConstructorStructFieldArrayOverload<TDef>;
+    /**
+     * Gets the size of this struct in bytes.
+     */
+    readonly byteLength: number;
 
-function isStructConstructorArrayBufferLikeOverload<TDef extends StructDefinition>(args: StructConstructorOverloads<TDef>): args is StructConstructorArrayBufferLikeOverload {
-    return args.length > 0 && (args[0] instanceof ArrayBuffer || (typeof SharedArrayBuffer === "function" && args[0] instanceof SharedArrayBuffer));
-}
-
-function isStructConstructorStructFieldsOverload<TDef extends StructDefinition>(args: StructConstructorOverloads<TDef>): args is StructConstructorStructFieldsOverload<TDef> {
-    return args.length > 0 && typeof args[0] === "object" && args[0] !== null && !Array.isArray(args[0]);
-}
-
-function isStructConstructorStructFieldArrayOverload<TDef extends StructDefinition>(args: StructConstructorOverloads<TDef>): args is StructConstructorStructFieldArrayOverload<TDef> {
-    return args.length > 0 && Array.isArray(args[0]);
-}
-
-/* @internal */
-abstract class Struct<TDef extends StructDefinition = any> {
-    static {
-        _getDataView = struct => struct.#dataView;
-    }
-
-    #buffer: ArrayBufferLike;
-    #byteOffset: number;
-    #type: StructTypeInfo;
-    #dataView: DataView;
-
-    constructor();
-    constructor(shared: boolean);
-    constructor(buffer: ArrayBufferLike, byteOffset?: number);
-    constructor(object: Partial<StructObjectInit<TDef>>, shared?: boolean);
-    constructor(elements: Partial<StructArrayInit<TDef>>, shared?: boolean);
-    constructor(...args: StructConstructorOverloads<TDef>) {
-        this.#type = StructTypeInfo.get(new.target);
-        if (isStructConstructorArrayBufferLikeOverload(args)) {
-            const [buffer, byteOffset = 0] = args;
-            if (byteOffset < 0 || byteOffset > buffer.byteLength - this.#type.size) throw new RangeError("Out of range: byteOffset");
-            if (byteOffset % this.#type.alignment) throw new RangeError(`Not aligned: byteOffset must be a multiple of ${this.#type.alignment}`);
-            this.#buffer = buffer;
-            this.#byteOffset = byteOffset;
-            this.#dataView = new DataView(buffer, byteOffset, this.#type.size);
-        }
-        else {
-            const shared =
-                isStructConstructorStructFieldsOverload(args) ? args[1] :
-                isStructConstructorStructFieldArrayOverload(args) ? args[1] :
-                args[0];
-            if (shared && typeof SharedArrayBuffer !== "function") throw new TypeError("SharedArrayBuffer is not available");
-            this.#buffer = shared ? new SharedArrayBuffer(this.#type.size) : new ArrayBuffer(this.#type.size);
-            this.#byteOffset = 0;
-            this.#dataView = new DataView(this.#buffer, 0, this.#type.size);
-            if (isStructConstructorStructFieldsOverload(args)) {
-                const [obj] = args;
-                if (obj) {
-                    for (const key of Object.keys(obj)) {
-                        const value = obj[key as keyof Partial<StructObjectInit<TDef>>];
-                        if (value !== undefined) {
-                            const field = this.#type.fieldsByName.get(key);
-                            if (field) {
-                                field.writeTo(this, this.#dataView, field.coerce(value));
-                            }
-                        }
-                    }
-                }
-            }
-            else if (isStructConstructorStructFieldArrayOverload(args)) {
-                const [ar] = args;
-                if (ar) {
-                    for (const [index, value] of ar.entries!()) {
-                        if (value !== undefined && index < this.#type.fields.length) {
-                            const field = this.#type.fields[index];
-                            field.writeTo(this, this.#dataView, field.coerce(value));
-                        }
-                    }
-                }
-            }
-        }
-        Object.freeze(this);
-    }
-
-    static get SIZE(): number { return StructTypeInfo.get(this).size; }
-
-    get buffer() { return this.#buffer; }
-    get byteOffset() { return this.#byteOffset; }
-    get byteLength() { return this.#type.size; }
-
+    /**
+     * Gets the value of a named field of this struct.
+     */
     get<K extends StructFieldLayoutKeys<TDef>>(key: K): StructFieldLayout<TDef>[K];
-    get<K extends StructFieldLayoutKeys<TDef>>(key: K) {
-        const field = this.#type.fieldsByName.get(key as string | symbol);
-        if (field) {
-            return field.readFrom(this, this.#dataView);
-        }
-        throw new RangeError();
-    }
 
-    set<K extends StructFieldLayoutKeys<TDef>>(key: K, value: StructFieldLayout<TDef>[K]) {
-        const field = this.#type.fieldsByName.get(key as string | symbol);
-        if (field) {
-            field.writeTo(this, this.#dataView, field.coerce(value));
-            return;
-        }
-        throw new RangeError();
-    }
+    /**
+     * Sets the value of a named field of this struct.
+     */
+    set<K extends StructFieldLayoutKeys<TDef>>(key: K, value: StructFieldLayout<TDef>[K]): void;
 
+    /**
+     * Gets the value of an ordinal field of this struct.
+     */
     getIndex<I extends StructElementLayoutIndices<TDef>>(index: I): StructElementLayout<TDef>[I];
-    getIndex<I extends StructElementLayoutIndices<TDef>>(index: I) {
-        if (+index < this.#type.fields.length) {
-            const field = this.#type.fields[index as number];
-            return field.readFrom(this, this.#dataView);
-        }
-        throw new RangeError();
-    }
 
-    setIndex<I extends StructElementLayoutIndices<TDef>>(index: I, value: StructElementLayout<TDef>[I]) {
-        if (index < this.#type.fields.length) {
-            const field = this.#type.fields[index as number];
-            field.writeTo(this, this.#dataView, field.coerce(value));
-            return true;
-        }
-        return false;
-    }
+    /**
+     * Sets the value of an ordinal field of this struct.
+     */
+    setIndex<I extends StructElementLayoutIndices<TDef>>(index: I, value: StructElementLayout<TDef>[I]): boolean;
 
-    writeTo(buffer: ArrayBufferLike, byteOffset: number = 0) {
-        if (byteOffset < 0 || byteOffset > buffer.byteLength - this.#type.size) throw new RangeError("Out of range: byteOffset");
-        if (byteOffset % this.#type.alignment) throw new RangeError(`Not aligned: byteOffset must be a multiple of ${this.#type.alignment}`);
-        if (buffer === this.#buffer) {
-            if (byteOffset === this.#byteOffset) {
-                return;
-            }
-            new Uint8Array(buffer).copyWithin(byteOffset, this.#byteOffset, this.#byteOffset + this.#type.size);
-            return;
-        }
+    /**
+     * Writes the value of this struct to an array buffer.
+     */
+    writeTo(buffer: ArrayBufferLike, byteOffset?: number): void;
+} & StructFieldLayout<TDef> & StructElementLayout<TDef>;
 
-        const size = this.#type.size;
-        const src = new Uint8Array(this.#buffer, this.#byteOffset, size);
-        const dest = new Uint8Array(buffer, byteOffset, size);
-        dest.set(src);
-    }
+/**
+ * Represents the constructor for a struct.
+ */
+export interface StructType<TDef extends StructDefinition> {
+    new (): Struct<TDef>;
+    new (shared: boolean): Struct<TDef>;
+    new (buffer: ArrayBufferLike, byteOffset?: number): Struct<TDef>;
+    new (object: Partial<StructObjectInit<TDef>>, shared?: boolean): Struct<TDef>;
+    new (elements: Partial<StructArrayInit<TDef>>, shared?: boolean): Struct<TDef>;
+
+    readonly SIZE: number;
+    prototype: Struct<any>;
+
+    // #region Related Types
+    [RuntimeType]: Struct<TDef>;
+    [InitType]: Struct<TDef> | StructObjectInit<TDef> | StructArrayInit<TDef>;
+    // #endregion
 }
 
-/* @internal */
-export { Struct as StructImpl };
+/**
+ * Represents the constructor for a struct type.
+ */
+export interface StructTypeConstructor {
+    /**
+     * Creates a new Struct type from the provided field definition.
+     * @param fields An array of `StructFieldDefinition` entries describing the ordered fields in the struct.
+     * @param name A name for the struct.
+     */
+    <TDef extends readonly StructFieldDefinition[] | readonly []>(fields: TDef, name?: string): StructType<StructDefinitionOf<TDef>>;
+    /**
+     * Creates a new Struct type from the provided field definition.
+     *
+     * NOTE: Field order is determined by property definition order in the object, but that cannot be determined via type inference.
+     * @param fields An object mapping ordered field names to data types in the struct.
+     * @param name A name for the struct.
+     */
+    <TFields extends { readonly [key: string | symbol]: Type }>(fields: TFields, name?: string): StructType<StructDefinition<TFields, "unspecified">>;
+    /**
+     * Creates a new Struct type from the provided field definition.
+     * @param fields An object mapping ordered field names to data types in the struct.
+     * @param order An used to specify the field order in the struct.
+     * @param name A name for the struct.
+     */
+    <TFields extends { readonly [key: string | symbol]: Type }, TOrder extends readonly (keyof TFields)[] | readonly []>(fields: TFields, order: TOrder, name?: string): StructType<StructDefinition<TFields, TOrder>>;
+
+    /**
+     * Creates a new Struct type from the provided field definition.
+     * @param baseType A base struct from which this struct is derived. Fields in the new struct will come after fields in the base struct.
+     * @param fields An array of `StructFieldDefinition` entries describing the ordered fields in the struct.
+     * @param name A name for the struct.
+     */
+    <TDef extends readonly StructFieldDefinition[] | readonly [], TBaseDef extends readonly StructFieldDefinition[]>(baseType: StructType<StructDefinitionOf<TBaseDef>>, fields: TDef, name?: string): StructType<StructDefinitionOf<readonly [...TBaseDef, ...TDef]>>;
+    /**
+     * Creates a new Struct type from the provided field definition.
+     *
+     * NOTE: Field order is determined by property definition order in the object, but that cannot be determined via type inference.
+     * @param baseType A base struct from which this struct is derived. Fields in the new struct will come after fields in the base struct.
+     * @param fields An object mapping ordered field names to data types in the struct.
+     * @param name A name for the struct.
+     */
+    <TBaseDef extends StructDefinition, TFields extends { readonly [key: string | symbol]: Type }>(baseType: StructType<TBaseDef>, fields: TFields, name?: string): StructType<StructInheritedDefinition<TBaseDef, TFields, "unspecified">>;
+    /**
+     * Creates a new Struct type from the provided field definition.
+     * @param baseType A base struct from which this struct is derived. Fields in the new struct will come after fields in the base struct.
+     * @param fields An object mapping ordered field names to data types in the struct.
+     * @param order An used to specify the field order in the struct.
+     * @param name A name for the struct.
+     */
+    <TBaseDef extends StructDefinition, TFields extends { readonly [key: string | symbol]: Type }, TOrder extends readonly (keyof TFields)[] | readonly []>(baseType: StructType<TBaseDef>, fields: TFields, order: TOrder, name?: string): StructType<StructInheritedDefinition<TBaseDef, TFields, TOrder>>;
+
+    /**
+     * Creates a new Struct type from the provided field definition.
+     * @param fields An array of `StructFieldDefinition` entries describing the ordered fields in the struct.
+     * @param name A name for the struct.4
+     */
+    new <TDef extends readonly StructFieldDefinition[] | readonly []>(fields: TDef, name?: string): StructType<StructDefinitionOf<TDef>>;
+    /**
+     * Creates a new Struct type from the provided field definition.
+     *
+     * NOTE: Field order is determined by property definition order in the object, but that cannot be determined via type inference.
+     * @param fields An object mapping ordered field names to data types in the struct.
+     * @param name A name for the struct.
+     */
+    new <TFields extends { readonly [key: string | symbol]: Type }>(fields: TFields, name?: string): StructType<StructDefinition<TFields, "unspecified">>;
+    /**
+     * Creates a new Struct type from the provided field definition.
+     * @param fields An object mapping ordered field names to data types in the struct.
+     * @param order An used to specify the field order in the struct.
+     * @param name A name for the struct.
+     */
+    new <TFields extends { readonly [key: string | symbol]: Type }, TOrder extends readonly (keyof TFields)[] | readonly []>(fields: TFields, order: TOrder, name?: string): StructType<StructDefinition<TFields, TOrder>>;
+
+    /**
+     * Creates a new Struct type from the provided field definition.
+     * @param baseType A base struct from which this struct is derived. Fields in the new struct will come after fields in the base struct.
+     * @param fields An array of `StructFieldDefinition` entries describing the ordered fields in the struct.
+     * @param name A name for the struct.
+     */
+    new <TDef extends readonly StructFieldDefinition[] | readonly [], TBaseDef extends readonly StructFieldDefinition[]>(baseType: StructType<StructDefinitionOf<TBaseDef>>, fields: TDef, name?: string): StructType<StructDefinitionOf<readonly [...TBaseDef, ...TDef]>>;
+    /**
+     * Creates a new Struct type from the provided field definition.
+     *
+     * NOTE: Field order is determined by property definition order in the object, but that cannot be determined via type inference.
+     * @param baseType A base struct from which this struct is derived. Fields in the new struct will come after fields in the base struct.
+     * @param fields An object mapping ordered field names to data types in the struct.
+     * @param name A name for the struct.
+     */
+    new <TBaseDef extends StructDefinition, TFields extends { readonly [key: string | symbol]: Type }>(baseType: StructType<TBaseDef>, fields: TFields, name?: string): StructType<StructInheritedDefinition<TBaseDef, TFields, "unspecified">>;
+    /**
+     * Creates a new Struct type from the provided field definition.
+     * @param baseType A base struct from which this struct is derived. Fields in the new struct will come after fields in the base struct.
+     * @param fields An object mapping ordered field names to data types in the struct.
+     * @param order An used to specify the field order in the struct.
+     * @param name A name for the struct.
+     */
+    new <TBaseDef extends StructDefinition, TFields extends { readonly [key: string | symbol]: Type }, TOrder extends readonly (keyof TFields)[] | readonly []>(baseType: StructType<TBaseDef>, fields: TFields, order: TOrder, name?: string): StructType<StructInheritedDefinition<TBaseDef, TFields, TOrder>>;
+
+    prototype: StructType<StructDefinitionOf<[]>>;
+}
+
+/**
+ * Creates a new `Struct` type from a provided field definition.
+ */
+export const StructType = StructTypeImpl as StructTypeConstructor;
+
+export interface StructFieldDefinition {
+    readonly name: conststring | constsymbol;
+    readonly type: Type;
+}
+
+export interface StructDefinition<
+    TFields extends { [key: string | symbol]: Type } = any,
+    TOrder extends readonly (keyof TFields)[] | "unspecified" = any
+> {
+    fields: TFields;
+    order: TOrder;
+}
+
+export type StructInheritedDefinition<
+    TBaseDef extends StructDefinition,
+    TFields extends { [key: string | symbol]: Type },
+    TOrder extends readonly (keyof TFields)[] | "unspecified",
+> = StructDefinition<
+    TBaseDef["fields"] & TFields,
+    TBaseDef["order"] extends "unspecified" ? TBaseDef["order"] :
+    TOrder extends "unspecified" ? TBaseDef["order"] & "unspecified" :
+    TOrder extends readonly (keyof TFields)[] ? [...TBaseDef["order"], ...TOrder] :
+    "unspecified"
+>;
+
+export type StructDefinitionOf<TDef extends readonly StructFieldDefinition[]> = StructDefinition<
+    { [I in Extract<numstr<keyof TDef>, number> as TDef[I]["name"]]: TDef[I]["type"]; },
+    { [I in keyof TDef]: TDef[I] extends StructFieldDefinition ? TDef[I]["name"] : TDef[I] }
+>;
+
+export type StructFieldLayout<TDef extends StructDefinition> = {
+    /**
+     * Gets or sets a named field of the struct.
+     */
+    -readonly [K in StructFieldLayoutKeys<TDef>]: RuntimeType<TDef["fields"][K]>;
+};
+
+export type StructElementLayout<TDef extends StructDefinition> = {
+    /**
+     * Gets or sets a named field of the struct.
+     */
+    -readonly [I in StructElementLayoutIndices<TDef>]: RuntimeType<TDef["fields"][TDef["order"][I]]>;
+};
+
+export type StructFieldLayoutKeys<TDef extends StructDefinition> = keyof TDef["fields"];
+export type StructElementLayoutIndices<TDef extends StructDefinition> = TDef["order"] extends "unspecified" ? never : numstr<keyof TDef["order"]>;
+
+/**
+ * Describes the properties that can be used to initialize a struct.
+ */
+export type StructObjectInit<TDef extends StructDefinition> = {
+    [P in keyof TDef["fields"]]: InitType<TDef["fields"][P]>;
+};
+
+/**
+ * Describes the ordered elements that can be used to initialize a struct.
+ */
+export type StructArrayInit<TDef extends StructDefinition> = TDef["order"] extends "unspecified" ? never : {
+    [I in keyof TDef["order"]]: InitType<TDef["fields"][TDef["order"][I]]>;
+};

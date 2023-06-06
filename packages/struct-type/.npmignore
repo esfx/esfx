@@ -3,7 +3,8 @@ __tests__
 obj
 docsrc
 src
-internal
+internal/**/*.d.ts
+internal/**/*.d.mts
 api-extractor.json
 tsconfig*.json
 *.tsbuildinfo
