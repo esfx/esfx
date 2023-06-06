@@ -1,6 +1,6 @@
 {
     "name": "@esfx/async-iter-query",
-    "version": "1.1.0-alpha.202306061316",
+    "version": "1.1.0-alpha.202306061406",
     "description": "An iteration and query API for ECMAscript async-iterables.",
     "types": "./dist/cjs/index.d.ts",
     "main": "./dist/cjs/index.js",

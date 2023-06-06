@@ -9957,6 +9957,10 @@ references:
   name: int8
   href: api/struct-type.html#_esfx_struct_type_int8_var
   fullName: int8
+- uid: '@esfx/struct-type!isLittleEndian:var'
+  name: isLittleEndian
+  href: api/struct-type.html#_esfx_struct_type_isLittleEndian_var
+  fullName: isLittleEndian
 - uid: '@esfx/struct-type!PrimitiveType#[RelatedTypes]:member'
   name: '[RelatedTypes]'
   href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType__RelatedTypes__member

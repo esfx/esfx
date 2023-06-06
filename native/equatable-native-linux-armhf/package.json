@@ -1,6 +1,6 @@
 {
     "name": "@esfx/equatable-native-linux-armhf",
-    "version": "1.1.0-alpha.202306061316",
+    "version": "1.1.0-alpha.202306061406",
     "description": "Native bindings for @esfx/equatable",
     "type": "commonjs",
     "exports": {

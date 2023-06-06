@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-grouping",
-    "version": "1.1.0-alpha.202306061316",
+    "version": "1.1.0-alpha.202306061406",
     "description": "",
     "type": "commonjs",
     "types": "./dist/cjs/index.d.ts",
