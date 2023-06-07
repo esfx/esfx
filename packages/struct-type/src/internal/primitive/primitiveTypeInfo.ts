@@ -16,7 +16,8 @@
 
 import { Endianness } from "../../endianness.js";
 import type { PrimitiveType } from "../../primitive.js";
-import { coerceValue, getValueFromView, NumberType, putValueInView, sizeOf } from "../numbers.js";
+import { RuntimeType } from "../../type.js";
+import { coerceValue, getValueFromBuffer, getValueFromView, NumberType, putValueInBuffer, putValueInView, sizeOf } from "../numbers.js";
 import { TypeInfo, TypeLike } from "../typeInfo.js";
 
 /**
@@ -36,6 +37,14 @@ export class PrimitiveTypeInfo extends TypeInfo {
         this.runtimeType = Object.defineProperties(function (value: number | bigint | boolean) { return coerceValue(numberType, value); } as PrimitiveType, {
             name: { value: name },
             SIZE: { value: size },
+            ...Object.getOwnPropertyDescriptors({
+                read(this: PrimitiveType, buffer: ArrayBufferLike, byteOffset: number, byteOrder?: Endianness) {
+                    return getValueFromBuffer(buffer, numberType, byteOffset, byteOrder);
+                },
+                write(this: PrimitiveType, buffer: ArrayBufferLike, byteOffset: number, value: RuntimeType<PrimitiveType>, byteOrder?: Endianness) {
+                    putValueInBuffer(buffer, numberType, byteOffset, value, byteOrder);
+                },
+            })
         });
         TypeInfo.set(this.runtimeType, this);
         Object.freeze(this);
@@ -61,6 +70,11 @@ export class PrimitiveTypeInfo extends TypeInfo {
 
     writeTo(view: DataView, offset: number, value: number | bigint | boolean, byteOrder?: Endianness) {
         putValueInView(view, this.#numberType, offset, value, byteOrder);
+    }
+
+    copyTo(targetView: DataView, targetOffset: number, sourceView: DataView, sourceOffset: number, byteOrder?: Endianness): void {
+        const value = this.readFrom(sourceView, sourceOffset);
+        this.writeTo(targetView, targetOffset, value, byteOrder);
     }
 
     static get(type: TypeLike): PrimitiveTypeInfo {

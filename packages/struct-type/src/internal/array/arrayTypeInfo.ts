@@ -15,7 +15,7 @@
 */
 
 import type { ArrayType, FixedLengthArrayType } from "../../array.js";
-import { Endianness } from "../../endianness.js";
+import { endianness, Endianness } from "../../endianness.js";
 import type { RuntimeType, Type } from "../../type.js";
 import { align } from "../numbers.js";
 import { TypeInfo, TypeLike } from "../typeInfo.js";
@@ -64,21 +64,47 @@ export abstract class ArrayTypeInfo extends TypeInfo {
         return value instanceof this.runtimeType ? value : new this.runtimeType(value);
     }
 
-    readElementFrom(view: DataView, index: number, byteOrder?: Endianness) {
-        return this.elementTypeInfo.readFrom(view, index * this.bytesPerElement, byteOrder);
+    readElementFrom(view: DataView, byteOffset: number, index: number, byteOrder: Endianness = endianness) {
+        if (byteOrder !== endianness) throw new Error("Cannot change endianness");
+        return this.elementTypeInfo.readFrom(view, byteOffset + index * this.bytesPerElement, byteOrder);
     }
 
-    writeElementTo(view: DataView, index: number, value: RuntimeType<Type>, byteOrder?: Endianness): void {
-        this.elementTypeInfo.writeTo(view, index * this.bytesPerElement, value, byteOrder);
+    writeElementTo(view: DataView, byteOffset: number, index: number, value: RuntimeType<Type>, byteOrder?: Endianness): void {
+        this.elementTypeInfo.writeTo(view, byteOffset + index * this.bytesPerElement, value, byteOrder);
     }
 
-    readFrom(view: DataView, offset: number, byteOrder?: Endianness) {
-        return new this.runtimeType(view.buffer, view.byteOffset + offset);
+    copyElementTo(targetView: DataView, targetOffset: number, sourceView: DataView, sourceOffset: number, index: number, byteOrder?: Endianness): void {
+        this.elementTypeInfo.copyTo(
+            targetView,
+            targetOffset + index * this.bytesPerElement,
+            sourceView,
+            sourceOffset + index * this.bytesPerElement,
+            byteOrder
+        );
     }
 
-    writeTo(view: DataView, offset: number, value: RuntimeType<Type>, byteOrder?: Endianness): void {
+    readFrom(view: DataView, byteOffset: number, byteOrder: Endianness = endianness) {
+        if (byteOrder !== endianness) throw new Error("Cannot change endianness");
+        return new this.runtimeType(view.buffer, view.byteOffset + byteOffset);
+    }
+
+    writeTo(view: DataView, byteOffset: number, value: RuntimeType<Type>, byteOrder?: Endianness): void {
         if (!(value instanceof this.runtimeType)) throw new TypeError();
-        value.writeTo(view.buffer, view.byteOffset + offset);
+        value.writeTo(view.buffer, view.byteOffset + byteOffset, byteOrder);
+    }
+
+    copyTo(targetView: DataView, targetOffset: number, sourceView: DataView, sourceOffset: number, byteOrder?: Endianness): void {
+        if (this.fixedLength === undefined) throw new Error("Cannot copy non-fixed-length TypedArray");
+        for (let i = 0; i < this.fixedLength; i++) {
+            this.copyElementTo(
+                targetView,
+                targetOffset,
+                sourceView,
+                sourceOffset,
+                i,
+                byteOrder
+            );
+        }
     }
 }
 

@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import { Endianness } from "../../endianness.js";
+import { endianness, Endianness } from "../../endianness.js";
 import type { Struct, StructFieldDefinition, StructType } from "../../struct.js";
 import type { RuntimeType, Type } from "../../type.js";
 import { align, Alignment } from "../numbers.js";
@@ -29,43 +29,43 @@ const weakFieldCache = new WeakMap<StructFieldInfo, WeakMap<Struct, Struct>>();
  * @internal
  */
 export class StructFieldInfo {
-    readonly containingType: StructTypeInfo;
-    readonly field: StructFieldDefinition;
+    readonly owner: StructTypeInfo;
+    readonly name: string | symbol;
+    readonly type: Type;
+    readonly typeInfo: TypeInfo;
     readonly index: number;
     readonly byteOffset: number;
-    readonly typeInfo: TypeInfo;
 
-    constructor(type: StructTypeInfo, field: StructFieldDefinition, index: number, byteOffset: number) {
-        this.containingType = type;
-        this.field = {...field};
+    constructor(owner: StructTypeInfo, name: string | symbol, type: Type, index: number, byteOffset: number) {
+        const typeInfo = TypeInfo.get(type);
+        this.owner = owner;
+        this.name = name;
+        this.type = type;
+        this.typeInfo = typeInfo;
         this.index = index;
         this.byteOffset = byteOffset;
-        this.typeInfo = TypeInfo.get(this.field.type);
-        Object.freeze(this.field);
         Object.freeze(this);
     }
 
-    get name(): string | symbol { return this.field.name; }
-    get runtimeType() { return this.field.type; }
-    get size() { return this.field.type.SIZE; }
+    get size() { return this.type.SIZE; }
 
     coerce(value: any) {
         return this.typeInfo.coerce(value);
     }
 
-    readFrom(owner: StructImpl, view: DataView, byteOrder?: Endianness) {
+    readFrom(owner: StructImpl, view: DataView, endianness?: Endianness) {
         if (this.typeInfo instanceof StructTypeInfo) {
             let cache = weakFieldCache.get(this);
             if (!cache) weakFieldCache.set(this, cache = new WeakMap());
             let value = cache.get(owner);
-            if (!value) cache.set(owner, value = this.typeInfo.readFrom(view, this.byteOffset, byteOrder) as Struct);
+            if (!value) cache.set(owner, value = this.typeInfo.readFrom(view, this.byteOffset, endianness) as Struct);
             return value;
         }
-        return this.typeInfo.readFrom(view, this.byteOffset, byteOrder);
+        return this.typeInfo.readFrom(view, this.byteOffset, endianness);
     }
 
-    writeTo(_owner: StructImpl, view: DataView, value: RuntimeType<Type>, byteOrder?: Endianness) {
-        this.typeInfo.writeTo(view, this.byteOffset, value, byteOrder);
+    writeTo(_owner: StructImpl, view: DataView, value: RuntimeType<Type>, endianness?: Endianness) {
+        this.typeInfo.writeTo(view, this.byteOffset, value, endianness);
     }
 }
 
@@ -110,29 +110,31 @@ export class StructTypeInfo extends TypeInfo {
         let offset = baseType ? baseType.size : 0;
         let maxAlignment: Alignment = 1;
 
+        // validate field order and build field definitions from order
         for (const fieldName of fieldOrder) {
             const name = typeof fieldName === "number" ? `${fieldName}` : fieldName;
             if (!hasOwn(fieldsObject, name)) {
                 throw new TypeError(`Field specified in order not found in definition: ${name.toString()}`);
             }
-            
             if (fieldNames.has(name)) {
                 throw new TypeError(`Duplicate field: ${name.toString()}`);
             }
-            fieldNames.add(name);
 
             const type = fieldsObject[name];
-            fields.push({ name: name, type });
+            fields.push(Object.freeze({ name, type }));
+            fieldNames.add(name);
         }
 
+        // build remaining field definitions from object
         for (const name of Reflect.ownKeys(fieldsObject)) {
             if (fieldNames.has(name)) continue;
             fieldNames.add(name);
 
             const type = fieldsObject[name];
-            fields.push({ name, type });
+            fields.push(Object.freeze({ name, type }));
         }
 
+        // collect field offsets
         for (const field of fields) {
             const fieldTypeInfo = TypeInfo.get(field.type);
             if (fieldTypeInfo.size === undefined) {
@@ -142,7 +144,6 @@ export class StructTypeInfo extends TypeInfo {
             const alignment = fieldTypeInfo.alignment;
             offset = align(offset, alignment);
             fieldOffsets.push(offset);
-            fieldNames.add(field.name);
             if (maxAlignment < alignment) maxAlignment = alignment;
             offset += fieldTypeInfo.size;
         }
@@ -152,7 +153,8 @@ export class StructTypeInfo extends TypeInfo {
         const baseLength = baseType ? baseType.fields.length : 0;
         const ownFieldsArray: StructFieldInfo[] = [];
         for (let i = 0; i < fields.length; i++) {
-            const fieldInfo = new StructFieldInfo(this, fields[i], baseLength + i, fieldOffsets[i]);
+            const { name, type } = fields[i];
+            const fieldInfo = new StructFieldInfo(this, name, type, baseLength + i, fieldOffsets[i]);
             fieldsArray.push(fieldInfo);
             ownFieldsArray.push(fieldInfo);
             fieldsByName.set(fieldInfo.name, fieldInfo);
@@ -193,10 +195,10 @@ export class StructTypeInfo extends TypeInfo {
 
     static get(type: TypeLike): StructTypeInfo {
         const typeInfo = this.tryGet(type);
-        if (!typeInfo || !(typeInfo instanceof StructTypeInfo)) {
-            throw new TypeError("Invalid struct, array, or primitive type.");
+        if (typeInfo instanceof StructTypeInfo) {
+            return typeInfo;
         }
-        return typeInfo;
+        throw new TypeError("Invalid struct, array, or primitive type.");
     }
 
     isCompatibleWith(other: TypeInfo): boolean {
@@ -224,16 +226,28 @@ export class StructTypeInfo extends TypeInfo {
         return value instanceof this.runtimeType ? value : new this.runtimeType(value);
     }
 
-    readFrom(view: DataView, offset: number, byteOrder?: Endianness) {
+    readFrom(view: DataView, offset: number, byteOrder: Endianness = endianness) {
+        if (byteOrder !== endianness) throw new Error("Cannot change endianness");
         return new this.runtimeType(view.buffer, view.byteOffset + offset);
     }
 
     writeTo(view: DataView, offset: number, value: RuntimeType<Type>, byteOrder?: Endianness) {
         if (value instanceof this.runtimeType) {
-            value.writeTo(view.buffer, view.byteOffset + offset);
+            this.runtimeType.write(view.buffer, view.byteOffset + offset, value, byteOrder);
         }
         else {
             throw new TypeError(`Expected an instance of type '${this.name}'`);
+        }
+    }
+
+    copyTo(targetView: DataView, targetOffset: number, sourceView: DataView, sourceOffset: number, byteOrder?: Endianness): void {
+        for (const field of this.fields) {
+            field.typeInfo.copyTo(
+                targetView,
+                targetOffset + field.byteOffset,
+                sourceView,
+                sourceOffset + field.byteOffset,
+                byteOrder);
         }
     }
 }

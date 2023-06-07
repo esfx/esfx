@@ -25,6 +25,6 @@ export const isLittleEndian = new Int32Array(new Uint8Array([0x12, 0x34, 0x56, 0
 export const endianness: Endianness = isLittleEndian ? "LE" : "BE";
 
 /**
- * Indicates the byte order is either big-endian (`"BE"`) or little-endian (`"LE"`).
+ * Indicates whether the byte representation for an integer is either big-endian (`"BE"`) or little-endian (`"LE"`).
  */
 export type Endianness = "BE" | "LE";

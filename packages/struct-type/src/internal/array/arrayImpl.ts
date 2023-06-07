@@ -1,4 +1,4 @@
-/*!
+7/*!
    Copyright 2023 Ron Buckton
 
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,6 +15,7 @@
 */
 
 import { IntegerIndexedObject } from "@esfx/indexed-object";
+import { endianness, Endianness } from "../../endianness.js";
 import type { InitType, RuntimeType, Type } from "../../type.js";
 import { PrimitiveTypeInfo } from "../primitive/primitiveTypeInfo.js";
 import { ArrayTypeInfo } from "./arrayTypeInfo.js";
@@ -48,7 +49,7 @@ function isSharedArrayBuffer(buffer: ArrayBufferLike): buffer is SharedArrayBuff
 }
 
 /* @internal */
-abstract class TypedArray<TType extends Type> extends IntegerIndexedObject<RuntimeType<TType>> {
+class TypedArray<TType extends Type> extends IntegerIndexedObject<RuntimeType<TType>> {
     declare static [RuntimeType]: any;
     declare static [InitType]: any;
 
@@ -203,14 +204,14 @@ abstract class TypedArray<TType extends Type> extends IntegerIndexedObject<Runti
     protected override getIndex(index: number): RuntimeType<TType> {
         let value = this.#elementCacheView?.get(index);
         if (value === undefined) {
-            value = this.#type.readElementFrom(this.#dataView, index) as RuntimeType<TType>;
+            value = this.#type.readElementFrom(this.#dataView, /*byteOffset*/ 0, index) as RuntimeType<TType>;
             this.#elementCacheView?.set(index, value);
         }
         return value;
     }
 
     protected override setIndex(index: number, value: RuntimeType<TType>): boolean {
-        this.#type.writeElementTo(this.#dataView, index, value);
+        this.#type.writeElementTo(this.#dataView, /*byteOffset*/ 0, index, value);
         return true;
     }
 
@@ -221,22 +222,111 @@ abstract class TypedArray<TType extends Type> extends IntegerIndexedObject<Runti
         return true;
     }
 
-    writeTo(buffer: ArrayBufferLike, byteOffset?: number): void {
-        byteOffset = ToIndex(byteOffset);
-        if (byteOffset < 0 || byteOffset > buffer.byteLength - this.#byteLength) throw new RangeError("Out of range: byteOffset");
-        if (byteOffset % this.#type.alignment) throw new RangeError(`Not aligned: byteOffset must be a multiple of ${this.#type.alignment}`);
-        if (buffer === this.#buffer) {
-            if (byteOffset === this.#byteOffset) {
-                return;
-            }
-            new Uint8Array(buffer).copyWithin(byteOffset, this.#byteOffset, this.#byteLength);
-            return;
+    static read(buffer: ArrayBufferLike, byteOffset: number, shared?: boolean, byteOrder?: Endianness): TypedArray<any>;
+    static read(buffer: ArrayBufferLike, byteOffset: number, length?: number, shared?: boolean, byteOrder?: Endianness): TypedArray<any>;
+    static read(buffer: ArrayBufferLike, byteOffset: number, length?: number | boolean, shared?: boolean | Endianness, byteOrder?: Endianness) {
+        const type = ArrayTypeInfo.get(this);
+        const elementTypeInfo = type.elementTypeInfo;
+        const elementSize = elementTypeInfo.size;
+        if (elementSize === undefined) {
+            throw new TypeError(`A TypedArray may only contain fixed-size elements, but element type '${elementTypeInfo.name}' is not fixed-size`);
         }
 
-        const size = this.#byteLength;
-        const src = new Uint8Array(this.#buffer, this.#byteOffset, size);
-        const dest = new Uint8Array(buffer, byteOffset, size);
-        dest.set(src);
+        byteOffset = ToIndex(byteOffset);
+
+        if (typeof shared === "string") {
+            if (byteOrder !== undefined) throw new TypeError("Invalid arguments");
+            byteOrder = shared;
+            shared = undefined;
+        }
+
+        byteOrder ??= endianness;
+
+        if (typeof length === "boolean") {
+            if (shared !== undefined) throw new TypeError("Invalid arguments");
+            shared = length;
+            length = undefined;
+        }
+
+        if (length !== undefined) {
+            length = ToIndex(length);
+        }
+
+        let fixedLength: number;
+        if (type.fixedLength !== undefined) {
+            if (length !== undefined && length !== type.fixedLength) {
+                throw new RangeError("Cannot override length of a fixed-length TypedArray");
+            }
+            fixedLength = type.fixedLength;
+        }
+        else {
+            if (length === undefined) {
+                const remainingSize = buffer.byteLength - byteOffset;
+                if (remainingSize % elementSize) {
+                    throw new RangeError(`byte length of typed array should be a multiple of ${elementSize}`);
+                }
+                fixedLength = remainingSize / elementSize;
+            }
+            else {
+                fixedLength = length;
+            }
+        }
+        
+        if (shared && typeof SharedArrayBuffer !== "function") throw new TypeError("SharedArrayBuffer is not available");
+        const size = fixedLength * type.bytesPerElement;
+        const sourceView = new DataView(buffer, byteOffset, size);
+        const targetBuffer = shared ? new SharedArrayBuffer(size) : new ArrayBuffer(size);
+        const targetView = new DataView(targetBuffer);
+        type.copyTo(targetView, 0, sourceView, 0, byteOrder);
+        return new this(targetBuffer, byteOffset, fixedLength);
+
+    }
+
+    static write(buffer: ArrayBufferLike, byteOffset: number, value: TypedArray<any>, byteOrder?: Endianness): void {
+        const typeInfo = ArrayTypeInfo.get(this);
+        byteOffset = ToIndex(byteOffset);
+        const size = value.#byteLength;
+        if (byteOffset < 0 || byteOffset > buffer.byteLength - size) throw new RangeError("Out of range: byteOffset");
+        if (byteOffset % typeInfo.alignment) throw new RangeError(`Not aligned: byteOffset must be a multiple of ${typeInfo.alignment}`);
+        if (byteOrder === endianness) {
+            if (buffer === value.#buffer) {
+                if (byteOffset === value.#byteOffset) {
+                    // Same byte order, buffer, and byte offset. Writing would produce no change.
+                    return;
+                }
+
+                // Same byte order and buffer, we can use copyWithin
+                new Uint8Array(buffer).copyWithin(byteOffset, value.#byteOffset, value.#byteOffset + size);
+                return;
+            }
+
+            // Same byte order, we can copy bytes directly
+            const src = new Uint8Array(value.#buffer, value.#byteOffset, size);
+            const dest = new Uint8Array(buffer, byteOffset, size);
+            dest.set(src);
+        }
+        else {
+            if (buffer === value.#buffer && byteOffset <= value.#byteOffset + size && value.#byteOffset <= byteOffset + size) {
+                // Different byte order, same buffer, and range overlaps. Need to write to a copy first to avoid a partial read.
+                const targetBuffer = new ArrayBuffer(size);
+                value.writeTo(targetBuffer, 0, byteOrder);
+                const src = new Uint8Array(targetBuffer, 0, size);
+                const dest = new Uint8Array(buffer, byteOffset, size);
+                dest.set(src);
+            }
+            else {
+                // Different byte order and either different buffer or range doesn't overlap.
+                const view = new DataView(buffer, byteOffset, size);
+                for (let i = 0; i < value.#fixedLength; i++) {
+                    const element = typeInfo.readElementFrom(value.#dataView, /*byteOffset*/ 0, i);
+                    typeInfo.writeElementTo(view, /*byteOffset*/ 0, i, element, byteOrder);
+                }
+            }
+        }
+    }
+
+    writeTo(buffer: ArrayBufferLike, byteOffset: number = 0, byteOrder?: Endianness): void {
+        TypedArray.write(buffer, byteOffset, this, byteOrder);
     }
 
     toArray(): RuntimeType<TType>[] {

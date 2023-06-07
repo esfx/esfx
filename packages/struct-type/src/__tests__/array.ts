@@ -2133,3 +2133,46 @@ describe("methods", () => {
         });
     });
 });
+describe("byte order", () => {
+    const Int32Arrayx2 = ArrayType(int32, 2);
+    describe("read()", () => {
+        it("big-endian byte order", () => {
+            const view = new DataView(new ArrayBuffer(8));
+            view.setInt32(0, 0x12345678, false);
+            view.setInt32(4, 0x98765432 >> 0, false);
+            const ar = Int32Arrayx2.read(view.buffer, 0, false, "BE");
+            expect(ar[0]).toBe(0x12345678);
+            expect(ar[1]).toBe(0x98765432 >> 0);
+        });
+        it("little-endian byte order", () => {
+            const view = new DataView(new ArrayBuffer(8));
+            view.setInt32(0, 0x12345678, true);
+            view.setInt32(4, 0x98765432 >> 0, true);
+            const ar = Int32Arrayx2.read(view.buffer, 0, false, "LE");
+            expect(ar[0]).toBe(0x12345678);
+            expect(ar[1]).toBe(0x98765432 >> 0);
+        });
+    });
+    describe("write()", () => {
+        it("big-endian byte order", () => {
+            const ar = new Int32Arrayx2([
+                0x12345678,
+                0x98765432,
+            ]);
+            const view = new DataView(new ArrayBuffer(8));
+            Int32Arrayx2.write(view.buffer, 0, ar, "BE");
+            expect(view.getInt32(0, false)).toBe(0x12345678);
+            expect(view.getInt32(4, false)).toBe(0x98765432 >> 0);
+        });
+        it("little-endian byte order", () => {
+            const ar = new Int32Arrayx2([
+                0x12345678,
+                0x98765432,
+            ]);
+            const view = new DataView(new ArrayBuffer(8));
+            Int32Arrayx2.write(view.buffer, 0, ar, "LE");
+            expect(view.getInt32(0, true)).toBe(0x12345678);
+            expect(view.getInt32(4, true)).toBe(0x98765432 >> 0);
+        });
+    });
+});

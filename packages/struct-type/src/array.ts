@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import type { Endianness } from "./endianness.js";
 import { ArrayTypeImpl } from "./internal/array/arrayTypeImpl.js";
 import type { InitType, RuntimeType, Type } from "./type.js";
 
@@ -25,7 +26,7 @@ export interface TypedArray<TType extends Type, TFixedLength extends number = nu
     readonly byteOffset: number;
     readonly byteLength: number;
 
-    writeTo(buffer: ArrayBufferLike, byteOffset?: number): void;
+    writeTo(buffer: ArrayBufferLike, byteOffset?: number, byteOrder?: Endianness): void;
     toArray(): RuntimeType<TType>[];
     copyWithin(target: number, start: number, end?: number): this;
     every(predicate: (value: RuntimeType<TType>, index: number) => unknown): boolean;
@@ -61,12 +62,45 @@ export interface ArrayType<TType extends Type> {
     new (length: number, shared: boolean): TypedArray<TType>;
     new (buffer: ArrayBufferLike, byteOffset?: number, length?: number): TypedArray<TType>;
     new (elements: ArrayLike<InitType<TType>>, shared?: boolean): TypedArray<TType>;
+    prototype: TypedArray<TType>;
 
+    /**
+     * The number of bytes per each element of the array.
+     */
     readonly BYTES_PER_ELEMENT: number;
     readonly SIZE: number | undefined;
     readonly fixedLength: number | undefined;
-    prototype: TypedArray<TType>;
 
+    /**
+     * Reads an array of values value from the buffer. The resulting array value will be backed by its own buffer.
+     * @param buffer The `ArrayBuffer` or `SharedArrayBuffer` from which to read the array.
+     * @param byteOffset The byte offset into {@link buffer} at which to start reading.
+     * @param shared When `true`, the resulting value will be backed by a `SharedArrayBuffer`.
+     * @param byteOrder The endianness to use when reading the array. If unspecified, the native byte order will be used.
+     */
+    read(buffer: ArrayBufferLike, byteOffset: number, shared?: boolean, byteOrder?: Endianness): TypedArray<TType>;
+    /**
+     * Reads an array of values value from the buffer. The resulting array value will be backed by its own buffer.
+     * @param buffer The `ArrayBuffer` or `SharedArrayBuffer` from which to read the array.
+     * @param byteOffset The byte offset into {@link buffer} at which to start reading.
+     * @param length The number of array elements to read from the buffer.
+     * @param shared When `true`, the resulting value will be backed by a `SharedArrayBuffer`.
+     * @param byteOrder The endianness to use when reading the array. If unspecified, the native byte order will be used.
+     */
+    read(buffer: ArrayBufferLike, byteOffset: number, length?: number, shared?: boolean, byteOrder?: Endianness): TypedArray<TType>;
+
+    /**
+     * Writes an array of values to a buffer.
+     * @param buffer The `ArrayBuffer` or `SharedArrayBuffer` into which to write the array.
+     * @param byteOffset The byte offset into {@link buffer} at which to start writing.
+     * @param value The array to write.
+     * @param byteOrder The endianness to use when writing the array. If unspecified, the native byte order will be used.
+     */
+    write(buffer: ArrayBufferLike, byteOffset: number, value: TypedArray<TType>, byteOrder?: Endianness): void;
+
+    /**
+     * Gets a fixed-length subtype for this array type.
+     */
     toFixed<TFixedLength extends number>(fixedLength: TFixedLength): FixedLengthArrayType<TType, TFixedLength>;
 
     // #region Related Types
@@ -83,12 +117,53 @@ export interface FixedLengthArrayType<TType extends Type, TFixedLength extends n
     new (shared: boolean): TypedArray<TType, TFixedLength>;
     new (buffer: ArrayBufferLike, byteOffset?: number): TypedArray<TType, TFixedLength>;
     new (elements: ArrayLike<InitType<TType>>, shared?: boolean): TypedArray<TType, TFixedLength>;
-
-    readonly BYTES_PER_ELEMENT: number;
-    readonly SIZE: number;
-    readonly fixedLength: TFixedLength;
     prototype: TypedArray<TType, TFixedLength>;
 
+    /**
+     * The number of bytes per each element of the array.
+     */
+    readonly BYTES_PER_ELEMENT: number;
+
+    /**
+     * The number of bytes for the entire array.
+     */
+    readonly SIZE: number;
+
+    /**
+     * the fixed length of the array.
+     */
+    readonly fixedLength: TFixedLength;
+
+    /**
+     * Reads an array of values value from the buffer. The resulting array value will be backed by its own buffer.
+     * @param buffer The `ArrayBuffer` or `SharedArrayBuffer` from which to read the array.
+     * @param byteOffset The byte offset into {@link buffer} at which to start reading.
+     * @param shared When `true`, the resulting value will be backed by a `SharedArrayBuffer`.
+     * @param byteOrder The endianness to use when reading the array. If unspecified, the native byte order will be used.
+     */
+    read(buffer: ArrayBufferLike, byteOffset: number, shared?: boolean, byteOrder?: Endianness): TypedArray<TType, TFixedLength>;
+    /**
+     * Reads an array of values value from the buffer. The resulting array value will be backed by its own buffer.
+     * @param buffer The `ArrayBuffer` or `SharedArrayBuffer` from which to read the array.
+     * @param byteOffset The byte offset into {@link buffer} at which to start reading.
+     * @param length The number of array elements to read from the buffer.
+     * @param shared When `true`, the resulting value will be backed by a `SharedArrayBuffer`.
+     * @param byteOrder The endianness to use when reading the array. If unspecified, the native byte order will be used.
+     */
+    read(buffer: ArrayBufferLike, byteOffset: number, length?: number, shared?: boolean, byteOrder?: Endianness): TypedArray<TType, TFixedLength>;
+
+    /**
+     * Writes a structured value to a buffer.
+     * @param buffer The `ArrayBuffer` or `SharedArrayBuffer` into which to write the value.
+     * @param byteOffset The byte offset into {@link buffer} at which to start writing.
+     * @param value The value to write.
+     * @param byteOrder The endianness to use when writing the value. If unspecified, the native byte order will be used.
+     */
+    write(buffer: ArrayBufferLike, byteOffset: number, value: TypedArray<TType, TFixedLength>, byteOrder?: Endianness): void;
+
+    /**
+     * Gets a fixed-length subtype for this array type.
+     */
     toFixed<TFixedLength extends number>(fixedLength: TFixedLength): FixedLengthArrayType<TType, TFixedLength>;
 
     // #region Related Types
@@ -121,7 +196,6 @@ export interface ArrayTypeConstructor {
      * @param length The fixed length of the TypedArray type.
      */
     new <TType extends Type, TLength extends number>(type: TType, length: TLength): FixedLengthArrayType<TType, TLength>;
-
     prototype: Omit<ArrayType<any>, never>;
 }
 

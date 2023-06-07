@@ -14,7 +14,8 @@
    limitations under the License.
 */
 
-import type { StructArrayInit, StructDefinition, StructElementLayout, StructElementLayoutIndices, StructFieldLayout, StructFieldLayoutKeys, StructObjectInit } from "../../struct.js";
+import { endianness, Endianness } from "../../endianness.js";
+import type { StructArrayInit, StructDefinition, StructElementLayout, StructElementLayoutIndices, StructFieldLayout, StructFieldLayoutKeys, StructObjectInit, StructType } from "../../struct.js";
 import type { InitType, RuntimeType } from "../../type.js";
 import { StructTypeInfo } from "./structTypeInfo";
 
@@ -50,7 +51,7 @@ function isStructConstructorStructFieldArrayOverload<TDef extends StructDefiniti
 }
 
 /* @internal */
-abstract class Struct<TDef extends StructDefinition = any> {
+class Struct<TDef extends StructDefinition = any> {
     declare static [RuntimeType]: any;
     declare static [InitType]: any;
 
@@ -158,21 +159,73 @@ abstract class Struct<TDef extends StructDefinition = any> {
         return false;
     }
 
-    writeTo(buffer: ArrayBufferLike, byteOffset: number = 0) {
-        if (byteOffset < 0 || byteOffset > buffer.byteLength - this.#type.size) throw new RangeError("Out of range: byteOffset");
-        if (byteOffset % this.#type.alignment) throw new RangeError(`Not aligned: byteOffset must be a multiple of ${this.#type.alignment}`);
-        if (buffer === this.#buffer) {
-            if (byteOffset === this.#byteOffset) {
-                return;
-            }
-            new Uint8Array(buffer).copyWithin(byteOffset, this.#byteOffset, this.#byteOffset + this.#type.size);
-            return;
+    static read(buffer: ArrayBufferLike, byteOffset: number, byteOrder?: Endianness): Struct<any>;
+    static read(buffer: ArrayBufferLike, byteOffset: number, shared?: boolean, byteOrder?: Endianness): Struct<any>;
+    static read(buffer: ArrayBufferLike, byteOffset: number, shared?: boolean | Endianness, byteOrder?: Endianness) {
+        const typeInfo = StructTypeInfo.get(this);
+
+        if (typeof shared === "string") {
+            if (byteOrder !== undefined) throw new TypeError("Invalid arguments");
+            byteOrder = shared;
+            shared = undefined;
         }
 
-        const size = this.#type.size;
-        const src = new Uint8Array(this.#buffer, this.#byteOffset, size);
-        const dest = new Uint8Array(buffer, byteOffset, size);
-        dest.set(src);
+        byteOrder ??= endianness;
+
+        if (shared && typeof SharedArrayBuffer !== "function") throw new TypeError("SharedArrayBuffer is not available");
+        const sourceView = new DataView(buffer, byteOffset, typeInfo.size);
+        const targetBuffer = shared ? new SharedArrayBuffer(typeInfo.size) : new ArrayBuffer(typeInfo.size);
+        const targetView = new DataView(targetBuffer);
+        typeInfo.copyTo(targetView, 0, sourceView, 0, byteOrder);
+        return new this(targetBuffer, byteOffset);
+    }
+
+    static write(buffer: ArrayBufferLike, byteOffset: number, value: Struct, byteOrder?: Endianness): void {
+        const typeInfo = StructTypeInfo.get(this);
+        if (byteOffset < 0 || byteOffset > buffer.byteLength - typeInfo.size) throw new RangeError("Out of range: byteOffset");
+        if (byteOffset % typeInfo.alignment) throw new RangeError(`Not aligned: byteOffset must be a multiple of ${typeInfo.alignment}`);
+        if (byteOrder === endianness) {
+            if (buffer === value.#buffer) {
+                if (byteOffset === value.#byteOffset) {
+                    // Same byte order, buffer, and byte offset. Writing would produce no change.
+                    return;
+                }
+
+                // Same byte order and buffer, we can use copyWithin
+                new Uint8Array(buffer).copyWithin(byteOffset, value.#byteOffset, value.#byteOffset + typeInfo.size);
+                return;
+            }
+
+            // Same byte order, we can copy bytes directly
+            const size = typeInfo.size;
+            const src = new Uint8Array(value.#buffer, value.#byteOffset, size);
+            const dest = new Uint8Array(buffer, byteOffset, size);
+            dest.set(src);
+        }
+        else {
+            const size = typeInfo.size;
+            if (buffer === value.#buffer && byteOffset <= value.#byteOffset + size && value.#byteOffset <= byteOffset + size) {
+                // Different byte order, same buffer, and range overlaps. Need to write to a copy first to avoid a partial read.
+                const targetBuffer = new ArrayBuffer(size);
+                this.write(targetBuffer, 0, value, byteOrder);
+                const src = new Uint8Array(targetBuffer, 0, size);
+                const dest = new Uint8Array(buffer, byteOffset, size);
+                dest.set(src);
+            }
+            else {
+                // Different byte order and either different buffer or range doesn't overlap.
+                const view = new DataView(buffer, byteOffset, size);
+                for (let i = 0; i < typeInfo.fields.length; i++) {
+                    const field = typeInfo.fields[i];
+                    const fieldValue = field.readFrom(value, value.#dataView);
+                    field.writeTo(value, view, fieldValue, byteOrder);
+                }
+            }
+        }
+    }
+
+    writeTo(buffer: ArrayBufferLike, byteOffset: number = 0, byteOrder?: Endianness) {
+        Struct.write(buffer, byteOffset, this, byteOrder);
     }
 }
 

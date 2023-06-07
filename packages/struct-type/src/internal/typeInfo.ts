@@ -99,4 +99,5 @@ export abstract class TypeInfo {
     abstract coerce(value: any): RuntimeType<Type>;
     abstract readFrom(view: DataView, offset: number, byteOrder?: Endianness): RuntimeType<Type>;
     abstract writeTo(view: DataView, offset: number, value: RuntimeType<Type>, byteOrder?: Endianness): void;
+    abstract copyTo(targetView: DataView, targetOffset: number, sourceView: DataView, sourceOffset: number, byteOrder?: Endianness): void;
 }

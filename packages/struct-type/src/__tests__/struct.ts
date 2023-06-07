@@ -206,6 +206,49 @@ describe("baseType", () => {
         expect(p.z).toBe(3);
     });
 });
-describe("types", () => {
-    
+describe("byte order", () => {
+    const Point = StructType({
+        x: int32,
+        y: int32
+    });
+    describe("read()", () => {
+        it("big-endian byte order", () => {
+            const view = new DataView(new ArrayBuffer(8));
+            view.setInt32(0, 0x12345678, false);
+            view.setInt32(4, 0x98765432 >> 0, false);
+            const p = Point.read(view.buffer, 0, false, "BE");
+            expect(p.x).toBe(0x12345678);
+            expect(p.y).toBe(0x98765432 >> 0);
+        });
+        it("little-endian byte order", () => {
+            const view = new DataView(new ArrayBuffer(8));
+            view.setInt32(0, 0x12345678, true);
+            view.setInt32(4, 0x98765432 >> 0, true);
+            const p = Point.read(view.buffer, 0, false, "LE");
+            expect(p.x).toBe(0x12345678);
+            expect(p.y).toBe(0x98765432 >> 0);
+        });
+    });
+    describe("write()", () => {
+        it("big-endian byte order", () => {
+            const p = new Point({
+                x: 0x12345678,
+                y: 0x98765432,
+            });
+            const view = new DataView(new ArrayBuffer(8));
+            Point.write(view.buffer, 0, p, "BE");
+            expect(view.getInt32(0, false)).toBe(0x12345678);
+            expect(view.getInt32(4, false)).toBe(0x98765432 >> 0);
+        });
+        it("little-endian byte order", () => {
+            const p = new Point({
+                x: 0x12345678,
+                y: 0x98765432,
+            });
+            const view = new DataView(new ArrayBuffer(8));
+            Point.write(view.buffer, 0, p, "LE");
+            expect(view.getInt32(0, true)).toBe(0x12345678);
+            expect(view.getInt32(4, true)).toBe(0x98765432 >> 0);
+        });
+    });
 });

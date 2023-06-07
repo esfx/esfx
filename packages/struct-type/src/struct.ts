@@ -15,6 +15,7 @@
 */
 
 import type { conststring, constsymbol, numstr } from "@esfx/type-model";
+import type { Endianness } from "./endianness.js";
 import { StructTypeImpl } from "./internal/struct/structTypeImpl.js";
 import type { InitType, RuntimeType, Type } from "./type.js";
 
@@ -60,7 +61,7 @@ export type Struct<TDef extends StructDefinition = StructDefinition> = {
     /**
      * Writes the value of this struct to an array buffer.
      */
-    writeTo(buffer: ArrayBufferLike, byteOffset?: number): void;
+    writeTo(buffer: ArrayBufferLike, byteOffset?: number, byteOrder?: Endianness): void;
 } & StructFieldLayout<TDef> & StructElementLayout<TDef>;
 
 /**
@@ -72,9 +73,37 @@ export interface StructType<TDef extends StructDefinition> {
     new (buffer: ArrayBufferLike, byteOffset?: number): Struct<TDef>;
     new (object: Partial<StructObjectInit<TDef>>, shared?: boolean): Struct<TDef>;
     new (elements: Partial<StructArrayInit<TDef>>, shared?: boolean): Struct<TDef>;
-
-    readonly SIZE: number;
     prototype: Struct<any>;
+
+    /**
+     * Gets the size of this struct, in bytes.
+     */
+    readonly SIZE: number;
+
+    /**
+     * Reads a structured value from the buffer. The resulting structured value will be backed by its own buffer.
+     * @param buffer The `ArrayBuffer` or `SharedArrayBuffer` from which to read the value.
+     * @param byteOffset The byte offset into {@link buffer} at which to start reading.
+     * @param byteOrder The endianness to use when reading the value. If unspecified, the native byte order will be used.
+     */
+    read(buffer: ArrayBufferLike, byteOffset: number, byteOrder?: Endianness): Struct<TDef>;
+    /**
+     * Reads a structured value from the buffer. The resulting structured value will be backed by its own buffer.
+     * @param buffer The `ArrayBuffer` or `SharedArrayBuffer` from which to read the value.
+     * @param byteOffset The byte offset into {@link buffer} at which to start reading.
+     * @param shared When `true`, the resulting value will be backed by a `SharedArrayBuffer`.
+     * @param byteOrder The endianness to use when reading the value. If unspecified, the native byte order will be used.
+     */
+    read(buffer: ArrayBufferLike, byteOffset: number, shared?: boolean, byteOrder?: Endianness): Struct<TDef>;
+
+    /**
+     * Writes a structured value to a buffer.
+     * @param buffer The `ArrayBuffer` or `SharedArrayBuffer` into which to write the value.
+     * @param byteOffset The byte offset into {@link buffer} at which to start writing.
+     * @param value The value to write.
+     * @param byteOrder The endianness to use when writing the value. If unspecified, the native byte order will be used.
+     */
+    write(buffer: ArrayBufferLike, byteOffset: number, value: Struct<TDef>, byteOrder?: Endianness): void;
 
     // #region Related Types
     [RuntimeType]: Struct<TDef>;

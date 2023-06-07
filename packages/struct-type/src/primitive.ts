@@ -14,6 +14,7 @@
    limitations under the License.
 */
 
+import type { Endianness } from "./endianness.js";
 import { NumberType } from "./internal/numbers.js";
 import { createPrimitiveType } from "./internal/primitive/primitiveTypeImpl.js";
 import type { InitType, RuntimeType } from "./type.js";
@@ -42,6 +43,23 @@ export interface PrimitiveType<
      * The size, in bytes, of the primitive type.
      */
     readonly SIZE: number;
+
+    /**
+     * Reads a primitive value from the buffer.
+     * @param buffer The `ArrayBuffer` or `SharedArrayBuffer` from which to read the value.
+     * @param byteOffset The byte offset into {@link buffer} at which to start reading.
+     * @param byteOrder The endianness to use when reading the value. If unspecified, the native byte order will be used.
+     */
+    read(buffer: ArrayBufferLike, byteOffset: number, byteOrder?: Endianness): T;
+
+    /**
+     * Writes a primitive value to a buffer.
+     * @param buffer The `ArrayBuffer` or `SharedArrayBuffer` into which to write the value.
+     * @param byteOffset The byte offset into {@link buffer} at which to start writing.
+     * @param value The value to write.
+     * @param byteOrder The endianness to use when writing the value. If unspecified, the native byte order will be used.
+     */
+    write(buffer: ArrayBufferLike, byteOffset: number, value: T, byteOrder?: Endianness): void;
 }
 
 /**
