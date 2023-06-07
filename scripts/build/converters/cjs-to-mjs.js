@@ -303,13 +303,13 @@ function transformCjsToMjs(context, errors) {
                         if (ts.isExpressionStatement(nextStatement) &&
                             isReexport(reexport = nextStatement.expression) &&
                             ts.idText((prop = reexport.arguments[2].properties[1].initializer.body.statements[0].expression).expression) === name) {
-                            const propertyName = reexport.arguments[1].text;
-                            const name = ts.idText(prop.name);
+                            const name = reexport.arguments[1].text;
+                            const propertyName = ts.idText(prop.name);
                             exportSpecifiers.push(
                                 factory.createExportSpecifier(
                                     false,
                                     propertyName === name ? undefined : propertyName,
-                                    name
+                                    name,
                                 )
                             );
                             continue;
