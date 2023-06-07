@@ -20,3 +20,4 @@ export * from "./primitive.js";
 export * from "./struct.js";
 export type { InitType, RuntimeType, Type } from "./type.js";
 export * from "./wasm.js";
+export * from "./aliases.js";

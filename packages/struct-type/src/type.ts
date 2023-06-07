@@ -14,9 +14,9 @@
    limitations under the License.
 */
 
-import { ArrayType, FixedLengthArrayType } from "./array.js";
+import type { ArrayType, FixedLengthArrayType } from "./array.js";
 import type { PrimitiveType } from "./primitive.js";
-import { StructType } from "./struct.js";
+import type { StructType } from "./struct.js";
 
 export type Type =
     | PrimitiveType
