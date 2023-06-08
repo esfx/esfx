@@ -6,6 +6,10 @@ dist/cjs/array.d.ts
 dist/cjs/array.d.ts.map
 dist/cjs/array.js
 dist/cjs/array.js.map
+dist/cjs/endianness.d.ts
+dist/cjs/endianness.d.ts.map
+dist/cjs/endianness.js
+dist/cjs/endianness.js.map
 dist/cjs/index.d.ts
 dist/cjs/index.d.ts.map
 dist/cjs/index.js
@@ -22,6 +26,10 @@ dist/cjs/internal/array/arrayTypeInfo.d.ts
 dist/cjs/internal/array/arrayTypeInfo.d.ts.map
 dist/cjs/internal/array/arrayTypeInfo.js
 dist/cjs/internal/array/arrayTypeInfo.js.map
+dist/cjs/internal/numbers.d.ts
+dist/cjs/internal/numbers.d.ts.map
+dist/cjs/internal/numbers.js
+dist/cjs/internal/numbers.js.map
 dist/cjs/internal/primitive/primitiveTypeImpl.d.ts
 dist/cjs/internal/primitive/primitiveTypeImpl.d.ts.map
 dist/cjs/internal/primitive/primitiveTypeImpl.js
@@ -42,10 +50,6 @@ dist/cjs/internal/struct/structTypeInfo.d.ts
 dist/cjs/internal/struct/structTypeInfo.d.ts.map
 dist/cjs/internal/struct/structTypeInfo.js
 dist/cjs/internal/struct/structTypeInfo.js.map
-dist/cjs/internal/numbers.d.ts
-dist/cjs/internal/numbers.d.ts.map
-dist/cjs/internal/numbers.js
-dist/cjs/internal/numbers.js.map
 dist/cjs/internal/typeInfo.d.ts
 dist/cjs/internal/typeInfo.d.ts.map
 dist/cjs/internal/typeInfo.js
@@ -74,6 +78,8 @@ dist/esm/aliases.d.mts
 dist/esm/aliases.mjs
 dist/esm/array.d.mts
 dist/esm/array.mjs
+dist/esm/endianness.d.mts
+dist/esm/endianness.mjs
 dist/esm/index.d.mts
 dist/esm/index.mjs
 dist/esm/internal/array/arrayImpl.d.mts
@@ -82,6 +88,8 @@ dist/esm/internal/array/arrayTypeImpl.d.mts
 dist/esm/internal/array/arrayTypeImpl.mjs
 dist/esm/internal/array/arrayTypeInfo.d.mts
 dist/esm/internal/array/arrayTypeInfo.mjs
+dist/esm/internal/numbers.d.mts
+dist/esm/internal/numbers.mjs
 dist/esm/internal/primitive/primitiveTypeImpl.d.mts
 dist/esm/internal/primitive/primitiveTypeImpl.mjs
 dist/esm/internal/primitive/primitiveTypeInfo.d.mts
@@ -92,8 +100,6 @@ dist/esm/internal/struct/structTypeImpl.d.mts
 dist/esm/internal/struct/structTypeImpl.mjs
 dist/esm/internal/struct/structTypeInfo.d.mts
 dist/esm/internal/struct/structTypeInfo.mjs
-dist/esm/internal/numbers.d.mts
-dist/esm/internal/numbers.mjs
 dist/esm/internal/typeInfo.d.mts
 dist/esm/internal/typeInfo.mjs
 dist/esm/primitive.d.mts
