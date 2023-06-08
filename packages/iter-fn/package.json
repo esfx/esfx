@@ -1,6 +1,6 @@
 {
     "name": "@esfx/iter-fn",
-    "version": "1.1.0-alpha.202306061406",
+    "version": "1.1.0-alpha.202306080253",
     "description": "An fp-style iteration API for ECMAScript iterables.",
     "type": "commonjs",
     "types": "./dist/cjs/index.d.ts",

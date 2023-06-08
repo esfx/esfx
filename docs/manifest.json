@@ -2829,19 +2829,22 @@
       "output": {
         ".html": {
           "relative_path": "api/struct-type.html",
-          "hash": "AZBIlh4UYD0h6ACyx0lgnx0dpbDBepCYgZS9255OGr8="
+          "hash": "wZc9y2K34cwzPLFrGOQn0IOlvrKsbhZnaZbblNS+NKE="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "UidNotFound"
+      ],
       "type": "UniversalReference",
       "source_relative_path": "obj/yml/struct-type/arraytype-interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/struct-type/arraytype-interface.html",
-          "hash": "YyoSQJ1agn6kop/p7BmStHBHjWZ5uAqgoTOnYKJxR8o="
+          "hash": "5zAd+a4Aogx/T/xMWD0K89rg/o8VD64wK10aHgRVLnA="
         }
       },
       "is_incremental": false,
@@ -2860,24 +2863,30 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "UidNotFound"
+      ],
       "type": "UniversalReference",
       "source_relative_path": "obj/yml/struct-type/fixedlengtharraytype.yml",
       "output": {
         ".html": {
           "relative_path": "api/struct-type/fixedlengtharraytype.html",
-          "hash": "2XoBH+PJT9HQQ875mKXhwNmUQBKQ6hevUe4FOHRX19Q="
+          "hash": "LRzJf8+ENvmZrbQ+QQFD3Rt/OJMOFP/eb5EP18h0PTY="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
+      "log_codes": [
+        "UidNotFound"
+      ],
       "type": "UniversalReference",
       "source_relative_path": "obj/yml/struct-type/primitivetype.yml",
       "output": {
         ".html": {
           "relative_path": "api/struct-type/primitivetype.html",
-          "hash": "nhvwgVb6NK0u/1kqf+/LKzhyez7L+FOtwtgu0evQxUY="
+          "hash": "RLu4ACXaqjp3bmlY/OEhgxWas7SXlXRcYB8KhqzJklE="
         }
       },
       "is_incremental": false,
@@ -2908,12 +2917,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "UidNotFound"
+      ],
       "type": "UniversalReference",
       "source_relative_path": "obj/yml/struct-type/structtype-interface.yml",
       "output": {
         ".html": {
           "relative_path": "api/struct-type/structtype-interface.html",
-          "hash": "KZI9uhgvtWwL9ooIz4CCeSDeAvu8o4wqmgEUjf16NkE="
+          "hash": "dDX0BKyq8b1UW1A5fnMMVeDKHhjAJxC4JcwLuAOnvoM="
         }
       },
       "is_incremental": false,
@@ -2937,7 +2949,7 @@
       "output": {
         ".html": {
           "relative_path": "api/struct-type/typedarray.html",
-          "hash": "r/rHU6Q3uzGOc1i9a8OBLJ4PJskLvcVffl6GwmqUb4Y="
+          "hash": "5n60SHH02BzJpLHFkg3zaRsBCdstRRk79pKoT6dll6g="
         }
       },
       "is_incremental": false,

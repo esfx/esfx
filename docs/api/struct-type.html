@@ -386,6 +386,22 @@ else if (parentPort) {
   
   
   
+        <h4 id="_esfx_struct_type_endianness_var" data-uid="@esfx/struct-type!endianness:var">endianness</h4>
+              <div class="markdown level1 summary"><p>Indicats the endianess of the system.</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">endianness: Endianness</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_struct_type_float32_var" data-uid="@esfx/struct-type!float32:var">float32</h4>
               <div class="markdown level1 summary"><p>A primitive type representing a 4-byte floating point number.</p>
 <p>Aliases: <code>f32</code><!-- -->, <code>float</code></p>
@@ -411,6 +427,21 @@ else if (parentPort) {
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">float64: PrimitiveType&lt;&quot;float64&quot;, number&gt;</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_struct_type_InitType_var" data-uid="@esfx/struct-type!InitType:var">InitType</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">InitType: unique symbol</code></pre>
         </div>
   
   
@@ -472,12 +503,27 @@ else if (parentPort) {
   
   
         <h4 id="_esfx_struct_type_isLittleEndian_var" data-uid="@esfx/struct-type!isLittleEndian:var">isLittleEndian</h4>
-              <div class="markdown level1 summary"><p>Indicates whether the current host is little endian.</p>
+              <div class="markdown level1 summary"><p>Indicates whether the current system is little endian.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
           <pre><code class="lang-typeScript hljs">isLittleEndian: boolean</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
+        <h4 id="_esfx_struct_type_RuntimeType_var" data-uid="@esfx/struct-type!RuntimeType:var">RuntimeType</h4>
+              <div class="markdown level1 summary"></div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">RuntimeType: unique symbol</code></pre>
         </div>
   
   
@@ -556,13 +602,29 @@ else if (parentPort) {
   </h3>
   
   
+        <h4 id="_esfx_struct_type_Endianness_type" data-uid="@esfx/struct-type!Endianness:type">Endianness</h4>
+              <div class="markdown level1 summary"><p>Indicates whether the byte representation for an integer is either big-endian (<code>&quot;BE&quot;</code><!-- -->) or little-endian (<code>&quot;LE&quot;</code><!-- -->).</p>
+</div>
+        <div class="markdown level1 conceptual"></div>
+        <h5 class="decalaration">Declaration</h5>
+        <div class="codewrapper">
+          <pre><code class="lang-typeScript hljs">export declare type Endianness = &quot;BE&quot; | &quot;LE&quot;;</code></pre>
+        </div>
+  
+  
+  
+  
+  
+  
+  
+  
         <h4 id="_esfx_struct_type_InitType_type" data-uid="@esfx/struct-type!InitType:type">InitType</h4>
               <div class="markdown level1 summary"><p>Gets a runtime type from a type definition that can be used to initialize a value of that type.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type InitType&lt;TType extends Type&gt; = NonNullable&lt;TType[typeof RelatedTypes]&gt;[&quot;InitType&quot;];</code></pre>
+          <pre><code class="lang-typeScript hljs">export declare type InitType&lt;TType extends Type&gt; = TType[typeof InitType];</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>
@@ -582,28 +644,13 @@ else if (parentPort) {
   
   
   
-        <h4 id="_esfx_struct_type_PrimitiveTypes_type" data-uid="@esfx/struct-type!PrimitiveTypes:type">PrimitiveTypes</h4>
-              <div class="markdown level1 summary"></div>
-        <div class="markdown level1 conceptual"></div>
-        <h5 class="decalaration">Declaration</h5>
-        <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type PrimitiveTypes = typeof bool8 | typeof bool32 | typeof int8 | typeof int16 | typeof int32 | typeof uint8 | typeof uint16 | typeof uint32 | typeof bigint64 | typeof biguint64 | typeof float32 | typeof float64;</code></pre>
-        </div>
-  
-  
-  
-  
-  
-  
-  
-  
         <h4 id="_esfx_struct_type_RuntimeType_type" data-uid="@esfx/struct-type!RuntimeType:type">RuntimeType</h4>
               <div class="markdown level1 summary"><p>Gets the runtime type from a type definition.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type RuntimeType&lt;TType extends Type&gt; = NonNullable&lt;TType[typeof RelatedTypes]&gt;[&quot;RuntimeType&quot;];</code></pre>
+          <pre><code class="lang-typeScript hljs">export declare type RuntimeType&lt;TType extends Type&gt; = TType[typeof RuntimeType];</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>
@@ -637,7 +684,7 @@ else if (parentPort) {
     set&lt;K extends StructFieldLayoutKeys&lt;TDef&gt;&gt;(key: K, value: StructFieldLayout&lt;TDef&gt;[K]): void;
     getIndex&lt;I extends StructElementLayoutIndices&lt;TDef&gt;&gt;(index: I): StructElementLayout&lt;TDef&gt;[I];
     setIndex&lt;I extends StructElementLayoutIndices&lt;TDef&gt;&gt;(index: I, value: StructElementLayout&lt;TDef&gt;[I]): boolean;
-    writeTo(buffer: ArrayBufferLike, byteOffset?: number): void;
+    writeTo(buffer: ArrayBufferLike, byteOffset?: number, byteOrder?: Endianness): void;
 } &amp; StructFieldLayout&lt;TDef&gt; &amp; StructElementLayout&lt;TDef&gt;;</code></pre>
         </div>
   
@@ -903,7 +950,7 @@ else if (parentPort) {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare type Type = PrimitiveTypes | StructType&lt;any&gt; | ArrayType&lt;any&gt; | FixedLengthArrayType&lt;any&gt;;</code></pre>
+          <pre><code class="lang-typeScript hljs">export declare type Type = PrimitiveType | StructType&lt;any&gt; | FixedLengthArrayType&lt;any&gt; | ArrayType&lt;any&gt;;</code></pre>
         </div>
   
   

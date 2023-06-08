@@ -1,6 +1,6 @@
 {
     "name": "@esfx/equatable-native",
-    "version": "1.1.0-alpha.202306061406",
+    "version": "1.1.0-alpha.202306080253",
     "description": "Node native bindings for @esfx/equatable",
     "private": true,
     "main": "//",
