@@ -9849,10 +9849,14 @@ references:
   name: '@esfx/struct-type'
   href: api/struct-type.html
   fullName: '@esfx/struct-type'
-- uid: '@esfx/struct-type!ArrayType#[RelatedTypes]:member'
-  name: '[RelatedTypes]'
-  href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType__RelatedTypes__member
-  fullName: ArrayType.[RelatedTypes]
+- uid: '@esfx/struct-type!ArrayType#[InitType]:member'
+  name: '[InitType]'
+  href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType__InitType__member
+  fullName: ArrayType.[InitType]
+- uid: '@esfx/struct-type!ArrayType#[RuntimeType]:member'
+  name: '[RuntimeType]'
+  href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType__RuntimeType__member
+  fullName: ArrayType.[RuntimeType]
 - uid: '@esfx/struct-type!ArrayType#BYTES_PER_ELEMENT:member'
   name: BYTES_PER_ELEMENT
   href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_BYTES_PER_ELEMENT_member
@@ -9865,6 +9869,14 @@ references:
   name: prototype
   href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_prototype_member
   fullName: ArrayType.prototype
+- uid: '@esfx/struct-type!ArrayType#read:member(1)'
+  name: read(buffer, byteOffset, shared, byteOrder)
+  href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_read_member_1_
+  fullName: ArrayType.read(buffer, byteOffset, shared, byteOrder)
+- uid: '@esfx/struct-type!ArrayType#read:member(2)'
+  name: read(buffer, byteOffset, length, shared, byteOrder)
+  href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_read_member_2_
+  fullName: ArrayType.read(buffer, byteOffset, length, shared, byteOrder)
 - uid: '@esfx/struct-type!ArrayType#SIZE:member'
   name: SIZE
   href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_SIZE_member
@@ -9873,6 +9885,10 @@ references:
   name: toFixed(fixedLength)
   href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_toFixed_member_1_
   fullName: ArrayType.toFixed(fixedLength)
+- uid: '@esfx/struct-type!ArrayType#write:member(1)'
+  name: write(buffer, byteOffset, value, byteOrder)
+  href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_write_member_1_
+  fullName: ArrayType.write(buffer, byteOffset, value, byteOrder)
 - uid: '@esfx/struct-type!ArrayType:interface'
   name: ArrayType<TType>
   href: api/struct-type/arraytype-interface.html#_esfx_struct_type_ArrayType_interface
@@ -9905,10 +9921,22 @@ references:
   name: bool8
   href: api/struct-type.html#_esfx_struct_type_bool8_var
   fullName: bool8
-- uid: '@esfx/struct-type!FixedLengthArrayType#[RelatedTypes]:member'
-  name: '[RelatedTypes]'
-  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType__RelatedTypes__member
-  fullName: FixedLengthArrayType.[RelatedTypes]
+- uid: '@esfx/struct-type!Endianness:type'
+  name: Endianness
+  href: api/struct-type.html#_esfx_struct_type_Endianness_type
+  fullName: Endianness
+- uid: '@esfx/struct-type!endianness:var'
+  name: endianness
+  href: api/struct-type.html#_esfx_struct_type_endianness_var
+  fullName: endianness
+- uid: '@esfx/struct-type!FixedLengthArrayType#[InitType]:member'
+  name: '[InitType]'
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType__InitType__member
+  fullName: FixedLengthArrayType.[InitType]
+- uid: '@esfx/struct-type!FixedLengthArrayType#[RuntimeType]:member'
+  name: '[RuntimeType]'
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType__RuntimeType__member
+  fullName: FixedLengthArrayType.[RuntimeType]
 - uid: '@esfx/struct-type!FixedLengthArrayType#BYTES_PER_ELEMENT:member'
   name: BYTES_PER_ELEMENT
   href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_BYTES_PER_ELEMENT_member
@@ -9921,6 +9949,14 @@ references:
   name: prototype
   href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_prototype_member
   fullName: FixedLengthArrayType.prototype
+- uid: '@esfx/struct-type!FixedLengthArrayType#read:member(1)'
+  name: read(buffer, byteOffset, shared, byteOrder)
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_read_member_1_
+  fullName: FixedLengthArrayType.read(buffer, byteOffset, shared, byteOrder)
+- uid: '@esfx/struct-type!FixedLengthArrayType#read:member(2)'
+  name: read(buffer, byteOffset, length, shared, byteOrder)
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_read_member_2_
+  fullName: FixedLengthArrayType.read(buffer, byteOffset, length, shared, byteOrder)
 - uid: '@esfx/struct-type!FixedLengthArrayType#SIZE:member'
   name: SIZE
   href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_SIZE_member
@@ -9929,6 +9965,10 @@ references:
   name: toFixed(fixedLength)
   href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_toFixed_member_1_
   fullName: FixedLengthArrayType.toFixed(fixedLength)
+- uid: '@esfx/struct-type!FixedLengthArrayType#write:member(1)'
+  name: write(buffer, byteOffset, value, byteOrder)
+  href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_write_member_1_
+  fullName: FixedLengthArrayType.write(buffer, byteOffset, value, byteOrder)
 - uid: '@esfx/struct-type!FixedLengthArrayType:interface'
   name: FixedLengthArrayType<TType, TFixedLength>
   href: api/struct-type/fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_interface
@@ -9944,6 +9984,10 @@ references:
 - uid: '@esfx/struct-type!InitType:type'
   name: InitType
   href: api/struct-type.html#_esfx_struct_type_InitType_type
+  fullName: InitType
+- uid: '@esfx/struct-type!InitType:var'
+  name: InitType
+  href: api/struct-type.html#_esfx_struct_type_InitType_var
   fullName: InitType
 - uid: '@esfx/struct-type!int16:var'
   name: int16
@@ -9961,29 +10005,41 @@ references:
   name: isLittleEndian
   href: api/struct-type.html#_esfx_struct_type_isLittleEndian_var
   fullName: isLittleEndian
-- uid: '@esfx/struct-type!PrimitiveType#[RelatedTypes]:member'
-  name: '[RelatedTypes]'
-  href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType__RelatedTypes__member
-  fullName: PrimitiveType.[RelatedTypes]
+- uid: '@esfx/struct-type!PrimitiveType#[InitType]:member'
+  name: '[InitType]'
+  href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType__InitType__member
+  fullName: PrimitiveType.[InitType]
+- uid: '@esfx/struct-type!PrimitiveType#[RuntimeType]:member'
+  name: '[RuntimeType]'
+  href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType__RuntimeType__member
+  fullName: PrimitiveType.[RuntimeType]
 - uid: '@esfx/struct-type!PrimitiveType#name:member'
   name: name
   href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType_name_member
   fullName: PrimitiveType.name
+- uid: '@esfx/struct-type!PrimitiveType#read:member(1)'
+  name: read(buffer, byteOffset, byteOrder)
+  href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType_read_member_1_
+  fullName: PrimitiveType.read(buffer, byteOffset, byteOrder)
 - uid: '@esfx/struct-type!PrimitiveType#SIZE:member'
   name: SIZE
   href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType_SIZE_member
   fullName: PrimitiveType.SIZE
+- uid: '@esfx/struct-type!PrimitiveType#write:member(1)'
+  name: write(buffer, byteOffset, value, byteOrder)
+  href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType_write_member_1_
+  fullName: PrimitiveType.write(buffer, byteOffset, value, byteOrder)
 - uid: '@esfx/struct-type!PrimitiveType:interface'
   name: PrimitiveType<K, T>
   href: api/struct-type/primitivetype.html#_esfx_struct_type_PrimitiveType_interface
   fullName: PrimitiveType<K, T>
-- uid: '@esfx/struct-type!PrimitiveTypes:type'
-  name: PrimitiveTypes
-  href: api/struct-type.html#_esfx_struct_type_PrimitiveTypes_type
-  fullName: PrimitiveTypes
 - uid: '@esfx/struct-type!RuntimeType:type'
   name: RuntimeType
   href: api/struct-type.html#_esfx_struct_type_RuntimeType_type
+  fullName: RuntimeType
+- uid: '@esfx/struct-type!RuntimeType:var'
+  name: RuntimeType
+  href: api/struct-type.html#_esfx_struct_type_RuntimeType_var
   fullName: RuntimeType
 - uid: '@esfx/struct-type!Struct:type'
   name: Struct
@@ -10045,18 +10101,34 @@ references:
   name: StructObjectInit
   href: api/struct-type.html#_esfx_struct_type_StructObjectInit_type
   fullName: StructObjectInit
-- uid: '@esfx/struct-type!StructType#[RelatedTypes]:member'
-  name: '[RelatedTypes]'
-  href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType__RelatedTypes__member
-  fullName: StructType.[RelatedTypes]
+- uid: '@esfx/struct-type!StructType#[InitType]:member'
+  name: '[InitType]'
+  href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType__InitType__member
+  fullName: StructType.[InitType]
+- uid: '@esfx/struct-type!StructType#[RuntimeType]:member'
+  name: '[RuntimeType]'
+  href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType__RuntimeType__member
+  fullName: StructType.[RuntimeType]
 - uid: '@esfx/struct-type!StructType#prototype:member'
   name: prototype
   href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType_prototype_member
   fullName: StructType.prototype
+- uid: '@esfx/struct-type!StructType#read:member(1)'
+  name: read(buffer, byteOffset, byteOrder)
+  href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType_read_member_1_
+  fullName: StructType.read(buffer, byteOffset, byteOrder)
+- uid: '@esfx/struct-type!StructType#read:member(2)'
+  name: read(buffer, byteOffset, shared, byteOrder)
+  href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType_read_member_2_
+  fullName: StructType.read(buffer, byteOffset, shared, byteOrder)
 - uid: '@esfx/struct-type!StructType#SIZE:member'
   name: SIZE
   href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType_SIZE_member
   fullName: StructType.SIZE
+- uid: '@esfx/struct-type!StructType#write:member(1)'
+  name: write(buffer, byteOffset, value, byteOrder)
+  href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType_write_member_1_
+  fullName: StructType.write(buffer, byteOffset, value, byteOrder)
 - uid: '@esfx/struct-type!StructType:interface'
   name: StructType<TDef>
   href: api/struct-type/structtype-interface.html#_esfx_struct_type_StructType_interface
@@ -10194,9 +10266,9 @@ references:
   href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_values_member_1_
   fullName: TypedArray.values()
 - uid: '@esfx/struct-type!TypedArray#writeTo:member(1)'
-  name: writeTo(buffer, byteOffset)
+  name: writeTo(buffer, byteOffset, byteOrder)
   href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_writeTo_member_1_
-  fullName: TypedArray.writeTo(buffer, byteOffset)
+  fullName: TypedArray.writeTo(buffer, byteOffset, byteOrder)
 - uid: '@esfx/struct-type!TypedArray:interface'
   name: TypedArray<TType, TFixedLength>
   href: api/struct-type/typedarray.html#_esfx_struct_type_TypedArray_interface

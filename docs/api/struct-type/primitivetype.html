@@ -95,15 +95,12 @@
   </h3>
   
   
-  <h4 id="_esfx_struct_type_PrimitiveType__RelatedTypes__member" data-uid="@esfx/struct-type!PrimitiveType#[RelatedTypes]:member">[RelatedTypes]</h4>
+  <h4 id="_esfx_struct_type_PrimitiveType__InitType__member" data-uid="@esfx/struct-type!PrimitiveType#[InitType]:member">[InitType]</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[RelatedTypes]?: {
-        RuntimeType: T;
-        InitType: number | bigint | boolean;
-    };</code></pre>
+    <pre><code class="lang-typeScript hljs">[InitType]: number | bigint | boolean;</code></pre>
   </div>
   
   
@@ -112,10 +109,29 @@
   
   <h5 class="propertyValue">Property Value</h5>
   <div class="property">
-    <div><span class="xref">{
-        RuntimeType: T;
-        InitType: number | bigint | boolean;
-    }</span></div>
+    <div><span class="xref">number | bigint | boolean</span></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  <h4 id="_esfx_struct_type_PrimitiveType__RuntimeType__member" data-uid="@esfx/struct-type!PrimitiveType#[RuntimeType]:member">[RuntimeType]</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[RuntimeType]: T;</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <div class="property">
+    <div><span class="xref">T</span></div>
     <p>
   </div>
   
@@ -164,6 +180,133 @@
     <div><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></div>
     <p>
   </div>
+  
+  
+  
+  <h3 id="methods">Methods
+  </h3>
+  
+  
+  <h4 id="_esfx_struct_type_PrimitiveType_read_member_1_" data-uid="@esfx/struct-type!PrimitiveType#read:member(1)">read(buffer, byteOffset, byteOrder)</h4>
+  <div class="markdown level1 summary"><p>Reads a primitive value from the buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">read(buffer: ArrayBufferLike, byteOffset: number, byteOrder?: Endianness): T;</code></pre>
+  </div>
+  
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>buffer</dt>
+        <dd><span class="xref">ArrayBufferLike</span></dd>
+      </dl>
+      <p>
+        <p>The <code>ArrayBuffer</code> or <code>SharedArrayBuffer</code> from which to read the value.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>byteOffset</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
+      </dl>
+      <p>
+        <p>The byte offset into &lt;xref:buffer&gt; at which to start reading.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>byteOrder</dt>
+        <dd><a class="xref" href="../struct-type.html#_esfx_struct_type_Endianness_type">Endianness</a></dd>
+      </dl>
+      <p>
+        <p>The endianness to use when reading the value. If unspecified, the native byte order will be used.</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><span class="xref">T</span></div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_struct_type_PrimitiveType_write_member_1_" data-uid="@esfx/struct-type!PrimitiveType#write:member(1)">write(buffer, byteOffset, value, byteOrder)</h4>
+  <div class="markdown level1 summary"><p>Writes a primitive value to a buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">write(buffer: ArrayBufferLike, byteOffset: number, value: T, byteOrder?: Endianness): void;</code></pre>
+  </div>
+  
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>buffer</dt>
+        <dd><span class="xref">ArrayBufferLike</span></dd>
+      </dl>
+      <p>
+        <p>The <code>ArrayBuffer</code> or <code>SharedArrayBuffer</code> into which to write the value.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>byteOffset</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
+      </dl>
+      <p>
+        <p>The byte offset into &lt;xref:buffer&gt; at which to start writing.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>value</dt>
+        <dd><span class="xref">T</span></dd>
+      </dl>
+      <p>
+        <p>The value to write.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>byteOrder</dt>
+        <dd><a class="xref" href="../struct-type.html#_esfx_struct_type_Endianness_type">Endianness</a></dd>
+      </dl>
+      <p>
+        <p>The endianness to use when writing the value. If unspecified, the native byte order will be used.</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><span class="xref">void</span></div>
+    <p>
+  </div>
+  
+  
   
   
   

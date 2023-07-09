@@ -95,15 +95,12 @@
   </h3>
   
   
-  <h4 id="_esfx_struct_type_FixedLengthArrayType__RelatedTypes__member" data-uid="@esfx/struct-type!FixedLengthArrayType#[RelatedTypes]:member">[RelatedTypes]</h4>
+  <h4 id="_esfx_struct_type_FixedLengthArrayType__InitType__member" data-uid="@esfx/struct-type!FixedLengthArrayType#[InitType]:member">[InitType]</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-typeScript hljs">[RelatedTypes]?: {
-        RuntimeType: TypedArray&lt;TType, TFixedLength&gt;;
-        InitType: TypedArray&lt;TType, TFixedLength&gt; | ArrayLike&lt;InitType&lt;TType&gt;&gt;;
-    };</code></pre>
+    <pre><code class="lang-typeScript hljs">[InitType]: TypedArray&lt;TType, TFixedLength&gt; | ArrayLike&lt;InitType&lt;TType&gt;&gt;;</code></pre>
   </div>
   
   
@@ -112,10 +109,29 @@
   
   <h5 class="propertyValue">Property Value</h5>
   <div class="property">
-    <div>{
-        RuntimeType: <a class="xref" href="typedarray.html#_esfx_struct_type_TypedArray_interface">TypedArray</a>&lt;TType, TFixedLength&gt;;
-        InitType: <a class="xref" href="typedarray.html#_esfx_struct_type_TypedArray_interface">TypedArray</a>&lt;TType, TFixedLength&gt; | <span class="xref">ArrayLike</span>&lt;<a class="xref" href="../struct-type.html#_esfx_struct_type_InitType_type">InitType</a>&lt;TType&gt;&gt;;
-    }</div>
+    <div><a class="xref" href="typedarray.html#_esfx_struct_type_TypedArray_interface">TypedArray</a>&lt;TType, TFixedLength&gt; | <span class="xref">ArrayLike</span>&lt;<a class="xref" href="../struct-type.html#_esfx_struct_type_InitType_type">InitType</a>&lt;TType&gt;&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  <h4 id="_esfx_struct_type_FixedLengthArrayType__RuntimeType__member" data-uid="@esfx/struct-type!FixedLengthArrayType#[RuntimeType]:member">[RuntimeType]</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">[RuntimeType]: TypedArray&lt;TType, TFixedLength&gt;;</code></pre>
+  </div>
+  
+  
+  
+  
+  
+  <h5 class="propertyValue">Property Value</h5>
+  <div class="property">
+    <div><a class="xref" href="typedarray.html#_esfx_struct_type_TypedArray_interface">TypedArray</a>&lt;TType, TFixedLength&gt;</div>
     <p>
   </div>
   
@@ -124,7 +140,8 @@
   
   
   <h4 id="_esfx_struct_type_FixedLengthArrayType_BYTES_PER_ELEMENT_member" data-uid="@esfx/struct-type!FixedLengthArrayType#BYTES_PER_ELEMENT:member">BYTES_PER_ELEMENT</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The number of bytes per each element of the array.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -146,7 +163,8 @@
   
   
   <h4 id="_esfx_struct_type_FixedLengthArrayType_fixedLength_member" data-uid="@esfx/struct-type!FixedLengthArrayType#fixedLength:member">fixedLength</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>the fixed length of the array.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -190,7 +208,8 @@
   
   
   <h4 id="_esfx_struct_type_FixedLengthArrayType_SIZE_member" data-uid="@esfx/struct-type!FixedLengthArrayType#SIZE:member">SIZE</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The number of bytes for the entire array.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -213,8 +232,156 @@
   </h3>
   
   
+  <h4 id="_esfx_struct_type_FixedLengthArrayType_read_member_1_" data-uid="@esfx/struct-type!FixedLengthArrayType#read:member(1)">read(buffer, byteOffset, shared, byteOrder)</h4>
+  <div class="markdown level1 summary"><p>Reads an array of values value from the buffer. The resulting array value will be backed by its own buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">read(buffer: ArrayBufferLike, byteOffset: number, shared?: boolean, byteOrder?: Endianness): TypedArray&lt;TType, TFixedLength&gt;;</code></pre>
+  </div>
+  
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>buffer</dt>
+        <dd><span class="xref">ArrayBufferLike</span></dd>
+      </dl>
+      <p>
+        <p>The <code>ArrayBuffer</code> or <code>SharedArrayBuffer</code> from which to read the array.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>byteOffset</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
+      </dl>
+      <p>
+        <p>The byte offset into &lt;xref:buffer&gt; at which to start reading.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>shared</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></dd>
+      </dl>
+      <p>
+        <p>When <code>true</code><!-- -->, the resulting value will be backed by a <code>SharedArrayBuffer</code><!-- -->.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>byteOrder</dt>
+        <dd><a class="xref" href="../struct-type.html#_esfx_struct_type_Endianness_type">Endianness</a></dd>
+      </dl>
+      <p>
+        <p>The endianness to use when reading the array. If unspecified, the native byte order will be used.</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="typedarray.html#_esfx_struct_type_TypedArray_interface">TypedArray</a>&lt;TType, TFixedLength&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_struct_type_FixedLengthArrayType_read_member_2_" data-uid="@esfx/struct-type!FixedLengthArrayType#read:member(2)">read(buffer, byteOffset, length, shared, byteOrder)</h4>
+  <div class="markdown level1 summary"><p>Reads an array of values value from the buffer. The resulting array value will be backed by its own buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">read(buffer: ArrayBufferLike, byteOffset: number, length?: number, shared?: boolean, byteOrder?: Endianness): TypedArray&lt;TType, TFixedLength&gt;;</code></pre>
+  </div>
+  
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>buffer</dt>
+        <dd><span class="xref">ArrayBufferLike</span></dd>
+      </dl>
+      <p>
+        <p>The <code>ArrayBuffer</code> or <code>SharedArrayBuffer</code> from which to read the array.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>byteOffset</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
+      </dl>
+      <p>
+        <p>The byte offset into &lt;xref:buffer&gt; at which to start reading.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>length</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
+      </dl>
+      <p>
+        <p>The number of array elements to read from the buffer.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>shared</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-boolean-objects">boolean</a></dd>
+      </dl>
+      <p>
+        <p>When <code>true</code><!-- -->, the resulting value will be backed by a <code>SharedArrayBuffer</code><!-- -->.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>byteOrder</dt>
+        <dd><a class="xref" href="../struct-type.html#_esfx_struct_type_Endianness_type">Endianness</a></dd>
+      </dl>
+      <p>
+        <p>The endianness to use when reading the array. If unspecified, the native byte order will be used.</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><a class="xref" href="typedarray.html#_esfx_struct_type_TypedArray_interface">TypedArray</a>&lt;TType, TFixedLength&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
   <h4 id="_esfx_struct_type_FixedLengthArrayType_toFixed_member_1_" data-uid="@esfx/struct-type!FixedLengthArrayType#toFixed:member(1)">toFixed(fixedLength)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Gets a fixed-length subtype for this array type.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -247,6 +414,74 @@
   <h5 class="returns">Returns</h5>
   <div class="property">
     <div><a class="xref" href="fixedlengtharraytype.html#_esfx_struct_type_FixedLengthArrayType_interface">FixedLengthArrayType</a>&lt;TType, TFixedLength&gt;</div>
+    <p>
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  <h4 id="_esfx_struct_type_FixedLengthArrayType_write_member_1_" data-uid="@esfx/struct-type!FixedLengthArrayType#write:member(1)">write(buffer, byteOffset, value, byteOrder)</h4>
+  <div class="markdown level1 summary"><p>Writes a structured value to a buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-typeScript hljs">write(buffer: ArrayBufferLike, byteOffset: number, value: TypedArray&lt;TType, TFixedLength&gt;, byteOrder?: Endianness): void;</code></pre>
+  </div>
+  
+  
+  <h5 class="parameters">Parameters</h5>
+    <div class="property">
+      <dl class="parameter">
+        <dt>buffer</dt>
+        <dd><span class="xref">ArrayBufferLike</span></dd>
+      </dl>
+      <p>
+        <p>The <code>ArrayBuffer</code> or <code>SharedArrayBuffer</code> into which to write the value.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>byteOffset</dt>
+        <dd><a class="xref" href="https://tc39.es/ecma262/#sec-number-objects">number</a></dd>
+      </dl>
+      <p>
+        <p>The byte offset into &lt;xref:buffer&gt; at which to start writing.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>value</dt>
+        <dd><a class="xref" href="typedarray.html#_esfx_struct_type_TypedArray_interface">TypedArray</a>&lt;TType, TFixedLength&gt;</dd>
+      </dl>
+      <p>
+        <p>The value to write.</p>
+
+        
+      </p>
+    </div>
+    <div class="property">
+      <dl class="parameter">
+        <dt>byteOrder</dt>
+        <dd><a class="xref" href="../struct-type.html#_esfx_struct_type_Endianness_type">Endianness</a></dd>
+      </dl>
+      <p>
+        <p>The endianness to use when writing the value. If unspecified, the native byte order will be used.</p>
+
+        
+      </p>
+    </div>
+  
+  <h5 class="returns">Returns</h5>
+  <div class="property">
+    <div><span class="xref">void</span></div>
     <p>
   </div>
   
