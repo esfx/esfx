@@ -333,11 +333,11 @@ interface ScopeContext<Hint extends "sync-dispose" | "async-dispose"> {
 
 type ScopeResource<Hint extends "sync-dispose" | "async-dispose"> =
     Hint extends "async-dispose" ?
-        AsyncDisposable :
+        AsyncDisposable | Disposable :
         Disposable;
 
 interface Scope<Hint extends "sync-dispose" | "async-dispose"> {
-    using<T extends ScopeResource<Hint> | Disposable | DisposeMethod<Hint> | null | undefined>(value: T): T;
+    using<T extends ScopeResource<Hint> | null | undefined>(value: T): T;
     fail(error: unknown): void;
 }
 

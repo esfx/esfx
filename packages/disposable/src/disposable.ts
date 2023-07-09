@@ -40,21 +40,6 @@ export interface Disposable {
 /**
  * Indicates an object that has resources that can be explicitly disposed.
  */
-export class Disposable {
-    /**
-     * Creates a `Disposable` wrapper around a callback used to dispose of a resource.
-     * @deprecated Use `DisposableStack` or `{ [Disposable.dispose]() { ... } }` instead.
-     */
-    constructor(dispose: () => void) {
-        if (!isFunction(dispose)) throw new TypeError("Function expected: dispose");
-
-        return Disposable.create(dispose);
-    }
-}
-
-/**
- * Indicates an object that has resources that can be explicitly disposed.
- */
 export namespace Disposable {
     /**
      * A well-known symbol used to define an explicit resource disposal method on an object.
@@ -64,16 +49,16 @@ export namespace Disposable {
     export const dispose: DisposeSymbol = disposeSymbol as DisposeSymbol;
 
     /**
-     * Emulate `using const` using `for..of`.
+     * Emulate `using` using `for..of`.
      *
      * NOTE: This is not spec-compliant and will not be standardized.
      *
      * @example
      * ```ts
-     * // with `using const` (proposed)
+     * // with `using` (proposed)
      * {
      *   ...
-     *   using const x = expr, y = expr;
+     *   using x = expr, y = expr;
      *   ...
      * }
      *
@@ -106,14 +91,14 @@ export namespace Disposable {
     /**
      * Yields each disposable in the iterable, disposing it when the generator resumes.
      *
-     * This emulates `for (using const x of expr)`.
+     * This emulates `for (using x of expr)`.
      *
      * NOTE: This is not spec-compliant and will not be standardized.
      *
      * @example
      * ```ts
-     * // with `using const` (proposed)
-     * for (using const x of expr) {
+     * // with `using` (proposed)
+     * for (using x of expr) {
      *   ...
      * }
      *
@@ -126,7 +111,7 @@ export namespace Disposable {
     export function * usingEach(iterable: Iterable<Disposable | null | undefined>) {
         if (!isIterableObject(iterable)) throw new TypeError("Object not iterable: iterable");
 
-        // for (using const disposable of disposables) yield disposable;
+        // for (using disposable of disposables) yield disposable;
         for (const disposable of iterable) {
             for (const { using, fail } of Disposable.scope()) try {
                 yield using(disposable);
@@ -134,7 +119,7 @@ export namespace Disposable {
         }
     }
 
-    const disposablePrototype = Disposable.prototype;
+    const disposablePrototype = {};
     Object.defineProperty(disposablePrototype, Symbol.toStringTag, { configurable: true, value: "Disposable" });
 
     /**
@@ -154,7 +139,6 @@ export namespace Disposable {
                     const cb = dispose;
                     dispose = undefined!;
                     cb();
-
                 }
             }
         }, disposablePrototype);
@@ -174,7 +158,7 @@ export namespace Disposable {
 Object.defineProperty(Disposable, Symbol.hasInstance, Object.getOwnPropertyDescriptor(Disposable, "hasInstance")!);
 
 /**
- * Used to aproximate `using const` via `for..of`. See {@link Disposable.scope}.
+ * Used to aproximate `using` via `for..of`. See {@link Disposable.scope}.
  *
  * NOTE: This is not spec-compliant and will not be standardized.
  */

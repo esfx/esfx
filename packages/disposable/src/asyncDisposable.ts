@@ -38,23 +38,6 @@ export interface AsyncDisposable {
     [AsyncDisposable.asyncDispose](): Promise<void>;
 }
 
-/**
- * Indicates an object that has resources that can be explicitly disposed asynchronously.
- *
- * NOTE: It is not necessary to subclass `AsyncDisposable`. Merely having an `[AsyncDisposable.asyncDispose]()` method is sufficient.
- */
-export class AsyncDisposable {
-    /**
-     * Creates an `AsyncDisposable` wrapper around a callback used to dispose resources.
-     * @deprecated Use `AsyncDisposableStack` or `{ [AsyncDisposable.asyncDispose]() { ... } }` instead.
-     */
-    constructor(disposeAsync: () => void | PromiseLike<void>) {
-        if (!isFunction(disposeAsync)) throw new TypeError("Function expected: disposeAsync");
-
-        return AsyncDisposable.create(disposeAsync);
-    }
-}
-
 export namespace AsyncDisposable {
     /**
      * A well-known symbol used to define an async explicit resource disposal method on an object.
@@ -64,16 +47,16 @@ export namespace AsyncDisposable {
     export const asyncDispose: AsyncDisposeSymbol = asyncDisposeSymbol as AsyncDisposeSymbol;
 
     /**
-     * Emulate `using await const` using `for..await..of`.
+     * Emulate `using await` using `for..await..of`.
      *
      * NOTE: This is not spec-compliant and will not be standardized.
      *
      * @example
      * ```ts
-     * // with `using await const` (proposed)
+     * // with `using await` (proposed)
      * {
      *   ...
-     *   using await const x = expr, y = expr;
+     *   using await x = expr, y = expr;
      *   ...
      * }
      *
@@ -106,17 +89,17 @@ export namespace AsyncDisposable {
     /**
      * Yields each disposable in the iterable, disposing it when the generator resumes.
      *
-     * This emulates `for (using await const x of expr)`.
+     * This emulates `for (using await x of expr)`.
      *
      * NOTE: This is not spec-compliant and will not be standardized.
      *
      * @example
      * ```ts
-     * // with `using await const` (proposed)
-     * for (using await const x of expr) {
+     * // with `using await` (proposed)
+     * for (using await x of expr) {
      *   ...
      * }
-     * for await (using await const x of expr) {
+     * for await (using await x of expr) {
      *   ...
      * }
      *
@@ -136,7 +119,7 @@ export namespace AsyncDisposable {
         }
     }
 
-    const asyncDisposablePrototype = AsyncDisposable.prototype;
+    const asyncDisposablePrototype = {};
     Object.defineProperty(asyncDisposablePrototype, Symbol.toStringTag, { configurable: true, value: "AsyncDisposable" });
 
     /**

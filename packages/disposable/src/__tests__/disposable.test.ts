@@ -24,20 +24,7 @@ interface SuppressedError extends Error {
     suppressed: any;
 }
 
-describe("The Disposable constructor [non-spec]", () => {
-    describe("Disposable(onDispose)", () => {
-        it("returns instance of Disposable", () => expect(new Disposable(() => {})).toBeInstanceOf(Disposable));
-        it("Adds 'onDispose' as resource callback", () => {
-            const fn = jest.fn();
-            const disposable = new Disposable(fn);
-            disposable[Disposable.dispose]();
-            expect(fn).toHaveBeenCalled();
-        });
-        it("throws on call", () => expect(() => Disposable.call(null, () => {})).toThrow(TypeError));
-    });
-});
-
-describe("Properties of the Disposable constructor [non-spec]", () => {
+describe("Properties of the Disposable object [non-spec]", () => {
     it("Disposable.dispose", () => expect(Disposable.dispose).toBeTypeof("symbol"));
     describe("Disposable.scope()", () => {
         it("is an own method", () => expect(Disposable).toHaveOwnMethod("scope"));
@@ -239,11 +226,7 @@ describe("Properties of the Disposable constructor [non-spec]", () => {
     });
     describe("Disposable[Symbol.hasInstance](value)", () => {
         it("is an own method", () => expect(Disposable).toHaveOwnMethod(Symbol.hasInstance));
-        it("returns true if value is disposable", () => expect(Disposable[Symbol.hasInstance]({ [Disposable.dispose]() {} })).toBe(true));
-        it("returns false if value is not disposable", () => expect(Disposable[Symbol.hasInstance]({ })).toBe(false));
+        it("returns true if value is disposable", () => expect((Disposable as any)[Symbol.hasInstance]({ [Disposable.dispose]() {} })).toBe(true));
+        it("returns false if value is not disposable", () => expect((Disposable as any)[Symbol.hasInstance]({ })).toBe(false));
     });
-});
-
-describe("Properties of Disposable instances [non-spec]", () => {
-    it("Inherits from %Disposable.prototype%", () => expect(Object.getPrototypeOf(Disposable.create(() => {}))).toBe(Disposable.prototype));
 });

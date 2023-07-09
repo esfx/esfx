@@ -24,20 +24,7 @@ interface SuppressedError extends Error {
     suppressed: any;
 }
 
-describe("The AsyncDisposable constructor [non-spec]", () => {
-    describe("AsyncDisposable(onDispose)", () => {
-        it("returns instance of AsyncDisposable", () => expect(new AsyncDisposable(() => {})).toBeInstanceOf(AsyncDisposable));
-        it("Adds 'onDispose' as resource callback", async () => {
-            const fn = jest.fn<() => Promise<void>>();
-            const disposable = new AsyncDisposable(fn);
-            await disposable[AsyncDisposable.asyncDispose]();
-            expect(fn).toHaveBeenCalled();
-        });
-        it("throws on call", () => expect(() => AsyncDisposable.call(null, () => {})).toThrow(TypeError));
-    });
-});
-
-describe("Properties of the AsyncDisposable constructor [non-spec]", () => {
+describe("Properties of the AsyncDisposable object [non-spec]", () => {
     it("AsyncDisposable.asyncDispose", () => expect(AsyncDisposable.asyncDispose).toBeTypeof("symbol"));
     describe("AsyncDisposable.scope()", () => {
         it("is an own method", () => expect(AsyncDisposable).toHaveOwnMethod("scope"));
@@ -246,11 +233,7 @@ describe("Properties of the AsyncDisposable constructor [non-spec]", () => {
     });
     describe("AsyncDisposable[Symbol.hasInstance](value)", () => {
         it("is an own method", () => expect(AsyncDisposable).toHaveOwnMethod(Symbol.hasInstance));
-        it("returns true if value is disposable", () => expect(AsyncDisposable[Symbol.hasInstance]({ [AsyncDisposable.asyncDispose]() {} })).toBe(true));
-        it("returns false if value is not disposable", () => expect(AsyncDisposable[Symbol.hasInstance]({ })).toBe(false));
+        it("returns true if value is disposable", () => expect((AsyncDisposable as any)[Symbol.hasInstance]({ [AsyncDisposable.asyncDispose]() {} })).toBe(true));
+        it("returns false if value is not disposable", () => expect((AsyncDisposable as any)[Symbol.hasInstance]({ })).toBe(false));
     });
-});
-
-describe("Properties of AsyncDisposable instances [non-spec]", () => {
-    it("Inherits from %AsyncDisposable.prototype%", () => expect(Object.getPrototypeOf(AsyncDisposable.create(() => {}))).toBe(AsyncDisposable.prototype));
 });
