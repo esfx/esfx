@@ -102,12 +102,7 @@ export class DisposableStack {
      * @param value The resource to add.
      * @returns The resource provided.
      */
-    use<T extends Disposable | null | undefined>(value: T): T;
-    /** @deprecated Use {@link defer|defer()} instead. */
-    use<T extends () => void>(value: T): T;
-    /** @deprecated Use {@link adopt|adopt()} instead. */
-    use<T>(value: T, onDispose: (value: T) => void): T;
-    use<T>(value: T, onDispose: ((value: T) => void) | undefined = undefined): T {
+    use<T extends Disposable | null | undefined>(value: T): T {
         // 11.3.3.3 DisposableStack.prototype.use ( _value_ )
 
         // 1. Let _disposableStack_ be the *this* value.
@@ -118,17 +113,6 @@ export class DisposableStack {
 
         // 3. If _disposableStack_.[[DisposableState]] is ~disposed~, throw a *ReferenceError* exception.
         if (disposableState === "disposed") throw new ReferenceError("Object is disposed");
-
-        // NOTE: 1.0.0 compatibility:
-        if (onDispose !== undefined) {
-            return this.adopt(value, onDispose);
-        }
-
-        // NOTE: 1.0.0 compatibility:
-        if (value !== null && value !== undefined && typeof value === "function" && !(Disposable.dispose in value)) {
-            this.defer(value as unknown as DisposeMethod<"sync-dispose">);
-            return value;
-        }
 
         // 4. Perform ? AddDisposableResource(_disposableStack_.[[DisposeCapability]], _value_, ~sync-dispose~).
         AddDisposableResource(weakDisposeCapability.get(this)!, value, "sync-dispose");

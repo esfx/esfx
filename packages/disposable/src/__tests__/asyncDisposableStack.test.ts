@@ -59,30 +59,7 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
             await stack.disposeAsync();
             expect(steps).toEqual(["step 2", "step 1"]);
         });
-        it("(deprecated) treats non-disposable function as disposable", async () => {
-            const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
-            const stack = new AsyncDisposableStack();
-            stack.use(fn);
-            await stack.disposeAsync();
-            expect(fn).toHaveBeenCalled();
-        });
-        it("(deprecated) pass custom dispose for resource", async () => {
-            const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
-            const resource = {};
-            const stack = new AsyncDisposableStack();
-            const result = stack.use(resource, fn);
-            await stack.disposeAsync();
-            expect(result).toBe(resource);
-            expect(fn).toHaveBeenCalled();
-        });
-        it("(deprecated) custom dispose invoked even if resource is null/undefined", async () => {
-            const fn = jest.fn<() => Promise<void>>().mockResolvedValue();
-            const stack = new AsyncDisposableStack();
-            stack.use(null, fn);
-            await stack.disposeAsync();
-            expect(fn).toHaveBeenCalled();
-        });
-        it("throws if wrong target", () => expect(() => AsyncDisposableStack.prototype.use.call({}, undefined!, undefined!)).toThrow());
+        it("throws if wrong target", () => expect(() => AsyncDisposableStack.prototype.use.call({}, undefined!)).toThrow());
         it("throws if called after disposed", async () => {
             const stack = new AsyncDisposableStack();
             await stack.disposeAsync();
@@ -195,7 +172,8 @@ describe("Properties of the AsyncDisposableStack prototype [spec]", () => {
         });
         it("resources from initial stack disposed after new stack from move is disposed", async () => {
             const stack = new AsyncDisposableStack();
-            const fn = stack.use(jest.fn<() => void>());
+            const fn = jest.fn<() => void>()
+            stack.defer(fn);
             const newStack = stack.move();
             await newStack[AsyncDisposable.asyncDispose]();
             expect(fn).toHaveBeenCalled();

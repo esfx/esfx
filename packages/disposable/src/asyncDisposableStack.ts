@@ -107,12 +107,7 @@ export class AsyncDisposableStack implements AsyncDisposable {
      * @param value The resource to add.
      * @returns The resource provided.
      */
-    use<T extends AsyncDisposable | Disposable | null | undefined>(value: T): T;
-    /** @deprecated Use {@link defer|defer()} instead. */
-    use<T extends () => void | PromiseLike<void>>(value: T): T;
-    /** @deprecated Use {@link adopt|adopt()} instead. */
-    use<T>(value: T, onDisposeAsync: (value: T) => void | PromiseLike<void>): T;
-    use<T>(value: T, onDisposeAsync: ((value: T) => void | PromiseLike<void>) | undefined = undefined): T {
+    use<T extends AsyncDisposable | Disposable | null | undefined>(value: T): T {
         // 11.4.3.3 AsyncDisposableStack.prototype.use( _value_ )
 
         // 1. Let _asyncDisposableStack_ be the *this* value.
@@ -123,17 +118,6 @@ export class AsyncDisposableStack implements AsyncDisposable {
 
         // 3. If _asyncDisposableStack_.[[AsyncDisposableState]] is ~disposed~, throw a *ReferenceError* exception.
         if (disposableState === "disposed") throw new ReferenceError("Object is disposed");
-
-        // NOTE: 1.0.0 compatibility:
-        if (onDisposeAsync !== undefined) {
-            return this.adopt(value, onDisposeAsync);
-        }
-
-        // NOTE: 1.0.0 compatibility:
-        if (value !== null && value !== undefined && typeof value === "function" && !(AsyncDisposable.asyncDispose in value) && !(Disposable.dispose in value)) {
-            this.defer(value as unknown as DisposeMethod<"async-dispose">);
-            return value;
-        }
 
         // 4. Perform ? AddDisposableResource(_asyncDisposableStack_.[[DisposeCapability]], _value_, ~async-dispose~).
         AddDisposableResource(weakDisposeCapability.get(this)!, value, "async-dispose");

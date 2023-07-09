@@ -59,30 +59,7 @@ describe("Properties of the DisposableStack prototype [spec]", () => {
             stack.dispose();
             expect(steps).toEqual(["step 2", "step 1"]);
         });
-        it("(deprecated) treats non-disposable function as disposable", () => {
-            const fn = jest.fn();
-            const stack = new DisposableStack();
-            stack.use(fn);
-            stack.dispose();
-            expect(fn).toHaveBeenCalled();
-        });
-        it("(deprecated) pass custom dispose for resource", () => {
-            const fn = jest.fn();
-            const resource = {};
-            const stack = new DisposableStack();
-            const result = stack.use(resource, fn);
-            stack.dispose();
-            expect(result).toBe(resource);
-            expect(fn).toHaveBeenCalled();
-        });
-        it("custom dispose invoked even if resource is null/undefined", () => {
-            const fn = jest.fn();
-            const stack = new DisposableStack();
-            stack.use(null, fn);
-            stack.dispose();
-            expect(fn).toHaveBeenCalled();
-        });
-        it("throws if wrong target", () => expect(() => DisposableStack.prototype.use.call({}, undefined!, undefined!)).toThrow());
+        it("throws if wrong target", () => expect(() => DisposableStack.prototype.use.call({}, undefined!)).toThrow());
         it("throws if called after disposed", () => {
             const stack = new DisposableStack();
             stack.dispose();
