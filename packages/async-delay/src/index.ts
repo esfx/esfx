@@ -37,6 +37,7 @@
 */
 
 import { Cancelable, CancelError } from "@esfx/cancelable";
+import /*#__INLINE__*/ { isMissing, isPositiveFiniteNumber } from '@esfx/internal-guards';
 
 /**
  * Waits the specified number of milliseconds before resolving.
@@ -46,40 +47,46 @@ export function delay(msec: number): Promise<void>;
 /**
  * Waits the specified number of milliseconds before resolving with the provided value.
  * @param msec The number of milliseconds to wait before resolving.
- * @param value An optional value for the resulting Promise.
+ * @param value An optional value for the resulting Promise. May not be a {@link Cancelable} &mdash; if you intend to resolve with a {@link Cancelable} you must use a different overload.
  */
-export function delay<T>(msec: number, value: T | PromiseLike<T>): Promise<T>;
+export function delay<T>(msec: number, value: PromiseLike<T> | Exclude<T, Cancelable>): Promise<T>;
 /**
  * Waits the specified number of milliseconds before resolving.
  * @param cancelable A Cancelable
  * @param msec The number of milliseconds to wait before resolving.
  */
-export function delay(cancelable: Cancelable, msec: number): Promise<void>;
+export function delay(cancelable: Cancelable | null | undefined, msec: number): Promise<void>;
 /**
  * Waits the specified number of milliseconds before resolving with the provided value.
  * @param cancelable A Cancelable
  * @param msec The number of milliseconds to wait before resolving.
  * @param value An optional value for the resulting Promise.
  */
-export function delay<T>(cancelable: Cancelable, msec: number, value: T | PromiseLike<T>): Promise<T>;
+export function delay<T>(cancelable: Cancelable | null | undefined, msec: number, value: T | PromiseLike<T>): Promise<T>;
 /**
  * Waits the specified number of milliseconds before resolving with the provided value.
  * @param cancelable A Cancelable
  * @param msec The number of milliseconds to wait before resolving.
  * @param value An optional value for the resulting Promise.
  */
-export function delay<T>(cancelable: number | Cancelable, msec?: T | PromiseLike<T> | number, value?: T | PromiseLike<T>) {
-    const _msec = msec;
+export function delay<T>(cancelable: number | Cancelable | null | undefined, msec?: Exclude<T, Cancelable> | PromiseLike<T> | number, value?: T | PromiseLike<T>) {
     return new Promise<T>((resolve, reject) => {
-        let msec: number;
+        let valueCanBeCancelable: boolean;
         if (typeof cancelable === "number") {
-            value = _msec as T | PromiseLike<T>;
+            value = msec as Exclude<T, Cancelable> | PromiseLike<T>;
             msec = cancelable;
             cancelable = Cancelable.none;
+            valueCanBeCancelable = false;
         }
         else {
-            msec = _msec as number;
+            msec = msec as number;
+            cancelable ??= Cancelable.none;
+            valueCanBeCancelable = true;
         }
+
+        if (!isMissing(cancelable) && !Cancelable.hasInstance(cancelable)) throw new TypeError("Cancelable expected: cancelable");
+        if (!isPositiveFiniteNumber(msec)) throw new TypeError("Argument out of range: msec");
+        if (!valueCanBeCancelable && Cancelable.hasInstance(value)) throw new TypeError("Argument may not be a Cancelable: value");
 
         Cancelable.throwIfSignaled(cancelable);
 

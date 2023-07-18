@@ -1,46 +1,12 @@
-module.exports = {
-    projects: [
-        '<rootDir>/internal/collections-hash/jest.esm.config.js',
-        '<rootDir>/packages/async-autoresetevent/jest.esm.config.js',
-        '<rootDir>/packages/async-barrier/jest.esm.config.js',
-        '<rootDir>/packages/async-conditionvariable/jest.esm.config.js',
-        '<rootDir>/packages/async-countdown/jest.esm.config.js',
-        '<rootDir>/packages/async-deferred/jest.esm.config.js',
-        '<rootDir>/packages/async-iter-fn/jest.esm.config.js',
-        '<rootDir>/packages/async-iter-fromsync/jest.esm.config.js',
-        '<rootDir>/packages/async-iter-query/jest.esm.config.js',
-        '<rootDir>/packages/async-manualresetevent/jest.esm.config.js',
-        '<rootDir>/packages/async-mutex/jest.esm.config.js',
-        '<rootDir>/packages/async-queue/jest.esm.config.js',
-        '<rootDir>/packages/async-readerwriterlock/jest.esm.config.js',
-        '<rootDir>/packages/async-semaphore/jest.esm.config.js',
-        '<rootDir>/packages/async-stack/jest.esm.config.js',
-        '<rootDir>/packages/canceltoken/jest.esm.config.js',
-        '<rootDir>/packages/collection-core/jest.esm.config.js',
-        '<rootDir>/packages/collection-core-shim/jest.esm.config.js',
-        '<rootDir>/packages/collections-hashmap/jest.esm.config.js',
-        '<rootDir>/packages/collections-hashset/jest.esm.config.js',
-        '<rootDir>/packages/collections-multimap/jest.esm.config.js',
-        '<rootDir>/packages/collections-sortedmap/jest.esm.config.js',
-        '<rootDir>/packages/collections-sortedset/jest.esm.config.js',
-        '<rootDir>/packages/decorators/jest.esm.config.js',
-        '<rootDir>/packages/disposable/jest.esm.config.js',
-        '<rootDir>/packages/equatable/jest.esm.config.js',
-        '<rootDir>/packages/equatable-shim/jest.esm.config.js',
-        '<rootDir>/packages/fn/jest.esm.config.js',
-        '<rootDir>/packages/fn-partial/jest.esm.config.js',
-        '<rootDir>/packages/indexed-object/jest.esm.config.js',
-        '<rootDir>/packages/iter-fn/jest.esm.config.js',
-        '<rootDir>/packages/iter-lookup/jest.esm.config.js',
-        '<rootDir>/packages/iter-query/jest.esm.config.js',
-        '<rootDir>/packages/lazy/jest.esm.config.js',
-        '<rootDir>/packages/ref/jest.esm.config.js',
-        '<rootDir>/packages/reflect-metadata-compat/jest.esm.config.js',
-        '<rootDir>/packages/struct-type/jest.esm.config.js',
-        '<rootDir>/packages/threading-autoresetevent/jest.esm.config.js',
-        '<rootDir>/packages/threading-conditionvariable/jest.esm.config.js',
-        '<rootDir>/packages/threading-manualresetevent/jest.esm.config.js',
-        '<rootDir>/packages/threading-mutex/jest.esm.config.js',
-        '<rootDir>/packages/threading-sleep/jest.esm.config.js',
-    ],
-};
+const fs = require("node:fs");
+const path = require("node:path");
+const projects = [];
+for (const workspaceRoot of ["internal", "packages"]) {
+    for (const entry of fs.readdirSync(workspaceRoot, { withFileTypes: true })) {
+        if (!entry.isDirectory()) continue;
+        if (fs.existsSync(path.join(workspaceRoot, entry.name, "jest.esm.config.js"))) {
+            projects.push(`<rootDir>/${workspaceRoot}/${entry.name}/jest.esm.config.js`);
+        }
+    }
+}
+module.exports = { projects };
