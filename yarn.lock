@@ -615,6 +615,7 @@ __metadata:
   resolution: "@esfx/async-delay@workspace:packages/async-delay"
   dependencies:
     "@esfx/cancelable": "workspace:*"
+    "@esfx/internal-guards": "workspace:*"
   languageName: unknown
   linkType: soft
 
