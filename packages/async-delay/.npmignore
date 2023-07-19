@@ -9,3 +9,4 @@ tsconfig*.json
 *.tsbuildinfo
 .npmfiles
 *.tgz
+/jest*.config.js
