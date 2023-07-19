@@ -16,7 +16,7 @@
 
 import /*#__INLINE__*/ { isFunction, isObject } from "@esfx/internal-guards";
 import { Disposable } from "./disposable.js";
-import { AddDisposableResource, DisposeCapability, DisposeMethod, DisposeResources, GetDisposeMethod, NewDisposeCapability } from "./internal/utils.js";
+import { AddDisposableResource, DisposeCapability, DisposeMethod, DisposeResources, execSync, GetDisposeMethod, NewDisposeCapability } from "./internal/utils.js";
 
 const weakDisposableState = new WeakMap<Disposable, "pending" | "disposed">();
 const weakDisposeCapability = new WeakMap<Disposable, DisposeCapability<"sync-dispose">>();
@@ -94,7 +94,7 @@ export class DisposableStack {
         // 5. Return ? DisposeResources(_disposableStack_, NormalCompletion(*undefined*)).
         const disposeCapability = weakDisposeCapability.get(this)!;
         weakDisposeCapability.delete(this);
-        DisposeResources("sync-dispose", disposeCapability, /*completion*/ undefined);
+        execSync(DisposeResources("sync-dispose", disposeCapability, /*completion*/ undefined));
     }
 
     /**

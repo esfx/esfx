@@ -15,13 +15,14 @@
 */
 
 import /*#__INLINE__*/ { isFunction, isIterableObject, isObject } from "@esfx/internal-guards";
-import { CreateScope, DisposeResources, Is } from "./internal/utils.js";
+import { CreateScope, DisposeResources, execSync } from "./internal/utils.js";
 
 const disposeSymbol: unique symbol =
     typeof (Symbol as any)["dispose"] === "symbol" ?
         (Symbol as any)["dispose"] :
         Symbol.for("@esfx/disposable:Disposable.dispose");
 
+type Is<T extends U, U> = T;
 type DisposeSymbol =
     globalThis.SymbolConstructor extends { "dispose": Is<infer S, symbol> } ?
         S :
@@ -84,7 +85,7 @@ export namespace Disposable {
         }
         finally {
             context.state = "done";
-            DisposeResources("sync-dispose", context.disposables, context.throwCompletion);
+            execSync(DisposeResources("sync-dispose", context.disposables, context.throwCompletion));
         }
     }
 

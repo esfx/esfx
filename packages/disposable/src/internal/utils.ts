@@ -40,13 +40,20 @@ import { AsyncDisposable } from "../asyncDisposable.js";
 /* @internal */
 import { Disposable } from "../disposable.js";
 
-export { };
-
-export type Is<T extends U, U> = T;
-
 /* @internal */
-export function GetMethod<V, P extends keyof V>(V: V, P: P): V[P] extends ((...args: any[]) => any) ? V[P] : undefined;
-export function GetMethod<V, P extends keyof V>(V: V, P: P) {
+export {
+    DisposeCapability,
+    NewDisposeCapability,
+    AddDisposableResource,
+    DisposeMethod,
+    GetDisposeMethod,
+    ThrowCompletion,
+    DisposeResources,
+    CreateScope,
+};
+
+function GetMethod<V, P extends keyof V>(V: V, P: P): V[P] extends ((...args: any[]) => any) ? V[P] : undefined;
+function GetMethod<V, P extends keyof V>(V: V, P: P) {
     // ECMA262 7.3.11 GetMethod ( _V_, _P_ )
 
     const func = V[P];
@@ -55,30 +62,39 @@ export function GetMethod<V, P extends keyof V>(V: V, P: P) {
     return func;
 }
 
-/* @internal */
-export const Call: <T, A extends any[], R>(F: (this: T, ...args: A) => R, V: T, ...argumentsList: A ) => R =
+const Call: <T, A extends any[], R>(F: (this: T, ...args: A) => R, V: T, ...argumentsList: A ) => R =
     // ECMA262 7.3.14 Call ( _F_, _V_ [ , _argumentsList_ ] )
     Function.prototype.call.bind(Function.prototype.call);
 
-/* @internal */
-export interface DisposeCapability<Hint extends "sync-dispose" | "async-dispose"> {
-    disposableResourceStack: DisposableResourceRecord<Hint>[];
+interface DisposeCapability<Hint extends "sync-dispose" | "async-dispose"> {
+    disposableResourceStack: DisposableResourceRecord<Hint>[] | undefined;
 }
 
-/* @internal */
-export function NewDisposeCapability<Hint extends "sync-dispose" | "async-dispose">(): DisposeCapability<Hint> {
+type DisposeMethod<Hint extends "sync-dispose" | "async-dispose"> =
+    Hint extends "async-dispose" ?
+        ((this: object | undefined) => void | PromiseLike<void>) :
+        ((this: object | undefined) => void);
+
+interface DisposableResourceRecord<Hint extends "sync-dispose" | "async-dispose"> {
+    ResourceValue: object | undefined;
+    Hint: Hint;
+    DisposeMethod: DisposeMethod<Hint> | undefined;
+}
+
+function NewDisposeCapability<Hint extends "sync-dispose" | "async-dispose">(): DisposeCapability<Hint> {
     return { disposableResourceStack: [] };
 }
 
-/* @internal */
-export interface ThrowCompletion {
+interface ThrowCompletion {
     value: unknown;
 }
 
-/* @internal */
-export function AddDisposableResource<Hint extends "sync-dispose" | "async-dispose">(disposeCapability: DisposeCapability<Hint>, V: unknown, hint: Hint, method?: DisposeMethod<Hint>) {
+function AddDisposableResource<Hint extends "sync-dispose" | "async-dispose">(disposeCapability: DisposeCapability<Hint>, V: unknown, hint: Hint, method?: DisposeMethod<Hint>) {
     // 3.1.2 AddDisposableResource ( _disposable_, _V_, _hint_ [ , _method_ ] )
     let resource: DisposableResourceRecord<Hint>;
+
+    // *. Assert: _disposeCapability_.[[DisposableResourceStack]] is not ~empty~.
+    if (!disposeCapability.disposableResourceStack) throw new Error("Illegal state.");
 
     // 1. If _method_ is not present then,
     if (arguments.length === 3) {
@@ -114,8 +130,7 @@ export function AddDisposableResource<Hint extends "sync-dispose" | "async-dispo
     // 4. Return ~unused~.
 }
 
-/* @internal */
-export function CreateDisposableResource<Hint extends "sync-dispose" | "async-dispose">(V: any, hint: Hint, method?: DisposeMethod<Hint>): DisposableResourceRecord<Hint> {
+function CreateDisposableResource<Hint extends "sync-dispose" | "async-dispose">(V: any, hint: Hint, method?: DisposeMethod<Hint>): DisposableResourceRecord<Hint> {
     // 3.1.3 CreateDisposableResource ( _V_, _hint_ [, _method_ ] )
 
     // 1. If _method_ is not present, then
@@ -152,8 +167,7 @@ export function CreateDisposableResource<Hint extends "sync-dispose" | "async-di
     return { ResourceValue: V, Hint: hint, DisposeMethod: method } as DisposableResourceRecord<Hint>;
 }
 
-/* @internal */
-export function GetDisposeMethod<Hint extends "sync-dispose" | "async-dispose">(V: object, hint: Hint): DisposeMethod<Hint> | undefined {
+function GetDisposeMethod<Hint extends "sync-dispose" | "async-dispose">(V: object, hint: Hint): DisposeMethod<Hint> | undefined {
     // 3.1.4 GetDisposeMethod ( _V_, _hint_ )
 
     let method: DisposeMethod<Hint> | undefined;
@@ -167,6 +181,17 @@ export function GetDisposeMethod<Hint extends "sync-dispose" | "async-dispose">(
         if (method === undefined) {
             // i. Set _method_ to ? GetMethod(_V_, @@dispose).
             method = GetMethod(V as Disposable, Disposable.dispose);
+            // ii. Let _closure_ be a new Abstract Closure with no parameters that captures _method_ and performs the following steps when called:
+            const closure = (void 0, function (this: object | undefined) {
+                // 1. Let _O_ be the *this* value.
+                // 2. Perform ? Call(_method_, _O_).
+                // 3. Return *undefined*.
+                Call(method!, this);
+            });
+
+            // iii. NOTE: This function is not observable to user code. It is used to ensure that a Promise returned from a synchronous `@@dispose` method will not be awaited.
+            // iv. Return CreateBuiltinFunction(_closure_, 0, *""*, « »).
+            return closure;
         }
     }
 
@@ -180,58 +205,39 @@ export function GetDisposeMethod<Hint extends "sync-dispose" | "async-dispose">(
     return method;
 }
 
-/* @internal */
-export function Dispose<Hint extends "sync-dispose" | "async-dispose">(V: object | undefined, hint: Hint, method: DisposeMethod<Hint> | undefined) {
-    // 3.1.5 Dispose ( _V_, _hint_, _method_ )
-
-    return hint === "async-dispose" ?
-        DisposeAsync(V, method) :
-        DisposeSync(V, method);
+function * Await<T>(value: T): Generator<unknown, Awaited<T>, unknown> {
+    return (yield value) as Awaited<T>;
 }
 
-function DisposeSync(V: object | undefined, method: DisposeMethod<"sync-dispose"> | undefined) {
+function * Dispose<Hint extends "sync-dispose" | "async-dispose">(V: object | undefined, hint: Hint, method: DisposeMethod<Hint> | undefined) {
     // 3.1.5 Dispose ( _V_, _hint_, _method_ )
-    // NOTE: when _hint_ is ~sync-dispose~
 
+    let result: unknown;
+    
     // 1. If _method_ is *undefined*, let _result_ be *undefined*.
+    if (method === undefined) {
+        result = undefined;
+    }
     // 2. Else, let _result_ be ? Call(_method_, _V_).
-    // 3. If _hint_ is ~async-dispose~, then
-    //    a. Perform ? Await(_result_).
+    else {
+        result = Call(method, V);
+    }
 
-    if (method !== undefined) {
-        Call(method, V);
+    // 3. If _hint_ is ~async-dispose~, then
+    if (hint === "async-dispose") {
+        //    a. Perform ? Await(_result_).
+        yield * Await(result);
     }
 
     // 4. Return *undefined*.
+    return undefined;
 }
 
-async function DisposeAsync(V: object | undefined, method: DisposeMethod<"async-dispose"> | undefined) {
-    // 3.1.5 Dispose ( _V_, _hint_, _method_ )
-    // NOTE: when _hint_ is ~async-dispose~
-
-    // 1. If _method_ is *undefined*, let _result_ be *undefined*.
-    // 2. Else, let _result_ be ? Call(_method_, _V_).
-    // 3. If _hint_ is ~async-dispose~, then
-    //    a. Perform ? Await(_result_).
-    if (method !== undefined) {
-        await Call(method, V);
-    }
-
-    // 4. Return *undefined*.
-}
-
-/* @internal */
-export function DisposeResources<Hint extends "sync-dispose" | "async-dispose">(hint: Hint, disposeCapability: DisposeCapability<Hint>, throwCompletion: ThrowCompletion | undefined): Hint extends "async-dispose" ? Promise<void> | void : void;
-export function DisposeResources<Hint extends "sync-dispose" | "async-dispose">(hint: Hint, disposeCapability: DisposeCapability<Hint>, throwCompletion: ThrowCompletion | undefined) {
+function * DisposeResources<Hint extends "sync-dispose" | "async-dispose">(hint: Hint, disposeCapability: DisposeCapability<Hint>, throwCompletion: ThrowCompletion | undefined) {
     // 3.1.6 DisposeResources ( _disposeCapability_, _completion_ )
-    return hint === "async-dispose" ?
-        DisposeResourcesAsync(disposeCapability as DisposeCapability<"async-dispose">, throwCompletion) :
-        DisposeResourcesSync(disposeCapability as DisposeCapability<"sync-dispose">, throwCompletion);
-}
 
-function DisposeResourcesSync(disposeCapability: DisposeCapability<"sync-dispose">, throwCompletion: ThrowCompletion | undefined) {
-    // 3.1.6 DisposeResources ( _disposeCapability_, _completion_ )
-    // NOTE: when _hint_ is ~sync-dispose~
+    // *. Assert: _disposeCapability_.[[DisposableResourceStack]] is not ~empty~.
+    if (!disposeCapability.disposableResourceStack) throw new Error("Illegal state.");
 
     // 1. For each _resource_ of _disposeCapability_.[[DisposableResourceStack]], in reverse list order, do
     for (let i = disposeCapability.disposableResourceStack.length - 1; i >= 0; i--) {
@@ -239,7 +245,7 @@ function DisposeResourcesSync(disposeCapability: DisposeCapability<"sync-dispose
 
         // a. Let _result_ be Dispose(_resource_.[[ResourceValue]], _resource_.[[Hint]], _resource_.[[DisposeMethod]]).
         try {
-            Dispose(resource.ResourceValue, resource.Hint, resource.DisposeMethod);
+            yield * Dispose(resource.ResourceValue, resource.Hint, resource.DisposeMethod);
         }
         // b. If _result_.[[Type]] is ~throw~, then
         catch (e) {
@@ -266,62 +272,12 @@ function DisposeResourcesSync(disposeCapability: DisposeCapability<"sync-dispose
         }
     }
 
-    // 5. Return _completion_.
-    if (throwCompletion) throw throwCompletion.value;
-}
-
-async function DisposeResourcesAsync(disposeCapability: DisposeCapability<"async-dispose">, throwCompletion: ThrowCompletion | undefined, errors?: unknown[]) {
-    // 3.1.6 DisposeResources ( _disposeCapability_, _completion_, [ , _errors_ ] )
-    // NOTE: when _hint_ is ~async-dispose~
-
-    // 1. For each _resource_ of _disposeCapability_.[[DisposableResourceStack]], in reverse list order, do
-    for (let i = disposeCapability.disposableResourceStack.length - 1; i >= 0; i--) {
-        const resource = disposeCapability.disposableResourceStack[i];
-
-        // a. Let _result_ be Dispose(_resource_.[[ResourceValue]], _resource_.[[Hint]], _resource_.[[DisposeMethod]]).
-        try {
-            await Dispose(resource.ResourceValue, resource.Hint, resource.DisposeMethod);
-        }
-        // b. If _result_.[[Type]] is ~throw~, then
-        catch (e) {
-            // i. If _completion_.[[Type]] is ~throw~, then
-            if (throwCompletion) {
-                // 1. Set _result_ to _result_.[[Value]].
-                const result = e;
-
-                // 2. Let _suppressed_ be _completion_.[[Value]].
-                const suppressed = throwCompletion.value;
-
-                // 3. Let _error_ be a newly created *SuppressedError* object.
-                // 4. Perform CreateNonEnumerableDataPropertyOrThrow(_error_, "error", _result_).
-                // 5. Perform CreateNonEnumerableDataPropertyOrThrow(_error_, "suppressed", _suppressed_).
-                const error = CreateSuppressedError("async-dispose", result, suppressed);
-
-                // 6. Set _completion_ to ThrowCompletion(_error_).
-                throwCompletion = { value: error };
-            }
-            else {
-                // 1. Set _completion_ to _result_.
-                throwCompletion = { value: e };
-            }
-        }
-    }
+    // *. NOTE: After _disposeCapability_ has been disposed, it will never be used again. The contents of _disposeCapability_.[[DisposableResourceStack]] can be discarded at this point.
+    // *. Set _disposeCapability_.[[DisposableResourceStack]] to ~empty~.
+    disposeCapability.disposableResourceStack = undefined;
 
     // 5. Return _completion_.
     if (throwCompletion) throw throwCompletion.value;
-}
-
-/* @internal */
-export type DisposeMethod<Hint extends "sync-dispose" | "async-dispose"> =
-    Hint extends "async-dispose" ?
-        ((this: object | undefined) => void | PromiseLike<void>) :
-        ((this: object | undefined) => void);
-
-/* @internal */
-export interface DisposableResourceRecord<Hint extends "sync-dispose" | "async-dispose"> {
-    ResourceValue: object | undefined;
-    Hint: Hint;
-    DisposeMethod: DisposeMethod<Hint> | undefined;
 }
 
 interface ScopeContext<Hint extends "sync-dispose" | "async-dispose"> {
@@ -341,8 +297,7 @@ interface Scope<Hint extends "sync-dispose" | "async-dispose"> {
     fail(error: unknown): void;
 }
 
-/* @internal */
-export function CreateScope<Hint extends "sync-dispose" | "async-dispose">(hint: Hint): ScopeContext<Hint> {
+function CreateScope<Hint extends "sync-dispose" | "async-dispose">(hint: Hint): ScopeContext<Hint> {
     // Credit to Mathieu Hofman for initial `for (const { using } of Disposable)` mechanism: https://github.com/mhofman/disposator/
     // See THIRD PARTY LICENSE NOTICE at the top of this file.
     // Modified to return a `fail` callback to emulate error suppression semantics of https://github.com/tc39/proposal-explicit-resource-management/
@@ -390,4 +345,21 @@ function CreateSuppressedError<Hint extends "sync-dispose" | "async-dispose">(hi
         Error.captureStackTrace(e, stackCrawlMark);
     }
     return e;
+}
+
+/* @internal */
+export function execSync<T>(gen: Generator<unknown, T, unknown>) {
+    const res = gen.next();
+    if (res.done) return res.value;
+    throw new Error("Illegal state");
+}
+
+/* @internal */
+export function execAsync<T>(gen: Generator<unknown, T, unknown>) {
+    return new Promise(resolve => resolve(step("next", /*value*/ undefined)));
+    function step(verb: "next" | "throw", value: unknown): T | Promise<T> {
+        const res = gen[verb](value);
+        if (res.done) return res.value;
+        return Promise.resolve(res.value).then(value => step("next", value), value => step("throw", value));
+    }
 }
