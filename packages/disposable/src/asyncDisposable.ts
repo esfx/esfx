@@ -16,13 +16,14 @@
 
 import /*#__INLINE__*/ { isAsyncIterableObject, isFunction, isIterableObject, isObject } from "@esfx/internal-guards";
 import { Disposable } from "./disposable.js";
-import { CreateScope, DisposeResources, Is } from "./internal/utils.js";
+import { CreateScope, DisposeResources, execAsync } from "./internal/utils.js";
 
 const asyncDisposeSymbol: unique symbol =
     typeof (Symbol as any)["asyncDispose"] === "symbol" ?
         (Symbol as any)["asyncDispose"] :
         Symbol.for("@esfx/disposable:AsyncDisposable.asyncDispose");
 
+type Is<T extends U, U> = T;
 type AsyncDisposeSymbol =
     globalThis.SymbolConstructor extends { "asyncDispose": Is<infer S, symbol> } ?
         S :
@@ -82,7 +83,7 @@ export namespace AsyncDisposable {
         }
         finally {
             context.state = "done";
-            await DisposeResources("async-dispose", context.disposables, context.throwCompletion);
+            await execAsync(DisposeResources("async-dispose", context.disposables, context.throwCompletion));
         }
     }
 
