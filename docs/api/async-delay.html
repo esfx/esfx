@@ -158,7 +158,7 @@ async function doSomeAction() {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare function delay&lt;T&gt;(msec: number, value: T | PromiseLike&lt;T&gt;): Promise&lt;T&gt;;</code></pre>
+          <pre><code class="lang-typeScript hljs">export declare function delay&lt;T&gt;(msec: number, value: PromiseLike&lt;T&gt; | Exclude&lt;T, Cancelable&gt;): Promise&lt;T&gt;;</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>
@@ -187,10 +187,10 @@ async function doSomeAction() {
           <div class="property">
             <dl class="parameter">
               <dt>value</dt>
-              <dd>T | <a class="xref" href="https://tc39.es/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt;</dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-promise-objects">PromiseLike</a>&lt;T&gt; | <span class="xref">Exclude</span>&lt;T, <a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a>&gt;</dd>
             </dl>
             <p>
-              <p>An optional value for the resulting Promise.</p>
+              <p>An optional value for the resulting Promise. May not be a <a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> &amp;mdash; if you intend to resolve with a <a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> you must use a different overload.</p>
 
               
             </p>
@@ -212,7 +212,7 @@ async function doSomeAction() {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare function delay(cancelable: Cancelable, msec: number): Promise&lt;void&gt;;</code></pre>
+          <pre><code class="lang-typeScript hljs">export declare function delay(cancelable: Cancelable | null | undefined, msec: number): Promise&lt;void&gt;;</code></pre>
         </div>
   
   
@@ -220,7 +220,7 @@ async function doSomeAction() {
           <div class="property">
             <dl class="parameter">
               <dt>cancelable</dt>
-              <dd><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></dd>
+              <dd><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | null | undefined</dd>
             </dl>
             <p>
               <p>A Cancelable</p>
@@ -256,7 +256,7 @@ async function doSomeAction() {
         <div class="markdown level1 conceptual"></div>
         <h5 class="decalaration">Declaration</h5>
         <div class="codewrapper">
-          <pre><code class="lang-typeScript hljs">export declare function delay&lt;T&gt;(cancelable: Cancelable, msec: number, value: T | PromiseLike&lt;T&gt;): Promise&lt;T&gt;;</code></pre>
+          <pre><code class="lang-typeScript hljs">export declare function delay&lt;T&gt;(cancelable: Cancelable | null | undefined, msec: number, value: T | PromiseLike&lt;T&gt;): Promise&lt;T&gt;;</code></pre>
         </div>
   
         <h5 class="typeParameters">Type Parameters</h5>
@@ -274,7 +274,7 @@ async function doSomeAction() {
           <div class="property">
             <dl class="parameter">
               <dt>cancelable</dt>
-              <dd><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a></dd>
+              <dd><a class="xref" href="cancelable/cancelable-interface.html#_esfx_cancelable_Cancelable_interface">Cancelable</a> | null | undefined</dd>
             </dl>
             <p>
               <p>A Cancelable</p>

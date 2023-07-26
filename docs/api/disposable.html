@@ -147,16 +147,9 @@ class MyFileResouce {
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-        <h4><a class="xref" href="disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a></h4>
-        <section><p>Indicates an object that has resources that can be explicitly disposed asynchronously.</p>
-<p>NOTE: It is not necessary to subclass <code>AsyncDisposable</code><!-- -->. Merely having an <code>[AsyncDisposable.asyncDispose]()</code> method is sufficient.</p>
-</section>
         <h4><a class="xref" href="disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_class">AsyncDisposableStack</a></h4>
         <section><p>A container for asynchronously disposable resources. When the stack is disposed, its containing resources are disposed in the reverse
 of the order in which they were added.</p>
-</section>
-        <h4><a class="xref" href="disposable/disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a></h4>
-        <section><p>Indicates an object that has resources that can be explicitly disposed.</p>
 </section>
         <h4><a class="xref" href="disposable/disposablestack.html#_esfx_disposable_DisposableStack_class">DisposableStack</a></h4>
         <section><p>A container for disposable resources. When the stack is disposed, its containing resources are disposed in the reverse
@@ -173,7 +166,7 @@ of the order in which they were added.</p>
         <section><p>Indicates an object that has resources that can be explicitly disposed.</p>
 </section>
         <h4><a class="xref" href="disposable/disposablescope.html#_esfx_disposable_DisposableScope_interface">DisposableScope</a></h4>
-        <section><p>Used to aproximate <code>using const</code> via <code>for..of</code><!-- -->. See <a class="xref" href="disposable/disposable-namespace.html">scope()</a>.</p>
+        <section><p>Used to aproximate <code>using</code> via <code>for..of</code><!-- -->. See <a class="xref" href="disposable/disposable-namespace.html">scope()</a>.</p>
 <p>NOTE: This is not spec-compliant and will not be standardized.</p>
 </section>
     <h3 id="typealiases">Type Aliases
@@ -204,7 +197,7 @@ of the order in which they were added.</p>
         	<div class="alert is-warning">
   		<h5>Warning</h5>
   		<p>Deprecated</p>
-  			Use <xref:@esfx isposable!disposable:class=""> instead.
+  			Use <xref:@esfx isposable!disposable:interface=""> instead.
   	</xref:@esfx></div>
         <div class="markdown level1 summary"></div>
         <div class="markdown level1 conceptual"></div>

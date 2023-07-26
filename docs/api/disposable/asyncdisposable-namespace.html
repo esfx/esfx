@@ -116,7 +116,7 @@ or to implement <code>AsyncDisposable.asyncDispose</code> yourself instead.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a></div>
+          <div><a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a></div>
           <p>
         </div>
   
@@ -149,7 +149,7 @@ or to implement <code>AsyncDisposable.asyncDispose</code> yourself instead.</p>
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><span class="xref">value</span> is <a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a></div>
+          <div><span class="xref">value</span> is <a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a></div>
           <p>
         </div>
   
@@ -158,7 +158,7 @@ or to implement <code>AsyncDisposable.asyncDispose</code> yourself instead.</p>
   
   
         <h4 id="_esfx_disposable_AsyncDisposable_scope_function_1_" data-uid="@esfx/disposable!AsyncDisposable.scope:function(1)">scope()</h4>
-              <div class="markdown level1 summary"><p>Emulate <code>using await const</code> using <code>for..await..of</code><!-- -->.</p>
+              <div class="markdown level1 summary"><p>Emulate <code>using await</code> using <code>for..await..of</code><!-- -->.</p>
 <p>NOTE: This is not spec-compliant and will not be standardized.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
@@ -178,10 +178,10 @@ or to implement <code>AsyncDisposable.asyncDispose</code> yourself instead.</p>
   
   
         <h5 id="_esfx_disposable_AsyncDisposable_scope_function_1__examples">Examples</h5>
-        <pre><code class="lang-ts">// with `using await const` (proposed)
+        <pre><code class="lang-ts">// with `using await` (proposed)
 {
   ...
-  using await const x = expr, y = expr;
+  using await x = expr, y = expr;
   ...
 }
 
@@ -201,7 +201,7 @@ for await (const { using, fail } of AsyncDisposable.scope()) {
   
         <h4 id="_esfx_disposable_AsyncDisposable_usingEach_function_1_" data-uid="@esfx/disposable!AsyncDisposable.usingEach:function(1)">usingEach(iterable)</h4>
               <div class="markdown level1 summary"><p>Yields each disposable in the iterable, disposing it when the generator resumes.</p>
-<p>This emulates <code>for (using await const x of expr)</code><!-- -->.</p>
+<p>This emulates <code>for (using await x of expr)</code><!-- -->.</p>
 <p>NOTE: This is not spec-compliant and will not be standardized.</p>
 </div>
         <div class="markdown level1 conceptual"></div>
@@ -215,7 +215,7 @@ for await (const { using, fail } of AsyncDisposable.scope()) {
           <div class="property">
             <dl class="parameter">
               <dt>iterable</dt>
-              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | null | undefined&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | null | undefined | <a class="xref" href="https://tc39.es/ecma262/#sec-promise-objects">PromiseLike</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | null | undefined&gt;&gt;</dd>
+              <dd><a class="xref" href="https://tc39.es/ecma262/#sec-asynciterable-interface">AsyncIterable</a>&lt;<a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a> | <a class="xref" href="disposable-interface.html#_esfx_disposable_Disposable_interface">Disposable</a> | null | undefined&gt; | <a class="xref" href="https://tc39.es/ecma262/#sec-iterable-interface">Iterable</a>&lt;<a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a> | <a class="xref" href="disposable-interface.html#_esfx_disposable_Disposable_interface">Disposable</a> | null | undefined | <a class="xref" href="https://tc39.es/ecma262/#sec-promise-objects">PromiseLike</a>&lt;<a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a> | <a class="xref" href="disposable-interface.html#_esfx_disposable_Disposable_interface">Disposable</a> | null | undefined&gt;&gt;</dd>
             </dl>
             <p>
               
@@ -225,18 +225,18 @@ for await (const { using, fail } of AsyncDisposable.scope()) {
   
         <h5 class="returns">Returns</h5>
         <div class="property">
-          <div><a class="xref" href="https://tc39.es/ecma262/#sec-asyncgenerator-objects">AsyncGenerator</a>&lt;<a class="xref" href="asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class">AsyncDisposable</a> | <a class="xref" href="disposable-class.html#_esfx_disposable_Disposable_class">Disposable</a> | null | undefined, void, unknown&gt;</div>
+          <div><a class="xref" href="https://tc39.es/ecma262/#sec-asyncgenerator-objects">AsyncGenerator</a>&lt;<a class="xref" href="asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface">AsyncDisposable</a> | <a class="xref" href="disposable-interface.html#_esfx_disposable_Disposable_interface">Disposable</a> | null | undefined, void, unknown&gt;</div>
           <p>
         </div>
   
   
   
         <h5 id="_esfx_disposable_AsyncDisposable_usingEach_function_1__examples">Examples</h5>
-        <pre><code class="lang-ts">// with `using await const` (proposed)
-for (using await const x of expr) {
+        <pre><code class="lang-ts">// with `using await` (proposed)
+for (using await x of expr) {
   ...
 }
-for await (using await const x of expr) {
+for await (using await x of expr) {
   ...
 }
 

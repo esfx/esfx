@@ -261,7 +261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/async-delay.html",
-          "hash": "UnXPsP1r9DKJCOipaER+POo4chK+s/sdj3ridLZ6/bY="
+          "hash": "YDW3y53V6Vx+/4cyZJc9ZqThr/tQJMbsqyWVFsYYTi8="
         }
       },
       "is_incremental": false,
@@ -549,7 +549,7 @@
       "output": {
         ".html": {
           "relative_path": "api/async-lockable/lockhandle.html",
-          "hash": "dxor6GQhS02MoIGDcET/9tOVzqhxlNE+hTzgHd64Qkk="
+          "hash": "hE7US8/31joBZSN2YQbybtX0fPq5zniFWLeQT4vGb/Q="
         }
       },
       "is_incremental": false,
@@ -909,7 +909,7 @@
       "output": {
         ".html": {
           "relative_path": "api/cancelable/cancelsubscription-interface.html",
-          "hash": "uP7XL1ZZrrX3dIkDGQf621yypisX8HhTHjp6EZ70ibI="
+          "hash": "IoMXgw4QjMjMFDrxhIOUWlEWOGFZHoyqpKE6aKiq4BU="
         }
       },
       "is_incremental": false,
@@ -945,7 +945,7 @@
       "output": {
         ".html": {
           "relative_path": "api/canceltoken/cancelsource.html",
-          "hash": "WyMx1xe1Ulao6fRm7pQ47Vji3ZUxY+yCN4QMC50YQtg="
+          "hash": "x1KOm9FgP2UuplaNJuHXBfIwjUfVqOkjJ7gFLnfkt/Q="
         }
       },
       "is_incremental": false,
@@ -1653,19 +1653,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable.html",
-          "hash": "z4b2Ku5lEUW4vbl0GhYTsox+SUu1Ykyeh6HAlgPb9ic="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "UniversalReference",
-      "source_relative_path": "obj/yml/disposable/asyncdisposable-class.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/disposable/asyncdisposable-class.html",
-          "hash": "4fTqXZ0zCdXzOL2esaShWippUIw74QtHvi6FiDpEKp0="
+          "hash": "enQYx3Z+N4wBThGa+gjsy+GqWtun3//8A822tzhTCRE="
         }
       },
       "is_incremental": false,
@@ -1689,7 +1677,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/asyncdisposable-namespace.html",
-          "hash": "uQ8dHcxifqfxG6wg0M3AeXKyVK58mWX9JvlUJCQnzZM="
+          "hash": "26TwZjWKJL7vRN2X4RSufM7QoNjmIQz055pllUWZaJg="
         }
       },
       "is_incremental": false,
@@ -1713,19 +1701,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/asyncdisposablestack.html",
-          "hash": "amjS7RmTnIAj7UKuOMrriY9xuNa7t7lyfBq2HfxcipM="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "UniversalReference",
-      "source_relative_path": "obj/yml/disposable/disposable-class.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/disposable/disposable-class.html",
-          "hash": "X3/pFHpZwIOn/0CBXIucj6MdDPGnwaH/Mwz0cakOd/g="
+          "hash": "4YV7bwnKaxZQ+nzHcfbC53R+Kp1mnAS0XX1oqaDk/Pc="
         }
       },
       "is_incremental": false,
@@ -1749,7 +1725,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/disposable-namespace.html",
-          "hash": "BBG53P5N5wIk9SWR3/yjjeMyIk7PECMsaBQCz6IncFw="
+          "hash": "fRXQ5jA68MBA/ZqETFh3CgaKhx0PHfqybcabhG8f6fQ="
         }
       },
       "is_incremental": false,
@@ -1761,7 +1737,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/disposablescope.html",
-          "hash": "j7Vs2cVnNY0REHt9UWb2O+Hbdxic+iAD/7h8QGDT8tI="
+          "hash": "Y+rZugw54ZqY4ZlTEQI995fAZeqXInKMKLLMZZwFPhU="
         }
       },
       "is_incremental": false,
@@ -1773,7 +1749,7 @@
       "output": {
         ".html": {
           "relative_path": "api/disposable/disposablestack.html",
-          "hash": "1mqSkoEr6290tyPjWH4C4vlpSvQRTaGeARSheSz9d1w="
+          "hash": "EBZmBVr3ZxLa2srr/tUD94bnvzAu60tGN9Uj9qX2t18="
         }
       },
       "is_incremental": false,
@@ -3189,7 +3165,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "7qA/aatssuYPMnicwpXoq7lom8cbezeEfpVkbpOJvc8="
+          "hash": "8rCDcwB62gH8iZvAx82XhjtVmlOxbKTcVKlH3Gd/scU="
         }
       },
       "is_incremental": false,

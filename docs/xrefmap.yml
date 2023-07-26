@@ -4557,14 +4557,6 @@ references:
   name: usingEach(iterable)
   href: api/disposable/asyncdisposable-namespace.html
   fullName: AsyncDisposable.usingEach(iterable)
-- uid: '@esfx/disposable!AsyncDisposable:class'
-  name: AsyncDisposable
-  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_class
-  fullName: AsyncDisposable
-- uid: '@esfx/disposable!AsyncDisposable:constructor(1)'
-  name: constructor(disposeAsync)
-  href: api/disposable/asyncdisposable-class.html#_esfx_disposable_AsyncDisposable_constructor_1_
-  fullName: constructor(disposeAsync)
 - uid: '@esfx/disposable!AsyncDisposable:interface'
   name: AsyncDisposable
   href: api/disposable/asyncdisposable-interface.html#_esfx_disposable_AsyncDisposable_interface
@@ -4621,14 +4613,6 @@ references:
   name: use(value)
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_use_member_1_
   fullName: AsyncDisposableStack.use(value)
-- uid: '@esfx/disposable!AsyncDisposableStack#use:member(2)'
-  name: use(value)
-  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_use_member_2_
-  fullName: AsyncDisposableStack.use(value)
-- uid: '@esfx/disposable!AsyncDisposableStack#use:member(3)'
-  name: use(value, onDisposeAsync)
-  href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_use_member_3_
-  fullName: AsyncDisposableStack.use(value, onDisposeAsync)
 - uid: '@esfx/disposable!AsyncDisposableStack:class'
   name: AsyncDisposableStack
   href: api/disposable/asyncdisposablestack.html#_esfx_disposable_AsyncDisposableStack_class
@@ -4661,14 +4645,6 @@ references:
   name: usingEach(iterable)
   href: api/disposable/disposable-namespace.html
   fullName: Disposable.usingEach(iterable)
-- uid: '@esfx/disposable!Disposable:class'
-  name: Disposable
-  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_class
-  fullName: Disposable
-- uid: '@esfx/disposable!Disposable:constructor(1)'
-  name: constructor(dispose)
-  href: api/disposable/disposable-class.html#_esfx_disposable_Disposable_constructor_1_
-  fullName: constructor(dispose)
 - uid: '@esfx/disposable!Disposable:interface'
   name: Disposable
   href: api/disposable/disposable-interface.html#_esfx_disposable_Disposable_interface
@@ -4725,14 +4701,6 @@ references:
   name: use(value)
   href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_use_member_1_
   fullName: DisposableStack.use(value)
-- uid: '@esfx/disposable!DisposableStack#use:member(2)'
-  name: use(value)
-  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_use_member_2_
-  fullName: DisposableStack.use(value)
-- uid: '@esfx/disposable!DisposableStack#use:member(3)'
-  name: use(value, onDispose)
-  href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_use_member_3_
-  fullName: DisposableStack.use(value, onDispose)
 - uid: '@esfx/disposable!DisposableStack:class'
   name: DisposableStack
   href: api/disposable/disposablestack.html#_esfx_disposable_DisposableStack_class
